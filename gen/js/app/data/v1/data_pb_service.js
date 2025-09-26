@@ -217,6 +217,33 @@ DataService.RemoveBinaryDataFromDatasetByIDs = {
   responseType: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse
 };
 
+DataService.CreateIndex = {
+  methodName: "CreateIndex",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.CreateIndexRequest,
+  responseType: app_data_v1_data_pb.CreateIndexResponse
+};
+
+DataService.ListIndexes = {
+  methodName: "ListIndexes",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.ListIndexesRequest,
+  responseType: app_data_v1_data_pb.ListIndexesResponse
+};
+
+DataService.DeleteIndex = {
+  methodName: "DeleteIndex",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteIndexRequest,
+  responseType: app_data_v1_data_pb.DeleteIndexResponse
+};
+
 exports.DataService = DataService;
 
 function DataServiceClient(serviceHost, options) {
@@ -919,6 +946,99 @@ DataServiceClient.prototype.removeBinaryDataFromDatasetByIDs = function removeBi
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.RemoveBinaryDataFromDatasetByIDs, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.createIndex = function createIndex(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.CreateIndex, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.listIndexes = function listIndexes(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.ListIndexes, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteIndex = function deleteIndex(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteIndex, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

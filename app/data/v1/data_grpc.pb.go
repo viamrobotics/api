@@ -75,6 +75,12 @@ type DataServiceClient interface {
 	AddBinaryDataToDatasetByIDs(ctx context.Context, in *AddBinaryDataToDatasetByIDsRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByIDsResponse, error)
 	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
 	RemoveBinaryDataFromDatasetByIDs(ctx context.Context, in *RemoveBinaryDataFromDatasetByIDsRequest, opts ...grpc.CallOption) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
+	// CreateIndex starts a custom index build
+	CreateIndex(ctx context.Context, in *CreateIndexRequest, opts ...grpc.CallOption) (*CreateIndexResponse, error)
+	// ListIndexes returns all the indexes for a given collection
+	ListIndexes(ctx context.Context, in *ListIndexesRequest, opts ...grpc.CallOption) (*ListIndexesResponse, error)
+	// DeleteIndex drops the specified custom index from a collection
+	DeleteIndex(ctx context.Context, in *DeleteIndexRequest, opts ...grpc.CallOption) (*DeleteIndexResponse, error)
 }
 
 type dataServiceClient struct {
@@ -320,6 +326,33 @@ func (c *dataServiceClient) RemoveBinaryDataFromDatasetByIDs(ctx context.Context
 	return out, nil
 }
 
+func (c *dataServiceClient) CreateIndex(ctx context.Context, in *CreateIndexRequest, opts ...grpc.CallOption) (*CreateIndexResponse, error) {
+	out := new(CreateIndexResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/CreateIndex", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) ListIndexes(ctx context.Context, in *ListIndexesRequest, opts ...grpc.CallOption) (*ListIndexesResponse, error) {
+	out := new(ListIndexesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/ListIndexes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) DeleteIndex(ctx context.Context, in *DeleteIndexRequest, opts ...grpc.CallOption) (*DeleteIndexResponse, error) {
+	out := new(DeleteIndexResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteIndex", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -377,6 +410,12 @@ type DataServiceServer interface {
 	AddBinaryDataToDatasetByIDs(context.Context, *AddBinaryDataToDatasetByIDsRequest) (*AddBinaryDataToDatasetByIDsResponse, error)
 	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
 	RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
+	// CreateIndex starts a custom index build
+	CreateIndex(context.Context, *CreateIndexRequest) (*CreateIndexResponse, error)
+	// ListIndexes returns all the indexes for a given collection
+	ListIndexes(context.Context, *ListIndexesRequest) (*ListIndexesResponse, error)
+	// DeleteIndex drops the specified custom index from a collection
+	DeleteIndex(context.Context, *DeleteIndexRequest) (*DeleteIndexResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -452,6 +491,15 @@ func (UnimplementedDataServiceServer) AddBinaryDataToDatasetByIDs(context.Contex
 }
 func (UnimplementedDataServiceServer) RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveBinaryDataFromDatasetByIDs not implemented")
+}
+func (UnimplementedDataServiceServer) CreateIndex(context.Context, *CreateIndexRequest) (*CreateIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateIndex not implemented")
+}
+func (UnimplementedDataServiceServer) ListIndexes(context.Context, *ListIndexesRequest) (*ListIndexesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListIndexes not implemented")
+}
+func (UnimplementedDataServiceServer) DeleteIndex(context.Context, *DeleteIndexRequest) (*DeleteIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteIndex not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -883,6 +931,60 @@ func _DataService_RemoveBinaryDataFromDatasetByIDs_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_CreateIndex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateIndexRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).CreateIndex(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/CreateIndex",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).CreateIndex(ctx, req.(*CreateIndexRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_ListIndexes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListIndexesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).ListIndexes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/ListIndexes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).ListIndexes(ctx, req.(*ListIndexesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_DeleteIndex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteIndexRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).DeleteIndex(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/DeleteIndex",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).DeleteIndex(ctx, req.(*DeleteIndexRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -977,6 +1079,18 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveBinaryDataFromDatasetByIDs",
 			Handler:    _DataService_RemoveBinaryDataFromDatasetByIDs_Handler,
+		},
+		{
+			MethodName: "CreateIndex",
+			Handler:    _DataService_CreateIndex_Handler,
+		},
+		{
+			MethodName: "ListIndexes",
+			Handler:    _DataService_ListIndexes_Handler,
+		},
+		{
+			MethodName: "DeleteIndex",
+			Handler:    _DataService_DeleteIndex_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
