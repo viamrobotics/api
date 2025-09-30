@@ -446,6 +446,11 @@ export class TabularDataByMQLRequest extends jspb.Message {
   getDataSource(): TabularDataSource | undefined;
   setDataSource(value?: TabularDataSource): void;
 
+  hasQueryPrefixName(): boolean;
+  clearQueryPrefixName(): void;
+  getQueryPrefixName(): string;
+  setQueryPrefixName(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByMQLRequest.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataByMQLRequest): TabularDataByMQLRequest.AsObject;
@@ -462,6 +467,7 @@ export namespace TabularDataByMQLRequest {
     mqlBinaryList: Array<Uint8Array | string>,
     useRecentData: boolean,
     dataSource?: TabularDataSource.AsObject,
+    queryPrefixName: string,
   }
 }
 
