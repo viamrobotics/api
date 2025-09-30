@@ -4598,7 +4598,8 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.toObject = function(includeInstan
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     mqlBinaryList: msg.getMqlBinaryList_asB64(),
     useRecentData: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    dataSource: (f = msg.getDataSource()) && proto.viam.app.data.v1.TabularDataSource.toObject(includeInstance, f)
+    dataSource: (f = msg.getDataSource()) && proto.viam.app.data.v1.TabularDataSource.toObject(includeInstance, f),
+    queryPrefixName: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -4651,6 +4652,10 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.deserializeBinaryFromReader = fun
       var value = new proto.viam.app.data.v1.TabularDataSource;
       reader.readMessage(value,proto.viam.app.data.v1.TabularDataSource.deserializeBinaryFromReader);
       msg.setDataSource(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setQueryPrefixName(value);
       break;
     default:
       reader.skipField();
@@ -4708,6 +4713,13 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.serializeBinaryToWriter = functio
       6,
       f,
       proto.viam.app.data.v1.TabularDataSource.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -4862,6 +4874,42 @@ proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.clearDataSource = funct
  */
 proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.hasDataSource = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string query_prefix_name = 7;
+ * @return {string}
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.getQueryPrefixName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLRequest} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.setQueryPrefixName = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.data.v1.TabularDataByMQLRequest} returns this
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.clearQueryPrefixName = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.TabularDataByMQLRequest.prototype.hasQueryPrefixName = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
