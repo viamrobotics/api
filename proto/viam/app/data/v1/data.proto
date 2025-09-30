@@ -269,6 +269,8 @@ message TabularDataByMQLRequest {
   // data_source is an optional field that can be used to specify the data source for the query.
   // If not specified, the query will run on "standard" storage.
   optional TabularDataSource data_source = 6;
+  // query_prefix_name is an optional field that can be used to specify a saved query to run
+  optional string query_prefix_name = 7;
 
   reserved 2, 5;
   reserved "mql_query", "use_data_pipeline";
