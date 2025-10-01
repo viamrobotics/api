@@ -12,20 +12,8 @@ option java_package = "com.viam.component.camera.v1";
 
 // A CameraService services all cameras associated with a robot
 service CameraService {
-  // GetImage returns a frame from a camera of the underlying robot. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
-  rpc GetImage(GetImageRequest) returns (GetImageResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/image"};
-  }
-
   rpc GetImages(GetImagesRequest) returns (GetImagesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/images"};
-  }
-
-  // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
-  // can be requested but may not necessarily be the same one returned.
-  rpc RenderFrame(RenderFrameRequest) returns (google.api.HttpBody) {
-    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/render_frame"};
   }
 
   // GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
@@ -50,22 +38,6 @@ service CameraService {
   }
 }
 
-message GetImageRequest {
-  // Name of a camera
-  string name = 1;
-  // Requested MIME type of response
-  string mime_type = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message GetImageResponse {
-  // Actual MIME type of response
-  string mime_type = 1;
-  // Frame in bytes
-  bytes image = 2;
-}
-
 message GetImagesRequest {
   // Name of a camera
   string name = 1;
@@ -86,20 +58,11 @@ message GetImagesResponse {
 message Image {
   // the name of the sensor where the image came from
   string source_name = 1;
-  // format of the response image bytes
-  Format format = 2;
+  reserved 2; // previously use for Format, reserving as per https://protobuf.dev/programming-guides/proto3/#deleting
   // image in bytes
   bytes image = 3;
   // The mime type of the image
   string mime_type = 4;
-}
-
-enum Format {
-  FORMAT_UNSPECIFIED = 0;
-  FORMAT_RAW_RGBA = 1;
-  FORMAT_RAW_DEPTH = 2;
-  FORMAT_JPEG = 3;
-  FORMAT_PNG = 4;
 }
 
 message RenderFrameRequest {
