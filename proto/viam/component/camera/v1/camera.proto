@@ -4,7 +4,6 @@ package viam.component.camera.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
-import "google/api/httpbody.proto";
 import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/component/camera/v1";
