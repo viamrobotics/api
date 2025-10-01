@@ -1,12 +1,25 @@
 # Simple CRUD Naming Linter
 
-A lightweight linter that checks for CRUD naming convention violations in Protocol Buffer files.
+A lightweight linter that enforces RPC methods start with approved CRUD verbs.
 
-## What it checks
+## How it works
 
-- ❌ `NewResource` → ✅ `CreateResource`
-- ❌ `RenameResource` → ✅ `UpdateResource`
-- ❌ `ChangeResource` → ✅ `UpdateResource`
+**Positive enforcement**: All RPC methods must start with approved verbs
+
+### Approved CRUD Verbs
+
+- ✅ `Create`, `Add` - for creating resources/relationships
+- ✅ `Get`, `List` - for reading single/multiple resources
+- ✅ `Update`, `Set` - for modifying resources/properties
+- ✅ `Delete`, `Remove` - for removing resources/relationships
+- ✅ `Enable`, `Disable` - for state changes
+- ✅ `Start`, `Stop` - for control operations
+
+### Examples of violations
+
+- ❌ `NewProject` → ✅ `CreateProject`
+- ❌ `RenameUser` → ✅ `UpdateUser`
+- ❌ `ProcessData` → ✅ Use approved verbs
 
 ## Usage
 
@@ -25,17 +38,20 @@ python3 tools/crud-linter.py --strict                  # Exit with error if viol
 ## Example output
 
 ```
-❌ Found 3 CRUD naming violations:
+❌ Found 4 CRUD naming violations:
 
 📄 test-violations.proto:
-  Line 8: rpc NewProject(NewProjectRequest) returns (NewProjectResponse);
-  💡 Suggested: rpc CreateProject(NewProjectRequest) returns (NewProjectResponse);
+  Line 7 (Non-CRUD naming): rpc NewProject(NewProjectRequest) returns (NewProjectResponse);
+  💡 Suggested: rpc CreateProject(...)
 
-  Line 9: rpc RenameUser(RenameUserRequest) returns (RenameUserResponse);
-  💡 Suggested: rpc UpdateUser(RenameUserRequest) returns (RenameUserResponse);
+  Line 8 (Non-CRUD naming): rpc RenameAccount(RenameAccountRequest) returns (RenameAccountResponse);
+  💡 Suggested: rpc UpdateAccount(...)
 
-  Line 10: rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
-  💡 Suggested: rpc UpdatePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+  Line 9 (Non-CRUD naming): rpc ProcessData(ProcessDataRequest) returns (ProcessDataResponse);
+  💡 Suggested: Use approved CRUD verbs: Create, Get, List, Update, Delete, Add, Remove, Set, Enable, Disable, Start, Stop
+
+  Line 10 (Non-CRUD naming): rpc HandleRequest(HandleRequestRequest) returns (HandleRequestResponse);
+  💡 Suggested: Use approved CRUD verbs: Create, Get, List, Update, Delete, Add, Remove, Set, Enable, Disable, Start, Stop
 ```
 
 ## CI Integration
@@ -54,11 +70,26 @@ Or run all linting together:
   run: make lint-all
 ```
 
-## Grandfathered APIs
+## Exceptions
 
-These existing APIs are allowed to violate the rules:
+### Grandfathered APIs (should eventually migrate)
 
 - `NewRobot`, `NewRobotPart`
 - `RenameDataset`, `RenameKey`, `RenameRegistryItem`, `RenameDataPipeline`
 - `ChangeRole`
 - `ReadOAuthApp`
+
+### Domain-specific Operations (permanent exceptions)
+
+- Physical operations: `MoveStraight`, `Spin`, `GoFor`, `GoTo`, `Open`, `Close`
+- Hardware queries: `GetImage`, `GetPointCloud`, `RenderFrame`, `IsMoving`, `IsPowered`
+- Service operations: `DoCommand`, `Sync`, `Infer`, `Move`, `MoveOnMap`
+- Data operations: `TabularDataBySQL`, `ExportTabularData`, `SearchOrganizations`
+- Business operations: `ShareLocation`, `LocationAuth`, `CheckPermissions`
+
+## Benefits of this approach
+
+✅ **Comprehensive**: Catches ANY non-conforming naming (not just known anti-patterns)
+✅ **Future-proof**: No need to add new anti-patterns as they're discovered  
+✅ **Simple**: Single rule - "must start with approved verb"
+✅ **Clear guidance**: Developers know exactly what verbs are allowed

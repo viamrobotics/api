@@ -2,7 +2,7 @@
 """
 Simple CRUD Naming Convention Linter for Viam Proto Files
 
-Checks for common anti-patterns and suggests CRUD-compliant alternatives.
+Enforces that all RPC methods start with approved CRUD verbs.
 """
 
 import re
@@ -11,18 +11,90 @@ import argparse
 from pathlib import Path
 
 
-# Anti-patterns to detect and their suggestions
-ANTI_PATTERNS = {
-    r'rpc\s+New([A-Z]\w*)\s*\(': r'rpc Create\1(',
-    r'rpc\s+Rename([A-Z]\w*)\s*\(': r'rpc Update\1(',
-    r'rpc\s+Change([A-Z]\w*)\s*\(': r'rpc Update\1(',
+# Approved CRUD verbs that RPCs must start with
+APPROVED_VERBS = {
+    'Create', 'Add',           # CREATE operations
+    'Get', 'List',             # READ operations  
+    'Update', 'Set',           # UPDATE operations
+    'Delete', 'Remove',        # DELETE operations
+    'Enable', 'Disable',       # State change operations
+    'Start', 'Stop',           # Control operations
 }
 
-# APIs that are allowed to violate the rules (grandfathered)
+# APIs that are allowed to violate the rules
 ALLOWED_VIOLATIONS = {
+    # Grandfathered APIs that should eventually be migrated to CRUD verbs
     'NewRobot', 'NewRobotPart', 'RenameDataset', 'RenameKey', 
-    'RenameRegistryItem', 'RenameDataPipeline', 'ChangeRole', 'ReadOAuthApp'
+    'RenameRegistryItem', 'RenameDataPipeline', 'ChangeRole', 'ReadOAuthApp',
+    
+    # Domain-specific component operations (physical actions)
+    'MoveStraight', 'Spin', 'MoveToPosition', 'MoveToJointPositions', 'MoveThroughJointPositions',
+    'GoFor', 'GoTo', 'SetRPM', 'ResetZeroPosition', 'ResetPosition', 'IsPowered', 'IsMoving',
+    'Open', 'Grab', 'SetPower', 'SetVelocity', 'RenderFrame', 'GetImage', 'GetPointCloud',
+    'Move', 'MoveOnMap', 'MoveOnGlobe', 'StopPlan', 'Push', 'TailRobotPartLogs',
+    'Infer', 'Sync', 'Close', 'Hold', 'UploadModuleFile', 'UploadBinaryDataToDatasets',
+    
+    # Domain-specific service operations  
+    'DoCommand', 'ShareLocation', 'UnshareLocation', 'LocationAuth', 'MarkPartAsMain',
+    'MarkPartForRestart', 'RotateKey', 'ResendOrganizationInvite', 'SearchOrganizations',
+    'CheckPermissions', 'TransferRegistryItem', 'MergeDatasets', 'TabularDataBySQL',
+    'TabularDataByMQL', 'TabularDataByFilter', 'BinaryDataByFilter', 'BinaryDataByIDs',
+    'ExportTabularData', 'GetLatestTabularData', 'ConfigureDatabaseUser', 'GetDatabaseConnection',
+    
+    # Complex domain operations
+    'AddTagsToBinaryDataByIDs', 'RemoveTagsFromBinaryDataByIDs', 'AddBoundingBoxToImageByID', 
+    'RemoveBoundingBoxFromImageByID', 'UpdateBoundingBox', 'TagsByFilter', 
+    'BoundingBoxLabelsByFilter', 'AddBinaryDataToDatasetByIDs', 'RemoveBinaryDataFromDatasetByIDs',
+    
+    # Business/Auth operations
+    'GetUserIDByEmail', 'GetOrganizationNamespaceAvailability', 'UpdateOrganizationNamespace',
+    'UpdateOrganizationInviteAuthorizations', 'OrganizationSetSupportEmail', 'OrganizationGetSupportEmail',
+    'OrganizationSetLogo', 'OrganizationGetLogo', 'GetAppContent', 'GetAppBranding',
+    'CreateInvoiceAndChargeImmediately', 'SendPaymentRequiredEmail', 'GetCurrentMonthUsage',
+    'GetOrgBillingInformation', 'GetInvoicesSummary', 'GetInvoicePdf', 'GetAvailableBillingTiers',
+    'UpdateOrganizationBillingTier',
+    
+    # Build/deployment operations
+    'StartBuild', 'StopBuild', 'LinkRepo', 'UnlinkRepo', 'LinkOrg', 'UnlinkOrg',
+    'SubmitTrainingJob', 'SubmitCustomTrainingJob', 'CancelTrainingJob', 'DeleteCompletedTrainingJob',
+    
+    # Robot/system operations
+    'ResourceNames', 'ResourceRPCSubtypes', 'CancelOperation', 'BlockForOperation', 
+    'StreamStatus', 'SendSessionHeartbeat', 'Log', 'RestartModule', 'Shutdown',
+    'FrameSystemConfig', 'TransformPose', 'TransformPCD', 'Tunnel', 'Config', 'Certificate',
+    'NeedsRestart', 'DeviceAgentConfig', 'Ready', 'ValidateConfig', 'ReconfigureResource',
+    
+    # Data sync/upload operations
+    'DataCaptureUpload', 'FileUpload', 'StreamingDataCaptureUpload',
+    
+    # Service-specific operations
+    'CaptureAllFromCamera', 'DiscoverResources', 'Shell', 'CopyFilesToMachine', 'CopyFilesFromMachine',
+    'Metadata', 'Echo', 'EchoMultiple', 'EchoBiDi', 'Home', 'IsHoldingSomething', 'Chunks',
+    'Properties', 'Record', 'StreamEvents', 'TriggerEvent', 'PWM', 'PWMFrequency',
+    'ReadAnalogReader', 'WriteAnalog', 'StreamTicks', 'ExitProvisioning',
+    
+    # Auth/legal operations  
+    'IsLegalAccepted', 'AcceptLegal', 'RegisterAuthApplication',
 }
+
+
+def suggest_crud_name(method_name):
+    """Suggest a CRUD-compliant name for a non-conforming method."""
+    # Common anti-pattern mappings
+    if method_name.startswith('New'):
+        return f"rpc Create{method_name[3:]}(...)"
+    elif method_name.startswith('Rename'):
+        return f"rpc Update{method_name[6:]}(...)"
+    elif method_name.startswith('Change'):
+        return f"rpc Update{method_name[6:]}(...)"
+    elif method_name.startswith('Read'):
+        return f"rpc Get{method_name[4:]}(...)"
+    elif 'All' in method_name and method_name.startswith('Get'):
+        # GetAllUsers → ListUsers
+        return f"rpc List{method_name[6:]}(...)"
+    else:
+        # Generic suggestion
+        return f"Use approved CRUD verbs: Create, Get, List, Update, Delete, Add, Remove, Set, Enable, Disable, Start, Stop"
 
 
 def find_violations(file_path):
@@ -35,30 +107,32 @@ def find_violations(file_path):
     except FileNotFoundError:
         return violations
     
+    # Extract RPC method names and check them
+    rpc_pattern = r'rpc\s+(\w+)\s*\('
+    
     for line_num, line in enumerate(lines, 1):
-        for pattern, suggestion in ANTI_PATTERNS.items():
-            match = re.search(pattern, line)
-            if match:
-                # Extract the full method name (e.g., "NewRobot", "RenameDataset")
-                if 'New' in pattern:
-                    method_name = 'New' + match.group(1)
-                elif 'Rename' in pattern:
-                    method_name = 'Rename' + match.group(1)
-                elif 'Change' in pattern:
-                    method_name = 'Change' + match.group(1)
-                else:
-                    method_name = match.group(1)
+        match = re.search(rpc_pattern, line)
+        if match:
+            method_name = match.group(1)
+            
+            # Skip if it's a grandfathered API
+            if method_name in ALLOWED_VIOLATIONS:
+                continue
+            
+            # Check if method starts with an approved verb
+            starts_with_approved_verb = any(method_name.startswith(verb) for verb in APPROVED_VERBS)
+            
+            if not starts_with_approved_verb:
+                # Generate suggestion based on method name
+                suggestion = suggest_crud_name(method_name)
                 
-                # Skip if it's a grandfathered API
-                if method_name in ALLOWED_VIOLATIONS:
-                    continue
-                    
                 violations.append({
                     'file': file_path,
                     'line': line_num,
                     'original': line.strip(),
-                    'suggestion': re.sub(pattern, suggestion, line).strip(),
-                    'method': method_name
+                    'suggestion': suggestion,
+                    'method': method_name,
+                    'type': 'Non-CRUD naming'
                 })
     
     return violations
@@ -67,6 +141,9 @@ def find_violations(file_path):
 def lint_directory(directory='.'):
     """Lint all proto files in directory."""
     proto_files = list(Path(directory).rglob('*.proto'))
+    # Exclude node_modules and other irrelevant directories
+    proto_files = [f for f in proto_files if 'node_modules' not in str(f)]
+    
     all_violations = []
     
     for proto_file in proto_files:
@@ -90,7 +167,8 @@ def print_results(violations):
             current_file = violation['file']
             print(f"📄 {current_file}:")
         
-        print(f"  Line {violation['line']}: {violation['original']}")
+        violation_type = violation.get('type', 'CRUD Anti-pattern')
+        print(f"  Line {violation['line']} ({violation_type}): {violation['original']}")
         print(f"  💡 Suggested: {violation['suggestion']}")
         print()
     
