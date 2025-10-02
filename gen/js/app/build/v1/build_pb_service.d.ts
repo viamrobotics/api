@@ -94,6 +94,15 @@ type BuildServiceUnlinkOrg = {
   readonly responseType: typeof app_build_v1_build_pb.UnlinkOrgResponse;
 };
 
+type BuildServiceStartReloadBuild = {
+  readonly methodName: string;
+  readonly service: typeof BuildService;
+  readonly requestStream: true;
+  readonly responseStream: false;
+  readonly requestType: typeof app_build_v1_build_pb.StartReloadBuildRequest;
+  readonly responseType: typeof app_build_v1_build_pb.StartReloadBuildResponse;
+};
+
 export class BuildService {
   static readonly serviceName: string;
   static readonly StartBuild: BuildServiceStartBuild;
@@ -106,6 +115,7 @@ export class BuildService {
   static readonly RemoveAppLink: BuildServiceRemoveAppLink;
   static readonly LinkOrg: BuildServiceLinkOrg;
   static readonly UnlinkOrg: BuildServiceUnlinkOrg;
+  static readonly StartReloadBuild: BuildServiceStartReloadBuild;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -222,5 +232,6 @@ export class BuildServiceClient {
     requestMessage: app_build_v1_build_pb.UnlinkOrgRequest,
     callback: (error: ServiceError|null, responseMessage: app_build_v1_build_pb.UnlinkOrgResponse|null) => void
   ): UnaryResponse;
+  startReloadBuild(metadata?: grpc.Metadata): RequestStream<app_build_v1_build_pb.StartReloadBuildRequest>;
 }
 
