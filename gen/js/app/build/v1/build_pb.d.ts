@@ -2,6 +2,7 @@
 // file: app/build/v1/build.proto
 
 import * as jspb from "google-protobuf";
+import * as app_packages_v1_packages_pb from "../../../app/packages/v1/packages_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class StartBuildRequest extends jspb.Message {
@@ -97,6 +98,87 @@ export namespace GetLogsRequest {
   export type AsObject = {
     buildId: string,
     platform: string,
+  }
+}
+
+export class ReloadBuildInfo extends jspb.Message {
+  getPlatform(): string;
+  setPlatform(value: string): void;
+
+  hasWorkdir(): boolean;
+  clearWorkdir(): void;
+  getWorkdir(): string;
+  setWorkdir(value: string): void;
+
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ReloadBuildInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: ReloadBuildInfo): ReloadBuildInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ReloadBuildInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ReloadBuildInfo;
+  static deserializeBinaryFromReader(message: ReloadBuildInfo, reader: jspb.BinaryReader): ReloadBuildInfo;
+}
+
+export namespace ReloadBuildInfo {
+  export type AsObject = {
+    platform: string,
+    workdir: string,
+    moduleId: string,
+  }
+}
+
+export class StartReloadBuildRequest extends jspb.Message {
+  hasPackage(): boolean;
+  clearPackage(): void;
+  getPackage(): app_packages_v1_packages_pb.CreatePackageRequest | undefined;
+  setPackage(value?: app_packages_v1_packages_pb.CreatePackageRequest): void;
+
+  hasBuildInfo(): boolean;
+  clearBuildInfo(): void;
+  getBuildInfo(): ReloadBuildInfo | undefined;
+  setBuildInfo(value?: ReloadBuildInfo): void;
+
+  getCloudBuildCase(): StartReloadBuildRequest.CloudBuildCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartReloadBuildRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StartReloadBuildRequest): StartReloadBuildRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartReloadBuildRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartReloadBuildRequest;
+  static deserializeBinaryFromReader(message: StartReloadBuildRequest, reader: jspb.BinaryReader): StartReloadBuildRequest;
+}
+
+export namespace StartReloadBuildRequest {
+  export type AsObject = {
+    pb_package?: app_packages_v1_packages_pb.CreatePackageRequest.AsObject,
+    buildInfo?: ReloadBuildInfo.AsObject,
+  }
+
+  export enum CloudBuildCase {
+    CLOUD_BUILD_NOT_SET = 0,
+    PACKAGE = 1,
+    BUILD_INFO = 2,
+  }
+}
+
+export class StartReloadBuildResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartReloadBuildResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StartReloadBuildResponse): StartReloadBuildResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartReloadBuildResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartReloadBuildResponse;
+  static deserializeBinaryFromReader(message: StartReloadBuildResponse, reader: jspb.BinaryReader): StartReloadBuildResponse;
+}
+
+export namespace StartReloadBuildResponse {
+  export type AsObject = {
   }
 }
 
