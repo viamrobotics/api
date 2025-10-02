@@ -29,6 +29,9 @@ service MLTrainingService {
 
   // GetTrainingJobLogs gets the logs for a given custom training job.
   rpc GetTrainingJobLogs(GetTrainingJobLogsRequest) returns (GetTrainingJobLogsResponse);
+
+  // ListSupportedContainers lists all supported containers.
+  rpc ListSupportedContainers(ListSupportedContainersRequest) returns (ListSupportedContainersResponse);
 }
 
 enum ModelType {
@@ -125,7 +128,7 @@ message TrainingJobMetadata {
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   repeated string tags = 16 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   map<string, string> arguments = 21 [(tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
-  string container_uri = 22 [(tagger.v1.tags) = "bson:\"container_uri\" json:\"container_uri\""];
+  string container_version = 22 [(tagger.v1.tags) = "bson:\"container_version\" json:\"container_version\""];
 
   reserved 1, 6;
   reserved "request", "user_email";
@@ -157,4 +160,15 @@ message GetTrainingJobLogsRequest {
 message GetTrainingJobLogsResponse {
   repeated TrainingJobLogEntry logs = 1;
   string next_page_token = 2;
+}
+
+message ListSupportedContainersRequest {}
+
+message ListSupportedContainersResponse {
+  repeated Container containers = 1;
+}
+
+message Container {
+  string uri = 1;
+  google.protobuf.Timestamp eol = 2;
 }

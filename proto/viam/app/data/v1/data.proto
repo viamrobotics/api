@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package viam.app.data.v1;
 
+import "app/mltraining/v1/ml_training.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
-import "mltraining/v1/ml_training.proto";
 
 option go_package = "go.viam.com/api/app/data/v1";
 
@@ -630,7 +630,7 @@ message RemoveBinaryDataFromDatasetByIDsResponse {}
 message BinaryDataToJSONLinesRequest {
   repeated string binary_data_ids = 1;
   repeated string requested_tags = 2;
-  mltraining.v1.ModelType model_type = 3;
+  viam.app.mltraining.v1.ModelType model_type = 3;
 }
 
 message BinaryDataToJSONLinesResponse {
