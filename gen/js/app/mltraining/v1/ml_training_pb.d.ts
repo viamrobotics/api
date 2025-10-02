@@ -296,8 +296,8 @@ export class TrainingJobMetadata extends jspb.Message {
 
   getArgumentsMap(): jspb.Map<string, string>;
   clearArgumentsMap(): void;
-  getContainerUri(): string;
-  setContainerUri(value: string): void;
+  getContainerVersion(): string;
+  setContainerVersion(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
@@ -330,7 +330,7 @@ export namespace TrainingJobMetadata {
     syncedModelId: string,
     tagsList: Array<string>,
     argumentsMap: Array<[string, string]>,
-    containerUri: string,
+    containerVersion: string,
   }
 }
 
@@ -485,6 +485,70 @@ export namespace GetTrainingJobLogsResponse {
   export type AsObject = {
     logsList: Array<TrainingJobLogEntry.AsObject>,
     nextPageToken: string,
+  }
+}
+
+export class ListSupportedContainersRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSupportedContainersRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSupportedContainersRequest): ListSupportedContainersRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListSupportedContainersRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSupportedContainersRequest;
+  static deserializeBinaryFromReader(message: ListSupportedContainersRequest, reader: jspb.BinaryReader): ListSupportedContainersRequest;
+}
+
+export namespace ListSupportedContainersRequest {
+  export type AsObject = {
+  }
+}
+
+export class ListSupportedContainersResponse extends jspb.Message {
+  clearContainersList(): void;
+  getContainersList(): Array<Container>;
+  setContainersList(value: Array<Container>): void;
+  addContainers(value?: Container, index?: number): Container;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSupportedContainersResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSupportedContainersResponse): ListSupportedContainersResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListSupportedContainersResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSupportedContainersResponse;
+  static deserializeBinaryFromReader(message: ListSupportedContainersResponse, reader: jspb.BinaryReader): ListSupportedContainersResponse;
+}
+
+export namespace ListSupportedContainersResponse {
+  export type AsObject = {
+    containersList: Array<Container.AsObject>,
+  }
+}
+
+export class Container extends jspb.Message {
+  getUri(): string;
+  setUri(value: string): void;
+
+  hasEol(): boolean;
+  clearEol(): void;
+  getEol(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEol(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Container.AsObject;
+  static toObject(includeInstance: boolean, msg: Container): Container.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Container, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Container;
+  static deserializeBinaryFromReader(message: Container, reader: jspb.BinaryReader): Container;
+}
+
+export namespace Container {
+  export type AsObject = {
+    uri: string,
+    eol?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

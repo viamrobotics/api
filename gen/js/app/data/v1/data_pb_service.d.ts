@@ -211,6 +211,15 @@ type DataServiceRemoveBinaryDataFromDatasetByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse;
 };
 
+type DataServiceBinaryDataToJSONLines = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.BinaryDataToJSONLinesRequest;
+  readonly responseType: typeof app_data_v1_data_pb.BinaryDataToJSONLinesResponse;
+};
+
 type DataServiceCreateIndex = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -263,6 +272,7 @@ export class DataService {
   static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
   static readonly AddBinaryDataToDatasetByIDs: DataServiceAddBinaryDataToDatasetByIDs;
   static readonly RemoveBinaryDataFromDatasetByIDs: DataServiceRemoveBinaryDataFromDatasetByIDs;
+  static readonly BinaryDataToJSONLines: DataServiceBinaryDataToJSONLines;
   static readonly CreateIndex: DataServiceCreateIndex;
   static readonly ListIndexes: DataServiceListIndexes;
   static readonly DeleteIndex: DataServiceDeleteIndex;
@@ -498,6 +508,15 @@ export class DataServiceClient {
   removeBinaryDataFromDatasetByIDs(
     requestMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse|null) => void
+  ): UnaryResponse;
+  binaryDataToJSONLines(
+    requestMessage: app_data_v1_data_pb.BinaryDataToJSONLinesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryDataToJSONLinesResponse|null) => void
+  ): UnaryResponse;
+  binaryDataToJSONLines(
+    requestMessage: app_data_v1_data_pb.BinaryDataToJSONLinesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryDataToJSONLinesResponse|null) => void
   ): UnaryResponse;
   createIndex(
     requestMessage: app_data_v1_data_pb.CreateIndexRequest,

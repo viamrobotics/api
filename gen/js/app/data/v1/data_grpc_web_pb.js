@@ -20,6 +20,8 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
+var app_mltraining_v1_ml_training_pb = require('../../../app/mltraining/v1/ml_training_pb.js')
+
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js')
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
@@ -1478,6 +1480,67 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeBinaryDataFromDa
       request,
       metadata || {},
       methodDescriptor_DataService_RemoveBinaryDataFromDatasetByIDs);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.BinaryDataToJSONLinesRequest,
+ *   !proto.viam.app.data.v1.BinaryDataToJSONLinesResponse>}
+ */
+const methodDescriptor_DataService_BinaryDataToJSONLines = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/BinaryDataToJSONLines',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.BinaryDataToJSONLinesRequest,
+  proto.viam.app.data.v1.BinaryDataToJSONLinesResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.BinaryDataToJSONLinesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.BinaryDataToJSONLinesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.BinaryDataToJSONLinesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.BinaryDataToJSONLinesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.BinaryDataToJSONLinesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.binaryDataToJSONLines =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/BinaryDataToJSONLines',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_BinaryDataToJSONLines,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.BinaryDataToJSONLinesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.BinaryDataToJSONLinesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.binaryDataToJSONLines =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/BinaryDataToJSONLines',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_BinaryDataToJSONLines);
 };
 
 

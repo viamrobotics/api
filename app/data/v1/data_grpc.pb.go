@@ -75,6 +75,8 @@ type DataServiceClient interface {
 	AddBinaryDataToDatasetByIDs(ctx context.Context, in *AddBinaryDataToDatasetByIDsRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByIDsResponse, error)
 	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
 	RemoveBinaryDataFromDatasetByIDs(ctx context.Context, in *RemoveBinaryDataFromDatasetByIDsRequest, opts ...grpc.CallOption) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
+	// BinaryDataToJSONLines converts binary data to JSON lines.
+	BinaryDataToJSONLines(ctx context.Context, in *BinaryDataToJSONLinesRequest, opts ...grpc.CallOption) (*BinaryDataToJSONLinesResponse, error)
 	// CreateIndex starts a custom index build
 	CreateIndex(ctx context.Context, in *CreateIndexRequest, opts ...grpc.CallOption) (*CreateIndexResponse, error)
 	// ListIndexes returns all the indexes for a given collection
@@ -326,6 +328,15 @@ func (c *dataServiceClient) RemoveBinaryDataFromDatasetByIDs(ctx context.Context
 	return out, nil
 }
 
+func (c *dataServiceClient) BinaryDataToJSONLines(ctx context.Context, in *BinaryDataToJSONLinesRequest, opts ...grpc.CallOption) (*BinaryDataToJSONLinesResponse, error) {
+	out := new(BinaryDataToJSONLinesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/BinaryDataToJSONLines", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataServiceClient) CreateIndex(ctx context.Context, in *CreateIndexRequest, opts ...grpc.CallOption) (*CreateIndexResponse, error) {
 	out := new(CreateIndexResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/CreateIndex", in, out, opts...)
@@ -410,6 +421,8 @@ type DataServiceServer interface {
 	AddBinaryDataToDatasetByIDs(context.Context, *AddBinaryDataToDatasetByIDsRequest) (*AddBinaryDataToDatasetByIDsResponse, error)
 	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
 	RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
+	// BinaryDataToJSONLines converts binary data to JSON lines.
+	BinaryDataToJSONLines(context.Context, *BinaryDataToJSONLinesRequest) (*BinaryDataToJSONLinesResponse, error)
 	// CreateIndex starts a custom index build
 	CreateIndex(context.Context, *CreateIndexRequest) (*CreateIndexResponse, error)
 	// ListIndexes returns all the indexes for a given collection
@@ -491,6 +504,9 @@ func (UnimplementedDataServiceServer) AddBinaryDataToDatasetByIDs(context.Contex
 }
 func (UnimplementedDataServiceServer) RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveBinaryDataFromDatasetByIDs not implemented")
+}
+func (UnimplementedDataServiceServer) BinaryDataToJSONLines(context.Context, *BinaryDataToJSONLinesRequest) (*BinaryDataToJSONLinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BinaryDataToJSONLines not implemented")
 }
 func (UnimplementedDataServiceServer) CreateIndex(context.Context, *CreateIndexRequest) (*CreateIndexResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateIndex not implemented")
@@ -931,6 +947,24 @@ func _DataService_RemoveBinaryDataFromDatasetByIDs_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_BinaryDataToJSONLines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BinaryDataToJSONLinesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).BinaryDataToJSONLines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/BinaryDataToJSONLines",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).BinaryDataToJSONLines(ctx, req.(*BinaryDataToJSONLinesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataService_CreateIndex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateIndexRequest)
 	if err := dec(in); err != nil {
@@ -1079,6 +1113,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveBinaryDataFromDatasetByIDs",
 			Handler:    _DataService_RemoveBinaryDataFromDatasetByIDs_Handler,
+		},
+		{
+			MethodName: "BinaryDataToJSONLines",
+			Handler:    _DataService_BinaryDataToJSONLines_Handler,
 		},
 		{
 			MethodName: "CreateIndex",
