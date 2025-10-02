@@ -5,6 +5,7 @@ package viam.app.data.v1;
 import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
+import "mltraining/v1/ml_training.proto";
 
 option go_package = "go.viam.com/api/app/data/v1";
 
@@ -90,6 +91,9 @@ service DataService {
 
   // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
   rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
+
+  // BinaryDataToJSONLines converts binary data to JSON lines.
+  rpc BinaryDataToJSONLines(BinaryDataToJSONLinesRequest) returns (BinaryDataToJSONLinesResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -612,3 +616,22 @@ message RemoveBinaryDataFromDatasetByIDsRequest {
 }
 
 message RemoveBinaryDataFromDatasetByIDsResponse {}
+
+message BinaryDataToJSONLinesRequest {
+  repeated string binary_data_ids = 1;
+  repeated string requested_tags = 2;
+  mltraining.v1.ModelType model_type = 3;
+}
+
+message BinaryDataToJSONLinesResponse {
+  repeated ImageMetadata image_metadata = 1;
+}
+
+message ImageMetadata {
+  string image_path = 1;
+  repeated Classification classification_annotations = 2;
+  repeated BoundingBox bbox_annotations = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  string part_id = 5;
+  string component_name = 6;
+}
