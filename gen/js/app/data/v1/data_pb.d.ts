@@ -446,6 +446,11 @@ export class TabularDataByMQLRequest extends jspb.Message {
   getDataSource(): TabularDataSource | undefined;
   setDataSource(value?: TabularDataSource): void;
 
+  hasQueryPrefixName(): boolean;
+  clearQueryPrefixName(): void;
+  getQueryPrefixName(): string;
+  setQueryPrefixName(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TabularDataByMQLRequest.AsObject;
   static toObject(includeInstance: boolean, msg: TabularDataByMQLRequest): TabularDataByMQLRequest.AsObject;
@@ -462,6 +467,7 @@ export namespace TabularDataByMQLRequest {
     mqlBinaryList: Array<Uint8Array | string>,
     useRecentData: boolean,
     dataSource?: TabularDataSource.AsObject,
+    queryPrefixName: string,
   }
 }
 
@@ -1827,6 +1833,204 @@ export namespace RemoveBinaryDataFromDatasetByIDsResponse {
   }
 }
 
+export class CreateIndexRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getCollectionType(): IndexableCollectionMap[keyof IndexableCollectionMap];
+  setCollectionType(value: IndexableCollectionMap[keyof IndexableCollectionMap]): void;
+
+  hasPipelineName(): boolean;
+  clearPipelineName(): void;
+  getPipelineName(): string;
+  setPipelineName(value: string): void;
+
+  clearIndexSpecList(): void;
+  getIndexSpecList(): Array<Uint8Array | string>;
+  getIndexSpecList_asU8(): Array<Uint8Array>;
+  getIndexSpecList_asB64(): Array<string>;
+  setIndexSpecList(value: Array<Uint8Array | string>): void;
+  addIndexSpec(value: Uint8Array | string, index?: number): Uint8Array | string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateIndexRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateIndexRequest): CreateIndexRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateIndexRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateIndexRequest;
+  static deserializeBinaryFromReader(message: CreateIndexRequest, reader: jspb.BinaryReader): CreateIndexRequest;
+}
+
+export namespace CreateIndexRequest {
+  export type AsObject = {
+    organizationId: string,
+    collectionType: IndexableCollectionMap[keyof IndexableCollectionMap],
+    pipelineName: string,
+    indexSpecList: Array<Uint8Array | string>,
+  }
+}
+
+export class CreateIndexResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateIndexResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateIndexResponse): CreateIndexResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateIndexResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateIndexResponse;
+  static deserializeBinaryFromReader(message: CreateIndexResponse, reader: jspb.BinaryReader): CreateIndexResponse;
+}
+
+export namespace CreateIndexResponse {
+  export type AsObject = {
+  }
+}
+
+export class DeleteIndexRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getCollectionType(): IndexableCollectionMap[keyof IndexableCollectionMap];
+  setCollectionType(value: IndexableCollectionMap[keyof IndexableCollectionMap]): void;
+
+  hasPipelineName(): boolean;
+  clearPipelineName(): void;
+  getPipelineName(): string;
+  setPipelineName(value: string): void;
+
+  getIndexName(): string;
+  setIndexName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteIndexRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteIndexRequest): DeleteIndexRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteIndexRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteIndexRequest;
+  static deserializeBinaryFromReader(message: DeleteIndexRequest, reader: jspb.BinaryReader): DeleteIndexRequest;
+}
+
+export namespace DeleteIndexRequest {
+  export type AsObject = {
+    organizationId: string,
+    collectionType: IndexableCollectionMap[keyof IndexableCollectionMap],
+    pipelineName: string,
+    indexName: string,
+  }
+}
+
+export class DeleteIndexResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteIndexResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteIndexResponse): DeleteIndexResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteIndexResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteIndexResponse;
+  static deserializeBinaryFromReader(message: DeleteIndexResponse, reader: jspb.BinaryReader): DeleteIndexResponse;
+}
+
+export namespace DeleteIndexResponse {
+  export type AsObject = {
+  }
+}
+
+export class ListIndexesRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getCollectionType(): IndexableCollectionMap[keyof IndexableCollectionMap];
+  setCollectionType(value: IndexableCollectionMap[keyof IndexableCollectionMap]): void;
+
+  hasPipelineName(): boolean;
+  clearPipelineName(): void;
+  getPipelineName(): string;
+  setPipelineName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListIndexesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListIndexesRequest): ListIndexesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListIndexesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListIndexesRequest;
+  static deserializeBinaryFromReader(message: ListIndexesRequest, reader: jspb.BinaryReader): ListIndexesRequest;
+}
+
+export namespace ListIndexesRequest {
+  export type AsObject = {
+    organizationId: string,
+    collectionType: IndexableCollectionMap[keyof IndexableCollectionMap],
+    pipelineName: string,
+  }
+}
+
+export class ListIndexesResponse extends jspb.Message {
+  clearIndexesList(): void;
+  getIndexesList(): Array<Index>;
+  setIndexesList(value: Array<Index>): void;
+  addIndexes(value?: Index, index?: number): Index;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListIndexesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListIndexesResponse): ListIndexesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListIndexesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListIndexesResponse;
+  static deserializeBinaryFromReader(message: ListIndexesResponse, reader: jspb.BinaryReader): ListIndexesResponse;
+}
+
+export namespace ListIndexesResponse {
+  export type AsObject = {
+    indexesList: Array<Index.AsObject>,
+  }
+}
+
+export class Index extends jspb.Message {
+  getCollectionType(): IndexableCollectionMap[keyof IndexableCollectionMap];
+  setCollectionType(value: IndexableCollectionMap[keyof IndexableCollectionMap]): void;
+
+  hasPipelineName(): boolean;
+  clearPipelineName(): void;
+  getPipelineName(): string;
+  setPipelineName(value: string): void;
+
+  getIndexName(): string;
+  setIndexName(value: string): void;
+
+  clearIndexSpecList(): void;
+  getIndexSpecList(): Array<Uint8Array | string>;
+  getIndexSpecList_asU8(): Array<Uint8Array>;
+  getIndexSpecList_asB64(): Array<string>;
+  setIndexSpecList(value: Array<Uint8Array | string>): void;
+  addIndexSpec(value: Uint8Array | string, index?: number): Uint8Array | string;
+
+  getCreatedBy(): IndexCreatorMap[keyof IndexCreatorMap];
+  setCreatedBy(value: IndexCreatorMap[keyof IndexCreatorMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Index.AsObject;
+  static toObject(includeInstance: boolean, msg: Index): Index.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Index, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Index;
+  static deserializeBinaryFromReader(message: Index, reader: jspb.BinaryReader): Index;
+}
+
+export namespace Index {
+  export type AsObject = {
+    collectionType: IndexableCollectionMap[keyof IndexableCollectionMap],
+    pipelineName: string,
+    indexName: string,
+    indexSpecList: Array<Uint8Array | string>,
+    createdBy: IndexCreatorMap[keyof IndexCreatorMap],
+  }
+}
+
 export interface OrderMap {
   ORDER_UNSPECIFIED: 0;
   ORDER_DESCENDING: 1;
@@ -1852,4 +2056,20 @@ export interface TabularDataSourceTypeMap {
 }
 
 export const TabularDataSourceType: TabularDataSourceTypeMap;
+
+export interface IndexableCollectionMap {
+  INDEXABLE_COLLECTION_UNSPECIFIED: 0;
+  INDEXABLE_COLLECTION_HOT_STORE: 1;
+  INDEXABLE_COLLECTION_PIPELINE_SINK: 2;
+}
+
+export const IndexableCollection: IndexableCollectionMap;
+
+export interface IndexCreatorMap {
+  INDEX_CREATOR_UNSPECIFIED: 0;
+  INDEX_CREATOR_VIAM: 1;
+  INDEX_CREATOR_CUSTOMER: 2;
+}
+
+export const IndexCreator: IndexCreatorMap;
 
