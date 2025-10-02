@@ -628,22 +628,12 @@ message RemoveBinaryDataFromDatasetByIDsRequest {
 message RemoveBinaryDataFromDatasetByIDsResponse {}
 
 message BinaryDataToJSONLinesRequest {
-  repeated string binary_data_ids = 1;
-  repeated string requested_tags = 2;
-  viam.app.mltraining.v1.ModelType model_type = 3;
+  repeated BinaryMetadata binary_metadata = 1;
+  string path = 2;
 }
 
 message BinaryDataToJSONLinesResponse {
-  repeated ImageMetadata image_metadata = 1;
-}
-
-message ImageMetadata {
-  string image_path = 1;
-  repeated Classification classification_annotations = 2;
-  repeated BoundingBox bbox_annotations = 3;
-  google.protobuf.Timestamp timestamp = 4;
-  string part_id = 5;
-  string component_name = 6;
+  google.protobuf.Struct JSON =1;
 }
 
 // IndexableCollection specifies the types of collections available for custom indexes
