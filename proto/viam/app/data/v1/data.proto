@@ -91,8 +91,9 @@ service DataService {
   // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
   rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
 
-  // BinaryDataToJSONLines converts binary data to JSON lines.
-  rpc BinaryDataToJSONLines(BinaryDataToJSONLinesRequest) returns (BinaryDataToJSONLinesResponse);
+  // BinaryMetadataToJSONLines converts binary metadata to JSON lines.
+  rpc BinaryMetadataToJSONLines(BinaryMetadataToJSONLinesRequest) returns (BinaryMetadataToJSONLinesResponse);
+
   // CreateIndex starts a custom index build
   rpc CreateIndex(CreateIndexRequest) returns (CreateIndexResponse);
 
@@ -626,13 +627,13 @@ message RemoveBinaryDataFromDatasetByIDsRequest {
 
 message RemoveBinaryDataFromDatasetByIDsResponse {}
 
-message BinaryDataToJSONLinesRequest {
+message BinaryMetadataToJSONLinesRequest {
   repeated BinaryMetadata binary_metadata = 1;
   string path = 2;
 }
 
-message BinaryDataToJSONLinesResponse {
-  google.protobuf.Struct json = 1;
+message BinaryMetadataToJSONLinesResponse {
+  repeated string json_lines = 1;
 }
 
 // IndexableCollection specifies the types of collections available for custom indexes
