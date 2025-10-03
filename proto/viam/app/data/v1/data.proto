@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package viam.app.data.v1;
 
-import "app/mltraining/v1/ml_training.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
@@ -633,7 +632,7 @@ message BinaryDataToJSONLinesRequest {
 }
 
 message BinaryDataToJSONLinesResponse {
-  google.protobuf.Struct JSON =1;
+  google.protobuf.Struct json = 1;
 }
 
 // IndexableCollection specifies the types of collections available for custom indexes
