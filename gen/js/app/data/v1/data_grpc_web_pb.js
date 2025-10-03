@@ -20,8 +20,6 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
-var app_mltraining_v1_ml_training_pb = require('../../../app/mltraining/v1/ml_training_pb.js')
-
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js')
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')

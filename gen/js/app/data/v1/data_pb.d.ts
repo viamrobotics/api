@@ -2,7 +2,6 @@
 // file: app/data/v1/data.proto
 
 import * as jspb from "google-protobuf";
-import * as app_mltraining_v1_ml_training_pb from "../../../app/mltraining/v1/ml_training_pb";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
@@ -1835,18 +1834,13 @@ export namespace RemoveBinaryDataFromDatasetByIDsResponse {
 }
 
 export class BinaryDataToJSONLinesRequest extends jspb.Message {
-  clearBinaryDataIdsList(): void;
-  getBinaryDataIdsList(): Array<string>;
-  setBinaryDataIdsList(value: Array<string>): void;
-  addBinaryDataIds(value: string, index?: number): string;
+  clearBinaryMetadataList(): void;
+  getBinaryMetadataList(): Array<BinaryMetadata>;
+  setBinaryMetadataList(value: Array<BinaryMetadata>): void;
+  addBinaryMetadata(value?: BinaryMetadata, index?: number): BinaryMetadata;
 
-  clearRequestedTagsList(): void;
-  getRequestedTagsList(): Array<string>;
-  setRequestedTagsList(value: Array<string>): void;
-  addRequestedTags(value: string, index?: number): string;
-
-  getModelType(): app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap];
-  setModelType(value: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap]): void;
+  getPath(): string;
+  setPath(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataToJSONLinesRequest.AsObject;
@@ -1860,17 +1854,16 @@ export class BinaryDataToJSONLinesRequest extends jspb.Message {
 
 export namespace BinaryDataToJSONLinesRequest {
   export type AsObject = {
-    binaryDataIdsList: Array<string>,
-    requestedTagsList: Array<string>,
-    modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
+    binaryMetadataList: Array<BinaryMetadata.AsObject>,
+    path: string,
   }
 }
 
 export class BinaryDataToJSONLinesResponse extends jspb.Message {
-  clearImageMetadataList(): void;
-  getImageMetadataList(): Array<ImageMetadata>;
-  setImageMetadataList(value: Array<ImageMetadata>): void;
-  addImageMetadata(value?: ImageMetadata, index?: number): ImageMetadata;
+  hasJson(): boolean;
+  clearJson(): void;
+  getJson(): google_protobuf_struct_pb.Struct | undefined;
+  setJson(value?: google_protobuf_struct_pb.Struct): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryDataToJSONLinesResponse.AsObject;
@@ -1884,53 +1877,7 @@ export class BinaryDataToJSONLinesResponse extends jspb.Message {
 
 export namespace BinaryDataToJSONLinesResponse {
   export type AsObject = {
-    imageMetadataList: Array<ImageMetadata.AsObject>,
-  }
-}
-
-export class ImageMetadata extends jspb.Message {
-  getImagePath(): string;
-  setImagePath(value: string): void;
-
-  clearClassificationAnnotationsList(): void;
-  getClassificationAnnotationsList(): Array<Classification>;
-  setClassificationAnnotationsList(value: Array<Classification>): void;
-  addClassificationAnnotations(value?: Classification, index?: number): Classification;
-
-  clearBboxAnnotationsList(): void;
-  getBboxAnnotationsList(): Array<BoundingBox>;
-  setBboxAnnotationsList(value: Array<BoundingBox>): void;
-  addBboxAnnotations(value?: BoundingBox, index?: number): BoundingBox;
-
-  hasTimestamp(): boolean;
-  clearTimestamp(): void;
-  getTimestamp(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTimestamp(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
-  getPartId(): string;
-  setPartId(value: string): void;
-
-  getComponentName(): string;
-  setComponentName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ImageMetadata.AsObject;
-  static toObject(includeInstance: boolean, msg: ImageMetadata): ImageMetadata.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ImageMetadata, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ImageMetadata;
-  static deserializeBinaryFromReader(message: ImageMetadata, reader: jspb.BinaryReader): ImageMetadata;
-}
-
-export namespace ImageMetadata {
-  export type AsObject = {
-    imagePath: string,
-    classificationAnnotationsList: Array<Classification.AsObject>,
-    bboxAnnotationsList: Array<BoundingBox.AsObject>,
-    timestamp?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    partId: string,
-    componentName: string,
+    json?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
