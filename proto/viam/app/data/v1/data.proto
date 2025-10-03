@@ -91,6 +91,9 @@ service DataService {
   // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
   rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
 
+  // BinaryMetadataToJSONLines converts binary metadata to JSON lines.
+  rpc BinaryMetadataToJSONLines(BinaryMetadataToJSONLinesRequest) returns (BinaryMetadataToJSONLinesResponse);
+
   // CreateIndex starts a custom index build
   rpc CreateIndex(CreateIndexRequest) returns (CreateIndexResponse);
 
@@ -623,6 +626,15 @@ message RemoveBinaryDataFromDatasetByIDsRequest {
 }
 
 message RemoveBinaryDataFromDatasetByIDsResponse {}
+
+message BinaryMetadataToJSONLinesRequest {
+  repeated BinaryMetadata binary_metadata = 1;
+  string path = 2;
+}
+
+message BinaryMetadataToJSONLinesResponse {
+  repeated string json_lines = 1;
+}
 
 // IndexableCollection specifies the types of collections available for custom indexes
 enum IndexableCollection {

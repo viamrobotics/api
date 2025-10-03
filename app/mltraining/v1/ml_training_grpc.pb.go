@@ -36,6 +36,8 @@ type MLTrainingServiceClient interface {
 	DeleteCompletedTrainingJob(ctx context.Context, in *DeleteCompletedTrainingJobRequest, opts ...grpc.CallOption) (*DeleteCompletedTrainingJobResponse, error)
 	// GetTrainingJobLogs gets the logs for a given custom training job.
 	GetTrainingJobLogs(ctx context.Context, in *GetTrainingJobLogsRequest, opts ...grpc.CallOption) (*GetTrainingJobLogsResponse, error)
+	// ListSupportedContainers lists all supported containers.
+	ListSupportedContainers(ctx context.Context, in *ListSupportedContainersRequest, opts ...grpc.CallOption) (*ListSupportedContainersResponse, error)
 }
 
 type mLTrainingServiceClient struct {
@@ -109,6 +111,15 @@ func (c *mLTrainingServiceClient) GetTrainingJobLogs(ctx context.Context, in *Ge
 	return out, nil
 }
 
+func (c *mLTrainingServiceClient) ListSupportedContainers(ctx context.Context, in *ListSupportedContainersRequest, opts ...grpc.CallOption) (*ListSupportedContainersResponse, error) {
+	out := new(ListSupportedContainersResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/ListSupportedContainers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MLTrainingServiceServer is the server API for MLTrainingService service.
 // All implementations must embed UnimplementedMLTrainingServiceServer
 // for forward compatibility
@@ -127,6 +138,8 @@ type MLTrainingServiceServer interface {
 	DeleteCompletedTrainingJob(context.Context, *DeleteCompletedTrainingJobRequest) (*DeleteCompletedTrainingJobResponse, error)
 	// GetTrainingJobLogs gets the logs for a given custom training job.
 	GetTrainingJobLogs(context.Context, *GetTrainingJobLogsRequest) (*GetTrainingJobLogsResponse, error)
+	// ListSupportedContainers lists all supported containers.
+	ListSupportedContainers(context.Context, *ListSupportedContainersRequest) (*ListSupportedContainersResponse, error)
 	mustEmbedUnimplementedMLTrainingServiceServer()
 }
 
@@ -154,6 +167,9 @@ func (UnimplementedMLTrainingServiceServer) DeleteCompletedTrainingJob(context.C
 }
 func (UnimplementedMLTrainingServiceServer) GetTrainingJobLogs(context.Context, *GetTrainingJobLogsRequest) (*GetTrainingJobLogsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrainingJobLogs not implemented")
+}
+func (UnimplementedMLTrainingServiceServer) ListSupportedContainers(context.Context, *ListSupportedContainersRequest) (*ListSupportedContainersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSupportedContainers not implemented")
 }
 func (UnimplementedMLTrainingServiceServer) mustEmbedUnimplementedMLTrainingServiceServer() {}
 
@@ -294,6 +310,24 @@ func _MLTrainingService_GetTrainingJobLogs_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MLTrainingService_ListSupportedContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSupportedContainersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MLTrainingServiceServer).ListSupportedContainers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.mltraining.v1.MLTrainingService/ListSupportedContainers",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MLTrainingServiceServer).ListSupportedContainers(ctx, req.(*ListSupportedContainersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MLTrainingService_ServiceDesc is the grpc.ServiceDesc for MLTrainingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -328,6 +362,10 @@ var MLTrainingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTrainingJobLogs",
 			Handler:    _MLTrainingService_GetTrainingJobLogs_Handler,
+		},
+		{
+			MethodName: "ListSupportedContainers",
+			Handler:    _MLTrainingService_ListSupportedContainers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
