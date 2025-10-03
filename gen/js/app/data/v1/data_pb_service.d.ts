@@ -211,13 +211,13 @@ type DataServiceRemoveBinaryDataFromDatasetByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse;
 };
 
-type DataServiceBinaryDataToJSONLines = {
+type DataServiceBinaryMetadataToJSONLines = {
   readonly methodName: string;
   readonly service: typeof DataService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_data_v1_data_pb.BinaryDataToJSONLinesRequest;
-  readonly responseType: typeof app_data_v1_data_pb.BinaryDataToJSONLinesResponse;
+  readonly requestType: typeof app_data_v1_data_pb.BinaryMetadataToJSONLinesRequest;
+  readonly responseType: typeof app_data_v1_data_pb.BinaryMetadataToJSONLinesResponse;
 };
 
 type DataServiceCreateIndex = {
@@ -272,7 +272,7 @@ export class DataService {
   static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
   static readonly AddBinaryDataToDatasetByIDs: DataServiceAddBinaryDataToDatasetByIDs;
   static readonly RemoveBinaryDataFromDatasetByIDs: DataServiceRemoveBinaryDataFromDatasetByIDs;
-  static readonly BinaryDataToJSONLines: DataServiceBinaryDataToJSONLines;
+  static readonly BinaryMetadataToJSONLines: DataServiceBinaryMetadataToJSONLines;
   static readonly CreateIndex: DataServiceCreateIndex;
   static readonly ListIndexes: DataServiceListIndexes;
   static readonly DeleteIndex: DataServiceDeleteIndex;
@@ -509,14 +509,14 @@ export class DataServiceClient {
     requestMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse|null) => void
   ): UnaryResponse;
-  binaryDataToJSONLines(
-    requestMessage: app_data_v1_data_pb.BinaryDataToJSONLinesRequest,
+  binaryMetadataToJSONLines(
+    requestMessage: app_data_v1_data_pb.BinaryMetadataToJSONLinesRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryDataToJSONLinesResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryMetadataToJSONLinesResponse|null) => void
   ): UnaryResponse;
-  binaryDataToJSONLines(
-    requestMessage: app_data_v1_data_pb.BinaryDataToJSONLinesRequest,
-    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryDataToJSONLinesResponse|null) => void
+  binaryMetadataToJSONLines(
+    requestMessage: app_data_v1_data_pb.BinaryMetadataToJSONLinesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryMetadataToJSONLinesResponse|null) => void
   ): UnaryResponse;
   createIndex(
     requestMessage: app_data_v1_data_pb.CreateIndexRequest,

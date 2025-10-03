@@ -217,13 +217,13 @@ DataService.RemoveBinaryDataFromDatasetByIDs = {
   responseType: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse
 };
 
-DataService.BinaryDataToJSONLines = {
-  methodName: "BinaryDataToJSONLines",
+DataService.BinaryMetadataToJSONLines = {
+  methodName: "BinaryMetadataToJSONLines",
   service: DataService,
   requestStream: false,
   responseStream: false,
-  requestType: app_data_v1_data_pb.BinaryDataToJSONLinesRequest,
-  responseType: app_data_v1_data_pb.BinaryDataToJSONLinesResponse
+  requestType: app_data_v1_data_pb.BinaryMetadataToJSONLinesRequest,
+  responseType: app_data_v1_data_pb.BinaryMetadataToJSONLinesResponse
 };
 
 DataService.CreateIndex = {
@@ -981,11 +981,11 @@ DataServiceClient.prototype.removeBinaryDataFromDatasetByIDs = function removeBi
   };
 };
 
-DataServiceClient.prototype.binaryDataToJSONLines = function binaryDataToJSONLines(requestMessage, metadata, callback) {
+DataServiceClient.prototype.binaryMetadataToJSONLines = function binaryMetadataToJSONLines(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(DataService.BinaryDataToJSONLines, {
+  var client = grpc.unary(DataService.BinaryMetadataToJSONLines, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

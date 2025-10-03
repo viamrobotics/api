@@ -1833,7 +1833,7 @@ export namespace RemoveBinaryDataFromDatasetByIDsResponse {
   }
 }
 
-export class BinaryDataToJSONLinesRequest extends jspb.Message {
+export class BinaryMetadataToJSONLinesRequest extends jspb.Message {
   clearBinaryMetadataList(): void;
   getBinaryMetadataList(): Array<BinaryMetadata>;
   setBinaryMetadataList(value: Array<BinaryMetadata>): void;
@@ -1843,41 +1843,41 @@ export class BinaryDataToJSONLinesRequest extends jspb.Message {
   setPath(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BinaryDataToJSONLinesRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: BinaryDataToJSONLinesRequest): BinaryDataToJSONLinesRequest.AsObject;
+  toObject(includeInstance?: boolean): BinaryMetadataToJSONLinesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryMetadataToJSONLinesRequest): BinaryMetadataToJSONLinesRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: BinaryDataToJSONLinesRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BinaryDataToJSONLinesRequest;
-  static deserializeBinaryFromReader(message: BinaryDataToJSONLinesRequest, reader: jspb.BinaryReader): BinaryDataToJSONLinesRequest;
+  static serializeBinaryToWriter(message: BinaryMetadataToJSONLinesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryMetadataToJSONLinesRequest;
+  static deserializeBinaryFromReader(message: BinaryMetadataToJSONLinesRequest, reader: jspb.BinaryReader): BinaryMetadataToJSONLinesRequest;
 }
 
-export namespace BinaryDataToJSONLinesRequest {
+export namespace BinaryMetadataToJSONLinesRequest {
   export type AsObject = {
     binaryMetadataList: Array<BinaryMetadata.AsObject>,
     path: string,
   }
 }
 
-export class BinaryDataToJSONLinesResponse extends jspb.Message {
-  hasJson(): boolean;
-  clearJson(): void;
-  getJson(): google_protobuf_struct_pb.Struct | undefined;
-  setJson(value?: google_protobuf_struct_pb.Struct): void;
+export class BinaryMetadataToJSONLinesResponse extends jspb.Message {
+  clearJsonLinesList(): void;
+  getJsonLinesList(): Array<string>;
+  setJsonLinesList(value: Array<string>): void;
+  addJsonLines(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BinaryDataToJSONLinesResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: BinaryDataToJSONLinesResponse): BinaryDataToJSONLinesResponse.AsObject;
+  toObject(includeInstance?: boolean): BinaryMetadataToJSONLinesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryMetadataToJSONLinesResponse): BinaryMetadataToJSONLinesResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: BinaryDataToJSONLinesResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BinaryDataToJSONLinesResponse;
-  static deserializeBinaryFromReader(message: BinaryDataToJSONLinesResponse, reader: jspb.BinaryReader): BinaryDataToJSONLinesResponse;
+  static serializeBinaryToWriter(message: BinaryMetadataToJSONLinesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryMetadataToJSONLinesResponse;
+  static deserializeBinaryFromReader(message: BinaryMetadataToJSONLinesResponse, reader: jspb.BinaryReader): BinaryMetadataToJSONLinesResponse;
 }
 
-export namespace BinaryDataToJSONLinesResponse {
+export namespace BinaryMetadataToJSONLinesResponse {
   export type AsObject = {
-    json?: google_protobuf_struct_pb.Struct.AsObject,
+    jsonLinesList: Array<string>,
   }
 }
 
