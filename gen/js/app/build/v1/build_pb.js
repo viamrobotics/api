@@ -1741,7 +1741,7 @@ proto.viam.app.build.v1.StartReloadBuildResponse.prototype.toObject = function(o
  */
 proto.viam.app.build.v1.StartReloadBuildResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    buildId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1778,6 +1778,10 @@ proto.viam.app.build.v1.StartReloadBuildResponse.deserializeBinaryFromReader = f
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBuildId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1807,6 +1811,31 @@ proto.viam.app.build.v1.StartReloadBuildResponse.prototype.serializeBinary = fun
  */
 proto.viam.app.build.v1.StartReloadBuildResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getBuildId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string build_id = 1;
+ * @return {string}
+ */
+proto.viam.app.build.v1.StartReloadBuildResponse.prototype.getBuildId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.build.v1.StartReloadBuildResponse} returns this
+ */
+proto.viam.app.build.v1.StartReloadBuildResponse.prototype.setBuildId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

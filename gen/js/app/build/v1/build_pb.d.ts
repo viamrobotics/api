@@ -167,6 +167,9 @@ export namespace StartReloadBuildRequest {
 }
 
 export class StartReloadBuildResponse extends jspb.Message {
+  getBuildId(): string;
+  setBuildId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartReloadBuildResponse.AsObject;
   static toObject(includeInstance: boolean, msg: StartReloadBuildResponse): StartReloadBuildResponse.AsObject;
@@ -179,6 +182,7 @@ export class StartReloadBuildResponse extends jspb.Message {
 
 export namespace StartReloadBuildResponse {
   export type AsObject = {
+    buildId: string,
   }
 }
 
