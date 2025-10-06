@@ -211,6 +211,33 @@ type DataServiceRemoveBinaryDataFromDatasetByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse;
 };
 
+type DataServiceCreateIndex = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.CreateIndexRequest;
+  readonly responseType: typeof app_data_v1_data_pb.CreateIndexResponse;
+};
+
+type DataServiceListIndexes = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.ListIndexesRequest;
+  readonly responseType: typeof app_data_v1_data_pb.ListIndexesResponse;
+};
+
+type DataServiceDeleteIndex = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.DeleteIndexRequest;
+  readonly responseType: typeof app_data_v1_data_pb.DeleteIndexResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -236,6 +263,9 @@ export class DataService {
   static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
   static readonly AddBinaryDataToDatasetByIDs: DataServiceAddBinaryDataToDatasetByIDs;
   static readonly RemoveBinaryDataFromDatasetByIDs: DataServiceRemoveBinaryDataFromDatasetByIDs;
+  static readonly CreateIndex: DataServiceCreateIndex;
+  static readonly ListIndexes: DataServiceListIndexes;
+  static readonly DeleteIndex: DataServiceDeleteIndex;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -468,6 +498,33 @@ export class DataServiceClient {
   removeBinaryDataFromDatasetByIDs(
     requestMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse|null) => void
+  ): UnaryResponse;
+  createIndex(
+    requestMessage: app_data_v1_data_pb.CreateIndexRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateIndexResponse|null) => void
+  ): UnaryResponse;
+  createIndex(
+    requestMessage: app_data_v1_data_pb.CreateIndexRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateIndexResponse|null) => void
+  ): UnaryResponse;
+  listIndexes(
+    requestMessage: app_data_v1_data_pb.ListIndexesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListIndexesResponse|null) => void
+  ): UnaryResponse;
+  listIndexes(
+    requestMessage: app_data_v1_data_pb.ListIndexesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListIndexesResponse|null) => void
+  ): UnaryResponse;
+  deleteIndex(
+    requestMessage: app_data_v1_data_pb.DeleteIndexRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteIndexResponse|null) => void
+  ): UnaryResponse;
+  deleteIndex(
+    requestMessage: app_data_v1_data_pb.DeleteIndexRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteIndexResponse|null) => void
   ): UnaryResponse;
 }
 
