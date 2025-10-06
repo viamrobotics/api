@@ -81,7 +81,9 @@ message StartReloadBuildRequest {
   }
 }
 
-message StartReloadBuildResponse {}
+message StartReloadBuildResponse {
+  string build_id = 1;
+}
 
 // GetLogsResponse is a streaming endpoint that may have multiple messages that belong
 // to the same build_step if there are too many bytes to fit into a single gRPC
