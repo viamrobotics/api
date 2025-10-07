@@ -25,6 +25,12 @@ your shell that you will need to follow to get a working build environment.
 Mise is also available in Homebrew and several package repositories. See the
 [official documentation][install-mise] for a list of installation methods.
 
+For security, mise requires projects to be trusted before it will load their
+configuration. Normally it will prompt you for this the first time you run any
+mise commands within the repo, but if it doesn't and you are seeing errors like
+`mise ERROR no tasks defined in ~/api. Are you in a project directory?`, try
+manually trusting the workspace by running `mise trust`.
+
 Once mise is set up you can run `mise tasks` to view the available targets.
 Some common ones are:
 
