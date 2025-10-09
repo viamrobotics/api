@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package viam.component.audioout.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/component/audioout/v1";
+option java_package = "com.viam.component.audioout.v1";
+
+// An AudioInService services all audio inputs associated with a robot
+service AudioOutService {
+  rpc Play(PlayRequest) returns (PlayResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/component/audioout/{name}/play"};
+  }
+
+  rpc GetProperties(common.v1.GetPropertiesRequest) returns (common.v1.GetPropertiesResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/audioout/{name}/properties"};
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/audioout/{name}/do_command"};
+  }
+}
+
+message PlayRequest {
+  string name = 1;
+  bytes audio_data = 2;
+  common.v1.AudioInfo info = 3;
+  google.protobuf.Struct extra = 99;
+}
+
+message PlayResponse {}

@@ -251,3 +251,21 @@ message LogEntry {
   string stack = 7;
   repeated google.protobuf.Struct fields = 8;
 }
+
+message AudioInfo {
+  string codec = 1;
+  int32 sample_rate = 2;
+  int32 num_channels = 3;
+}
+
+// Properties for AudioIn and AudioOut components.
+message GetPropertiesRequest {
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPropertiesResponse {
+  repeated string supported_codecs = 1;
+  int32 sample_rate = 2;
+  int32 num_channels = 3;
+}

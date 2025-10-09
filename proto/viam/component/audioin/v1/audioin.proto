@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package viam.component.audioin.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/component/audioin/v1";
+option java_package = "com.viam.component.audioin.v1";
+
+// An AudioInService services all audio inputs associated with a robot
+service AudioInService {
+  rpc GetAudio(GetAudioRequest) returns (stream GetAudioResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/audioin/{name}/get_audio"};
+  }
+
+  rpc GetProperties(common.v1.GetPropertiesRequest) returns (common.v1.GetPropertiesResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/audioin/{name}/properties"};
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/audioin/{name}/do_command"};
+  }
+}
+
+message GetAudioRequest {
+  string name = 1;
+  float duration_seconds = 2; // 0 for infinite
+  string codec = 3; // mp3, pcm16, etc
+  string request_id = 4; // used for debugging to match a request to it's responses
+  float max_duration_seconds = 5;
+  int64 previous_timestamp = 6;
+  google.protobuf.Struct extra = 99;
+}
+
+message GetAudioResponse {
+  AudioChunk audio = 1;
+  string request_id = 2;
+}
+
+message AudioChunk {
+  bytes audio_data = 1;
+  common.v1.AudioInfo info = 2;
+  int64 start_timestamp_nanoseconds = 3;
+  int64 end_timestamp_nanoseconds = 4;
+  int32 sequence = 5; // Sequential chunk number
+}
