@@ -825,6 +825,90 @@ export namespace LogEntry {
   }
 }
 
+export class AudioInfo extends jspb.Message {
+  getCodec(): string;
+  setCodec(value: string): void;
+
+  getSampleRate(): number;
+  setSampleRate(value: number): void;
+
+  getNumChannels(): number;
+  setNumChannels(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AudioInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: AudioInfo): AudioInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AudioInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AudioInfo;
+  static deserializeBinaryFromReader(message: AudioInfo, reader: jspb.BinaryReader): AudioInfo;
+}
+
+export namespace AudioInfo {
+  export type AsObject = {
+    codec: string,
+    sampleRate: number,
+    numChannels: number,
+  }
+}
+
+export class GetPropertiesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesRequest): GetPropertiesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesRequest;
+  static deserializeBinaryFromReader(message: GetPropertiesRequest, reader: jspb.BinaryReader): GetPropertiesRequest;
+}
+
+export namespace GetPropertiesRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetPropertiesResponse extends jspb.Message {
+  clearSupportedCodecsList(): void;
+  getSupportedCodecsList(): Array<string>;
+  setSupportedCodecsList(value: Array<string>): void;
+  addSupportedCodecs(value: string, index?: number): string;
+
+  getSampleRate(): number;
+  setSampleRate(value: number): void;
+
+  getNumChannels(): number;
+  setNumChannels(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesResponse;
+  static deserializeBinaryFromReader(message: GetPropertiesResponse, reader: jspb.BinaryReader): GetPropertiesResponse;
+}
+
+export namespace GetPropertiesResponse {
+  export type AsObject = {
+    supportedCodecsList: Array<string>,
+    sampleRate: number,
+    numChannels: number,
+  }
+}
+
   export const safetyHeartbeatMonitored: jspb.ExtensionFieldInfo<boolean>;
 
 export interface KinematicsFileFormatMap {
