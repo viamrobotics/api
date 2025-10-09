@@ -252,20 +252,27 @@ message LogEntry {
   repeated google.protobuf.Struct fields = 8;
 }
 
+// Information about an audio stream or device.
 message AudioInfo {
+  // Audio codec used for the stream or device (e.g., "pcm16", "pcm32float", "mp3")
   string codec = 1;
+  // Sample rate of the audio in Hz
   int32 sample_rate = 2;
+  // Number of audio channels in the recording or playback
   int32 num_channels = 3;
 }
 
-// Properties for AudioIn and AudioOut components.
+// Shared properties for AudioIn and AudioOut components.
 message GetPropertiesRequest {
   string name = 1;
   google.protobuf.Struct extra = 99;
 }
 
 message GetPropertiesResponse {
+  // List of audio codecs supported by the system (e.g., "mp3", "pcm16", "pcm32float")
   repeated string supported_codecs = 1;
+  // current sample rate in Hz
   int32 sample_rate = 2;
+  // Maximum number of audio channels supported (e.g., 1 for mono, 2 for stereo)
   int32 num_channels = 3;
 }
