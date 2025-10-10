@@ -4,6 +4,7 @@
 import * as jspb from "google-protobuf";
 import * as google_api_annotations_pb from "../../google/api/annotations_pb";
 import * as google_api_client_pb from "../../google/api/client_pb";
+import * as google_api_field_behavior_pb from "../../google/api/field_behavior_pb";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 import * as google_protobuf_descriptor_pb from "google-protobuf/google/protobuf/descriptor_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
@@ -92,6 +93,9 @@ export class ListOperationsRequest extends jspb.Message {
   getPageToken(): string;
   setPageToken(value: string): void;
 
+  getReturnPartialSuccess(): boolean;
+  setReturnPartialSuccess(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListOperationsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListOperationsRequest): ListOperationsRequest.AsObject;
@@ -108,6 +112,7 @@ export namespace ListOperationsRequest {
     filter: string,
     pageSize: number,
     pageToken: string,
+    returnPartialSuccess: boolean,
   }
 }
 
@@ -119,6 +124,11 @@ export class ListOperationsResponse extends jspb.Message {
 
   getNextPageToken(): string;
   setNextPageToken(value: string): void;
+
+  clearUnreachableList(): void;
+  getUnreachableList(): Array<string>;
+  setUnreachableList(value: Array<string>): void;
+  addUnreachable(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListOperationsResponse.AsObject;
@@ -134,6 +144,7 @@ export namespace ListOperationsResponse {
   export type AsObject = {
     operationsList: Array<Operation.AsObject>,
     nextPageToken: string,
+    unreachableList: Array<string>,
   }
 }
 
