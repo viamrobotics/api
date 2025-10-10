@@ -19,6 +19,8 @@ var google_api_annotations_pb = require('../../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
 var google_api_client_pb = require('../../google/api/client_pb.js');
 goog.object.extend(proto, google_api_client_pb);
+var google_api_field_behavior_pb = require('../../google/api/field_behavior_pb.js');
+goog.object.extend(proto, google_api_field_behavior_pb);
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js');
 goog.object.extend(proto, google_protobuf_any_pb);
 var google_protobuf_descriptor_pb = require('google-protobuf/google/protobuf/descriptor_pb.js');
@@ -711,7 +713,8 @@ proto.google.longrunning.ListOperationsRequest.toObject = function(includeInstan
     name: jspb.Message.getFieldWithDefault(msg, 4, ""),
     filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    returnPartialSuccess: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -763,6 +766,10 @@ proto.google.longrunning.ListOperationsRequest.deserializeBinaryFromReader = fun
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setReturnPartialSuccess(value);
       break;
     default:
       reader.skipField();
@@ -818,6 +825,13 @@ proto.google.longrunning.ListOperationsRequest.serializeBinaryToWriter = functio
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getReturnPartialSuccess();
+  if (f) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -896,13 +910,31 @@ proto.google.longrunning.ListOperationsRequest.prototype.setPageToken = function
 };
 
 
+/**
+ * optional bool return_partial_success = 5;
+ * @return {boolean}
+ */
+proto.google.longrunning.ListOperationsRequest.prototype.getReturnPartialSuccess = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.google.longrunning.ListOperationsRequest} returns this
+ */
+proto.google.longrunning.ListOperationsRequest.prototype.setReturnPartialSuccess = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.google.longrunning.ListOperationsResponse.repeatedFields_ = [1];
+proto.google.longrunning.ListOperationsResponse.repeatedFields_ = [1,3];
 
 
 
@@ -937,7 +969,8 @@ proto.google.longrunning.ListOperationsResponse.toObject = function(includeInsta
   var f, obj = {
     operationsList: jspb.Message.toObjectList(msg.getOperationsList(),
     proto.google.longrunning.Operation.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    unreachableList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -983,6 +1016,10 @@ proto.google.longrunning.ListOperationsResponse.deserializeBinaryFromReader = fu
       var value = /** @type {string} */ (reader.readString());
       msg.setNextPageToken(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addUnreachable(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1024,6 +1061,13 @@ proto.google.longrunning.ListOperationsResponse.serializeBinaryToWriter = functi
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getUnreachableList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
       f
     );
   }
@@ -1083,6 +1127,43 @@ proto.google.longrunning.ListOperationsResponse.prototype.getNextPageToken = fun
  */
 proto.google.longrunning.ListOperationsResponse.prototype.setNextPageToken = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * repeated string unreachable = 3;
+ * @return {!Array<string>}
+ */
+proto.google.longrunning.ListOperationsResponse.prototype.getUnreachableList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.google.longrunning.ListOperationsResponse} returns this
+ */
+proto.google.longrunning.ListOperationsResponse.prototype.setUnreachableList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.google.longrunning.ListOperationsResponse} returns this
+ */
+proto.google.longrunning.ListOperationsResponse.prototype.addUnreachable = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.google.longrunning.ListOperationsResponse} returns this
+ */
+proto.google.longrunning.ListOperationsResponse.prototype.clearUnreachableList = function() {
+  return this.setUnreachableList([]);
 };
 
 
