@@ -2059,7 +2059,7 @@ export const TabularDataSourceType: TabularDataSourceTypeMap;
 
 export interface IndexableCollectionMap {
   INDEXABLE_COLLECTION_UNSPECIFIED: 0;
-  INDEXABLE_COLLECTION_HOT_STORE: 1;
+  INDEXABLE_COLLECTION_HOT_STORAGE: 1;
   INDEXABLE_COLLECTION_PIPELINE_SINK: 2;
 }
 
