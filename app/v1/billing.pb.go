@@ -1506,6 +1506,7 @@ type CreateInvoiceAndChargeImmediatelyRequest struct {
 	Amount           float64 `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
 	Description      *string `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	OrgIdForBranding *string `protobuf:"bytes,4,opt,name=org_id_for_branding,json=orgIdForBranding,proto3,oneof" json:"org_id_for_branding,omitempty"`
+	SkipEmail        *bool    `protobuf:"varint,5,opt,name=skip_email,json=skipEmail,proto3" json:"skip_email,omitempty"`
 }
 
 func (x *CreateInvoiceAndChargeImmediatelyRequest) Reset() {
