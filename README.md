@@ -54,10 +54,11 @@ Other guidelines:
     + For example, use `go get go.viam.com/api@v0.1.180` NOT `go get go.viam.com/api@037415e`
     + Add a new (semantic version compatible) tag when needed for this.
     + Do NOT duplicate, move, or remove version tags.
+    + You can use `@latest` as an alias for the latest semantic version tag (eg `go get go.viam.com/api@latest`).
 
 ## License
 
-Copyright 2023 Viam Inc.
+Copyright 2025 Viam Inc.
 
 Apache 2.0 - See [LICENSE](https://github.com/viamrobotics/api/blob/main/LICENSE) file
 
