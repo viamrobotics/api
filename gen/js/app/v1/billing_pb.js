@@ -4836,8 +4836,8 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.serializeBinaryToWrit
       f
     );
   }
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 5));
-  if (f != null) {
+  f = message.getSkipEmail();
+  if (f) {
     writer.writeBool(
       5,
       f
@@ -4968,25 +4968,7 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.getSkipEmai
  * @return {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} returns this
  */
 proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.setSkipEmail = function(value) {
-  return jspb.Message.setField(this, 5, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} returns this
- */
-proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.clearSkipEmail = function() {
-  return jspb.Message.setField(this, 5, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.hasSkipEmail = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 

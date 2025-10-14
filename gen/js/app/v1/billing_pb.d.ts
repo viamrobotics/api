@@ -615,8 +615,6 @@ export class CreateInvoiceAndChargeImmediatelyRequest extends jspb.Message {
   getOrgIdForBranding(): string;
   setOrgIdForBranding(value: string): void;
 
-  hasSkipEmail(): boolean;
-  clearSkipEmail(): void;
   getSkipEmail(): boolean;
   setSkipEmail(value: boolean): void;
 
