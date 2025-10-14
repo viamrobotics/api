@@ -615,6 +615,11 @@ export class CreateInvoiceAndChargeImmediatelyRequest extends jspb.Message {
   getOrgIdForBranding(): string;
   setOrgIdForBranding(value: string): void;
 
+  hasSkipEmail(): boolean;
+  clearSkipEmail(): void;
+  getSkipEmail(): boolean;
+  setSkipEmail(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateInvoiceAndChargeImmediatelyRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateInvoiceAndChargeImmediatelyRequest): CreateInvoiceAndChargeImmediatelyRequest.AsObject;
@@ -631,6 +636,7 @@ export namespace CreateInvoiceAndChargeImmediatelyRequest {
     amount: number,
     description: string,
     orgIdForBranding: string,
+    skipEmail: boolean,
   }
 }
 

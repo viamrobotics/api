@@ -4721,7 +4721,8 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.toObject = function(i
     orgIdToCharge: jspb.Message.getFieldWithDefault(msg, 1, ""),
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
     description: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    orgIdForBranding: jspb.Message.getFieldWithDefault(msg, 4, "")
+    orgIdForBranding: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    skipEmail: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -4773,6 +4774,10 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.deserializeBinaryFrom
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setOrgIdForBranding(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setSkipEmail(value);
       break;
     default:
       reader.skipField();
@@ -4828,6 +4833,13 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.serializeBinaryToWrit
   if (f != null) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -4939,6 +4951,42 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.clearOrgIdF
  */
 proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.hasOrgIdForBranding = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional bool skip_email = 5;
+ * @return {boolean}
+ */
+proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.getSkipEmail = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} returns this
+ */
+proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.setSkipEmail = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} returns this
+ */
+proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.clearSkipEmail = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.hasSkipEmail = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
