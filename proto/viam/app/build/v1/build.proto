@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.app.build.v1;
 
+import "app/packages/v1/packages.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/app/build/v1";
@@ -33,6 +34,8 @@ service BuildService {
   rpc LinkOrg(LinkOrgRequest) returns (LinkOrgResponse);
   // remove an org from an oauth app link.
   rpc UnlinkOrg(UnlinkOrgRequest) returns (UnlinkOrgResponse);
+  // upload the local dev environment and build a module for hot reloading
+  rpc StartReloadBuild(stream StartReloadBuildRequest) returns (StartReloadBuildResponse);
 }
 
 message StartBuildRequest {
@@ -60,6 +63,26 @@ message StartBuildResponse {
 message GetLogsRequest {
   string build_id = 1;
   string platform = 2;
+}
+
+message ReloadBuildInfo {
+  // platform to build the reload module for
+  string platform = 1;
+  // optional working directory. defaults to repo root
+  optional string workdir = 2;
+  // org ID for the module
+  string module_id = 3;
+}
+
+message StartReloadBuildRequest {
+  oneof cloud_build {
+    packages.v1.CreatePackageRequest package = 1;
+    ReloadBuildInfo build_info = 2;
+  }
+}
+
+message StartReloadBuildResponse {
+  string build_id = 1;
 }
 
 // GetLogsResponse is a streaming endpoint that may have multiple messages that belong
