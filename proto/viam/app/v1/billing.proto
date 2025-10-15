@@ -195,7 +195,7 @@ message CreateInvoiceAndChargeImmediatelyRequest {
   double amount = 2;
   optional string description = 3;
   optional string org_id_for_branding = 4;
-  bool skip_email = 5;
+  bool disable_email = 5;
 }
 
 message CreateInvoiceAndChargeImmediatelyResponse {}
