@@ -4721,7 +4721,8 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.toObject = function(i
     orgIdToCharge: jspb.Message.getFieldWithDefault(msg, 1, ""),
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
     description: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    orgIdForBranding: jspb.Message.getFieldWithDefault(msg, 4, "")
+    orgIdForBranding: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    disableEmail: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -4773,6 +4774,10 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.deserializeBinaryFrom
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setOrgIdForBranding(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDisableEmail(value);
       break;
     default:
       reader.skipField();
@@ -4828,6 +4833,13 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.serializeBinaryToWrit
   if (f != null) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getDisableEmail();
+  if (f) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -4939,6 +4951,24 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.clearOrgIdF
  */
 proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.hasOrgIdForBranding = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional bool disable_email = 5;
+ * @return {boolean}
+ */
+proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.getDisableEmail = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} returns this
+ */
+proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.setDisableEmail = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
