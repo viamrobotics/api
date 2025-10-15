@@ -1711,6 +1711,7 @@ message ListModulesRequest {
   // The id of the organization to return private modules for.
   optional string organization_id = 1;
   optional bool include_markdown_documentation = 2;
+  optional string search_term = 3;
 }
 
 message ListModulesResponse {
