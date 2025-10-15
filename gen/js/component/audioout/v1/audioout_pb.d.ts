@@ -15,10 +15,10 @@ export class PlayRequest extends jspb.Message {
   getAudioData_asB64(): string;
   setAudioData(value: Uint8Array | string): void;
 
-  hasInfo(): boolean;
-  clearInfo(): void;
-  getInfo(): common_v1_common_pb.AudioInfo | undefined;
-  setInfo(value?: common_v1_common_pb.AudioInfo): void;
+  hasAudioInfo(): boolean;
+  clearAudioInfo(): void;
+  getAudioInfo(): common_v1_common_pb.AudioInfo | undefined;
+  setAudioInfo(value?: common_v1_common_pb.AudioInfo): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -39,7 +39,7 @@ export namespace PlayRequest {
   export type AsObject = {
     name: string,
     audioData: Uint8Array | string,
-    info?: common_v1_common_pb.AudioInfo.AsObject,
+    audioInfo?: common_v1_common_pb.AudioInfo.AsObject,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }

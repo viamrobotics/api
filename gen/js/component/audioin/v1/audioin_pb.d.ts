@@ -19,8 +19,8 @@ export class GetAudioRequest extends jspb.Message {
   getRequestId(): string;
   setRequestId(value: string): void;
 
-  getPreviousTimestamp(): number;
-  setPreviousTimestamp(value: number): void;
+  getPreviousTimestampNanoseconds(): number;
+  setPreviousTimestampNanoseconds(value: number): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -43,7 +43,7 @@ export namespace GetAudioRequest {
     durationSeconds: number,
     codec: string,
     requestId: string,
-    previousTimestamp: number,
+    previousTimestampNanoseconds: number,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -80,10 +80,10 @@ export class AudioChunk extends jspb.Message {
   getAudioData_asB64(): string;
   setAudioData(value: Uint8Array | string): void;
 
-  hasInfo(): boolean;
-  clearInfo(): void;
-  getInfo(): common_v1_common_pb.AudioInfo | undefined;
-  setInfo(value?: common_v1_common_pb.AudioInfo): void;
+  hasAudioInfo(): boolean;
+  clearAudioInfo(): void;
+  getAudioInfo(): common_v1_common_pb.AudioInfo | undefined;
+  setAudioInfo(value?: common_v1_common_pb.AudioInfo): void;
 
   getStartTimestampNanoseconds(): number;
   setStartTimestampNanoseconds(value: number): void;
@@ -107,7 +107,7 @@ export class AudioChunk extends jspb.Message {
 export namespace AudioChunk {
   export type AsObject = {
     audioData: Uint8Array | string,
-    info?: common_v1_common_pb.AudioInfo.AsObject,
+    audioInfo?: common_v1_common_pb.AudioInfo.AsObject,
     startTimestampNanoseconds: number,
     endTimestampNanoseconds: number,
     sequence: number,

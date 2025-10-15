@@ -123,7 +123,7 @@ proto.viam.component.audioin.v1.GetAudioRequest.toObject = function(includeInsta
     durationSeconds: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
     codec: jspb.Message.getFieldWithDefault(msg, 3, ""),
     requestId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    previousTimestamp: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    previousTimestampNanoseconds: jspb.Message.getFieldWithDefault(msg, 5, 0),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -179,7 +179,7 @@ proto.viam.component.audioin.v1.GetAudioRequest.deserializeBinaryFromReader = fu
       break;
     case 5:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setPreviousTimestamp(value);
+      msg.setPreviousTimestampNanoseconds(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -243,7 +243,7 @@ proto.viam.component.audioin.v1.GetAudioRequest.serializeBinaryToWriter = functi
       f
     );
   }
-  f = message.getPreviousTimestamp();
+  f = message.getPreviousTimestampNanoseconds();
   if (f !== 0) {
     writer.writeInt64(
       5,
@@ -334,10 +334,10 @@ proto.viam.component.audioin.v1.GetAudioRequest.prototype.setRequestId = functio
 
 
 /**
- * optional int64 previous_timestamp = 5;
+ * optional int64 previous_timestamp_nanoseconds = 5;
  * @return {number}
  */
-proto.viam.component.audioin.v1.GetAudioRequest.prototype.getPreviousTimestamp = function() {
+proto.viam.component.audioin.v1.GetAudioRequest.prototype.getPreviousTimestampNanoseconds = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
@@ -346,7 +346,7 @@ proto.viam.component.audioin.v1.GetAudioRequest.prototype.getPreviousTimestamp =
  * @param {number} value
  * @return {!proto.viam.component.audioin.v1.GetAudioRequest} returns this
  */
-proto.viam.component.audioin.v1.GetAudioRequest.prototype.setPreviousTimestamp = function(value) {
+proto.viam.component.audioin.v1.GetAudioRequest.prototype.setPreviousTimestampNanoseconds = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
 };
 
@@ -602,7 +602,7 @@ proto.viam.component.audioin.v1.AudioChunk.prototype.toObject = function(opt_inc
 proto.viam.component.audioin.v1.AudioChunk.toObject = function(includeInstance, msg) {
   var f, obj = {
     audioData: msg.getAudioData_asB64(),
-    info: (f = msg.getInfo()) && common_v1_common_pb.AudioInfo.toObject(includeInstance, f),
+    audioInfo: (f = msg.getAudioInfo()) && common_v1_common_pb.AudioInfo.toObject(includeInstance, f),
     startTimestampNanoseconds: jspb.Message.getFieldWithDefault(msg, 3, 0),
     endTimestampNanoseconds: jspb.Message.getFieldWithDefault(msg, 4, 0),
     sequence: jspb.Message.getFieldWithDefault(msg, 5, 0)
@@ -649,7 +649,7 @@ proto.viam.component.audioin.v1.AudioChunk.deserializeBinaryFromReader = functio
     case 2:
       var value = new common_v1_common_pb.AudioInfo;
       reader.readMessage(value,common_v1_common_pb.AudioInfo.deserializeBinaryFromReader);
-      msg.setInfo(value);
+      msg.setAudioInfo(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt64());
@@ -699,7 +699,7 @@ proto.viam.component.audioin.v1.AudioChunk.serializeBinaryToWriter = function(me
       f
     );
   }
-  f = message.getInfo();
+  f = message.getAudioInfo();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -774,10 +774,10 @@ proto.viam.component.audioin.v1.AudioChunk.prototype.setAudioData = function(val
 
 
 /**
- * optional viam.common.v1.AudioInfo info = 2;
+ * optional viam.common.v1.AudioInfo audio_info = 2;
  * @return {?proto.viam.common.v1.AudioInfo}
  */
-proto.viam.component.audioin.v1.AudioChunk.prototype.getInfo = function() {
+proto.viam.component.audioin.v1.AudioChunk.prototype.getAudioInfo = function() {
   return /** @type{?proto.viam.common.v1.AudioInfo} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.AudioInfo, 2));
 };
@@ -787,7 +787,7 @@ proto.viam.component.audioin.v1.AudioChunk.prototype.getInfo = function() {
  * @param {?proto.viam.common.v1.AudioInfo|undefined} value
  * @return {!proto.viam.component.audioin.v1.AudioChunk} returns this
 */
-proto.viam.component.audioin.v1.AudioChunk.prototype.setInfo = function(value) {
+proto.viam.component.audioin.v1.AudioChunk.prototype.setAudioInfo = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -796,8 +796,8 @@ proto.viam.component.audioin.v1.AudioChunk.prototype.setInfo = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.viam.component.audioin.v1.AudioChunk} returns this
  */
-proto.viam.component.audioin.v1.AudioChunk.prototype.clearInfo = function() {
-  return this.setInfo(undefined);
+proto.viam.component.audioin.v1.AudioChunk.prototype.clearAudioInfo = function() {
+  return this.setAudioInfo(undefined);
 };
 
 
@@ -805,7 +805,7 @@ proto.viam.component.audioin.v1.AudioChunk.prototype.clearInfo = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.component.audioin.v1.AudioChunk.prototype.hasInfo = function() {
+proto.viam.component.audioin.v1.AudioChunk.prototype.hasAudioInfo = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 

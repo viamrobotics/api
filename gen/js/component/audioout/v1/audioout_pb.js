@@ -99,7 +99,7 @@ proto.viam.component.audioout.v1.PlayRequest.toObject = function(includeInstance
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     audioData: msg.getAudioData_asB64(),
-    info: (f = msg.getInfo()) && common_v1_common_pb.AudioInfo.toObject(includeInstance, f),
+    audioInfo: (f = msg.getAudioInfo()) && common_v1_common_pb.AudioInfo.toObject(includeInstance, f),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -148,7 +148,7 @@ proto.viam.component.audioout.v1.PlayRequest.deserializeBinaryFromReader = funct
     case 3:
       var value = new common_v1_common_pb.AudioInfo;
       reader.readMessage(value,common_v1_common_pb.AudioInfo.deserializeBinaryFromReader);
-      msg.setInfo(value);
+      msg.setAudioInfo(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -198,7 +198,7 @@ proto.viam.component.audioout.v1.PlayRequest.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getInfo();
+  f = message.getAudioInfo();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -278,10 +278,10 @@ proto.viam.component.audioout.v1.PlayRequest.prototype.setAudioData = function(v
 
 
 /**
- * optional viam.common.v1.AudioInfo info = 3;
+ * optional viam.common.v1.AudioInfo audio_info = 3;
  * @return {?proto.viam.common.v1.AudioInfo}
  */
-proto.viam.component.audioout.v1.PlayRequest.prototype.getInfo = function() {
+proto.viam.component.audioout.v1.PlayRequest.prototype.getAudioInfo = function() {
   return /** @type{?proto.viam.common.v1.AudioInfo} */ (
     jspb.Message.getWrapperField(this, common_v1_common_pb.AudioInfo, 3));
 };
@@ -291,7 +291,7 @@ proto.viam.component.audioout.v1.PlayRequest.prototype.getInfo = function() {
  * @param {?proto.viam.common.v1.AudioInfo|undefined} value
  * @return {!proto.viam.component.audioout.v1.PlayRequest} returns this
 */
-proto.viam.component.audioout.v1.PlayRequest.prototype.setInfo = function(value) {
+proto.viam.component.audioout.v1.PlayRequest.prototype.setAudioInfo = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
@@ -300,8 +300,8 @@ proto.viam.component.audioout.v1.PlayRequest.prototype.setInfo = function(value)
  * Clears the message field making it undefined.
  * @return {!proto.viam.component.audioout.v1.PlayRequest} returns this
  */
-proto.viam.component.audioout.v1.PlayRequest.prototype.clearInfo = function() {
-  return this.setInfo(undefined);
+proto.viam.component.audioout.v1.PlayRequest.prototype.clearAudioInfo = function() {
+  return this.setAudioInfo(undefined);
 };
 
 
@@ -309,7 +309,7 @@ proto.viam.component.audioout.v1.PlayRequest.prototype.clearInfo = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.component.audioout.v1.PlayRequest.prototype.hasInfo = function() {
+proto.viam.component.audioout.v1.PlayRequest.prototype.hasAudioInfo = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
