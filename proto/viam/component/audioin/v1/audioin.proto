@@ -36,12 +36,12 @@ message GetAudioRequest {
   // Desired duration of audio stream
   // If not set or set to 0, the stream is infinite
   float duration_seconds = 2;
-  // Requested audio codec for the response (e.g., "mp3", "pcm16", "pcm32float")
+  // Requested audio codec for the response (e.g., "mp3", "pcm16")
   string codec = 3;
   // To match a request to it's responses
   string request_id = 4;
   // Timestamp of the previous audio chunk, in nanoseconds, used for resuming and continuity.
-  int64 previous_timestamp = 5;
+  int64 previous_timestamp_nanoseconds = 5;
   google.protobuf.Struct extra = 99;
 }
 
@@ -51,10 +51,10 @@ message GetAudioResponse {
 }
 
 message AudioChunk {
-  // Raw audio data for this chunk, encoded according to the requested codec.
+  // Audio data for this chunk, encoded according to the requested codec.
   bytes audio_data = 1;
   // Info about the audio stream for this chunk
-  common.v1.AudioInfo info = 2;
+  common.v1.AudioInfo audio_info = 2;
   int64 start_timestamp_nanoseconds = 3;
   int64 end_timestamp_nanoseconds = 4;
   // Sequential chunk number

@@ -35,7 +35,7 @@ message PlayRequest {
   string name = 1;
   bytes audio_data = 2;
   // Info describing the audio_data
-  common.v1.AudioInfo info = 3;
+  common.v1.AudioInfo audio_info = 3;
   google.protobuf.Struct extra = 99;
 }
 
