@@ -4722,7 +4722,7 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.toObject = function(i
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
     description: jspb.Message.getFieldWithDefault(msg, 3, ""),
     orgIdForBranding: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    skipEmail: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+    disableEmail: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -4777,7 +4777,7 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.deserializeBinaryFrom
       break;
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setSkipEmail(value);
+      msg.setDisableEmail(value);
       break;
     default:
       reader.skipField();
@@ -4836,7 +4836,7 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.serializeBinaryToWrit
       f
     );
   }
-  f = message.getSkipEmail();
+  f = message.getDisableEmail();
   if (f) {
     writer.writeBool(
       5,
@@ -4955,10 +4955,10 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.hasOrgIdFor
 
 
 /**
- * optional bool skip_email = 5;
+ * optional bool disable_email = 5;
  * @return {boolean}
  */
-proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.getSkipEmail = function() {
+proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.getDisableEmail = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
@@ -4967,7 +4967,7 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.getSkipEmai
  * @param {boolean} value
  * @return {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} returns this
  */
-proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.setSkipEmail = function(value) {
+proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.prototype.setDisableEmail = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
