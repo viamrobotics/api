@@ -42,6 +42,8 @@ type BuildServiceClient interface {
 	LinkOrg(ctx context.Context, in *LinkOrgRequest, opts ...grpc.CallOption) (*LinkOrgResponse, error)
 	// remove an org from an oauth app link.
 	UnlinkOrg(ctx context.Context, in *UnlinkOrgRequest, opts ...grpc.CallOption) (*UnlinkOrgResponse, error)
+	// upload the local dev environment and build a module for hot reloading
+	StartReloadBuild(ctx context.Context, opts ...grpc.CallOption) (BuildService_StartReloadBuildClient, error)
 }
 
 type buildServiceClient struct {
@@ -165,6 +167,40 @@ func (c *buildServiceClient) UnlinkOrg(ctx context.Context, in *UnlinkOrgRequest
 	return out, nil
 }
 
+func (c *buildServiceClient) StartReloadBuild(ctx context.Context, opts ...grpc.CallOption) (BuildService_StartReloadBuildClient, error) {
+	stream, err := c.cc.NewStream(ctx, &BuildService_ServiceDesc.Streams[1], "/viam.app.build.v1.BuildService/StartReloadBuild", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &buildServiceStartReloadBuildClient{stream}
+	return x, nil
+}
+
+type BuildService_StartReloadBuildClient interface {
+	Send(*StartReloadBuildRequest) error
+	CloseAndRecv() (*StartReloadBuildResponse, error)
+	grpc.ClientStream
+}
+
+type buildServiceStartReloadBuildClient struct {
+	grpc.ClientStream
+}
+
+func (x *buildServiceStartReloadBuildClient) Send(m *StartReloadBuildRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *buildServiceStartReloadBuildClient) CloseAndRecv() (*StartReloadBuildResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(StartReloadBuildResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // BuildServiceServer is the server API for BuildService service.
 // All implementations must embed UnimplementedBuildServiceServer
 // for forward compatibility
@@ -189,6 +225,8 @@ type BuildServiceServer interface {
 	LinkOrg(context.Context, *LinkOrgRequest) (*LinkOrgResponse, error)
 	// remove an org from an oauth app link.
 	UnlinkOrg(context.Context, *UnlinkOrgRequest) (*UnlinkOrgResponse, error)
+	// upload the local dev environment and build a module for hot reloading
+	StartReloadBuild(BuildService_StartReloadBuildServer) error
 	mustEmbedUnimplementedBuildServiceServer()
 }
 
@@ -225,6 +263,9 @@ func (UnimplementedBuildServiceServer) LinkOrg(context.Context, *LinkOrgRequest)
 }
 func (UnimplementedBuildServiceServer) UnlinkOrg(context.Context, *UnlinkOrgRequest) (*UnlinkOrgResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnlinkOrg not implemented")
+}
+func (UnimplementedBuildServiceServer) StartReloadBuild(BuildService_StartReloadBuildServer) error {
+	return status.Errorf(codes.Unimplemented, "method StartReloadBuild not implemented")
 }
 func (UnimplementedBuildServiceServer) mustEmbedUnimplementedBuildServiceServer() {}
 
@@ -422,6 +463,32 @@ func _BuildService_UnlinkOrg_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BuildService_StartReloadBuild_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(BuildServiceServer).StartReloadBuild(&buildServiceStartReloadBuildServer{stream})
+}
+
+type BuildService_StartReloadBuildServer interface {
+	SendAndClose(*StartReloadBuildResponse) error
+	Recv() (*StartReloadBuildRequest, error)
+	grpc.ServerStream
+}
+
+type buildServiceStartReloadBuildServer struct {
+	grpc.ServerStream
+}
+
+func (x *buildServiceStartReloadBuildServer) SendAndClose(m *StartReloadBuildResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *buildServiceStartReloadBuildServer) Recv() (*StartReloadBuildRequest, error) {
+	m := new(StartReloadBuildRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // BuildService_ServiceDesc is the grpc.ServiceDesc for BuildService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -471,6 +538,11 @@ var BuildService_ServiceDesc = grpc.ServiceDesc{
 			StreamName:    "GetLogs",
 			Handler:       _BuildService_GetLogs_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "StartReloadBuild",
+			Handler:       _BuildService_StartReloadBuild_Handler,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "app/build/v1/build.proto",
