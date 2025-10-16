@@ -6551,7 +6551,7 @@ proto.viam.common.v1.AudioInfo.prototype.toObject = function(opt_includeInstance
 proto.viam.common.v1.AudioInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     codec: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sampleRate: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    sampleRateHz: jspb.Message.getFieldWithDefault(msg, 2, 0),
     numChannels: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
@@ -6595,7 +6595,7 @@ proto.viam.common.v1.AudioInfo.deserializeBinaryFromReader = function(msg, reade
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setSampleRate(value);
+      msg.setSampleRateHz(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
@@ -6637,7 +6637,7 @@ proto.viam.common.v1.AudioInfo.serializeBinaryToWriter = function(message, write
       f
     );
   }
-  f = message.getSampleRate();
+  f = message.getSampleRateHz();
   if (f !== 0) {
     writer.writeInt32(
       2,
@@ -6673,10 +6673,10 @@ proto.viam.common.v1.AudioInfo.prototype.setCodec = function(value) {
 
 
 /**
- * optional int32 sample_rate = 2;
+ * optional int32 sample_rate_hz = 2;
  * @return {number}
  */
-proto.viam.common.v1.AudioInfo.prototype.getSampleRate = function() {
+proto.viam.common.v1.AudioInfo.prototype.getSampleRateHz = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -6685,7 +6685,7 @@ proto.viam.common.v1.AudioInfo.prototype.getSampleRate = function() {
  * @param {number} value
  * @return {!proto.viam.common.v1.AudioInfo} returns this
  */
-proto.viam.common.v1.AudioInfo.prototype.setSampleRate = function(value) {
+proto.viam.common.v1.AudioInfo.prototype.setSampleRateHz = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
@@ -6929,7 +6929,7 @@ proto.viam.common.v1.GetPropertiesResponse.prototype.toObject = function(opt_inc
 proto.viam.common.v1.GetPropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     supportedCodecsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    sampleRate: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    sampleRateHz: jspb.Message.getFieldWithDefault(msg, 2, 0),
     numChannels: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
@@ -6973,7 +6973,7 @@ proto.viam.common.v1.GetPropertiesResponse.deserializeBinaryFromReader = functio
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setSampleRate(value);
+      msg.setSampleRateHz(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
@@ -7015,7 +7015,7 @@ proto.viam.common.v1.GetPropertiesResponse.serializeBinaryToWriter = function(me
       f
     );
   }
-  f = message.getSampleRate();
+  f = message.getSampleRateHz();
   if (f !== 0) {
     writer.writeInt32(
       2,
@@ -7070,10 +7070,10 @@ proto.viam.common.v1.GetPropertiesResponse.prototype.clearSupportedCodecsList = 
 
 
 /**
- * optional int32 sample_rate = 2;
+ * optional int32 sample_rate_hz = 2;
  * @return {number}
  */
-proto.viam.common.v1.GetPropertiesResponse.prototype.getSampleRate = function() {
+proto.viam.common.v1.GetPropertiesResponse.prototype.getSampleRateHz = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -7082,7 +7082,7 @@ proto.viam.common.v1.GetPropertiesResponse.prototype.getSampleRate = function() 
  * @param {number} value
  * @return {!proto.viam.common.v1.GetPropertiesResponse} returns this
  */
-proto.viam.common.v1.GetPropertiesResponse.prototype.setSampleRate = function(value) {
+proto.viam.common.v1.GetPropertiesResponse.prototype.setSampleRateHz = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 

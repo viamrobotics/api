@@ -829,8 +829,8 @@ export class AudioInfo extends jspb.Message {
   getCodec(): string;
   setCodec(value: string): void;
 
-  getSampleRate(): number;
-  setSampleRate(value: number): void;
+  getSampleRateHz(): number;
+  setSampleRateHz(value: number): void;
 
   getNumChannels(): number;
   setNumChannels(value: number): void;
@@ -848,7 +848,7 @@ export class AudioInfo extends jspb.Message {
 export namespace AudioInfo {
   export type AsObject = {
     codec: string,
-    sampleRate: number,
+    sampleRateHz: number,
     numChannels: number,
   }
 }
@@ -885,8 +885,8 @@ export class GetPropertiesResponse extends jspb.Message {
   setSupportedCodecsList(value: Array<string>): void;
   addSupportedCodecs(value: string, index?: number): string;
 
-  getSampleRate(): number;
-  setSampleRate(value: number): void;
+  getSampleRateHz(): number;
+  setSampleRateHz(value: number): void;
 
   getNumChannels(): number;
   setNumChannels(value: number): void;
@@ -904,7 +904,7 @@ export class GetPropertiesResponse extends jspb.Message {
 export namespace GetPropertiesResponse {
   export type AsObject = {
     supportedCodecsList: Array<string>,
-    sampleRate: number,
+    sampleRateHz: number,
     numChannels: number,
   }
 }
