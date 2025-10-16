@@ -257,7 +257,7 @@ message AudioInfo {
   // Audio codec used for the stream or device (e.g., "pcm16", "pcm32float", "mp3")
   string codec = 1;
   // Sample rate of the audio in Hz
-  int32 sample_rate = 2;
+  int32 sample_rate_hz = 2;
   // Number of audio channels in the recording or playback
   int32 num_channels = 3;
 }
@@ -272,7 +272,7 @@ message GetPropertiesResponse {
   // List of audio codecs supported by the system (e.g., "mp3", "pcm16", "pcm32float")
   repeated string supported_codecs = 1;
   // current sample rate in Hz
-  int32 sample_rate = 2;
+  int32 sample_rate_hz = 2;
   // Maximum number of audio channels supported (e.g., 1 for mono, 2 for stereo)
   int32 num_channels = 3;
 }
