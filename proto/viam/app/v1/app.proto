@@ -377,7 +377,7 @@ message Organization {
   // associated with this org will be stored in this region.
   string default_region = 5;
   optional string cid = 6;
-  bool hasSyncedData = 7;
+  bool has_synced_data = 7;
 }
 
 message OrganizationMember {
