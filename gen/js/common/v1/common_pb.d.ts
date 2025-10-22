@@ -19,14 +19,6 @@ export class ResourceName extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  clearRemotePathList(): void;
-  getRemotePathList(): Array<string>;
-  setRemotePathList(value: Array<string>): void;
-  addRemotePath(value: string, index?: number): string;
-
-  getLocalName(): string;
-  setLocalName(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResourceName.AsObject;
   static toObject(includeInstance: boolean, msg: ResourceName): ResourceName.AsObject;
@@ -43,8 +35,6 @@ export namespace ResourceName {
     type: string,
     subtype: string,
     name: string,
-    remotePathList: Array<string>,
-    localName: string,
   }
 }
 

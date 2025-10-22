@@ -15,8 +15,6 @@ message ResourceName {
   string type = 2;
   string subtype = 3;
   string name = 4;
-  repeated string remote_path = 5;
-  string local_name = 6;
 }
 
 /* Pose is a combination of location and orientation.

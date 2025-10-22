@@ -66,7 +66,7 @@ goog.exportSymbol('proto.viam.common.v1.safetyHeartbeatMonitored', null, global)
  * @constructor
  */
 proto.viam.common.v1.ResourceName = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.common.v1.ResourceName.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.viam.common.v1.ResourceName, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -707,13 +707,6 @@ if (goog.DEBUG && !COMPILED) {
   proto.viam.common.v1.GetPropertiesResponse.displayName = 'proto.viam.common.v1.GetPropertiesResponse';
 }
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.viam.common.v1.ResourceName.repeatedFields_ = [5];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -748,9 +741,7 @@ proto.viam.common.v1.ResourceName.toObject = function(includeInstance, msg) {
     namespace: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, ""),
     subtype: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    remotePathList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    localName: jspb.Message.getFieldWithDefault(msg, 6, "")
+    name: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -802,14 +793,6 @@ proto.viam.common.v1.ResourceName.deserializeBinaryFromReader = function(msg, re
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
-      break;
-    case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addRemotePath(value);
-      break;
-    case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setLocalName(value);
       break;
     default:
       reader.skipField();
@@ -865,20 +848,6 @@ proto.viam.common.v1.ResourceName.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       4,
-      f
-    );
-  }
-  f = message.getRemotePathList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      5,
-      f
-    );
-  }
-  f = message.getLocalName();
-  if (f.length > 0) {
-    writer.writeString(
-      6,
       f
     );
   }
@@ -954,61 +923,6 @@ proto.viam.common.v1.ResourceName.prototype.getName = function() {
  */
 proto.viam.common.v1.ResourceName.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
-};
-
-
-/**
- * repeated string remote_path = 5;
- * @return {!Array<string>}
- */
-proto.viam.common.v1.ResourceName.prototype.getRemotePathList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.viam.common.v1.ResourceName} returns this
- */
-proto.viam.common.v1.ResourceName.prototype.setRemotePathList = function(value) {
-  return jspb.Message.setField(this, 5, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.viam.common.v1.ResourceName} returns this
- */
-proto.viam.common.v1.ResourceName.prototype.addRemotePath = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.common.v1.ResourceName} returns this
- */
-proto.viam.common.v1.ResourceName.prototype.clearRemotePathList = function() {
-  return this.setRemotePathList([]);
-};
-
-
-/**
- * optional string local_name = 6;
- * @return {string}
- */
-proto.viam.common.v1.ResourceName.prototype.getLocalName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.common.v1.ResourceName} returns this
- */
-proto.viam.common.v1.ResourceName.prototype.setLocalName = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
