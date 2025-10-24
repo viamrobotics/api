@@ -109,6 +109,7 @@ message JobInfo {
   JobStatus status = 4;
   google.protobuf.Timestamp start_time = 5;
   optional google.protobuf.Timestamp end_time = 6;
+  string build_step = 7;
 }
 
 message ListJobsRequest {
