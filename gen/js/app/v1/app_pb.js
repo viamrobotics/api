@@ -7645,7 +7645,8 @@ proto.viam.app.v1.Organization.toObject = function(includeInstance, msg) {
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, ""),
     defaultRegion: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    cid: jspb.Message.getFieldWithDefault(msg, 6, "")
+    cid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    hasSyncedData: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -7706,6 +7707,10 @@ proto.viam.app.v1.Organization.deserializeBinaryFromReader = function(msg, reade
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setCid(value);
+      break;
+    case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHasSyncedData(value);
       break;
     default:
       reader.skipField();
@@ -7776,6 +7781,13 @@ proto.viam.app.v1.Organization.serializeBinaryToWriter = function(message, write
   if (f != null) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getHasSyncedData();
+  if (f) {
+    writer.writeBool(
+      7,
       f
     );
   }
@@ -7924,6 +7936,24 @@ proto.viam.app.v1.Organization.prototype.clearCid = function() {
  */
 proto.viam.app.v1.Organization.prototype.hasCid = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional bool has_synced_data = 7;
+ * @return {boolean}
+ */
+proto.viam.app.v1.Organization.prototype.getHasSyncedData = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.Organization} returns this
+ */
+proto.viam.app.v1.Organization.prototype.setHasSyncedData = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
