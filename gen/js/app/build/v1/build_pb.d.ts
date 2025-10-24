@@ -233,6 +233,9 @@ export class JobInfo extends jspb.Message {
   getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getBuildStep(): string;
+  setBuildStep(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): JobInfo.AsObject;
   static toObject(includeInstance: boolean, msg: JobInfo): JobInfo.AsObject;
@@ -251,6 +254,7 @@ export namespace JobInfo {
     status: JobStatusMap[keyof JobStatusMap],
     startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    buildStep: string,
   }
 }
 
