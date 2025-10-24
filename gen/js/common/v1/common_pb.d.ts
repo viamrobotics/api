@@ -19,14 +19,6 @@ export class ResourceName extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  clearRemotePathList(): void;
-  getRemotePathList(): Array<string>;
-  setRemotePathList(value: Array<string>): void;
-  addRemotePath(value: string, index?: number): string;
-
-  getLocalName(): string;
-  setLocalName(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResourceName.AsObject;
   static toObject(includeInstance: boolean, msg: ResourceName): ResourceName.AsObject;
@@ -43,8 +35,6 @@ export namespace ResourceName {
     type: string,
     subtype: string,
     name: string,
-    remotePathList: Array<string>,
-    localName: string,
   }
 }
 
@@ -822,6 +812,90 @@ export namespace LogEntry {
     caller?: google_protobuf_struct_pb.Struct.AsObject,
     stack: string,
     fieldsList: Array<google_protobuf_struct_pb.Struct.AsObject>,
+  }
+}
+
+export class AudioInfo extends jspb.Message {
+  getCodec(): string;
+  setCodec(value: string): void;
+
+  getSampleRateHz(): number;
+  setSampleRateHz(value: number): void;
+
+  getNumChannels(): number;
+  setNumChannels(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AudioInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: AudioInfo): AudioInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AudioInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AudioInfo;
+  static deserializeBinaryFromReader(message: AudioInfo, reader: jspb.BinaryReader): AudioInfo;
+}
+
+export namespace AudioInfo {
+  export type AsObject = {
+    codec: string,
+    sampleRateHz: number,
+    numChannels: number,
+  }
+}
+
+export class GetPropertiesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesRequest): GetPropertiesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesRequest;
+  static deserializeBinaryFromReader(message: GetPropertiesRequest, reader: jspb.BinaryReader): GetPropertiesRequest;
+}
+
+export namespace GetPropertiesRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetPropertiesResponse extends jspb.Message {
+  clearSupportedCodecsList(): void;
+  getSupportedCodecsList(): Array<string>;
+  setSupportedCodecsList(value: Array<string>): void;
+  addSupportedCodecs(value: string, index?: number): string;
+
+  getSampleRateHz(): number;
+  setSampleRateHz(value: number): void;
+
+  getNumChannels(): number;
+  setNumChannels(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesResponse;
+  static deserializeBinaryFromReader(message: GetPropertiesResponse, reader: jspb.BinaryReader): GetPropertiesResponse;
+}
+
+export namespace GetPropertiesResponse {
+  export type AsObject = {
+    supportedCodecsList: Array<string>,
+    sampleRateHz: number,
+    numChannels: number,
   }
 }
 
