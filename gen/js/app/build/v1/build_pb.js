@@ -2036,7 +2036,8 @@ proto.viam.app.build.v1.JobInfo.toObject = function(includeInstance, msg) {
     version: jspb.Message.getFieldWithDefault(msg, 3, ""),
     status: jspb.Message.getFieldWithDefault(msg, 4, 0),
     startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    buildStep: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -2098,6 +2099,10 @@ proto.viam.app.build.v1.JobInfo.deserializeBinaryFromReader = function(msg, read
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setEndTime(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBuildStep(value);
       break;
     default:
       reader.skipField();
@@ -2170,6 +2175,13 @@ proto.viam.app.build.v1.JobInfo.serializeBinaryToWriter = function(message, writ
       6,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getBuildStep();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -2318,6 +2330,24 @@ proto.viam.app.build.v1.JobInfo.prototype.clearEndTime = function() {
  */
 proto.viam.app.build.v1.JobInfo.prototype.hasEndTime = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string build_step = 7;
+ * @return {string}
+ */
+proto.viam.app.build.v1.JobInfo.prototype.getBuildStep = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.build.v1.JobInfo} returns this
+ */
+proto.viam.app.build.v1.JobInfo.prototype.setBuildStep = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
