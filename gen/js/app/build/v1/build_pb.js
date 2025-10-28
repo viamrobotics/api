@@ -2177,8 +2177,8 @@ proto.viam.app.build.v1.JobInfo.serializeBinaryToWriter = function(message, writ
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
-  f = message.getBuildStep();
-  if (f.length > 0) {
+  f = /** @type {string} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
     writer.writeString(
       7,
       f
@@ -2347,7 +2347,25 @@ proto.viam.app.build.v1.JobInfo.prototype.getBuildStep = function() {
  * @return {!proto.viam.app.build.v1.JobInfo} returns this
  */
 proto.viam.app.build.v1.JobInfo.prototype.setBuildStep = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.build.v1.JobInfo} returns this
+ */
+proto.viam.app.build.v1.JobInfo.prototype.clearBuildStep = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.build.v1.JobInfo.prototype.hasBuildStep = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 

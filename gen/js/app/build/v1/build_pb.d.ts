@@ -233,6 +233,8 @@ export class JobInfo extends jspb.Message {
   getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasBuildStep(): boolean;
+  clearBuildStep(): void;
   getBuildStep(): string;
   setBuildStep(value: string): void;
 
