@@ -99,6 +99,9 @@ service DataService {
 
   // DeleteIndex drops the specified custom index from a collection
   rpc DeleteIndex(DeleteIndexRequest) returns (DeleteIndexResponse);
+
+  // BinaryMetadataToJSONLines converts binary metadata to JSON lines.
+  rpc BinaryMetadataToJSONLines(BinaryMetadataToJSONLinesRequest) returns (BinaryMetadataToJSONLinesResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -677,4 +680,13 @@ enum IndexCreator {
   INDEX_CREATOR_UNSPECIFIED = 0;
   INDEX_CREATOR_VIAM = 1;
   INDEX_CREATOR_CUSTOMER = 2;
+}
+
+message BinaryMetadataToJSONLinesRequest {
+  repeated BinaryMetadata binary_metadata = 1;
+  string path = 2;
+}
+
+message BinaryMetadataToJSONLinesResponse {
+  repeated string json_lines = 1;
 }
