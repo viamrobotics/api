@@ -162,20 +162,19 @@ message GetTrainingJobLogsResponse {
   string next_page_token = 2;
 }
 
-message ListSupportedContainersRequest {
-}
+message ListSupportedContainersRequest {}
 
 message ListSupportedContainersResponse {
   map<string, Container> container_map = 1;
- // ex value:
- // container_map: {
- //   "tf:2.15": Container {
- //     key: "tf:2.15"
- //     uri: "us-docker.pkg.dev/vertex-ai/training/tf-gpu.2-15.py310:latest"
- //     description: "Tensorflow 2.15"
- //     eol: { seconds: 1772630400, nanos: 0 } // 2026-03-03T00:00:00Z
- //   }
- // }
+  // ex value:
+  // container_map: {
+  //   "tf:2.15": Container {
+  //     key: "tf:2.15"
+  //     uri: "us-docker.pkg.dev/vertex-ai/training/tf-gpu.2-15.py310:latest"
+  //     description: "Tensorflow 2.15"
+  //     eol: { seconds: 1772630400, nanos: 0 } // 2026-03-03T00:00:00Z
+  //   }
+  // }
 }
 
 message Container {
