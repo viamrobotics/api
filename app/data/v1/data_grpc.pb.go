@@ -81,6 +81,8 @@ type DataServiceClient interface {
 	ListIndexes(ctx context.Context, in *ListIndexesRequest, opts ...grpc.CallOption) (*ListIndexesResponse, error)
 	// DeleteIndex drops the specified custom index from a collection
 	DeleteIndex(ctx context.Context, in *DeleteIndexRequest, opts ...grpc.CallOption) (*DeleteIndexResponse, error)
+	// BinaryMetadataToJSONLines converts binary metadata to JSON lines.
+	BinaryMetadataToJSONLines(ctx context.Context, in *BinaryMetadataToJSONLinesRequest, opts ...grpc.CallOption) (*BinaryMetadataToJSONLinesResponse, error)
 }
 
 type dataServiceClient struct {
@@ -353,6 +355,15 @@ func (c *dataServiceClient) DeleteIndex(ctx context.Context, in *DeleteIndexRequ
 	return out, nil
 }
 
+func (c *dataServiceClient) BinaryMetadataToJSONLines(ctx context.Context, in *BinaryMetadataToJSONLinesRequest, opts ...grpc.CallOption) (*BinaryMetadataToJSONLinesResponse, error) {
+	out := new(BinaryMetadataToJSONLinesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/BinaryMetadataToJSONLines", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -416,6 +427,8 @@ type DataServiceServer interface {
 	ListIndexes(context.Context, *ListIndexesRequest) (*ListIndexesResponse, error)
 	// DeleteIndex drops the specified custom index from a collection
 	DeleteIndex(context.Context, *DeleteIndexRequest) (*DeleteIndexResponse, error)
+	// BinaryMetadataToJSONLines converts binary metadata to JSON lines.
+	BinaryMetadataToJSONLines(context.Context, *BinaryMetadataToJSONLinesRequest) (*BinaryMetadataToJSONLinesResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -500,6 +513,9 @@ func (UnimplementedDataServiceServer) ListIndexes(context.Context, *ListIndexesR
 }
 func (UnimplementedDataServiceServer) DeleteIndex(context.Context, *DeleteIndexRequest) (*DeleteIndexResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteIndex not implemented")
+}
+func (UnimplementedDataServiceServer) BinaryMetadataToJSONLines(context.Context, *BinaryMetadataToJSONLinesRequest) (*BinaryMetadataToJSONLinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BinaryMetadataToJSONLines not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -985,6 +1001,24 @@ func _DataService_DeleteIndex_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_BinaryMetadataToJSONLines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BinaryMetadataToJSONLinesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).BinaryMetadataToJSONLines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/BinaryMetadataToJSONLines",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).BinaryMetadataToJSONLines(ctx, req.(*BinaryMetadataToJSONLinesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1091,6 +1125,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteIndex",
 			Handler:    _DataService_DeleteIndex_Handler,
+		},
+		{
+			MethodName: "BinaryMetadataToJSONLines",
+			Handler:    _DataService_BinaryMetadataToJSONLines_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

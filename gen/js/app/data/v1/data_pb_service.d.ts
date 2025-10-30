@@ -238,6 +238,15 @@ type DataServiceDeleteIndex = {
   readonly responseType: typeof app_data_v1_data_pb.DeleteIndexResponse;
 };
 
+type DataServiceBinaryMetadataToJSONLines = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.BinaryMetadataToJSONLinesRequest;
+  readonly responseType: typeof app_data_v1_data_pb.BinaryMetadataToJSONLinesResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -266,6 +275,7 @@ export class DataService {
   static readonly CreateIndex: DataServiceCreateIndex;
   static readonly ListIndexes: DataServiceListIndexes;
   static readonly DeleteIndex: DataServiceDeleteIndex;
+  static readonly BinaryMetadataToJSONLines: DataServiceBinaryMetadataToJSONLines;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -525,6 +535,15 @@ export class DataServiceClient {
   deleteIndex(
     requestMessage: app_data_v1_data_pb.DeleteIndexRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteIndexResponse|null) => void
+  ): UnaryResponse;
+  binaryMetadataToJSONLines(
+    requestMessage: app_data_v1_data_pb.BinaryMetadataToJSONLinesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryMetadataToJSONLinesResponse|null) => void
+  ): UnaryResponse;
+  binaryMetadataToJSONLines(
+    requestMessage: app_data_v1_data_pb.BinaryMetadataToJSONLinesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BinaryMetadataToJSONLinesResponse|null) => void
   ): UnaryResponse;
 }
 
