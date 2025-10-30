@@ -22,6 +22,9 @@ service DatasetService {
 
   // ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
   rpc ListDatasetsByIDs(ListDatasetsByIDsRequest) returns (ListDatasetsByIDsResponse);
+
+  // MergeDatasets merges multiple datasets into a new dataset.
+  rpc MergeDatasets(MergeDatasetsRequest) returns (MergeDatasetsResponse);
 }
 
 // Dataset stores the metadata of a dataset.
@@ -76,4 +79,16 @@ message ListDatasetsByIDsRequest {
 // ListDatasetsByIDsResponse returns all the dataset metadata for the associated dataset IDs.
 message ListDatasetsByIDsResponse {
   repeated Dataset datasets = 1;
+}
+
+// MergeDatasetsRequest merges multiple datasets specified by their dataset IDs into a new dataset.
+message MergeDatasetsRequest {
+  repeated string dataset_ids = 1;
+  string name = 2;
+  string organization_id = 3;
+}
+
+// MergeDatasetsResponse returns the dataset ID of the newly created merged dataset.
+message MergeDatasetsResponse {
+  string dataset_id = 1;
 }

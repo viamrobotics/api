@@ -1070,6 +1070,9 @@ export class RemoteConfig extends jspb.Message {
   getSecret(): string;
   setSecret(value: string): void;
 
+  getPrefix(): string;
+  setPrefix(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoteConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RemoteConfig): RemoteConfig.AsObject;
@@ -1092,6 +1095,7 @@ export namespace RemoteConfig {
     reconnectInterval?: google_protobuf_duration_pb.Duration.AsObject,
     serviceConfigsList: Array<ResourceLevelServiceConfig.AsObject>,
     secret: string,
+    prefix: string,
   }
 }
 

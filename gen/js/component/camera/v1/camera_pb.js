@@ -92,7 +92,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.component.camera.v1.GetImagesRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.component.camera.v1.GetImagesRequest.repeatedFields_, null);
 };
 goog.inherits(proto.viam.component.camera.v1.GetImagesRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -750,6 +750,13 @@ proto.viam.component.camera.v1.GetImageResponse.prototype.setImage = function(va
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.component.camera.v1.GetImagesRequest.repeatedFields_ = [2];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -781,7 +788,9 @@ proto.viam.component.camera.v1.GetImagesRequest.prototype.toObject = function(op
  */
 proto.viam.component.camera.v1.GetImagesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    filterSourceNamesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -822,6 +831,15 @@ proto.viam.component.camera.v1.GetImagesRequest.deserializeBinaryFromReader = fu
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addFilterSourceNames(value);
+      break;
+    case 99:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setExtra(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -858,6 +876,21 @@ proto.viam.component.camera.v1.GetImagesRequest.serializeBinaryToWriter = functi
       f
     );
   }
+  f = message.getFilterSourceNamesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+  f = message.getExtra();
+  if (f != null) {
+    writer.writeMessage(
+      99,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -876,6 +909,80 @@ proto.viam.component.camera.v1.GetImagesRequest.prototype.getName = function() {
  */
 proto.viam.component.camera.v1.GetImagesRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated string filter_source_names = 2;
+ * @return {!Array<string>}
+ */
+proto.viam.component.camera.v1.GetImagesRequest.prototype.getFilterSourceNamesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.component.camera.v1.GetImagesRequest} returns this
+ */
+proto.viam.component.camera.v1.GetImagesRequest.prototype.setFilterSourceNamesList = function(value) {
+  return jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.component.camera.v1.GetImagesRequest} returns this
+ */
+proto.viam.component.camera.v1.GetImagesRequest.prototype.addFilterSourceNames = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.component.camera.v1.GetImagesRequest} returns this
+ */
+proto.viam.component.camera.v1.GetImagesRequest.prototype.clearFilterSourceNamesList = function() {
+  return this.setFilterSourceNamesList([]);
+};
+
+
+/**
+ * optional google.protobuf.Struct extra = 99;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.component.camera.v1.GetImagesRequest.prototype.getExtra = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 99));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.component.camera.v1.GetImagesRequest} returns this
+*/
+proto.viam.component.camera.v1.GetImagesRequest.prototype.setExtra = function(value) {
+  return jspb.Message.setWrapperField(this, 99, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.camera.v1.GetImagesRequest} returns this
+ */
+proto.viam.component.camera.v1.GetImagesRequest.prototype.clearExtra = function() {
+  return this.setExtra(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.camera.v1.GetImagesRequest.prototype.hasExtra = function() {
+  return jspb.Message.getField(this, 99) != null;
 };
 
 
@@ -1124,7 +1231,8 @@ proto.viam.component.camera.v1.Image.toObject = function(includeInstance, msg) {
   var f, obj = {
     sourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     format: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    image: msg.getImage_asB64()
+    image: msg.getImage_asB64(),
+    mimeType: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1173,6 +1281,10 @@ proto.viam.component.camera.v1.Image.deserializeBinaryFromReader = function(msg,
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setImage(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMimeType(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1220,6 +1332,13 @@ proto.viam.component.camera.v1.Image.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeBytes(
       3,
+      f
+    );
+  }
+  f = message.getMimeType();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -1301,6 +1420,24 @@ proto.viam.component.camera.v1.Image.prototype.getImage_asU8 = function() {
  */
 proto.viam.component.camera.v1.Image.prototype.setImage = function(value) {
   return jspb.Message.setProto3BytesField(this, 3, value);
+};
+
+
+/**
+ * optional string mime_type = 4;
+ * @return {string}
+ */
+proto.viam.component.camera.v1.Image.prototype.getMimeType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.component.camera.v1.Image} returns this
+ */
+proto.viam.component.camera.v1.Image.prototype.setMimeType = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

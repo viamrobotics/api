@@ -73,6 +73,15 @@ BillingService.UpdateOrganizationBillingTier = {
   responseType: app_v1_billing_pb.UpdateOrganizationBillingTierResponse
 };
 
+BillingService.CreateInvoiceAndChargeImmediately = {
+  methodName: "CreateInvoiceAndChargeImmediately",
+  service: BillingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyRequest,
+  responseType: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyResponse
+};
+
 exports.BillingService = BillingService;
 
 function BillingServiceClient(serviceHost, options) {
@@ -279,6 +288,37 @@ BillingServiceClient.prototype.updateOrganizationBillingTier = function updateOr
     callback = arguments[1];
   }
   var client = grpc.unary(BillingService.UpdateOrganizationBillingTier, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BillingServiceClient.prototype.createInvoiceAndChargeImmediately = function createInvoiceAndChargeImmediately(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BillingService.CreateInvoiceAndChargeImmediately, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

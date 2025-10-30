@@ -219,60 +219,42 @@ export namespace CreateDataPipelineResponse {
   }
 }
 
-export class UpdateDataPipelineRequest extends jspb.Message {
+export class RenameDataPipelineRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
   getName(): string;
   setName(value: string): void;
 
-  clearMqlBinaryList(): void;
-  getMqlBinaryList(): Array<Uint8Array | string>;
-  getMqlBinaryList_asU8(): Array<Uint8Array>;
-  getMqlBinaryList_asB64(): Array<string>;
-  setMqlBinaryList(value: Array<Uint8Array | string>): void;
-  addMqlBinary(value: Uint8Array | string, index?: number): Uint8Array | string;
-
-  getSchedule(): string;
-  setSchedule(value: string): void;
-
-  hasDataSourceType(): boolean;
-  clearDataSourceType(): void;
-  getDataSourceType(): app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap];
-  setDataSourceType(value: app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap]): void;
-
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateDataPipelineRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateDataPipelineRequest): UpdateDataPipelineRequest.AsObject;
+  toObject(includeInstance?: boolean): RenameDataPipelineRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RenameDataPipelineRequest): RenameDataPipelineRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateDataPipelineRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateDataPipelineRequest;
-  static deserializeBinaryFromReader(message: UpdateDataPipelineRequest, reader: jspb.BinaryReader): UpdateDataPipelineRequest;
+  static serializeBinaryToWriter(message: RenameDataPipelineRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RenameDataPipelineRequest;
+  static deserializeBinaryFromReader(message: RenameDataPipelineRequest, reader: jspb.BinaryReader): RenameDataPipelineRequest;
 }
 
-export namespace UpdateDataPipelineRequest {
+export namespace RenameDataPipelineRequest {
   export type AsObject = {
     id: string,
     name: string,
-    mqlBinaryList: Array<Uint8Array | string>,
-    schedule: string,
-    dataSourceType: app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap],
   }
 }
 
-export class UpdateDataPipelineResponse extends jspb.Message {
+export class RenameDataPipelineResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateDataPipelineResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateDataPipelineResponse): UpdateDataPipelineResponse.AsObject;
+  toObject(includeInstance?: boolean): RenameDataPipelineResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RenameDataPipelineResponse): RenameDataPipelineResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateDataPipelineResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateDataPipelineResponse;
-  static deserializeBinaryFromReader(message: UpdateDataPipelineResponse, reader: jspb.BinaryReader): UpdateDataPipelineResponse;
+  static serializeBinaryToWriter(message: RenameDataPipelineResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RenameDataPipelineResponse;
+  static deserializeBinaryFromReader(message: RenameDataPipelineResponse, reader: jspb.BinaryReader): RenameDataPipelineResponse;
 }
 
-export namespace UpdateDataPipelineResponse {
+export namespace RenameDataPipelineResponse {
   export type AsObject = {
   }
 }
@@ -470,6 +452,9 @@ export class DataPipelineRun extends jspb.Message {
   getStatus(): DataPipelineRunStatusMap[keyof DataPipelineRunStatusMap];
   setStatus(value: DataPipelineRunStatusMap[keyof DataPipelineRunStatusMap]): void;
 
+  getErrorMessage(): string;
+  setErrorMessage(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataPipelineRun.AsObject;
   static toObject(includeInstance: boolean, msg: DataPipelineRun): DataPipelineRun.AsObject;
@@ -488,6 +473,7 @@ export namespace DataPipelineRun {
     dataStartTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     dataEndTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     status: DataPipelineRunStatusMap[keyof DataPipelineRunStatusMap],
+    errorMessage: string,
   }
 }
 

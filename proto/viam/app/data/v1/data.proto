@@ -46,16 +46,22 @@ service DataService {
   rpc AddTagsToBinaryDataByIDs(AddTagsToBinaryDataByIDsRequest) returns (AddTagsToBinaryDataByIDsResponse);
 
   // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
-  rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse);
+  rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
   rpc RemoveTagsFromBinaryDataByIDs(RemoveTagsFromBinaryDataByIDsRequest) returns (RemoveTagsFromBinaryDataByIDsResponse);
 
   // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
-  rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse);
+  rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // TagsByFilter gets all unique tags from data based on given filter.
-  rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse);
+  rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse) {
+    option deprecated = true;
+  }
 
   // AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
   rpc AddBoundingBoxToImageByID(AddBoundingBoxToImageByIDRequest) returns (AddBoundingBoxToImageByIDResponse);
@@ -64,7 +70,9 @@ service DataService {
   rpc RemoveBoundingBoxFromImageByID(RemoveBoundingBoxFromImageByIDRequest) returns (RemoveBoundingBoxFromImageByIDResponse);
 
   // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
-  rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse);
+  rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse) {
+    option deprecated = true;
+  }
 
   // UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
   rpc UpdateBoundingBox(UpdateBoundingBoxRequest) returns (UpdateBoundingBoxResponse);
@@ -82,6 +90,15 @@ service DataService {
 
   // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
   rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
+
+  // CreateIndex starts a custom index build
+  rpc CreateIndex(CreateIndexRequest) returns (CreateIndexResponse);
+
+  // ListIndexes returns all the indexes for a given collection
+  rpc ListIndexes(ListIndexesRequest) returns (ListIndexesResponse);
+
+  // DeleteIndex drops the specified custom index from a collection
+  rpc DeleteIndex(DeleteIndexRequest) returns (DeleteIndexResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -252,6 +269,8 @@ message TabularDataByMQLRequest {
   // data_source is an optional field that can be used to specify the data source for the query.
   // If not specified, the query will run on "standard" storage.
   optional TabularDataSource data_source = 6;
+  // query_prefix_name is an optional field that can be used to specify a saved query to run
+  optional string query_prefix_name = 7;
 
   reserved 2, 5;
   reserved "mql_query", "use_data_pipeline";
@@ -370,6 +389,7 @@ message BoundingBox {
 
 // Classification represents a confidence score with a label.
 message Classification {
+  string id = 3;
   string label = 1;
   // confidence is an optional range from 0 - 1
   optional double confidence = 2;
@@ -455,11 +475,14 @@ message AddTagsToBinaryDataByIDsResponse {}
 
 // AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided.
 message AddTagsToBinaryDataByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
   repeated string tags = 2;
 }
 
-message AddTagsToBinaryDataByFilterResponse {}
+message AddTagsToBinaryDataByFilterResponse {
+  option deprecated = true;
+}
 
 // RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 message RemoveTagsFromBinaryDataByIDsRequest {
@@ -478,22 +501,26 @@ message RemoveTagsFromBinaryDataByIDsResponse {
 
 // RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.
 message RemoveTagsFromBinaryDataByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
   repeated string tags = 2;
 }
 
 // RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed.
 message RemoveTagsFromBinaryDataByFilterResponse {
+  option deprecated = true;
   uint64 deleted_count = 1;
 }
 
 // TagsByFilterRequest requests the unique tags from data based on given filter.
 message TagsByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
 }
 
 // TagsByFilterResponse returns the unique tags from data based on given filter.
 message TagsByFilterResponse {
+  option deprecated = true;
   repeated string tags = 1;
 }
 
@@ -545,11 +572,13 @@ message UpdateBoundingBoxResponse {}
 
 // BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter.
 message BoundingBoxLabelsByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
 }
 
 // BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter.
 message BoundingBoxLabelsByFilterResponse {
+  option deprecated = true;
   repeated string labels = 1;
 }
 
@@ -594,3 +623,58 @@ message RemoveBinaryDataFromDatasetByIDsRequest {
 }
 
 message RemoveBinaryDataFromDatasetByIDsResponse {}
+
+// IndexableCollection specifies the types of collections available for custom indexes
+enum IndexableCollection {
+  INDEXABLE_COLLECTION_UNSPECIFIED = 0;
+  INDEXABLE_COLLECTION_HOT_STORE = 1;
+  INDEXABLE_COLLECTION_PIPELINE_SINK = 2;
+}
+
+// CreateIndexRequest starts a custom index build
+message CreateIndexRequest {
+  string organization_id = 1;
+  IndexableCollection collection_type = 2;
+  optional string pipeline_name = 3;
+  // index_spec accepts a MongoDB index specification defined in JSON format
+  repeated bytes index_spec = 4;
+}
+
+message CreateIndexResponse {}
+
+// DeleteIndexRequest drops the specified custom index from a collection
+message DeleteIndexRequest {
+  string organization_id = 1;
+  IndexableCollection collection_type = 2;
+  optional string pipeline_name = 3;
+  string index_name = 4;
+}
+
+message DeleteIndexResponse {}
+
+// ListIndexesRequest returns all the indexes for a given collection
+message ListIndexesRequest {
+  string organization_id = 1;
+  IndexableCollection collection_type = 2;
+  optional string pipeline_name = 3;
+}
+
+message ListIndexesResponse {
+  repeated Index indexes = 1;
+}
+
+message Index {
+  IndexableCollection collection_type = 1;
+  optional string pipeline_name = 2;
+  string index_name = 3;
+  // index_spec defines a MongoDB index in JSON format
+  repeated bytes index_spec = 4;
+  IndexCreator created_by = 5;
+}
+
+// IndexCreator specifies the entity that originally created the index
+enum IndexCreator {
+  INDEX_CREATOR_UNSPECIFIED = 0;
+  INDEX_CREATOR_VIAM = 1;
+  INDEX_CREATOR_CUSTOMER = 2;
+}

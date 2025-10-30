@@ -19,14 +19,6 @@ export class ResourceName extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  clearRemotePathList(): void;
-  getRemotePathList(): Array<string>;
-  setRemotePathList(value: Array<string>): void;
-  addRemotePath(value: string, index?: number): string;
-
-  getLocalName(): string;
-  setLocalName(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResourceName.AsObject;
   static toObject(includeInstance: boolean, msg: ResourceName): ResourceName.AsObject;
@@ -43,8 +35,6 @@ export namespace ResourceName {
     type: string,
     subtype: string,
     name: string,
-    remotePathList: Array<string>,
-    localName: string,
   }
 }
 
@@ -270,6 +260,28 @@ export namespace Mesh {
   }
 }
 
+export class PointCloud extends jspb.Message {
+  getPointCloud(): Uint8Array | string;
+  getPointCloud_asU8(): Uint8Array;
+  getPointCloud_asB64(): string;
+  setPointCloud(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PointCloud.AsObject;
+  static toObject(includeInstance: boolean, msg: PointCloud): PointCloud.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PointCloud, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PointCloud;
+  static deserializeBinaryFromReader(message: PointCloud, reader: jspb.BinaryReader): PointCloud;
+}
+
+export namespace PointCloud {
+  export type AsObject = {
+    pointCloud: Uint8Array | string,
+  }
+}
+
 export class Geometry extends jspb.Message {
   hasCenter(): boolean;
   clearCenter(): void;
@@ -296,6 +308,11 @@ export class Geometry extends jspb.Message {
   getMesh(): Mesh | undefined;
   setMesh(value?: Mesh): void;
 
+  hasPointcloud(): boolean;
+  clearPointcloud(): void;
+  getPointcloud(): PointCloud | undefined;
+  setPointcloud(value?: PointCloud): void;
+
   getLabel(): string;
   setLabel(value: string): void;
 
@@ -317,6 +334,7 @@ export namespace Geometry {
     box?: RectangularPrism.AsObject,
     capsule?: Capsule.AsObject,
     mesh?: Mesh.AsObject,
+    pointcloud?: PointCloud.AsObject,
     label: string,
   }
 
@@ -326,6 +344,7 @@ export namespace Geometry {
     BOX = 3,
     CAPSULE = 5,
     MESH = 6,
+    POINTCLOUD = 7,
   }
 }
 
@@ -449,6 +468,16 @@ export class Transform extends jspb.Message {
   getPhysicalObject(): Geometry | undefined;
   setPhysicalObject(value?: Geometry): void;
 
+  getUuid(): Uint8Array | string;
+  getUuid_asU8(): Uint8Array;
+  getUuid_asB64(): string;
+  setUuid(value: Uint8Array | string): void;
+
+  hasMetadata(): boolean;
+  clearMetadata(): void;
+  getMetadata(): google_protobuf_struct_pb.Struct | undefined;
+  setMetadata(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Transform.AsObject;
   static toObject(includeInstance: boolean, msg: Transform): Transform.AsObject;
@@ -464,6 +493,8 @@ export namespace Transform {
     referenceFrame: string,
     poseInObserverFrame?: PoseInFrame.AsObject,
     physicalObject?: Geometry.AsObject,
+    uuid: Uint8Array | string,
+    metadata?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -781,6 +812,90 @@ export namespace LogEntry {
     caller?: google_protobuf_struct_pb.Struct.AsObject,
     stack: string,
     fieldsList: Array<google_protobuf_struct_pb.Struct.AsObject>,
+  }
+}
+
+export class AudioInfo extends jspb.Message {
+  getCodec(): string;
+  setCodec(value: string): void;
+
+  getSampleRateHz(): number;
+  setSampleRateHz(value: number): void;
+
+  getNumChannels(): number;
+  setNumChannels(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AudioInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: AudioInfo): AudioInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AudioInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AudioInfo;
+  static deserializeBinaryFromReader(message: AudioInfo, reader: jspb.BinaryReader): AudioInfo;
+}
+
+export namespace AudioInfo {
+  export type AsObject = {
+    codec: string,
+    sampleRateHz: number,
+    numChannels: number,
+  }
+}
+
+export class GetPropertiesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesRequest): GetPropertiesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesRequest;
+  static deserializeBinaryFromReader(message: GetPropertiesRequest, reader: jspb.BinaryReader): GetPropertiesRequest;
+}
+
+export namespace GetPropertiesRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetPropertiesResponse extends jspb.Message {
+  clearSupportedCodecsList(): void;
+  getSupportedCodecsList(): Array<string>;
+  setSupportedCodecsList(value: Array<string>): void;
+  addSupportedCodecs(value: string, index?: number): string;
+
+  getSampleRateHz(): number;
+  setSampleRateHz(value: number): void;
+
+  getNumChannels(): number;
+  setNumChannels(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesResponse;
+  static deserializeBinaryFromReader(message: GetPropertiesResponse, reader: jspb.BinaryReader): GetPropertiesResponse;
+}
+
+export namespace GetPropertiesResponse {
+  export type AsObject = {
+    supportedCodecsList: Array<string>,
+    sampleRateHz: number,
+    numChannels: number,
   }
 }
 

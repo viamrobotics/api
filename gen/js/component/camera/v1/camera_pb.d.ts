@@ -67,6 +67,16 @@ export class GetImagesRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
+  clearFilterSourceNamesList(): void;
+  getFilterSourceNamesList(): Array<string>;
+  setFilterSourceNamesList(value: Array<string>): void;
+  addFilterSourceNames(value: string, index?: number): string;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetImagesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetImagesRequest): GetImagesRequest.AsObject;
@@ -80,6 +90,8 @@ export class GetImagesRequest extends jspb.Message {
 export namespace GetImagesRequest {
   export type AsObject = {
     name: string,
+    filterSourceNamesList: Array<string>,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -123,6 +135,9 @@ export class Image extends jspb.Message {
   getImage_asB64(): string;
   setImage(value: Uint8Array | string): void;
 
+  getMimeType(): string;
+  setMimeType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Image.AsObject;
   static toObject(includeInstance: boolean, msg: Image): Image.AsObject;
@@ -138,6 +153,7 @@ export namespace Image {
     sourceName: string,
     format: FormatMap[keyof FormatMap],
     image: Uint8Array | string,
+    mimeType: string,
   }
 }
 

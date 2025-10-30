@@ -267,61 +267,61 @@ proto.viam.app.datapipelines.v1.DataPipelinesServicePromiseClient.prototype.crea
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest,
- *   !proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse>}
+ *   !proto.viam.app.datapipelines.v1.RenameDataPipelineRequest,
+ *   !proto.viam.app.datapipelines.v1.RenameDataPipelineResponse>}
  */
-const methodDescriptor_DataPipelinesService_UpdateDataPipeline = new grpc.web.MethodDescriptor(
-  '/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline',
+const methodDescriptor_DataPipelinesService_RenameDataPipeline = new grpc.web.MethodDescriptor(
+  '/viam.app.datapipelines.v1.DataPipelinesService/RenameDataPipeline',
   grpc.web.MethodType.UNARY,
-  proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest,
-  proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse,
+  proto.viam.app.datapipelines.v1.RenameDataPipelineRequest,
+  proto.viam.app.datapipelines.v1.RenameDataPipelineResponse,
   /**
-   * @param {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} request
+   * @param {!proto.viam.app.datapipelines.v1.RenameDataPipelineRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse.deserializeBinary
+  proto.viam.app.datapipelines.v1.RenameDataPipelineResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} request The
+ * @param {!proto.viam.app.datapipelines.v1.RenameDataPipelineRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.datapipelines.v1.RenameDataPipelineResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.datapipelines.v1.RenameDataPipelineResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.app.datapipelines.v1.DataPipelinesServiceClient.prototype.updateDataPipeline =
+proto.viam.app.datapipelines.v1.DataPipelinesServiceClient.prototype.renameDataPipeline =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline',
+      '/viam.app.datapipelines.v1.DataPipelinesService/RenameDataPipeline',
       request,
       metadata || {},
-      methodDescriptor_DataPipelinesService_UpdateDataPipeline,
+      methodDescriptor_DataPipelinesService_RenameDataPipeline,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.app.datapipelines.v1.UpdateDataPipelineRequest} request The
+ * @param {!proto.viam.app.datapipelines.v1.RenameDataPipelineRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.app.datapipelines.v1.UpdateDataPipelineResponse>}
+ * @return {!Promise<!proto.viam.app.datapipelines.v1.RenameDataPipelineResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.app.datapipelines.v1.DataPipelinesServicePromiseClient.prototype.updateDataPipeline =
+proto.viam.app.datapipelines.v1.DataPipelinesServicePromiseClient.prototype.renameDataPipeline =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline',
+      '/viam.app.datapipelines.v1.DataPipelinesService/RenameDataPipeline',
       request,
       metadata || {},
-      methodDescriptor_DataPipelinesService_UpdateDataPipeline);
+      methodDescriptor_DataPipelinesService_RenameDataPipeline);
 };
 
 

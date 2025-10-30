@@ -24,6 +24,8 @@ var google_api_annotations_pb = require('../../google/api/annotations_pb.js')
 
 var google_api_client_pb = require('../../google/api/client_pb.js')
 
+var google_api_field_behavior_pb = require('../../google/api/field_behavior_pb.js')
+
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js')
 
 var google_protobuf_descriptor_pb = require('google-protobuf/google/protobuf/descriptor_pb.js')

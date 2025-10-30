@@ -100,6 +100,15 @@ BuildService.UnlinkOrg = {
   responseType: app_build_v1_build_pb.UnlinkOrgResponse
 };
 
+BuildService.StartReloadBuild = {
+  methodName: "StartReloadBuild",
+  service: BuildService,
+  requestStream: true,
+  responseStream: false,
+  requestType: app_build_v1_build_pb.StartReloadBuildRequest,
+  responseType: app_build_v1_build_pb.StartReloadBuildResponse
+};
+
 exports.BuildService = BuildService;
 
 function BuildServiceClient(serviceHost, options) {
@@ -420,6 +429,47 @@ BuildServiceClient.prototype.unlinkOrg = function unlinkOrg(requestMessage, meta
   return {
     cancel: function () {
       callback = null;
+      client.close();
+    }
+  };
+};
+
+BuildServiceClient.prototype.startReloadBuild = function startReloadBuild(metadata) {
+  var listeners = {
+    end: [],
+    status: []
+  };
+  var client = grpc.client(BuildService.StartReloadBuild, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      if (!client.started) {
+        client.start(metadata);
+      }
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
       client.close();
     }
   };

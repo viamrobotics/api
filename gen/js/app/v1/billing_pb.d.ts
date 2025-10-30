@@ -74,6 +74,68 @@ export namespace PaymentMethodCard {
   }
 }
 
+export class VerificationInfo extends jspb.Message {
+  getArrivalDate(): number;
+  setArrivalDate(value: number): void;
+
+  getHostedVerificationPageUrl(): string;
+  setHostedVerificationPageUrl(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): VerificationInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: VerificationInfo): VerificationInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: VerificationInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): VerificationInfo;
+  static deserializeBinaryFromReader(message: VerificationInfo, reader: jspb.BinaryReader): VerificationInfo;
+}
+
+export namespace VerificationInfo {
+  export type AsObject = {
+    arrivalDate: number,
+    hostedVerificationPageUrl: string,
+  }
+}
+
+export class PaymentMethodUSBankAccount extends jspb.Message {
+  getBankName(): string;
+  setBankName(value: string): void;
+
+  getLastFourDigitsAccountNumber(): string;
+  setLastFourDigitsAccountNumber(value: string): void;
+
+  getRoutingNumber(): string;
+  setRoutingNumber(value: string): void;
+
+  getAccountType(): string;
+  setAccountType(value: string): void;
+
+  hasVerificationInfo(): boolean;
+  clearVerificationInfo(): void;
+  getVerificationInfo(): VerificationInfo | undefined;
+  setVerificationInfo(value?: VerificationInfo): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PaymentMethodUSBankAccount.AsObject;
+  static toObject(includeInstance: boolean, msg: PaymentMethodUSBankAccount): PaymentMethodUSBankAccount.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PaymentMethodUSBankAccount, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PaymentMethodUSBankAccount;
+  static deserializeBinaryFromReader(message: PaymentMethodUSBankAccount, reader: jspb.BinaryReader): PaymentMethodUSBankAccount;
+}
+
+export namespace PaymentMethodUSBankAccount {
+  export type AsObject = {
+    bankName: string,
+    lastFourDigitsAccountNumber: string,
+    routingNumber: string,
+    accountType: string,
+    verificationInfo?: VerificationInfo.AsObject,
+  }
+}
+
 export class GetCurrentMonthUsageRequest extends jspb.Message {
   getOrgId(): string;
   setOrgId(value: string): void;
@@ -301,6 +363,11 @@ export class GetOrgBillingInformationResponse extends jspb.Message {
   getBillingTier(): string;
   setBillingTier(value: string): void;
 
+  hasMethodUsBankAccount(): boolean;
+  clearMethodUsBankAccount(): void;
+  getMethodUsBankAccount(): PaymentMethodUSBankAccount | undefined;
+  setMethodUsBankAccount(value?: PaymentMethodUSBankAccount): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetOrgBillingInformationResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetOrgBillingInformationResponse): GetOrgBillingInformationResponse.AsObject;
@@ -317,6 +384,7 @@ export namespace GetOrgBillingInformationResponse {
     billingEmail: string,
     method?: PaymentMethodCard.AsObject,
     billingTier: string,
+    methodUsBankAccount?: PaymentMethodUSBankAccount.AsObject,
   }
 }
 
@@ -530,9 +598,66 @@ export namespace UpdateOrganizationBillingTierResponse {
   }
 }
 
+export class CreateInvoiceAndChargeImmediatelyRequest extends jspb.Message {
+  getOrgIdToCharge(): string;
+  setOrgIdToCharge(value: string): void;
+
+  getAmount(): number;
+  setAmount(value: number): void;
+
+  hasDescription(): boolean;
+  clearDescription(): void;
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  hasOrgIdForBranding(): boolean;
+  clearOrgIdForBranding(): void;
+  getOrgIdForBranding(): string;
+  setOrgIdForBranding(value: string): void;
+
+  getDisableEmail(): boolean;
+  setDisableEmail(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateInvoiceAndChargeImmediatelyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateInvoiceAndChargeImmediatelyRequest): CreateInvoiceAndChargeImmediatelyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateInvoiceAndChargeImmediatelyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateInvoiceAndChargeImmediatelyRequest;
+  static deserializeBinaryFromReader(message: CreateInvoiceAndChargeImmediatelyRequest, reader: jspb.BinaryReader): CreateInvoiceAndChargeImmediatelyRequest;
+}
+
+export namespace CreateInvoiceAndChargeImmediatelyRequest {
+  export type AsObject = {
+    orgIdToCharge: string,
+    amount: number,
+    description: string,
+    orgIdForBranding: string,
+    disableEmail: boolean,
+  }
+}
+
+export class CreateInvoiceAndChargeImmediatelyResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateInvoiceAndChargeImmediatelyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateInvoiceAndChargeImmediatelyResponse): CreateInvoiceAndChargeImmediatelyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateInvoiceAndChargeImmediatelyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateInvoiceAndChargeImmediatelyResponse;
+  static deserializeBinaryFromReader(message: CreateInvoiceAndChargeImmediatelyResponse, reader: jspb.BinaryReader): CreateInvoiceAndChargeImmediatelyResponse;
+}
+
+export namespace CreateInvoiceAndChargeImmediatelyResponse {
+  export type AsObject = {
+  }
+}
+
 export interface PaymentMethodTypeMap {
   PAYMENT_METHOD_TYPE_UNSPECIFIED: 0;
   PAYMENT_METHOD_TYPE_CARD: 1;
+  PAYMENT_METHOD_TYPE_USBANKACCOUNT: 2;
 }
 
 export const PaymentMethodType: PaymentMethodTypeMap;
@@ -562,6 +687,7 @@ export interface UsageCostTypeMap {
   USAGE_COST_TYPE_TRAINING_LOGS_EGRESS: 21;
   USAGE_COST_TYPE_TABULAR_DATA_DATABASE_CLOUD_STORAGE: 22;
   USAGE_COST_TYPE_TABULAR_DATA_DATABASE_COMPUTE: 23;
+  USAGE_COST_TYPE_BINARY_DATA_CROSS_REGION_EGRESS: 24;
 }
 
 export const UsageCostType: UsageCostTypeMap;
