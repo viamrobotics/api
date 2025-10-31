@@ -20,6 +20,8 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
+var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js')
+
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 
 var google_rpc_status_pb = require('../../../google/rpc/status_pb.js')
@@ -507,6 +509,67 @@ proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.getTrainin
       request,
       metadata || {},
       methodDescriptor_MLTrainingService_GetTrainingJobLogs);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesRequest,
+ *   !proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesResponse>}
+ */
+const methodDescriptor_MLTrainingService_BinaryMetadataToJSONLines = new grpc.web.MethodDescriptor(
+  '/viam.app.mltraining.v1.MLTrainingService/BinaryMetadataToJSONLines',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesRequest,
+  proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesResponse,
+  /**
+   * @param {!proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.binaryMetadataToJSONLines =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/BinaryMetadataToJSONLines',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_BinaryMetadataToJSONLines,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.mltraining.v1.BinaryMetadataToJSONLinesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.binaryMetadataToJSONLines =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/BinaryMetadataToJSONLines',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_BinaryMetadataToJSONLines);
 };
 
 

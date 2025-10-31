@@ -8,6 +8,7 @@ package v1
 
 import (
 	_ "github.com/srikrsna/protoc-gen-gotag/tagger"
+	v1 "go.viam.com/api/app/data/v1"
 	status "google.golang.org/genproto/googleapis/rpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -191,6 +192,104 @@ func (TrainingStatus) EnumDescriptor() ([]byte, []int) {
 	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{2}
 }
 
+type BinaryMetadataToJSONLinesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	BinaryMetadata []*v1.BinaryMetadata `protobuf:"bytes,1,rep,name=binary_metadata,json=binaryMetadata,proto3" json:"binary_metadata,omitempty"`
+	Path           string               `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+}
+
+func (x *BinaryMetadataToJSONLinesRequest) Reset() {
+	*x = BinaryMetadataToJSONLinesRequest{}
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BinaryMetadataToJSONLinesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BinaryMetadataToJSONLinesRequest) ProtoMessage() {}
+
+func (x *BinaryMetadataToJSONLinesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BinaryMetadataToJSONLinesRequest.ProtoReflect.Descriptor instead.
+func (*BinaryMetadataToJSONLinesRequest) Descriptor() ([]byte, []int) {
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *BinaryMetadataToJSONLinesRequest) GetBinaryMetadata() []*v1.BinaryMetadata {
+	if x != nil {
+		return x.BinaryMetadata
+	}
+	return nil
+}
+
+func (x *BinaryMetadataToJSONLinesRequest) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+type BinaryMetadataToJSONLinesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	JsonLines []string `protobuf:"bytes,1,rep,name=json_lines,json=jsonLines,proto3" json:"json_lines,omitempty"`
+}
+
+func (x *BinaryMetadataToJSONLinesResponse) Reset() {
+	*x = BinaryMetadataToJSONLinesResponse{}
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BinaryMetadataToJSONLinesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BinaryMetadataToJSONLinesResponse) ProtoMessage() {}
+
+func (x *BinaryMetadataToJSONLinesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BinaryMetadataToJSONLinesResponse.ProtoReflect.Descriptor instead.
+func (*BinaryMetadataToJSONLinesResponse) Descriptor() ([]byte, []int) {
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *BinaryMetadataToJSONLinesResponse) GetJsonLines() []string {
+	if x != nil {
+		return x.JsonLines
+	}
+	return nil
+}
+
 type SubmitTrainingJobRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -207,7 +306,7 @@ type SubmitTrainingJobRequest struct {
 
 func (x *SubmitTrainingJobRequest) Reset() {
 	*x = SubmitTrainingJobRequest{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[0]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -219,7 +318,7 @@ func (x *SubmitTrainingJobRequest) String() string {
 func (*SubmitTrainingJobRequest) ProtoMessage() {}
 
 func (x *SubmitTrainingJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[0]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -232,7 +331,7 @@ func (x *SubmitTrainingJobRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubmitTrainingJobRequest.ProtoReflect.Descriptor instead.
 func (*SubmitTrainingJobRequest) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{0}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *SubmitTrainingJobRequest) GetDatasetId() string {
@@ -294,7 +393,7 @@ type SubmitTrainingJobResponse struct {
 
 func (x *SubmitTrainingJobResponse) Reset() {
 	*x = SubmitTrainingJobResponse{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[1]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -306,7 +405,7 @@ func (x *SubmitTrainingJobResponse) String() string {
 func (*SubmitTrainingJobResponse) ProtoMessage() {}
 
 func (x *SubmitTrainingJobResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[1]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -319,7 +418,7 @@ func (x *SubmitTrainingJobResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubmitTrainingJobResponse.ProtoReflect.Descriptor instead.
 func (*SubmitTrainingJobResponse) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{1}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SubmitTrainingJobResponse) GetId() string {
@@ -345,7 +444,7 @@ type SubmitCustomTrainingJobRequest struct {
 
 func (x *SubmitCustomTrainingJobRequest) Reset() {
 	*x = SubmitCustomTrainingJobRequest{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[2]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -357,7 +456,7 @@ func (x *SubmitCustomTrainingJobRequest) String() string {
 func (*SubmitCustomTrainingJobRequest) ProtoMessage() {}
 
 func (x *SubmitCustomTrainingJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[2]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -370,7 +469,7 @@ func (x *SubmitCustomTrainingJobRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubmitCustomTrainingJobRequest.ProtoReflect.Descriptor instead.
 func (*SubmitCustomTrainingJobRequest) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{2}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SubmitCustomTrainingJobRequest) GetDatasetId() string {
@@ -432,7 +531,7 @@ type SubmitCustomTrainingJobResponse struct {
 
 func (x *SubmitCustomTrainingJobResponse) Reset() {
 	*x = SubmitCustomTrainingJobResponse{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[3]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -444,7 +543,7 @@ func (x *SubmitCustomTrainingJobResponse) String() string {
 func (*SubmitCustomTrainingJobResponse) ProtoMessage() {}
 
 func (x *SubmitCustomTrainingJobResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[3]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -457,7 +556,7 @@ func (x *SubmitCustomTrainingJobResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubmitCustomTrainingJobResponse.ProtoReflect.Descriptor instead.
 func (*SubmitCustomTrainingJobResponse) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{3}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SubmitCustomTrainingJobResponse) GetId() string {
@@ -477,7 +576,7 @@ type GetTrainingJobRequest struct {
 
 func (x *GetTrainingJobRequest) Reset() {
 	*x = GetTrainingJobRequest{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[4]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -489,7 +588,7 @@ func (x *GetTrainingJobRequest) String() string {
 func (*GetTrainingJobRequest) ProtoMessage() {}
 
 func (x *GetTrainingJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[4]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -502,7 +601,7 @@ func (x *GetTrainingJobRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTrainingJobRequest.ProtoReflect.Descriptor instead.
 func (*GetTrainingJobRequest) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{4}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetTrainingJobRequest) GetId() string {
@@ -522,7 +621,7 @@ type GetTrainingJobResponse struct {
 
 func (x *GetTrainingJobResponse) Reset() {
 	*x = GetTrainingJobResponse{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[5]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -534,7 +633,7 @@ func (x *GetTrainingJobResponse) String() string {
 func (*GetTrainingJobResponse) ProtoMessage() {}
 
 func (x *GetTrainingJobResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[5]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -547,7 +646,7 @@ func (x *GetTrainingJobResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTrainingJobResponse.ProtoReflect.Descriptor instead.
 func (*GetTrainingJobResponse) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{5}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetTrainingJobResponse) GetMetadata() *TrainingJobMetadata {
@@ -568,7 +667,7 @@ type ListTrainingJobsRequest struct {
 
 func (x *ListTrainingJobsRequest) Reset() {
 	*x = ListTrainingJobsRequest{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[6]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -580,7 +679,7 @@ func (x *ListTrainingJobsRequest) String() string {
 func (*ListTrainingJobsRequest) ProtoMessage() {}
 
 func (x *ListTrainingJobsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[6]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -593,7 +692,7 @@ func (x *ListTrainingJobsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTrainingJobsRequest.ProtoReflect.Descriptor instead.
 func (*ListTrainingJobsRequest) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{6}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListTrainingJobsRequest) GetOrganizationId() string {
@@ -620,7 +719,7 @@ type ListTrainingJobsResponse struct {
 
 func (x *ListTrainingJobsResponse) Reset() {
 	*x = ListTrainingJobsResponse{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[7]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -632,7 +731,7 @@ func (x *ListTrainingJobsResponse) String() string {
 func (*ListTrainingJobsResponse) ProtoMessage() {}
 
 func (x *ListTrainingJobsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[7]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -645,7 +744,7 @@ func (x *ListTrainingJobsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTrainingJobsResponse.ProtoReflect.Descriptor instead.
 func (*ListTrainingJobsResponse) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{7}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListTrainingJobsResponse) GetJobs() []*TrainingJobMetadata {
@@ -683,7 +782,7 @@ type TrainingJobMetadata struct {
 
 func (x *TrainingJobMetadata) Reset() {
 	*x = TrainingJobMetadata{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[8]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -695,7 +794,7 @@ func (x *TrainingJobMetadata) String() string {
 func (*TrainingJobMetadata) ProtoMessage() {}
 
 func (x *TrainingJobMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[8]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -708,7 +807,7 @@ func (x *TrainingJobMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrainingJobMetadata.ProtoReflect.Descriptor instead.
 func (*TrainingJobMetadata) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{8}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *TrainingJobMetadata) GetId() string {
@@ -854,7 +953,7 @@ type CancelTrainingJobRequest struct {
 
 func (x *CancelTrainingJobRequest) Reset() {
 	*x = CancelTrainingJobRequest{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[9]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -866,7 +965,7 @@ func (x *CancelTrainingJobRequest) String() string {
 func (*CancelTrainingJobRequest) ProtoMessage() {}
 
 func (x *CancelTrainingJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[9]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -879,7 +978,7 @@ func (x *CancelTrainingJobRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CancelTrainingJobRequest.ProtoReflect.Descriptor instead.
 func (*CancelTrainingJobRequest) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{9}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CancelTrainingJobRequest) GetId() string {
@@ -897,7 +996,7 @@ type CancelTrainingJobResponse struct {
 
 func (x *CancelTrainingJobResponse) Reset() {
 	*x = CancelTrainingJobResponse{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[10]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -909,7 +1008,7 @@ func (x *CancelTrainingJobResponse) String() string {
 func (*CancelTrainingJobResponse) ProtoMessage() {}
 
 func (x *CancelTrainingJobResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[10]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -922,7 +1021,7 @@ func (x *CancelTrainingJobResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CancelTrainingJobResponse.ProtoReflect.Descriptor instead.
 func (*CancelTrainingJobResponse) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{10}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{12}
 }
 
 type DeleteCompletedTrainingJobRequest struct {
@@ -935,7 +1034,7 @@ type DeleteCompletedTrainingJobRequest struct {
 
 func (x *DeleteCompletedTrainingJobRequest) Reset() {
 	*x = DeleteCompletedTrainingJobRequest{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[11]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -947,7 +1046,7 @@ func (x *DeleteCompletedTrainingJobRequest) String() string {
 func (*DeleteCompletedTrainingJobRequest) ProtoMessage() {}
 
 func (x *DeleteCompletedTrainingJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[11]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -960,7 +1059,7 @@ func (x *DeleteCompletedTrainingJobRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DeleteCompletedTrainingJobRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCompletedTrainingJobRequest) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{11}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *DeleteCompletedTrainingJobRequest) GetId() string {
@@ -978,7 +1077,7 @@ type DeleteCompletedTrainingJobResponse struct {
 
 func (x *DeleteCompletedTrainingJobResponse) Reset() {
 	*x = DeleteCompletedTrainingJobResponse{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[12]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -990,7 +1089,7 @@ func (x *DeleteCompletedTrainingJobResponse) String() string {
 func (*DeleteCompletedTrainingJobResponse) ProtoMessage() {}
 
 func (x *DeleteCompletedTrainingJobResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[12]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1003,7 +1102,7 @@ func (x *DeleteCompletedTrainingJobResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use DeleteCompletedTrainingJobResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCompletedTrainingJobResponse) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{12}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{14}
 }
 
 type TrainingJobLogEntry struct {
@@ -1018,7 +1117,7 @@ type TrainingJobLogEntry struct {
 
 func (x *TrainingJobLogEntry) Reset() {
 	*x = TrainingJobLogEntry{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[13]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1030,7 +1129,7 @@ func (x *TrainingJobLogEntry) String() string {
 func (*TrainingJobLogEntry) ProtoMessage() {}
 
 func (x *TrainingJobLogEntry) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[13]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1043,7 +1142,7 @@ func (x *TrainingJobLogEntry) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrainingJobLogEntry.ProtoReflect.Descriptor instead.
 func (*TrainingJobLogEntry) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{13}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *TrainingJobLogEntry) GetLevel() string {
@@ -1078,7 +1177,7 @@ type GetTrainingJobLogsRequest struct {
 
 func (x *GetTrainingJobLogsRequest) Reset() {
 	*x = GetTrainingJobLogsRequest{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[14]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1090,7 +1189,7 @@ func (x *GetTrainingJobLogsRequest) String() string {
 func (*GetTrainingJobLogsRequest) ProtoMessage() {}
 
 func (x *GetTrainingJobLogsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[14]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1103,7 +1202,7 @@ func (x *GetTrainingJobLogsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTrainingJobLogsRequest.ProtoReflect.Descriptor instead.
 func (*GetTrainingJobLogsRequest) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{14}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetTrainingJobLogsRequest) GetId() string {
@@ -1131,7 +1230,7 @@ type GetTrainingJobLogsResponse struct {
 
 func (x *GetTrainingJobLogsResponse) Reset() {
 	*x = GetTrainingJobLogsResponse{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[15]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1143,7 +1242,7 @@ func (x *GetTrainingJobLogsResponse) String() string {
 func (*GetTrainingJobLogsResponse) ProtoMessage() {}
 
 func (x *GetTrainingJobLogsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[15]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1156,7 +1255,7 @@ func (x *GetTrainingJobLogsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTrainingJobLogsResponse.ProtoReflect.Descriptor instead.
 func (*GetTrainingJobLogsResponse) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{15}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetTrainingJobLogsResponse) GetLogs() []*TrainingJobLogEntry {
@@ -1179,12 +1278,26 @@ var file_app_mltraining_v1_ml_training_proto_rawDesc = []byte{
 	0x0a, 0x23, 0x61, 0x70, 0x70, 0x2f, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67,
 	0x2f, 0x76, 0x31, 0x2f, 0x6d, 0x6c, 0x5f, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x16, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
-	0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x1a, 0x1f, 0x67,
-	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74,
-	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17,
-	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x72, 0x70, 0x63, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x75,
-	0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x16, 0x74, 0x61, 0x67, 0x67, 0x65, 0x72, 0x2f,
-	0x76, 0x31, 0x2f, 0x74, 0x61, 0x67, 0x67, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22,
+	0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x1a, 0x16, 0x61,
+	0x70, 0x70, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x76, 0x31, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x72,
+	0x70, 0x63, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
+	0x16, 0x74, 0x61, 0x67, 0x67, 0x65, 0x72, 0x2f, 0x76, 0x31, 0x2f, 0x74, 0x61, 0x67, 0x67, 0x65,
+	0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x81, 0x01, 0x0a, 0x20, 0x42, 0x69, 0x6e, 0x61,
+	0x72, 0x79, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x54, 0x6f, 0x4a, 0x53, 0x4f, 0x4e,
+	0x4c, 0x69, 0x6e, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x49, 0x0a, 0x0f,
+	0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
+	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x4d,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x52, 0x0e, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x4d,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x22, 0x42, 0x0a, 0x21, 0x42,
+	0x69, 0x6e, 0x61, 0x72, 0x79, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x54, 0x6f, 0x4a,
+	0x53, 0x4f, 0x4e, 0x4c, 0x69, 0x6e, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x1d, 0x0a, 0x0a, 0x6a, 0x73, 0x6f, 0x6e, 0x5f, 0x6c, 0x69, 0x6e, 0x65, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x09, 0x52, 0x09, 0x6a, 0x73, 0x6f, 0x6e, 0x4c, 0x69, 0x6e, 0x65, 0x73, 0x22,
 	0x90, 0x05, 0x0a, 0x18, 0x53, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69,
 	0x6e, 0x67, 0x4a, 0x6f, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x47, 0x0a, 0x0a,
 	0x64, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09,
@@ -1490,8 +1603,8 @@ var file_app_mltraining_v1_ml_training_proto_rawDesc = []byte{
 	0x04, 0x12, 0x1c, 0x0a, 0x18, 0x54, 0x52, 0x41, 0x49, 0x4e, 0x49, 0x4e, 0x47, 0x5f, 0x53, 0x54,
 	0x41, 0x54, 0x55, 0x53, 0x5f, 0x43, 0x41, 0x4e, 0x43, 0x45, 0x4c, 0x45, 0x44, 0x10, 0x05, 0x12,
 	0x1d, 0x0a, 0x19, 0x54, 0x52, 0x41, 0x49, 0x4e, 0x49, 0x4e, 0x47, 0x5f, 0x53, 0x54, 0x41, 0x54,
-	0x55, 0x53, 0x5f, 0x43, 0x41, 0x4e, 0x43, 0x45, 0x4c, 0x49, 0x4e, 0x47, 0x10, 0x06, 0x32, 0x8f,
-	0x07, 0x0a, 0x11, 0x4d, 0x4c, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x53, 0x65, 0x72,
+	0x55, 0x53, 0x5f, 0x43, 0x41, 0x4e, 0x43, 0x45, 0x4c, 0x49, 0x4e, 0x47, 0x10, 0x06, 0x32, 0xa2,
+	0x08, 0x0a, 0x11, 0x4d, 0x4c, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x53, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x12, 0x78, 0x0a, 0x11, 0x53, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x54, 0x72,
 	0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x4a, 0x6f, 0x62, 0x12, 0x30, 0x2e, 0x76, 0x69, 0x61, 0x6d,
 	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e,
@@ -1548,9 +1661,18 @@ var file_app_mltraining_v1_ml_training_proto_rawDesc = []byte{
 	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69,
 	0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e,
 	0x67, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x42, 0x23, 0x5a, 0x21, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
-	0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69,
-	0x6e, 0x67, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x90, 0x01, 0x0a, 0x19, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x4d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0x54, 0x6f, 0x4a, 0x53, 0x4f, 0x4e, 0x4c, 0x69, 0x6e, 0x65, 0x73, 0x12, 0x38,
+	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69,
+	0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x4d, 0x65,
+	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x54, 0x6f, 0x4a, 0x53, 0x4f, 0x4e, 0x4c, 0x69, 0x6e, 0x65,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x39, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76,
+	0x31, 0x2e, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
+	0x54, 0x6f, 0x4a, 0x53, 0x4f, 0x4e, 0x4c, 0x69, 0x6e, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x42, 0x23, 0x5a, 0x21, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63,
+	0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x6d, 0x6c, 0x74, 0x72, 0x61,
+	0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1566,69 +1688,75 @@ func file_app_mltraining_v1_ml_training_proto_rawDescGZIP() []byte {
 }
 
 var file_app_mltraining_v1_ml_training_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_app_mltraining_v1_ml_training_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_app_mltraining_v1_ml_training_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_app_mltraining_v1_ml_training_proto_goTypes = []any{
 	(ModelType)(0),                             // 0: viam.app.mltraining.v1.ModelType
 	(ModelFramework)(0),                        // 1: viam.app.mltraining.v1.ModelFramework
 	(TrainingStatus)(0),                        // 2: viam.app.mltraining.v1.TrainingStatus
-	(*SubmitTrainingJobRequest)(nil),           // 3: viam.app.mltraining.v1.SubmitTrainingJobRequest
-	(*SubmitTrainingJobResponse)(nil),          // 4: viam.app.mltraining.v1.SubmitTrainingJobResponse
-	(*SubmitCustomTrainingJobRequest)(nil),     // 5: viam.app.mltraining.v1.SubmitCustomTrainingJobRequest
-	(*SubmitCustomTrainingJobResponse)(nil),    // 6: viam.app.mltraining.v1.SubmitCustomTrainingJobResponse
-	(*GetTrainingJobRequest)(nil),              // 7: viam.app.mltraining.v1.GetTrainingJobRequest
-	(*GetTrainingJobResponse)(nil),             // 8: viam.app.mltraining.v1.GetTrainingJobResponse
-	(*ListTrainingJobsRequest)(nil),            // 9: viam.app.mltraining.v1.ListTrainingJobsRequest
-	(*ListTrainingJobsResponse)(nil),           // 10: viam.app.mltraining.v1.ListTrainingJobsResponse
-	(*TrainingJobMetadata)(nil),                // 11: viam.app.mltraining.v1.TrainingJobMetadata
-	(*CancelTrainingJobRequest)(nil),           // 12: viam.app.mltraining.v1.CancelTrainingJobRequest
-	(*CancelTrainingJobResponse)(nil),          // 13: viam.app.mltraining.v1.CancelTrainingJobResponse
-	(*DeleteCompletedTrainingJobRequest)(nil),  // 14: viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest
-	(*DeleteCompletedTrainingJobResponse)(nil), // 15: viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse
-	(*TrainingJobLogEntry)(nil),                // 16: viam.app.mltraining.v1.TrainingJobLogEntry
-	(*GetTrainingJobLogsRequest)(nil),          // 17: viam.app.mltraining.v1.GetTrainingJobLogsRequest
-	(*GetTrainingJobLogsResponse)(nil),         // 18: viam.app.mltraining.v1.GetTrainingJobLogsResponse
-	nil,                                        // 19: viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.ArgumentsEntry
-	nil,                                        // 20: viam.app.mltraining.v1.TrainingJobMetadata.ArgumentsEntry
-	(*status.Status)(nil),                      // 21: google.rpc.Status
-	(*timestamppb.Timestamp)(nil),              // 22: google.protobuf.Timestamp
+	(*BinaryMetadataToJSONLinesRequest)(nil),   // 3: viam.app.mltraining.v1.BinaryMetadataToJSONLinesRequest
+	(*BinaryMetadataToJSONLinesResponse)(nil),  // 4: viam.app.mltraining.v1.BinaryMetadataToJSONLinesResponse
+	(*SubmitTrainingJobRequest)(nil),           // 5: viam.app.mltraining.v1.SubmitTrainingJobRequest
+	(*SubmitTrainingJobResponse)(nil),          // 6: viam.app.mltraining.v1.SubmitTrainingJobResponse
+	(*SubmitCustomTrainingJobRequest)(nil),     // 7: viam.app.mltraining.v1.SubmitCustomTrainingJobRequest
+	(*SubmitCustomTrainingJobResponse)(nil),    // 8: viam.app.mltraining.v1.SubmitCustomTrainingJobResponse
+	(*GetTrainingJobRequest)(nil),              // 9: viam.app.mltraining.v1.GetTrainingJobRequest
+	(*GetTrainingJobResponse)(nil),             // 10: viam.app.mltraining.v1.GetTrainingJobResponse
+	(*ListTrainingJobsRequest)(nil),            // 11: viam.app.mltraining.v1.ListTrainingJobsRequest
+	(*ListTrainingJobsResponse)(nil),           // 12: viam.app.mltraining.v1.ListTrainingJobsResponse
+	(*TrainingJobMetadata)(nil),                // 13: viam.app.mltraining.v1.TrainingJobMetadata
+	(*CancelTrainingJobRequest)(nil),           // 14: viam.app.mltraining.v1.CancelTrainingJobRequest
+	(*CancelTrainingJobResponse)(nil),          // 15: viam.app.mltraining.v1.CancelTrainingJobResponse
+	(*DeleteCompletedTrainingJobRequest)(nil),  // 16: viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest
+	(*DeleteCompletedTrainingJobResponse)(nil), // 17: viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse
+	(*TrainingJobLogEntry)(nil),                // 18: viam.app.mltraining.v1.TrainingJobLogEntry
+	(*GetTrainingJobLogsRequest)(nil),          // 19: viam.app.mltraining.v1.GetTrainingJobLogsRequest
+	(*GetTrainingJobLogsResponse)(nil),         // 20: viam.app.mltraining.v1.GetTrainingJobLogsResponse
+	nil,                                        // 21: viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.ArgumentsEntry
+	nil,                                        // 22: viam.app.mltraining.v1.TrainingJobMetadata.ArgumentsEntry
+	(*v1.BinaryMetadata)(nil),                  // 23: viam.app.data.v1.BinaryMetadata
+	(*status.Status)(nil),                      // 24: google.rpc.Status
+	(*timestamppb.Timestamp)(nil),              // 25: google.protobuf.Timestamp
 }
 var file_app_mltraining_v1_ml_training_proto_depIdxs = []int32{
-	0,  // 0: viam.app.mltraining.v1.SubmitTrainingJobRequest.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	1,  // 1: viam.app.mltraining.v1.SubmitTrainingJobRequest.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	19, // 2: viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments:type_name -> viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.ArgumentsEntry
-	11, // 3: viam.app.mltraining.v1.GetTrainingJobResponse.metadata:type_name -> viam.app.mltraining.v1.TrainingJobMetadata
-	2,  // 4: viam.app.mltraining.v1.ListTrainingJobsRequest.status:type_name -> viam.app.mltraining.v1.TrainingStatus
-	11, // 5: viam.app.mltraining.v1.ListTrainingJobsResponse.jobs:type_name -> viam.app.mltraining.v1.TrainingJobMetadata
-	0,  // 6: viam.app.mltraining.v1.TrainingJobMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	1,  // 7: viam.app.mltraining.v1.TrainingJobMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	2,  // 8: viam.app.mltraining.v1.TrainingJobMetadata.status:type_name -> viam.app.mltraining.v1.TrainingStatus
-	21, // 9: viam.app.mltraining.v1.TrainingJobMetadata.error_status:type_name -> google.rpc.Status
-	22, // 10: viam.app.mltraining.v1.TrainingJobMetadata.created_on:type_name -> google.protobuf.Timestamp
-	22, // 11: viam.app.mltraining.v1.TrainingJobMetadata.last_modified:type_name -> google.protobuf.Timestamp
-	22, // 12: viam.app.mltraining.v1.TrainingJobMetadata.training_started:type_name -> google.protobuf.Timestamp
-	22, // 13: viam.app.mltraining.v1.TrainingJobMetadata.training_ended:type_name -> google.protobuf.Timestamp
-	20, // 14: viam.app.mltraining.v1.TrainingJobMetadata.arguments:type_name -> viam.app.mltraining.v1.TrainingJobMetadata.ArgumentsEntry
-	22, // 15: viam.app.mltraining.v1.TrainingJobLogEntry.time:type_name -> google.protobuf.Timestamp
-	16, // 16: viam.app.mltraining.v1.GetTrainingJobLogsResponse.logs:type_name -> viam.app.mltraining.v1.TrainingJobLogEntry
-	3,  // 17: viam.app.mltraining.v1.MLTrainingService.SubmitTrainingJob:input_type -> viam.app.mltraining.v1.SubmitTrainingJobRequest
-	5,  // 18: viam.app.mltraining.v1.MLTrainingService.SubmitCustomTrainingJob:input_type -> viam.app.mltraining.v1.SubmitCustomTrainingJobRequest
-	7,  // 19: viam.app.mltraining.v1.MLTrainingService.GetTrainingJob:input_type -> viam.app.mltraining.v1.GetTrainingJobRequest
-	9,  // 20: viam.app.mltraining.v1.MLTrainingService.ListTrainingJobs:input_type -> viam.app.mltraining.v1.ListTrainingJobsRequest
-	12, // 21: viam.app.mltraining.v1.MLTrainingService.CancelTrainingJob:input_type -> viam.app.mltraining.v1.CancelTrainingJobRequest
-	14, // 22: viam.app.mltraining.v1.MLTrainingService.DeleteCompletedTrainingJob:input_type -> viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest
-	17, // 23: viam.app.mltraining.v1.MLTrainingService.GetTrainingJobLogs:input_type -> viam.app.mltraining.v1.GetTrainingJobLogsRequest
-	4,  // 24: viam.app.mltraining.v1.MLTrainingService.SubmitTrainingJob:output_type -> viam.app.mltraining.v1.SubmitTrainingJobResponse
-	6,  // 25: viam.app.mltraining.v1.MLTrainingService.SubmitCustomTrainingJob:output_type -> viam.app.mltraining.v1.SubmitCustomTrainingJobResponse
-	8,  // 26: viam.app.mltraining.v1.MLTrainingService.GetTrainingJob:output_type -> viam.app.mltraining.v1.GetTrainingJobResponse
-	10, // 27: viam.app.mltraining.v1.MLTrainingService.ListTrainingJobs:output_type -> viam.app.mltraining.v1.ListTrainingJobsResponse
-	13, // 28: viam.app.mltraining.v1.MLTrainingService.CancelTrainingJob:output_type -> viam.app.mltraining.v1.CancelTrainingJobResponse
-	15, // 29: viam.app.mltraining.v1.MLTrainingService.DeleteCompletedTrainingJob:output_type -> viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse
-	18, // 30: viam.app.mltraining.v1.MLTrainingService.GetTrainingJobLogs:output_type -> viam.app.mltraining.v1.GetTrainingJobLogsResponse
-	24, // [24:31] is the sub-list for method output_type
-	17, // [17:24] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	23, // 0: viam.app.mltraining.v1.BinaryMetadataToJSONLinesRequest.binary_metadata:type_name -> viam.app.data.v1.BinaryMetadata
+	0,  // 1: viam.app.mltraining.v1.SubmitTrainingJobRequest.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	1,  // 2: viam.app.mltraining.v1.SubmitTrainingJobRequest.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	21, // 3: viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments:type_name -> viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.ArgumentsEntry
+	13, // 4: viam.app.mltraining.v1.GetTrainingJobResponse.metadata:type_name -> viam.app.mltraining.v1.TrainingJobMetadata
+	2,  // 5: viam.app.mltraining.v1.ListTrainingJobsRequest.status:type_name -> viam.app.mltraining.v1.TrainingStatus
+	13, // 6: viam.app.mltraining.v1.ListTrainingJobsResponse.jobs:type_name -> viam.app.mltraining.v1.TrainingJobMetadata
+	0,  // 7: viam.app.mltraining.v1.TrainingJobMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	1,  // 8: viam.app.mltraining.v1.TrainingJobMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	2,  // 9: viam.app.mltraining.v1.TrainingJobMetadata.status:type_name -> viam.app.mltraining.v1.TrainingStatus
+	24, // 10: viam.app.mltraining.v1.TrainingJobMetadata.error_status:type_name -> google.rpc.Status
+	25, // 11: viam.app.mltraining.v1.TrainingJobMetadata.created_on:type_name -> google.protobuf.Timestamp
+	25, // 12: viam.app.mltraining.v1.TrainingJobMetadata.last_modified:type_name -> google.protobuf.Timestamp
+	25, // 13: viam.app.mltraining.v1.TrainingJobMetadata.training_started:type_name -> google.protobuf.Timestamp
+	25, // 14: viam.app.mltraining.v1.TrainingJobMetadata.training_ended:type_name -> google.protobuf.Timestamp
+	22, // 15: viam.app.mltraining.v1.TrainingJobMetadata.arguments:type_name -> viam.app.mltraining.v1.TrainingJobMetadata.ArgumentsEntry
+	25, // 16: viam.app.mltraining.v1.TrainingJobLogEntry.time:type_name -> google.protobuf.Timestamp
+	18, // 17: viam.app.mltraining.v1.GetTrainingJobLogsResponse.logs:type_name -> viam.app.mltraining.v1.TrainingJobLogEntry
+	5,  // 18: viam.app.mltraining.v1.MLTrainingService.SubmitTrainingJob:input_type -> viam.app.mltraining.v1.SubmitTrainingJobRequest
+	7,  // 19: viam.app.mltraining.v1.MLTrainingService.SubmitCustomTrainingJob:input_type -> viam.app.mltraining.v1.SubmitCustomTrainingJobRequest
+	9,  // 20: viam.app.mltraining.v1.MLTrainingService.GetTrainingJob:input_type -> viam.app.mltraining.v1.GetTrainingJobRequest
+	11, // 21: viam.app.mltraining.v1.MLTrainingService.ListTrainingJobs:input_type -> viam.app.mltraining.v1.ListTrainingJobsRequest
+	14, // 22: viam.app.mltraining.v1.MLTrainingService.CancelTrainingJob:input_type -> viam.app.mltraining.v1.CancelTrainingJobRequest
+	16, // 23: viam.app.mltraining.v1.MLTrainingService.DeleteCompletedTrainingJob:input_type -> viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest
+	19, // 24: viam.app.mltraining.v1.MLTrainingService.GetTrainingJobLogs:input_type -> viam.app.mltraining.v1.GetTrainingJobLogsRequest
+	3,  // 25: viam.app.mltraining.v1.MLTrainingService.BinaryMetadataToJSONLines:input_type -> viam.app.mltraining.v1.BinaryMetadataToJSONLinesRequest
+	6,  // 26: viam.app.mltraining.v1.MLTrainingService.SubmitTrainingJob:output_type -> viam.app.mltraining.v1.SubmitTrainingJobResponse
+	8,  // 27: viam.app.mltraining.v1.MLTrainingService.SubmitCustomTrainingJob:output_type -> viam.app.mltraining.v1.SubmitCustomTrainingJobResponse
+	10, // 28: viam.app.mltraining.v1.MLTrainingService.GetTrainingJob:output_type -> viam.app.mltraining.v1.GetTrainingJobResponse
+	12, // 29: viam.app.mltraining.v1.MLTrainingService.ListTrainingJobs:output_type -> viam.app.mltraining.v1.ListTrainingJobsResponse
+	15, // 30: viam.app.mltraining.v1.MLTrainingService.CancelTrainingJob:output_type -> viam.app.mltraining.v1.CancelTrainingJobResponse
+	17, // 31: viam.app.mltraining.v1.MLTrainingService.DeleteCompletedTrainingJob:output_type -> viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse
+	20, // 32: viam.app.mltraining.v1.MLTrainingService.GetTrainingJobLogs:output_type -> viam.app.mltraining.v1.GetTrainingJobLogsResponse
+	4,  // 33: viam.app.mltraining.v1.MLTrainingService.BinaryMetadataToJSONLines:output_type -> viam.app.mltraining.v1.BinaryMetadataToJSONLinesResponse
+	26, // [26:34] is the sub-list for method output_type
+	18, // [18:26] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_app_mltraining_v1_ml_training_proto_init() }
@@ -1636,14 +1764,14 @@ func file_app_mltraining_v1_ml_training_proto_init() {
 	if File_app_mltraining_v1_ml_training_proto != nil {
 		return
 	}
-	file_app_mltraining_v1_ml_training_proto_msgTypes[14].OneofWrappers = []any{}
+	file_app_mltraining_v1_ml_training_proto_msgTypes[16].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_mltraining_v1_ml_training_proto_rawDesc,
 			NumEnums:      3,
-			NumMessages:   18,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

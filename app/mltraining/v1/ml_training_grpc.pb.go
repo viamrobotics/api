@@ -36,6 +36,8 @@ type MLTrainingServiceClient interface {
 	DeleteCompletedTrainingJob(ctx context.Context, in *DeleteCompletedTrainingJobRequest, opts ...grpc.CallOption) (*DeleteCompletedTrainingJobResponse, error)
 	// GetTrainingJobLogs gets the logs for a given custom training job.
 	GetTrainingJobLogs(ctx context.Context, in *GetTrainingJobLogsRequest, opts ...grpc.CallOption) (*GetTrainingJobLogsResponse, error)
+	// BinaryMetadataToJSONLines converts binary metadata to JSON lines.
+	BinaryMetadataToJSONLines(ctx context.Context, in *BinaryMetadataToJSONLinesRequest, opts ...grpc.CallOption) (*BinaryMetadataToJSONLinesResponse, error)
 }
 
 type mLTrainingServiceClient struct {
@@ -109,6 +111,15 @@ func (c *mLTrainingServiceClient) GetTrainingJobLogs(ctx context.Context, in *Ge
 	return out, nil
 }
 
+func (c *mLTrainingServiceClient) BinaryMetadataToJSONLines(ctx context.Context, in *BinaryMetadataToJSONLinesRequest, opts ...grpc.CallOption) (*BinaryMetadataToJSONLinesResponse, error) {
+	out := new(BinaryMetadataToJSONLinesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/BinaryMetadataToJSONLines", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MLTrainingServiceServer is the server API for MLTrainingService service.
 // All implementations must embed UnimplementedMLTrainingServiceServer
 // for forward compatibility
@@ -127,6 +138,8 @@ type MLTrainingServiceServer interface {
 	DeleteCompletedTrainingJob(context.Context, *DeleteCompletedTrainingJobRequest) (*DeleteCompletedTrainingJobResponse, error)
 	// GetTrainingJobLogs gets the logs for a given custom training job.
 	GetTrainingJobLogs(context.Context, *GetTrainingJobLogsRequest) (*GetTrainingJobLogsResponse, error)
+	// BinaryMetadataToJSONLines converts binary metadata to JSON lines.
+	BinaryMetadataToJSONLines(context.Context, *BinaryMetadataToJSONLinesRequest) (*BinaryMetadataToJSONLinesResponse, error)
 	mustEmbedUnimplementedMLTrainingServiceServer()
 }
 
@@ -154,6 +167,9 @@ func (UnimplementedMLTrainingServiceServer) DeleteCompletedTrainingJob(context.C
 }
 func (UnimplementedMLTrainingServiceServer) GetTrainingJobLogs(context.Context, *GetTrainingJobLogsRequest) (*GetTrainingJobLogsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrainingJobLogs not implemented")
+}
+func (UnimplementedMLTrainingServiceServer) BinaryMetadataToJSONLines(context.Context, *BinaryMetadataToJSONLinesRequest) (*BinaryMetadataToJSONLinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BinaryMetadataToJSONLines not implemented")
 }
 func (UnimplementedMLTrainingServiceServer) mustEmbedUnimplementedMLTrainingServiceServer() {}
 
@@ -294,6 +310,24 @@ func _MLTrainingService_GetTrainingJobLogs_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MLTrainingService_BinaryMetadataToJSONLines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BinaryMetadataToJSONLinesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MLTrainingServiceServer).BinaryMetadataToJSONLines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.mltraining.v1.MLTrainingService/BinaryMetadataToJSONLines",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MLTrainingServiceServer).BinaryMetadataToJSONLines(ctx, req.(*BinaryMetadataToJSONLinesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MLTrainingService_ServiceDesc is the grpc.ServiceDesc for MLTrainingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -328,6 +362,10 @@ var MLTrainingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTrainingJobLogs",
 			Handler:    _MLTrainingService_GetTrainingJobLogs_Handler,
+		},
+		{
+			MethodName: "BinaryMetadataToJSONLines",
+			Handler:    _MLTrainingService_BinaryMetadataToJSONLines_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
