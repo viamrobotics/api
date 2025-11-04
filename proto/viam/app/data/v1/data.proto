@@ -99,6 +99,12 @@ service DataService {
 
   // DeleteIndex drops the specified custom index from a collection
   rpc DeleteIndex(DeleteIndexRequest) returns (DeleteIndexResponse);
+
+  rpc CreateSavedQuery(CreateSavedQueryRequest) returns (CreateSavedQueryResponse);
+  rpc UpdateSavedQuery(UpdateSavedQueryRequest) returns (UpdateSavedQueryResponse);
+  rpc GetSavedQuery(GetSavedQueryRequest) returns (GetSavedQueryResponse);
+  rpc DeleteSavedQuery(DeleteSavedQueryRequest) returns (DeleteSavedQueryResponse);
+  rpc ListSavedQueries(ListSavedQueriesRequest) returns (ListSavedQueriesResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -677,4 +683,54 @@ enum IndexCreator {
   INDEX_CREATOR_UNSPECIFIED = 0;
   INDEX_CREATOR_VIAM = 1;
   INDEX_CREATOR_CUSTOMER = 2;
+}
+
+message CreateSavedQueryRequest {
+  string organization_id = 1;
+  string name = 2;
+  repeated bytes mql_binary = 3;
+}
+
+message CreateSavedQueryResponse {
+  string id = 1;
+}
+
+message Query {
+  string id = 1;
+  string organization_id = 2;
+  string name = 3;
+  repeated bytes mql_binary = 4;
+  google.protobuf.Timestamp created_on = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message DeleteSavedQueryRequest {
+  string id = 1;
+}
+
+message DeleteSavedQueryResponse {}
+
+message GetSavedQueryRequest {
+  string id = 1;
+}
+
+message GetSavedQueryResponse {
+  Query saved_query = 1;
+}
+
+message UpdateSavedQueryRequest {
+  string id = 1;
+  string name = 2;
+  repeated bytes mql_binary = 3;
+}
+
+message UpdateSavedQueryResponse {}
+
+message ListSavedQueriesRequest {
+  string organization_id = 1;
+  int64 limit = 2;
+}
+
+message ListSavedQueriesResponse {
+  repeated Query queries = 1;
 }
