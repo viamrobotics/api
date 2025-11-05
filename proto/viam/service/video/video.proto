@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package viam.service.video.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/service/video/v1";
+option java_package = "com.viam.service.video.v1";
+
+// VideoService services video streaming and retrieval
+service VideoService {
+  // GetVideo retrieves a video for a given time range
+  rpc GetVideo(GetVideoRequest) returns (stream GetVideoResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/video/{name}/get_video_stream"};
+  }
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/video/{name}/do_command"};
+  }
+}
+
+message GetVideoRequest {
+  // Name of the video source
+  string name = 1;
+  // Start time for the video retrieval
+  google.protobuf.Timestamp start_timestamp = 2;
+  // End time for the video retrieval
+  google.protobuf.Timestamp end_timestamp = 3;
+  // Codec for the video retrieval (e.g., "h264", "h265")
+  string video_codec = 4;
+  // Container format for the video retrieval (e.g., "mp4", "fmp4")
+  string video_container = 5;
+  // To match a request to its responses
+  string request_id = 6;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetVideoResponse {
+  // Video data chunk
+  bytes video_data = 1;
+  // Container format (e.g., "mp4", "fmp4")
+  string video_container = 2;
+  string request_id = 3;
+}
