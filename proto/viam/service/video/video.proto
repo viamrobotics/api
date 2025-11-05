@@ -44,5 +44,6 @@ message GetVideoResponse {
   bytes video_data = 1;
   // Container format (e.g., "mp4", "fmp4")
   string video_container = 2;
+  // Request ID to match this response to its request
   string request_id = 3;
 }
