@@ -716,6 +716,51 @@ export namespace GetGeometriesResponse {
   }
 }
 
+export class Get3DModelsRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Get3DModelsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: Get3DModelsRequest): Get3DModelsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Get3DModelsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Get3DModelsRequest;
+  static deserializeBinaryFromReader(message: Get3DModelsRequest, reader: jspb.BinaryReader): Get3DModelsRequest;
+}
+
+export namespace Get3DModelsRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class Get3DModelsResponse extends jspb.Message {
+  getModelsMap(): jspb.Map<string, Mesh>;
+  clearModelsMap(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Get3DModelsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: Get3DModelsResponse): Get3DModelsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Get3DModelsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Get3DModelsResponse;
+  static deserializeBinaryFromReader(message: Get3DModelsResponse, reader: jspb.BinaryReader): Get3DModelsResponse;
+}
+
+export namespace Get3DModelsResponse {
+  export type AsObject = {
+    modelsMap: Array<[string, Mesh.AsObject]>,
+  }
+}
+
 export class GetReadingsRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
