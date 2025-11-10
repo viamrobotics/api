@@ -92,6 +92,8 @@ message Image {
   bytes image = 3;
   // The mime type of the image
   string mime_type = 4;
+  // annotations can be used to store additional information about the image
+  viam.app.data.v1.Annotations annotations = 5;
 }
 
 enum Format {
