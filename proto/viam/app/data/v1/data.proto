@@ -100,10 +100,19 @@ service DataService {
   // DeleteIndex drops the specified custom index from a collection
   rpc DeleteIndex(DeleteIndexRequest) returns (DeleteIndexResponse);
 
+  // CreateSavedQuery saves a mql query.
   rpc CreateSavedQuery(CreateSavedQueryRequest) returns (CreateSavedQueryResponse);
+
+  // UpdateSavedQuery updates the saved query with the given id.
   rpc UpdateSavedQuery(UpdateSavedQueryRequest) returns (UpdateSavedQueryResponse);
+
+  // GetSavedQuery retrieves a saved query by id.
   rpc GetSavedQuery(GetSavedQueryRequest) returns (GetSavedQueryResponse);
+
+  // DeleteSavedQuery deletes a saved query based on the given id.
   rpc DeleteSavedQuery(DeleteSavedQueryRequest) returns (DeleteSavedQueryResponse);
+
+  // ListSavedQueries lists saved queries for a given organization.
   rpc ListSavedQueries(ListSavedQueriesRequest) returns (ListSavedQueriesResponse);
 }
 
@@ -685,6 +694,7 @@ enum IndexCreator {
   INDEX_CREATOR_CUSTOMER = 2;
 }
 
+// CreateSavedQueryRequest saves a mql query.
 message CreateSavedQueryRequest {
   string organization_id = 1;
   string name = 2;
@@ -704,12 +714,14 @@ message Query {
   google.protobuf.Timestamp updated_at = 6;
 }
 
+// DeleteSavedQuery deletes a saved query based on the given id.
 message DeleteSavedQueryRequest {
   string id = 1;
 }
 
 message DeleteSavedQueryResponse {}
 
+// GetSavedQuery retrieves a saved query by id.
 message GetSavedQueryRequest {
   string id = 1;
 }
@@ -718,6 +730,7 @@ message GetSavedQueryResponse {
   Query saved_query = 1;
 }
 
+// UpdateSavedQuery updates the saved query with the given id.
 message UpdateSavedQueryRequest {
   string id = 1;
   string name = 2;
@@ -726,6 +739,7 @@ message UpdateSavedQueryRequest {
 
 message UpdateSavedQueryResponse {}
 
+// ListSavedQueries lists saved queries for a given organization.
 message ListSavedQueriesRequest {
   string organization_id = 1;
   int64 limit = 2;
