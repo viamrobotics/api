@@ -693,5 +693,66 @@ proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.getGeometries =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.Get3DModelsRequest,
+ *   !proto.viam.common.v1.Get3DModelsResponse>}
+ */
+const methodDescriptor_ArmService_Get3DModels = new grpc.web.MethodDescriptor(
+  '/viam.component.arm.v1.ArmService/Get3DModels',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.Get3DModelsRequest,
+  common_v1_common_pb.Get3DModelsResponse,
+  /**
+   * @param {!proto.viam.common.v1.Get3DModelsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.Get3DModelsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.Get3DModelsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.Get3DModelsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.Get3DModelsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.arm.v1.ArmServiceClient.prototype.get3DModels =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/Get3DModels',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_Get3DModels,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.Get3DModelsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.Get3DModelsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.get3DModels =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/Get3DModels',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_Get3DModels);
+};
+
+
 module.exports = proto.viam.component.arm.v1;
 
