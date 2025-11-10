@@ -678,3 +678,12 @@ enum IndexCreator {
   INDEX_CREATOR_VIAM = 1;
   INDEX_CREATOR_CUSTOMER = 2;
 }
+
+message BinaryMetadataToJSONLinesRequest {
+  repeated BinaryMetadata binary_metadata = 1;
+  string path = 2;
+}
+
+message BinaryMetadataToJSONLinesResponse {
+  repeated string json_lines = 1;
+}
