@@ -244,6 +244,51 @@ DataService.DeleteIndex = {
   responseType: app_data_v1_data_pb.DeleteIndexResponse
 };
 
+DataService.CreateSavedQuery = {
+  methodName: "CreateSavedQuery",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.CreateSavedQueryRequest,
+  responseType: app_data_v1_data_pb.CreateSavedQueryResponse
+};
+
+DataService.UpdateSavedQuery = {
+  methodName: "UpdateSavedQuery",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.UpdateSavedQueryRequest,
+  responseType: app_data_v1_data_pb.UpdateSavedQueryResponse
+};
+
+DataService.GetSavedQuery = {
+  methodName: "GetSavedQuery",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.GetSavedQueryRequest,
+  responseType: app_data_v1_data_pb.GetSavedQueryResponse
+};
+
+DataService.DeleteSavedQuery = {
+  methodName: "DeleteSavedQuery",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteSavedQueryRequest,
+  responseType: app_data_v1_data_pb.DeleteSavedQueryResponse
+};
+
+DataService.ListSavedQueries = {
+  methodName: "ListSavedQueries",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.ListSavedQueriesRequest,
+  responseType: app_data_v1_data_pb.ListSavedQueriesResponse
+};
+
 exports.DataService = DataService;
 
 function DataServiceClient(serviceHost, options) {
@@ -1039,6 +1084,161 @@ DataServiceClient.prototype.deleteIndex = function deleteIndex(requestMessage, m
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.DeleteIndex, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.createSavedQuery = function createSavedQuery(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.CreateSavedQuery, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.updateSavedQuery = function updateSavedQuery(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.UpdateSavedQuery, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.getSavedQuery = function getSavedQuery(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.GetSavedQuery, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteSavedQuery = function deleteSavedQuery(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteSavedQuery, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.listSavedQueries = function listSavedQueries(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.ListSavedQueries, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
