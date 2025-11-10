@@ -228,6 +228,18 @@ message GetGeometriesResponse {
   repeated Geometry geometries = 1;
 }
 
+message Get3DModelsRequest {
+  // The component name
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message Get3DModelsResponse {
+  // the 3D models associated with the component
+  map<string, Mesh> models = 1;
+}
+
 message GetReadingsRequest {
   // Name of a sensor
   string name = 1;
