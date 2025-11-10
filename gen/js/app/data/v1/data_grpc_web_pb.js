@@ -1664,5 +1664,310 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.deleteIndex =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.CreateSavedQueryRequest,
+ *   !proto.viam.app.data.v1.CreateSavedQueryResponse>}
+ */
+const methodDescriptor_DataService_CreateSavedQuery = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/CreateSavedQuery',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.CreateSavedQueryRequest,
+  proto.viam.app.data.v1.CreateSavedQueryResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.CreateSavedQueryRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.CreateSavedQueryResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.CreateSavedQueryResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.CreateSavedQueryResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.createSavedQuery =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateSavedQuery,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.CreateSavedQueryResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.createSavedQuery =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateSavedQuery);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.UpdateSavedQueryRequest,
+ *   !proto.viam.app.data.v1.UpdateSavedQueryResponse>}
+ */
+const methodDescriptor_DataService_UpdateSavedQuery = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/UpdateSavedQuery',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.UpdateSavedQueryRequest,
+  proto.viam.app.data.v1.UpdateSavedQueryResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.UpdateSavedQueryRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.UpdateSavedQueryResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.UpdateSavedQueryResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.UpdateSavedQueryResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.updateSavedQuery =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateSavedQuery,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.UpdateSavedQueryResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.updateSavedQuery =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateSavedQuery);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.GetSavedQueryRequest,
+ *   !proto.viam.app.data.v1.GetSavedQueryResponse>}
+ */
+const methodDescriptor_DataService_GetSavedQuery = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/GetSavedQuery',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.GetSavedQueryRequest,
+  proto.viam.app.data.v1.GetSavedQueryResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.GetSavedQueryRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.GetSavedQueryResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.GetSavedQueryResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.GetSavedQueryResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.getSavedQuery =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetSavedQuery,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.GetSavedQueryResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.getSavedQuery =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetSavedQuery);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.DeleteSavedQueryRequest,
+ *   !proto.viam.app.data.v1.DeleteSavedQueryResponse>}
+ */
+const methodDescriptor_DataService_DeleteSavedQuery = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/DeleteSavedQuery',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.DeleteSavedQueryRequest,
+  proto.viam.app.data.v1.DeleteSavedQueryResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.DeleteSavedQueryRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.DeleteSavedQueryResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.DeleteSavedQueryResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.DeleteSavedQueryResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.deleteSavedQuery =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteSavedQuery,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.DeleteSavedQueryResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.deleteSavedQuery =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteSavedQuery);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.ListSavedQueriesRequest,
+ *   !proto.viam.app.data.v1.ListSavedQueriesResponse>}
+ */
+const methodDescriptor_DataService_ListSavedQueries = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/ListSavedQueries',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.ListSavedQueriesRequest,
+  proto.viam.app.data.v1.ListSavedQueriesResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.ListSavedQueriesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.ListSavedQueriesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListSavedQueriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.ListSavedQueriesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ListSavedQueriesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.listSavedQueries =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListSavedQueries',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListSavedQueries,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListSavedQueriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.ListSavedQueriesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.listSavedQueries =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListSavedQueries',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListSavedQueries);
+};
+
+
 module.exports = proto.viam.app.data.v1;
 
