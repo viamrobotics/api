@@ -181,6 +181,7 @@ message ListSupportedContainersResponse {
 message Container {
   string key = 1;
   string uri = 2;
-  string description = 3;
-  google.protobuf.Timestamp eol = 4;
+  string framework = 3;
+  string description = 4;
+  google.protobuf.Timestamp eol = 5;
 }
