@@ -5004,7 +5004,7 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.prototype.toObject =
  */
 proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    invoiceId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -5041,6 +5041,10 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.deserializeBinaryFro
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInvoiceId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5070,6 +5074,31 @@ proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.prototype.serializeB
  */
 proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getInvoiceId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string invoice_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.prototype.getInvoiceId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse} returns this
+ */
+proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.prototype.setInvoiceId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
