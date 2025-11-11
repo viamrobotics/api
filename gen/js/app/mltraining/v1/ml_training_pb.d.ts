@@ -530,6 +530,9 @@ export class Container extends jspb.Message {
   getUri(): string;
   setUri(value: string): void;
 
+  getFramework(): string;
+  setFramework(value: string): void;
+
   getDescription(): string;
   setDescription(value: string): void;
 
@@ -552,6 +555,7 @@ export namespace Container {
   export type AsObject = {
     key: string,
     uri: string,
+    framework: string,
     description: string,
     eol?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }

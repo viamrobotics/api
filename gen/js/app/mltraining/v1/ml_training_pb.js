@@ -4125,7 +4125,8 @@ proto.viam.app.mltraining.v1.Container.toObject = function(includeInstance, msg)
   var f, obj = {
     key: jspb.Message.getFieldWithDefault(msg, 1, ""),
     uri: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    framework: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
     eol: (f = msg.getEol()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -4173,9 +4174,13 @@ proto.viam.app.mltraining.v1.Container.deserializeBinaryFromReader = function(ms
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDescription(value);
+      msg.setFramework(value);
       break;
     case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 5:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setEol(value);
@@ -4223,17 +4228,24 @@ proto.viam.app.mltraining.v1.Container.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getDescription();
+  f = message.getFramework();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
   f = message.getEol();
   if (f != null) {
     writer.writeMessage(
-      4,
+      5,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -4278,10 +4290,10 @@ proto.viam.app.mltraining.v1.Container.prototype.setUri = function(value) {
 
 
 /**
- * optional string description = 3;
+ * optional string framework = 3;
  * @return {string}
  */
-proto.viam.app.mltraining.v1.Container.prototype.getDescription = function() {
+proto.viam.app.mltraining.v1.Container.prototype.getFramework = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -4290,18 +4302,36 @@ proto.viam.app.mltraining.v1.Container.prototype.getDescription = function() {
  * @param {string} value
  * @return {!proto.viam.app.mltraining.v1.Container} returns this
  */
-proto.viam.app.mltraining.v1.Container.prototype.setDescription = function(value) {
+proto.viam.app.mltraining.v1.Container.prototype.setFramework = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional google.protobuf.Timestamp eol = 4;
+ * optional string description = 4;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.Container.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.Container} returns this
+ */
+proto.viam.app.mltraining.v1.Container.prototype.setDescription = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp eol = 5;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.viam.app.mltraining.v1.Container.prototype.getEol = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
 };
 
 
@@ -4310,7 +4340,7 @@ proto.viam.app.mltraining.v1.Container.prototype.getEol = function() {
  * @return {!proto.viam.app.mltraining.v1.Container} returns this
 */
 proto.viam.app.mltraining.v1.Container.prototype.setEol = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -4328,7 +4358,7 @@ proto.viam.app.mltraining.v1.Container.prototype.clearEol = function() {
  * @return {boolean}
  */
 proto.viam.app.mltraining.v1.Container.prototype.hasEol = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
