@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.app.mltraining.v1;
 
+import "app/data/v1/data.proto";
 import "google/protobuf/timestamp.proto";
 import "google/rpc/status.proto";
 import "tagger/v1/tagger.proto";
@@ -29,6 +30,18 @@ service MLTrainingService {
 
   // GetTrainingJobLogs gets the logs for a given custom training job.
   rpc GetTrainingJobLogs(GetTrainingJobLogsRequest) returns (GetTrainingJobLogsResponse);
+
+  // BinaryMetadataToJSONLines converts binary metadata to JSON lines.
+  rpc BinaryMetadataToJSONLines(BinaryMetadataToJSONLinesRequest) returns (BinaryMetadataToJSONLinesResponse);
+}
+
+message BinaryMetadataToJSONLinesRequest {
+  repeated data.v1.BinaryMetadata binary_metadata = 1;
+  string path = 2;
+}
+
+message BinaryMetadataToJSONLinesResponse {
+  repeated string json_lines = 1;
 }
 
 enum ModelType {

@@ -2,9 +2,58 @@
 // file: app/mltraining/v1/ml_training.proto
 
 import * as jspb from "google-protobuf";
+import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as google_rpc_status_pb from "../../../google/rpc/status_pb";
 import * as tagger_v1_tagger_pb from "../../../tagger/v1/tagger_pb";
+
+export class BinaryMetadataToJSONLinesRequest extends jspb.Message {
+  clearBinaryMetadataList(): void;
+  getBinaryMetadataList(): Array<app_data_v1_data_pb.BinaryMetadata>;
+  setBinaryMetadataList(value: Array<app_data_v1_data_pb.BinaryMetadata>): void;
+  addBinaryMetadata(value?: app_data_v1_data_pb.BinaryMetadata, index?: number): app_data_v1_data_pb.BinaryMetadata;
+
+  getPath(): string;
+  setPath(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BinaryMetadataToJSONLinesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryMetadataToJSONLinesRequest): BinaryMetadataToJSONLinesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BinaryMetadataToJSONLinesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryMetadataToJSONLinesRequest;
+  static deserializeBinaryFromReader(message: BinaryMetadataToJSONLinesRequest, reader: jspb.BinaryReader): BinaryMetadataToJSONLinesRequest;
+}
+
+export namespace BinaryMetadataToJSONLinesRequest {
+  export type AsObject = {
+    binaryMetadataList: Array<app_data_v1_data_pb.BinaryMetadata.AsObject>,
+    path: string,
+  }
+}
+
+export class BinaryMetadataToJSONLinesResponse extends jspb.Message {
+  clearJsonLinesList(): void;
+  getJsonLinesList(): Array<string>;
+  setJsonLinesList(value: Array<string>): void;
+  addJsonLines(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BinaryMetadataToJSONLinesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: BinaryMetadataToJSONLinesResponse): BinaryMetadataToJSONLinesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BinaryMetadataToJSONLinesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BinaryMetadataToJSONLinesResponse;
+  static deserializeBinaryFromReader(message: BinaryMetadataToJSONLinesResponse, reader: jspb.BinaryReader): BinaryMetadataToJSONLinesResponse;
+}
+
+export namespace BinaryMetadataToJSONLinesResponse {
+  export type AsObject = {
+    jsonLinesList: Array<string>,
+  }
+}
 
 export class SubmitTrainingJobRequest extends jspb.Message {
   getDatasetId(): string;
