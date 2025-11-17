@@ -1,20 +1,17 @@
-version: v1
+version: v2
 plugins:
-  - name: go
+  - local: protoc-gen-go
     out: .
-    opt:
-      - paths=source_relative
-  - name: go-grpc
+    opt: paths=source_relative
+  - local: protoc-gen-go-grpc
     out: .
-    opt:
-      - paths=source_relative
-  - name: grpc-gateway
+    opt: paths=source_relative
+  - local: protoc-gen-grpc-gateway
     out: .
     opt:
       - paths=source_relative
       - generate_unbound_methods=true
-  - name: doc
+  - local: protoc-gen-doc
     out: docs/proto
-    opt:
-      - html,index.html
+    opt: html,index.html
     strategy: all

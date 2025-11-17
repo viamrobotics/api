@@ -55,6 +55,15 @@ AppService.ListOrganizationsByUser = {
   responseType: app_v1_app_pb.ListOrganizationsByUserResponse
 };
 
+AppService.SearchOrganizations = {
+  methodName: "SearchOrganizations",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.SearchOrganizationsRequest,
+  responseType: app_v1_app_pb.SearchOrganizationsResponse
+};
+
 AppService.GetOrganization = {
   methodName: "GetOrganization",
   service: AppService,
@@ -82,6 +91,15 @@ AppService.UpdateOrganization = {
   responseType: app_v1_app_pb.UpdateOrganizationResponse
 };
 
+AppService.UpdateOrganizationNamespace = {
+  methodName: "UpdateOrganizationNamespace",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateOrganizationNamespaceRequest,
+  responseType: app_v1_app_pb.UpdateOrganizationNamespaceResponse
+};
+
 AppService.DeleteOrganization = {
   methodName: "DeleteOrganization",
   service: AppService,
@@ -89,6 +107,24 @@ AppService.DeleteOrganization = {
   responseStream: false,
   requestType: app_v1_app_pb.DeleteOrganizationRequest,
   responseType: app_v1_app_pb.DeleteOrganizationResponse
+};
+
+AppService.GetOrganizationMetadata = {
+  methodName: "GetOrganizationMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetOrganizationMetadataRequest,
+  responseType: app_v1_app_pb.GetOrganizationMetadataResponse
+};
+
+AppService.UpdateOrganizationMetadata = {
+  methodName: "UpdateOrganizationMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateOrganizationMetadataRequest,
+  responseType: app_v1_app_pb.UpdateOrganizationMetadataResponse
 };
 
 AppService.ListOrganizationMembers = {
@@ -145,6 +181,141 @@ AppService.ResendOrganizationInvite = {
   responseType: app_v1_app_pb.ResendOrganizationInviteResponse
 };
 
+AppService.EnableBillingService = {
+  methodName: "EnableBillingService",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.EnableBillingServiceRequest,
+  responseType: app_v1_app_pb.EnableBillingServiceResponse
+};
+
+AppService.DisableBillingService = {
+  methodName: "DisableBillingService",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DisableBillingServiceRequest,
+  responseType: app_v1_app_pb.DisableBillingServiceResponse
+};
+
+AppService.UpdateBillingService = {
+  methodName: "UpdateBillingService",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateBillingServiceRequest,
+  responseType: app_v1_app_pb.UpdateBillingServiceResponse
+};
+
+AppService.GetBillingServiceConfig = {
+  methodName: "GetBillingServiceConfig",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetBillingServiceConfigRequest,
+  responseType: app_v1_app_pb.GetBillingServiceConfigResponse
+};
+
+AppService.OrganizationSetSupportEmail = {
+  methodName: "OrganizationSetSupportEmail",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.OrganizationSetSupportEmailRequest,
+  responseType: app_v1_app_pb.OrganizationSetSupportEmailResponse
+};
+
+AppService.OrganizationGetSupportEmail = {
+  methodName: "OrganizationGetSupportEmail",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.OrganizationGetSupportEmailRequest,
+  responseType: app_v1_app_pb.OrganizationGetSupportEmailResponse
+};
+
+AppService.OrganizationSetLogo = {
+  methodName: "OrganizationSetLogo",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.OrganizationSetLogoRequest,
+  responseType: app_v1_app_pb.OrganizationSetLogoResponse
+};
+
+AppService.OrganizationGetLogo = {
+  methodName: "OrganizationGetLogo",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.OrganizationGetLogoRequest,
+  responseType: app_v1_app_pb.OrganizationGetLogoResponse
+};
+
+AppService.EnableAuthService = {
+  methodName: "EnableAuthService",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.EnableAuthServiceRequest,
+  responseType: app_v1_app_pb.EnableAuthServiceResponse
+};
+
+AppService.DisableAuthService = {
+  methodName: "DisableAuthService",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DisableAuthServiceRequest,
+  responseType: app_v1_app_pb.DisableAuthServiceResponse
+};
+
+AppService.CreateOAuthApp = {
+  methodName: "CreateOAuthApp",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CreateOAuthAppRequest,
+  responseType: app_v1_app_pb.CreateOAuthAppResponse
+};
+
+AppService.ReadOAuthApp = {
+  methodName: "ReadOAuthApp",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ReadOAuthAppRequest,
+  responseType: app_v1_app_pb.ReadOAuthAppResponse
+};
+
+AppService.UpdateOAuthApp = {
+  methodName: "UpdateOAuthApp",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateOAuthAppRequest,
+  responseType: app_v1_app_pb.UpdateOAuthAppResponse
+};
+
+AppService.DeleteOAuthApp = {
+  methodName: "DeleteOAuthApp",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteOAuthAppRequest,
+  responseType: app_v1_app_pb.DeleteOAuthAppResponse
+};
+
+AppService.ListOAuthApps = {
+  methodName: "ListOAuthApps",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListOAuthAppsRequest,
+  responseType: app_v1_app_pb.ListOAuthAppsResponse
+};
+
 AppService.CreateLocation = {
   methodName: "CreateLocation",
   service: AppService,
@@ -179,6 +350,24 @@ AppService.DeleteLocation = {
   responseStream: false,
   requestType: app_v1_app_pb.DeleteLocationRequest,
   responseType: app_v1_app_pb.DeleteLocationResponse
+};
+
+AppService.GetLocationMetadata = {
+  methodName: "GetLocationMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetLocationMetadataRequest,
+  responseType: app_v1_app_pb.GetLocationMetadataResponse
+};
+
+AppService.UpdateLocationMetadata = {
+  methodName: "UpdateLocationMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateLocationMetadataRequest,
+  responseType: app_v1_app_pb.UpdateLocationMetadataResponse
 };
 
 AppService.ListLocations = {
@@ -244,6 +433,24 @@ AppService.GetRobot = {
   responseType: app_v1_app_pb.GetRobotResponse
 };
 
+AppService.GetRobotMetadata = {
+  methodName: "GetRobotMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetRobotMetadataRequest,
+  responseType: app_v1_app_pb.GetRobotMetadataResponse
+};
+
+AppService.UpdateRobotMetadata = {
+  methodName: "UpdateRobotMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateRobotMetadataRequest,
+  responseType: app_v1_app_pb.UpdateRobotMetadataResponse
+};
+
 AppService.GetRoverRentalRobots = {
   methodName: "GetRoverRentalRobots",
   service: AppService,
@@ -269,6 +476,15 @@ AppService.GetRobotPart = {
   responseStream: false,
   requestType: app_v1_app_pb.GetRobotPartRequest,
   responseType: app_v1_app_pb.GetRobotPartResponse
+};
+
+AppService.GetRobotPartByNameAndLocation = {
+  methodName: "GetRobotPartByNameAndLocation",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetRobotPartByNameAndLocationRequest,
+  responseType: app_v1_app_pb.GetRobotPartByNameAndLocationResponse
 };
 
 AppService.GetRobotPartLogs = {
@@ -325,6 +541,24 @@ AppService.DeleteRobotPart = {
   responseType: app_v1_app_pb.DeleteRobotPartResponse
 };
 
+AppService.GetRobotPartMetadata = {
+  methodName: "GetRobotPartMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetRobotPartMetadataRequest,
+  responseType: app_v1_app_pb.GetRobotPartMetadataResponse
+};
+
+AppService.UpdateRobotPartMetadata = {
+  methodName: "UpdateRobotPartMetadata",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UpdateRobotPartMetadataRequest,
+  responseType: app_v1_app_pb.UpdateRobotPartMetadataResponse
+};
+
 AppService.GetRobotAPIKeys = {
   methodName: "GetRobotAPIKeys",
   service: AppService,
@@ -377,6 +611,24 @@ AppService.ListRobots = {
   responseStream: false,
   requestType: app_v1_app_pb.ListRobotsRequest,
   responseType: app_v1_app_pb.ListRobotsResponse
+};
+
+AppService.ListRobotsForLocations = {
+  methodName: "ListRobotsForLocations",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListRobotsForLocationsRequest,
+  responseType: app_v1_app_pb.ListRobotsForLocationsResponse
+};
+
+AppService.ListRobotsForOrg = {
+  methodName: "ListRobotsForOrg",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListRobotsForOrgRequest,
+  responseType: app_v1_app_pb.ListRobotsForOrgResponse
 };
 
 AppService.NewRobot = {
@@ -449,6 +701,69 @@ AppService.DeleteFragment = {
   responseStream: false,
   requestType: app_v1_app_pb.DeleteFragmentRequest,
   responseType: app_v1_app_pb.DeleteFragmentResponse
+};
+
+AppService.ListNestedFragments = {
+  methodName: "ListNestedFragments",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListNestedFragmentsRequest,
+  responseType: app_v1_app_pb.ListNestedFragmentsResponse
+};
+
+AppService.ListMachineFragments = {
+  methodName: "ListMachineFragments",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListMachineFragmentsRequest,
+  responseType: app_v1_app_pb.ListMachineFragmentsResponse
+};
+
+AppService.ListMachineSummaries = {
+  methodName: "ListMachineSummaries",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListMachineSummariesRequest,
+  responseType: app_v1_app_pb.ListMachineSummariesResponse
+};
+
+AppService.GetFragmentHistory = {
+  methodName: "GetFragmentHistory",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetFragmentHistoryRequest,
+  responseType: app_v1_app_pb.GetFragmentHistoryResponse
+};
+
+AppService.GetFragmentUsage = {
+  methodName: "GetFragmentUsage",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetFragmentUsageRequest,
+  responseType: app_v1_app_pb.GetFragmentUsageResponse
+};
+
+AppService.SetFragmentTag = {
+  methodName: "SetFragmentTag",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.SetFragmentTagRequest,
+  responseType: app_v1_app_pb.SetFragmentTagResponse
+};
+
+AppService.DeleteFragmentTag = {
+  methodName: "DeleteFragmentTag",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteFragmentTagRequest,
+  responseType: app_v1_app_pb.DeleteFragmentTagResponse
 };
 
 AppService.AddRole = {
@@ -541,6 +856,24 @@ AppService.DeleteRegistryItem = {
   responseType: app_v1_app_pb.DeleteRegistryItemResponse
 };
 
+AppService.RenameRegistryItem = {
+  methodName: "RenameRegistryItem",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.RenameRegistryItemRequest,
+  responseType: app_v1_app_pb.RenameRegistryItemResponse
+};
+
+AppService.TransferRegistryItem = {
+  methodName: "TransferRegistryItem",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.TransferRegistryItemRequest,
+  responseType: app_v1_app_pb.TransferRegistryItemResponse
+};
+
 AppService.CreateModule = {
   methodName: "CreateModule",
   service: AppService,
@@ -613,6 +946,15 @@ AppService.ListKeys = {
   responseType: app_v1_app_pb.ListKeysResponse
 };
 
+AppService.RenameKey = {
+  methodName: "RenameKey",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.RenameKeyRequest,
+  responseType: app_v1_app_pb.RenameKeyResponse
+};
+
 AppService.RotateKey = {
   methodName: "RotateKey",
   service: AppService,
@@ -629,6 +971,24 @@ AppService.CreateKeyFromExistingKeyAuthorizations = {
   responseStream: false,
   requestType: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest,
   responseType: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse
+};
+
+AppService.GetAppContent = {
+  methodName: "GetAppContent",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetAppContentRequest,
+  responseType: app_v1_app_pb.GetAppContentResponse
+};
+
+AppService.GetAppBranding = {
+  methodName: "GetAppBranding",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetAppBrandingRequest,
+  responseType: app_v1_app_pb.GetAppBrandingResponse
 };
 
 exports.AppService = AppService;
@@ -793,6 +1153,37 @@ AppServiceClient.prototype.listOrganizationsByUser = function listOrganizationsB
   };
 };
 
+AppServiceClient.prototype.searchOrganizations = function searchOrganizations(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.SearchOrganizations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.getOrganization = function getOrganization(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -886,11 +1277,104 @@ AppServiceClient.prototype.updateOrganization = function updateOrganization(requ
   };
 };
 
+AppServiceClient.prototype.updateOrganizationNamespace = function updateOrganizationNamespace(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateOrganizationNamespace, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.deleteOrganization = function deleteOrganization(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteOrganization, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getOrganizationMetadata = function getOrganizationMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetOrganizationMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateOrganizationMetadata = function updateOrganizationMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateOrganizationMetadata, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1103,6 +1587,471 @@ AppServiceClient.prototype.resendOrganizationInvite = function resendOrganizatio
   };
 };
 
+AppServiceClient.prototype.enableBillingService = function enableBillingService(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.EnableBillingService, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.disableBillingService = function disableBillingService(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DisableBillingService, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateBillingService = function updateBillingService(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateBillingService, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getBillingServiceConfig = function getBillingServiceConfig(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetBillingServiceConfig, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.organizationSetSupportEmail = function organizationSetSupportEmail(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.OrganizationSetSupportEmail, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.organizationGetSupportEmail = function organizationGetSupportEmail(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.OrganizationGetSupportEmail, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.organizationSetLogo = function organizationSetLogo(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.OrganizationSetLogo, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.organizationGetLogo = function organizationGetLogo(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.OrganizationGetLogo, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.enableAuthService = function enableAuthService(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.EnableAuthService, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.disableAuthService = function disableAuthService(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DisableAuthService, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.createOAuthApp = function createOAuthApp(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CreateOAuthApp, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.readOAuthApp = function readOAuthApp(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ReadOAuthApp, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateOAuthApp = function updateOAuthApp(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateOAuthApp, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteOAuthApp = function deleteOAuthApp(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteOAuthApp, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listOAuthApps = function listOAuthApps(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListOAuthApps, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.createLocation = function createLocation(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -1201,6 +2150,68 @@ AppServiceClient.prototype.deleteLocation = function deleteLocation(requestMessa
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteLocation, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getLocationMetadata = function getLocationMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetLocationMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateLocationMetadata = function updateLocationMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateLocationMetadata, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1444,6 +2455,68 @@ AppServiceClient.prototype.getRobot = function getRobot(requestMessage, metadata
   };
 };
 
+AppServiceClient.prototype.getRobotMetadata = function getRobotMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetRobotMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateRobotMetadata = function updateRobotMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateRobotMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.getRoverRentalRobots = function getRoverRentalRobots(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -1511,6 +2584,37 @@ AppServiceClient.prototype.getRobotPart = function getRobotPart(requestMessage, 
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.GetRobotPart, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getRobotPartByNameAndLocation = function getRobotPartByNameAndLocation(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetRobotPartByNameAndLocation, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -1731,6 +2835,68 @@ AppServiceClient.prototype.deleteRobotPart = function deleteRobotPart(requestMes
   };
 };
 
+AppServiceClient.prototype.getRobotPartMetadata = function getRobotPartMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetRobotPartMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.updateRobotPartMetadata = function updateRobotPartMetadata(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UpdateRobotPartMetadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.getRobotAPIKeys = function getRobotAPIKeys(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -1891,6 +3057,68 @@ AppServiceClient.prototype.listRobots = function listRobots(requestMessage, meta
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListRobots, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listRobotsForLocations = function listRobotsForLocations(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListRobotsForLocations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listRobotsForOrg = function listRobotsForOrg(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListRobotsForOrg, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -2139,6 +3367,223 @@ AppServiceClient.prototype.deleteFragment = function deleteFragment(requestMessa
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteFragment, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listNestedFragments = function listNestedFragments(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListNestedFragments, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listMachineFragments = function listMachineFragments(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListMachineFragments, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listMachineSummaries = function listMachineSummaries(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListMachineSummaries, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getFragmentHistory = function getFragmentHistory(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetFragmentHistory, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getFragmentUsage = function getFragmentUsage(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetFragmentUsage, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.setFragmentTag = function setFragmentTag(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.SetFragmentTag, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteFragmentTag = function deleteFragmentTag(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteFragmentTag, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -2475,6 +3920,68 @@ AppServiceClient.prototype.deleteRegistryItem = function deleteRegistryItem(requ
   };
 };
 
+AppServiceClient.prototype.renameRegistryItem = function renameRegistryItem(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.RenameRegistryItem, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.transferRegistryItem = function transferRegistryItem(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.TransferRegistryItem, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.createModule = function createModule(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -2733,6 +4240,37 @@ AppServiceClient.prototype.listKeys = function listKeys(requestMessage, metadata
   };
 };
 
+AppServiceClient.prototype.renameKey = function renameKey(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.RenameKey, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.rotateKey = function rotateKey(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -2769,6 +4307,68 @@ AppServiceClient.prototype.createKeyFromExistingKeyAuthorizations = function cre
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.CreateKeyFromExistingKeyAuthorizations, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getAppContent = function getAppContent(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetAppContent, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getAppBranding = function getAppBranding(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetAppBranding, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -11,13 +11,21 @@ option go_package = "go.viam.com/api/app/data/v1";
 // DataService is used to query robot data.
 service DataService {
   // TabularDataByFilter queries tabular data and metadata based on given filters.
-  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (TabularDataByFilterResponse);
+  rpc TabularDataByFilter(TabularDataByFilterRequest) returns (TabularDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // TabularDataBySQL queries tabular data with a SQL query.
   rpc TabularDataBySQL(TabularDataBySQLRequest) returns (TabularDataBySQLResponse);
 
   // TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
   rpc TabularDataByMQL(TabularDataByMQLRequest) returns (TabularDataByMQLResponse);
+
+  // ExportTabularData queries tabular data from the specified data source.
+  rpc ExportTabularData(ExportTabularDataRequest) returns (stream ExportTabularDataResponse);
+
+  // GetLatestTabularData gets the most recent tabular data captured from the specified data source.
+  rpc GetLatestTabularData(GetLatestTabularDataRequest) returns (GetLatestTabularDataResponse);
 
   // BinaryDataByFilter queries binary data and metadata based on given filters.
   rpc BinaryDataByFilter(BinaryDataByFilterRequest) returns (BinaryDataByFilterResponse);
@@ -38,16 +46,22 @@ service DataService {
   rpc AddTagsToBinaryDataByIDs(AddTagsToBinaryDataByIDsRequest) returns (AddTagsToBinaryDataByIDsResponse);
 
   // AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
-  rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse);
+  rpc AddTagsToBinaryDataByFilter(AddTagsToBinaryDataByFilterRequest) returns (AddTagsToBinaryDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
   rpc RemoveTagsFromBinaryDataByIDs(RemoveTagsFromBinaryDataByIDsRequest) returns (RemoveTagsFromBinaryDataByIDsResponse);
 
   // RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
-  rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse);
+  rpc RemoveTagsFromBinaryDataByFilter(RemoveTagsFromBinaryDataByFilterRequest) returns (RemoveTagsFromBinaryDataByFilterResponse) {
+    option deprecated = true;
+  }
 
   // TagsByFilter gets all unique tags from data based on given filter.
-  rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse);
+  rpc TagsByFilter(TagsByFilterRequest) returns (TagsByFilterResponse) {
+    option deprecated = true;
+  }
 
   // AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
   rpc AddBoundingBoxToImageByID(AddBoundingBoxToImageByIDRequest) returns (AddBoundingBoxToImageByIDResponse);
@@ -56,7 +70,12 @@ service DataService {
   rpc RemoveBoundingBoxFromImageByID(RemoveBoundingBoxFromImageByIDRequest) returns (RemoveBoundingBoxFromImageByIDResponse);
 
   // BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
-  rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse);
+  rpc BoundingBoxLabelsByFilter(BoundingBoxLabelsByFilterRequest) returns (BoundingBoxLabelsByFilterResponse) {
+    option deprecated = true;
+  }
+
+  // UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
+  rpc UpdateBoundingBox(UpdateBoundingBoxRequest) returns (UpdateBoundingBoxResponse);
 
   // GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
   // returns the hostname of the federated database.
@@ -71,6 +90,30 @@ service DataService {
 
   // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
   rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
+
+  // CreateIndex starts a custom index build
+  rpc CreateIndex(CreateIndexRequest) returns (CreateIndexResponse);
+
+  // ListIndexes returns all the indexes for a given collection
+  rpc ListIndexes(ListIndexesRequest) returns (ListIndexesResponse);
+
+  // DeleteIndex drops the specified custom index from a collection
+  rpc DeleteIndex(DeleteIndexRequest) returns (DeleteIndexResponse);
+
+  // CreateSavedQuery saves a mql query.
+  rpc CreateSavedQuery(CreateSavedQueryRequest) returns (CreateSavedQueryResponse);
+
+  // UpdateSavedQuery updates the saved query with the given id.
+  rpc UpdateSavedQuery(UpdateSavedQueryRequest) returns (UpdateSavedQueryResponse);
+
+  // GetSavedQuery retrieves a saved query by id.
+  rpc GetSavedQuery(GetSavedQueryRequest) returns (GetSavedQueryResponse);
+
+  // DeleteSavedQuery deletes a saved query based on the given id.
+  rpc DeleteSavedQuery(DeleteSavedQueryRequest) returns (DeleteSavedQueryResponse);
+
+  // ListSavedQueries lists saved queries for a given organization.
+  rpc ListSavedQueries(ListSavedQueriesRequest) returns (ListSavedQueriesResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -164,6 +207,7 @@ message CaptureInterval {
 
 // TabularDataByFilterRequest requests tabular data based on filter values.
 message TabularDataByFilterRequest {
+  option deprecated = true;
   DataRequest data_request = 1;
   bool count_only = 2;
   bool include_internal_data = 3;
@@ -171,6 +215,7 @@ message TabularDataByFilterRequest {
 
 // TabularDataByFilterResponse provides the data and metadata of tabular data.
 message TabularDataByFilterResponse {
+  option deprecated = true;
   repeated CaptureMetadata metadata = 1;
   repeated TabularData data = 2;
   uint64 count = 3;
@@ -180,6 +225,7 @@ message TabularDataByFilterResponse {
 
 // TabularData contains data and metadata associated with tabular data.
 message TabularData {
+  option deprecated = true;
   google.protobuf.Struct data = 1;
   uint32 metadata_index = 2;
   google.protobuf.Timestamp time_requested = 3;
@@ -197,7 +243,33 @@ message TabularDataBySQLRequest {
 
 // TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.
 message TabularDataBySQLResponse {
-  repeated google.protobuf.Struct data = 1;
+  repeated bytes raw_data = 2;
+
+  reserved 1;
+  reserved "data";
+}
+
+// TabularDataSourceType specifies the data source type for TabularDataByMQL queries.
+enum TabularDataSourceType {
+  TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED = 0;
+  // TABULAR_DATA_SOURCE_TYPE_STANDARD indicates reading from standard storage. This is
+  // the default option and available for all data synced to Viam.
+  TABULAR_DATA_SOURCE_TYPE_STANDARD = 1;
+  // TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE indicates reading from hot storage. This is a
+  // premium feature requiring opting in specific data sources.
+  // See docs at https://docs.viam.com/data-ai/capture-data/advanced/advanced-data-capture-sync/#capture-to-the-hot-data-store
+  TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE = 2;
+  // TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK indicates reading the output data of
+  // a data pipeline. When using this, a pipeline ID needs to be specified.
+  TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK = 3;
+}
+
+// TabularDataSource specifies the data source for user queries to execute on.
+message TabularDataSource {
+  TabularDataSourceType type = 1;
+  // pipeline_id is the ID of the pipeline to query. Required when using
+  // TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK.
+  optional string pipeline_id = 2;
 }
 
 // TabularDataByMQLRequest requests tabular data using an MQL query.
@@ -207,14 +279,68 @@ message TabularDataByMQLRequest {
   // document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
   // namespace, which holds the Viam organization's tabular data.
   repeated bytes mql_binary = 3;
+  // Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.
+  optional bool use_recent_data = 4;
+  // data_source is an optional field that can be used to specify the data source for the query.
+  // If not specified, the query will run on "standard" storage.
+  optional TabularDataSource data_source = 6;
+  // query_prefix_name is an optional field that can be used to specify a saved query to run
+  optional string query_prefix_name = 7;
 
-  reserved 2;
-  reserved "mql_query";
+  reserved 2, 5;
+  reserved "mql_query", "use_data_pipeline";
 }
 
 // TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
 message TabularDataByMQLResponse {
-  repeated google.protobuf.Struct data = 1;
+  repeated bytes raw_data = 2;
+
+  reserved 1;
+  reserved "data";
+}
+
+// ExportTabularDataRequest requests tabular data from the specified data source.
+message ExportTabularDataRequest {
+  string part_id = 1;
+  string resource_name = 2;
+  string resource_subtype = 3;
+  string method_name = 4;
+  CaptureInterval interval = 5;
+  optional google.protobuf.Struct additional_parameters = 6;
+}
+
+// ExportTabularDataResponse provides unified tabular data and metadata for a single data point from the specified data source.
+message ExportTabularDataResponse {
+  string part_id = 1;
+  string resource_name = 2;
+  string resource_subtype = 3;
+  string method_name = 4;
+  google.protobuf.Timestamp time_captured = 5;
+  string organization_id = 6;
+  string location_id = 7;
+  string robot_name = 8;
+  string robot_id = 9;
+  string part_name = 10;
+  google.protobuf.Struct method_parameters = 11;
+  repeated string tags = 12;
+  google.protobuf.Struct payload = 13;
+}
+
+// GetLatestTabularDataRequest requests the most recent tabular data captured from the specified data source.
+message GetLatestTabularDataRequest {
+  string part_id = 1;
+  string resource_name = 2;
+  string method_name = 3;
+  string resource_subtype = 4;
+  optional google.protobuf.Struct additional_parameters = 5;
+}
+
+// GetLatestTabularDataResponse provides the data, time synced, and time captured of the most recent tabular data captured
+// from the requested data source, as long as it was synced within the last year.
+message GetLatestTabularDataResponse {
+  google.protobuf.Timestamp time_captured = 1;
+  google.protobuf.Timestamp time_synced = 2;
+  google.protobuf.Struct payload = 3;
 }
 
 // BinaryData contains data and metadata associated with binary data.
@@ -241,6 +367,7 @@ message BinaryDataByFilterResponse {
 
 // BinaryID is the unique identifier for a file that one can request to be retrieved or modified.
 message BinaryID {
+  option deprecated = true;
   string file_id = 1;
   string organization_id = 2;
   string location_id = 3;
@@ -249,7 +376,8 @@ message BinaryID {
 // BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids.
 message BinaryDataByIDsRequest {
   bool include_binary = 2;
-  repeated BinaryID binary_ids = 3;
+  repeated BinaryID binary_ids = 3 [deprecated = true];
+  repeated string binary_data_ids = 4;
 
   reserved 1;
   reserved "file_ids";
@@ -270,16 +398,27 @@ message BoundingBox {
   double y_min_normalized = 4;
   double x_max_normalized = 5;
   double y_max_normalized = 6;
+  // confidence is an optional range from 0 - 1
+  optional double confidence = 7;
+}
+
+// Classification represents a confidence score with a label.
+message Classification {
+  string id = 3;
+  string label = 1;
+  // confidence is an optional range from 0 - 1
+  optional double confidence = 2;
 }
 
 // Annotations are data annotations used for machine learning.
 message Annotations {
   repeated BoundingBox bboxes = 1;
+  repeated Classification classifications = 2;
 }
 
 // BinaryMetadata is the metadata associated with binary data.
 message BinaryMetadata {
-  string id = 1;
+  string id = 1 [deprecated = true];
   CaptureMetadata capture_metadata = 2;
   google.protobuf.Timestamp time_requested = 3;
   google.protobuf.Timestamp time_received = 4;
@@ -288,11 +427,15 @@ message BinaryMetadata {
   string uri = 7;
   Annotations annotations = 8;
   repeated string dataset_ids = 9;
+  string binary_data_id = 10;
 }
 
-// DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`.
-// For example if `delete_older_than_days` is 10, this deletes any data that was captured up to 10 days ago.
-// If it is 0, all existing data is deleted.
+// DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`
+// in UTC time. For example, if delete_older_than_days=1 and the request is made at 1AM EST on March 11
+// (March 11 5AM UTC), this deletes all data captured through March 10 11:59:59PM UTC.
+// If the request is at 10PM EST on March 11 (March 12 2AM UTC), this deletes all data captured
+// through March 11 11:59:59PM UTC.
+// If delete_older_than_days is 0, all existing data is deleted.
 message DeleteTabularDataRequest {
   string organization_id = 1;
   uint32 delete_older_than_days = 2;
@@ -319,8 +462,8 @@ message DeleteBinaryDataByFilterResponse {
 
 // DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided.
 message DeleteBinaryDataByIDsRequest {
-  repeated BinaryID binary_ids = 2;
-
+  repeated BinaryID binary_ids = 2 [deprecated = true];
+  repeated string binary_data_ids = 3;
   reserved 1;
   reserved "file_ids";
 }
@@ -335,7 +478,8 @@ message DeleteBinaryDataByIDsResponse {
 
 // AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided.
 message AddTagsToBinaryDataByIDsRequest {
-  repeated BinaryID binary_ids = 3;
+  repeated BinaryID binary_ids = 3 [deprecated = true];
+  repeated string binary_data_ids = 4;
   repeated string tags = 2;
 
   reserved 1;
@@ -346,15 +490,19 @@ message AddTagsToBinaryDataByIDsResponse {}
 
 // AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided.
 message AddTagsToBinaryDataByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
   repeated string tags = 2;
 }
 
-message AddTagsToBinaryDataByFilterResponse {}
+message AddTagsToBinaryDataByFilterResponse {
+  option deprecated = true;
+}
 
 // RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 message RemoveTagsFromBinaryDataByIDsRequest {
-  repeated BinaryID binary_ids = 3;
+  repeated BinaryID binary_ids = 3 [deprecated = true];
+  repeated string binary_data_ids = 4;
   repeated string tags = 2;
 
   reserved 1;
@@ -368,29 +516,34 @@ message RemoveTagsFromBinaryDataByIDsResponse {
 
 // RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.
 message RemoveTagsFromBinaryDataByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
   repeated string tags = 2;
 }
 
 // RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed.
 message RemoveTagsFromBinaryDataByFilterResponse {
+  option deprecated = true;
   uint64 deleted_count = 1;
 }
 
 // TagsByFilterRequest requests the unique tags from data based on given filter.
 message TagsByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
 }
 
 // TagsByFilterResponse returns the unique tags from data based on given filter.
 message TagsByFilterResponse {
+  option deprecated = true;
   repeated string tags = 1;
 }
 
 // AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
 // with the associated label and position in normalized coordinates will be added.
 message AddBoundingBoxToImageByIDRequest {
-  BinaryID binary_id = 7;
+  BinaryID binary_id = 7 [deprecated = true];
+  string binary_data_id = 8;
   string label = 2;
   double x_min_normalized = 3;
   double y_min_normalized = 4;
@@ -406,9 +559,10 @@ message AddBoundingBoxToImageByIDResponse {
   string bbox_id = 1;
 }
 
-// RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id.
+// RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.
 message RemoveBoundingBoxFromImageByIDRequest {
-  BinaryID binary_id = 3;
+  BinaryID binary_id = 3 [deprecated = true];
+  string binary_data_id = 4;
   string bbox_id = 2;
 
   reserved 1;
@@ -417,13 +571,29 @@ message RemoveBoundingBoxFromImageByIDRequest {
 
 message RemoveBoundingBoxFromImageByIDResponse {}
 
+// UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.
+message UpdateBoundingBoxRequest {
+  BinaryID binary_id = 1 [deprecated = true];
+  string binary_data_id = 8;
+  string bbox_id = 2;
+  optional string label = 3;
+  optional double x_min_normalized = 4;
+  optional double y_min_normalized = 5;
+  optional double x_max_normalized = 6;
+  optional double y_max_normalized = 7;
+}
+
+message UpdateBoundingBoxResponse {}
+
 // BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter.
 message BoundingBoxLabelsByFilterRequest {
+  option deprecated = true;
   Filter filter = 1;
 }
 
 // BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter.
 message BoundingBoxLabelsByFilterResponse {
+  option deprecated = true;
   repeated string labels = 1;
 }
 
@@ -453,7 +623,8 @@ message GetDatabaseConnectionResponse {
 
 // AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id.
 message AddBinaryDataToDatasetByIDsRequest {
-  repeated BinaryID binary_ids = 1;
+  repeated BinaryID binary_ids = 1 [deprecated = true];
+  repeated string binary_data_ids = 3;
   string dataset_id = 2;
 }
 
@@ -461,8 +632,119 @@ message AddBinaryDataToDatasetByIDsResponse {}
 
 // RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.
 message RemoveBinaryDataFromDatasetByIDsRequest {
-  repeated BinaryID binary_ids = 1;
+  repeated BinaryID binary_ids = 1 [deprecated = true];
+  repeated string binary_data_ids = 3;
   string dataset_id = 2;
 }
 
 message RemoveBinaryDataFromDatasetByIDsResponse {}
+
+// IndexableCollection specifies the types of collections available for custom indexes
+enum IndexableCollection {
+  INDEXABLE_COLLECTION_UNSPECIFIED = 0;
+  INDEXABLE_COLLECTION_HOT_STORE = 1;
+  INDEXABLE_COLLECTION_PIPELINE_SINK = 2;
+}
+
+// CreateIndexRequest starts a custom index build
+message CreateIndexRequest {
+  string organization_id = 1;
+  IndexableCollection collection_type = 2;
+  optional string pipeline_name = 3;
+  // index_spec accepts a MongoDB index specification defined in JSON format
+  repeated bytes index_spec = 4;
+}
+
+message CreateIndexResponse {}
+
+// DeleteIndexRequest drops the specified custom index from a collection
+message DeleteIndexRequest {
+  string organization_id = 1;
+  IndexableCollection collection_type = 2;
+  optional string pipeline_name = 3;
+  string index_name = 4;
+}
+
+message DeleteIndexResponse {}
+
+// ListIndexesRequest returns all the indexes for a given collection
+message ListIndexesRequest {
+  string organization_id = 1;
+  IndexableCollection collection_type = 2;
+  optional string pipeline_name = 3;
+}
+
+message ListIndexesResponse {
+  repeated Index indexes = 1;
+}
+
+message Index {
+  IndexableCollection collection_type = 1;
+  optional string pipeline_name = 2;
+  string index_name = 3;
+  // index_spec defines a MongoDB index in JSON format
+  repeated bytes index_spec = 4;
+  IndexCreator created_by = 5;
+}
+
+// IndexCreator specifies the entity that originally created the index
+enum IndexCreator {
+  INDEX_CREATOR_UNSPECIFIED = 0;
+  INDEX_CREATOR_VIAM = 1;
+  INDEX_CREATOR_CUSTOMER = 2;
+}
+
+// CreateSavedQueryRequest saves a mql query.
+message CreateSavedQueryRequest {
+  string organization_id = 1;
+  string name = 2;
+  repeated bytes mql_binary = 3;
+}
+
+message CreateSavedQueryResponse {
+  string id = 1;
+}
+
+message Query {
+  string id = 1;
+  string organization_id = 2;
+  string name = 3;
+  repeated bytes mql_binary = 4;
+  google.protobuf.Timestamp created_on = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+// DeleteSavedQuery deletes a saved query based on the given id.
+message DeleteSavedQueryRequest {
+  string id = 1;
+}
+
+message DeleteSavedQueryResponse {}
+
+// GetSavedQuery retrieves a saved query by id.
+message GetSavedQueryRequest {
+  string id = 1;
+}
+
+message GetSavedQueryResponse {
+  Query saved_query = 1;
+}
+
+// UpdateSavedQuery updates the saved query with the given id.
+message UpdateSavedQueryRequest {
+  string id = 1;
+  string name = 2;
+  repeated bytes mql_binary = 3;
+}
+
+message UpdateSavedQueryResponse {}
+
+// ListSavedQueries lists saved queries for a given organization.
+message ListSavedQueriesRequest {
+  string organization_id = 1;
+  int64 limit = 2;
+}
+
+message ListSavedQueriesResponse {
+  repeated Query queries = 1;
+}

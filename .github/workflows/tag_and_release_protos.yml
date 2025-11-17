@@ -23,7 +23,7 @@ jobs:
     outputs:
       new_tag: ${{ steps.bump.outputs.new_tag }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Bump tag
         id: bump
         uses: anothrNick/github-tag-action@1.52.0
@@ -38,16 +38,26 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/viamrobotics/canon:amd64
     steps:
-      - uses: actions/checkout@v3
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: actions/checkout@v5
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac
+        with:
+          install: false
+          experimental: true
+      - name: Extract buf version from mise
+        id: buf-version
+        run:
+          echo "version=$(mise tool buf --active)" >> $GITHUB_OUTPUT
+      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99
+        with:
+          version: ${{ steps.buf-version.outputs.version }}
       - uses: AdamMagaluk/buf-push-action@v1
         with:
           input: proto/viam
           buf_token: ${{ secrets.BUF_TOKEN }}
-          tag: ${{needs.bump-tag.outputs.new_tag}}
+          tag: ${{ needs.bump-tag.outputs.new_tag }}
 
   dispatch:
-    needs: buf-push
+    needs: [bump-tag, buf-push]
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     container: ghcr.io/viamrobotics/canon:amd64
@@ -70,4 +80,4 @@ jobs:
           token: ${{ secrets.REPO_READ_TOKEN }}
           repository: ${{ matrix.repo }}
           event-type: protos-updated
-          client-payload: '{"repo_name": "${{github.repository}}", "sha": "${{github.sha}}"}'
+          client-payload: '{"repo_name": "${{github.repository}}", "sha": "${{github.sha}}", "tag": "${{needs.bump-tag.outputs.new_tag}}"}'

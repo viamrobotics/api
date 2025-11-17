@@ -32,14 +32,22 @@ type AppServiceClient interface {
 	GetOrganizationsWithAccessToLocation(ctx context.Context, in *GetOrganizationsWithAccessToLocationRequest, opts ...grpc.CallOption) (*GetOrganizationsWithAccessToLocationResponse, error)
 	// List the organizations a user belongs to
 	ListOrganizationsByUser(ctx context.Context, in *ListOrganizationsByUserRequest, opts ...grpc.CallOption) (*ListOrganizationsByUserResponse, error)
+	// Search organizations by a couple fields
+	SearchOrganizations(ctx context.Context, in *SearchOrganizationsRequest, opts ...grpc.CallOption) (*SearchOrganizationsResponse, error)
 	// Get an organization
 	GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error)
 	// Checks for namespace availablity throughout all orgs.
 	GetOrganizationNamespaceAvailability(ctx context.Context, in *GetOrganizationNamespaceAvailabilityRequest, opts ...grpc.CallOption) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
 	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
+	// Update an organization's namespace if it's already been set.
+	UpdateOrganizationNamespace(ctx context.Context, in *UpdateOrganizationNamespaceRequest, opts ...grpc.CallOption) (*UpdateOrganizationNamespaceResponse, error)
 	// Delete an organization
 	DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error)
+	// Get user-defined metadata for an organization
+	GetOrganizationMetadata(ctx context.Context, in *GetOrganizationMetadataRequest, opts ...grpc.CallOption) (*GetOrganizationMetadataResponse, error)
+	// Update user-defined metadata for an organization
+	UpdateOrganizationMetadata(ctx context.Context, in *UpdateOrganizationMetadataRequest, opts ...grpc.CallOption) (*UpdateOrganizationMetadataResponse, error)
 	// List all members of an organization and all invited members to the organization.
 	ListOrganizationMembers(ctx context.Context, in *ListOrganizationMembersRequest, opts ...grpc.CallOption) (*ListOrganizationMembersResponse, error)
 	// Create an organization invite to an organization
@@ -52,6 +60,21 @@ type AppServiceClient interface {
 	DeleteOrganizationInvite(ctx context.Context, in *DeleteOrganizationInviteRequest, opts ...grpc.CallOption) (*DeleteOrganizationInviteResponse, error)
 	// Resend an organization invite
 	ResendOrganizationInvite(ctx context.Context, in *ResendOrganizationInviteRequest, opts ...grpc.CallOption) (*ResendOrganizationInviteResponse, error)
+	EnableBillingService(ctx context.Context, in *EnableBillingServiceRequest, opts ...grpc.CallOption) (*EnableBillingServiceResponse, error)
+	DisableBillingService(ctx context.Context, in *DisableBillingServiceRequest, opts ...grpc.CallOption) (*DisableBillingServiceResponse, error)
+	UpdateBillingService(ctx context.Context, in *UpdateBillingServiceRequest, opts ...grpc.CallOption) (*UpdateBillingServiceResponse, error)
+	GetBillingServiceConfig(ctx context.Context, in *GetBillingServiceConfigRequest, opts ...grpc.CallOption) (*GetBillingServiceConfigResponse, error)
+	OrganizationSetSupportEmail(ctx context.Context, in *OrganizationSetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationSetSupportEmailResponse, error)
+	OrganizationGetSupportEmail(ctx context.Context, in *OrganizationGetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationGetSupportEmailResponse, error)
+	OrganizationSetLogo(ctx context.Context, in *OrganizationSetLogoRequest, opts ...grpc.CallOption) (*OrganizationSetLogoResponse, error)
+	OrganizationGetLogo(ctx context.Context, in *OrganizationGetLogoRequest, opts ...grpc.CallOption) (*OrganizationGetLogoResponse, error)
+	EnableAuthService(ctx context.Context, in *EnableAuthServiceRequest, opts ...grpc.CallOption) (*EnableAuthServiceResponse, error)
+	DisableAuthService(ctx context.Context, in *DisableAuthServiceRequest, opts ...grpc.CallOption) (*DisableAuthServiceResponse, error)
+	CreateOAuthApp(ctx context.Context, in *CreateOAuthAppRequest, opts ...grpc.CallOption) (*CreateOAuthAppResponse, error)
+	ReadOAuthApp(ctx context.Context, in *ReadOAuthAppRequest, opts ...grpc.CallOption) (*ReadOAuthAppResponse, error)
+	UpdateOAuthApp(ctx context.Context, in *UpdateOAuthAppRequest, opts ...grpc.CallOption) (*UpdateOAuthAppResponse, error)
+	DeleteOAuthApp(ctx context.Context, in *DeleteOAuthAppRequest, opts ...grpc.CallOption) (*DeleteOAuthAppResponse, error)
+	ListOAuthApps(ctx context.Context, in *ListOAuthAppsRequest, opts ...grpc.CallOption) (*ListOAuthAppsResponse, error)
 	// Create a location
 	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
 	// Get a location
@@ -60,6 +83,10 @@ type AppServiceClient interface {
 	UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error)
 	// Delete a location
 	DeleteLocation(ctx context.Context, in *DeleteLocationRequest, opts ...grpc.CallOption) (*DeleteLocationResponse, error)
+	// Get user-defined metadata for a location
+	GetLocationMetadata(ctx context.Context, in *GetLocationMetadataRequest, opts ...grpc.CallOption) (*GetLocationMetadataResponse, error)
+	// Update user-defined metadata for a location
+	UpdateLocationMetadata(ctx context.Context, in *UpdateLocationMetadataRequest, opts ...grpc.CallOption) (*UpdateLocationMetadataResponse, error)
 	// Get a list of locations
 	ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error)
 	// Share a location with an organization
@@ -75,11 +102,17 @@ type AppServiceClient interface {
 	DeleteLocationSecret(ctx context.Context, in *DeleteLocationSecretRequest, opts ...grpc.CallOption) (*DeleteLocationSecretResponse, error)
 	// Get a specific robot by ID
 	GetRobot(ctx context.Context, in *GetRobotRequest, opts ...grpc.CallOption) (*GetRobotResponse, error)
+	// Get user-defined metadata for a robot
+	GetRobotMetadata(ctx context.Context, in *GetRobotMetadataRequest, opts ...grpc.CallOption) (*GetRobotMetadataResponse, error)
+	// Update user-defined metadata for an robot
+	UpdateRobotMetadata(ctx context.Context, in *UpdateRobotMetadataRequest, opts ...grpc.CallOption) (*UpdateRobotMetadataResponse, error)
 	// Get Rover Rental Location Robots
 	GetRoverRentalRobots(ctx context.Context, in *GetRoverRentalRobotsRequest, opts ...grpc.CallOption) (*GetRoverRentalRobotsResponse, error)
 	GetRobotParts(ctx context.Context, in *GetRobotPartsRequest, opts ...grpc.CallOption) (*GetRobotPartsResponse, error)
 	// Get a specific robot part by ID
 	GetRobotPart(ctx context.Context, in *GetRobotPartRequest, opts ...grpc.CallOption) (*GetRobotPartResponse, error)
+	// Get a specific robot part by name and location
+	GetRobotPartByNameAndLocation(ctx context.Context, in *GetRobotPartByNameAndLocationRequest, opts ...grpc.CallOption) (*GetRobotPartByNameAndLocationResponse, error)
 	GetRobotPartLogs(ctx context.Context, in *GetRobotPartLogsRequest, opts ...grpc.CallOption) (*GetRobotPartLogsResponse, error)
 	TailRobotPartLogs(ctx context.Context, in *TailRobotPartLogsRequest, opts ...grpc.CallOption) (AppService_TailRobotPartLogsClient, error)
 	// Get a specific robot part histy by ID
@@ -90,6 +123,10 @@ type AppServiceClient interface {
 	NewRobotPart(ctx context.Context, in *NewRobotPartRequest, opts ...grpc.CallOption) (*NewRobotPartResponse, error)
 	// Delete a robot part
 	DeleteRobotPart(ctx context.Context, in *DeleteRobotPartRequest, opts ...grpc.CallOption) (*DeleteRobotPartResponse, error)
+	// Get user-defined metadata for a robot part
+	GetRobotPartMetadata(ctx context.Context, in *GetRobotPartMetadataRequest, opts ...grpc.CallOption) (*GetRobotPartMetadataResponse, error)
+	// Update user-defined metadata for an robot part
+	UpdateRobotPartMetadata(ctx context.Context, in *UpdateRobotPartMetadataRequest, opts ...grpc.CallOption) (*UpdateRobotPartMetadataResponse, error)
 	// Gets the Robot API Keys for the robot
 	GetRobotAPIKeys(ctx context.Context, in *GetRobotAPIKeysRequest, opts ...grpc.CallOption) (*GetRobotAPIKeysResponse, error)
 	// Marks the given part as the main part, and all the others as not
@@ -105,8 +142,12 @@ type AppServiceClient interface {
 	CreateRobotPartSecret(ctx context.Context, in *CreateRobotPartSecretRequest, opts ...grpc.CallOption) (*CreateRobotPartSecretResponse, error)
 	// Delete a Secret from the RobotPart.
 	DeleteRobotPartSecret(ctx context.Context, in *DeleteRobotPartSecretRequest, opts ...grpc.CallOption) (*DeleteRobotPartSecretResponse, error)
-	// Get a list of robots
+	// Get a list of robots at a location
 	ListRobots(ctx context.Context, in *ListRobotsRequest, opts ...grpc.CallOption) (*ListRobotsResponse, error)
+	// Get a list of robots at multiple locations
+	ListRobotsForLocations(ctx context.Context, in *ListRobotsForLocationsRequest, opts ...grpc.CallOption) (*ListRobotsForLocationsResponse, error)
+	// Get a list of robots at an org
+	ListRobotsForOrg(ctx context.Context, in *ListRobotsForOrgRequest, opts ...grpc.CallOption) (*ListRobotsForOrgResponse, error)
 	// NewRobot creates a new robot
 	NewRobot(ctx context.Context, in *NewRobotRequest, opts ...grpc.CallOption) (*NewRobotResponse, error)
 	// UpdateRobot updates a robot
@@ -123,6 +164,20 @@ type AppServiceClient interface {
 	UpdateFragment(ctx context.Context, in *UpdateFragmentRequest, opts ...grpc.CallOption) (*UpdateFragmentResponse, error)
 	// Deletes a fragment
 	DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error)
+	// List nested fragments for a fragment
+	ListNestedFragments(ctx context.Context, in *ListNestedFragmentsRequest, opts ...grpc.CallOption) (*ListNestedFragmentsResponse, error)
+	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
+	ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error)
+	// List all machines and their corresponding machine dashboard information
+	ListMachineSummaries(ctx context.Context, in *ListMachineSummariesRequest, opts ...grpc.CallOption) (*ListMachineSummariesResponse, error)
+	// Gets fragment history
+	GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error)
+	// Gets usage for a fragment across versions
+	GetFragmentUsage(ctx context.Context, in *GetFragmentUsageRequest, opts ...grpc.CallOption) (*GetFragmentUsageResponse, error)
+	// Sets a fragment tag to a revision
+	SetFragmentTag(ctx context.Context, in *SetFragmentTagRequest, opts ...grpc.CallOption) (*SetFragmentTagResponse, error)
+	// Deletes a fragment tag
+	DeleteFragmentTag(ctx context.Context, in *DeleteFragmentTagRequest, opts ...grpc.CallOption) (*DeleteFragmentTagResponse, error)
 	// Creates an IdentityAuthorization
 	AddRole(ctx context.Context, in *AddRoleRequest, opts ...grpc.CallOption) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
@@ -138,6 +193,8 @@ type AppServiceClient interface {
 	UpdateRegistryItem(ctx context.Context, in *UpdateRegistryItemRequest, opts ...grpc.CallOption) (*UpdateRegistryItemResponse, error)
 	ListRegistryItems(ctx context.Context, in *ListRegistryItemsRequest, opts ...grpc.CallOption) (*ListRegistryItemsResponse, error)
 	DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error)
+	RenameRegistryItem(ctx context.Context, in *RenameRegistryItemRequest, opts ...grpc.CallOption) (*RenameRegistryItemResponse, error)
+	TransferRegistryItem(ctx context.Context, in *TransferRegistryItemRequest, opts ...grpc.CallOption) (*TransferRegistryItemResponse, error)
 	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
 	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
 	UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error)
@@ -146,8 +203,11 @@ type AppServiceClient interface {
 	CreateKey(ctx context.Context, in *CreateKeyRequest, opts ...grpc.CallOption) (*CreateKeyResponse, error)
 	DeleteKey(ctx context.Context, in *DeleteKeyRequest, opts ...grpc.CallOption) (*DeleteKeyResponse, error)
 	ListKeys(ctx context.Context, in *ListKeysRequest, opts ...grpc.CallOption) (*ListKeysResponse, error)
+	RenameKey(ctx context.Context, in *RenameKeyRequest, opts ...grpc.CallOption) (*RenameKeyResponse, error)
 	RotateKey(ctx context.Context, in *RotateKeyRequest, opts ...grpc.CallOption) (*RotateKeyResponse, error)
 	CreateKeyFromExistingKeyAuthorizations(ctx context.Context, in *CreateKeyFromExistingKeyAuthorizationsRequest, opts ...grpc.CallOption) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
+	GetAppContent(ctx context.Context, in *GetAppContentRequest, opts ...grpc.CallOption) (*GetAppContentResponse, error)
+	GetAppBranding(ctx context.Context, in *GetAppBrandingRequest, opts ...grpc.CallOption) (*GetAppBrandingResponse, error)
 }
 
 type appServiceClient struct {
@@ -203,6 +263,15 @@ func (c *appServiceClient) ListOrganizationsByUser(ctx context.Context, in *List
 	return out, nil
 }
 
+func (c *appServiceClient) SearchOrganizations(ctx context.Context, in *SearchOrganizationsRequest, opts ...grpc.CallOption) (*SearchOrganizationsResponse, error) {
+	out := new(SearchOrganizationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/SearchOrganizations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) GetOrganization(ctx context.Context, in *GetOrganizationRequest, opts ...grpc.CallOption) (*GetOrganizationResponse, error) {
 	out := new(GetOrganizationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganization", in, out, opts...)
@@ -230,9 +299,36 @@ func (c *appServiceClient) UpdateOrganization(ctx context.Context, in *UpdateOrg
 	return out, nil
 }
 
+func (c *appServiceClient) UpdateOrganizationNamespace(ctx context.Context, in *UpdateOrganizationNamespaceRequest, opts ...grpc.CallOption) (*UpdateOrganizationNamespaceResponse, error) {
+	out := new(UpdateOrganizationNamespaceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOrganizationNamespace", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) DeleteOrganization(ctx context.Context, in *DeleteOrganizationRequest, opts ...grpc.CallOption) (*DeleteOrganizationResponse, error) {
 	out := new(DeleteOrganizationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteOrganization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetOrganizationMetadata(ctx context.Context, in *GetOrganizationMetadataRequest, opts ...grpc.CallOption) (*GetOrganizationMetadataResponse, error) {
+	out := new(GetOrganizationMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetOrganizationMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateOrganizationMetadata(ctx context.Context, in *UpdateOrganizationMetadataRequest, opts ...grpc.CallOption) (*UpdateOrganizationMetadataResponse, error) {
+	out := new(UpdateOrganizationMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOrganizationMetadata", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -293,6 +389,141 @@ func (c *appServiceClient) ResendOrganizationInvite(ctx context.Context, in *Res
 	return out, nil
 }
 
+func (c *appServiceClient) EnableBillingService(ctx context.Context, in *EnableBillingServiceRequest, opts ...grpc.CallOption) (*EnableBillingServiceResponse, error) {
+	out := new(EnableBillingServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/EnableBillingService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DisableBillingService(ctx context.Context, in *DisableBillingServiceRequest, opts ...grpc.CallOption) (*DisableBillingServiceResponse, error) {
+	out := new(DisableBillingServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DisableBillingService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateBillingService(ctx context.Context, in *UpdateBillingServiceRequest, opts ...grpc.CallOption) (*UpdateBillingServiceResponse, error) {
+	out := new(UpdateBillingServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateBillingService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetBillingServiceConfig(ctx context.Context, in *GetBillingServiceConfigRequest, opts ...grpc.CallOption) (*GetBillingServiceConfigResponse, error) {
+	out := new(GetBillingServiceConfigResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetBillingServiceConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) OrganizationSetSupportEmail(ctx context.Context, in *OrganizationSetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationSetSupportEmailResponse, error) {
+	out := new(OrganizationSetSupportEmailResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/OrganizationSetSupportEmail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) OrganizationGetSupportEmail(ctx context.Context, in *OrganizationGetSupportEmailRequest, opts ...grpc.CallOption) (*OrganizationGetSupportEmailResponse, error) {
+	out := new(OrganizationGetSupportEmailResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/OrganizationGetSupportEmail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) OrganizationSetLogo(ctx context.Context, in *OrganizationSetLogoRequest, opts ...grpc.CallOption) (*OrganizationSetLogoResponse, error) {
+	out := new(OrganizationSetLogoResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/OrganizationSetLogo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) OrganizationGetLogo(ctx context.Context, in *OrganizationGetLogoRequest, opts ...grpc.CallOption) (*OrganizationGetLogoResponse, error) {
+	out := new(OrganizationGetLogoResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/OrganizationGetLogo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) EnableAuthService(ctx context.Context, in *EnableAuthServiceRequest, opts ...grpc.CallOption) (*EnableAuthServiceResponse, error) {
+	out := new(EnableAuthServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/EnableAuthService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DisableAuthService(ctx context.Context, in *DisableAuthServiceRequest, opts ...grpc.CallOption) (*DisableAuthServiceResponse, error) {
+	out := new(DisableAuthServiceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DisableAuthService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) CreateOAuthApp(ctx context.Context, in *CreateOAuthAppRequest, opts ...grpc.CallOption) (*CreateOAuthAppResponse, error) {
+	out := new(CreateOAuthAppResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateOAuthApp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ReadOAuthApp(ctx context.Context, in *ReadOAuthAppRequest, opts ...grpc.CallOption) (*ReadOAuthAppResponse, error) {
+	out := new(ReadOAuthAppResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ReadOAuthApp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateOAuthApp(ctx context.Context, in *UpdateOAuthAppRequest, opts ...grpc.CallOption) (*UpdateOAuthAppResponse, error) {
+	out := new(UpdateOAuthAppResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateOAuthApp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteOAuthApp(ctx context.Context, in *DeleteOAuthAppRequest, opts ...grpc.CallOption) (*DeleteOAuthAppResponse, error) {
+	out := new(DeleteOAuthAppResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteOAuthApp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListOAuthApps(ctx context.Context, in *ListOAuthAppsRequest, opts ...grpc.CallOption) (*ListOAuthAppsResponse, error) {
+	out := new(ListOAuthAppsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOAuthApps", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error) {
 	out := new(CreateLocationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateLocation", in, out, opts...)
@@ -323,6 +554,24 @@ func (c *appServiceClient) UpdateLocation(ctx context.Context, in *UpdateLocatio
 func (c *appServiceClient) DeleteLocation(ctx context.Context, in *DeleteLocationRequest, opts ...grpc.CallOption) (*DeleteLocationResponse, error) {
 	out := new(DeleteLocationResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetLocationMetadata(ctx context.Context, in *GetLocationMetadataRequest, opts ...grpc.CallOption) (*GetLocationMetadataResponse, error) {
+	out := new(GetLocationMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetLocationMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateLocationMetadata(ctx context.Context, in *UpdateLocationMetadataRequest, opts ...grpc.CallOption) (*UpdateLocationMetadataResponse, error) {
+	out := new(UpdateLocationMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateLocationMetadata", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -392,6 +641,24 @@ func (c *appServiceClient) GetRobot(ctx context.Context, in *GetRobotRequest, op
 	return out, nil
 }
 
+func (c *appServiceClient) GetRobotMetadata(ctx context.Context, in *GetRobotMetadataRequest, opts ...grpc.CallOption) (*GetRobotMetadataResponse, error) {
+	out := new(GetRobotMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateRobotMetadata(ctx context.Context, in *UpdateRobotMetadataRequest, opts ...grpc.CallOption) (*UpdateRobotMetadataResponse, error) {
+	out := new(UpdateRobotMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateRobotMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) GetRoverRentalRobots(ctx context.Context, in *GetRoverRentalRobotsRequest, opts ...grpc.CallOption) (*GetRoverRentalRobotsResponse, error) {
 	out := new(GetRoverRentalRobotsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRoverRentalRobots", in, out, opts...)
@@ -413,6 +680,15 @@ func (c *appServiceClient) GetRobotParts(ctx context.Context, in *GetRobotPartsR
 func (c *appServiceClient) GetRobotPart(ctx context.Context, in *GetRobotPartRequest, opts ...grpc.CallOption) (*GetRobotPartResponse, error) {
 	out := new(GetRobotPartResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotPart", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetRobotPartByNameAndLocation(ctx context.Context, in *GetRobotPartByNameAndLocationRequest, opts ...grpc.CallOption) (*GetRobotPartByNameAndLocationResponse, error) {
+	out := new(GetRobotPartByNameAndLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotPartByNameAndLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -496,6 +772,24 @@ func (c *appServiceClient) DeleteRobotPart(ctx context.Context, in *DeleteRobotP
 	return out, nil
 }
 
+func (c *appServiceClient) GetRobotPartMetadata(ctx context.Context, in *GetRobotPartMetadataRequest, opts ...grpc.CallOption) (*GetRobotPartMetadataResponse, error) {
+	out := new(GetRobotPartMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotPartMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UpdateRobotPartMetadata(ctx context.Context, in *UpdateRobotPartMetadataRequest, opts ...grpc.CallOption) (*UpdateRobotPartMetadataResponse, error) {
+	out := new(UpdateRobotPartMetadataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateRobotPartMetadata", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) GetRobotAPIKeys(ctx context.Context, in *GetRobotAPIKeysRequest, opts ...grpc.CallOption) (*GetRobotAPIKeysResponse, error) {
 	out := new(GetRobotAPIKeysResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetRobotAPIKeys", in, out, opts...)
@@ -544,6 +838,24 @@ func (c *appServiceClient) DeleteRobotPartSecret(ctx context.Context, in *Delete
 func (c *appServiceClient) ListRobots(ctx context.Context, in *ListRobotsRequest, opts ...grpc.CallOption) (*ListRobotsResponse, error) {
 	out := new(ListRobotsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListRobots", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListRobotsForLocations(ctx context.Context, in *ListRobotsForLocationsRequest, opts ...grpc.CallOption) (*ListRobotsForLocationsResponse, error) {
+	out := new(ListRobotsForLocationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListRobotsForLocations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListRobotsForOrg(ctx context.Context, in *ListRobotsForOrgRequest, opts ...grpc.CallOption) (*ListRobotsForOrgResponse, error) {
+	out := new(ListRobotsForOrgResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListRobotsForOrg", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -616,6 +928,69 @@ func (c *appServiceClient) UpdateFragment(ctx context.Context, in *UpdateFragmen
 func (c *appServiceClient) DeleteFragment(ctx context.Context, in *DeleteFragmentRequest, opts ...grpc.CallOption) (*DeleteFragmentResponse, error) {
 	out := new(DeleteFragmentResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteFragment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListNestedFragments(ctx context.Context, in *ListNestedFragmentsRequest, opts ...grpc.CallOption) (*ListNestedFragmentsResponse, error) {
+	out := new(ListNestedFragmentsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListNestedFragments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListMachineFragments(ctx context.Context, in *ListMachineFragmentsRequest, opts ...grpc.CallOption) (*ListMachineFragmentsResponse, error) {
+	out := new(ListMachineFragmentsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListMachineFragments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListMachineSummaries(ctx context.Context, in *ListMachineSummariesRequest, opts ...grpc.CallOption) (*ListMachineSummariesResponse, error) {
+	out := new(ListMachineSummariesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListMachineSummaries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetFragmentHistory(ctx context.Context, in *GetFragmentHistoryRequest, opts ...grpc.CallOption) (*GetFragmentHistoryResponse, error) {
+	out := new(GetFragmentHistoryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetFragmentHistory", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetFragmentUsage(ctx context.Context, in *GetFragmentUsageRequest, opts ...grpc.CallOption) (*GetFragmentUsageResponse, error) {
+	out := new(GetFragmentUsageResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetFragmentUsage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) SetFragmentTag(ctx context.Context, in *SetFragmentTagRequest, opts ...grpc.CallOption) (*SetFragmentTagResponse, error) {
+	out := new(SetFragmentTagResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/SetFragmentTag", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteFragmentTag(ctx context.Context, in *DeleteFragmentTagRequest, opts ...grpc.CallOption) (*DeleteFragmentTagResponse, error) {
+	out := new(DeleteFragmentTagResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteFragmentTag", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -706,6 +1081,24 @@ func (c *appServiceClient) ListRegistryItems(ctx context.Context, in *ListRegist
 func (c *appServiceClient) DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error) {
 	out := new(DeleteRegistryItemResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) RenameRegistryItem(ctx context.Context, in *RenameRegistryItemRequest, opts ...grpc.CallOption) (*RenameRegistryItemResponse, error) {
+	out := new(RenameRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RenameRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) TransferRegistryItem(ctx context.Context, in *TransferRegistryItemRequest, opts ...grpc.CallOption) (*TransferRegistryItemResponse, error) {
+	out := new(TransferRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/TransferRegistryItem", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -809,6 +1202,15 @@ func (c *appServiceClient) ListKeys(ctx context.Context, in *ListKeysRequest, op
 	return out, nil
 }
 
+func (c *appServiceClient) RenameKey(ctx context.Context, in *RenameKeyRequest, opts ...grpc.CallOption) (*RenameKeyResponse, error) {
+	out := new(RenameKeyResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RenameKey", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) RotateKey(ctx context.Context, in *RotateKeyRequest, opts ...grpc.CallOption) (*RotateKeyResponse, error) {
 	out := new(RotateKeyResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RotateKey", in, out, opts...)
@@ -821,6 +1223,24 @@ func (c *appServiceClient) RotateKey(ctx context.Context, in *RotateKeyRequest, 
 func (c *appServiceClient) CreateKeyFromExistingKeyAuthorizations(ctx context.Context, in *CreateKeyFromExistingKeyAuthorizationsRequest, opts ...grpc.CallOption) (*CreateKeyFromExistingKeyAuthorizationsResponse, error) {
 	out := new(CreateKeyFromExistingKeyAuthorizationsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateKeyFromExistingKeyAuthorizations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetAppContent(ctx context.Context, in *GetAppContentRequest, opts ...grpc.CallOption) (*GetAppContentResponse, error) {
+	out := new(GetAppContentResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetAppContent", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetAppBranding(ctx context.Context, in *GetAppBrandingRequest, opts ...grpc.CallOption) (*GetAppBrandingResponse, error) {
+	out := new(GetAppBrandingResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetAppBranding", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -841,14 +1261,22 @@ type AppServiceServer interface {
 	GetOrganizationsWithAccessToLocation(context.Context, *GetOrganizationsWithAccessToLocationRequest) (*GetOrganizationsWithAccessToLocationResponse, error)
 	// List the organizations a user belongs to
 	ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error)
+	// Search organizations by a couple fields
+	SearchOrganizations(context.Context, *SearchOrganizationsRequest) (*SearchOrganizationsResponse, error)
 	// Get an organization
 	GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error)
 	// Checks for namespace availablity throughout all orgs.
 	GetOrganizationNamespaceAvailability(context.Context, *GetOrganizationNamespaceAvailabilityRequest) (*GetOrganizationNamespaceAvailabilityResponse, error)
 	// Update an organization
 	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
+	// Update an organization's namespace if it's already been set.
+	UpdateOrganizationNamespace(context.Context, *UpdateOrganizationNamespaceRequest) (*UpdateOrganizationNamespaceResponse, error)
 	// Delete an organization
 	DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error)
+	// Get user-defined metadata for an organization
+	GetOrganizationMetadata(context.Context, *GetOrganizationMetadataRequest) (*GetOrganizationMetadataResponse, error)
+	// Update user-defined metadata for an organization
+	UpdateOrganizationMetadata(context.Context, *UpdateOrganizationMetadataRequest) (*UpdateOrganizationMetadataResponse, error)
 	// List all members of an organization and all invited members to the organization.
 	ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error)
 	// Create an organization invite to an organization
@@ -861,6 +1289,21 @@ type AppServiceServer interface {
 	DeleteOrganizationInvite(context.Context, *DeleteOrganizationInviteRequest) (*DeleteOrganizationInviteResponse, error)
 	// Resend an organization invite
 	ResendOrganizationInvite(context.Context, *ResendOrganizationInviteRequest) (*ResendOrganizationInviteResponse, error)
+	EnableBillingService(context.Context, *EnableBillingServiceRequest) (*EnableBillingServiceResponse, error)
+	DisableBillingService(context.Context, *DisableBillingServiceRequest) (*DisableBillingServiceResponse, error)
+	UpdateBillingService(context.Context, *UpdateBillingServiceRequest) (*UpdateBillingServiceResponse, error)
+	GetBillingServiceConfig(context.Context, *GetBillingServiceConfigRequest) (*GetBillingServiceConfigResponse, error)
+	OrganizationSetSupportEmail(context.Context, *OrganizationSetSupportEmailRequest) (*OrganizationSetSupportEmailResponse, error)
+	OrganizationGetSupportEmail(context.Context, *OrganizationGetSupportEmailRequest) (*OrganizationGetSupportEmailResponse, error)
+	OrganizationSetLogo(context.Context, *OrganizationSetLogoRequest) (*OrganizationSetLogoResponse, error)
+	OrganizationGetLogo(context.Context, *OrganizationGetLogoRequest) (*OrganizationGetLogoResponse, error)
+	EnableAuthService(context.Context, *EnableAuthServiceRequest) (*EnableAuthServiceResponse, error)
+	DisableAuthService(context.Context, *DisableAuthServiceRequest) (*DisableAuthServiceResponse, error)
+	CreateOAuthApp(context.Context, *CreateOAuthAppRequest) (*CreateOAuthAppResponse, error)
+	ReadOAuthApp(context.Context, *ReadOAuthAppRequest) (*ReadOAuthAppResponse, error)
+	UpdateOAuthApp(context.Context, *UpdateOAuthAppRequest) (*UpdateOAuthAppResponse, error)
+	DeleteOAuthApp(context.Context, *DeleteOAuthAppRequest) (*DeleteOAuthAppResponse, error)
+	ListOAuthApps(context.Context, *ListOAuthAppsRequest) (*ListOAuthAppsResponse, error)
 	// Create a location
 	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
 	// Get a location
@@ -869,6 +1312,10 @@ type AppServiceServer interface {
 	UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error)
 	// Delete a location
 	DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error)
+	// Get user-defined metadata for a location
+	GetLocationMetadata(context.Context, *GetLocationMetadataRequest) (*GetLocationMetadataResponse, error)
+	// Update user-defined metadata for a location
+	UpdateLocationMetadata(context.Context, *UpdateLocationMetadataRequest) (*UpdateLocationMetadataResponse, error)
 	// Get a list of locations
 	ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error)
 	// Share a location with an organization
@@ -884,11 +1331,17 @@ type AppServiceServer interface {
 	DeleteLocationSecret(context.Context, *DeleteLocationSecretRequest) (*DeleteLocationSecretResponse, error)
 	// Get a specific robot by ID
 	GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error)
+	// Get user-defined metadata for a robot
+	GetRobotMetadata(context.Context, *GetRobotMetadataRequest) (*GetRobotMetadataResponse, error)
+	// Update user-defined metadata for an robot
+	UpdateRobotMetadata(context.Context, *UpdateRobotMetadataRequest) (*UpdateRobotMetadataResponse, error)
 	// Get Rover Rental Location Robots
 	GetRoverRentalRobots(context.Context, *GetRoverRentalRobotsRequest) (*GetRoverRentalRobotsResponse, error)
 	GetRobotParts(context.Context, *GetRobotPartsRequest) (*GetRobotPartsResponse, error)
 	// Get a specific robot part by ID
 	GetRobotPart(context.Context, *GetRobotPartRequest) (*GetRobotPartResponse, error)
+	// Get a specific robot part by name and location
+	GetRobotPartByNameAndLocation(context.Context, *GetRobotPartByNameAndLocationRequest) (*GetRobotPartByNameAndLocationResponse, error)
 	GetRobotPartLogs(context.Context, *GetRobotPartLogsRequest) (*GetRobotPartLogsResponse, error)
 	TailRobotPartLogs(*TailRobotPartLogsRequest, AppService_TailRobotPartLogsServer) error
 	// Get a specific robot part histy by ID
@@ -899,6 +1352,10 @@ type AppServiceServer interface {
 	NewRobotPart(context.Context, *NewRobotPartRequest) (*NewRobotPartResponse, error)
 	// Delete a robot part
 	DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error)
+	// Get user-defined metadata for a robot part
+	GetRobotPartMetadata(context.Context, *GetRobotPartMetadataRequest) (*GetRobotPartMetadataResponse, error)
+	// Update user-defined metadata for an robot part
+	UpdateRobotPartMetadata(context.Context, *UpdateRobotPartMetadataRequest) (*UpdateRobotPartMetadataResponse, error)
 	// Gets the Robot API Keys for the robot
 	GetRobotAPIKeys(context.Context, *GetRobotAPIKeysRequest) (*GetRobotAPIKeysResponse, error)
 	// Marks the given part as the main part, and all the others as not
@@ -914,8 +1371,12 @@ type AppServiceServer interface {
 	CreateRobotPartSecret(context.Context, *CreateRobotPartSecretRequest) (*CreateRobotPartSecretResponse, error)
 	// Delete a Secret from the RobotPart.
 	DeleteRobotPartSecret(context.Context, *DeleteRobotPartSecretRequest) (*DeleteRobotPartSecretResponse, error)
-	// Get a list of robots
+	// Get a list of robots at a location
 	ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error)
+	// Get a list of robots at multiple locations
+	ListRobotsForLocations(context.Context, *ListRobotsForLocationsRequest) (*ListRobotsForLocationsResponse, error)
+	// Get a list of robots at an org
+	ListRobotsForOrg(context.Context, *ListRobotsForOrgRequest) (*ListRobotsForOrgResponse, error)
 	// NewRobot creates a new robot
 	NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error)
 	// UpdateRobot updates a robot
@@ -932,6 +1393,20 @@ type AppServiceServer interface {
 	UpdateFragment(context.Context, *UpdateFragmentRequest) (*UpdateFragmentResponse, error)
 	// Deletes a fragment
 	DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error)
+	// List nested fragments for a fragment
+	ListNestedFragments(context.Context, *ListNestedFragmentsRequest) (*ListNestedFragmentsResponse, error)
+	// Gets top level and nested fragments for a machine, as well as any other specified fragment ids
+	ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error)
+	// List all machines and their corresponding machine dashboard information
+	ListMachineSummaries(context.Context, *ListMachineSummariesRequest) (*ListMachineSummariesResponse, error)
+	// Gets fragment history
+	GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error)
+	// Gets usage for a fragment across versions
+	GetFragmentUsage(context.Context, *GetFragmentUsageRequest) (*GetFragmentUsageResponse, error)
+	// Sets a fragment tag to a revision
+	SetFragmentTag(context.Context, *SetFragmentTagRequest) (*SetFragmentTagResponse, error)
+	// Deletes a fragment tag
+	DeleteFragmentTag(context.Context, *DeleteFragmentTagRequest) (*DeleteFragmentTagResponse, error)
 	// Creates an IdentityAuthorization
 	AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error)
 	// Deletes an IdentityAuthorization
@@ -947,6 +1422,8 @@ type AppServiceServer interface {
 	UpdateRegistryItem(context.Context, *UpdateRegistryItemRequest) (*UpdateRegistryItemResponse, error)
 	ListRegistryItems(context.Context, *ListRegistryItemsRequest) (*ListRegistryItemsResponse, error)
 	DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error)
+	RenameRegistryItem(context.Context, *RenameRegistryItemRequest) (*RenameRegistryItemResponse, error)
+	TransferRegistryItem(context.Context, *TransferRegistryItemRequest) (*TransferRegistryItemResponse, error)
 	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
 	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
 	UploadModuleFile(AppService_UploadModuleFileServer) error
@@ -955,8 +1432,11 @@ type AppServiceServer interface {
 	CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error)
 	DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error)
 	ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error)
+	RenameKey(context.Context, *RenameKeyRequest) (*RenameKeyResponse, error)
 	RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error)
 	CreateKeyFromExistingKeyAuthorizations(context.Context, *CreateKeyFromExistingKeyAuthorizationsRequest) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
+	GetAppContent(context.Context, *GetAppContentRequest) (*GetAppContentResponse, error)
+	GetAppBranding(context.Context, *GetAppBrandingRequest) (*GetAppBrandingResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -979,6 +1459,9 @@ func (UnimplementedAppServiceServer) GetOrganizationsWithAccessToLocation(contex
 func (UnimplementedAppServiceServer) ListOrganizationsByUser(context.Context, *ListOrganizationsByUserRequest) (*ListOrganizationsByUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationsByUser not implemented")
 }
+func (UnimplementedAppServiceServer) SearchOrganizations(context.Context, *SearchOrganizationsRequest) (*SearchOrganizationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchOrganizations not implemented")
+}
 func (UnimplementedAppServiceServer) GetOrganization(context.Context, *GetOrganizationRequest) (*GetOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
 }
@@ -988,8 +1471,17 @@ func (UnimplementedAppServiceServer) GetOrganizationNamespaceAvailability(contex
 func (UnimplementedAppServiceServer) UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganization not implemented")
 }
+func (UnimplementedAppServiceServer) UpdateOrganizationNamespace(context.Context, *UpdateOrganizationNamespaceRequest) (*UpdateOrganizationNamespaceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationNamespace not implemented")
+}
 func (UnimplementedAppServiceServer) DeleteOrganization(context.Context, *DeleteOrganizationRequest) (*DeleteOrganizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganization not implemented")
+}
+func (UnimplementedAppServiceServer) GetOrganizationMetadata(context.Context, *GetOrganizationMetadataRequest) (*GetOrganizationMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationMetadata not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateOrganizationMetadata(context.Context, *UpdateOrganizationMetadataRequest) (*UpdateOrganizationMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationMetadata not implemented")
 }
 func (UnimplementedAppServiceServer) ListOrganizationMembers(context.Context, *ListOrganizationMembersRequest) (*ListOrganizationMembersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizationMembers not implemented")
@@ -1009,6 +1501,51 @@ func (UnimplementedAppServiceServer) DeleteOrganizationInvite(context.Context, *
 func (UnimplementedAppServiceServer) ResendOrganizationInvite(context.Context, *ResendOrganizationInviteRequest) (*ResendOrganizationInviteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResendOrganizationInvite not implemented")
 }
+func (UnimplementedAppServiceServer) EnableBillingService(context.Context, *EnableBillingServiceRequest) (*EnableBillingServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnableBillingService not implemented")
+}
+func (UnimplementedAppServiceServer) DisableBillingService(context.Context, *DisableBillingServiceRequest) (*DisableBillingServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisableBillingService not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateBillingService(context.Context, *UpdateBillingServiceRequest) (*UpdateBillingServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBillingService not implemented")
+}
+func (UnimplementedAppServiceServer) GetBillingServiceConfig(context.Context, *GetBillingServiceConfigRequest) (*GetBillingServiceConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBillingServiceConfig not implemented")
+}
+func (UnimplementedAppServiceServer) OrganizationSetSupportEmail(context.Context, *OrganizationSetSupportEmailRequest) (*OrganizationSetSupportEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OrganizationSetSupportEmail not implemented")
+}
+func (UnimplementedAppServiceServer) OrganizationGetSupportEmail(context.Context, *OrganizationGetSupportEmailRequest) (*OrganizationGetSupportEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OrganizationGetSupportEmail not implemented")
+}
+func (UnimplementedAppServiceServer) OrganizationSetLogo(context.Context, *OrganizationSetLogoRequest) (*OrganizationSetLogoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OrganizationSetLogo not implemented")
+}
+func (UnimplementedAppServiceServer) OrganizationGetLogo(context.Context, *OrganizationGetLogoRequest) (*OrganizationGetLogoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OrganizationGetLogo not implemented")
+}
+func (UnimplementedAppServiceServer) EnableAuthService(context.Context, *EnableAuthServiceRequest) (*EnableAuthServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnableAuthService not implemented")
+}
+func (UnimplementedAppServiceServer) DisableAuthService(context.Context, *DisableAuthServiceRequest) (*DisableAuthServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisableAuthService not implemented")
+}
+func (UnimplementedAppServiceServer) CreateOAuthApp(context.Context, *CreateOAuthAppRequest) (*CreateOAuthAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOAuthApp not implemented")
+}
+func (UnimplementedAppServiceServer) ReadOAuthApp(context.Context, *ReadOAuthAppRequest) (*ReadOAuthAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadOAuthApp not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateOAuthApp(context.Context, *UpdateOAuthAppRequest) (*UpdateOAuthAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOAuthApp not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteOAuthApp(context.Context, *DeleteOAuthAppRequest) (*DeleteOAuthAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOAuthApp not implemented")
+}
+func (UnimplementedAppServiceServer) ListOAuthApps(context.Context, *ListOAuthAppsRequest) (*ListOAuthAppsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOAuthApps not implemented")
+}
 func (UnimplementedAppServiceServer) CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateLocation not implemented")
 }
@@ -1020,6 +1557,12 @@ func (UnimplementedAppServiceServer) UpdateLocation(context.Context, *UpdateLoca
 }
 func (UnimplementedAppServiceServer) DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteLocation not implemented")
+}
+func (UnimplementedAppServiceServer) GetLocationMetadata(context.Context, *GetLocationMetadataRequest) (*GetLocationMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLocationMetadata not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateLocationMetadata(context.Context, *UpdateLocationMetadataRequest) (*UpdateLocationMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocationMetadata not implemented")
 }
 func (UnimplementedAppServiceServer) ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLocations not implemented")
@@ -1042,6 +1585,12 @@ func (UnimplementedAppServiceServer) DeleteLocationSecret(context.Context, *Dele
 func (UnimplementedAppServiceServer) GetRobot(context.Context, *GetRobotRequest) (*GetRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobot not implemented")
 }
+func (UnimplementedAppServiceServer) GetRobotMetadata(context.Context, *GetRobotMetadataRequest) (*GetRobotMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobotMetadata not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateRobotMetadata(context.Context, *UpdateRobotMetadataRequest) (*UpdateRobotMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRobotMetadata not implemented")
+}
 func (UnimplementedAppServiceServer) GetRoverRentalRobots(context.Context, *GetRoverRentalRobotsRequest) (*GetRoverRentalRobotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRoverRentalRobots not implemented")
 }
@@ -1050,6 +1599,9 @@ func (UnimplementedAppServiceServer) GetRobotParts(context.Context, *GetRobotPar
 }
 func (UnimplementedAppServiceServer) GetRobotPart(context.Context, *GetRobotPartRequest) (*GetRobotPartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPart not implemented")
+}
+func (UnimplementedAppServiceServer) GetRobotPartByNameAndLocation(context.Context, *GetRobotPartByNameAndLocationRequest) (*GetRobotPartByNameAndLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPartByNameAndLocation not implemented")
 }
 func (UnimplementedAppServiceServer) GetRobotPartLogs(context.Context, *GetRobotPartLogsRequest) (*GetRobotPartLogsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPartLogs not implemented")
@@ -1069,6 +1621,12 @@ func (UnimplementedAppServiceServer) NewRobotPart(context.Context, *NewRobotPart
 func (UnimplementedAppServiceServer) DeleteRobotPart(context.Context, *DeleteRobotPartRequest) (*DeleteRobotPartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobotPart not implemented")
 }
+func (UnimplementedAppServiceServer) GetRobotPartMetadata(context.Context, *GetRobotPartMetadataRequest) (*GetRobotPartMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRobotPartMetadata not implemented")
+}
+func (UnimplementedAppServiceServer) UpdateRobotPartMetadata(context.Context, *UpdateRobotPartMetadataRequest) (*UpdateRobotPartMetadataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRobotPartMetadata not implemented")
+}
 func (UnimplementedAppServiceServer) GetRobotAPIKeys(context.Context, *GetRobotAPIKeysRequest) (*GetRobotAPIKeysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRobotAPIKeys not implemented")
 }
@@ -1086,6 +1644,12 @@ func (UnimplementedAppServiceServer) DeleteRobotPartSecret(context.Context, *Del
 }
 func (UnimplementedAppServiceServer) ListRobots(context.Context, *ListRobotsRequest) (*ListRobotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRobots not implemented")
+}
+func (UnimplementedAppServiceServer) ListRobotsForLocations(context.Context, *ListRobotsForLocationsRequest) (*ListRobotsForLocationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRobotsForLocations not implemented")
+}
+func (UnimplementedAppServiceServer) ListRobotsForOrg(context.Context, *ListRobotsForOrgRequest) (*ListRobotsForOrgResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRobotsForOrg not implemented")
 }
 func (UnimplementedAppServiceServer) NewRobot(context.Context, *NewRobotRequest) (*NewRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NewRobot not implemented")
@@ -1110,6 +1674,27 @@ func (UnimplementedAppServiceServer) UpdateFragment(context.Context, *UpdateFrag
 }
 func (UnimplementedAppServiceServer) DeleteFragment(context.Context, *DeleteFragmentRequest) (*DeleteFragmentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFragment not implemented")
+}
+func (UnimplementedAppServiceServer) ListNestedFragments(context.Context, *ListNestedFragmentsRequest) (*ListNestedFragmentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListNestedFragments not implemented")
+}
+func (UnimplementedAppServiceServer) ListMachineFragments(context.Context, *ListMachineFragmentsRequest) (*ListMachineFragmentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMachineFragments not implemented")
+}
+func (UnimplementedAppServiceServer) ListMachineSummaries(context.Context, *ListMachineSummariesRequest) (*ListMachineSummariesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMachineSummaries not implemented")
+}
+func (UnimplementedAppServiceServer) GetFragmentHistory(context.Context, *GetFragmentHistoryRequest) (*GetFragmentHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFragmentHistory not implemented")
+}
+func (UnimplementedAppServiceServer) GetFragmentUsage(context.Context, *GetFragmentUsageRequest) (*GetFragmentUsageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFragmentUsage not implemented")
+}
+func (UnimplementedAppServiceServer) SetFragmentTag(context.Context, *SetFragmentTagRequest) (*SetFragmentTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetFragmentTag not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteFragmentTag(context.Context, *DeleteFragmentTagRequest) (*DeleteFragmentTagResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFragmentTag not implemented")
 }
 func (UnimplementedAppServiceServer) AddRole(context.Context, *AddRoleRequest) (*AddRoleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddRole not implemented")
@@ -1141,6 +1726,12 @@ func (UnimplementedAppServiceServer) ListRegistryItems(context.Context, *ListReg
 func (UnimplementedAppServiceServer) DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegistryItem not implemented")
 }
+func (UnimplementedAppServiceServer) RenameRegistryItem(context.Context, *RenameRegistryItemRequest) (*RenameRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameRegistryItem not implemented")
+}
+func (UnimplementedAppServiceServer) TransferRegistryItem(context.Context, *TransferRegistryItemRequest) (*TransferRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TransferRegistryItem not implemented")
+}
 func (UnimplementedAppServiceServer) CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModule not implemented")
 }
@@ -1165,11 +1756,20 @@ func (UnimplementedAppServiceServer) DeleteKey(context.Context, *DeleteKeyReques
 func (UnimplementedAppServiceServer) ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListKeys not implemented")
 }
+func (UnimplementedAppServiceServer) RenameKey(context.Context, *RenameKeyRequest) (*RenameKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameKey not implemented")
+}
 func (UnimplementedAppServiceServer) RotateKey(context.Context, *RotateKeyRequest) (*RotateKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RotateKey not implemented")
 }
 func (UnimplementedAppServiceServer) CreateKeyFromExistingKeyAuthorizations(context.Context, *CreateKeyFromExistingKeyAuthorizationsRequest) (*CreateKeyFromExistingKeyAuthorizationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKeyFromExistingKeyAuthorizations not implemented")
+}
+func (UnimplementedAppServiceServer) GetAppContent(context.Context, *GetAppContentRequest) (*GetAppContentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppContent not implemented")
+}
+func (UnimplementedAppServiceServer) GetAppBranding(context.Context, *GetAppBrandingRequest) (*GetAppBrandingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppBranding not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -1274,6 +1874,24 @@ func _AppService_ListOrganizationsByUser_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_SearchOrganizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchOrganizationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).SearchOrganizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/SearchOrganizations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).SearchOrganizations(ctx, req.(*SearchOrganizationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_GetOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetOrganizationRequest)
 	if err := dec(in); err != nil {
@@ -1328,6 +1946,24 @@ func _AppService_UpdateOrganization_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_UpdateOrganizationNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationNamespaceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateOrganizationNamespace(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateOrganizationNamespace",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateOrganizationNamespace(ctx, req.(*UpdateOrganizationNamespaceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_DeleteOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteOrganizationRequest)
 	if err := dec(in); err != nil {
@@ -1342,6 +1978,42 @@ func _AppService_DeleteOrganization_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).DeleteOrganization(ctx, req.(*DeleteOrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetOrganizationMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetOrganizationMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetOrganizationMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetOrganizationMetadata(ctx, req.(*GetOrganizationMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateOrganizationMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateOrganizationMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateOrganizationMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateOrganizationMetadata(ctx, req.(*UpdateOrganizationMetadataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1454,6 +2126,276 @@ func _AppService_ResendOrganizationInvite_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_EnableBillingService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnableBillingServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).EnableBillingService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/EnableBillingService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).EnableBillingService(ctx, req.(*EnableBillingServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DisableBillingService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisableBillingServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DisableBillingService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DisableBillingService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DisableBillingService(ctx, req.(*DisableBillingServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateBillingService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateBillingServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateBillingService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateBillingService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateBillingService(ctx, req.(*UpdateBillingServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetBillingServiceConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBillingServiceConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetBillingServiceConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetBillingServiceConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetBillingServiceConfig(ctx, req.(*GetBillingServiceConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_OrganizationSetSupportEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationSetSupportEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).OrganizationSetSupportEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/OrganizationSetSupportEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).OrganizationSetSupportEmail(ctx, req.(*OrganizationSetSupportEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_OrganizationGetSupportEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationGetSupportEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).OrganizationGetSupportEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/OrganizationGetSupportEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).OrganizationGetSupportEmail(ctx, req.(*OrganizationGetSupportEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_OrganizationSetLogo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationSetLogoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).OrganizationSetLogo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/OrganizationSetLogo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).OrganizationSetLogo(ctx, req.(*OrganizationSetLogoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_OrganizationGetLogo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationGetLogoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).OrganizationGetLogo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/OrganizationGetLogo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).OrganizationGetLogo(ctx, req.(*OrganizationGetLogoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_EnableAuthService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnableAuthServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).EnableAuthService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/EnableAuthService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).EnableAuthService(ctx, req.(*EnableAuthServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DisableAuthService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisableAuthServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DisableAuthService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DisableAuthService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DisableAuthService(ctx, req.(*DisableAuthServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_CreateOAuthApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOAuthAppRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateOAuthApp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateOAuthApp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateOAuthApp(ctx, req.(*CreateOAuthAppRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ReadOAuthApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadOAuthAppRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ReadOAuthApp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ReadOAuthApp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ReadOAuthApp(ctx, req.(*ReadOAuthAppRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateOAuthApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOAuthAppRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateOAuthApp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateOAuthApp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateOAuthApp(ctx, req.(*UpdateOAuthAppRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteOAuthApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOAuthAppRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteOAuthApp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteOAuthApp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteOAuthApp(ctx, req.(*DeleteOAuthAppRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListOAuthApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListOAuthAppsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListOAuthApps(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListOAuthApps",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListOAuthApps(ctx, req.(*ListOAuthAppsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_CreateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateLocationRequest)
 	if err := dec(in); err != nil {
@@ -1522,6 +2464,42 @@ func _AppService_DeleteLocation_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).DeleteLocation(ctx, req.(*DeleteLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetLocationMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLocationMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetLocationMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetLocationMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetLocationMetadata(ctx, req.(*GetLocationMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateLocationMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLocationMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateLocationMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateLocationMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateLocationMetadata(ctx, req.(*UpdateLocationMetadataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1652,6 +2630,42 @@ func _AppService_GetRobot_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetRobotMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRobotMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRobotMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRobotMetadata(ctx, req.(*GetRobotMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateRobotMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRobotMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateRobotMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateRobotMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateRobotMetadata(ctx, req.(*UpdateRobotMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_GetRoverRentalRobots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRoverRentalRobotsRequest)
 	if err := dec(in); err != nil {
@@ -1702,6 +2716,24 @@ func _AppService_GetRobotPart_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).GetRobotPart(ctx, req.(*GetRobotPartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetRobotPartByNameAndLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotPartByNameAndLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRobotPartByNameAndLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRobotPartByNameAndLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRobotPartByNameAndLocation(ctx, req.(*GetRobotPartByNameAndLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1817,6 +2849,42 @@ func _AppService_DeleteRobotPart_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetRobotPartMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRobotPartMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetRobotPartMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetRobotPartMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetRobotPartMetadata(ctx, req.(*GetRobotPartMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UpdateRobotPartMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRobotPartMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UpdateRobotPartMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UpdateRobotPartMetadata",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UpdateRobotPartMetadata(ctx, req.(*UpdateRobotPartMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_GetRobotAPIKeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRobotAPIKeysRequest)
 	if err := dec(in); err != nil {
@@ -1921,6 +2989,42 @@ func _AppService_ListRobots_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListRobots(ctx, req.(*ListRobotsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListRobotsForLocations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRobotsForLocationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListRobotsForLocations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListRobotsForLocations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListRobotsForLocations(ctx, req.(*ListRobotsForLocationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListRobotsForOrg_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRobotsForOrgRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListRobotsForOrg(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListRobotsForOrg",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListRobotsForOrg(ctx, req.(*ListRobotsForOrgRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2065,6 +3169,132 @@ func _AppService_DeleteFragment_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).DeleteFragment(ctx, req.(*DeleteFragmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListNestedFragments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListNestedFragmentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListNestedFragments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListNestedFragments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListNestedFragments(ctx, req.(*ListNestedFragmentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListMachineFragments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMachineFragmentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListMachineFragments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListMachineFragments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListMachineFragments(ctx, req.(*ListMachineFragmentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListMachineSummaries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMachineSummariesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListMachineSummaries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListMachineSummaries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListMachineSummaries(ctx, req.(*ListMachineSummariesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetFragmentHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFragmentHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetFragmentHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetFragmentHistory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetFragmentHistory(ctx, req.(*GetFragmentHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetFragmentUsage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFragmentUsageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetFragmentUsage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetFragmentUsage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetFragmentUsage(ctx, req.(*GetFragmentUsageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_SetFragmentTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetFragmentTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).SetFragmentTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/SetFragmentTag",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).SetFragmentTag(ctx, req.(*SetFragmentTagRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteFragmentTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFragmentTagRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteFragmentTag(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteFragmentTag",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteFragmentTag(ctx, req.(*DeleteFragmentTagRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2249,6 +3479,42 @@ func _AppService_DeleteRegistryItem_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_RenameRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).RenameRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/RenameRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).RenameRegistryItem(ctx, req.(*RenameRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_TransferRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransferRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).TransferRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/TransferRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).TransferRegistryItem(ctx, req.(*TransferRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_CreateModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateModuleRequest)
 	if err := dec(in); err != nil {
@@ -2401,6 +3667,24 @@ func _AppService_ListKeys_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_RenameKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).RenameKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/RenameKey",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).RenameKey(ctx, req.(*RenameKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_RotateKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RotateKeyRequest)
 	if err := dec(in); err != nil {
@@ -2437,6 +3721,42 @@ func _AppService_CreateKeyFromExistingKeyAuthorizations_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_GetAppContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppContentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetAppContent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetAppContent",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetAppContent(ctx, req.(*GetAppContentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetAppBranding_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppBrandingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetAppBranding(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetAppBranding",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetAppBranding(ctx, req.(*GetAppBrandingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2465,6 +3785,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_ListOrganizationsByUser_Handler,
 		},
 		{
+			MethodName: "SearchOrganizations",
+			Handler:    _AppService_SearchOrganizations_Handler,
+		},
+		{
 			MethodName: "GetOrganization",
 			Handler:    _AppService_GetOrganization_Handler,
 		},
@@ -2477,8 +3801,20 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_UpdateOrganization_Handler,
 		},
 		{
+			MethodName: "UpdateOrganizationNamespace",
+			Handler:    _AppService_UpdateOrganizationNamespace_Handler,
+		},
+		{
 			MethodName: "DeleteOrganization",
 			Handler:    _AppService_DeleteOrganization_Handler,
+		},
+		{
+			MethodName: "GetOrganizationMetadata",
+			Handler:    _AppService_GetOrganizationMetadata_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationMetadata",
+			Handler:    _AppService_UpdateOrganizationMetadata_Handler,
 		},
 		{
 			MethodName: "ListOrganizationMembers",
@@ -2505,6 +3841,66 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_ResendOrganizationInvite_Handler,
 		},
 		{
+			MethodName: "EnableBillingService",
+			Handler:    _AppService_EnableBillingService_Handler,
+		},
+		{
+			MethodName: "DisableBillingService",
+			Handler:    _AppService_DisableBillingService_Handler,
+		},
+		{
+			MethodName: "UpdateBillingService",
+			Handler:    _AppService_UpdateBillingService_Handler,
+		},
+		{
+			MethodName: "GetBillingServiceConfig",
+			Handler:    _AppService_GetBillingServiceConfig_Handler,
+		},
+		{
+			MethodName: "OrganizationSetSupportEmail",
+			Handler:    _AppService_OrganizationSetSupportEmail_Handler,
+		},
+		{
+			MethodName: "OrganizationGetSupportEmail",
+			Handler:    _AppService_OrganizationGetSupportEmail_Handler,
+		},
+		{
+			MethodName: "OrganizationSetLogo",
+			Handler:    _AppService_OrganizationSetLogo_Handler,
+		},
+		{
+			MethodName: "OrganizationGetLogo",
+			Handler:    _AppService_OrganizationGetLogo_Handler,
+		},
+		{
+			MethodName: "EnableAuthService",
+			Handler:    _AppService_EnableAuthService_Handler,
+		},
+		{
+			MethodName: "DisableAuthService",
+			Handler:    _AppService_DisableAuthService_Handler,
+		},
+		{
+			MethodName: "CreateOAuthApp",
+			Handler:    _AppService_CreateOAuthApp_Handler,
+		},
+		{
+			MethodName: "ReadOAuthApp",
+			Handler:    _AppService_ReadOAuthApp_Handler,
+		},
+		{
+			MethodName: "UpdateOAuthApp",
+			Handler:    _AppService_UpdateOAuthApp_Handler,
+		},
+		{
+			MethodName: "DeleteOAuthApp",
+			Handler:    _AppService_DeleteOAuthApp_Handler,
+		},
+		{
+			MethodName: "ListOAuthApps",
+			Handler:    _AppService_ListOAuthApps_Handler,
+		},
+		{
 			MethodName: "CreateLocation",
 			Handler:    _AppService_CreateLocation_Handler,
 		},
@@ -2519,6 +3915,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteLocation",
 			Handler:    _AppService_DeleteLocation_Handler,
+		},
+		{
+			MethodName: "GetLocationMetadata",
+			Handler:    _AppService_GetLocationMetadata_Handler,
+		},
+		{
+			MethodName: "UpdateLocationMetadata",
+			Handler:    _AppService_UpdateLocationMetadata_Handler,
 		},
 		{
 			MethodName: "ListLocations",
@@ -2549,6 +3953,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_GetRobot_Handler,
 		},
 		{
+			MethodName: "GetRobotMetadata",
+			Handler:    _AppService_GetRobotMetadata_Handler,
+		},
+		{
+			MethodName: "UpdateRobotMetadata",
+			Handler:    _AppService_UpdateRobotMetadata_Handler,
+		},
+		{
 			MethodName: "GetRoverRentalRobots",
 			Handler:    _AppService_GetRoverRentalRobots_Handler,
 		},
@@ -2559,6 +3971,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRobotPart",
 			Handler:    _AppService_GetRobotPart_Handler,
+		},
+		{
+			MethodName: "GetRobotPartByNameAndLocation",
+			Handler:    _AppService_GetRobotPartByNameAndLocation_Handler,
 		},
 		{
 			MethodName: "GetRobotPartLogs",
@@ -2579,6 +3995,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRobotPart",
 			Handler:    _AppService_DeleteRobotPart_Handler,
+		},
+		{
+			MethodName: "GetRobotPartMetadata",
+			Handler:    _AppService_GetRobotPartMetadata_Handler,
+		},
+		{
+			MethodName: "UpdateRobotPartMetadata",
+			Handler:    _AppService_UpdateRobotPartMetadata_Handler,
 		},
 		{
 			MethodName: "GetRobotAPIKeys",
@@ -2603,6 +4027,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListRobots",
 			Handler:    _AppService_ListRobots_Handler,
+		},
+		{
+			MethodName: "ListRobotsForLocations",
+			Handler:    _AppService_ListRobotsForLocations_Handler,
+		},
+		{
+			MethodName: "ListRobotsForOrg",
+			Handler:    _AppService_ListRobotsForOrg_Handler,
 		},
 		{
 			MethodName: "NewRobot",
@@ -2635,6 +4067,34 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteFragment",
 			Handler:    _AppService_DeleteFragment_Handler,
+		},
+		{
+			MethodName: "ListNestedFragments",
+			Handler:    _AppService_ListNestedFragments_Handler,
+		},
+		{
+			MethodName: "ListMachineFragments",
+			Handler:    _AppService_ListMachineFragments_Handler,
+		},
+		{
+			MethodName: "ListMachineSummaries",
+			Handler:    _AppService_ListMachineSummaries_Handler,
+		},
+		{
+			MethodName: "GetFragmentHistory",
+			Handler:    _AppService_GetFragmentHistory_Handler,
+		},
+		{
+			MethodName: "GetFragmentUsage",
+			Handler:    _AppService_GetFragmentUsage_Handler,
+		},
+		{
+			MethodName: "SetFragmentTag",
+			Handler:    _AppService_SetFragmentTag_Handler,
+		},
+		{
+			MethodName: "DeleteFragmentTag",
+			Handler:    _AppService_DeleteFragmentTag_Handler,
 		},
 		{
 			MethodName: "AddRole",
@@ -2677,6 +4137,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_DeleteRegistryItem_Handler,
 		},
 		{
+			MethodName: "RenameRegistryItem",
+			Handler:    _AppService_RenameRegistryItem_Handler,
+		},
+		{
+			MethodName: "TransferRegistryItem",
+			Handler:    _AppService_TransferRegistryItem_Handler,
+		},
+		{
 			MethodName: "CreateModule",
 			Handler:    _AppService_CreateModule_Handler,
 		},
@@ -2705,12 +4173,24 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_ListKeys_Handler,
 		},
 		{
+			MethodName: "RenameKey",
+			Handler:    _AppService_RenameKey_Handler,
+		},
+		{
 			MethodName: "RotateKey",
 			Handler:    _AppService_RotateKey_Handler,
 		},
 		{
 			MethodName: "CreateKeyFromExistingKeyAuthorizations",
 			Handler:    _AppService_CreateKeyFromExistingKeyAuthorizations_Handler,
+		},
+		{
+			MethodName: "GetAppContent",
+			Handler:    _AppService_GetAppContent_Handler,
+		},
+		{
+			MethodName: "GetAppBranding",
+			Handler:    _AppService_GetAppBranding_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

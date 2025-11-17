@@ -38,6 +38,38 @@ message RobotConfig {
   optional bool disable_partial_start = 10;
   repeated PackageConfig packages = 11;
   repeated AppValidationStatus overwrite_fragment_status = 12;
+  // Turns on pprof http server on localhost. By default false.
+  bool enable_web_profile = 13;
+  repeated LogPatternConfig log = 14;
+  // Attributes a particular revision to the config.
+  string revision = 15;
+  optional MaintenanceConfig maintenance = 16;
+  // Disables the robot's log deduplication (identical, noisy logs will still
+  // be output individually instead of aggregated.)
+  bool disable_log_deduplication = 17;
+  repeated JobConfig jobs = 18;
+}
+
+// LogPatternConfig allows you to specify a 2-tuple consisting
+// of a logger name and its corresponding log level.
+message LogPatternConfig {
+  string pattern = 1;
+  string level = 2;
+}
+
+message JobConfig {
+  // unique name of the job.
+  string name = 1;
+  // a unix-cron string or a Golang-parsable duration string,
+  // specifies the interval at which the job is run.
+  string schedule = 2;
+  // the resource associated with this job.
+  string resource = 3;
+  // the gRPC request of this job's resource.
+  string method = 4;
+  // in case method is "DoCommand", specifies the
+  // command argument of the gRPC request.
+  google.protobuf.Struct command = 5;
 }
 
 // Valid location secret that can be used for authentication to the robot.
@@ -102,6 +134,7 @@ message ProcessConfig {
   google.protobuf.Duration stop_timeout = 8;
   // additional environment variables passed to the process
   map<string, string> env = 9;
+  string username = 10;
 }
 
 message ServiceConfig {
@@ -113,6 +146,7 @@ message ServiceConfig {
   string model = 6;
   string api = 9;
   repeated ResourceLevelServiceConfig service_configs = 10 [(tagger.v1.tags) = "json:\"service_config\""];
+  LogConfiguration log_configuration = 11;
 }
 
 message NetworkConfig {
@@ -121,10 +155,17 @@ message NetworkConfig {
   string tls_cert_file = 3;
   string tls_key_file = 4;
   SessionsConfig sessions = 5;
+  repeated TrafficTunnelEndpoint traffic_tunnel_endpoints = 6;
+  bool no_tls = 7;
 }
 
 message SessionsConfig {
   google.protobuf.Duration heartbeat_window = 1;
+}
+
+message TrafficTunnelEndpoint {
+  int32 port = 1;
+  google.protobuf.Duration connection_timeout = 2;
 }
 
 message AuthConfig {
@@ -252,6 +293,9 @@ message RemoteConfig {
 
   // Secret is a helper for a robot location secret.
   string secret = 10;
+
+  // A string with which to prefix all resource names fetched from this remote.
+  string prefix = 11;
 }
 
 // RemoteAuth specifies how to authenticate against a remote. If no credentials are
@@ -279,6 +323,8 @@ message AgentInfo {
   string git_revision = 5;
   // The platform the RDK is running on. For example linux/amd64
   optional string platform = 6;
+  // Optional tags to further constrain which artifact is returned for modules.
+  repeated string platform_tags = 7;
 }
 
 enum CredentialsType {
@@ -348,6 +394,10 @@ message ModuleConfig {
   map<string, string> env = 6;
   // info about the validity of the module
   AppValidationStatus status = 7;
+  // timeout for first_run script
+  google.protobuf.Duration first_run_timeout = 8;
+  // whether we are starting a module in TCP mode
+  bool tcp_mode = 9;
 }
 
 // PackageConfig is the configration for deployed Packages.
@@ -362,4 +412,9 @@ message PackageConfig {
   string type = 4;
   // info about the validity of the package
   AppValidationStatus status = 5;
+}
+
+message MaintenanceConfig {
+  common.v1.ResourceName sensor_name = 1;
+  string maintenance_allowed_key = 2;
 }

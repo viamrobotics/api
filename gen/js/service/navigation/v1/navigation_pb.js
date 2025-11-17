@@ -2836,7 +2836,7 @@ proto.viam.service.navigation.v1.GetObstaclesResponse.prototype.toObject = funct
 proto.viam.service.navigation.v1.GetObstaclesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     obstaclesList: jspb.Message.toObjectList(msg.getObstaclesList(),
-    common_v1_common_pb.GeoObstacle.toObject, includeInstance)
+    common_v1_common_pb.GeoGeometry.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -2874,8 +2874,8 @@ proto.viam.service.navigation.v1.GetObstaclesResponse.deserializeBinaryFromReade
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new common_v1_common_pb.GeoObstacle;
-      reader.readMessage(value,common_v1_common_pb.GeoObstacle.deserializeBinaryFromReader);
+      var value = new common_v1_common_pb.GeoGeometry;
+      reader.readMessage(value,common_v1_common_pb.GeoGeometry.deserializeBinaryFromReader);
       msg.addObstacles(value);
       break;
     default:
@@ -2912,24 +2912,24 @@ proto.viam.service.navigation.v1.GetObstaclesResponse.serializeBinaryToWriter = 
     writer.writeRepeatedMessage(
       1,
       f,
-      common_v1_common_pb.GeoObstacle.serializeBinaryToWriter
+      common_v1_common_pb.GeoGeometry.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated viam.common.v1.GeoObstacle obstacles = 1;
- * @return {!Array<!proto.viam.common.v1.GeoObstacle>}
+ * repeated viam.common.v1.GeoGeometry obstacles = 1;
+ * @return {!Array<!proto.viam.common.v1.GeoGeometry>}
  */
 proto.viam.service.navigation.v1.GetObstaclesResponse.prototype.getObstaclesList = function() {
-  return /** @type{!Array<!proto.viam.common.v1.GeoObstacle>} */ (
-    jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.GeoObstacle, 1));
+  return /** @type{!Array<!proto.viam.common.v1.GeoGeometry>} */ (
+    jspb.Message.getRepeatedWrapperField(this, common_v1_common_pb.GeoGeometry, 1));
 };
 
 
 /**
- * @param {!Array<!proto.viam.common.v1.GeoObstacle>} value
+ * @param {!Array<!proto.viam.common.v1.GeoGeometry>} value
  * @return {!proto.viam.service.navigation.v1.GetObstaclesResponse} returns this
 */
 proto.viam.service.navigation.v1.GetObstaclesResponse.prototype.setObstaclesList = function(value) {
@@ -2938,12 +2938,12 @@ proto.viam.service.navigation.v1.GetObstaclesResponse.prototype.setObstaclesList
 
 
 /**
- * @param {!proto.viam.common.v1.GeoObstacle=} opt_value
+ * @param {!proto.viam.common.v1.GeoGeometry=} opt_value
  * @param {number=} opt_index
- * @return {!proto.viam.common.v1.GeoObstacle}
+ * @return {!proto.viam.common.v1.GeoGeometry}
  */
 proto.viam.service.navigation.v1.GetObstaclesResponse.prototype.addObstacles = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.common.v1.GeoObstacle, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.common.v1.GeoGeometry, opt_index);
 };
 
 

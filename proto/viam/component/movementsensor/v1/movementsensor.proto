@@ -11,71 +11,49 @@ option java_package = "com.viam.component.movementsensor.v1";
 
 service MovementSensorService {
   rpc GetLinearVelocity(GetLinearVelocityRequest) returns (GetLinearVelocityResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/movementsensor/{name}/linear_velocity"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/movementsensor/{name}/linear_velocity"};
   }
 
   rpc GetAngularVelocity(GetAngularVelocityRequest) returns (GetAngularVelocityResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/movementsensor/{name}/angular_velocity"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/movementsensor/{name}/angular_velocity"};
   }
 
   rpc GetCompassHeading(GetCompassHeadingRequest) returns (GetCompassHeadingResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/movementsensor/{name}/compass_heading"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/movementsensor/{name}/compass_heading"};
   }
 
   rpc GetOrientation(GetOrientationRequest) returns (GetOrientationResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/movementsensor/{name}/orientation"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/movementsensor/{name}/orientation"};
   }
 
   rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/movementsensor/{name}/position"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/movementsensor/{name}/position"};
   }
 
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/movementsensor/{name}/properties"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/movementsensor/{name}/properties"};
   }
 
   rpc GetAccuracy(GetAccuracyRequest) returns (GetAccuracyResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/movementsensor/{name}/accuracy"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/movementsensor/{name}/accuracy"};
   }
 
   rpc GetLinearAcceleration(GetLinearAccelerationRequest) returns (GetLinearAccelerationResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/movementsensor/{name}/linear_acceleration"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/movementsensor/{name}/linear_acceleration"};
   }
 
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/component/movementsensor/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/component/movementsensor/{name}/do_command"};
   }
 
   // GetGeometries returns the geometries of the component in their current configuration
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/movementsensor/{name}/geometries"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/movementsensor/{name}/geometries"};
   }
 
   // GetReadings returns the readings of a sensor of the underlying robot.
   rpc GetReadings(common.v1.GetReadingsRequest) returns (common.v1.GetReadingsResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/movementsensor/{name}/readings"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/movementsensor/{name}/readings"};
   }
 }
 

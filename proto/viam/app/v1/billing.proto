@@ -15,6 +15,14 @@ service BillingService {
   rpc GetInvoicesSummary(GetInvoicesSummaryRequest) returns (GetInvoicesSummaryResponse);
   // Download a PDF invoice
   rpc GetInvoicePdf(GetInvoicePdfRequest) returns (stream GetInvoicePdfResponse);
+  // Send an email with a prompt to the user's org's billing page.
+  rpc SendPaymentRequiredEmail(SendPaymentRequiredEmailRequest) returns (SendPaymentRequiredEmailResponse);
+  // Get available billing tiers that can be assigned to organizations
+  rpc GetAvailableBillingTiers(GetAvailableBillingTiersRequest) returns (GetAvailableBillingTiersResponse);
+  // Update an organization's billing tier
+  rpc UpdateOrganizationBillingTier(UpdateOrganizationBillingTierRequest) returns (UpdateOrganizationBillingTierResponse);
+  // Directly create a flat fee invoice for an organization and charge on the spot
+  rpc CreateInvoiceAndChargeImmediately(CreateInvoiceAndChargeImmediatelyRequest) returns (CreateInvoiceAndChargeImmediatelyResponse);
 }
 
 message InvoiceSummary {
@@ -26,29 +34,10 @@ message InvoiceSummary {
   google.protobuf.Timestamp paid_date = 6;
 }
 
-message BillableResourceEvent {
-  string id = 1;
-  string type = 2;
-  double usage_quantity = 3;
-  string usage_quantity_unit = 4;
-  string usage_cost = 5;
-  google.protobuf.Timestamp occurred_at = 6;
-  string user_name = 7;
-}
-
-message Invoice {
-  string id = 1;
-  google.protobuf.Timestamp invoice_date = 2;
-  double invoice_amount = 3;
-  string status = 4;
-  google.protobuf.Timestamp due_date = 5;
-  repeated BillableResourceEvent items = 6;
-  string emailed_to = 7;
-}
-
 enum PaymentMethodType {
   PAYMENT_METHOD_TYPE_UNSPECIFIED = 0;
   PAYMENT_METHOD_TYPE_CARD = 1;
+  PAYMENT_METHOD_TYPE_USBANKACCOUNT = 2;
 }
 
 message PaymentMethodCard {
@@ -56,21 +45,93 @@ message PaymentMethodCard {
   string last_four_digits = 2;
 }
 
+message VerificationInfo {
+  int64 arrival_date = 1;
+  string hosted_verification_page_url = 2;
+}
+
+message PaymentMethodUSBankAccount {
+  string bank_name = 1;
+  string last_four_digits_account_number = 2;
+  string routing_number = 3;
+  string account_type = 4;
+  optional VerificationInfo verification_info = 5; // this is only set if the account is not verified
+}
+
 message GetCurrentMonthUsageRequest {
   string org_id = 1;
+}
+
+enum UsageCostType {
+  USAGE_COST_TYPE_UNSPECIFIED = 0;
+  USAGE_COST_TYPE_DATA_UPLOAD = 1 [deprecated = true];
+  USAGE_COST_TYPE_DATA_EGRESS = 2 [deprecated = true];
+  USAGE_COST_TYPE_REMOTE_CONTROL = 3;
+  USAGE_COST_TYPE_STANDARD_COMPUTE = 4;
+  USAGE_COST_TYPE_CLOUD_STORAGE = 5 [deprecated = true];
+  USAGE_COST_TYPE_BINARY_DATA_CLOUD_STORAGE = 6;
+  USAGE_COST_TYPE_OTHER_CLOUD_STORAGE = 7 [deprecated = true];
+  USAGE_COST_TYPE_PER_MACHINE = 8;
+  USAGE_COST_TYPE_TRIGGER_NOTIFICATION = 9;
+  USAGE_COST_TYPE_TABULAR_DATA_CLOUD_STORAGE = 10;
+  USAGE_COST_TYPE_CONFIG_HISTORY_CLOUD_STORAGE = 11;
+  USAGE_COST_TYPE_LOGS_CLOUD_STORAGE = 12;
+  USAGE_COST_TYPE_TRAINING_LOGS_CLOUD_STORAGE = 13;
+  USAGE_COST_TYPE_PACKAGES_CLOUD_STORAGE = 14;
+  USAGE_COST_TYPE_BINARY_DATA_UPLOAD = 15;
+  USAGE_COST_TYPE_TABULAR_DATA_UPLOAD = 16;
+  USAGE_COST_TYPE_LOGS_UPLOAD = 17;
+  USAGE_COST_TYPE_BINARY_DATA_EGRESS = 18;
+  USAGE_COST_TYPE_TABULAR_DATA_EGRESS = 19;
+  USAGE_COST_TYPE_LOGS_EGRESS = 20;
+  USAGE_COST_TYPE_TRAINING_LOGS_EGRESS = 21;
+  USAGE_COST_TYPE_TABULAR_DATA_DATABASE_CLOUD_STORAGE = 22;
+  USAGE_COST_TYPE_TABULAR_DATA_DATABASE_COMPUTE = 23;
+  USAGE_COST_TYPE_BINARY_DATA_CROSS_REGION_EGRESS = 24;
+}
+
+enum SourceType {
+  SOURCE_TYPE_UNSPECIFIED = 0;
+  SOURCE_TYPE_ORG = 1;
+  SOURCE_TYPE_FRAGMENT = 2;
+}
+
+message UsageCost {
+  UsageCostType resource_type = 1;
+  double cost = 2;
+}
+
+message ResourceUsageCostsBySource {
+  SourceType source_type = 1;
+  ResourceUsageCosts resource_usage_costs = 2;
+  string tier_name = 3;
+}
+
+message ResourceUsageCosts {
+  repeated UsageCost usage_costs = 1;
+  double discount = 2;
+  double total_with_discount = 3;
+  double total_without_discount = 4;
 }
 
 message GetCurrentMonthUsageResponse {
   google.protobuf.Timestamp start_date = 1;
   google.protobuf.Timestamp end_date = 2;
-  double cloud_storage_usage_cost = 3;
-  double data_upload_usage_cost = 4;
-  double data_egres_usage_cost = 5;
-  double remote_control_usage_cost = 6;
-  double standard_compute_usage_cost = 7;
-  double discount_amount = 8;
-  double total_usage_with_discount = 9;
-  double total_usage_without_discount = 10;
+  repeated ResourceUsageCostsBySource resource_usage_costs_by_source = 14;
+  double subtotal = 15;
+
+  // all fields below are deprecated
+  double cloud_storage_usage_cost = 3 [deprecated = true];
+  double data_upload_usage_cost = 4 [deprecated = true];
+  double data_egres_usage_cost = 5 [deprecated = true];
+  double remote_control_usage_cost = 6 [deprecated = true];
+  double standard_compute_usage_cost = 7 [deprecated = true];
+  double discount_amount = 8 [deprecated = true];
+  double total_usage_with_discount = 9 [deprecated = true];
+  double total_usage_without_discount = 10 [deprecated = true];
+  double per_machine_usage_cost = 11 [deprecated = true];
+  double binary_data_cloud_storage_usage_cost = 12 [deprecated = true];
+  double other_cloud_storage_usage_cost = 13 [deprecated = true];
 }
 
 message GetOrgBillingInformationRequest {
@@ -85,6 +146,8 @@ message GetOrgBillingInformationResponse {
   optional PaymentMethodCard method = 3;
   // Only return billing_tier for billing dashboard admin users
   optional string billing_tier = 4;
+  // defined if type is PAYMENT_METHOD_TYPE_USBANKACCOUNT
+  optional PaymentMethodUSBankAccount method_us_bank_account = 5;
 }
 
 message GetInvoicesSummaryRequest {
@@ -105,4 +168,36 @@ message GetInvoicePdfRequest {
 
 message GetInvoicePdfResponse {
   bytes chunk = 1;
+}
+
+message SendPaymentRequiredEmailRequest {
+  string customer_org_id = 1;
+  string billing_owner_org_id = 2;
+}
+
+message SendPaymentRequiredEmailResponse {}
+
+message GetAvailableBillingTiersRequest {}
+
+message GetAvailableBillingTiersResponse {
+  repeated string tiers = 1;
+}
+
+message UpdateOrganizationBillingTierRequest {
+  string organization_id = 1;
+  string billing_tier = 2;
+}
+
+message UpdateOrganizationBillingTierResponse {}
+
+message CreateInvoiceAndChargeImmediatelyRequest {
+  string org_id_to_charge = 1;
+  double amount = 2;
+  optional string description = 3;
+  optional string org_id_for_branding = 4;
+  bool disable_email = 5;
+}
+
+message CreateInvoiceAndChargeImmediatelyResponse {
+  string invoice_id = 1;
 }

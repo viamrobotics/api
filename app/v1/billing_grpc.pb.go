@@ -30,6 +30,14 @@ type BillingServiceClient interface {
 	GetInvoicesSummary(ctx context.Context, in *GetInvoicesSummaryRequest, opts ...grpc.CallOption) (*GetInvoicesSummaryResponse, error)
 	// Download a PDF invoice
 	GetInvoicePdf(ctx context.Context, in *GetInvoicePdfRequest, opts ...grpc.CallOption) (BillingService_GetInvoicePdfClient, error)
+	// Send an email with a prompt to the user's org's billing page.
+	SendPaymentRequiredEmail(ctx context.Context, in *SendPaymentRequiredEmailRequest, opts ...grpc.CallOption) (*SendPaymentRequiredEmailResponse, error)
+	// Get available billing tiers that can be assigned to organizations
+	GetAvailableBillingTiers(ctx context.Context, in *GetAvailableBillingTiersRequest, opts ...grpc.CallOption) (*GetAvailableBillingTiersResponse, error)
+	// Update an organization's billing tier
+	UpdateOrganizationBillingTier(ctx context.Context, in *UpdateOrganizationBillingTierRequest, opts ...grpc.CallOption) (*UpdateOrganizationBillingTierResponse, error)
+	// Directly create a flat fee invoice for an organization and charge on the spot
+	CreateInvoiceAndChargeImmediately(ctx context.Context, in *CreateInvoiceAndChargeImmediatelyRequest, opts ...grpc.CallOption) (*CreateInvoiceAndChargeImmediatelyResponse, error)
 }
 
 type billingServiceClient struct {
@@ -99,6 +107,42 @@ func (x *billingServiceGetInvoicePdfClient) Recv() (*GetInvoicePdfResponse, erro
 	return m, nil
 }
 
+func (c *billingServiceClient) SendPaymentRequiredEmail(ctx context.Context, in *SendPaymentRequiredEmailRequest, opts ...grpc.CallOption) (*SendPaymentRequiredEmailResponse, error) {
+	out := new(SendPaymentRequiredEmailResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.BillingService/SendPaymentRequiredEmail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingServiceClient) GetAvailableBillingTiers(ctx context.Context, in *GetAvailableBillingTiersRequest, opts ...grpc.CallOption) (*GetAvailableBillingTiersResponse, error) {
+	out := new(GetAvailableBillingTiersResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.BillingService/GetAvailableBillingTiers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingServiceClient) UpdateOrganizationBillingTier(ctx context.Context, in *UpdateOrganizationBillingTierRequest, opts ...grpc.CallOption) (*UpdateOrganizationBillingTierResponse, error) {
+	out := new(UpdateOrganizationBillingTierResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.BillingService/UpdateOrganizationBillingTier", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingServiceClient) CreateInvoiceAndChargeImmediately(ctx context.Context, in *CreateInvoiceAndChargeImmediatelyRequest, opts ...grpc.CallOption) (*CreateInvoiceAndChargeImmediatelyResponse, error) {
+	out := new(CreateInvoiceAndChargeImmediatelyResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.BillingService/CreateInvoiceAndChargeImmediately", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BillingServiceServer is the server API for BillingService service.
 // All implementations must embed UnimplementedBillingServiceServer
 // for forward compatibility
@@ -111,6 +155,14 @@ type BillingServiceServer interface {
 	GetInvoicesSummary(context.Context, *GetInvoicesSummaryRequest) (*GetInvoicesSummaryResponse, error)
 	// Download a PDF invoice
 	GetInvoicePdf(*GetInvoicePdfRequest, BillingService_GetInvoicePdfServer) error
+	// Send an email with a prompt to the user's org's billing page.
+	SendPaymentRequiredEmail(context.Context, *SendPaymentRequiredEmailRequest) (*SendPaymentRequiredEmailResponse, error)
+	// Get available billing tiers that can be assigned to organizations
+	GetAvailableBillingTiers(context.Context, *GetAvailableBillingTiersRequest) (*GetAvailableBillingTiersResponse, error)
+	// Update an organization's billing tier
+	UpdateOrganizationBillingTier(context.Context, *UpdateOrganizationBillingTierRequest) (*UpdateOrganizationBillingTierResponse, error)
+	// Directly create a flat fee invoice for an organization and charge on the spot
+	CreateInvoiceAndChargeImmediately(context.Context, *CreateInvoiceAndChargeImmediatelyRequest) (*CreateInvoiceAndChargeImmediatelyResponse, error)
 	mustEmbedUnimplementedBillingServiceServer()
 }
 
@@ -129,6 +181,18 @@ func (UnimplementedBillingServiceServer) GetInvoicesSummary(context.Context, *Ge
 }
 func (UnimplementedBillingServiceServer) GetInvoicePdf(*GetInvoicePdfRequest, BillingService_GetInvoicePdfServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetInvoicePdf not implemented")
+}
+func (UnimplementedBillingServiceServer) SendPaymentRequiredEmail(context.Context, *SendPaymentRequiredEmailRequest) (*SendPaymentRequiredEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendPaymentRequiredEmail not implemented")
+}
+func (UnimplementedBillingServiceServer) GetAvailableBillingTiers(context.Context, *GetAvailableBillingTiersRequest) (*GetAvailableBillingTiersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAvailableBillingTiers not implemented")
+}
+func (UnimplementedBillingServiceServer) UpdateOrganizationBillingTier(context.Context, *UpdateOrganizationBillingTierRequest) (*UpdateOrganizationBillingTierResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganizationBillingTier not implemented")
+}
+func (UnimplementedBillingServiceServer) CreateInvoiceAndChargeImmediately(context.Context, *CreateInvoiceAndChargeImmediatelyRequest) (*CreateInvoiceAndChargeImmediatelyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateInvoiceAndChargeImmediately not implemented")
 }
 func (UnimplementedBillingServiceServer) mustEmbedUnimplementedBillingServiceServer() {}
 
@@ -218,6 +282,78 @@ func (x *billingServiceGetInvoicePdfServer) Send(m *GetInvoicePdfResponse) error
 	return x.ServerStream.SendMsg(m)
 }
 
+func _BillingService_SendPaymentRequiredEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendPaymentRequiredEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).SendPaymentRequiredEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.BillingService/SendPaymentRequiredEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).SendPaymentRequiredEmail(ctx, req.(*SendPaymentRequiredEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BillingService_GetAvailableBillingTiers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAvailableBillingTiersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).GetAvailableBillingTiers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.BillingService/GetAvailableBillingTiers",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).GetAvailableBillingTiers(ctx, req.(*GetAvailableBillingTiersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BillingService_UpdateOrganizationBillingTier_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationBillingTierRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).UpdateOrganizationBillingTier(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.BillingService/UpdateOrganizationBillingTier",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).UpdateOrganizationBillingTier(ctx, req.(*UpdateOrganizationBillingTierRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BillingService_CreateInvoiceAndChargeImmediately_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateInvoiceAndChargeImmediatelyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).CreateInvoiceAndChargeImmediately(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.BillingService/CreateInvoiceAndChargeImmediately",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).CreateInvoiceAndChargeImmediately(ctx, req.(*CreateInvoiceAndChargeImmediatelyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BillingService_ServiceDesc is the grpc.ServiceDesc for BillingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -236,6 +372,22 @@ var BillingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetInvoicesSummary",
 			Handler:    _BillingService_GetInvoicesSummary_Handler,
+		},
+		{
+			MethodName: "SendPaymentRequiredEmail",
+			Handler:    _BillingService_SendPaymentRequiredEmail_Handler,
+		},
+		{
+			MethodName: "GetAvailableBillingTiers",
+			Handler:    _BillingService_GetAvailableBillingTiers_Handler,
+		},
+		{
+			MethodName: "UpdateOrganizationBillingTier",
+			Handler:    _BillingService_UpdateOrganizationBillingTier_Handler,
+		},
+		{
+			MethodName: "CreateInvoiceAndChargeImmediately",
+			Handler:    _BillingService_CreateInvoiceAndChargeImmediately_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

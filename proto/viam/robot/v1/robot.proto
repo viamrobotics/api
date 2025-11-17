@@ -14,130 +14,148 @@ option java_package = "com.viam.robot.v1";
 // A RobotService encompasses all functionality of some robot comprised of parts, local and remote.
 service RobotService {
   rpc GetOperations(GetOperationsRequest) returns (GetOperationsResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/operations/list"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/operations/list"};
   }
 
   rpc GetSessions(GetSessionsRequest) returns (GetSessionsResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/sessions/list"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/sessions/list"};
   }
 
   // ResourceNames returns the list of all resources.
   rpc ResourceNames(ResourceNamesRequest) returns (ResourceNamesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/resources/list"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/resources/list"};
   }
 
   // ResourceRPCSubtypes returns the list of all resource types.
   rpc ResourceRPCSubtypes(ResourceRPCSubtypesRequest) returns (ResourceRPCSubtypesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/resource_rpc_subtypes/list"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/resource_rpc_subtypes/list"};
   }
 
   rpc CancelOperation(CancelOperationRequest) returns (CancelOperationResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/operations/cancel"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/operations/cancel"};
   }
 
   rpc BlockForOperation(BlockForOperationRequest) returns (BlockForOperationResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/operations/block"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/operations/block"};
   }
 
-  // DiscoverComponents returns the list of discovered component configurations.
-  rpc DiscoverComponents(DiscoverComponentsRequest) returns (DiscoverComponentsResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/discovery/components"
-    };
-  }
-
-  rpc FrameSystemConfig(FrameSystemConfigRequest) returns (FrameSystemConfigResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/frame_system/config"
-    };
-  }
-
-  rpc TransformPose(TransformPoseRequest) returns (TransformPoseResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/frame_system/transform_pose"
-    };
-  }
-
-  rpc TransformPCD(TransformPCDRequest) returns (TransformPCDResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/frame_system/transform_pcd"
-    };
+  // GetModelsFromModules returns the list of models supported in modules on the machine.
+  rpc GetModelsFromModules(GetModelsFromModulesRequest) returns (GetModelsFromModulesResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/module_models"};
   }
 
   // GetStatus returns the list of all statuses requested. An empty request signifies all resources.
   rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/status"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/status"};
+    option deprecated = true;
   }
 
   // StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
   rpc StreamStatus(StreamStatusRequest) returns (stream StreamStatusResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/status/stream"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/status/stream"};
+    option deprecated = true;
   }
 
   // StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
   rpc StopAll(StopAllRequest) returns (StopAllResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/stop_all"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/stop_all"};
   }
 
   // StartSession creates a new session that expects at least one heartbeat within the returned window.
   // If the window lapses, any resources that have safety heart monitored methods, where this session was
   // the last caller on the resource, will be stopped.
   rpc StartSession(StartSessionRequest) returns (StartSessionResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/sessions"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/sessions"};
   }
 
   // SendSessionHeartbeat sends a heartbeat to the given session. If the session has expired, a
   // SESSION_EXPIRED error will be returned.
   rpc SendSessionHeartbeat(SendSessionHeartbeatRequest) returns (SendSessionHeartbeatResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/sessions/{id}/heartbeat"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/sessions/{id}/heartbeat"};
   }
 
   // Log sends logs to be logged by this robot. Currently used for module logging.
   rpc Log(LogRequest) returns (LogResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/log"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/log"};
   }
 
   // GetCloudMetadata returns app-related information about the robot.
   rpc GetCloudMetadata(GetCloudMetadataRequest) returns (GetCloudMetadataResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/cloud_metadata"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/cloud_metadata"};
   }
 
   rpc RestartModule(RestartModuleRequest) returns (RestartModuleResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/restart_module"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/restart_module"};
   }
+
+  // Shutdown shuts down the robot.
+  rpc Shutdown(ShutdownRequest) returns (ShutdownResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/shutdown"};
+  }
+
+  // GetMachineStatus returns the current status of the robot.
+  rpc GetMachineStatus(GetMachineStatusRequest) returns (GetMachineStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/machine_status"};
+  }
+
+  // GetVersion returns version information about the robot.
+  rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/version"};
+  }
+
+  // Tunnel tunnels traffic to the destination port of the robot server.
+  rpc Tunnel(stream TunnelRequest) returns (stream TunnelResponse);
+
+  // ListTunnels lists all available tunnels configured on the robot.
+  rpc ListTunnels(ListTunnelsRequest) returns (ListTunnelsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/list_tunnels"};
+  }
+
+  // The below methods constitute the methods accessible to modules as part of the FrameSystem service.
+
+  // FrameSystemConfig returns the information relevant to building the robot's frame system.
+  rpc FrameSystemConfig(FrameSystemConfigRequest) returns (FrameSystemConfigResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/frame_system/config"};
+  }
+
+  // GetPose returns the pose of a component in a desired referenceframe.
+  rpc GetPose(GetPoseRequest) returns (GetPoseResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/frame_system/pose"};
+  }
+
+  // TransformPose returns a pose in one referenceframe in a desired referenceframe.
+  rpc TransformPose(TransformPoseRequest) returns (TransformPoseResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/frame_system/transform_pose"};
+  }
+
+  // TransformPose returns a point cloud in one referenceframe in a desired referenceframe.
+  rpc TransformPCD(TransformPCDRequest) returns (TransformPCDResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/frame_system/transform_pcd"};
+  }
+}
+
+message TunnelRequest {
+  uint32 destination_port = 1;
+  bytes data = 2;
+}
+
+message TunnelResponse {
+  bytes data = 1;
+}
+
+message ListTunnelsRequest {}
+
+message ListTunnelsResponse {
+  repeated Tunnel tunnels = 1;
+}
+
+message Tunnel {
+  uint32 port = 1;
+  google.protobuf.Duration connection_timeout = 2;
 }
 
 message FrameSystemConfig {
   // this is an experimental API message
-
   common.v1.Transform frame = 1;
   google.protobuf.Struct kinematics = 2;
 }
@@ -169,8 +187,8 @@ message TransformPoseResponse {
 }
 
 message TransformPCDRequest {
-  // the point clouds to transform. This should be in the PCD format
-  // encoded into bytes: https://pointclouds.org/documentation/tutorials/pcd_file_format.html
+  // the point clouds to transform. This should be in the PCD format,
+  // [encoded into bytes](https://pointclouds.org/documentation/tutorials/pcd_file_format.html).
   bytes point_cloud_pcd = 1;
   // the reference frame of the point cloud.
   string source = 2;
@@ -250,24 +268,17 @@ message GetSessionsResponse {
   repeated Session sessions = 1;
 }
 
-// Discovery
-
-message DiscoveryQuery {
-  string subtype = 1;
+message ModuleModel {
+  string module_name = 1;
   string model = 2;
+  string api = 3;
+  bool from_local_module = 4;
 }
 
-message Discovery {
-  DiscoveryQuery query = 1;
-  google.protobuf.Struct results = 2;
-}
+message GetModelsFromModulesRequest {}
 
-message DiscoverComponentsRequest {
-  repeated DiscoveryQuery queries = 1;
-}
-
-message DiscoverComponentsResponse {
-  repeated Discovery discovery = 1;
+message GetModelsFromModulesResponse {
+  repeated ModuleModel models = 1;
 }
 
 message Status {
@@ -347,3 +358,98 @@ message RestartModuleRequest {
 }
 
 message RestartModuleResponse {}
+
+message ShutdownRequest {}
+
+message ShutdownResponse {}
+
+message GetMachineStatusRequest {}
+
+message GetMachineStatusResponse {
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    // the machine is reachable but still in the process of configuring initial
+    // modules and resources.
+    STATE_INITIALIZING = 1;
+    // the machine has finished initializing.
+    STATE_RUNNING = 2;
+  }
+
+  repeated ResourceStatus resources = 1;
+  ConfigStatus config = 2;
+  State state = 3;
+}
+
+message ResourceStatus {
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    // a newly created resource.
+    STATE_UNCONFIGURED = 1;
+    // a resource that is being configured.
+    STATE_CONFIGURING = 2;
+    // a resource that has been successfully configured once, and is not re-configuring,
+    // being removed, or unhealthy.
+    STATE_READY = 3;
+    // a resource that is being removed from the robot.
+    STATE_REMOVING = 4;
+    // a resource that is in an unhealthy state.
+    STATE_UNHEALTHY = 5;
+  }
+
+  // resource name.
+  common.v1.ResourceName name = 1;
+
+  // current state.
+  State state = 2;
+
+  // state transition timestamp.
+  google.protobuf.Timestamp last_updated = 3;
+
+  // revision of the last config that successfully updated this resource.
+  string revision = 4;
+
+  // error details for a resource. This is guaranteed to be null if the
+  // resource is ready and non-null if the resource unhealthy.
+  string error = 5;
+
+  // infomation about resource orgID, locationID and partID
+  optional GetCloudMetadataResponse cloud_metadata = 6;
+}
+
+message ConfigStatus {
+  // revision of the last config that the machine successfully ingested.
+  string revision = 1;
+
+  // config ingestion timestamp.
+  google.protobuf.Timestamp last_updated = 2;
+}
+
+message GetVersionRequest {}
+
+message GetVersionResponse {
+  // platform type of viam-server (ie. `rdk` or `micro-rdk`).
+  string platform = 1;
+
+  // version of viam-server. If built without a version, it will be dev-<git hash>.
+  string version = 2;
+
+  string api_version = 3;
+}
+
+message GetPoseRequest {
+  // the component whose pose is being requested
+  string component_name = 1;
+  // the reference frame in which the component's pose
+  // should be provided, if unset this defaults
+  // to the "world" reference frame
+  string destination_frame = 2;
+  // pose information on any additional reference frames that are needed
+  // to compute the component's pose
+  repeated common.v1.Transform supplemental_transforms = 3;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPoseResponse {
+  common.v1.PoseInFrame pose = 1;
+}

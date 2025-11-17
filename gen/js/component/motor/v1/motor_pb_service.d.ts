@@ -32,6 +32,15 @@ type MotorServiceGoTo = {
   readonly responseType: typeof component_motor_v1_motor_pb.GoToResponse;
 };
 
+type MotorServiceSetRPM = {
+  readonly methodName: string;
+  readonly service: typeof MotorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_motor_v1_motor_pb.SetRPMRequest;
+  readonly responseType: typeof component_motor_v1_motor_pb.SetRPMResponse;
+};
+
 type MotorServiceResetZeroPosition = {
   readonly methodName: string;
   readonly service: typeof MotorService;
@@ -109,6 +118,7 @@ export class MotorService {
   static readonly SetPower: MotorServiceSetPower;
   static readonly GoFor: MotorServiceGoFor;
   static readonly GoTo: MotorServiceGoTo;
+  static readonly SetRPM: MotorServiceSetRPM;
   static readonly ResetZeroPosition: MotorServiceResetZeroPosition;
   static readonly GetPosition: MotorServiceGetPosition;
   static readonly GetProperties: MotorServiceGetProperties;
@@ -177,6 +187,15 @@ export class MotorServiceClient {
   goTo(
     requestMessage: component_motor_v1_motor_pb.GoToRequest,
     callback: (error: ServiceError|null, responseMessage: component_motor_v1_motor_pb.GoToResponse|null) => void
+  ): UnaryResponse;
+  setRPM(
+    requestMessage: component_motor_v1_motor_pb.SetRPMRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_motor_v1_motor_pb.SetRPMResponse|null) => void
+  ): UnaryResponse;
+  setRPM(
+    requestMessage: component_motor_v1_motor_pb.SetRPMRequest,
+    callback: (error: ServiceError|null, responseMessage: component_motor_v1_motor_pb.SetRPMResponse|null) => void
   ): UnaryResponse;
   resetZeroPosition(
     requestMessage: component_motor_v1_motor_pb.ResetZeroPositionRequest,

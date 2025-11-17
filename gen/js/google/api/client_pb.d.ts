@@ -15,6 +15,11 @@ export class CommonLanguageSettings extends jspb.Message {
   setDestinationsList(value: Array<ClientLibraryDestinationMap[keyof ClientLibraryDestinationMap]>): void;
   addDestinations(value: ClientLibraryDestinationMap[keyof ClientLibraryDestinationMap], index?: number): ClientLibraryDestinationMap[keyof ClientLibraryDestinationMap];
 
+  hasSelectiveGapicGeneration(): boolean;
+  clearSelectiveGapicGeneration(): void;
+  getSelectiveGapicGeneration(): SelectiveGapicGeneration | undefined;
+  setSelectiveGapicGeneration(value?: SelectiveGapicGeneration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CommonLanguageSettings.AsObject;
   static toObject(includeInstance: boolean, msg: CommonLanguageSettings): CommonLanguageSettings.AsObject;
@@ -29,6 +34,7 @@ export namespace CommonLanguageSettings {
   export type AsObject = {
     referenceDocsUri: string,
     destinationsList: Array<ClientLibraryDestinationMap[keyof ClientLibraryDestinationMap]>,
+    selectiveGapicGeneration?: SelectiveGapicGeneration.AsObject,
   }
 }
 
@@ -253,6 +259,11 @@ export class PythonSettings extends jspb.Message {
   getCommon(): CommonLanguageSettings | undefined;
   setCommon(value?: CommonLanguageSettings): void;
 
+  hasExperimentalFeatures(): boolean;
+  clearExperimentalFeatures(): void;
+  getExperimentalFeatures(): PythonSettings.ExperimentalFeatures | undefined;
+  setExperimentalFeatures(value?: PythonSettings.ExperimentalFeatures): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PythonSettings.AsObject;
   static toObject(includeInstance: boolean, msg: PythonSettings): PythonSettings.AsObject;
@@ -266,6 +277,35 @@ export class PythonSettings extends jspb.Message {
 export namespace PythonSettings {
   export type AsObject = {
     common?: CommonLanguageSettings.AsObject,
+    experimentalFeatures?: PythonSettings.ExperimentalFeatures.AsObject,
+  }
+
+  export class ExperimentalFeatures extends jspb.Message {
+    getRestAsyncIoEnabled(): boolean;
+    setRestAsyncIoEnabled(value: boolean): void;
+
+    getProtobufPythonicTypesEnabled(): boolean;
+    setProtobufPythonicTypesEnabled(value: boolean): void;
+
+    getUnversionedPackageDisabled(): boolean;
+    setUnversionedPackageDisabled(value: boolean): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ExperimentalFeatures.AsObject;
+    static toObject(includeInstance: boolean, msg: ExperimentalFeatures): ExperimentalFeatures.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ExperimentalFeatures, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ExperimentalFeatures;
+    static deserializeBinaryFromReader(message: ExperimentalFeatures, reader: jspb.BinaryReader): ExperimentalFeatures;
+  }
+
+  export namespace ExperimentalFeatures {
+    export type AsObject = {
+      restAsyncIoEnabled: boolean,
+      protobufPythonicTypesEnabled: boolean,
+      unversionedPackageDisabled: boolean,
+    }
   }
 }
 
@@ -365,6 +405,8 @@ export class GoSettings extends jspb.Message {
   getCommon(): CommonLanguageSettings | undefined;
   setCommon(value?: CommonLanguageSettings): void;
 
+  getRenamedServicesMap(): jspb.Map<string, string>;
+  clearRenamedServicesMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GoSettings.AsObject;
   static toObject(includeInstance: boolean, msg: GoSettings): GoSettings.AsObject;
@@ -378,6 +420,7 @@ export class GoSettings extends jspb.Message {
 export namespace GoSettings {
   export type AsObject = {
     common?: CommonLanguageSettings.AsObject,
+    renamedServicesMap: Array<[string, string]>,
   }
 }
 
@@ -448,6 +491,32 @@ export namespace MethodSettings {
       maxPollDelay?: google_protobuf_duration_pb.Duration.AsObject,
       totalPollTimeout?: google_protobuf_duration_pb.Duration.AsObject,
     }
+  }
+}
+
+export class SelectiveGapicGeneration extends jspb.Message {
+  clearMethodsList(): void;
+  getMethodsList(): Array<string>;
+  setMethodsList(value: Array<string>): void;
+  addMethods(value: string, index?: number): string;
+
+  getGenerateOmittedAsInternal(): boolean;
+  setGenerateOmittedAsInternal(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SelectiveGapicGeneration.AsObject;
+  static toObject(includeInstance: boolean, msg: SelectiveGapicGeneration): SelectiveGapicGeneration.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SelectiveGapicGeneration, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SelectiveGapicGeneration;
+  static deserializeBinaryFromReader(message: SelectiveGapicGeneration, reader: jspb.BinaryReader): SelectiveGapicGeneration;
+}
+
+export namespace SelectiveGapicGeneration {
+  export type AsObject = {
+    methodsList: Array<string>,
+    generateOmittedAsInternal: boolean,
   }
 }
 

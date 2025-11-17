@@ -269,6 +269,123 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.tabularDataByMQL =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.ExportTabularDataRequest,
+ *   !proto.viam.app.data.v1.ExportTabularDataResponse>}
+ */
+const methodDescriptor_DataService_ExportTabularData = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/ExportTabularData',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.app.data.v1.ExportTabularDataRequest,
+  proto.viam.app.data.v1.ExportTabularDataResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.ExportTabularDataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.ExportTabularDataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ExportTabularDataRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ExportTabularDataResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.exportTabularData =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.data.v1.DataService/ExportTabularData',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ExportTabularData);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ExportTabularDataRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ExportTabularDataResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.exportTabularData =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.app.data.v1.DataService/ExportTabularData',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ExportTabularData);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.GetLatestTabularDataRequest,
+ *   !proto.viam.app.data.v1.GetLatestTabularDataResponse>}
+ */
+const methodDescriptor_DataService_GetLatestTabularData = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/GetLatestTabularData',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.GetLatestTabularDataRequest,
+  proto.viam.app.data.v1.GetLatestTabularDataResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.GetLatestTabularDataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.GetLatestTabularDataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetLatestTabularDataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.GetLatestTabularDataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.GetLatestTabularDataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.getLatestTabularData =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetLatestTabularData',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetLatestTabularData,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetLatestTabularDataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.GetLatestTabularDataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.getLatestTabularData =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetLatestTabularData',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetLatestTabularData);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.data.v1.BinaryDataByFilterRequest,
  *   !proto.viam.app.data.v1.BinaryDataByFilterResponse>}
  */
@@ -1062,6 +1179,67 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.boundingBoxLabelsByFil
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.UpdateBoundingBoxRequest,
+ *   !proto.viam.app.data.v1.UpdateBoundingBoxResponse>}
+ */
+const methodDescriptor_DataService_UpdateBoundingBox = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/UpdateBoundingBox',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.UpdateBoundingBoxRequest,
+  proto.viam.app.data.v1.UpdateBoundingBoxResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.UpdateBoundingBoxRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.UpdateBoundingBoxResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateBoundingBoxRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.UpdateBoundingBoxResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.UpdateBoundingBoxResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.updateBoundingBox =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateBoundingBox',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateBoundingBox,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateBoundingBoxRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.UpdateBoundingBoxResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.updateBoundingBox =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateBoundingBox',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateBoundingBox);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.data.v1.GetDatabaseConnectionRequest,
  *   !proto.viam.app.data.v1.GetDatabaseConnectionResponse>}
  */
@@ -1300,6 +1478,494 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeBinaryDataFromDa
       request,
       metadata || {},
       methodDescriptor_DataService_RemoveBinaryDataFromDatasetByIDs);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.CreateIndexRequest,
+ *   !proto.viam.app.data.v1.CreateIndexResponse>}
+ */
+const methodDescriptor_DataService_CreateIndex = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/CreateIndex',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.CreateIndexRequest,
+  proto.viam.app.data.v1.CreateIndexResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.CreateIndexRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.CreateIndexResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateIndexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.CreateIndexResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.CreateIndexResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.createIndex =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateIndex',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateIndex,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateIndexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.CreateIndexResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.createIndex =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateIndex',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateIndex);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.ListIndexesRequest,
+ *   !proto.viam.app.data.v1.ListIndexesResponse>}
+ */
+const methodDescriptor_DataService_ListIndexes = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/ListIndexes',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.ListIndexesRequest,
+  proto.viam.app.data.v1.ListIndexesResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.ListIndexesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.ListIndexesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListIndexesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.ListIndexesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ListIndexesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.listIndexes =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListIndexes',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListIndexes,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListIndexesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.ListIndexesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.listIndexes =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListIndexes',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListIndexes);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.DeleteIndexRequest,
+ *   !proto.viam.app.data.v1.DeleteIndexResponse>}
+ */
+const methodDescriptor_DataService_DeleteIndex = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/DeleteIndex',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.DeleteIndexRequest,
+  proto.viam.app.data.v1.DeleteIndexResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.DeleteIndexRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.DeleteIndexResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteIndexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.DeleteIndexResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.DeleteIndexResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.deleteIndex =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteIndex',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteIndex,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteIndexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.DeleteIndexResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.deleteIndex =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteIndex',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteIndex);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.CreateSavedQueryRequest,
+ *   !proto.viam.app.data.v1.CreateSavedQueryResponse>}
+ */
+const methodDescriptor_DataService_CreateSavedQuery = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/CreateSavedQuery',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.CreateSavedQueryRequest,
+  proto.viam.app.data.v1.CreateSavedQueryResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.CreateSavedQueryRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.CreateSavedQueryResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.CreateSavedQueryResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.CreateSavedQueryResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.createSavedQuery =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateSavedQuery,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.CreateSavedQueryResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.createSavedQuery =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateSavedQuery);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.UpdateSavedQueryRequest,
+ *   !proto.viam.app.data.v1.UpdateSavedQueryResponse>}
+ */
+const methodDescriptor_DataService_UpdateSavedQuery = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/UpdateSavedQuery',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.UpdateSavedQueryRequest,
+  proto.viam.app.data.v1.UpdateSavedQueryResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.UpdateSavedQueryRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.UpdateSavedQueryResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.UpdateSavedQueryResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.UpdateSavedQueryResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.updateSavedQuery =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateSavedQuery,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.UpdateSavedQueryResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.updateSavedQuery =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateSavedQuery);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.GetSavedQueryRequest,
+ *   !proto.viam.app.data.v1.GetSavedQueryResponse>}
+ */
+const methodDescriptor_DataService_GetSavedQuery = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/GetSavedQuery',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.GetSavedQueryRequest,
+  proto.viam.app.data.v1.GetSavedQueryResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.GetSavedQueryRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.GetSavedQueryResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.GetSavedQueryResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.GetSavedQueryResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.getSavedQuery =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetSavedQuery,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.GetSavedQueryResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.getSavedQuery =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetSavedQuery);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.DeleteSavedQueryRequest,
+ *   !proto.viam.app.data.v1.DeleteSavedQueryResponse>}
+ */
+const methodDescriptor_DataService_DeleteSavedQuery = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/DeleteSavedQuery',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.DeleteSavedQueryRequest,
+  proto.viam.app.data.v1.DeleteSavedQueryResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.DeleteSavedQueryRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.DeleteSavedQueryResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.DeleteSavedQueryResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.DeleteSavedQueryResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.deleteSavedQuery =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteSavedQuery,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteSavedQueryRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.DeleteSavedQueryResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.deleteSavedQuery =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteSavedQuery',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteSavedQuery);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.ListSavedQueriesRequest,
+ *   !proto.viam.app.data.v1.ListSavedQueriesResponse>}
+ */
+const methodDescriptor_DataService_ListSavedQueries = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/ListSavedQueries',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.ListSavedQueriesRequest,
+  proto.viam.app.data.v1.ListSavedQueriesResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.ListSavedQueriesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.ListSavedQueriesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListSavedQueriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.ListSavedQueriesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ListSavedQueriesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.listSavedQueries =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListSavedQueries',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListSavedQueries,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListSavedQueriesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.ListSavedQueriesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.listSavedQueries =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListSavedQueries',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListSavedQueries);
 };
 
 

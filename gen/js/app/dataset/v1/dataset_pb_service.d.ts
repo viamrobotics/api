@@ -49,6 +49,15 @@ type DatasetServiceListDatasetsByIDs = {
   readonly responseType: typeof app_dataset_v1_dataset_pb.ListDatasetsByIDsResponse;
 };
 
+type DatasetServiceMergeDatasets = {
+  readonly methodName: string;
+  readonly service: typeof DatasetService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_dataset_v1_dataset_pb.MergeDatasetsRequest;
+  readonly responseType: typeof app_dataset_v1_dataset_pb.MergeDatasetsResponse;
+};
+
 export class DatasetService {
   static readonly serviceName: string;
   static readonly CreateDataset: DatasetServiceCreateDataset;
@@ -56,6 +65,7 @@ export class DatasetService {
   static readonly RenameDataset: DatasetServiceRenameDataset;
   static readonly ListDatasetsByOrganizationID: DatasetServiceListDatasetsByOrganizationID;
   static readonly ListDatasetsByIDs: DatasetServiceListDatasetsByIDs;
+  static readonly MergeDatasets: DatasetServiceMergeDatasets;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -134,6 +144,15 @@ export class DatasetServiceClient {
   listDatasetsByIDs(
     requestMessage: app_dataset_v1_dataset_pb.ListDatasetsByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_dataset_v1_dataset_pb.ListDatasetsByIDsResponse|null) => void
+  ): UnaryResponse;
+  mergeDatasets(
+    requestMessage: app_dataset_v1_dataset_pb.MergeDatasetsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_dataset_v1_dataset_pb.MergeDatasetsResponse|null) => void
+  ): UnaryResponse;
+  mergeDatasets(
+    requestMessage: app_dataset_v1_dataset_pb.MergeDatasetsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_dataset_v1_dataset_pb.MergeDatasetsResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -23,7 +23,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BoardServiceClient interface {
-	Status(ctx context.Context, in *StatusRequest, opts ...grpc.CallOption) (*StatusResponse, error)
 	SetGPIO(ctx context.Context, in *SetGPIORequest, opts ...grpc.CallOption) (*SetGPIOResponse, error)
 	// GetGPIO gets the high/low state of the given pin of a board of the underlying robot.
 	GetGPIO(ctx context.Context, in *GetGPIORequest, opts ...grpc.CallOption) (*GetGPIOResponse, error)
@@ -57,15 +56,6 @@ type boardServiceClient struct {
 
 func NewBoardServiceClient(cc grpc.ClientConnInterface) BoardServiceClient {
 	return &boardServiceClient{cc}
-}
-
-func (c *boardServiceClient) Status(ctx context.Context, in *StatusRequest, opts ...grpc.CallOption) (*StatusResponse, error) {
-	out := new(StatusResponse)
-	err := c.cc.Invoke(ctx, "/viam.component.board.v1.BoardService/Status", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *boardServiceClient) SetGPIO(ctx context.Context, in *SetGPIORequest, opts ...grpc.CallOption) (*SetGPIOResponse, error) {
@@ -212,7 +202,6 @@ func (c *boardServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeomet
 // All implementations must embed UnimplementedBoardServiceServer
 // for forward compatibility
 type BoardServiceServer interface {
-	Status(context.Context, *StatusRequest) (*StatusResponse, error)
 	SetGPIO(context.Context, *SetGPIORequest) (*SetGPIOResponse, error)
 	// GetGPIO gets the high/low state of the given pin of a board of the underlying robot.
 	GetGPIO(context.Context, *GetGPIORequest) (*GetGPIOResponse, error)
@@ -245,9 +234,6 @@ type BoardServiceServer interface {
 type UnimplementedBoardServiceServer struct {
 }
 
-func (UnimplementedBoardServiceServer) Status(context.Context, *StatusRequest) (*StatusResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Status not implemented")
-}
 func (UnimplementedBoardServiceServer) SetGPIO(context.Context, *SetGPIORequest) (*SetGPIOResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetGPIO not implemented")
 }
@@ -298,24 +284,6 @@ type UnsafeBoardServiceServer interface {
 
 func RegisterBoardServiceServer(s grpc.ServiceRegistrar, srv BoardServiceServer) {
 	s.RegisterService(&BoardService_ServiceDesc, srv)
-}
-
-func _BoardService_Status_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StatusRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BoardServiceServer).Status(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.component.board.v1.BoardService/Status",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BoardServiceServer).Status(ctx, req.(*StatusRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _BoardService_SetGPIO_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -562,10 +530,6 @@ var BoardService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "viam.component.board.v1.BoardService",
 	HandlerType: (*BoardServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Status",
-			Handler:    _BoardService_Status_Handler,
-		},
 		{
 			MethodName: "SetGPIO",
 			Handler:    _BoardService_SetGPIO_Handler,

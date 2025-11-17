@@ -22,12 +22,17 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataServiceClient interface {
+	// Deprecated: Do not use.
 	// TabularDataByFilter queries tabular data and metadata based on given filters.
 	TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (*TabularDataByFilterResponse, error)
 	// TabularDataBySQL queries tabular data with a SQL query.
 	TabularDataBySQL(ctx context.Context, in *TabularDataBySQLRequest, opts ...grpc.CallOption) (*TabularDataBySQLResponse, error)
 	// TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
 	TabularDataByMQL(ctx context.Context, in *TabularDataByMQLRequest, opts ...grpc.CallOption) (*TabularDataByMQLResponse, error)
+	// ExportTabularData queries tabular data from the specified data source.
+	ExportTabularData(ctx context.Context, in *ExportTabularDataRequest, opts ...grpc.CallOption) (DataService_ExportTabularDataClient, error)
+	// GetLatestTabularData gets the most recent tabular data captured from the specified data source.
+	GetLatestTabularData(ctx context.Context, in *GetLatestTabularDataRequest, opts ...grpc.CallOption) (*GetLatestTabularDataResponse, error)
 	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(ctx context.Context, in *BinaryDataByFilterRequest, opts ...grpc.CallOption) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
@@ -40,20 +45,26 @@ type DataServiceClient interface {
 	DeleteBinaryDataByIDs(ctx context.Context, in *DeleteBinaryDataByIDsRequest, opts ...grpc.CallOption) (*DeleteBinaryDataByIDsResponse, error)
 	// AddTagsToBinaryDataByIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
 	AddTagsToBinaryDataByIDs(ctx context.Context, in *AddTagsToBinaryDataByIDsRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByIDsResponse, error)
+	// Deprecated: Do not use.
 	// AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
 	AddTagsToBinaryDataByFilter(ctx context.Context, in *AddTagsToBinaryDataByFilterRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByFilterResponse, error)
 	// RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
 	RemoveTagsFromBinaryDataByIDs(ctx context.Context, in *RemoveTagsFromBinaryDataByIDsRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByIDsResponse, error)
+	// Deprecated: Do not use.
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error)
+	// Deprecated: Do not use.
 	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(ctx context.Context, in *TagsByFilterRequest, opts ...grpc.CallOption) (*TagsByFilterResponse, error)
 	// AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
 	AddBoundingBoxToImageByID(ctx context.Context, in *AddBoundingBoxToImageByIDRequest, opts ...grpc.CallOption) (*AddBoundingBoxToImageByIDResponse, error)
 	// RemoveBoundingBoxFromImageByID removes a bounding box from an image with the given ID.
 	RemoveBoundingBoxFromImageByID(ctx context.Context, in *RemoveBoundingBoxFromImageByIDRequest, opts ...grpc.CallOption) (*RemoveBoundingBoxFromImageByIDResponse, error)
+	// Deprecated: Do not use.
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error)
+	// UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
+	UpdateBoundingBox(ctx context.Context, in *UpdateBoundingBoxRequest, opts ...grpc.CallOption) (*UpdateBoundingBoxResponse, error)
 	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
 	// returns the hostname of the federated database.
 	GetDatabaseConnection(ctx context.Context, in *GetDatabaseConnectionRequest, opts ...grpc.CallOption) (*GetDatabaseConnectionResponse, error)
@@ -64,6 +75,22 @@ type DataServiceClient interface {
 	AddBinaryDataToDatasetByIDs(ctx context.Context, in *AddBinaryDataToDatasetByIDsRequest, opts ...grpc.CallOption) (*AddBinaryDataToDatasetByIDsResponse, error)
 	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
 	RemoveBinaryDataFromDatasetByIDs(ctx context.Context, in *RemoveBinaryDataFromDatasetByIDsRequest, opts ...grpc.CallOption) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
+	// CreateIndex starts a custom index build
+	CreateIndex(ctx context.Context, in *CreateIndexRequest, opts ...grpc.CallOption) (*CreateIndexResponse, error)
+	// ListIndexes returns all the indexes for a given collection
+	ListIndexes(ctx context.Context, in *ListIndexesRequest, opts ...grpc.CallOption) (*ListIndexesResponse, error)
+	// DeleteIndex drops the specified custom index from a collection
+	DeleteIndex(ctx context.Context, in *DeleteIndexRequest, opts ...grpc.CallOption) (*DeleteIndexResponse, error)
+	// CreateSavedQuery saves a mql query.
+	CreateSavedQuery(ctx context.Context, in *CreateSavedQueryRequest, opts ...grpc.CallOption) (*CreateSavedQueryResponse, error)
+	// UpdateSavedQuery updates the saved query with the given id.
+	UpdateSavedQuery(ctx context.Context, in *UpdateSavedQueryRequest, opts ...grpc.CallOption) (*UpdateSavedQueryResponse, error)
+	// GetSavedQuery retrieves a saved query by id.
+	GetSavedQuery(ctx context.Context, in *GetSavedQueryRequest, opts ...grpc.CallOption) (*GetSavedQueryResponse, error)
+	// DeleteSavedQuery deletes a saved query based on the given id.
+	DeleteSavedQuery(ctx context.Context, in *DeleteSavedQueryRequest, opts ...grpc.CallOption) (*DeleteSavedQueryResponse, error)
+	// ListSavedQueries lists saved queries for a given organization.
+	ListSavedQueries(ctx context.Context, in *ListSavedQueriesRequest, opts ...grpc.CallOption) (*ListSavedQueriesResponse, error)
 }
 
 type dataServiceClient struct {
@@ -74,6 +101,7 @@ func NewDataServiceClient(cc grpc.ClientConnInterface) DataServiceClient {
 	return &dataServiceClient{cc}
 }
 
+// Deprecated: Do not use.
 func (c *dataServiceClient) TabularDataByFilter(ctx context.Context, in *TabularDataByFilterRequest, opts ...grpc.CallOption) (*TabularDataByFilterResponse, error) {
 	out := new(TabularDataByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TabularDataByFilter", in, out, opts...)
@@ -95,6 +123,47 @@ func (c *dataServiceClient) TabularDataBySQL(ctx context.Context, in *TabularDat
 func (c *dataServiceClient) TabularDataByMQL(ctx context.Context, in *TabularDataByMQLRequest, opts ...grpc.CallOption) (*TabularDataByMQLResponse, error) {
 	out := new(TabularDataByMQLResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TabularDataByMQL", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) ExportTabularData(ctx context.Context, in *ExportTabularDataRequest, opts ...grpc.CallOption) (DataService_ExportTabularDataClient, error) {
+	stream, err := c.cc.NewStream(ctx, &DataService_ServiceDesc.Streams[0], "/viam.app.data.v1.DataService/ExportTabularData", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &dataServiceExportTabularDataClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type DataService_ExportTabularDataClient interface {
+	Recv() (*ExportTabularDataResponse, error)
+	grpc.ClientStream
+}
+
+type dataServiceExportTabularDataClient struct {
+	grpc.ClientStream
+}
+
+func (x *dataServiceExportTabularDataClient) Recv() (*ExportTabularDataResponse, error) {
+	m := new(ExportTabularDataResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *dataServiceClient) GetLatestTabularData(ctx context.Context, in *GetLatestTabularDataRequest, opts ...grpc.CallOption) (*GetLatestTabularDataResponse, error) {
+	out := new(GetLatestTabularDataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetLatestTabularData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -155,6 +224,7 @@ func (c *dataServiceClient) AddTagsToBinaryDataByIDs(ctx context.Context, in *Ad
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *dataServiceClient) AddTagsToBinaryDataByFilter(ctx context.Context, in *AddTagsToBinaryDataByFilterRequest, opts ...grpc.CallOption) (*AddTagsToBinaryDataByFilterResponse, error) {
 	out := new(AddTagsToBinaryDataByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/AddTagsToBinaryDataByFilter", in, out, opts...)
@@ -173,6 +243,7 @@ func (c *dataServiceClient) RemoveTagsFromBinaryDataByIDs(ctx context.Context, i
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *dataServiceClient) RemoveTagsFromBinaryDataByFilter(ctx context.Context, in *RemoveTagsFromBinaryDataByFilterRequest, opts ...grpc.CallOption) (*RemoveTagsFromBinaryDataByFilterResponse, error) {
 	out := new(RemoveTagsFromBinaryDataByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/RemoveTagsFromBinaryDataByFilter", in, out, opts...)
@@ -182,6 +253,7 @@ func (c *dataServiceClient) RemoveTagsFromBinaryDataByFilter(ctx context.Context
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *dataServiceClient) TagsByFilter(ctx context.Context, in *TagsByFilterRequest, opts ...grpc.CallOption) (*TagsByFilterResponse, error) {
 	out := new(TagsByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/TagsByFilter", in, out, opts...)
@@ -209,9 +281,19 @@ func (c *dataServiceClient) RemoveBoundingBoxFromImageByID(ctx context.Context, 
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *dataServiceClient) BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error) {
 	out := new(BoundingBoxLabelsByFilterResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/BoundingBoxLabelsByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) UpdateBoundingBox(ctx context.Context, in *UpdateBoundingBoxRequest, opts ...grpc.CallOption) (*UpdateBoundingBoxResponse, error) {
+	out := new(UpdateBoundingBoxResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/UpdateBoundingBox", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -254,16 +336,93 @@ func (c *dataServiceClient) RemoveBinaryDataFromDatasetByIDs(ctx context.Context
 	return out, nil
 }
 
+func (c *dataServiceClient) CreateIndex(ctx context.Context, in *CreateIndexRequest, opts ...grpc.CallOption) (*CreateIndexResponse, error) {
+	out := new(CreateIndexResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/CreateIndex", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) ListIndexes(ctx context.Context, in *ListIndexesRequest, opts ...grpc.CallOption) (*ListIndexesResponse, error) {
+	out := new(ListIndexesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/ListIndexes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) DeleteIndex(ctx context.Context, in *DeleteIndexRequest, opts ...grpc.CallOption) (*DeleteIndexResponse, error) {
+	out := new(DeleteIndexResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteIndex", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) CreateSavedQuery(ctx context.Context, in *CreateSavedQueryRequest, opts ...grpc.CallOption) (*CreateSavedQueryResponse, error) {
+	out := new(CreateSavedQueryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/CreateSavedQuery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) UpdateSavedQuery(ctx context.Context, in *UpdateSavedQueryRequest, opts ...grpc.CallOption) (*UpdateSavedQueryResponse, error) {
+	out := new(UpdateSavedQueryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/UpdateSavedQuery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) GetSavedQuery(ctx context.Context, in *GetSavedQueryRequest, opts ...grpc.CallOption) (*GetSavedQueryResponse, error) {
+	out := new(GetSavedQueryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetSavedQuery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) DeleteSavedQuery(ctx context.Context, in *DeleteSavedQueryRequest, opts ...grpc.CallOption) (*DeleteSavedQueryResponse, error) {
+	out := new(DeleteSavedQueryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteSavedQuery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) ListSavedQueries(ctx context.Context, in *ListSavedQueriesRequest, opts ...grpc.CallOption) (*ListSavedQueriesResponse, error) {
+	out := new(ListSavedQueriesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/ListSavedQueries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
 type DataServiceServer interface {
+	// Deprecated: Do not use.
 	// TabularDataByFilter queries tabular data and metadata based on given filters.
 	TabularDataByFilter(context.Context, *TabularDataByFilterRequest) (*TabularDataByFilterResponse, error)
 	// TabularDataBySQL queries tabular data with a SQL query.
 	TabularDataBySQL(context.Context, *TabularDataBySQLRequest) (*TabularDataBySQLResponse, error)
 	// TabularDataByMQL queries tabular data with an MQL (MongoDB Query Language) query.
 	TabularDataByMQL(context.Context, *TabularDataByMQLRequest) (*TabularDataByMQLResponse, error)
+	// ExportTabularData queries tabular data from the specified data source.
+	ExportTabularData(*ExportTabularDataRequest, DataService_ExportTabularDataServer) error
+	// GetLatestTabularData gets the most recent tabular data captured from the specified data source.
+	GetLatestTabularData(context.Context, *GetLatestTabularDataRequest) (*GetLatestTabularDataResponse, error)
 	// BinaryDataByFilter queries binary data and metadata based on given filters.
 	BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error)
 	// BinaryDataByIDs queries binary data and metadata based on given IDs.
@@ -276,20 +435,26 @@ type DataServiceServer interface {
 	DeleteBinaryDataByIDs(context.Context, *DeleteBinaryDataByIDsRequest) (*DeleteBinaryDataByIDsResponse, error)
 	// AddTagsToBinaryDataByIDs adds string tags, unless the tags are already present, to binary data based on given IDs.
 	AddTagsToBinaryDataByIDs(context.Context, *AddTagsToBinaryDataByIDsRequest) (*AddTagsToBinaryDataByIDsResponse, error)
+	// Deprecated: Do not use.
 	// AddTagsToBinaryDataByFilter adds string tags, unless the tags are already present, to binary data based on the given filter.
 	AddTagsToBinaryDataByFilter(context.Context, *AddTagsToBinaryDataByFilterRequest) (*AddTagsToBinaryDataByFilterResponse, error)
 	// RemoveTagsToBinaryDataByIDs removes string tags from binary data based on given IDs.
 	RemoveTagsFromBinaryDataByIDs(context.Context, *RemoveTagsFromBinaryDataByIDsRequest) (*RemoveTagsFromBinaryDataByIDsResponse, error)
+	// Deprecated: Do not use.
 	// RemoveTagsToBinaryDataByFilter removes string tags from binary data based on the given filter.
 	RemoveTagsFromBinaryDataByFilter(context.Context, *RemoveTagsFromBinaryDataByFilterRequest) (*RemoveTagsFromBinaryDataByFilterResponse, error)
+	// Deprecated: Do not use.
 	// TagsByFilter gets all unique tags from data based on given filter.
 	TagsByFilter(context.Context, *TagsByFilterRequest) (*TagsByFilterResponse, error)
 	// AddBoundingBoxToImageByID adds a bounding box to an image with the given ID.
 	AddBoundingBoxToImageByID(context.Context, *AddBoundingBoxToImageByIDRequest) (*AddBoundingBoxToImageByIDResponse, error)
 	// RemoveBoundingBoxFromImageByID removes a bounding box from an image with the given ID.
 	RemoveBoundingBoxFromImageByID(context.Context, *RemoveBoundingBoxFromImageByIDRequest) (*RemoveBoundingBoxFromImageByIDResponse, error)
+	// Deprecated: Do not use.
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error)
+	// UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
+	UpdateBoundingBox(context.Context, *UpdateBoundingBoxRequest) (*UpdateBoundingBoxResponse, error)
 	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
 	// returns the hostname of the federated database.
 	GetDatabaseConnection(context.Context, *GetDatabaseConnectionRequest) (*GetDatabaseConnectionResponse, error)
@@ -300,6 +465,22 @@ type DataServiceServer interface {
 	AddBinaryDataToDatasetByIDs(context.Context, *AddBinaryDataToDatasetByIDsRequest) (*AddBinaryDataToDatasetByIDsResponse, error)
 	// RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
 	RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error)
+	// CreateIndex starts a custom index build
+	CreateIndex(context.Context, *CreateIndexRequest) (*CreateIndexResponse, error)
+	// ListIndexes returns all the indexes for a given collection
+	ListIndexes(context.Context, *ListIndexesRequest) (*ListIndexesResponse, error)
+	// DeleteIndex drops the specified custom index from a collection
+	DeleteIndex(context.Context, *DeleteIndexRequest) (*DeleteIndexResponse, error)
+	// CreateSavedQuery saves a mql query.
+	CreateSavedQuery(context.Context, *CreateSavedQueryRequest) (*CreateSavedQueryResponse, error)
+	// UpdateSavedQuery updates the saved query with the given id.
+	UpdateSavedQuery(context.Context, *UpdateSavedQueryRequest) (*UpdateSavedQueryResponse, error)
+	// GetSavedQuery retrieves a saved query by id.
+	GetSavedQuery(context.Context, *GetSavedQueryRequest) (*GetSavedQueryResponse, error)
+	// DeleteSavedQuery deletes a saved query based on the given id.
+	DeleteSavedQuery(context.Context, *DeleteSavedQueryRequest) (*DeleteSavedQueryResponse, error)
+	// ListSavedQueries lists saved queries for a given organization.
+	ListSavedQueries(context.Context, *ListSavedQueriesRequest) (*ListSavedQueriesResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -315,6 +496,12 @@ func (UnimplementedDataServiceServer) TabularDataBySQL(context.Context, *Tabular
 }
 func (UnimplementedDataServiceServer) TabularDataByMQL(context.Context, *TabularDataByMQLRequest) (*TabularDataByMQLResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TabularDataByMQL not implemented")
+}
+func (UnimplementedDataServiceServer) ExportTabularData(*ExportTabularDataRequest, DataService_ExportTabularDataServer) error {
+	return status.Errorf(codes.Unimplemented, "method ExportTabularData not implemented")
+}
+func (UnimplementedDataServiceServer) GetLatestTabularData(context.Context, *GetLatestTabularDataRequest) (*GetLatestTabularDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLatestTabularData not implemented")
 }
 func (UnimplementedDataServiceServer) BinaryDataByFilter(context.Context, *BinaryDataByFilterRequest) (*BinaryDataByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BinaryDataByFilter not implemented")
@@ -355,6 +542,9 @@ func (UnimplementedDataServiceServer) RemoveBoundingBoxFromImageByID(context.Con
 func (UnimplementedDataServiceServer) BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BoundingBoxLabelsByFilter not implemented")
 }
+func (UnimplementedDataServiceServer) UpdateBoundingBox(context.Context, *UpdateBoundingBoxRequest) (*UpdateBoundingBoxResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBoundingBox not implemented")
+}
 func (UnimplementedDataServiceServer) GetDatabaseConnection(context.Context, *GetDatabaseConnectionRequest) (*GetDatabaseConnectionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDatabaseConnection not implemented")
 }
@@ -366,6 +556,30 @@ func (UnimplementedDataServiceServer) AddBinaryDataToDatasetByIDs(context.Contex
 }
 func (UnimplementedDataServiceServer) RemoveBinaryDataFromDatasetByIDs(context.Context, *RemoveBinaryDataFromDatasetByIDsRequest) (*RemoveBinaryDataFromDatasetByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveBinaryDataFromDatasetByIDs not implemented")
+}
+func (UnimplementedDataServiceServer) CreateIndex(context.Context, *CreateIndexRequest) (*CreateIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateIndex not implemented")
+}
+func (UnimplementedDataServiceServer) ListIndexes(context.Context, *ListIndexesRequest) (*ListIndexesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListIndexes not implemented")
+}
+func (UnimplementedDataServiceServer) DeleteIndex(context.Context, *DeleteIndexRequest) (*DeleteIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteIndex not implemented")
+}
+func (UnimplementedDataServiceServer) CreateSavedQuery(context.Context, *CreateSavedQueryRequest) (*CreateSavedQueryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSavedQuery not implemented")
+}
+func (UnimplementedDataServiceServer) UpdateSavedQuery(context.Context, *UpdateSavedQueryRequest) (*UpdateSavedQueryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSavedQuery not implemented")
+}
+func (UnimplementedDataServiceServer) GetSavedQuery(context.Context, *GetSavedQueryRequest) (*GetSavedQueryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSavedQuery not implemented")
+}
+func (UnimplementedDataServiceServer) DeleteSavedQuery(context.Context, *DeleteSavedQueryRequest) (*DeleteSavedQueryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSavedQuery not implemented")
+}
+func (UnimplementedDataServiceServer) ListSavedQueries(context.Context, *ListSavedQueriesRequest) (*ListSavedQueriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSavedQueries not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -430,6 +644,45 @@ func _DataService_TabularDataByMQL_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataServiceServer).TabularDataByMQL(ctx, req.(*TabularDataByMQLRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_ExportTabularData_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ExportTabularDataRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(DataServiceServer).ExportTabularData(m, &dataServiceExportTabularDataServer{stream})
+}
+
+type DataService_ExportTabularDataServer interface {
+	Send(*ExportTabularDataResponse) error
+	grpc.ServerStream
+}
+
+type dataServiceExportTabularDataServer struct {
+	grpc.ServerStream
+}
+
+func (x *dataServiceExportTabularDataServer) Send(m *ExportTabularDataResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _DataService_GetLatestTabularData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLatestTabularDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).GetLatestTabularData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/GetLatestTabularData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).GetLatestTabularData(ctx, req.(*GetLatestTabularDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -668,6 +921,24 @@ func _DataService_BoundingBoxLabelsByFilter_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_UpdateBoundingBox_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateBoundingBoxRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).UpdateBoundingBox(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/UpdateBoundingBox",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).UpdateBoundingBox(ctx, req.(*UpdateBoundingBoxRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataService_GetDatabaseConnection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDatabaseConnectionRequest)
 	if err := dec(in); err != nil {
@@ -740,6 +1011,150 @@ func _DataService_RemoveBinaryDataFromDatasetByIDs_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_CreateIndex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateIndexRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).CreateIndex(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/CreateIndex",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).CreateIndex(ctx, req.(*CreateIndexRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_ListIndexes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListIndexesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).ListIndexes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/ListIndexes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).ListIndexes(ctx, req.(*ListIndexesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_DeleteIndex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteIndexRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).DeleteIndex(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/DeleteIndex",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).DeleteIndex(ctx, req.(*DeleteIndexRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_CreateSavedQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSavedQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).CreateSavedQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/CreateSavedQuery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).CreateSavedQuery(ctx, req.(*CreateSavedQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_UpdateSavedQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSavedQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).UpdateSavedQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/UpdateSavedQuery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).UpdateSavedQuery(ctx, req.(*UpdateSavedQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_GetSavedQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSavedQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).GetSavedQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/GetSavedQuery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).GetSavedQuery(ctx, req.(*GetSavedQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_DeleteSavedQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSavedQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).DeleteSavedQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/DeleteSavedQuery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).DeleteSavedQuery(ctx, req.(*DeleteSavedQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_ListSavedQueries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSavedQueriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).ListSavedQueries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/ListSavedQueries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).ListSavedQueries(ctx, req.(*ListSavedQueriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -758,6 +1173,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TabularDataByMQL",
 			Handler:    _DataService_TabularDataByMQL_Handler,
+		},
+		{
+			MethodName: "GetLatestTabularData",
+			Handler:    _DataService_GetLatestTabularData_Handler,
 		},
 		{
 			MethodName: "BinaryDataByFilter",
@@ -812,6 +1231,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DataService_BoundingBoxLabelsByFilter_Handler,
 		},
 		{
+			MethodName: "UpdateBoundingBox",
+			Handler:    _DataService_UpdateBoundingBox_Handler,
+		},
+		{
 			MethodName: "GetDatabaseConnection",
 			Handler:    _DataService_GetDatabaseConnection_Handler,
 		},
@@ -827,7 +1250,45 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "RemoveBinaryDataFromDatasetByIDs",
 			Handler:    _DataService_RemoveBinaryDataFromDatasetByIDs_Handler,
 		},
+		{
+			MethodName: "CreateIndex",
+			Handler:    _DataService_CreateIndex_Handler,
+		},
+		{
+			MethodName: "ListIndexes",
+			Handler:    _DataService_ListIndexes_Handler,
+		},
+		{
+			MethodName: "DeleteIndex",
+			Handler:    _DataService_DeleteIndex_Handler,
+		},
+		{
+			MethodName: "CreateSavedQuery",
+			Handler:    _DataService_CreateSavedQuery_Handler,
+		},
+		{
+			MethodName: "UpdateSavedQuery",
+			Handler:    _DataService_UpdateSavedQuery_Handler,
+		},
+		{
+			MethodName: "GetSavedQuery",
+			Handler:    _DataService_GetSavedQuery_Handler,
+		},
+		{
+			MethodName: "DeleteSavedQuery",
+			Handler:    _DataService_DeleteSavedQuery_Handler,
+		},
+		{
+			MethodName: "ListSavedQueries",
+			Handler:    _DataService_ListSavedQueries_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ExportTabularData",
+			Handler:       _DataService_ExportTabularData_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "app/data/v1/data.proto",
 }

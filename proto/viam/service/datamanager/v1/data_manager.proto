@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.service.datamanager.v1;
 
+import "app/datasync/v1/data_sync.proto";
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
@@ -13,16 +14,17 @@ option java_package = "com.viam.service.datamanager.v1";
 service DataManagerService {
   // Sync performs a sync of the non-synced files for the specified service name,
   rpc Sync(SyncRequest) returns (SyncResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/datamanager/{name}/datasync"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/datasync"};
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/datamanager/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/do_command"};
+  }
+
+  // UploadBinaryDataToDatasets uploads binary data to specified datasets.
+  rpc UploadBinaryDataToDatasets(UploadBinaryDataToDatasetsRequest) returns (UploadBinaryDataToDatasetsResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/upload_binary_data_to_datasets"};
   }
 }
 
@@ -33,3 +35,15 @@ message SyncRequest {
 }
 
 message SyncResponse {}
+
+message UploadBinaryDataToDatasetsRequest {
+  string name = 1;
+  bytes binary_data = 2;
+  repeated string tags = 3;
+  repeated string dataset_ids = 4;
+  app.datasync.v1.MimeType mime_type = 5;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message UploadBinaryDataToDatasetsResponse {}

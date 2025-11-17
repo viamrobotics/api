@@ -41,6 +41,15 @@ type ArmServiceMoveToJointPositions = {
   readonly responseType: typeof component_arm_v1_arm_pb.MoveToJointPositionsResponse;
 };
 
+type ArmServiceMoveThroughJointPositions = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_arm_v1_arm_pb.MoveThroughJointPositionsRequest;
+  readonly responseType: typeof component_arm_v1_arm_pb.MoveThroughJointPositionsResponse;
+};
+
 type ArmServiceStop = {
   readonly methodName: string;
   readonly service: typeof ArmService;
@@ -86,17 +95,28 @@ type ArmServiceGetGeometries = {
   readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
 };
 
+type ArmServiceGet3DModels = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.Get3DModelsRequest;
+  readonly responseType: typeof common_v1_common_pb.Get3DModelsResponse;
+};
+
 export class ArmService {
   static readonly serviceName: string;
   static readonly GetEndPosition: ArmServiceGetEndPosition;
   static readonly MoveToPosition: ArmServiceMoveToPosition;
   static readonly GetJointPositions: ArmServiceGetJointPositions;
   static readonly MoveToJointPositions: ArmServiceMoveToJointPositions;
+  static readonly MoveThroughJointPositions: ArmServiceMoveThroughJointPositions;
   static readonly Stop: ArmServiceStop;
   static readonly IsMoving: ArmServiceIsMoving;
   static readonly DoCommand: ArmServiceDoCommand;
   static readonly GetKinematics: ArmServiceGetKinematics;
   static readonly GetGeometries: ArmServiceGetGeometries;
+  static readonly Get3DModels: ArmServiceGet3DModels;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -167,6 +187,15 @@ export class ArmServiceClient {
     requestMessage: component_arm_v1_arm_pb.MoveToJointPositionsRequest,
     callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.MoveToJointPositionsResponse|null) => void
   ): UnaryResponse;
+  moveThroughJointPositions(
+    requestMessage: component_arm_v1_arm_pb.MoveThroughJointPositionsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.MoveThroughJointPositionsResponse|null) => void
+  ): UnaryResponse;
+  moveThroughJointPositions(
+    requestMessage: component_arm_v1_arm_pb.MoveThroughJointPositionsRequest,
+    callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.MoveThroughJointPositionsResponse|null) => void
+  ): UnaryResponse;
   stop(
     requestMessage: component_arm_v1_arm_pb.StopRequest,
     metadata: grpc.Metadata,
@@ -211,6 +240,15 @@ export class ArmServiceClient {
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  get3DModels(
+    requestMessage: common_v1_common_pb.Get3DModelsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.Get3DModelsResponse|null) => void
+  ): UnaryResponse;
+  get3DModels(
+    requestMessage: common_v1_common_pb.Get3DModelsRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.Get3DModelsResponse|null) => void
   ): UnaryResponse;
 }
 

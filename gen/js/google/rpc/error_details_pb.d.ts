@@ -107,6 +107,25 @@ export namespace QuotaFailure {
     getDescription(): string;
     setDescription(value: string): void;
 
+    getApiService(): string;
+    setApiService(value: string): void;
+
+    getQuotaMetric(): string;
+    setQuotaMetric(value: string): void;
+
+    getQuotaId(): string;
+    setQuotaId(value: string): void;
+
+    getQuotaDimensionsMap(): jspb.Map<string, string>;
+    clearQuotaDimensionsMap(): void;
+    getQuotaValue(): number;
+    setQuotaValue(value: number): void;
+
+    hasFutureQuotaValue(): boolean;
+    clearFutureQuotaValue(): void;
+    getFutureQuotaValue(): number;
+    setFutureQuotaValue(value: number): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Violation.AsObject;
     static toObject(includeInstance: boolean, msg: Violation): Violation.AsObject;
@@ -121,6 +140,12 @@ export namespace QuotaFailure {
     export type AsObject = {
       subject: string,
       description: string,
+      apiService: string,
+      quotaMetric: string,
+      quotaId: string,
+      quotaDimensionsMap: Array<[string, string]>,
+      quotaValue: number,
+      futureQuotaValue: number,
     }
   }
 }
@@ -203,6 +228,14 @@ export namespace BadRequest {
     getDescription(): string;
     setDescription(value: string): void;
 
+    getReason(): string;
+    setReason(value: string): void;
+
+    hasLocalizedMessage(): boolean;
+    clearLocalizedMessage(): void;
+    getLocalizedMessage(): LocalizedMessage | undefined;
+    setLocalizedMessage(value?: LocalizedMessage): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FieldViolation.AsObject;
     static toObject(includeInstance: boolean, msg: FieldViolation): FieldViolation.AsObject;
@@ -217,6 +250,8 @@ export namespace BadRequest {
     export type AsObject = {
       field: string,
       description: string,
+      reason: string,
+      localizedMessage?: LocalizedMessage.AsObject,
     }
   }
 }

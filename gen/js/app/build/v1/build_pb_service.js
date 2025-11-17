@@ -37,6 +37,78 @@ BuildService.ListJobs = {
   responseType: app_build_v1_build_pb.ListJobsResponse
 };
 
+BuildService.LinkRepo = {
+  methodName: "LinkRepo",
+  service: BuildService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_build_v1_build_pb.LinkRepoRequest,
+  responseType: app_build_v1_build_pb.LinkRepoResponse
+};
+
+BuildService.UnlinkRepo = {
+  methodName: "UnlinkRepo",
+  service: BuildService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_build_v1_build_pb.UnlinkRepoRequest,
+  responseType: app_build_v1_build_pb.UnlinkRepoResponse
+};
+
+BuildService.ListRepoLinks = {
+  methodName: "ListRepoLinks",
+  service: BuildService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_build_v1_build_pb.ListRepoLinksRequest,
+  responseType: app_build_v1_build_pb.ListRepoLinksResponse
+};
+
+BuildService.ListAppLinks = {
+  methodName: "ListAppLinks",
+  service: BuildService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_build_v1_build_pb.ListAppLinksRequest,
+  responseType: app_build_v1_build_pb.ListAppLinksResponse
+};
+
+BuildService.RemoveAppLink = {
+  methodName: "RemoveAppLink",
+  service: BuildService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_build_v1_build_pb.RemoveAppLinkRequest,
+  responseType: app_build_v1_build_pb.RemoveAppLinkResponse
+};
+
+BuildService.LinkOrg = {
+  methodName: "LinkOrg",
+  service: BuildService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_build_v1_build_pb.LinkOrgRequest,
+  responseType: app_build_v1_build_pb.LinkOrgResponse
+};
+
+BuildService.UnlinkOrg = {
+  methodName: "UnlinkOrg",
+  service: BuildService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_build_v1_build_pb.UnlinkOrgRequest,
+  responseType: app_build_v1_build_pb.UnlinkOrgResponse
+};
+
+BuildService.StartReloadBuild = {
+  methodName: "StartReloadBuild",
+  service: BuildService,
+  requestStream: true,
+  responseStream: false,
+  requestType: app_build_v1_build_pb.StartReloadBuildRequest,
+  responseType: app_build_v1_build_pb.StartReloadBuildResponse
+};
+
 exports.BuildService = BuildService;
 
 function BuildServiceClient(serviceHost, options) {
@@ -140,6 +212,264 @@ BuildServiceClient.prototype.listJobs = function listJobs(requestMessage, metada
   return {
     cancel: function () {
       callback = null;
+      client.close();
+    }
+  };
+};
+
+BuildServiceClient.prototype.linkRepo = function linkRepo(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BuildService.LinkRepo, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BuildServiceClient.prototype.unlinkRepo = function unlinkRepo(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BuildService.UnlinkRepo, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BuildServiceClient.prototype.listRepoLinks = function listRepoLinks(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BuildService.ListRepoLinks, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BuildServiceClient.prototype.listAppLinks = function listAppLinks(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BuildService.ListAppLinks, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BuildServiceClient.prototype.removeAppLink = function removeAppLink(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BuildService.RemoveAppLink, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BuildServiceClient.prototype.linkOrg = function linkOrg(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BuildService.LinkOrg, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BuildServiceClient.prototype.unlinkOrg = function unlinkOrg(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BuildService.UnlinkOrg, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BuildServiceClient.prototype.startReloadBuild = function startReloadBuild(metadata) {
+  var listeners = {
+    end: [],
+    status: []
+  };
+  var client = grpc.client(BuildService.StartReloadBuild, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      if (!client.started) {
+        client.start(metadata);
+      }
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
       client.close();
     }
   };

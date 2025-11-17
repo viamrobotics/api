@@ -13,18 +13,14 @@ option java_package = "com.viam.service.motion.v1";
 // A MotionService declares the gRPC contract for a motion service
 service MotionService {
   rpc Move(MoveRequest) returns (MoveResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/move"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/motion/{name}/move"};
   }
 
   // Generate a plan and move a component to a specific pose
   // with respect to the SLAM map's origin.
   // May replan to avoid obstacles
   rpc MoveOnMap(MoveOnMapRequest) returns (MoveOnMapResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/move_on_map"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/motion/{name}/move_on_map"};
   }
 
   // Generate and begin executing an execution to move a component
@@ -32,22 +28,17 @@ service MotionService {
   // May replan to avoid obstacles & account for location drift.
   // Creates a new plan upon replanning.
   rpc MoveOnGlobe(MoveOnGlobeRequest) returns (MoveOnGlobeResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/move_on_globe"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/motion/{name}/move_on_globe"};
   }
 
   rpc GetPose(GetPoseRequest) returns (GetPoseResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/motion/{name}/pose"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/motion/{name}/pose"};
+    option deprecated = true;
   }
 
   // Stops a Plan
   rpc StopPlan(StopPlanRequest) returns (StopPlanResponse) {
-    option (google.api.http) = {
-      put: "/viam/api/v1/service/motion/{name}/stop_plan"
-    };
+    option (google.api.http) = {put: "/viam/api/v1/service/motion/{name}/stop_plan"};
   }
 
   // Returns the status of plans created by requests to move components
@@ -55,9 +46,7 @@ service MotionService {
   // within the a 24HR TTL OR until the robot reinitializes.
   // This currently only returns plans for MoveOnGlobe and MoveOnMap.
   rpc ListPlanStatuses(ListPlanStatusesRequest) returns (ListPlanStatusesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/motion/{name}/list_plan_statuses"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/motion/{name}/list_plan_statuses"};
   }
 
   // Returns the plan(s) & state history of the most recent execution to move a
@@ -68,16 +57,12 @@ service MotionService {
   // Replans share the execution_id of the previously executing plan.
   // This currently only returns plans for MoveOnGlobe and MoveOnMap.
   rpc GetPlan(GetPlanRequest) returns (GetPlanResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/motion/{name}/get_plan"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/motion/{name}/get_plan"};
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/motion/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/motion/{name}/do_command"};
   }
 }
 
@@ -87,13 +72,15 @@ message MoveRequest {
   string name = 1;
   // Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system
   common.v1.PoseInFrame destination = 2;
-  // Component on the robot to move to the specified destination
-  common.v1.ResourceName component_name = 3;
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 3 [deprecated = true];
   // Avoid obstacles by specifying their geometries in the world state
   // Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
   optional common.v1.WorldState world_state = 4;
   // Constrain the way the robot will move
   optional Constraints constraints = 5;
+  // Component on the robot to move to the specified destination
+  string component_name = 6;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -107,14 +94,18 @@ message MoveOnMapRequest {
   string name = 1;
   // Specify a destination to, which can be any pose with respect to the SLAM map's origin
   common.v1.Pose destination = 2;
-  // Component on the robot to move to the specified destination
-  common.v1.ResourceName component_name = 3;
-  // Name of the slam service from which the SLAM map is requested
-  common.v1.ResourceName slam_service_name = 4;
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 3 [deprecated = true];
+  // Deprecated, use slam_service_name field.
+  common.v1.ResourceName slam_service_name_deprecated = 4 [deprecated = true];
   // Optional set of motion configuration options
   optional MotionConfiguration motion_configuration = 5;
   // Obstacles to be considered for motion planning
   repeated common.v1.Geometry obstacles = 6;
+  // Component on the robot to move to the specified destination
+  string component_name = 7;
+  // Name of the slam service from which the SLAM map is requested
+  string slam_service_name = 8;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -128,8 +119,10 @@ message MoveOnMapResponse {
 
 // Pairs a vision service with a camera, informing the service about which camera it may use
 message ObstacleDetector {
-  common.v1.ResourceName vision_service = 1;
-  common.v1.ResourceName camera = 2;
+  common.v1.ResourceName vision_service_deprecated = 1 [deprecated = true];
+  common.v1.ResourceName camera_deprecated = 2 [deprecated = true];
+  string vision_service = 3;
+  string camera = 4;
 }
 
 message MotionConfiguration {
@@ -154,14 +147,20 @@ message MoveOnGlobeRequest {
   common.v1.GeoPoint destination = 2;
   // Optional compass heading to achieve at the destination, in degrees [0-360)
   optional double heading = 3;
-  // Component on the robot to move to the specified destination
-  common.v1.ResourceName component_name = 4;
-  // Name of the movement sensor which will be used to check robot location
-  common.v1.ResourceName movement_sensor_name = 5;
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 4 [deprecated = true];
+  // Deprecated, use movement_sensor_name field.
+  common.v1.ResourceName movement_sensor_name_deprecated = 5 [deprecated = true];
   // Obstacles to be considered for motion planning
-  repeated common.v1.GeoObstacle obstacles = 6;
+  repeated common.v1.GeoGeometry obstacles = 6;
   // Optional set of motion configuration options
   optional MotionConfiguration motion_configuration = 7;
+  // Set of obstacles which the robot must remain within while navigating
+  repeated common.v1.GeoGeometry bounding_regions = 8;
+  // Component on the robot to move to the specified destination
+  string component_name = 9;
+  // Name of the movement sensor which will be used to check robot location
+  string movement_sensor_name = 10;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -174,9 +173,10 @@ message MoveOnGlobeResponse {
 }
 
 message GetPoseRequest {
+  option deprecated = true;
   string name = 1;
-  // the component whose pose is being requested
-  common.v1.ResourceName component_name = 2;
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 2 [deprecated = true];
   // the reference frame in which the component's pose
   // should be provided, if unset this defaults
   // to the "world" reference frame
@@ -184,11 +184,14 @@ message GetPoseRequest {
   // pose information on any additional reference frames that are needed
   // to compute the component's pose
   repeated common.v1.Transform supplemental_transforms = 4;
+  // the component whose pose is being requested
+  string component_name = 5;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
 
 message GetPoseResponse {
+  option deprecated = true;
   common.v1.PoseInFrame pose = 1;
 }
 
@@ -196,8 +199,11 @@ message StopPlanRequest {
   // The name of the motion service
   string name = 1;
 
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 2 [deprecated = true];
+
   // The component of the currently executing plan to stop
-  common.v1.ResourceName component_name = 2;
+  string component_name = 3;
 
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
@@ -227,8 +233,8 @@ message GetPlanRequest {
   // The name of the motion service
   string name = 1;
 
-  // The name of the component which was requested to be moved.
-  common.v1.ResourceName component_name = 2;
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 2 [deprecated = true];
 
   // If supplied, the response will only return
   // the the last plan for the component / execution
@@ -236,6 +242,9 @@ message GetPlanRequest {
 
   // If you want to know about the plans of a previous execution
   optional string execution_id = 4;
+
+  // The name of the component which was requested to be moved.
+  string component_name = 5;
 
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
@@ -258,6 +267,7 @@ message Constraints {
   repeated LinearConstraint linear_constraint = 1;
   repeated OrientationConstraint orientation_constraint = 2;
   repeated CollisionSpecification collision_specification = 3;
+  repeated PseudolinearConstraint pseudolinear_constraint = 4;
   // Arc constraint, Time constraint, and others will be added here when they are supported
 }
 
@@ -267,6 +277,15 @@ message LinearConstraint {
   optional float line_tolerance_mm = 1; // Max linear deviation from straight-line between start and goal, in mm.
   // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
   optional float orientation_tolerance_degs = 2;
+}
+
+// PseudolinearConstraint specifies that the component being moved should not deviate from the straight-line path to their goal by
+// more than a factor proportional to the distance from start to goal.
+// For example, if a component is moving 100mm, then a LineToleranceFactor of 1.0 means that the component will remain within a 100mm
+// radius of the straight-line start-goal path.
+message PseudolinearConstraint {
+  optional float line_tolerance_factor = 1;
+  optional float orientation_tolerance_factor = 2;
 }
 
 // OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative
@@ -306,11 +325,8 @@ message PlanStatusWithID {
   // The unique ID of the plan
   string plan_id = 1;
 
-  // The component to be moved.
-  // Used for tracking & stopping.
-  // NOTE: A plan may move more components than just the
-  // component_name.
-  common.v1.ResourceName component_name = 2;
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 2 [deprecated = true];
 
   // The unique ID which identifies the plan execution.
   // Multiple plans will share the same execution_id if they were
@@ -318,6 +334,12 @@ message PlanStatusWithID {
   string execution_id = 3;
 
   PlanStatus status = 4;
+
+  // The component to be moved.
+  // Used for tracking & stopping.
+  // NOTE: A plan may move more components than just the
+  // component_name.
+  string component_name = 5;
 }
 
 // Plan status describes the state of a given plan at a
@@ -354,11 +376,8 @@ message Plan {
   // The plan's unique ID
   string id = 1;
 
-  // The component requested to be moved.
-  // Used for tracking & stopping.
-  // NOTE: A plan may move more components than just the
-  // root component.
-  common.v1.ResourceName component_name = 2;
+  // Deprecated, use component_name field.
+  common.v1.ResourceName component_name_deprecated = 2 [deprecated = true];
 
   // The unique ID which identifies the execution.
   // Multiple plans will share the same execution_id if they were
@@ -367,6 +386,12 @@ message Plan {
 
   // The steps of a plan is an ordered list of plan steps
   repeated PlanStep steps = 4;
+
+  // The component requested to be moved.
+  // Used for tracking & stopping.
+  // NOTE: A plan may move more components than just the
+  // root component.
+  string component_name = 5;
 }
 
 message PlanStep {

@@ -26,6 +26,9 @@ service MLTrainingService {
 
   // DeleteCompletedTrainingJob removes a completed training job from the database, whether the job succeeded or failed.
   rpc DeleteCompletedTrainingJob(DeleteCompletedTrainingJobRequest) returns (DeleteCompletedTrainingJobResponse);
+
+  // GetTrainingJobLogs gets the logs for a given custom training job.
+  rpc GetTrainingJobLogs(GetTrainingJobLogsRequest) returns (GetTrainingJobLogsResponse);
 }
 
 enum ModelType {
@@ -49,6 +52,7 @@ message SubmitTrainingJobRequest {
   string model_name = 3 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
   string model_version = 4 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
   ModelType model_type = 5 [(tagger.v1.tags) = "bson:\"model_type\" json:\"model_type\""];
+  ModelFramework model_framework = 8 [(tagger.v1.tags) = "bson:\"model_framework\" json:\"model_framework\""];
   repeated string tags = 6 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
 
   reserved 1;
@@ -62,9 +66,11 @@ message SubmitTrainingJobResponse {
 message SubmitCustomTrainingJobRequest {
   string dataset_id = 1 [(tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
   string registry_item_id = 2 [(tagger.v1.tags) = "bson:\"registry_item_id\" json:\"registry_item_id\""];
+  string registry_item_version = 6 [(tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
   string organization_id = 3 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
   string model_name = 4 [(tagger.v1.tags) = "bson:\"model_name\" json:\"model_name\""];
   string model_version = 5 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
+  map<string, string> arguments = 7;
 }
 
 message SubmitCustomTrainingJobResponse {
@@ -99,7 +105,6 @@ enum TrainingStatus {
 }
 
 message TrainingJobMetadata {
-  SubmitTrainingJobRequest request = 1 [(tagger.v1.tags) = "bson:\"request\" json:\"request\""];
   string id = 7 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   string dataset_id = 11 [(tagger.v1.tags) = "bson:\"dataset_id\" json:\"dataset_id\""];
   string organization_id = 12 [(tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
@@ -109,6 +114,7 @@ message TrainingJobMetadata {
   ModelFramework model_framework = 17 [(tagger.v1.tags) = "bson:\"model_framework\" json:\"model_framework\""];
   bool is_custom_job = 18 [(tagger.v1.tags) = "bson:\"is_custom_job\" json:\"is_custom_job\""];
   string registry_item_id = 19 [(tagger.v1.tags) = "bson:\"registry_item_id\" json:\"registry_item_id\""];
+  string registry_item_version = 20 [(tagger.v1.tags) = "bson:\"registry_item_version\" json:\"registry_item_version\""];
   TrainingStatus status = 2 [(tagger.v1.tags) = "bson:\"status\" json:\"status\""];
   google.rpc.Status error_status = 8 [(tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
   google.protobuf.Timestamp created_on = 3 [(tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
@@ -117,9 +123,10 @@ message TrainingJobMetadata {
   google.protobuf.Timestamp training_ended = 10 [(tagger.v1.tags) = "bson:\"training_ended\" json:\"training_ended\""];
   string synced_model_id = 5 [(tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   repeated string tags = 16 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
+  map<string, string> arguments = 21 [(tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
 
-  reserved 6;
-  reserved "user_email";
+  reserved 1, 6;
+  reserved "request", "user_email";
 }
 
 message CancelTrainingJobRequest {
@@ -133,3 +140,19 @@ message DeleteCompletedTrainingJobRequest {
 }
 
 message DeleteCompletedTrainingJobResponse {}
+
+message TrainingJobLogEntry {
+  string level = 1;
+  google.protobuf.Timestamp time = 2;
+  string message = 3;
+}
+
+message GetTrainingJobLogsRequest {
+  string id = 1;
+  optional string page_token = 2;
+}
+
+message GetTrainingJobLogsResponse {
+  repeated TrainingJobLogEntry logs = 1;
+  string next_page_token = 2;
+}

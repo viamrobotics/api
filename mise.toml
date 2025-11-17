@@ -1,0 +1,102 @@
+[settings]
+# (Josh) Testing shows that mise only generates new lockfile entries for the
+# platform it is run on, so adding new tools on MacOS causes the CI runs to
+# create a diff for the corresponding Linux entries. We can also assume that
+# updating versions on one OS would leave the other(s) out of date. For now
+# we'll rely on specifying exact versions here (or as exact as we feel is
+# necessary) and revisit the lockfile if and when it improves and we feel it's
+# needed.
+lockfile = false
+# (Josh) At time of writing the go backend is experimental. When it's promoted
+# to stable this can be removed.
+experimental = true
+# (Josh) asdf plugins are just shell scripts that can impose dependencies on
+# arbitrary cli tools and are just generally worse than all the other backend
+# options. If we really need to we can reenable asdf but for now it's disabled
+# to ensure it is not selected by any future `buf use` invocations.
+disable_backends = ["asdf"]
+
+[tools]
+buf = "1.55.1"
+go = "1.23"
+"go:github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking" = "1.55.1"
+"go:github.com/bufbuild/buf/cmd/protoc-gen-buf-lint" = "1.55.1"
+"go:github.com/edaniels/golinters/cmd/combined" = "0.0.5"
+"go:github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway" = "2.20.0"
+"go:github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2" = "2.27.1"
+"go:github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc" = "1.5.1"
+"go:github.com/srikrsna/protoc-gen-gotag" = "1.0.2"
+# This one can be installed as a binary but it produces very slightly different output.
+# Switch to that when upgrading.
+"go:google.golang.org/grpc/cmd/protoc-gen-go-grpc" = "1.2.0"
+golangci-lint = "1.61"
+node = "22"
+"npm:ts-protoc-gen" = "0.15.0"
+protobuf = "3.20.2"
+protoc-gen-go = "1.35.1"
+# The default asdf backend for this downloads the wrong binary on aarch64 linux.
+# Use ubi to grab the correct binary directly from the Github release.
+"ubi:grpc/grpc-web" = { version = "1.5.0", rename_exe = "protoc-gen-grpc-web" }
+
+[tasks.clean]
+description = "Remove all untracked files"
+run = 'git clean -fdx'
+
+[tasks.buf]
+description = "Compile protos for all platforms"
+depends = ['buf-go', 'buf-web']
+
+[tasks.buf-go]
+description = "Compile protos for Go"
+sources = ["proto/**/*.proto"]
+outputs = ['**/*.pb.go', '**/*.pb.gw.go']
+depends = ['lint-buf']
+wait_for = ['clean']
+run = [
+  'buf generate --template ./proto/viam/buf.gen.yaml',
+  'buf generate --template ./proto/viam/buf.gen.tagger.yaml',
+]
+
+[tasks.buf-web]
+description = "Compile protos for web (js/ts)"
+sources = ["proto/**/*.proto"]
+outputs = ['gen/js/**/*.js', 'gen/js/**/*.ts']
+depends = ['lint-buf']
+wait_for = ['clean']
+quiet = true
+run = """
+  # Buf has very weird behavior where any protoc-gen-<whatever> in your path
+  # will take precedence over the protoc builtin compilers. This causes issues
+  # for users with protoc-gen-js installed via the system package manager for
+  # other projects. We work around the issue here by constructing a new PATH
+  # that only contains binaries managed by mise. This can be removed when we
+  # update from our very old protoc's builtin js compiler to a protoc-gen-js
+  # managed by mise.
+  PATH="$(mise bin-paths --raw | paste -sd: -)"
+  # Set this so the user can see the commands being run in a similar way to
+  # how tasks defined in an array are displayed.
+  set -x
+  buf generate --template ./proto/viam/buf.gen.web.yaml
+  buf generate --timeout 5m --template ./proto/viam/buf.gen.web.yaml buf.build/googleapis/googleapis
+"""
+
+[tasks.lint]
+description = "Run all linters"
+depends = ['lint-buf', 'lint-go']
+
+[tasks.lint-buf]
+description = "Lint + format protos"
+wait_for = ['clean']
+run = ['buf lint', 'buf format -w']
+
+[tasks.lint-go]
+description = "Lint Go files"
+wait_for = ['clean']
+depends = ['lint-buf']
+run = """
+  {% raw %}
+  #!/usr/bin/env bash
+  export pkgs=`go list -f '{{.Dir}}' ./... | grep -v gen | grep -v proto` && echo "$pkgs" | xargs go vet -vettool=$(which combined)
+  export GOGC=50 pkgs=`go list -f '{{.Dir}}' ./... | grep -v gen | grep -v proto` && echo "$pkgs" | xargs golangci-lint run $LINT_BUILD_TAGS -v --fix --config=./etc/.golangci.yaml
+  {% endraw %}
+"""

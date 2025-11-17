@@ -68,6 +68,30 @@ export class RobotConfig extends jspb.Message {
   setOverwriteFragmentStatusList(value: Array<AppValidationStatus>): void;
   addOverwriteFragmentStatus(value?: AppValidationStatus, index?: number): AppValidationStatus;
 
+  getEnableWebProfile(): boolean;
+  setEnableWebProfile(value: boolean): void;
+
+  clearLogList(): void;
+  getLogList(): Array<LogPatternConfig>;
+  setLogList(value: Array<LogPatternConfig>): void;
+  addLog(value?: LogPatternConfig, index?: number): LogPatternConfig;
+
+  getRevision(): string;
+  setRevision(value: string): void;
+
+  hasMaintenance(): boolean;
+  clearMaintenance(): void;
+  getMaintenance(): MaintenanceConfig | undefined;
+  setMaintenance(value?: MaintenanceConfig): void;
+
+  getDisableLogDeduplication(): boolean;
+  setDisableLogDeduplication(value: boolean): void;
+
+  clearJobsList(): void;
+  getJobsList(): Array<JobConfig>;
+  setJobsList(value: Array<JobConfig>): void;
+  addJobs(value?: JobConfig, index?: number): JobConfig;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -92,6 +116,74 @@ export namespace RobotConfig {
     disablePartialStart: boolean,
     packagesList: Array<PackageConfig.AsObject>,
     overwriteFragmentStatusList: Array<AppValidationStatus.AsObject>,
+    enableWebProfile: boolean,
+    logList: Array<LogPatternConfig.AsObject>,
+    revision: string,
+    maintenance?: MaintenanceConfig.AsObject,
+    disableLogDeduplication: boolean,
+    jobsList: Array<JobConfig.AsObject>,
+  }
+}
+
+export class LogPatternConfig extends jspb.Message {
+  getPattern(): string;
+  setPattern(value: string): void;
+
+  getLevel(): string;
+  setLevel(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LogPatternConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: LogPatternConfig): LogPatternConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LogPatternConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LogPatternConfig;
+  static deserializeBinaryFromReader(message: LogPatternConfig, reader: jspb.BinaryReader): LogPatternConfig;
+}
+
+export namespace LogPatternConfig {
+  export type AsObject = {
+    pattern: string,
+    level: string,
+  }
+}
+
+export class JobConfig extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getSchedule(): string;
+  setSchedule(value: string): void;
+
+  getResource(): string;
+  setResource(value: string): void;
+
+  getMethod(): string;
+  setMethod(value: string): void;
+
+  hasCommand(): boolean;
+  clearCommand(): void;
+  getCommand(): google_protobuf_struct_pb.Struct | undefined;
+  setCommand(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): JobConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: JobConfig): JobConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: JobConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): JobConfig;
+  static deserializeBinaryFromReader(message: JobConfig, reader: jspb.BinaryReader): JobConfig;
+}
+
+export namespace JobConfig {
+  export type AsObject = {
+    name: string,
+    schedule: string,
+    resource: string,
+    method: string,
+    command?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -328,6 +420,9 @@ export class ProcessConfig extends jspb.Message {
 
   getEnvMap(): jspb.Map<string, string>;
   clearEnvMap(): void;
+  getUsername(): string;
+  setUsername(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ProcessConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ProcessConfig): ProcessConfig.AsObject;
@@ -349,6 +444,7 @@ export namespace ProcessConfig {
     stopSignal: number,
     stopTimeout?: google_protobuf_duration_pb.Duration.AsObject,
     envMap: Array<[string, string]>,
+    username: string,
   }
 }
 
@@ -383,6 +479,11 @@ export class ServiceConfig extends jspb.Message {
   setServiceConfigsList(value: Array<ResourceLevelServiceConfig>): void;
   addServiceConfigs(value?: ResourceLevelServiceConfig, index?: number): ResourceLevelServiceConfig;
 
+  hasLogConfiguration(): boolean;
+  clearLogConfiguration(): void;
+  getLogConfiguration(): LogConfiguration | undefined;
+  setLogConfiguration(value?: LogConfiguration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ServiceConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ServiceConfig): ServiceConfig.AsObject;
@@ -403,6 +504,7 @@ export namespace ServiceConfig {
     model: string,
     api: string,
     serviceConfigsList: Array<ResourceLevelServiceConfig.AsObject>,
+    logConfiguration?: LogConfiguration.AsObject,
   }
 }
 
@@ -424,6 +526,14 @@ export class NetworkConfig extends jspb.Message {
   getSessions(): SessionsConfig | undefined;
   setSessions(value?: SessionsConfig): void;
 
+  clearTrafficTunnelEndpointsList(): void;
+  getTrafficTunnelEndpointsList(): Array<TrafficTunnelEndpoint>;
+  setTrafficTunnelEndpointsList(value: Array<TrafficTunnelEndpoint>): void;
+  addTrafficTunnelEndpoints(value?: TrafficTunnelEndpoint, index?: number): TrafficTunnelEndpoint;
+
+  getNoTls(): boolean;
+  setNoTls(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NetworkConfig.AsObject;
   static toObject(includeInstance: boolean, msg: NetworkConfig): NetworkConfig.AsObject;
@@ -441,6 +551,8 @@ export namespace NetworkConfig {
     tlsCertFile: string,
     tlsKeyFile: string,
     sessions?: SessionsConfig.AsObject,
+    trafficTunnelEndpointsList: Array<TrafficTunnelEndpoint.AsObject>,
+    noTls: boolean,
   }
 }
 
@@ -463,6 +575,32 @@ export class SessionsConfig extends jspb.Message {
 export namespace SessionsConfig {
   export type AsObject = {
     heartbeatWindow?: google_protobuf_duration_pb.Duration.AsObject,
+  }
+}
+
+export class TrafficTunnelEndpoint extends jspb.Message {
+  getPort(): number;
+  setPort(value: number): void;
+
+  hasConnectionTimeout(): boolean;
+  clearConnectionTimeout(): void;
+  getConnectionTimeout(): google_protobuf_duration_pb.Duration | undefined;
+  setConnectionTimeout(value?: google_protobuf_duration_pb.Duration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TrafficTunnelEndpoint.AsObject;
+  static toObject(includeInstance: boolean, msg: TrafficTunnelEndpoint): TrafficTunnelEndpoint.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TrafficTunnelEndpoint, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TrafficTunnelEndpoint;
+  static deserializeBinaryFromReader(message: TrafficTunnelEndpoint, reader: jspb.BinaryReader): TrafficTunnelEndpoint;
+}
+
+export namespace TrafficTunnelEndpoint {
+  export type AsObject = {
+    port: number,
+    connectionTimeout?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 
@@ -932,6 +1070,9 @@ export class RemoteConfig extends jspb.Message {
   getSecret(): string;
   setSecret(value: string): void;
 
+  getPrefix(): string;
+  setPrefix(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoteConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RemoteConfig): RemoteConfig.AsObject;
@@ -954,6 +1095,7 @@ export namespace RemoteConfig {
     reconnectInterval?: google_protobuf_duration_pb.Duration.AsObject,
     serviceConfigsList: Array<ResourceLevelServiceConfig.AsObject>,
     secret: string,
+    prefix: string,
   }
 }
 
@@ -1030,6 +1172,11 @@ export class AgentInfo extends jspb.Message {
   getPlatform(): string;
   setPlatform(value: string): void;
 
+  clearPlatformTagsList(): void;
+  getPlatformTagsList(): Array<string>;
+  setPlatformTagsList(value: Array<string>): void;
+  addPlatformTags(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AgentInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AgentInfo): AgentInfo.AsObject;
@@ -1048,6 +1195,7 @@ export namespace AgentInfo {
     version: string,
     gitRevision: string,
     platform: string,
+    platformTagsList: Array<string>,
   }
 }
 
@@ -1262,6 +1410,14 @@ export class ModuleConfig extends jspb.Message {
   getStatus(): AppValidationStatus | undefined;
   setStatus(value?: AppValidationStatus): void;
 
+  hasFirstRunTimeout(): boolean;
+  clearFirstRunTimeout(): void;
+  getFirstRunTimeout(): google_protobuf_duration_pb.Duration | undefined;
+  setFirstRunTimeout(value?: google_protobuf_duration_pb.Duration): void;
+
+  getTcpMode(): boolean;
+  setTcpMode(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1281,6 +1437,8 @@ export namespace ModuleConfig {
     moduleId: string,
     envMap: Array<[string, string]>,
     status?: AppValidationStatus.AsObject,
+    firstRunTimeout?: google_protobuf_duration_pb.Duration.AsObject,
+    tcpMode: boolean,
   }
 }
 
@@ -1319,6 +1477,32 @@ export namespace PackageConfig {
     version: string,
     type: string,
     status?: AppValidationStatus.AsObject,
+  }
+}
+
+export class MaintenanceConfig extends jspb.Message {
+  hasSensorName(): boolean;
+  clearSensorName(): void;
+  getSensorName(): common_v1_common_pb.ResourceName | undefined;
+  setSensorName(value?: common_v1_common_pb.ResourceName): void;
+
+  getMaintenanceAllowedKey(): string;
+  setMaintenanceAllowedKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MaintenanceConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: MaintenanceConfig): MaintenanceConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MaintenanceConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MaintenanceConfig;
+  static deserializeBinaryFromReader(message: MaintenanceConfig, reader: jspb.BinaryReader): MaintenanceConfig;
+}
+
+export namespace MaintenanceConfig {
+  export type AsObject = {
+    sensorName?: common_v1_common_pb.ResourceName.AsObject,
+    maintenanceAllowedKey: string,
   }
 }
 

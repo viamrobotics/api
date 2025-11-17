@@ -317,5 +317,249 @@ proto.viam.app.v1.BillingServicePromiseClient.prototype.getInvoicePdf =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.SendPaymentRequiredEmailRequest,
+ *   !proto.viam.app.v1.SendPaymentRequiredEmailResponse>}
+ */
+const methodDescriptor_BillingService_SendPaymentRequiredEmail = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/SendPaymentRequiredEmail',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.SendPaymentRequiredEmailRequest,
+  proto.viam.app.v1.SendPaymentRequiredEmailResponse,
+  /**
+   * @param {!proto.viam.app.v1.SendPaymentRequiredEmailRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.SendPaymentRequiredEmailResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.SendPaymentRequiredEmailRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.SendPaymentRequiredEmailResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.SendPaymentRequiredEmailResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.sendPaymentRequiredEmail =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/SendPaymentRequiredEmail',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_SendPaymentRequiredEmail,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.SendPaymentRequiredEmailRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.SendPaymentRequiredEmailResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.sendPaymentRequiredEmail =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/SendPaymentRequiredEmail',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_SendPaymentRequiredEmail);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetAvailableBillingTiersRequest,
+ *   !proto.viam.app.v1.GetAvailableBillingTiersResponse>}
+ */
+const methodDescriptor_BillingService_GetAvailableBillingTiers = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/GetAvailableBillingTiers',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetAvailableBillingTiersRequest,
+  proto.viam.app.v1.GetAvailableBillingTiersResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetAvailableBillingTiersRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetAvailableBillingTiersResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetAvailableBillingTiersRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetAvailableBillingTiersResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetAvailableBillingTiersResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.getAvailableBillingTiers =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetAvailableBillingTiers',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetAvailableBillingTiers,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetAvailableBillingTiersRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetAvailableBillingTiersResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.getAvailableBillingTiers =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetAvailableBillingTiers',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetAvailableBillingTiers);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateOrganizationBillingTierRequest,
+ *   !proto.viam.app.v1.UpdateOrganizationBillingTierResponse>}
+ */
+const methodDescriptor_BillingService_UpdateOrganizationBillingTier = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/UpdateOrganizationBillingTier',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateOrganizationBillingTierRequest,
+  proto.viam.app.v1.UpdateOrganizationBillingTierResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateOrganizationBillingTierRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateOrganizationBillingTierResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateOrganizationBillingTierRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateOrganizationBillingTierResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateOrganizationBillingTierResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.updateOrganizationBillingTier =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/UpdateOrganizationBillingTier',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_UpdateOrganizationBillingTier,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateOrganizationBillingTierRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateOrganizationBillingTierResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.updateOrganizationBillingTier =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/UpdateOrganizationBillingTier',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_UpdateOrganizationBillingTier);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest,
+ *   !proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse>}
+ */
+const methodDescriptor_BillingService_CreateInvoiceAndChargeImmediately = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/CreateInvoiceAndChargeImmediately',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest,
+  proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.createInvoiceAndChargeImmediately =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/CreateInvoiceAndChargeImmediately',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_CreateInvoiceAndChargeImmediately,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.createInvoiceAndChargeImmediately =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/CreateInvoiceAndChargeImmediately',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_CreateInvoiceAndChargeImmediately);
+};
+
+
 module.exports = proto.viam.app.v1;
 

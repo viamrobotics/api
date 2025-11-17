@@ -4,7 +4,6 @@ package viam.service.slam.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/service/slam/v1";
 option java_package = "com.viam.service.slam.v1";
@@ -14,42 +13,32 @@ service SLAMService {
   // GetPosition returns the current estimated position of the robot with
   // respect to a returned component reference.
   rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/position"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/slam/{name}/position"};
   }
 
   // GetPointCloudMap returns the latest pointcloud map available where XY is the ground
   // plane and positive Z is up, following the Right Hand Rule.
   rpc GetPointCloudMap(GetPointCloudMapRequest) returns (stream GetPointCloudMapResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/point_cloud_map"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/slam/{name}/point_cloud_map"};
   }
 
   // GetInternalState returns the internal map as defined by the specified slam
   // algorithm required to continue mapping/localizing.
   // This endpoint is not intended for end users.
   rpc GetInternalState(GetInternalStateRequest) returns (stream GetInternalStateResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/internal_state"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/slam/{name}/internal_state"};
   }
 
   // GetProperties returns properties of the current slam service including mapping_mode
   // and cloud_slam, where mapping_mode is the type of mapping/localizing being performed
   // and cloud_slam is a boolean representing if this SLAM service is being run in the cloud.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/service/slam/{name}/properties"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/service/slam/{name}/properties"};
   }
 
   // DoCommand sends/receives arbitrary commands.
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/service/slam/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/service/slam/{name}/do_command"};
   }
 }
 
@@ -71,10 +60,6 @@ message GetPositionRequest {
 message GetPositionResponse {
   // Current position of the specified component in the SLAM Map
   common.v1.Pose pose = 1;
-  // This is usually the name of the camera that is in the SLAM config
-  string component_reference = 2;
-  // Additional information in the response
-  google.protobuf.Struct extra = 99;
 }
 
 message GetPointCloudMapRequest {
@@ -94,8 +79,8 @@ message GetPointCloudMapResponse {
   // format where XY is the ground plane and positive Z is up, following
   // the Right Hand Rule.
   //
-  // Read more about the pointcloud format here:
-  // https://pointclouds.org/documentation/tutorials/pcd_file_format.html
+  // Read more about the pointcloud format
+  // [in the docs](https://pointclouds.org/documentation/tutorials/pcd_file_format.html)
   //
   // Viam expects pointcloud data with fields "x y z" or "x y z rgb", and for
   // this to be specified in the pointcloud header in the FIELDS entry. If color

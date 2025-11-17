@@ -15,52 +15,38 @@ service CameraService {
   // GetImage returns a frame from a camera of the underlying robot. A specific MIME type
   // can be requested but may not necessarily be the same one returned.
   rpc GetImage(GetImageRequest) returns (GetImageResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/camera/{name}/image"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/image"};
   }
 
   rpc GetImages(GetImagesRequest) returns (GetImagesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/camera/{name}/images"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/images"};
   }
 
   // RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
   // can be requested but may not necessarily be the same one returned.
   rpc RenderFrame(RenderFrameRequest) returns (google.api.HttpBody) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/camera/{name}/render_frame"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/render_frame"};
   }
 
   // GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
   // can be requested but may not necessarily be the same one returned.
   rpc GetPointCloud(GetPointCloudRequest) returns (GetPointCloudResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/camera/{name}/point_cloud"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/point_cloud"};
   }
 
   // GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/camera/{name}/properties"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/properties"};
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/component/camera/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/component/camera/{name}/do_command"};
   }
 
   // GetGeometries returns the geometries of the component in their current configuration
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/camera/{name}/geometries"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/geometries"};
   }
 }
 
@@ -83,6 +69,11 @@ message GetImageResponse {
 message GetImagesRequest {
   // Name of a camera
   string name = 1;
+  // The names of the sensors to retrieve images from. If this is not provided,
+  // all images from all sensors will be returned.
+  repeated string filter_source_names = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
 }
 
 message GetImagesResponse {
@@ -99,6 +90,8 @@ message Image {
   Format format = 2;
   // image in bytes
   bytes image = 3;
+  // The mime type of the image
+  string mime_type = 4;
 }
 
 enum Format {
@@ -152,6 +145,8 @@ message GetPropertiesResponse {
   DistortionParameters distortion_parameters = 3;
   // Supported MIME types by the camera
   repeated string mime_types = 4;
+  // Optional camera frame rate for image capture timing
+  optional float frame_rate = 5;
 }
 
 message Webcams {

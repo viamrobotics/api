@@ -12,119 +12,82 @@ option java_package = "com.viam.component.board.v1";
 
 // BoardService services all Boards associated with a robot
 service BoardService {
-  rpc Status(StatusRequest) returns (StatusResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/board/{name}/status"
-    };
-  }
-
   rpc SetGPIO(SetGPIORequest) returns (SetGPIOResponse) {
-    option (google.api.http) = {
-      put: "/viam/api/v1/component/board/{name}/gpio"
-    };
+    option (google.api.http) = {put: "/viam/api/v1/component/board/{name}/gpio"};
   }
 
   // GetGPIO gets the high/low state of the given pin of a board of the underlying robot.
   rpc GetGPIO(GetGPIORequest) returns (GetGPIOResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/board/{name}/gpio"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/board/{name}/gpio"};
   }
 
   // PWM gets the duty cycle of the given pin of a board of the underlying robot.
   rpc PWM(PWMRequest) returns (PWMResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/board/{name}/pwm"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/board/{name}/pwm"};
   }
 
   // SetPWM sets the given pin of a board of the underlying robot to the given duty cycle.
   rpc SetPWM(SetPWMRequest) returns (SetPWMResponse) {
-    option (google.api.http) = {
-      put: "/viam/api/v1/component/board/{name}/pwm"
-    };
+    option (google.api.http) = {put: "/viam/api/v1/component/board/{name}/pwm"};
   }
 
   // PWMFrequency gets the PWM frequency of the given pin of a board of the underlying robot.
   rpc PWMFrequency(PWMFrequencyRequest) returns (PWMFrequencyResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/board/{name}/pwm_freq"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/board/{name}/pwm_freq"};
   }
 
   // SetPWMFrequency sets the given pin of a board of the underlying robot to the given PWM frequency. 0 will use the board's default PWM frequency.
   rpc SetPWMFrequency(SetPWMFrequencyRequest) returns (SetPWMFrequencyResponse) {
-    option (google.api.http) = {
-      put: "/viam/api/v1/component/board/{name}/pwm_freq"
-    };
+    option (google.api.http) = {put: "/viam/api/v1/component/board/{name}/pwm_freq"};
   }
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
-    option (google.api.http) = {
-      post: "/viam/api/v1/component/board/{name}/do_command"
-    };
+    option (google.api.http) = {post: "/viam/api/v1/component/board/{name}/do_command"};
   }
 
   // Analog Reader
 
   // ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.
   rpc ReadAnalogReader(ReadAnalogReaderRequest) returns (ReadAnalogReaderResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/board/{board_name}/analog_reader/{analog_reader_name}/read"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/board/{board_name}/analog_reader/{analog_reader_name}/read"};
   }
 
   //Analog Writer
 
   // WriteAnalog writes the value to the analog writer of the board.
   rpc WriteAnalog(WriteAnalogRequest) returns (WriteAnalogResponse) {
-    option (google.api.http) = {
-      put: "/viam/api/v1/component/board/{name}/analog_write"
-    };
+    option (google.api.http) = {put: "/viam/api/v1/component/board/{name}/analog_write"};
   }
 
   // Digital Interrupt
 
   // GetDigitalInterruptValue returns the current value of the interrupt which is based on the type of interrupt.
   rpc GetDigitalInterruptValue(GetDigitalInterruptValueRequest) returns (GetDigitalInterruptValueResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/board/{board_name}/digital_interrupt/{digital_interrupt_name}/value"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/board/{board_name}/digital_interrupt/{digital_interrupt_name}/value"};
   }
 
   // StreamTicks starts a stream of ticks for the given digital interrupts.
   rpc StreamTicks(StreamTicksRequest) returns (stream StreamTicksResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/board/{name}/tick_stream"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/board/{name}/tick_stream"};
   }
 
   // Power Management
 
   // `SetPowerMode` sets the power consumption mode of the board to the requested setting for the given duration.
   rpc SetPowerMode(SetPowerModeRequest) returns (SetPowerModeResponse) {
-    option (google.api.http) = {
-      put: "/viam/api/v1/component/board/{name}/power_mode"
-    };
+    option (google.api.http) = {put: "/viam/api/v1/component/board/{name}/power_mode"};
   }
 
   // GetGeometries returns the geometries of the component in their current configuration.
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
-    option (google.api.http) = {
-      get: "/viam/api/v1/component/board/{name}/geometries"
-    };
+    option (google.api.http) = {get: "/viam/api/v1/component/board/{name}/geometries"};
   }
 }
 
-message StatusRequest {
-  string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message StatusResponse {
-  common.v1.BoardStatus status = 1;
+message Status {
+  map<string, int32> analogs = 1;
+  map<string, int64> digital_interrupts = 2;
 }
 
 message SetGPIORequest {
@@ -201,6 +164,9 @@ message ReadAnalogReaderRequest {
 
 message ReadAnalogReaderResponse {
   int32 value = 1;
+  float min_range = 2;
+  float max_range = 3;
+  float step_size = 4;
 }
 
 // Analog Writer

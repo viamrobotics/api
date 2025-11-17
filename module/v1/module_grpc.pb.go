@@ -30,8 +30,8 @@ type ModuleServiceClient interface {
 	RemoveResource(ctx context.Context, in *RemoveResourceRequest, opts ...grpc.CallOption) (*RemoveResourceResponse, error)
 	// Ready determines if the server is started and ready to recieve resource configurations.
 	Ready(ctx context.Context, in *ReadyRequest, opts ...grpc.CallOption) (*ReadyResponse, error)
-	// ValidateConfig determines whether the given config is valid and registers/returns implicit
-	// dependencies.
+	// ValidateConfig determines whether the given config is valid and registers/returns
+	// both required and optional implicit dependencies.
 	ValidateConfig(ctx context.Context, in *ValidateConfigRequest, opts ...grpc.CallOption) (*ValidateConfigResponse, error)
 }
 
@@ -100,8 +100,8 @@ type ModuleServiceServer interface {
 	RemoveResource(context.Context, *RemoveResourceRequest) (*RemoveResourceResponse, error)
 	// Ready determines if the server is started and ready to recieve resource configurations.
 	Ready(context.Context, *ReadyRequest) (*ReadyResponse, error)
-	// ValidateConfig determines whether the given config is valid and registers/returns implicit
-	// dependencies.
+	// ValidateConfig determines whether the given config is valid and registers/returns
+	// both required and optional implicit dependencies.
 	ValidateConfig(context.Context, *ValidateConfigRequest) (*ValidateConfigResponse, error)
 	mustEmbedUnimplementedModuleServiceServer()
 }

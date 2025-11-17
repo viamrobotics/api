@@ -37,6 +37,24 @@ DataService.TabularDataByMQL = {
   responseType: app_data_v1_data_pb.TabularDataByMQLResponse
 };
 
+DataService.ExportTabularData = {
+  methodName: "ExportTabularData",
+  service: DataService,
+  requestStream: false,
+  responseStream: true,
+  requestType: app_data_v1_data_pb.ExportTabularDataRequest,
+  responseType: app_data_v1_data_pb.ExportTabularDataResponse
+};
+
+DataService.GetLatestTabularData = {
+  methodName: "GetLatestTabularData",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.GetLatestTabularDataRequest,
+  responseType: app_data_v1_data_pb.GetLatestTabularDataResponse
+};
+
 DataService.BinaryDataByFilter = {
   methodName: "BinaryDataByFilter",
   service: DataService,
@@ -154,6 +172,15 @@ DataService.BoundingBoxLabelsByFilter = {
   responseType: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse
 };
 
+DataService.UpdateBoundingBox = {
+  methodName: "UpdateBoundingBox",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.UpdateBoundingBoxRequest,
+  responseType: app_data_v1_data_pb.UpdateBoundingBoxResponse
+};
+
 DataService.GetDatabaseConnection = {
   methodName: "GetDatabaseConnection",
   service: DataService,
@@ -188,6 +215,78 @@ DataService.RemoveBinaryDataFromDatasetByIDs = {
   responseStream: false,
   requestType: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
   responseType: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse
+};
+
+DataService.CreateIndex = {
+  methodName: "CreateIndex",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.CreateIndexRequest,
+  responseType: app_data_v1_data_pb.CreateIndexResponse
+};
+
+DataService.ListIndexes = {
+  methodName: "ListIndexes",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.ListIndexesRequest,
+  responseType: app_data_v1_data_pb.ListIndexesResponse
+};
+
+DataService.DeleteIndex = {
+  methodName: "DeleteIndex",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteIndexRequest,
+  responseType: app_data_v1_data_pb.DeleteIndexResponse
+};
+
+DataService.CreateSavedQuery = {
+  methodName: "CreateSavedQuery",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.CreateSavedQueryRequest,
+  responseType: app_data_v1_data_pb.CreateSavedQueryResponse
+};
+
+DataService.UpdateSavedQuery = {
+  methodName: "UpdateSavedQuery",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.UpdateSavedQueryRequest,
+  responseType: app_data_v1_data_pb.UpdateSavedQueryResponse
+};
+
+DataService.GetSavedQuery = {
+  methodName: "GetSavedQuery",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.GetSavedQueryRequest,
+  responseType: app_data_v1_data_pb.GetSavedQueryResponse
+};
+
+DataService.DeleteSavedQuery = {
+  methodName: "DeleteSavedQuery",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteSavedQueryRequest,
+  responseType: app_data_v1_data_pb.DeleteSavedQueryResponse
+};
+
+DataService.ListSavedQueries = {
+  methodName: "ListSavedQueries",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.ListSavedQueriesRequest,
+  responseType: app_data_v1_data_pb.ListSavedQueriesResponse
 };
 
 exports.DataService = DataService;
@@ -264,6 +363,76 @@ DataServiceClient.prototype.tabularDataByMQL = function tabularDataByMQL(request
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.TabularDataByMQL, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.exportTabularData = function exportTabularData(requestMessage, metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.invoke(DataService.ExportTabularData, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onMessage: function (responseMessage) {
+      listeners.data.forEach(function (handler) {
+        handler(responseMessage);
+      });
+    },
+    onEnd: function (status, statusMessage, trailers) {
+      listeners.status.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners.end.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners = null;
+    }
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    cancel: function () {
+      listeners = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.getLatestTabularData = function getLatestTabularData(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.GetLatestTabularData, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -693,6 +862,37 @@ DataServiceClient.prototype.boundingBoxLabelsByFilter = function boundingBoxLabe
   };
 };
 
+DataServiceClient.prototype.updateBoundingBox = function updateBoundingBox(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.UpdateBoundingBox, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 DataServiceClient.prototype.getDatabaseConnection = function getDatabaseConnection(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -791,6 +991,254 @@ DataServiceClient.prototype.removeBinaryDataFromDatasetByIDs = function removeBi
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.RemoveBinaryDataFromDatasetByIDs, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.createIndex = function createIndex(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.CreateIndex, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.listIndexes = function listIndexes(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.ListIndexes, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteIndex = function deleteIndex(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteIndex, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.createSavedQuery = function createSavedQuery(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.CreateSavedQuery, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.updateSavedQuery = function updateSavedQuery(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.UpdateSavedQuery, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.getSavedQuery = function getSavedQuery(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.GetSavedQuery, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteSavedQuery = function deleteSavedQuery(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteSavedQuery, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.listSavedQueries = function listSavedQueries(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.ListSavedQueries, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

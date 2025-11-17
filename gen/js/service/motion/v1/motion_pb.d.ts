@@ -16,10 +16,10 @@ export class MoveRequest extends jspb.Message {
   getDestination(): common_v1_common_pb.PoseInFrame | undefined;
   setDestination(value?: common_v1_common_pb.PoseInFrame): void;
 
-  hasComponentName(): boolean;
-  clearComponentName(): void;
-  getComponentName(): common_v1_common_pb.ResourceName | undefined;
-  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+  hasComponentNameDeprecated(): boolean;
+  clearComponentNameDeprecated(): void;
+  getComponentNameDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setComponentNameDeprecated(value?: common_v1_common_pb.ResourceName): void;
 
   hasWorldState(): boolean;
   clearWorldState(): void;
@@ -30,6 +30,9 @@ export class MoveRequest extends jspb.Message {
   clearConstraints(): void;
   getConstraints(): Constraints | undefined;
   setConstraints(value?: Constraints): void;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -50,9 +53,10 @@ export namespace MoveRequest {
   export type AsObject = {
     name: string,
     destination?: common_v1_common_pb.PoseInFrame.AsObject,
-    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    componentNameDeprecated?: common_v1_common_pb.ResourceName.AsObject,
     worldState?: common_v1_common_pb.WorldState.AsObject,
     constraints?: Constraints.AsObject,
+    componentName: string,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -86,15 +90,15 @@ export class MoveOnMapRequest extends jspb.Message {
   getDestination(): common_v1_common_pb.Pose | undefined;
   setDestination(value?: common_v1_common_pb.Pose): void;
 
-  hasComponentName(): boolean;
-  clearComponentName(): void;
-  getComponentName(): common_v1_common_pb.ResourceName | undefined;
-  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+  hasComponentNameDeprecated(): boolean;
+  clearComponentNameDeprecated(): void;
+  getComponentNameDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setComponentNameDeprecated(value?: common_v1_common_pb.ResourceName): void;
 
-  hasSlamServiceName(): boolean;
-  clearSlamServiceName(): void;
-  getSlamServiceName(): common_v1_common_pb.ResourceName | undefined;
-  setSlamServiceName(value?: common_v1_common_pb.ResourceName): void;
+  hasSlamServiceNameDeprecated(): boolean;
+  clearSlamServiceNameDeprecated(): void;
+  getSlamServiceNameDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setSlamServiceNameDeprecated(value?: common_v1_common_pb.ResourceName): void;
 
   hasMotionConfiguration(): boolean;
   clearMotionConfiguration(): void;
@@ -105,6 +109,12 @@ export class MoveOnMapRequest extends jspb.Message {
   getObstaclesList(): Array<common_v1_common_pb.Geometry>;
   setObstaclesList(value: Array<common_v1_common_pb.Geometry>): void;
   addObstacles(value?: common_v1_common_pb.Geometry, index?: number): common_v1_common_pb.Geometry;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
+
+  getSlamServiceName(): string;
+  setSlamServiceName(value: string): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -125,10 +135,12 @@ export namespace MoveOnMapRequest {
   export type AsObject = {
     name: string,
     destination?: common_v1_common_pb.Pose.AsObject,
-    componentName?: common_v1_common_pb.ResourceName.AsObject,
-    slamServiceName?: common_v1_common_pb.ResourceName.AsObject,
+    componentNameDeprecated?: common_v1_common_pb.ResourceName.AsObject,
+    slamServiceNameDeprecated?: common_v1_common_pb.ResourceName.AsObject,
     motionConfiguration?: MotionConfiguration.AsObject,
     obstaclesList: Array<common_v1_common_pb.Geometry.AsObject>,
+    componentName: string,
+    slamServiceName: string,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -154,15 +166,21 @@ export namespace MoveOnMapResponse {
 }
 
 export class ObstacleDetector extends jspb.Message {
-  hasVisionService(): boolean;
-  clearVisionService(): void;
-  getVisionService(): common_v1_common_pb.ResourceName | undefined;
-  setVisionService(value?: common_v1_common_pb.ResourceName): void;
+  hasVisionServiceDeprecated(): boolean;
+  clearVisionServiceDeprecated(): void;
+  getVisionServiceDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setVisionServiceDeprecated(value?: common_v1_common_pb.ResourceName): void;
 
-  hasCamera(): boolean;
-  clearCamera(): void;
-  getCamera(): common_v1_common_pb.ResourceName | undefined;
-  setCamera(value?: common_v1_common_pb.ResourceName): void;
+  hasCameraDeprecated(): boolean;
+  clearCameraDeprecated(): void;
+  getCameraDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setCameraDeprecated(value?: common_v1_common_pb.ResourceName): void;
+
+  getVisionService(): string;
+  setVisionService(value: string): void;
+
+  getCamera(): string;
+  setCamera(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ObstacleDetector.AsObject;
@@ -176,8 +194,10 @@ export class ObstacleDetector extends jspb.Message {
 
 export namespace ObstacleDetector {
   export type AsObject = {
-    visionService?: common_v1_common_pb.ResourceName.AsObject,
-    camera?: common_v1_common_pb.ResourceName.AsObject,
+    visionServiceDeprecated?: common_v1_common_pb.ResourceName.AsObject,
+    cameraDeprecated?: common_v1_common_pb.ResourceName.AsObject,
+    visionService: string,
+    camera: string,
   }
 }
 
@@ -247,25 +267,36 @@ export class MoveOnGlobeRequest extends jspb.Message {
   getHeading(): number;
   setHeading(value: number): void;
 
-  hasComponentName(): boolean;
-  clearComponentName(): void;
-  getComponentName(): common_v1_common_pb.ResourceName | undefined;
-  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+  hasComponentNameDeprecated(): boolean;
+  clearComponentNameDeprecated(): void;
+  getComponentNameDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setComponentNameDeprecated(value?: common_v1_common_pb.ResourceName): void;
 
-  hasMovementSensorName(): boolean;
-  clearMovementSensorName(): void;
-  getMovementSensorName(): common_v1_common_pb.ResourceName | undefined;
-  setMovementSensorName(value?: common_v1_common_pb.ResourceName): void;
+  hasMovementSensorNameDeprecated(): boolean;
+  clearMovementSensorNameDeprecated(): void;
+  getMovementSensorNameDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setMovementSensorNameDeprecated(value?: common_v1_common_pb.ResourceName): void;
 
   clearObstaclesList(): void;
-  getObstaclesList(): Array<common_v1_common_pb.GeoObstacle>;
-  setObstaclesList(value: Array<common_v1_common_pb.GeoObstacle>): void;
-  addObstacles(value?: common_v1_common_pb.GeoObstacle, index?: number): common_v1_common_pb.GeoObstacle;
+  getObstaclesList(): Array<common_v1_common_pb.GeoGeometry>;
+  setObstaclesList(value: Array<common_v1_common_pb.GeoGeometry>): void;
+  addObstacles(value?: common_v1_common_pb.GeoGeometry, index?: number): common_v1_common_pb.GeoGeometry;
 
   hasMotionConfiguration(): boolean;
   clearMotionConfiguration(): void;
   getMotionConfiguration(): MotionConfiguration | undefined;
   setMotionConfiguration(value?: MotionConfiguration): void;
+
+  clearBoundingRegionsList(): void;
+  getBoundingRegionsList(): Array<common_v1_common_pb.GeoGeometry>;
+  setBoundingRegionsList(value: Array<common_v1_common_pb.GeoGeometry>): void;
+  addBoundingRegions(value?: common_v1_common_pb.GeoGeometry, index?: number): common_v1_common_pb.GeoGeometry;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
+
+  getMovementSensorName(): string;
+  setMovementSensorName(value: string): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -287,10 +318,13 @@ export namespace MoveOnGlobeRequest {
     name: string,
     destination?: common_v1_common_pb.GeoPoint.AsObject,
     heading: number,
-    componentName?: common_v1_common_pb.ResourceName.AsObject,
-    movementSensorName?: common_v1_common_pb.ResourceName.AsObject,
-    obstaclesList: Array<common_v1_common_pb.GeoObstacle.AsObject>,
+    componentNameDeprecated?: common_v1_common_pb.ResourceName.AsObject,
+    movementSensorNameDeprecated?: common_v1_common_pb.ResourceName.AsObject,
+    obstaclesList: Array<common_v1_common_pb.GeoGeometry.AsObject>,
     motionConfiguration?: MotionConfiguration.AsObject,
+    boundingRegionsList: Array<common_v1_common_pb.GeoGeometry.AsObject>,
+    componentName: string,
+    movementSensorName: string,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -319,10 +353,10 @@ export class GetPoseRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  hasComponentName(): boolean;
-  clearComponentName(): void;
-  getComponentName(): common_v1_common_pb.ResourceName | undefined;
-  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+  hasComponentNameDeprecated(): boolean;
+  clearComponentNameDeprecated(): void;
+  getComponentNameDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setComponentNameDeprecated(value?: common_v1_common_pb.ResourceName): void;
 
   getDestinationFrame(): string;
   setDestinationFrame(value: string): void;
@@ -331,6 +365,9 @@ export class GetPoseRequest extends jspb.Message {
   getSupplementalTransformsList(): Array<common_v1_common_pb.Transform>;
   setSupplementalTransformsList(value: Array<common_v1_common_pb.Transform>): void;
   addSupplementalTransforms(value?: common_v1_common_pb.Transform, index?: number): common_v1_common_pb.Transform;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -350,9 +387,10 @@ export class GetPoseRequest extends jspb.Message {
 export namespace GetPoseRequest {
   export type AsObject = {
     name: string,
-    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    componentNameDeprecated?: common_v1_common_pb.ResourceName.AsObject,
     destinationFrame: string,
     supplementalTransformsList: Array<common_v1_common_pb.Transform.AsObject>,
+    componentName: string,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -383,10 +421,13 @@ export class StopPlanRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  hasComponentName(): boolean;
-  clearComponentName(): void;
-  getComponentName(): common_v1_common_pb.ResourceName | undefined;
-  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+  hasComponentNameDeprecated(): boolean;
+  clearComponentNameDeprecated(): void;
+  getComponentNameDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setComponentNameDeprecated(value?: common_v1_common_pb.ResourceName): void;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -406,7 +447,8 @@ export class StopPlanRequest extends jspb.Message {
 export namespace StopPlanRequest {
   export type AsObject = {
     name: string,
-    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    componentNameDeprecated?: common_v1_common_pb.ResourceName.AsObject,
+    componentName: string,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -483,10 +525,10 @@ export class GetPlanRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  hasComponentName(): boolean;
-  clearComponentName(): void;
-  getComponentName(): common_v1_common_pb.ResourceName | undefined;
-  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+  hasComponentNameDeprecated(): boolean;
+  clearComponentNameDeprecated(): void;
+  getComponentNameDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setComponentNameDeprecated(value?: common_v1_common_pb.ResourceName): void;
 
   getLastPlanOnly(): boolean;
   setLastPlanOnly(value: boolean): void;
@@ -495,6 +537,9 @@ export class GetPlanRequest extends jspb.Message {
   clearExecutionId(): void;
   getExecutionId(): string;
   setExecutionId(value: string): void;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
 
   hasExtra(): boolean;
   clearExtra(): void;
@@ -514,9 +559,10 @@ export class GetPlanRequest extends jspb.Message {
 export namespace GetPlanRequest {
   export type AsObject = {
     name: string,
-    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    componentNameDeprecated?: common_v1_common_pb.ResourceName.AsObject,
     lastPlanOnly: boolean,
     executionId: string,
+    componentName: string,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -565,6 +611,11 @@ export class Constraints extends jspb.Message {
   setCollisionSpecificationList(value: Array<CollisionSpecification>): void;
   addCollisionSpecification(value?: CollisionSpecification, index?: number): CollisionSpecification;
 
+  clearPseudolinearConstraintList(): void;
+  getPseudolinearConstraintList(): Array<PseudolinearConstraint>;
+  setPseudolinearConstraintList(value: Array<PseudolinearConstraint>): void;
+  addPseudolinearConstraint(value?: PseudolinearConstraint, index?: number): PseudolinearConstraint;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Constraints.AsObject;
   static toObject(includeInstance: boolean, msg: Constraints): Constraints.AsObject;
@@ -580,6 +631,7 @@ export namespace Constraints {
     linearConstraintList: Array<LinearConstraint.AsObject>,
     orientationConstraintList: Array<OrientationConstraint.AsObject>,
     collisionSpecificationList: Array<CollisionSpecification.AsObject>,
+    pseudolinearConstraintList: Array<PseudolinearConstraint.AsObject>,
   }
 }
 
@@ -608,6 +660,34 @@ export namespace LinearConstraint {
   export type AsObject = {
     lineToleranceMm: number,
     orientationToleranceDegs: number,
+  }
+}
+
+export class PseudolinearConstraint extends jspb.Message {
+  hasLineToleranceFactor(): boolean;
+  clearLineToleranceFactor(): void;
+  getLineToleranceFactor(): number;
+  setLineToleranceFactor(value: number): void;
+
+  hasOrientationToleranceFactor(): boolean;
+  clearOrientationToleranceFactor(): void;
+  getOrientationToleranceFactor(): number;
+  setOrientationToleranceFactor(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PseudolinearConstraint.AsObject;
+  static toObject(includeInstance: boolean, msg: PseudolinearConstraint): PseudolinearConstraint.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PseudolinearConstraint, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PseudolinearConstraint;
+  static deserializeBinaryFromReader(message: PseudolinearConstraint, reader: jspb.BinaryReader): PseudolinearConstraint;
+}
+
+export namespace PseudolinearConstraint {
+  export type AsObject = {
+    lineToleranceFactor: number,
+    orientationToleranceFactor: number,
   }
 }
 
@@ -717,10 +797,10 @@ export class PlanStatusWithID extends jspb.Message {
   getPlanId(): string;
   setPlanId(value: string): void;
 
-  hasComponentName(): boolean;
-  clearComponentName(): void;
-  getComponentName(): common_v1_common_pb.ResourceName | undefined;
-  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+  hasComponentNameDeprecated(): boolean;
+  clearComponentNameDeprecated(): void;
+  getComponentNameDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setComponentNameDeprecated(value?: common_v1_common_pb.ResourceName): void;
 
   getExecutionId(): string;
   setExecutionId(value: string): void;
@@ -729,6 +809,9 @@ export class PlanStatusWithID extends jspb.Message {
   clearStatus(): void;
   getStatus(): PlanStatus | undefined;
   setStatus(value?: PlanStatus): void;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PlanStatusWithID.AsObject;
@@ -743,9 +826,10 @@ export class PlanStatusWithID extends jspb.Message {
 export namespace PlanStatusWithID {
   export type AsObject = {
     planId: string,
-    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    componentNameDeprecated?: common_v1_common_pb.ResourceName.AsObject,
     executionId: string,
     status?: PlanStatus.AsObject,
+    componentName: string,
   }
 }
 
@@ -785,10 +869,10 @@ export class Plan extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  hasComponentName(): boolean;
-  clearComponentName(): void;
-  getComponentName(): common_v1_common_pb.ResourceName | undefined;
-  setComponentName(value?: common_v1_common_pb.ResourceName): void;
+  hasComponentNameDeprecated(): boolean;
+  clearComponentNameDeprecated(): void;
+  getComponentNameDeprecated(): common_v1_common_pb.ResourceName | undefined;
+  setComponentNameDeprecated(value?: common_v1_common_pb.ResourceName): void;
 
   getExecutionId(): string;
   setExecutionId(value: string): void;
@@ -797,6 +881,9 @@ export class Plan extends jspb.Message {
   getStepsList(): Array<PlanStep>;
   setStepsList(value: Array<PlanStep>): void;
   addSteps(value?: PlanStep, index?: number): PlanStep;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Plan.AsObject;
@@ -811,9 +898,10 @@ export class Plan extends jspb.Message {
 export namespace Plan {
   export type AsObject = {
     id: string,
-    componentName?: common_v1_common_pb.ResourceName.AsObject,
+    componentNameDeprecated?: common_v1_common_pb.ResourceName.AsObject,
     executionId: string,
     stepsList: Array<PlanStep.AsObject>,
+    componentName: string,
   }
 }
 

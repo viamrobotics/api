@@ -17,28 +17,14 @@ message ResourceName {
   string name = 4;
 }
 
-message BoardStatus {
-  map<string, AnalogStatus> analogs = 1;
-  map<string, DigitalInterruptStatus> digital_interrupts = 2;
-}
-
-message AnalogStatus {
-  // Current value of the analog reader of a robot's board
-  int32 value = 1;
-}
-
-message DigitalInterruptStatus {
-  // Current value of the digital interrupt of a robot's board
-  int64 value = 1;
-}
 /* Pose is a combination of location and orientation.
-Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
-is represented by o_x, o_y, o_z and theta. The o_x, o_y, o_z coordinates represent the point on the cartesian unit sphere that the end of
-the arm is pointing to (with the origin as reference). That unit vector forms an axis around which theta rotates. This means that
-incrementing / decrementing theta will perform an inline rotation of the end effector.
-Theta is defined as rotation between two planes: the first being defined by the origin, the point (0,0,1), and the rx, ry, rz point, and the
-second being defined by the origin, the rx, ry, rz point and the local Z axis. Therefore, if theta is kept at zero as the north/south pole
-is circled, the Roll will correct itself to remain in-line. */
+   Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
+   is represented by o_x, o_y, o_z and theta. The o_x, o_y, o_z coordinates represent the point on the cartesian unit sphere that the end of
+   the arm is pointing to (with the origin as reference). That unit vector forms an axis around which theta rotates. This means that
+   incrementing / decrementing theta will perform an inline rotation of the end effector.
+   Theta is defined as rotation between two planes: the first being defined by the origin, the point (0,0,1), and the rx, ry, rz point, and the
+   second being defined by the origin, the rx, ry, rz point and the local Z axis. Therefore, if theta is kept at zero as the north/south pole
+   is circled, the Roll will correct itself to remain in-line. */
 message Pose {
   // millimeters from the origin
   double x = 1;
@@ -94,15 +80,28 @@ message RectangularPrism {
   Vector3 dims_mm = 1;
 }
 
+message Mesh {
+  // Content type of mesh (e.g. ply)
+  string content_type = 1;
+  // Contents of mesh data in binary form defined by content_type
+  bytes mesh = 2;
+}
+
+message PointCloud {
+  bytes point_cloud = 1;
+}
+
 // Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
 message Geometry {
   // Pose of a geometries center point
   common.v1.Pose center = 1;
-  // Dimensions of a given geometry. This can be a sphere or box
+  // Dimensions of a given geometry. This can be one of several types
   oneof geometry_type {
     Sphere sphere = 2;
     RectangularPrism box = 3;
     Capsule capsule = 5;
+    Mesh mesh = 6;
+    PointCloud pointcloud = 7;
   }
   // Label of the geometry. If none supplied, will be an empty string.
   string label = 4;
@@ -131,12 +130,11 @@ message GeoPoint {
   double longitude = 2;
 }
 
-// GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
-// captured in latitude and longitude.
-message GeoObstacle {
-  // Location of the obstacle
+// GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
+message GeoGeometry {
+  // Location of the geometry
   GeoPoint location = 1;
-  // Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location
+  // Geometries associated with the location, where embedded Pose data is with respect to the specified location
   repeated Geometry geometries = 2;
 }
 
@@ -149,6 +147,10 @@ message Transform {
   // the pose of the above reference frame with respect to a different observer reference frame
   PoseInFrame pose_in_observer_frame = 2;
   optional Geometry physical_object = 3;
+  // The UUID of the transform
+  bytes uuid = 4;
+  // Can hold information like color, opacity, points colors, collision_allowed, etc...
+  optional google.protobuf.Struct metadata = 5;
 }
 
 // WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
@@ -157,7 +159,8 @@ message Transform {
 message WorldState {
   // a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
   repeated GeometriesInFrame obstacles = 1;
-  // a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
+  // a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to
+  // another, or to attach moving geometries to the frame system. This field is optional
   repeated Transform transforms = 3;
 }
 
@@ -225,6 +228,18 @@ message GetGeometriesResponse {
   repeated Geometry geometries = 1;
 }
 
+message Get3DModelsRequest {
+  // The component name
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message Get3DModelsResponse {
+  // the 3D models associated with the component
+  map<string, Mesh> models = 1;
+}
+
 message GetReadingsRequest {
   // Name of a sensor
   string name = 1;
@@ -245,4 +260,29 @@ message LogEntry {
   google.protobuf.Struct caller = 6;
   string stack = 7;
   repeated google.protobuf.Struct fields = 8;
+}
+
+// Information about an audio stream or device.
+message AudioInfo {
+  // Audio codec used for the stream or device (e.g., "pcm16", "pcm32float", "mp3")
+  string codec = 1;
+  // Sample rate of the audio in Hz
+  int32 sample_rate_hz = 2;
+  // Number of audio channels in the recording or playback
+  int32 num_channels = 3;
+}
+
+// Shared properties for AudioIn and AudioOut components.
+message GetPropertiesRequest {
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPropertiesResponse {
+  // List of audio codecs supported by the system (e.g., "mp3", "pcm16", "pcm32float")
+  repeated string supported_codecs = 1;
+  // current sample rate in Hz
+  int32 sample_rate_hz = 2;
+  // Maximum number of audio channels supported (e.g., 1 for mono, 2 for stereo)
+  int32 num_channels = 3;
 }

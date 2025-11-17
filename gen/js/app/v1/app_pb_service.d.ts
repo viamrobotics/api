@@ -49,6 +49,15 @@ type AppServiceListOrganizationsByUser = {
   readonly responseType: typeof app_v1_app_pb.ListOrganizationsByUserResponse;
 };
 
+type AppServiceSearchOrganizations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.SearchOrganizationsRequest;
+  readonly responseType: typeof app_v1_app_pb.SearchOrganizationsResponse;
+};
+
 type AppServiceGetOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -76,6 +85,15 @@ type AppServiceUpdateOrganization = {
   readonly responseType: typeof app_v1_app_pb.UpdateOrganizationResponse;
 };
 
+type AppServiceUpdateOrganizationNamespace = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateOrganizationNamespaceRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateOrganizationNamespaceResponse;
+};
+
 type AppServiceDeleteOrganization = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -83,6 +101,24 @@ type AppServiceDeleteOrganization = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.DeleteOrganizationRequest;
   readonly responseType: typeof app_v1_app_pb.DeleteOrganizationResponse;
+};
+
+type AppServiceGetOrganizationMetadata = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetOrganizationMetadataRequest;
+  readonly responseType: typeof app_v1_app_pb.GetOrganizationMetadataResponse;
+};
+
+type AppServiceUpdateOrganizationMetadata = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateOrganizationMetadataRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateOrganizationMetadataResponse;
 };
 
 type AppServiceListOrganizationMembers = {
@@ -139,6 +175,141 @@ type AppServiceResendOrganizationInvite = {
   readonly responseType: typeof app_v1_app_pb.ResendOrganizationInviteResponse;
 };
 
+type AppServiceEnableBillingService = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.EnableBillingServiceRequest;
+  readonly responseType: typeof app_v1_app_pb.EnableBillingServiceResponse;
+};
+
+type AppServiceDisableBillingService = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DisableBillingServiceRequest;
+  readonly responseType: typeof app_v1_app_pb.DisableBillingServiceResponse;
+};
+
+type AppServiceUpdateBillingService = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateBillingServiceRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateBillingServiceResponse;
+};
+
+type AppServiceGetBillingServiceConfig = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetBillingServiceConfigRequest;
+  readonly responseType: typeof app_v1_app_pb.GetBillingServiceConfigResponse;
+};
+
+type AppServiceOrganizationSetSupportEmail = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.OrganizationSetSupportEmailRequest;
+  readonly responseType: typeof app_v1_app_pb.OrganizationSetSupportEmailResponse;
+};
+
+type AppServiceOrganizationGetSupportEmail = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.OrganizationGetSupportEmailRequest;
+  readonly responseType: typeof app_v1_app_pb.OrganizationGetSupportEmailResponse;
+};
+
+type AppServiceOrganizationSetLogo = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.OrganizationSetLogoRequest;
+  readonly responseType: typeof app_v1_app_pb.OrganizationSetLogoResponse;
+};
+
+type AppServiceOrganizationGetLogo = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.OrganizationGetLogoRequest;
+  readonly responseType: typeof app_v1_app_pb.OrganizationGetLogoResponse;
+};
+
+type AppServiceEnableAuthService = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.EnableAuthServiceRequest;
+  readonly responseType: typeof app_v1_app_pb.EnableAuthServiceResponse;
+};
+
+type AppServiceDisableAuthService = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DisableAuthServiceRequest;
+  readonly responseType: typeof app_v1_app_pb.DisableAuthServiceResponse;
+};
+
+type AppServiceCreateOAuthApp = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateOAuthAppRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateOAuthAppResponse;
+};
+
+type AppServiceReadOAuthApp = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ReadOAuthAppRequest;
+  readonly responseType: typeof app_v1_app_pb.ReadOAuthAppResponse;
+};
+
+type AppServiceUpdateOAuthApp = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateOAuthAppRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateOAuthAppResponse;
+};
+
+type AppServiceDeleteOAuthApp = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteOAuthAppRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteOAuthAppResponse;
+};
+
+type AppServiceListOAuthApps = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListOAuthAppsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListOAuthAppsResponse;
+};
+
 type AppServiceCreateLocation = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -173,6 +344,24 @@ type AppServiceDeleteLocation = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.DeleteLocationRequest;
   readonly responseType: typeof app_v1_app_pb.DeleteLocationResponse;
+};
+
+type AppServiceGetLocationMetadata = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetLocationMetadataRequest;
+  readonly responseType: typeof app_v1_app_pb.GetLocationMetadataResponse;
+};
+
+type AppServiceUpdateLocationMetadata = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateLocationMetadataRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateLocationMetadataResponse;
 };
 
 type AppServiceListLocations = {
@@ -238,6 +427,24 @@ type AppServiceGetRobot = {
   readonly responseType: typeof app_v1_app_pb.GetRobotResponse;
 };
 
+type AppServiceGetRobotMetadata = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetRobotMetadataRequest;
+  readonly responseType: typeof app_v1_app_pb.GetRobotMetadataResponse;
+};
+
+type AppServiceUpdateRobotMetadata = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateRobotMetadataRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateRobotMetadataResponse;
+};
+
 type AppServiceGetRoverRentalRobots = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -263,6 +470,15 @@ type AppServiceGetRobotPart = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.GetRobotPartRequest;
   readonly responseType: typeof app_v1_app_pb.GetRobotPartResponse;
+};
+
+type AppServiceGetRobotPartByNameAndLocation = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetRobotPartByNameAndLocationRequest;
+  readonly responseType: typeof app_v1_app_pb.GetRobotPartByNameAndLocationResponse;
 };
 
 type AppServiceGetRobotPartLogs = {
@@ -319,6 +535,24 @@ type AppServiceDeleteRobotPart = {
   readonly responseType: typeof app_v1_app_pb.DeleteRobotPartResponse;
 };
 
+type AppServiceGetRobotPartMetadata = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetRobotPartMetadataRequest;
+  readonly responseType: typeof app_v1_app_pb.GetRobotPartMetadataResponse;
+};
+
+type AppServiceUpdateRobotPartMetadata = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateRobotPartMetadataRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateRobotPartMetadataResponse;
+};
+
 type AppServiceGetRobotAPIKeys = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -371,6 +605,24 @@ type AppServiceListRobots = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.ListRobotsRequest;
   readonly responseType: typeof app_v1_app_pb.ListRobotsResponse;
+};
+
+type AppServiceListRobotsForLocations = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListRobotsForLocationsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListRobotsForLocationsResponse;
+};
+
+type AppServiceListRobotsForOrg = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListRobotsForOrgRequest;
+  readonly responseType: typeof app_v1_app_pb.ListRobotsForOrgResponse;
 };
 
 type AppServiceNewRobot = {
@@ -443,6 +695,69 @@ type AppServiceDeleteFragment = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.DeleteFragmentRequest;
   readonly responseType: typeof app_v1_app_pb.DeleteFragmentResponse;
+};
+
+type AppServiceListNestedFragments = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListNestedFragmentsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListNestedFragmentsResponse;
+};
+
+type AppServiceListMachineFragments = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListMachineFragmentsRequest;
+  readonly responseType: typeof app_v1_app_pb.ListMachineFragmentsResponse;
+};
+
+type AppServiceListMachineSummaries = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListMachineSummariesRequest;
+  readonly responseType: typeof app_v1_app_pb.ListMachineSummariesResponse;
+};
+
+type AppServiceGetFragmentHistory = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetFragmentHistoryRequest;
+  readonly responseType: typeof app_v1_app_pb.GetFragmentHistoryResponse;
+};
+
+type AppServiceGetFragmentUsage = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetFragmentUsageRequest;
+  readonly responseType: typeof app_v1_app_pb.GetFragmentUsageResponse;
+};
+
+type AppServiceSetFragmentTag = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.SetFragmentTagRequest;
+  readonly responseType: typeof app_v1_app_pb.SetFragmentTagResponse;
+};
+
+type AppServiceDeleteFragmentTag = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteFragmentTagRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteFragmentTagResponse;
 };
 
 type AppServiceAddRole = {
@@ -535,6 +850,24 @@ type AppServiceDeleteRegistryItem = {
   readonly responseType: typeof app_v1_app_pb.DeleteRegistryItemResponse;
 };
 
+type AppServiceRenameRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.RenameRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.RenameRegistryItemResponse;
+};
+
+type AppServiceTransferRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.TransferRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.TransferRegistryItemResponse;
+};
+
 type AppServiceCreateModule = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -607,6 +940,15 @@ type AppServiceListKeys = {
   readonly responseType: typeof app_v1_app_pb.ListKeysResponse;
 };
 
+type AppServiceRenameKey = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.RenameKeyRequest;
+  readonly responseType: typeof app_v1_app_pb.RenameKeyResponse;
+};
+
 type AppServiceRotateKey = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -625,6 +967,24 @@ type AppServiceCreateKeyFromExistingKeyAuthorizations = {
   readonly responseType: typeof app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse;
 };
 
+type AppServiceGetAppContent = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetAppContentRequest;
+  readonly responseType: typeof app_v1_app_pb.GetAppContentResponse;
+};
+
+type AppServiceGetAppBranding = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetAppBrandingRequest;
+  readonly responseType: typeof app_v1_app_pb.GetAppBrandingResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
@@ -632,20 +992,41 @@ export class AppService {
   static readonly ListOrganizations: AppServiceListOrganizations;
   static readonly GetOrganizationsWithAccessToLocation: AppServiceGetOrganizationsWithAccessToLocation;
   static readonly ListOrganizationsByUser: AppServiceListOrganizationsByUser;
+  static readonly SearchOrganizations: AppServiceSearchOrganizations;
   static readonly GetOrganization: AppServiceGetOrganization;
   static readonly GetOrganizationNamespaceAvailability: AppServiceGetOrganizationNamespaceAvailability;
   static readonly UpdateOrganization: AppServiceUpdateOrganization;
+  static readonly UpdateOrganizationNamespace: AppServiceUpdateOrganizationNamespace;
   static readonly DeleteOrganization: AppServiceDeleteOrganization;
+  static readonly GetOrganizationMetadata: AppServiceGetOrganizationMetadata;
+  static readonly UpdateOrganizationMetadata: AppServiceUpdateOrganizationMetadata;
   static readonly ListOrganizationMembers: AppServiceListOrganizationMembers;
   static readonly CreateOrganizationInvite: AppServiceCreateOrganizationInvite;
   static readonly UpdateOrganizationInviteAuthorizations: AppServiceUpdateOrganizationInviteAuthorizations;
   static readonly DeleteOrganizationMember: AppServiceDeleteOrganizationMember;
   static readonly DeleteOrganizationInvite: AppServiceDeleteOrganizationInvite;
   static readonly ResendOrganizationInvite: AppServiceResendOrganizationInvite;
+  static readonly EnableBillingService: AppServiceEnableBillingService;
+  static readonly DisableBillingService: AppServiceDisableBillingService;
+  static readonly UpdateBillingService: AppServiceUpdateBillingService;
+  static readonly GetBillingServiceConfig: AppServiceGetBillingServiceConfig;
+  static readonly OrganizationSetSupportEmail: AppServiceOrganizationSetSupportEmail;
+  static readonly OrganizationGetSupportEmail: AppServiceOrganizationGetSupportEmail;
+  static readonly OrganizationSetLogo: AppServiceOrganizationSetLogo;
+  static readonly OrganizationGetLogo: AppServiceOrganizationGetLogo;
+  static readonly EnableAuthService: AppServiceEnableAuthService;
+  static readonly DisableAuthService: AppServiceDisableAuthService;
+  static readonly CreateOAuthApp: AppServiceCreateOAuthApp;
+  static readonly ReadOAuthApp: AppServiceReadOAuthApp;
+  static readonly UpdateOAuthApp: AppServiceUpdateOAuthApp;
+  static readonly DeleteOAuthApp: AppServiceDeleteOAuthApp;
+  static readonly ListOAuthApps: AppServiceListOAuthApps;
   static readonly CreateLocation: AppServiceCreateLocation;
   static readonly GetLocation: AppServiceGetLocation;
   static readonly UpdateLocation: AppServiceUpdateLocation;
   static readonly DeleteLocation: AppServiceDeleteLocation;
+  static readonly GetLocationMetadata: AppServiceGetLocationMetadata;
+  static readonly UpdateLocationMetadata: AppServiceUpdateLocationMetadata;
   static readonly ListLocations: AppServiceListLocations;
   static readonly ShareLocation: AppServiceShareLocation;
   static readonly UnshareLocation: AppServiceUnshareLocation;
@@ -653,21 +1034,28 @@ export class AppService {
   static readonly CreateLocationSecret: AppServiceCreateLocationSecret;
   static readonly DeleteLocationSecret: AppServiceDeleteLocationSecret;
   static readonly GetRobot: AppServiceGetRobot;
+  static readonly GetRobotMetadata: AppServiceGetRobotMetadata;
+  static readonly UpdateRobotMetadata: AppServiceUpdateRobotMetadata;
   static readonly GetRoverRentalRobots: AppServiceGetRoverRentalRobots;
   static readonly GetRobotParts: AppServiceGetRobotParts;
   static readonly GetRobotPart: AppServiceGetRobotPart;
+  static readonly GetRobotPartByNameAndLocation: AppServiceGetRobotPartByNameAndLocation;
   static readonly GetRobotPartLogs: AppServiceGetRobotPartLogs;
   static readonly TailRobotPartLogs: AppServiceTailRobotPartLogs;
   static readonly GetRobotPartHistory: AppServiceGetRobotPartHistory;
   static readonly UpdateRobotPart: AppServiceUpdateRobotPart;
   static readonly NewRobotPart: AppServiceNewRobotPart;
   static readonly DeleteRobotPart: AppServiceDeleteRobotPart;
+  static readonly GetRobotPartMetadata: AppServiceGetRobotPartMetadata;
+  static readonly UpdateRobotPartMetadata: AppServiceUpdateRobotPartMetadata;
   static readonly GetRobotAPIKeys: AppServiceGetRobotAPIKeys;
   static readonly MarkPartAsMain: AppServiceMarkPartAsMain;
   static readonly MarkPartForRestart: AppServiceMarkPartForRestart;
   static readonly CreateRobotPartSecret: AppServiceCreateRobotPartSecret;
   static readonly DeleteRobotPartSecret: AppServiceDeleteRobotPartSecret;
   static readonly ListRobots: AppServiceListRobots;
+  static readonly ListRobotsForLocations: AppServiceListRobotsForLocations;
+  static readonly ListRobotsForOrg: AppServiceListRobotsForOrg;
   static readonly NewRobot: AppServiceNewRobot;
   static readonly UpdateRobot: AppServiceUpdateRobot;
   static readonly DeleteRobot: AppServiceDeleteRobot;
@@ -676,6 +1064,13 @@ export class AppService {
   static readonly CreateFragment: AppServiceCreateFragment;
   static readonly UpdateFragment: AppServiceUpdateFragment;
   static readonly DeleteFragment: AppServiceDeleteFragment;
+  static readonly ListNestedFragments: AppServiceListNestedFragments;
+  static readonly ListMachineFragments: AppServiceListMachineFragments;
+  static readonly ListMachineSummaries: AppServiceListMachineSummaries;
+  static readonly GetFragmentHistory: AppServiceGetFragmentHistory;
+  static readonly GetFragmentUsage: AppServiceGetFragmentUsage;
+  static readonly SetFragmentTag: AppServiceSetFragmentTag;
+  static readonly DeleteFragmentTag: AppServiceDeleteFragmentTag;
   static readonly AddRole: AppServiceAddRole;
   static readonly RemoveRole: AppServiceRemoveRole;
   static readonly ChangeRole: AppServiceChangeRole;
@@ -686,6 +1081,8 @@ export class AppService {
   static readonly UpdateRegistryItem: AppServiceUpdateRegistryItem;
   static readonly ListRegistryItems: AppServiceListRegistryItems;
   static readonly DeleteRegistryItem: AppServiceDeleteRegistryItem;
+  static readonly RenameRegistryItem: AppServiceRenameRegistryItem;
+  static readonly TransferRegistryItem: AppServiceTransferRegistryItem;
   static readonly CreateModule: AppServiceCreateModule;
   static readonly UpdateModule: AppServiceUpdateModule;
   static readonly UploadModuleFile: AppServiceUploadModuleFile;
@@ -694,8 +1091,11 @@ export class AppService {
   static readonly CreateKey: AppServiceCreateKey;
   static readonly DeleteKey: AppServiceDeleteKey;
   static readonly ListKeys: AppServiceListKeys;
+  static readonly RenameKey: AppServiceRenameKey;
   static readonly RotateKey: AppServiceRotateKey;
   static readonly CreateKeyFromExistingKeyAuthorizations: AppServiceCreateKeyFromExistingKeyAuthorizations;
+  static readonly GetAppContent: AppServiceGetAppContent;
+  static readonly GetAppBranding: AppServiceGetAppBranding;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -775,6 +1175,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.ListOrganizationsByUserRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOrganizationsByUserResponse|null) => void
   ): UnaryResponse;
+  searchOrganizations(
+    requestMessage: app_v1_app_pb.SearchOrganizationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SearchOrganizationsResponse|null) => void
+  ): UnaryResponse;
+  searchOrganizations(
+    requestMessage: app_v1_app_pb.SearchOrganizationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SearchOrganizationsResponse|null) => void
+  ): UnaryResponse;
   getOrganization(
     requestMessage: app_v1_app_pb.GetOrganizationRequest,
     metadata: grpc.Metadata,
@@ -802,6 +1211,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.UpdateOrganizationRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationResponse|null) => void
   ): UnaryResponse;
+  updateOrganizationNamespace(
+    requestMessage: app_v1_app_pb.UpdateOrganizationNamespaceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationNamespaceResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationNamespace(
+    requestMessage: app_v1_app_pb.UpdateOrganizationNamespaceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationNamespaceResponse|null) => void
+  ): UnaryResponse;
   deleteOrganization(
     requestMessage: app_v1_app_pb.DeleteOrganizationRequest,
     metadata: grpc.Metadata,
@@ -810,6 +1228,24 @@ export class AppServiceClient {
   deleteOrganization(
     requestMessage: app_v1_app_pb.DeleteOrganizationRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOrganizationResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationMetadata(
+    requestMessage: app_v1_app_pb.GetOrganizationMetadataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationMetadataResponse|null) => void
+  ): UnaryResponse;
+  getOrganizationMetadata(
+    requestMessage: app_v1_app_pb.GetOrganizationMetadataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetOrganizationMetadataResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationMetadata(
+    requestMessage: app_v1_app_pb.UpdateOrganizationMetadataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationMetadataResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationMetadata(
+    requestMessage: app_v1_app_pb.UpdateOrganizationMetadataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOrganizationMetadataResponse|null) => void
   ): UnaryResponse;
   listOrganizationMembers(
     requestMessage: app_v1_app_pb.ListOrganizationMembersRequest,
@@ -865,6 +1301,141 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.ResendOrganizationInviteRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ResendOrganizationInviteResponse|null) => void
   ): UnaryResponse;
+  enableBillingService(
+    requestMessage: app_v1_app_pb.EnableBillingServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.EnableBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  enableBillingService(
+    requestMessage: app_v1_app_pb.EnableBillingServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.EnableBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  disableBillingService(
+    requestMessage: app_v1_app_pb.DisableBillingServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DisableBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  disableBillingService(
+    requestMessage: app_v1_app_pb.DisableBillingServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DisableBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  updateBillingService(
+    requestMessage: app_v1_app_pb.UpdateBillingServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  updateBillingService(
+    requestMessage: app_v1_app_pb.UpdateBillingServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateBillingServiceResponse|null) => void
+  ): UnaryResponse;
+  getBillingServiceConfig(
+    requestMessage: app_v1_app_pb.GetBillingServiceConfigRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetBillingServiceConfigResponse|null) => void
+  ): UnaryResponse;
+  getBillingServiceConfig(
+    requestMessage: app_v1_app_pb.GetBillingServiceConfigRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetBillingServiceConfigResponse|null) => void
+  ): UnaryResponse;
+  organizationSetSupportEmail(
+    requestMessage: app_v1_app_pb.OrganizationSetSupportEmailRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationSetSupportEmailResponse|null) => void
+  ): UnaryResponse;
+  organizationSetSupportEmail(
+    requestMessage: app_v1_app_pb.OrganizationSetSupportEmailRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationSetSupportEmailResponse|null) => void
+  ): UnaryResponse;
+  organizationGetSupportEmail(
+    requestMessage: app_v1_app_pb.OrganizationGetSupportEmailRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationGetSupportEmailResponse|null) => void
+  ): UnaryResponse;
+  organizationGetSupportEmail(
+    requestMessage: app_v1_app_pb.OrganizationGetSupportEmailRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationGetSupportEmailResponse|null) => void
+  ): UnaryResponse;
+  organizationSetLogo(
+    requestMessage: app_v1_app_pb.OrganizationSetLogoRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationSetLogoResponse|null) => void
+  ): UnaryResponse;
+  organizationSetLogo(
+    requestMessage: app_v1_app_pb.OrganizationSetLogoRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationSetLogoResponse|null) => void
+  ): UnaryResponse;
+  organizationGetLogo(
+    requestMessage: app_v1_app_pb.OrganizationGetLogoRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationGetLogoResponse|null) => void
+  ): UnaryResponse;
+  organizationGetLogo(
+    requestMessage: app_v1_app_pb.OrganizationGetLogoRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.OrganizationGetLogoResponse|null) => void
+  ): UnaryResponse;
+  enableAuthService(
+    requestMessage: app_v1_app_pb.EnableAuthServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.EnableAuthServiceResponse|null) => void
+  ): UnaryResponse;
+  enableAuthService(
+    requestMessage: app_v1_app_pb.EnableAuthServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.EnableAuthServiceResponse|null) => void
+  ): UnaryResponse;
+  disableAuthService(
+    requestMessage: app_v1_app_pb.DisableAuthServiceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DisableAuthServiceResponse|null) => void
+  ): UnaryResponse;
+  disableAuthService(
+    requestMessage: app_v1_app_pb.DisableAuthServiceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DisableAuthServiceResponse|null) => void
+  ): UnaryResponse;
+  createOAuthApp(
+    requestMessage: app_v1_app_pb.CreateOAuthAppRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  createOAuthApp(
+    requestMessage: app_v1_app_pb.CreateOAuthAppRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  readOAuthApp(
+    requestMessage: app_v1_app_pb.ReadOAuthAppRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ReadOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  readOAuthApp(
+    requestMessage: app_v1_app_pb.ReadOAuthAppRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ReadOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  updateOAuthApp(
+    requestMessage: app_v1_app_pb.UpdateOAuthAppRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  updateOAuthApp(
+    requestMessage: app_v1_app_pb.UpdateOAuthAppRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  deleteOAuthApp(
+    requestMessage: app_v1_app_pb.DeleteOAuthAppRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  deleteOAuthApp(
+    requestMessage: app_v1_app_pb.DeleteOAuthAppRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteOAuthAppResponse|null) => void
+  ): UnaryResponse;
+  listOAuthApps(
+    requestMessage: app_v1_app_pb.ListOAuthAppsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOAuthAppsResponse|null) => void
+  ): UnaryResponse;
+  listOAuthApps(
+    requestMessage: app_v1_app_pb.ListOAuthAppsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOAuthAppsResponse|null) => void
+  ): UnaryResponse;
   createLocation(
     requestMessage: app_v1_app_pb.CreateLocationRequest,
     metadata: grpc.Metadata,
@@ -900,6 +1471,24 @@ export class AppServiceClient {
   deleteLocation(
     requestMessage: app_v1_app_pb.DeleteLocationRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteLocationResponse|null) => void
+  ): UnaryResponse;
+  getLocationMetadata(
+    requestMessage: app_v1_app_pb.GetLocationMetadataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetLocationMetadataResponse|null) => void
+  ): UnaryResponse;
+  getLocationMetadata(
+    requestMessage: app_v1_app_pb.GetLocationMetadataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetLocationMetadataResponse|null) => void
+  ): UnaryResponse;
+  updateLocationMetadata(
+    requestMessage: app_v1_app_pb.UpdateLocationMetadataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateLocationMetadataResponse|null) => void
+  ): UnaryResponse;
+  updateLocationMetadata(
+    requestMessage: app_v1_app_pb.UpdateLocationMetadataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateLocationMetadataResponse|null) => void
   ): UnaryResponse;
   listLocations(
     requestMessage: app_v1_app_pb.ListLocationsRequest,
@@ -964,6 +1553,24 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.GetRobotRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotResponse|null) => void
   ): UnaryResponse;
+  getRobotMetadata(
+    requestMessage: app_v1_app_pb.GetRobotMetadataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotMetadataResponse|null) => void
+  ): UnaryResponse;
+  getRobotMetadata(
+    requestMessage: app_v1_app_pb.GetRobotMetadataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotMetadataResponse|null) => void
+  ): UnaryResponse;
+  updateRobotMetadata(
+    requestMessage: app_v1_app_pb.UpdateRobotMetadataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRobotMetadataResponse|null) => void
+  ): UnaryResponse;
+  updateRobotMetadata(
+    requestMessage: app_v1_app_pb.UpdateRobotMetadataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRobotMetadataResponse|null) => void
+  ): UnaryResponse;
   getRoverRentalRobots(
     requestMessage: app_v1_app_pb.GetRoverRentalRobotsRequest,
     metadata: grpc.Metadata,
@@ -990,6 +1597,15 @@ export class AppServiceClient {
   getRobotPart(
     requestMessage: app_v1_app_pb.GetRobotPartRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartResponse|null) => void
+  ): UnaryResponse;
+  getRobotPartByNameAndLocation(
+    requestMessage: app_v1_app_pb.GetRobotPartByNameAndLocationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartByNameAndLocationResponse|null) => void
+  ): UnaryResponse;
+  getRobotPartByNameAndLocation(
+    requestMessage: app_v1_app_pb.GetRobotPartByNameAndLocationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartByNameAndLocationResponse|null) => void
   ): UnaryResponse;
   getRobotPartLogs(
     requestMessage: app_v1_app_pb.GetRobotPartLogsRequest,
@@ -1037,6 +1653,24 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.DeleteRobotPartRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotPartResponse|null) => void
   ): UnaryResponse;
+  getRobotPartMetadata(
+    requestMessage: app_v1_app_pb.GetRobotPartMetadataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartMetadataResponse|null) => void
+  ): UnaryResponse;
+  getRobotPartMetadata(
+    requestMessage: app_v1_app_pb.GetRobotPartMetadataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetRobotPartMetadataResponse|null) => void
+  ): UnaryResponse;
+  updateRobotPartMetadata(
+    requestMessage: app_v1_app_pb.UpdateRobotPartMetadataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRobotPartMetadataResponse|null) => void
+  ): UnaryResponse;
+  updateRobotPartMetadata(
+    requestMessage: app_v1_app_pb.UpdateRobotPartMetadataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRobotPartMetadataResponse|null) => void
+  ): UnaryResponse;
   getRobotAPIKeys(
     requestMessage: app_v1_app_pb.GetRobotAPIKeysRequest,
     metadata: grpc.Metadata,
@@ -1090,6 +1724,24 @@ export class AppServiceClient {
   listRobots(
     requestMessage: app_v1_app_pb.ListRobotsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsResponse|null) => void
+  ): UnaryResponse;
+  listRobotsForLocations(
+    requestMessage: app_v1_app_pb.ListRobotsForLocationsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsForLocationsResponse|null) => void
+  ): UnaryResponse;
+  listRobotsForLocations(
+    requestMessage: app_v1_app_pb.ListRobotsForLocationsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsForLocationsResponse|null) => void
+  ): UnaryResponse;
+  listRobotsForOrg(
+    requestMessage: app_v1_app_pb.ListRobotsForOrgRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsForOrgResponse|null) => void
+  ): UnaryResponse;
+  listRobotsForOrg(
+    requestMessage: app_v1_app_pb.ListRobotsForOrgRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListRobotsForOrgResponse|null) => void
   ): UnaryResponse;
   newRobot(
     requestMessage: app_v1_app_pb.NewRobotRequest,
@@ -1162,6 +1814,69 @@ export class AppServiceClient {
   deleteFragment(
     requestMessage: app_v1_app_pb.DeleteFragmentRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentResponse|null) => void
+  ): UnaryResponse;
+  listNestedFragments(
+    requestMessage: app_v1_app_pb.ListNestedFragmentsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListNestedFragmentsResponse|null) => void
+  ): UnaryResponse;
+  listNestedFragments(
+    requestMessage: app_v1_app_pb.ListNestedFragmentsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListNestedFragmentsResponse|null) => void
+  ): UnaryResponse;
+  listMachineFragments(
+    requestMessage: app_v1_app_pb.ListMachineFragmentsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineFragmentsResponse|null) => void
+  ): UnaryResponse;
+  listMachineFragments(
+    requestMessage: app_v1_app_pb.ListMachineFragmentsRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineFragmentsResponse|null) => void
+  ): UnaryResponse;
+  listMachineSummaries(
+    requestMessage: app_v1_app_pb.ListMachineSummariesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineSummariesResponse|null) => void
+  ): UnaryResponse;
+  listMachineSummaries(
+    requestMessage: app_v1_app_pb.ListMachineSummariesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListMachineSummariesResponse|null) => void
+  ): UnaryResponse;
+  getFragmentHistory(
+    requestMessage: app_v1_app_pb.GetFragmentHistoryRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentHistoryResponse|null) => void
+  ): UnaryResponse;
+  getFragmentHistory(
+    requestMessage: app_v1_app_pb.GetFragmentHistoryRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentHistoryResponse|null) => void
+  ): UnaryResponse;
+  getFragmentUsage(
+    requestMessage: app_v1_app_pb.GetFragmentUsageRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentUsageResponse|null) => void
+  ): UnaryResponse;
+  getFragmentUsage(
+    requestMessage: app_v1_app_pb.GetFragmentUsageRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFragmentUsageResponse|null) => void
+  ): UnaryResponse;
+  setFragmentTag(
+    requestMessage: app_v1_app_pb.SetFragmentTagRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SetFragmentTagResponse|null) => void
+  ): UnaryResponse;
+  setFragmentTag(
+    requestMessage: app_v1_app_pb.SetFragmentTagRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SetFragmentTagResponse|null) => void
+  ): UnaryResponse;
+  deleteFragmentTag(
+    requestMessage: app_v1_app_pb.DeleteFragmentTagRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentTagResponse|null) => void
+  ): UnaryResponse;
+  deleteFragmentTag(
+    requestMessage: app_v1_app_pb.DeleteFragmentTagRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFragmentTagResponse|null) => void
   ): UnaryResponse;
   addRole(
     requestMessage: app_v1_app_pb.AddRoleRequest,
@@ -1252,6 +1967,24 @@ export class AppServiceClient {
   deleteRegistryItem(
     requestMessage: app_v1_app_pb.DeleteRegistryItemRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  renameRegistryItem(
+    requestMessage: app_v1_app_pb.RenameRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RenameRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  renameRegistryItem(
+    requestMessage: app_v1_app_pb.RenameRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RenameRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  transferRegistryItem(
+    requestMessage: app_v1_app_pb.TransferRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.TransferRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  transferRegistryItem(
+    requestMessage: app_v1_app_pb.TransferRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.TransferRegistryItemResponse|null) => void
   ): UnaryResponse;
   createModule(
     requestMessage: app_v1_app_pb.CreateModuleRequest,
@@ -1317,6 +2050,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.ListKeysRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListKeysResponse|null) => void
   ): UnaryResponse;
+  renameKey(
+    requestMessage: app_v1_app_pb.RenameKeyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RenameKeyResponse|null) => void
+  ): UnaryResponse;
+  renameKey(
+    requestMessage: app_v1_app_pb.RenameKeyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RenameKeyResponse|null) => void
+  ): UnaryResponse;
   rotateKey(
     requestMessage: app_v1_app_pb.RotateKeyRequest,
     metadata: grpc.Metadata,
@@ -1334,6 +2076,24 @@ export class AppServiceClient {
   createKeyFromExistingKeyAuthorizations(
     requestMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateKeyFromExistingKeyAuthorizationsResponse|null) => void
+  ): UnaryResponse;
+  getAppContent(
+    requestMessage: app_v1_app_pb.GetAppContentRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetAppContentResponse|null) => void
+  ): UnaryResponse;
+  getAppContent(
+    requestMessage: app_v1_app_pb.GetAppContentRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetAppContentResponse|null) => void
+  ): UnaryResponse;
+  getAppBranding(
+    requestMessage: app_v1_app_pb.GetAppBrandingRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetAppBrandingResponse|null) => void
+  ): UnaryResponse;
+  getAppBranding(
+    requestMessage: app_v1_app_pb.GetAppBrandingRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetAppBrandingResponse|null) => void
   ): UnaryResponse;
 }
 

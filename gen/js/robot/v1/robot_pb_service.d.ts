@@ -58,40 +58,13 @@ type RobotServiceBlockForOperation = {
   readonly responseType: typeof robot_v1_robot_pb.BlockForOperationResponse;
 };
 
-type RobotServiceDiscoverComponents = {
+type RobotServiceGetModelsFromModules = {
   readonly methodName: string;
   readonly service: typeof RobotService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof robot_v1_robot_pb.DiscoverComponentsRequest;
-  readonly responseType: typeof robot_v1_robot_pb.DiscoverComponentsResponse;
-};
-
-type RobotServiceFrameSystemConfig = {
-  readonly methodName: string;
-  readonly service: typeof RobotService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof robot_v1_robot_pb.FrameSystemConfigRequest;
-  readonly responseType: typeof robot_v1_robot_pb.FrameSystemConfigResponse;
-};
-
-type RobotServiceTransformPose = {
-  readonly methodName: string;
-  readonly service: typeof RobotService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof robot_v1_robot_pb.TransformPoseRequest;
-  readonly responseType: typeof robot_v1_robot_pb.TransformPoseResponse;
-};
-
-type RobotServiceTransformPCD = {
-  readonly methodName: string;
-  readonly service: typeof RobotService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof robot_v1_robot_pb.TransformPCDRequest;
-  readonly responseType: typeof robot_v1_robot_pb.TransformPCDResponse;
+  readonly requestType: typeof robot_v1_robot_pb.GetModelsFromModulesRequest;
+  readonly responseType: typeof robot_v1_robot_pb.GetModelsFromModulesResponse;
 };
 
 type RobotServiceGetStatus = {
@@ -166,6 +139,87 @@ type RobotServiceRestartModule = {
   readonly responseType: typeof robot_v1_robot_pb.RestartModuleResponse;
 };
 
+type RobotServiceShutdown = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.ShutdownRequest;
+  readonly responseType: typeof robot_v1_robot_pb.ShutdownResponse;
+};
+
+type RobotServiceGetMachineStatus = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.GetMachineStatusRequest;
+  readonly responseType: typeof robot_v1_robot_pb.GetMachineStatusResponse;
+};
+
+type RobotServiceGetVersion = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.GetVersionRequest;
+  readonly responseType: typeof robot_v1_robot_pb.GetVersionResponse;
+};
+
+type RobotServiceTunnel = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: true;
+  readonly responseStream: true;
+  readonly requestType: typeof robot_v1_robot_pb.TunnelRequest;
+  readonly responseType: typeof robot_v1_robot_pb.TunnelResponse;
+};
+
+type RobotServiceListTunnels = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.ListTunnelsRequest;
+  readonly responseType: typeof robot_v1_robot_pb.ListTunnelsResponse;
+};
+
+type RobotServiceFrameSystemConfig = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.FrameSystemConfigRequest;
+  readonly responseType: typeof robot_v1_robot_pb.FrameSystemConfigResponse;
+};
+
+type RobotServiceGetPose = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.GetPoseRequest;
+  readonly responseType: typeof robot_v1_robot_pb.GetPoseResponse;
+};
+
+type RobotServiceTransformPose = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.TransformPoseRequest;
+  readonly responseType: typeof robot_v1_robot_pb.TransformPoseResponse;
+};
+
+type RobotServiceTransformPCD = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.TransformPCDRequest;
+  readonly responseType: typeof robot_v1_robot_pb.TransformPCDResponse;
+};
+
 export class RobotService {
   static readonly serviceName: string;
   static readonly GetOperations: RobotServiceGetOperations;
@@ -174,10 +228,7 @@ export class RobotService {
   static readonly ResourceRPCSubtypes: RobotServiceResourceRPCSubtypes;
   static readonly CancelOperation: RobotServiceCancelOperation;
   static readonly BlockForOperation: RobotServiceBlockForOperation;
-  static readonly DiscoverComponents: RobotServiceDiscoverComponents;
-  static readonly FrameSystemConfig: RobotServiceFrameSystemConfig;
-  static readonly TransformPose: RobotServiceTransformPose;
-  static readonly TransformPCD: RobotServiceTransformPCD;
+  static readonly GetModelsFromModules: RobotServiceGetModelsFromModules;
   static readonly GetStatus: RobotServiceGetStatus;
   static readonly StreamStatus: RobotServiceStreamStatus;
   static readonly StopAll: RobotServiceStopAll;
@@ -186,6 +237,15 @@ export class RobotService {
   static readonly Log: RobotServiceLog;
   static readonly GetCloudMetadata: RobotServiceGetCloudMetadata;
   static readonly RestartModule: RobotServiceRestartModule;
+  static readonly Shutdown: RobotServiceShutdown;
+  static readonly GetMachineStatus: RobotServiceGetMachineStatus;
+  static readonly GetVersion: RobotServiceGetVersion;
+  static readonly Tunnel: RobotServiceTunnel;
+  static readonly ListTunnels: RobotServiceListTunnels;
+  static readonly FrameSystemConfig: RobotServiceFrameSystemConfig;
+  static readonly GetPose: RobotServiceGetPose;
+  static readonly TransformPose: RobotServiceTransformPose;
+  static readonly TransformPCD: RobotServiceTransformPCD;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -274,41 +334,14 @@ export class RobotServiceClient {
     requestMessage: robot_v1_robot_pb.BlockForOperationRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.BlockForOperationResponse|null) => void
   ): UnaryResponse;
-  discoverComponents(
-    requestMessage: robot_v1_robot_pb.DiscoverComponentsRequest,
+  getModelsFromModules(
+    requestMessage: robot_v1_robot_pb.GetModelsFromModulesRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.DiscoverComponentsResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetModelsFromModulesResponse|null) => void
   ): UnaryResponse;
-  discoverComponents(
-    requestMessage: robot_v1_robot_pb.DiscoverComponentsRequest,
-    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.DiscoverComponentsResponse|null) => void
-  ): UnaryResponse;
-  frameSystemConfig(
-    requestMessage: robot_v1_robot_pb.FrameSystemConfigRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.FrameSystemConfigResponse|null) => void
-  ): UnaryResponse;
-  frameSystemConfig(
-    requestMessage: robot_v1_robot_pb.FrameSystemConfigRequest,
-    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.FrameSystemConfigResponse|null) => void
-  ): UnaryResponse;
-  transformPose(
-    requestMessage: robot_v1_robot_pb.TransformPoseRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPoseResponse|null) => void
-  ): UnaryResponse;
-  transformPose(
-    requestMessage: robot_v1_robot_pb.TransformPoseRequest,
-    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPoseResponse|null) => void
-  ): UnaryResponse;
-  transformPCD(
-    requestMessage: robot_v1_robot_pb.TransformPCDRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPCDResponse|null) => void
-  ): UnaryResponse;
-  transformPCD(
-    requestMessage: robot_v1_robot_pb.TransformPCDRequest,
-    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPCDResponse|null) => void
+  getModelsFromModules(
+    requestMessage: robot_v1_robot_pb.GetModelsFromModulesRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetModelsFromModulesResponse|null) => void
   ): UnaryResponse;
   getStatus(
     requestMessage: robot_v1_robot_pb.GetStatusRequest,
@@ -373,6 +406,79 @@ export class RobotServiceClient {
   restartModule(
     requestMessage: robot_v1_robot_pb.RestartModuleRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.RestartModuleResponse|null) => void
+  ): UnaryResponse;
+  shutdown(
+    requestMessage: robot_v1_robot_pb.ShutdownRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ShutdownResponse|null) => void
+  ): UnaryResponse;
+  shutdown(
+    requestMessage: robot_v1_robot_pb.ShutdownRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ShutdownResponse|null) => void
+  ): UnaryResponse;
+  getMachineStatus(
+    requestMessage: robot_v1_robot_pb.GetMachineStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetMachineStatusResponse|null) => void
+  ): UnaryResponse;
+  getMachineStatus(
+    requestMessage: robot_v1_robot_pb.GetMachineStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetMachineStatusResponse|null) => void
+  ): UnaryResponse;
+  getVersion(
+    requestMessage: robot_v1_robot_pb.GetVersionRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetVersionResponse|null) => void
+  ): UnaryResponse;
+  getVersion(
+    requestMessage: robot_v1_robot_pb.GetVersionRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetVersionResponse|null) => void
+  ): UnaryResponse;
+  tunnel(metadata?: grpc.Metadata): BidirectionalStream<robot_v1_robot_pb.TunnelRequest, robot_v1_robot_pb.TunnelResponse>;
+  listTunnels(
+    requestMessage: robot_v1_robot_pb.ListTunnelsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ListTunnelsResponse|null) => void
+  ): UnaryResponse;
+  listTunnels(
+    requestMessage: robot_v1_robot_pb.ListTunnelsRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.ListTunnelsResponse|null) => void
+  ): UnaryResponse;
+  frameSystemConfig(
+    requestMessage: robot_v1_robot_pb.FrameSystemConfigRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.FrameSystemConfigResponse|null) => void
+  ): UnaryResponse;
+  frameSystemConfig(
+    requestMessage: robot_v1_robot_pb.FrameSystemConfigRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.FrameSystemConfigResponse|null) => void
+  ): UnaryResponse;
+  getPose(
+    requestMessage: robot_v1_robot_pb.GetPoseRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetPoseResponse|null) => void
+  ): UnaryResponse;
+  getPose(
+    requestMessage: robot_v1_robot_pb.GetPoseRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.GetPoseResponse|null) => void
+  ): UnaryResponse;
+  transformPose(
+    requestMessage: robot_v1_robot_pb.TransformPoseRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPoseResponse|null) => void
+  ): UnaryResponse;
+  transformPose(
+    requestMessage: robot_v1_robot_pb.TransformPoseRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPoseResponse|null) => void
+  ): UnaryResponse;
+  transformPCD(
+    requestMessage: robot_v1_robot_pb.TransformPCDRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPCDResponse|null) => void
+  ): UnaryResponse;
+  transformPCD(
+    requestMessage: robot_v1_robot_pb.TransformPCDRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPCDResponse|null) => void
   ): UnaryResponse;
 }
 

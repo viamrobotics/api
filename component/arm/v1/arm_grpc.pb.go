@@ -33,6 +33,10 @@ type ArmServiceClient interface {
 	// MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
 	// This will block until done or a new operation cancels this one
 	MoveToJointPositions(ctx context.Context, in *MoveToJointPositionsRequest, opts ...grpc.CallOption) (*MoveToJointPositionsResponse, error)
+	// MoveThroughJointPositions moves every joint on a robot's arm to the specified JointPositions in the order they are specified,
+	// obeying the specified velocity and acceleration limits.
+	// This will block until done or a new operation cancels this one
+	MoveThroughJointPositions(ctx context.Context, in *MoveThroughJointPositionsRequest, opts ...grpc.CallOption) (*MoveThroughJointPositionsResponse, error)
 	// Stop stops a robot's arm
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
@@ -43,6 +47,8 @@ type ArmServiceClient interface {
 	GetKinematics(ctx context.Context, in *v1.GetKinematicsRequest, opts ...grpc.CallOption) (*v1.GetKinematicsResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
+	// Get3DModels returns the 3D models of the component
+	Get3DModels(ctx context.Context, in *v1.Get3DModelsRequest, opts ...grpc.CallOption) (*v1.Get3DModelsResponse, error)
 }
 
 type armServiceClient struct {
@@ -83,6 +89,15 @@ func (c *armServiceClient) GetJointPositions(ctx context.Context, in *GetJointPo
 func (c *armServiceClient) MoveToJointPositions(ctx context.Context, in *MoveToJointPositionsRequest, opts ...grpc.CallOption) (*MoveToJointPositionsResponse, error) {
 	out := new(MoveToJointPositionsResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.arm.v1.ArmService/MoveToJointPositions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *armServiceClient) MoveThroughJointPositions(ctx context.Context, in *MoveThroughJointPositionsRequest, opts ...grpc.CallOption) (*MoveThroughJointPositionsResponse, error) {
+	out := new(MoveThroughJointPositionsResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.arm.v1.ArmService/MoveThroughJointPositions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -134,6 +149,15 @@ func (c *armServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometri
 	return out, nil
 }
 
+func (c *armServiceClient) Get3DModels(ctx context.Context, in *v1.Get3DModelsRequest, opts ...grpc.CallOption) (*v1.Get3DModelsResponse, error) {
+	out := new(v1.Get3DModelsResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.arm.v1.ArmService/Get3DModels", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArmServiceServer is the server API for ArmService service.
 // All implementations must embed UnimplementedArmServiceServer
 // for forward compatibility
@@ -148,6 +172,10 @@ type ArmServiceServer interface {
 	// MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
 	// This will block until done or a new operation cancels this one
 	MoveToJointPositions(context.Context, *MoveToJointPositionsRequest) (*MoveToJointPositionsResponse, error)
+	// MoveThroughJointPositions moves every joint on a robot's arm to the specified JointPositions in the order they are specified,
+	// obeying the specified velocity and acceleration limits.
+	// This will block until done or a new operation cancels this one
+	MoveThroughJointPositions(context.Context, *MoveThroughJointPositionsRequest) (*MoveThroughJointPositionsResponse, error)
 	// Stop stops a robot's arm
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
@@ -158,6 +186,8 @@ type ArmServiceServer interface {
 	GetKinematics(context.Context, *v1.GetKinematicsRequest) (*v1.GetKinematicsResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
+	// Get3DModels returns the 3D models of the component
+	Get3DModels(context.Context, *v1.Get3DModelsRequest) (*v1.Get3DModelsResponse, error)
 	mustEmbedUnimplementedArmServiceServer()
 }
 
@@ -177,6 +207,9 @@ func (UnimplementedArmServiceServer) GetJointPositions(context.Context, *GetJoin
 func (UnimplementedArmServiceServer) MoveToJointPositions(context.Context, *MoveToJointPositionsRequest) (*MoveToJointPositionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveToJointPositions not implemented")
 }
+func (UnimplementedArmServiceServer) MoveThroughJointPositions(context.Context, *MoveThroughJointPositionsRequest) (*MoveThroughJointPositionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MoveThroughJointPositions not implemented")
+}
 func (UnimplementedArmServiceServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stop not implemented")
 }
@@ -191,6 +224,9 @@ func (UnimplementedArmServiceServer) GetKinematics(context.Context, *v1.GetKinem
 }
 func (UnimplementedArmServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
+}
+func (UnimplementedArmServiceServer) Get3DModels(context.Context, *v1.Get3DModelsRequest) (*v1.Get3DModelsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get3DModels not implemented")
 }
 func (UnimplementedArmServiceServer) mustEmbedUnimplementedArmServiceServer() {}
 
@@ -273,6 +309,24 @@ func _ArmService_MoveToJointPositions_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArmServiceServer).MoveToJointPositions(ctx, req.(*MoveToJointPositionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArmService_MoveThroughJointPositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MoveThroughJointPositionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArmServiceServer).MoveThroughJointPositions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.arm.v1.ArmService/MoveThroughJointPositions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArmServiceServer).MoveThroughJointPositions(ctx, req.(*MoveThroughJointPositionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -367,6 +421,24 @@ func _ArmService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArmService_Get3DModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.Get3DModelsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArmServiceServer).Get3DModels(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.arm.v1.ArmService/Get3DModels",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArmServiceServer).Get3DModels(ctx, req.(*v1.Get3DModelsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArmService_ServiceDesc is the grpc.ServiceDesc for ArmService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -391,6 +463,10 @@ var ArmService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArmService_MoveToJointPositions_Handler,
 		},
 		{
+			MethodName: "MoveThroughJointPositions",
+			Handler:    _ArmService_MoveThroughJointPositions_Handler,
+		},
+		{
 			MethodName: "Stop",
 			Handler:    _ArmService_Stop_Handler,
 		},
@@ -409,6 +485,10 @@ var ArmService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGeometries",
 			Handler:    _ArmService_GetGeometries_Handler,
+		},
+		{
+			MethodName: "Get3DModels",
+			Handler:    _ArmService_Get3DModels_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

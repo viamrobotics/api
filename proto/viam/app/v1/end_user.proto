@@ -13,10 +13,19 @@ service EndUserService {
   rpc AcceptLegal(AcceptLegalRequest) returns (AcceptLegalResponse);
 
   // Allows users to register third party auth applications using Viam linked to the indicated organization
-  rpc RegisterAuthApplication(RegisterAuthApplicationRequest) returns (RegisterAuthApplicationResponse);
+  rpc RegisterAuthApplication(RegisterAuthApplicationRequest) returns (RegisterAuthApplicationResponse) {
+    option deprecated = true;
+  }
 
   // Allows users to update their third party auth applications
-  rpc UpdateAuthApplication(UpdateAuthApplicationRequest) returns (UpdateAuthApplicationResponse);
+  rpc UpdateAuthApplication(UpdateAuthApplicationRequest) returns (UpdateAuthApplicationResponse) {
+    option deprecated = true;
+  }
+
+  // Allows users to get the config for their third party auth applications
+  rpc GetAuthApplication(GetAuthApplicationRequest) returns (GetAuthApplicationResponse) {
+    option deprecated = true;
+  }
 }
 
 message IsLegalAcceptedRequest {}
@@ -31,6 +40,7 @@ message AcceptLegalRequest {}
 message AcceptLegalResponse {}
 
 message RegisterAuthApplicationRequest {
+  option deprecated = true;
   string application_name = 1;
   string org_id = 2;
   repeated string origin_uris = 3;
@@ -39,12 +49,14 @@ message RegisterAuthApplicationRequest {
 }
 
 message RegisterAuthApplicationResponse {
+  option deprecated = true;
   string application_id = 1;
   string application_name = 2;
-  string secret = 3;
+  string client_secret = 3;
 }
 
 message UpdateAuthApplicationRequest {
+  option deprecated = true;
   string org_id = 1;
   string application_id = 2;
   string application_name = 3;
@@ -54,6 +66,23 @@ message UpdateAuthApplicationRequest {
 }
 
 message UpdateAuthApplicationResponse {
+  option deprecated = true;
   string application_id = 1;
   string application_name = 2;
+}
+
+message GetAuthApplicationRequest {
+  option deprecated = true;
+  string org_id = 1;
+  string application_id = 2;
+}
+
+message GetAuthApplicationResponse {
+  option deprecated = true;
+  string application_id = 1;
+  string application_name = 2;
+  string client_secret = 3;
+  repeated string origin_uris = 4;
+  repeated string redirect_uris = 5;
+  string logout_uri = 6;
 }

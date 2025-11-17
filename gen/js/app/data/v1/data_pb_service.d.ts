@@ -31,6 +31,24 @@ type DataServiceTabularDataByMQL = {
   readonly responseType: typeof app_data_v1_data_pb.TabularDataByMQLResponse;
 };
 
+type DataServiceExportTabularData = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof app_data_v1_data_pb.ExportTabularDataRequest;
+  readonly responseType: typeof app_data_v1_data_pb.ExportTabularDataResponse;
+};
+
+type DataServiceGetLatestTabularData = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.GetLatestTabularDataRequest;
+  readonly responseType: typeof app_data_v1_data_pb.GetLatestTabularDataResponse;
+};
+
 type DataServiceBinaryDataByFilter = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -148,6 +166,15 @@ type DataServiceBoundingBoxLabelsByFilter = {
   readonly responseType: typeof app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse;
 };
 
+type DataServiceUpdateBoundingBox = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.UpdateBoundingBoxRequest;
+  readonly responseType: typeof app_data_v1_data_pb.UpdateBoundingBoxResponse;
+};
+
 type DataServiceGetDatabaseConnection = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -184,11 +211,85 @@ type DataServiceRemoveBinaryDataFromDatasetByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse;
 };
 
+type DataServiceCreateIndex = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.CreateIndexRequest;
+  readonly responseType: typeof app_data_v1_data_pb.CreateIndexResponse;
+};
+
+type DataServiceListIndexes = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.ListIndexesRequest;
+  readonly responseType: typeof app_data_v1_data_pb.ListIndexesResponse;
+};
+
+type DataServiceDeleteIndex = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.DeleteIndexRequest;
+  readonly responseType: typeof app_data_v1_data_pb.DeleteIndexResponse;
+};
+
+type DataServiceCreateSavedQuery = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.CreateSavedQueryRequest;
+  readonly responseType: typeof app_data_v1_data_pb.CreateSavedQueryResponse;
+};
+
+type DataServiceUpdateSavedQuery = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.UpdateSavedQueryRequest;
+  readonly responseType: typeof app_data_v1_data_pb.UpdateSavedQueryResponse;
+};
+
+type DataServiceGetSavedQuery = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.GetSavedQueryRequest;
+  readonly responseType: typeof app_data_v1_data_pb.GetSavedQueryResponse;
+};
+
+type DataServiceDeleteSavedQuery = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.DeleteSavedQueryRequest;
+  readonly responseType: typeof app_data_v1_data_pb.DeleteSavedQueryResponse;
+};
+
+type DataServiceListSavedQueries = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.ListSavedQueriesRequest;
+  readonly responseType: typeof app_data_v1_data_pb.ListSavedQueriesResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
   static readonly TabularDataBySQL: DataServiceTabularDataBySQL;
   static readonly TabularDataByMQL: DataServiceTabularDataByMQL;
+  static readonly ExportTabularData: DataServiceExportTabularData;
+  static readonly GetLatestTabularData: DataServiceGetLatestTabularData;
   static readonly BinaryDataByFilter: DataServiceBinaryDataByFilter;
   static readonly BinaryDataByIDs: DataServiceBinaryDataByIDs;
   static readonly DeleteTabularData: DataServiceDeleteTabularData;
@@ -202,10 +303,19 @@ export class DataService {
   static readonly AddBoundingBoxToImageByID: DataServiceAddBoundingBoxToImageByID;
   static readonly RemoveBoundingBoxFromImageByID: DataServiceRemoveBoundingBoxFromImageByID;
   static readonly BoundingBoxLabelsByFilter: DataServiceBoundingBoxLabelsByFilter;
+  static readonly UpdateBoundingBox: DataServiceUpdateBoundingBox;
   static readonly GetDatabaseConnection: DataServiceGetDatabaseConnection;
   static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
   static readonly AddBinaryDataToDatasetByIDs: DataServiceAddBinaryDataToDatasetByIDs;
   static readonly RemoveBinaryDataFromDatasetByIDs: DataServiceRemoveBinaryDataFromDatasetByIDs;
+  static readonly CreateIndex: DataServiceCreateIndex;
+  static readonly ListIndexes: DataServiceListIndexes;
+  static readonly DeleteIndex: DataServiceDeleteIndex;
+  static readonly CreateSavedQuery: DataServiceCreateSavedQuery;
+  static readonly UpdateSavedQuery: DataServiceUpdateSavedQuery;
+  static readonly GetSavedQuery: DataServiceGetSavedQuery;
+  static readonly DeleteSavedQuery: DataServiceDeleteSavedQuery;
+  static readonly ListSavedQueries: DataServiceListSavedQueries;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -267,6 +377,16 @@ export class DataServiceClient {
     requestMessage: app_data_v1_data_pb.TabularDataByMQLRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.TabularDataByMQLResponse|null) => void
   ): UnaryResponse;
+  exportTabularData(requestMessage: app_data_v1_data_pb.ExportTabularDataRequest, metadata?: grpc.Metadata): ResponseStream<app_data_v1_data_pb.ExportTabularDataResponse>;
+  getLatestTabularData(
+    requestMessage: app_data_v1_data_pb.GetLatestTabularDataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetLatestTabularDataResponse|null) => void
+  ): UnaryResponse;
+  getLatestTabularData(
+    requestMessage: app_data_v1_data_pb.GetLatestTabularDataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetLatestTabularDataResponse|null) => void
+  ): UnaryResponse;
   binaryDataByFilter(
     requestMessage: app_data_v1_data_pb.BinaryDataByFilterRequest,
     metadata: grpc.Metadata,
@@ -384,6 +504,15 @@ export class DataServiceClient {
     requestMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.BoundingBoxLabelsByFilterResponse|null) => void
   ): UnaryResponse;
+  updateBoundingBox(
+    requestMessage: app_data_v1_data_pb.UpdateBoundingBoxRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.UpdateBoundingBoxResponse|null) => void
+  ): UnaryResponse;
+  updateBoundingBox(
+    requestMessage: app_data_v1_data_pb.UpdateBoundingBoxRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.UpdateBoundingBoxResponse|null) => void
+  ): UnaryResponse;
   getDatabaseConnection(
     requestMessage: app_data_v1_data_pb.GetDatabaseConnectionRequest,
     metadata: grpc.Metadata,
@@ -419,6 +548,78 @@ export class DataServiceClient {
   removeBinaryDataFromDatasetByIDs(
     requestMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse|null) => void
+  ): UnaryResponse;
+  createIndex(
+    requestMessage: app_data_v1_data_pb.CreateIndexRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateIndexResponse|null) => void
+  ): UnaryResponse;
+  createIndex(
+    requestMessage: app_data_v1_data_pb.CreateIndexRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateIndexResponse|null) => void
+  ): UnaryResponse;
+  listIndexes(
+    requestMessage: app_data_v1_data_pb.ListIndexesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListIndexesResponse|null) => void
+  ): UnaryResponse;
+  listIndexes(
+    requestMessage: app_data_v1_data_pb.ListIndexesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListIndexesResponse|null) => void
+  ): UnaryResponse;
+  deleteIndex(
+    requestMessage: app_data_v1_data_pb.DeleteIndexRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteIndexResponse|null) => void
+  ): UnaryResponse;
+  deleteIndex(
+    requestMessage: app_data_v1_data_pb.DeleteIndexRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteIndexResponse|null) => void
+  ): UnaryResponse;
+  createSavedQuery(
+    requestMessage: app_data_v1_data_pb.CreateSavedQueryRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateSavedQueryResponse|null) => void
+  ): UnaryResponse;
+  createSavedQuery(
+    requestMessage: app_data_v1_data_pb.CreateSavedQueryRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateSavedQueryResponse|null) => void
+  ): UnaryResponse;
+  updateSavedQuery(
+    requestMessage: app_data_v1_data_pb.UpdateSavedQueryRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.UpdateSavedQueryResponse|null) => void
+  ): UnaryResponse;
+  updateSavedQuery(
+    requestMessage: app_data_v1_data_pb.UpdateSavedQueryRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.UpdateSavedQueryResponse|null) => void
+  ): UnaryResponse;
+  getSavedQuery(
+    requestMessage: app_data_v1_data_pb.GetSavedQueryRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetSavedQueryResponse|null) => void
+  ): UnaryResponse;
+  getSavedQuery(
+    requestMessage: app_data_v1_data_pb.GetSavedQueryRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetSavedQueryResponse|null) => void
+  ): UnaryResponse;
+  deleteSavedQuery(
+    requestMessage: app_data_v1_data_pb.DeleteSavedQueryRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteSavedQueryResponse|null) => void
+  ): UnaryResponse;
+  deleteSavedQuery(
+    requestMessage: app_data_v1_data_pb.DeleteSavedQueryRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteSavedQueryResponse|null) => void
+  ): UnaryResponse;
+  listSavedQueries(
+    requestMessage: app_data_v1_data_pb.ListSavedQueriesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListSavedQueriesResponse|null) => void
+  ): UnaryResponse;
+  listSavedQueries(
+    requestMessage: app_data_v1_data_pb.ListSavedQueriesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListSavedQueriesResponse|null) => void
   ): UnaryResponse;
 }
 

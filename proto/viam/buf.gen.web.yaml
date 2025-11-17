@@ -1,15 +1,13 @@
-version: v1
+version: v2
 plugins:
-  - name: js
+  - protoc_builtin: js
     out: gen/js
-    opt:
-      - import_style=commonjs
-  - name: grpc-web
+    opt: import_style=commonjs
+  - local: protoc-gen-grpc-web
     out: gen/js
     opt:
       - import_style=commonjs
       - mode=grpcwebtext
-  - name: ts
+  - local: protoc-gen-ts
     out: gen/js
-    opt:
-      - service=grpc-web
+    opt: service=grpc-web

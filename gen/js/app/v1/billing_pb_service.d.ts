@@ -40,12 +40,52 @@ type BillingServiceGetInvoicePdf = {
   readonly responseType: typeof app_v1_billing_pb.GetInvoicePdfResponse;
 };
 
+type BillingServiceSendPaymentRequiredEmail = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.SendPaymentRequiredEmailRequest;
+  readonly responseType: typeof app_v1_billing_pb.SendPaymentRequiredEmailResponse;
+};
+
+type BillingServiceGetAvailableBillingTiers = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.GetAvailableBillingTiersRequest;
+  readonly responseType: typeof app_v1_billing_pb.GetAvailableBillingTiersResponse;
+};
+
+type BillingServiceUpdateOrganizationBillingTier = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.UpdateOrganizationBillingTierRequest;
+  readonly responseType: typeof app_v1_billing_pb.UpdateOrganizationBillingTierResponse;
+};
+
+type BillingServiceCreateInvoiceAndChargeImmediately = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyRequest;
+  readonly responseType: typeof app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyResponse;
+};
+
 export class BillingService {
   static readonly serviceName: string;
   static readonly GetCurrentMonthUsage: BillingServiceGetCurrentMonthUsage;
   static readonly GetOrgBillingInformation: BillingServiceGetOrgBillingInformation;
   static readonly GetInvoicesSummary: BillingServiceGetInvoicesSummary;
   static readonly GetInvoicePdf: BillingServiceGetInvoicePdf;
+  static readonly SendPaymentRequiredEmail: BillingServiceSendPaymentRequiredEmail;
+  static readonly GetAvailableBillingTiers: BillingServiceGetAvailableBillingTiers;
+  static readonly UpdateOrganizationBillingTier: BillingServiceUpdateOrganizationBillingTier;
+  static readonly CreateInvoiceAndChargeImmediately: BillingServiceCreateInvoiceAndChargeImmediately;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -108,5 +148,41 @@ export class BillingServiceClient {
     callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetInvoicesSummaryResponse|null) => void
   ): UnaryResponse;
   getInvoicePdf(requestMessage: app_v1_billing_pb.GetInvoicePdfRequest, metadata?: grpc.Metadata): ResponseStream<app_v1_billing_pb.GetInvoicePdfResponse>;
+  sendPaymentRequiredEmail(
+    requestMessage: app_v1_billing_pb.SendPaymentRequiredEmailRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.SendPaymentRequiredEmailResponse|null) => void
+  ): UnaryResponse;
+  sendPaymentRequiredEmail(
+    requestMessage: app_v1_billing_pb.SendPaymentRequiredEmailRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.SendPaymentRequiredEmailResponse|null) => void
+  ): UnaryResponse;
+  getAvailableBillingTiers(
+    requestMessage: app_v1_billing_pb.GetAvailableBillingTiersRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetAvailableBillingTiersResponse|null) => void
+  ): UnaryResponse;
+  getAvailableBillingTiers(
+    requestMessage: app_v1_billing_pb.GetAvailableBillingTiersRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetAvailableBillingTiersResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationBillingTier(
+    requestMessage: app_v1_billing_pb.UpdateOrganizationBillingTierRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.UpdateOrganizationBillingTierResponse|null) => void
+  ): UnaryResponse;
+  updateOrganizationBillingTier(
+    requestMessage: app_v1_billing_pb.UpdateOrganizationBillingTierRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.UpdateOrganizationBillingTierResponse|null) => void
+  ): UnaryResponse;
+  createInvoiceAndChargeImmediately(
+    requestMessage: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyResponse|null) => void
+  ): UnaryResponse;
+  createInvoiceAndChargeImmediately(
+    requestMessage: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyResponse|null) => void
+  ): UnaryResponse;
 }
 

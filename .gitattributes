@@ -1,0 +1,6 @@
+*_pb.d.ts linguist-generated=true
+*_pb_service.d.ts linguist-generated=true
+*_pb.js linguist-generated=true
+*_pb_service.js linguist-generated=true
+*.pb.go linguist-generated=true
+*.pb.gw.go linguist-generated=true

@@ -88,67 +88,6 @@ proto.viam.component.board.v1.BoardServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.component.board.v1.StatusRequest,
- *   !proto.viam.component.board.v1.StatusResponse>}
- */
-const methodDescriptor_BoardService_Status = new grpc.web.MethodDescriptor(
-  '/viam.component.board.v1.BoardService/Status',
-  grpc.web.MethodType.UNARY,
-  proto.viam.component.board.v1.StatusRequest,
-  proto.viam.component.board.v1.StatusResponse,
-  /**
-   * @param {!proto.viam.component.board.v1.StatusRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.component.board.v1.StatusResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.component.board.v1.StatusRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.component.board.v1.StatusResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.component.board.v1.StatusResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.component.board.v1.BoardServiceClient.prototype.status =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.component.board.v1.BoardService/Status',
-      request,
-      metadata || {},
-      methodDescriptor_BoardService_Status,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.component.board.v1.StatusRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.component.board.v1.StatusResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.component.board.v1.BoardServicePromiseClient.prototype.status =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.component.board.v1.BoardService/Status',
-      request,
-      metadata || {},
-      methodDescriptor_BoardService_Status);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.component.board.v1.SetGPIORequest,
  *   !proto.viam.component.board.v1.SetGPIOResponse>}
  */

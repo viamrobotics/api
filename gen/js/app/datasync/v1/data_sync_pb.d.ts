@@ -2,6 +2,7 @@
 // file: app/datasync/v1/data_sync.proto
 
 import * as jspb from "google-protobuf";
+import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
@@ -39,6 +40,9 @@ export class DataCaptureUploadResponse extends jspb.Message {
   getFileId(): string;
   setFileId(value: string): void;
 
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataCaptureUploadResponse.AsObject;
   static toObject(includeInstance: boolean, msg: DataCaptureUploadResponse): DataCaptureUploadResponse.AsObject;
@@ -52,6 +56,7 @@ export class DataCaptureUploadResponse extends jspb.Message {
 export namespace DataCaptureUploadResponse {
   export type AsObject = {
     fileId: string,
+    binaryDataId: string,
   }
 }
 
@@ -94,6 +99,9 @@ export class FileUploadResponse extends jspb.Message {
   getFileId(): string;
   setFileId(value: string): void;
 
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FileUploadResponse.AsObject;
   static toObject(includeInstance: boolean, msg: FileUploadResponse): FileUploadResponse.AsObject;
@@ -107,6 +115,7 @@ export class FileUploadResponse extends jspb.Message {
 export namespace FileUploadResponse {
   export type AsObject = {
     fileId: string,
+    binaryDataId: string,
   }
 }
 
@@ -151,6 +160,9 @@ export class StreamingDataCaptureUploadResponse extends jspb.Message {
   getFileId(): string;
   setFileId(value: string): void;
 
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StreamingDataCaptureUploadResponse.AsObject;
   static toObject(includeInstance: boolean, msg: StreamingDataCaptureUploadResponse): StreamingDataCaptureUploadResponse.AsObject;
@@ -164,6 +176,7 @@ export class StreamingDataCaptureUploadResponse extends jspb.Message {
 export namespace StreamingDataCaptureUploadResponse {
   export type AsObject = {
     fileId: string,
+    binaryDataId: string,
   }
 }
 
@@ -177,6 +190,14 @@ export class SensorMetadata extends jspb.Message {
   clearTimeReceived(): void;
   getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getMimeType(): MimeTypeMap[keyof MimeTypeMap];
+  setMimeType(value: MimeTypeMap[keyof MimeTypeMap]): void;
+
+  hasAnnotations(): boolean;
+  clearAnnotations(): void;
+  getAnnotations(): app_data_v1_data_pb.Annotations | undefined;
+  setAnnotations(value?: app_data_v1_data_pb.Annotations): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SensorMetadata.AsObject;
@@ -192,6 +213,8 @@ export namespace SensorMetadata {
   export type AsObject = {
     timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    mimeType: MimeTypeMap[keyof MimeTypeMap],
+    annotations?: app_data_v1_data_pb.Annotations.AsObject,
   }
 }
 
@@ -289,6 +312,11 @@ export class UploadMetadata extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
+  clearDatasetIdsList(): void;
+  getDatasetIdsList(): Array<string>;
+  setDatasetIdsList(value: Array<string>): void;
+  addDatasetIds(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UploadMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UploadMetadata): UploadMetadata.AsObject;
@@ -310,6 +338,7 @@ export namespace UploadMetadata {
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     fileExtension: string,
     tagsList: Array<string>,
+    datasetIdsList: Array<string>,
   }
 }
 
@@ -413,6 +442,15 @@ export namespace DataCaptureUploadMetadata {
     sensorMetadata?: SensorMetadata.AsObject,
   }
 }
+
+export interface MimeTypeMap {
+  MIME_TYPE_UNSPECIFIED: 0;
+  MIME_TYPE_IMAGE_JPEG: 1;
+  MIME_TYPE_IMAGE_PNG: 2;
+  MIME_TYPE_APPLICATION_PCD: 3;
+}
+
+export const MimeType: MimeTypeMap;
 
 export interface DataTypeMap {
   DATA_TYPE_UNSPECIFIED: 0;

@@ -285,6 +285,9 @@ export namespace Expr {
     getIterVar(): string;
     setIterVar(value: string): void;
 
+    getIterVar2(): string;
+    setIterVar2(value: string): void;
+
     hasIterRange(): boolean;
     clearIterRange(): void;
     getIterRange(): Expr | undefined;
@@ -326,6 +329,7 @@ export namespace Expr {
   export namespace Comprehension {
     export type AsObject = {
       iterVar: string,
+      iterVar2: string,
       iterRange?: Expr.AsObject,
       accuVar: string,
       accuInit?: Expr.AsObject,
