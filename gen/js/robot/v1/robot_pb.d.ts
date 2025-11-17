@@ -1197,6 +1197,11 @@ export class GetMachineStatusResponse extends jspb.Message {
   getState(): GetMachineStatusResponse.StateMap[keyof GetMachineStatusResponse.StateMap];
   setState(value: GetMachineStatusResponse.StateMap[keyof GetMachineStatusResponse.StateMap]): void;
 
+  clearJobStatusesList(): void;
+  getJobStatusesList(): Array<JobStatus>;
+  setJobStatusesList(value: Array<JobStatus>): void;
+  addJobStatuses(value?: JobStatus, index?: number): JobStatus;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMachineStatusResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetMachineStatusResponse): GetMachineStatusResponse.AsObject;
@@ -1212,6 +1217,7 @@ export namespace GetMachineStatusResponse {
     resourcesList: Array<ResourceStatus.AsObject>,
     config?: ConfigStatus.AsObject,
     state: GetMachineStatusResponse.StateMap[keyof GetMachineStatusResponse.StateMap],
+    jobStatusesList: Array<JobStatus.AsObject>,
   }
 
   export interface StateMap {
@@ -1221,6 +1227,38 @@ export namespace GetMachineStatusResponse {
   }
 
   export const State: StateMap;
+}
+
+export class JobStatus extends jspb.Message {
+  getJobName(): string;
+  setJobName(value: string): void;
+
+  clearRecentSuccessfulRunsList(): void;
+  getRecentSuccessfulRunsList(): Array<google_protobuf_timestamp_pb.Timestamp>;
+  setRecentSuccessfulRunsList(value: Array<google_protobuf_timestamp_pb.Timestamp>): void;
+  addRecentSuccessfulRuns(value?: google_protobuf_timestamp_pb.Timestamp, index?: number): google_protobuf_timestamp_pb.Timestamp;
+
+  clearRecentFailedRunsList(): void;
+  getRecentFailedRunsList(): Array<google_protobuf_timestamp_pb.Timestamp>;
+  setRecentFailedRunsList(value: Array<google_protobuf_timestamp_pb.Timestamp>): void;
+  addRecentFailedRuns(value?: google_protobuf_timestamp_pb.Timestamp, index?: number): google_protobuf_timestamp_pb.Timestamp;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): JobStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: JobStatus): JobStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: JobStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): JobStatus;
+  static deserializeBinaryFromReader(message: JobStatus, reader: jspb.BinaryReader): JobStatus;
+}
+
+export namespace JobStatus {
+  export type AsObject = {
+    jobName: string,
+    recentSuccessfulRunsList: Array<google_protobuf_timestamp_pb.Timestamp.AsObject>,
+    recentFailedRunsList: Array<google_protobuf_timestamp_pb.Timestamp.AsObject>,
+  }
 }
 
 export class ResourceStatus extends jspb.Message {
