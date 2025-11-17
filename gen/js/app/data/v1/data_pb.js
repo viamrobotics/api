@@ -37,8 +37,6 @@ goog.exportSymbol('proto.viam.app.data.v1.BinaryDataByIDsRequest', null, global)
 goog.exportSymbol('proto.viam.app.data.v1.BinaryDataByIDsResponse', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.BinaryID', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.BinaryMetadata', null, global);
-goog.exportSymbol('proto.viam.app.data.v1.BinaryMetadataToJSONLinesRequest', null, global);
-goog.exportSymbol('proto.viam.app.data.v1.BinaryMetadataToJSONLinesResponse', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.BoundingBox', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.BoundingBoxLabelsByFilterRequest', null, global);
 goog.exportSymbol('proto.viam.app.data.v1.BoundingBoxLabelsByFilterResponse', null, global);
