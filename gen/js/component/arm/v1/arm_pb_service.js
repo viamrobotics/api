@@ -101,6 +101,15 @@ ArmService.GetGeometries = {
   responseType: common_v1_common_pb.GetGeometriesResponse
 };
 
+ArmService.Get3DModels = {
+  methodName: "Get3DModels",
+  service: ArmService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.Get3DModelsRequest,
+  responseType: common_v1_common_pb.Get3DModelsResponse
+};
+
 exports.ArmService = ArmService;
 
 function ArmServiceClient(serviceHost, options) {
@@ -392,6 +401,37 @@ ArmServiceClient.prototype.getGeometries = function getGeometries(requestMessage
     callback = arguments[1];
   }
   var client = grpc.unary(ArmService.GetGeometries, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ArmServiceClient.prototype.get3DModels = function get3DModels(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ArmService.Get3DModels, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

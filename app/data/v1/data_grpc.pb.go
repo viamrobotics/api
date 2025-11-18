@@ -81,6 +81,16 @@ type DataServiceClient interface {
 	ListIndexes(ctx context.Context, in *ListIndexesRequest, opts ...grpc.CallOption) (*ListIndexesResponse, error)
 	// DeleteIndex drops the specified custom index from a collection
 	DeleteIndex(ctx context.Context, in *DeleteIndexRequest, opts ...grpc.CallOption) (*DeleteIndexResponse, error)
+	// CreateSavedQuery saves a mql query.
+	CreateSavedQuery(ctx context.Context, in *CreateSavedQueryRequest, opts ...grpc.CallOption) (*CreateSavedQueryResponse, error)
+	// UpdateSavedQuery updates the saved query with the given id.
+	UpdateSavedQuery(ctx context.Context, in *UpdateSavedQueryRequest, opts ...grpc.CallOption) (*UpdateSavedQueryResponse, error)
+	// GetSavedQuery retrieves a saved query by id.
+	GetSavedQuery(ctx context.Context, in *GetSavedQueryRequest, opts ...grpc.CallOption) (*GetSavedQueryResponse, error)
+	// DeleteSavedQuery deletes a saved query based on the given id.
+	DeleteSavedQuery(ctx context.Context, in *DeleteSavedQueryRequest, opts ...grpc.CallOption) (*DeleteSavedQueryResponse, error)
+	// ListSavedQueries lists saved queries for a given organization.
+	ListSavedQueries(ctx context.Context, in *ListSavedQueriesRequest, opts ...grpc.CallOption) (*ListSavedQueriesResponse, error)
 }
 
 type dataServiceClient struct {
@@ -353,6 +363,51 @@ func (c *dataServiceClient) DeleteIndex(ctx context.Context, in *DeleteIndexRequ
 	return out, nil
 }
 
+func (c *dataServiceClient) CreateSavedQuery(ctx context.Context, in *CreateSavedQueryRequest, opts ...grpc.CallOption) (*CreateSavedQueryResponse, error) {
+	out := new(CreateSavedQueryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/CreateSavedQuery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) UpdateSavedQuery(ctx context.Context, in *UpdateSavedQueryRequest, opts ...grpc.CallOption) (*UpdateSavedQueryResponse, error) {
+	out := new(UpdateSavedQueryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/UpdateSavedQuery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) GetSavedQuery(ctx context.Context, in *GetSavedQueryRequest, opts ...grpc.CallOption) (*GetSavedQueryResponse, error) {
+	out := new(GetSavedQueryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetSavedQuery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) DeleteSavedQuery(ctx context.Context, in *DeleteSavedQueryRequest, opts ...grpc.CallOption) (*DeleteSavedQueryResponse, error) {
+	out := new(DeleteSavedQueryResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteSavedQuery", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) ListSavedQueries(ctx context.Context, in *ListSavedQueriesRequest, opts ...grpc.CallOption) (*ListSavedQueriesResponse, error) {
+	out := new(ListSavedQueriesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/ListSavedQueries", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -416,6 +471,16 @@ type DataServiceServer interface {
 	ListIndexes(context.Context, *ListIndexesRequest) (*ListIndexesResponse, error)
 	// DeleteIndex drops the specified custom index from a collection
 	DeleteIndex(context.Context, *DeleteIndexRequest) (*DeleteIndexResponse, error)
+	// CreateSavedQuery saves a mql query.
+	CreateSavedQuery(context.Context, *CreateSavedQueryRequest) (*CreateSavedQueryResponse, error)
+	// UpdateSavedQuery updates the saved query with the given id.
+	UpdateSavedQuery(context.Context, *UpdateSavedQueryRequest) (*UpdateSavedQueryResponse, error)
+	// GetSavedQuery retrieves a saved query by id.
+	GetSavedQuery(context.Context, *GetSavedQueryRequest) (*GetSavedQueryResponse, error)
+	// DeleteSavedQuery deletes a saved query based on the given id.
+	DeleteSavedQuery(context.Context, *DeleteSavedQueryRequest) (*DeleteSavedQueryResponse, error)
+	// ListSavedQueries lists saved queries for a given organization.
+	ListSavedQueries(context.Context, *ListSavedQueriesRequest) (*ListSavedQueriesResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -500,6 +565,21 @@ func (UnimplementedDataServiceServer) ListIndexes(context.Context, *ListIndexesR
 }
 func (UnimplementedDataServiceServer) DeleteIndex(context.Context, *DeleteIndexRequest) (*DeleteIndexResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteIndex not implemented")
+}
+func (UnimplementedDataServiceServer) CreateSavedQuery(context.Context, *CreateSavedQueryRequest) (*CreateSavedQueryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSavedQuery not implemented")
+}
+func (UnimplementedDataServiceServer) UpdateSavedQuery(context.Context, *UpdateSavedQueryRequest) (*UpdateSavedQueryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSavedQuery not implemented")
+}
+func (UnimplementedDataServiceServer) GetSavedQuery(context.Context, *GetSavedQueryRequest) (*GetSavedQueryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSavedQuery not implemented")
+}
+func (UnimplementedDataServiceServer) DeleteSavedQuery(context.Context, *DeleteSavedQueryRequest) (*DeleteSavedQueryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSavedQuery not implemented")
+}
+func (UnimplementedDataServiceServer) ListSavedQueries(context.Context, *ListSavedQueriesRequest) (*ListSavedQueriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSavedQueries not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -985,6 +1065,96 @@ func _DataService_DeleteIndex_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_CreateSavedQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSavedQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).CreateSavedQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/CreateSavedQuery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).CreateSavedQuery(ctx, req.(*CreateSavedQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_UpdateSavedQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSavedQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).UpdateSavedQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/UpdateSavedQuery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).UpdateSavedQuery(ctx, req.(*UpdateSavedQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_GetSavedQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSavedQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).GetSavedQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/GetSavedQuery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).GetSavedQuery(ctx, req.(*GetSavedQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_DeleteSavedQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSavedQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).DeleteSavedQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/DeleteSavedQuery",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).DeleteSavedQuery(ctx, req.(*DeleteSavedQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_ListSavedQueries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSavedQueriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).ListSavedQueries(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/ListSavedQueries",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).ListSavedQueries(ctx, req.(*ListSavedQueriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1091,6 +1261,26 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteIndex",
 			Handler:    _DataService_DeleteIndex_Handler,
+		},
+		{
+			MethodName: "CreateSavedQuery",
+			Handler:    _DataService_CreateSavedQuery_Handler,
+		},
+		{
+			MethodName: "UpdateSavedQuery",
+			Handler:    _DataService_UpdateSavedQuery_Handler,
+		},
+		{
+			MethodName: "GetSavedQuery",
+			Handler:    _DataService_GetSavedQuery_Handler,
+		},
+		{
+			MethodName: "DeleteSavedQuery",
+			Handler:    _DataService_DeleteSavedQuery_Handler,
+		},
+		{
+			MethodName: "ListSavedQueries",
+			Handler:    _DataService_ListSavedQueries_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

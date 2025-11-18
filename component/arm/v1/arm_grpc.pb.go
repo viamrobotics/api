@@ -47,6 +47,8 @@ type ArmServiceClient interface {
 	GetKinematics(ctx context.Context, in *v1.GetKinematicsRequest, opts ...grpc.CallOption) (*v1.GetKinematicsResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
+	// Get3DModels returns the 3D models of the component
+	Get3DModels(ctx context.Context, in *v1.Get3DModelsRequest, opts ...grpc.CallOption) (*v1.Get3DModelsResponse, error)
 }
 
 type armServiceClient struct {
@@ -147,6 +149,15 @@ func (c *armServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometri
 	return out, nil
 }
 
+func (c *armServiceClient) Get3DModels(ctx context.Context, in *v1.Get3DModelsRequest, opts ...grpc.CallOption) (*v1.Get3DModelsResponse, error) {
+	out := new(v1.Get3DModelsResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.arm.v1.ArmService/Get3DModels", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArmServiceServer is the server API for ArmService service.
 // All implementations must embed UnimplementedArmServiceServer
 // for forward compatibility
@@ -175,6 +186,8 @@ type ArmServiceServer interface {
 	GetKinematics(context.Context, *v1.GetKinematicsRequest) (*v1.GetKinematicsResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
+	// Get3DModels returns the 3D models of the component
+	Get3DModels(context.Context, *v1.Get3DModelsRequest) (*v1.Get3DModelsResponse, error)
 	mustEmbedUnimplementedArmServiceServer()
 }
 
@@ -211,6 +224,9 @@ func (UnimplementedArmServiceServer) GetKinematics(context.Context, *v1.GetKinem
 }
 func (UnimplementedArmServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
+}
+func (UnimplementedArmServiceServer) Get3DModels(context.Context, *v1.Get3DModelsRequest) (*v1.Get3DModelsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get3DModels not implemented")
 }
 func (UnimplementedArmServiceServer) mustEmbedUnimplementedArmServiceServer() {}
 
@@ -405,6 +421,24 @@ func _ArmService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArmService_Get3DModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.Get3DModelsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArmServiceServer).Get3DModels(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.arm.v1.ArmService/Get3DModels",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArmServiceServer).Get3DModels(ctx, req.(*v1.Get3DModelsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArmService_ServiceDesc is the grpc.ServiceDesc for ArmService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -451,6 +485,10 @@ var ArmService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGeometries",
 			Handler:    _ArmService_GetGeometries_Handler,
+		},
+		{
+			MethodName: "Get3DModels",
+			Handler:    _ArmService_Get3DModels_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

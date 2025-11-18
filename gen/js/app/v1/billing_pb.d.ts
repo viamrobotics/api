@@ -639,6 +639,9 @@ export namespace CreateInvoiceAndChargeImmediatelyRequest {
 }
 
 export class CreateInvoiceAndChargeImmediatelyResponse extends jspb.Message {
+  getInvoiceId(): string;
+  setInvoiceId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateInvoiceAndChargeImmediatelyResponse.AsObject;
   static toObject(includeInstance: boolean, msg: CreateInvoiceAndChargeImmediatelyResponse): CreateInvoiceAndChargeImmediatelyResponse.AsObject;
@@ -651,6 +654,7 @@ export class CreateInvoiceAndChargeImmediatelyResponse extends jspb.Message {
 
 export namespace CreateInvoiceAndChargeImmediatelyResponse {
   export type AsObject = {
+    invoiceId: string,
   }
 }
 

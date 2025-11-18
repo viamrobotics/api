@@ -2031,6 +2031,278 @@ export namespace Index {
   }
 }
 
+export class CreateSavedQueryRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  clearMqlBinaryList(): void;
+  getMqlBinaryList(): Array<Uint8Array | string>;
+  getMqlBinaryList_asU8(): Array<Uint8Array>;
+  getMqlBinaryList_asB64(): Array<string>;
+  setMqlBinaryList(value: Array<Uint8Array | string>): void;
+  addMqlBinary(value: Uint8Array | string, index?: number): Uint8Array | string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateSavedQueryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateSavedQueryRequest): CreateSavedQueryRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateSavedQueryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateSavedQueryRequest;
+  static deserializeBinaryFromReader(message: CreateSavedQueryRequest, reader: jspb.BinaryReader): CreateSavedQueryRequest;
+}
+
+export namespace CreateSavedQueryRequest {
+  export type AsObject = {
+    organizationId: string,
+    name: string,
+    mqlBinaryList: Array<Uint8Array | string>,
+  }
+}
+
+export class CreateSavedQueryResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateSavedQueryResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateSavedQueryResponse): CreateSavedQueryResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateSavedQueryResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateSavedQueryResponse;
+  static deserializeBinaryFromReader(message: CreateSavedQueryResponse, reader: jspb.BinaryReader): CreateSavedQueryResponse;
+}
+
+export namespace CreateSavedQueryResponse {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class Query extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  clearMqlBinaryList(): void;
+  getMqlBinaryList(): Array<Uint8Array | string>;
+  getMqlBinaryList_asU8(): Array<Uint8Array>;
+  getMqlBinaryList_asB64(): Array<string>;
+  setMqlBinaryList(value: Array<Uint8Array | string>): void;
+  addMqlBinary(value: Uint8Array | string, index?: number): Uint8Array | string;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasUpdatedAt(): boolean;
+  clearUpdatedAt(): void;
+  getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Query.AsObject;
+  static toObject(includeInstance: boolean, msg: Query): Query.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Query, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Query;
+  static deserializeBinaryFromReader(message: Query, reader: jspb.BinaryReader): Query;
+}
+
+export namespace Query {
+  export type AsObject = {
+    id: string,
+    organizationId: string,
+    name: string,
+    mqlBinaryList: Array<Uint8Array | string>,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class DeleteSavedQueryRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteSavedQueryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteSavedQueryRequest): DeleteSavedQueryRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteSavedQueryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteSavedQueryRequest;
+  static deserializeBinaryFromReader(message: DeleteSavedQueryRequest, reader: jspb.BinaryReader): DeleteSavedQueryRequest;
+}
+
+export namespace DeleteSavedQueryRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class DeleteSavedQueryResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteSavedQueryResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteSavedQueryResponse): DeleteSavedQueryResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteSavedQueryResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteSavedQueryResponse;
+  static deserializeBinaryFromReader(message: DeleteSavedQueryResponse, reader: jspb.BinaryReader): DeleteSavedQueryResponse;
+}
+
+export namespace DeleteSavedQueryResponse {
+  export type AsObject = {
+  }
+}
+
+export class GetSavedQueryRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSavedQueryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSavedQueryRequest): GetSavedQueryRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSavedQueryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSavedQueryRequest;
+  static deserializeBinaryFromReader(message: GetSavedQueryRequest, reader: jspb.BinaryReader): GetSavedQueryRequest;
+}
+
+export namespace GetSavedQueryRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class GetSavedQueryResponse extends jspb.Message {
+  hasSavedQuery(): boolean;
+  clearSavedQuery(): void;
+  getSavedQuery(): Query | undefined;
+  setSavedQuery(value?: Query): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSavedQueryResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSavedQueryResponse): GetSavedQueryResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSavedQueryResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSavedQueryResponse;
+  static deserializeBinaryFromReader(message: GetSavedQueryResponse, reader: jspb.BinaryReader): GetSavedQueryResponse;
+}
+
+export namespace GetSavedQueryResponse {
+  export type AsObject = {
+    savedQuery?: Query.AsObject,
+  }
+}
+
+export class UpdateSavedQueryRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  clearMqlBinaryList(): void;
+  getMqlBinaryList(): Array<Uint8Array | string>;
+  getMqlBinaryList_asU8(): Array<Uint8Array>;
+  getMqlBinaryList_asB64(): Array<string>;
+  setMqlBinaryList(value: Array<Uint8Array | string>): void;
+  addMqlBinary(value: Uint8Array | string, index?: number): Uint8Array | string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateSavedQueryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateSavedQueryRequest): UpdateSavedQueryRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateSavedQueryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateSavedQueryRequest;
+  static deserializeBinaryFromReader(message: UpdateSavedQueryRequest, reader: jspb.BinaryReader): UpdateSavedQueryRequest;
+}
+
+export namespace UpdateSavedQueryRequest {
+  export type AsObject = {
+    id: string,
+    name: string,
+    mqlBinaryList: Array<Uint8Array | string>,
+  }
+}
+
+export class UpdateSavedQueryResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateSavedQueryResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateSavedQueryResponse): UpdateSavedQueryResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateSavedQueryResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateSavedQueryResponse;
+  static deserializeBinaryFromReader(message: UpdateSavedQueryResponse, reader: jspb.BinaryReader): UpdateSavedQueryResponse;
+}
+
+export namespace UpdateSavedQueryResponse {
+  export type AsObject = {
+  }
+}
+
+export class ListSavedQueriesRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSavedQueriesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSavedQueriesRequest): ListSavedQueriesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListSavedQueriesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSavedQueriesRequest;
+  static deserializeBinaryFromReader(message: ListSavedQueriesRequest, reader: jspb.BinaryReader): ListSavedQueriesRequest;
+}
+
+export namespace ListSavedQueriesRequest {
+  export type AsObject = {
+    organizationId: string,
+    limit: number,
+  }
+}
+
+export class ListSavedQueriesResponse extends jspb.Message {
+  clearQueriesList(): void;
+  getQueriesList(): Array<Query>;
+  setQueriesList(value: Array<Query>): void;
+  addQueries(value?: Query, index?: number): Query;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSavedQueriesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSavedQueriesResponse): ListSavedQueriesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListSavedQueriesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSavedQueriesResponse;
+  static deserializeBinaryFromReader(message: ListSavedQueriesResponse, reader: jspb.BinaryReader): ListSavedQueriesResponse;
+}
+
+export namespace ListSavedQueriesResponse {
+  export type AsObject = {
+    queriesList: Array<Query.AsObject>,
+  }
+}
+
 export interface OrderMap {
   ORDER_UNSPECIFIED: 0;
   ORDER_DESCENDING: 1;

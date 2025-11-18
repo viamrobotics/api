@@ -378,6 +378,13 @@ message GetMachineStatusResponse {
   repeated ResourceStatus resources = 1;
   ConfigStatus config = 2;
   State state = 3;
+  repeated JobStatus job_statuses = 4;
+}
+
+message JobStatus {
+  string job_name = 1;
+  repeated google.protobuf.Timestamp recent_successful_runs = 2;
+  repeated google.protobuf.Timestamp recent_failed_runs = 3;
 }
 
 message ResourceStatus {

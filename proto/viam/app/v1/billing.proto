@@ -198,4 +198,6 @@ message CreateInvoiceAndChargeImmediatelyRequest {
   bool disable_email = 5;
 }
 
-message CreateInvoiceAndChargeImmediatelyResponse {}
+message CreateInvoiceAndChargeImmediatelyResponse {
+  string invoice_id = 1;
+}
