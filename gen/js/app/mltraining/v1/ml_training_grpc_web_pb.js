@@ -510,5 +510,66 @@ proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.getTrainin
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.mltraining.v1.ListSupportedContainersRequest,
+ *   !proto.viam.app.mltraining.v1.ListSupportedContainersResponse>}
+ */
+const methodDescriptor_MLTrainingService_ListSupportedContainers = new grpc.web.MethodDescriptor(
+  '/viam.app.mltraining.v1.MLTrainingService/ListSupportedContainers',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.mltraining.v1.ListSupportedContainersRequest,
+  proto.viam.app.mltraining.v1.ListSupportedContainersResponse,
+  /**
+   * @param {!proto.viam.app.mltraining.v1.ListSupportedContainersRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.mltraining.v1.ListSupportedContainersResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.ListSupportedContainersRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.ListSupportedContainersResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.ListSupportedContainersResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.listSupportedContainers =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/ListSupportedContainers',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_ListSupportedContainers,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.ListSupportedContainersRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.mltraining.v1.ListSupportedContainersResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.listSupportedContainers =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/ListSupportedContainers',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_ListSupportedContainers);
+};
+
+
 module.exports = proto.viam.app.mltraining.v1;
 
