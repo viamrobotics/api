@@ -2119,7 +2119,8 @@ proto.viam.app.v1.JobConfig.toObject = function(includeInstance, msg) {
     schedule: jspb.Message.getFieldWithDefault(msg, 2, ""),
     resource: jspb.Message.getFieldWithDefault(msg, 3, ""),
     method: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    command: (f = msg.getCommand()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    command: (f = msg.getCommand()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    logConfiguration: (f = msg.getLogConfiguration()) && proto.viam.app.v1.LogConfiguration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2176,6 +2177,11 @@ proto.viam.app.v1.JobConfig.deserializeBinaryFromReader = function(msg, reader) 
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setCommand(value);
+      break;
+    case 6:
+      var value = new proto.viam.app.v1.LogConfiguration;
+      reader.readMessage(value,proto.viam.app.v1.LogConfiguration.deserializeBinaryFromReader);
+      msg.setLogConfiguration(value);
       break;
     default:
       reader.skipField();
@@ -2240,6 +2246,14 @@ proto.viam.app.v1.JobConfig.serializeBinaryToWriter = function(message, writer) 
       5,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getLogConfiguration();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      proto.viam.app.v1.LogConfiguration.serializeBinaryToWriter
     );
   }
 };
@@ -2351,6 +2365,43 @@ proto.viam.app.v1.JobConfig.prototype.clearCommand = function() {
  */
 proto.viam.app.v1.JobConfig.prototype.hasCommand = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional LogConfiguration log_configuration = 6;
+ * @return {?proto.viam.app.v1.LogConfiguration}
+ */
+proto.viam.app.v1.JobConfig.prototype.getLogConfiguration = function() {
+  return /** @type{?proto.viam.app.v1.LogConfiguration} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.LogConfiguration, 6));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.LogConfiguration|undefined} value
+ * @return {!proto.viam.app.v1.JobConfig} returns this
+*/
+proto.viam.app.v1.JobConfig.prototype.setLogConfiguration = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.JobConfig} returns this
+ */
+proto.viam.app.v1.JobConfig.prototype.clearLogConfiguration = function() {
+  return this.setLogConfiguration(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.JobConfig.prototype.hasLogConfiguration = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
