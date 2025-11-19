@@ -67,6 +67,15 @@ type MLTrainingServiceGetTrainingJobLogs = {
   readonly responseType: typeof app_mltraining_v1_ml_training_pb.GetTrainingJobLogsResponse;
 };
 
+type MLTrainingServiceListSupportedContainers = {
+  readonly methodName: string;
+  readonly service: typeof MLTrainingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_mltraining_v1_ml_training_pb.ListSupportedContainersRequest;
+  readonly responseType: typeof app_mltraining_v1_ml_training_pb.ListSupportedContainersResponse;
+};
+
 export class MLTrainingService {
   static readonly serviceName: string;
   static readonly SubmitTrainingJob: MLTrainingServiceSubmitTrainingJob;
@@ -76,6 +85,7 @@ export class MLTrainingService {
   static readonly CancelTrainingJob: MLTrainingServiceCancelTrainingJob;
   static readonly DeleteCompletedTrainingJob: MLTrainingServiceDeleteCompletedTrainingJob;
   static readonly GetTrainingJobLogs: MLTrainingServiceGetTrainingJobLogs;
+  static readonly ListSupportedContainers: MLTrainingServiceListSupportedContainers;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -172,6 +182,15 @@ export class MLTrainingServiceClient {
   getTrainingJobLogs(
     requestMessage: app_mltraining_v1_ml_training_pb.GetTrainingJobLogsRequest,
     callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.GetTrainingJobLogsResponse|null) => void
+  ): UnaryResponse;
+  listSupportedContainers(
+    requestMessage: app_mltraining_v1_ml_training_pb.ListSupportedContainersRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.ListSupportedContainersResponse|null) => void
+  ): UnaryResponse;
+  listSupportedContainers(
+    requestMessage: app_mltraining_v1_ml_training_pb.ListSupportedContainersRequest,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.ListSupportedContainersResponse|null) => void
   ): UnaryResponse;
 }
 
