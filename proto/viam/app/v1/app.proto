@@ -843,6 +843,7 @@ message GetRobotPartLogsRequest {
   optional google.protobuf.Timestamp end = 7;
   optional int64 limit = 8;
   optional string source = 9;
+  optional bool user_facing_only = 10;
 }
 
 message GetRobotPartLogsResponse {
