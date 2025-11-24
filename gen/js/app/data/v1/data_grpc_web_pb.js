@@ -1969,5 +1969,66 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.listSavedQueries =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.CreateBinaryDataSignedURLRequest,
+ *   !proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse>}
+ */
+const methodDescriptor_DataService_CreateBinaryDataSignedURL = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/CreateBinaryDataSignedURL',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.CreateBinaryDataSignedURLRequest,
+  proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.CreateBinaryDataSignedURLRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateBinaryDataSignedURLRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.createBinaryDataSignedURL =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateBinaryDataSignedURL',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateBinaryDataSignedURL,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateBinaryDataSignedURLRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.createBinaryDataSignedURL =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateBinaryDataSignedURL',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateBinaryDataSignedURL);
+};
+
+
 module.exports = proto.viam.app.data.v1;
 

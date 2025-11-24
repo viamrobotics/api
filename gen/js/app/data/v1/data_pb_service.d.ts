@@ -283,6 +283,15 @@ type DataServiceListSavedQueries = {
   readonly responseType: typeof app_data_v1_data_pb.ListSavedQueriesResponse;
 };
 
+type DataServiceCreateBinaryDataSignedURL = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.CreateBinaryDataSignedURLRequest;
+  readonly responseType: typeof app_data_v1_data_pb.CreateBinaryDataSignedURLResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -316,6 +325,7 @@ export class DataService {
   static readonly GetSavedQuery: DataServiceGetSavedQuery;
   static readonly DeleteSavedQuery: DataServiceDeleteSavedQuery;
   static readonly ListSavedQueries: DataServiceListSavedQueries;
+  static readonly CreateBinaryDataSignedURL: DataServiceCreateBinaryDataSignedURL;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -620,6 +630,15 @@ export class DataServiceClient {
   listSavedQueries(
     requestMessage: app_data_v1_data_pb.ListSavedQueriesRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListSavedQueriesResponse|null) => void
+  ): UnaryResponse;
+  createBinaryDataSignedURL(
+    requestMessage: app_data_v1_data_pb.CreateBinaryDataSignedURLRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateBinaryDataSignedURLResponse|null) => void
+  ): UnaryResponse;
+  createBinaryDataSignedURL(
+    requestMessage: app_data_v1_data_pb.CreateBinaryDataSignedURLRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateBinaryDataSignedURLResponse|null) => void
   ): UnaryResponse;
 }
 
