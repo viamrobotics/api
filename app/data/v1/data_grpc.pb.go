@@ -91,6 +91,8 @@ type DataServiceClient interface {
 	DeleteSavedQuery(ctx context.Context, in *DeleteSavedQueryRequest, opts ...grpc.CallOption) (*DeleteSavedQueryResponse, error)
 	// ListSavedQueries lists saved queries for a given organization.
 	ListSavedQueries(ctx context.Context, in *ListSavedQueriesRequest, opts ...grpc.CallOption) (*ListSavedQueriesResponse, error)
+	// CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
+	CreateBinaryDataSignedURL(ctx context.Context, in *CreateBinaryDataSignedURLRequest, opts ...grpc.CallOption) (*CreateBinaryDataSignedURLResponse, error)
 }
 
 type dataServiceClient struct {
@@ -408,6 +410,15 @@ func (c *dataServiceClient) ListSavedQueries(ctx context.Context, in *ListSavedQ
 	return out, nil
 }
 
+func (c *dataServiceClient) CreateBinaryDataSignedURL(ctx context.Context, in *CreateBinaryDataSignedURLRequest, opts ...grpc.CallOption) (*CreateBinaryDataSignedURLResponse, error) {
+	out := new(CreateBinaryDataSignedURLResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/CreateBinaryDataSignedURL", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -481,6 +492,8 @@ type DataServiceServer interface {
 	DeleteSavedQuery(context.Context, *DeleteSavedQueryRequest) (*DeleteSavedQueryResponse, error)
 	// ListSavedQueries lists saved queries for a given organization.
 	ListSavedQueries(context.Context, *ListSavedQueriesRequest) (*ListSavedQueriesResponse, error)
+	// CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
+	CreateBinaryDataSignedURL(context.Context, *CreateBinaryDataSignedURLRequest) (*CreateBinaryDataSignedURLResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -580,6 +593,9 @@ func (UnimplementedDataServiceServer) DeleteSavedQuery(context.Context, *DeleteS
 }
 func (UnimplementedDataServiceServer) ListSavedQueries(context.Context, *ListSavedQueriesRequest) (*ListSavedQueriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSavedQueries not implemented")
+}
+func (UnimplementedDataServiceServer) CreateBinaryDataSignedURL(context.Context, *CreateBinaryDataSignedURLRequest) (*CreateBinaryDataSignedURLResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBinaryDataSignedURL not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -1155,6 +1171,24 @@ func _DataService_ListSavedQueries_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_CreateBinaryDataSignedURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBinaryDataSignedURLRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).CreateBinaryDataSignedURL(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/CreateBinaryDataSignedURL",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).CreateBinaryDataSignedURL(ctx, req.(*CreateBinaryDataSignedURLRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1281,6 +1315,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListSavedQueries",
 			Handler:    _DataService_ListSavedQueries_Handler,
+		},
+		{
+			MethodName: "CreateBinaryDataSignedURL",
+			Handler:    _DataService_CreateBinaryDataSignedURL_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
