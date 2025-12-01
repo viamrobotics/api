@@ -2,7 +2,6 @@
 // file: component/camera/v1/camera.proto
 
 import * as jspb from "google-protobuf";
-import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_api_httpbody_pb from "../../../google/api/httpbody_pb";
@@ -139,11 +138,6 @@ export class Image extends jspb.Message {
   getMimeType(): string;
   setMimeType(value: string): void;
 
-  hasAnnotations(): boolean;
-  clearAnnotations(): void;
-  getAnnotations(): app_data_v1_data_pb.Annotations | undefined;
-  setAnnotations(value?: app_data_v1_data_pb.Annotations): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Image.AsObject;
   static toObject(includeInstance: boolean, msg: Image): Image.AsObject;
@@ -160,7 +154,6 @@ export namespace Image {
     format: FormatMap[keyof FormatMap],
     image: Uint8Array | string,
     mimeType: string,
-    annotations?: app_data_v1_data_pb.Annotations.AsObject,
   }
 }
 

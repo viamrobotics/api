@@ -15,8 +15,6 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
-var app_data_v1_data_pb = require('../../../app/data/v1/data_pb.js');
-goog.object.extend(proto, app_data_v1_data_pb);
 var common_v1_common_pb = require('../../../common/v1/common_pb.js');
 goog.object.extend(proto, common_v1_common_pb);
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
@@ -1234,8 +1232,7 @@ proto.viam.component.camera.v1.Image.toObject = function(includeInstance, msg) {
     sourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     format: jspb.Message.getFieldWithDefault(msg, 2, 0),
     image: msg.getImage_asB64(),
-    mimeType: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    annotations: (f = msg.getAnnotations()) && app_data_v1_data_pb.Annotations.toObject(includeInstance, f)
+    mimeType: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1287,11 +1284,6 @@ proto.viam.component.camera.v1.Image.deserializeBinaryFromReader = function(msg,
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setMimeType(value);
-      break;
-    case 5:
-      var value = new app_data_v1_data_pb.Annotations;
-      reader.readMessage(value,app_data_v1_data_pb.Annotations.deserializeBinaryFromReader);
-      msg.setAnnotations(value);
       break;
     default:
       reader.skipField();
@@ -1348,14 +1340,6 @@ proto.viam.component.camera.v1.Image.serializeBinaryToWriter = function(message,
     writer.writeString(
       4,
       f
-    );
-  }
-  f = message.getAnnotations();
-  if (f != null) {
-    writer.writeMessage(
-      5,
-      f,
-      app_data_v1_data_pb.Annotations.serializeBinaryToWriter
     );
   }
 };
@@ -1454,43 +1438,6 @@ proto.viam.component.camera.v1.Image.prototype.getMimeType = function() {
  */
 proto.viam.component.camera.v1.Image.prototype.setMimeType = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
-};
-
-
-/**
- * optional viam.app.data.v1.Annotations annotations = 5;
- * @return {?proto.viam.app.data.v1.Annotations}
- */
-proto.viam.component.camera.v1.Image.prototype.getAnnotations = function() {
-  return /** @type{?proto.viam.app.data.v1.Annotations} */ (
-    jspb.Message.getWrapperField(this, app_data_v1_data_pb.Annotations, 5));
-};
-
-
-/**
- * @param {?proto.viam.app.data.v1.Annotations|undefined} value
- * @return {!proto.viam.component.camera.v1.Image} returns this
-*/
-proto.viam.component.camera.v1.Image.prototype.setAnnotations = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.component.camera.v1.Image} returns this
- */
-proto.viam.component.camera.v1.Image.prototype.clearAnnotations = function() {
-  return this.setAnnotations(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.component.camera.v1.Image.prototype.hasAnnotations = function() {
-  return jspb.Message.getField(this, 5) != null;
 };
 
 
