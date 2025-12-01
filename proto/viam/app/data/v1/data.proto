@@ -114,6 +114,9 @@ service DataService {
 
   // ListSavedQueries lists saved queries for a given organization.
   rpc ListSavedQueries(ListSavedQueriesRequest) returns (ListSavedQueriesResponse);
+
+  // CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
+  rpc CreateBinaryDataSignedURL(CreateBinaryDataSignedURLRequest) returns (CreateBinaryDataSignedURLResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -747,4 +750,19 @@ message ListSavedQueriesRequest {
 
 message ListSavedQueriesResponse {
   repeated Query queries = 1;
+}
+
+message CreateBinaryDataSignedURLRequest {
+  // The binary data ID of the file to create a signed URL for.
+  string binary_data_id = 1;
+  // Expiration time in minutes. Defaults to 15 minutes if not specified.
+  // Maximum allowed is 10080 minutes (7 days).
+  optional uint32 expiration_minutes = 2;
+}
+
+message CreateBinaryDataSignedURLResponse {
+  // The signed URL for the binary data file.
+  string signed_url = 1;
+  // Expiration time of the signed URL token.
+  google.protobuf.Timestamp expires_at = 2;
 }

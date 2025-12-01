@@ -2303,6 +2303,58 @@ export namespace ListSavedQueriesResponse {
   }
 }
 
+export class CreateBinaryDataSignedURLRequest extends jspb.Message {
+  getBinaryDataId(): string;
+  setBinaryDataId(value: string): void;
+
+  hasExpirationMinutes(): boolean;
+  clearExpirationMinutes(): void;
+  getExpirationMinutes(): number;
+  setExpirationMinutes(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateBinaryDataSignedURLRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateBinaryDataSignedURLRequest): CreateBinaryDataSignedURLRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateBinaryDataSignedURLRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateBinaryDataSignedURLRequest;
+  static deserializeBinaryFromReader(message: CreateBinaryDataSignedURLRequest, reader: jspb.BinaryReader): CreateBinaryDataSignedURLRequest;
+}
+
+export namespace CreateBinaryDataSignedURLRequest {
+  export type AsObject = {
+    binaryDataId: string,
+    expirationMinutes: number,
+  }
+}
+
+export class CreateBinaryDataSignedURLResponse extends jspb.Message {
+  getSignedUrl(): string;
+  setSignedUrl(value: string): void;
+
+  hasExpiresAt(): boolean;
+  clearExpiresAt(): void;
+  getExpiresAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setExpiresAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateBinaryDataSignedURLResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateBinaryDataSignedURLResponse): CreateBinaryDataSignedURLResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateBinaryDataSignedURLResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateBinaryDataSignedURLResponse;
+  static deserializeBinaryFromReader(message: CreateBinaryDataSignedURLResponse, reader: jspb.BinaryReader): CreateBinaryDataSignedURLResponse;
+}
+
+export namespace CreateBinaryDataSignedURLResponse {
+  export type AsObject = {
+    signedUrl: string,
+    expiresAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
 export interface OrderMap {
   ORDER_UNSPECIFIED: 0;
   ORDER_DESCENDING: 1;

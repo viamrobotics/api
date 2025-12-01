@@ -324,7 +324,7 @@ func (x *Orientation) GetTheta() float64 {
 	return 0
 }
 
-// PoseInFrame contains a pose and the and the reference frame in which it was observed
+// PoseInFrame contains a pose and the reference frame in which it was observed
 type PoseInFrame struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
