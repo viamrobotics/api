@@ -22147,7 +22147,8 @@ proto.viam.app.v1.GetRobotPartLogsRequest.toObject = function(includeInstance, m
     start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     limit: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    source: jspb.Message.getFieldWithDefault(msg, 9, "")
+    source: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    userFacingOnly: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -22221,6 +22222,10 @@ proto.viam.app.v1.GetRobotPartLogsRequest.deserializeBinaryFromReader = function
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setSource(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUserFacingOnly(value);
       break;
     default:
       reader.skipField();
@@ -22313,6 +22318,13 @@ proto.viam.app.v1.GetRobotPartLogsRequest.serializeBinaryToWriter = function(mes
   if (f != null) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeBool(
+      10,
       f
     );
   }
@@ -22607,6 +22619,42 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearSource = function() {
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasSource = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional bool user_facing_only = 10;
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getUserFacingOnly = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setUserFacingOnly = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearUserFacingOnly = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasUserFacingOnly = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
