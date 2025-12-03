@@ -220,6 +220,15 @@ type RobotServiceTransformPCD = {
   readonly responseType: typeof robot_v1_robot_pb.TransformPCDResponse;
 };
 
+type RobotServiceSendTraces = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.SendTracesRequest;
+  readonly responseType: typeof robot_v1_robot_pb.SendTracesResponse;
+};
+
 export class RobotService {
   static readonly serviceName: string;
   static readonly GetOperations: RobotServiceGetOperations;
@@ -246,6 +255,7 @@ export class RobotService {
   static readonly GetPose: RobotServiceGetPose;
   static readonly TransformPose: RobotServiceTransformPose;
   static readonly TransformPCD: RobotServiceTransformPCD;
+  static readonly SendTraces: RobotServiceSendTraces;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -479,6 +489,15 @@ export class RobotServiceClient {
   transformPCD(
     requestMessage: robot_v1_robot_pb.TransformPCDRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.TransformPCDResponse|null) => void
+  ): UnaryResponse;
+  sendTraces(
+    requestMessage: robot_v1_robot_pb.SendTracesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.SendTracesResponse|null) => void
+  ): UnaryResponse;
+  sendTraces(
+    requestMessage: robot_v1_robot_pb.SendTracesRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.SendTracesResponse|null) => void
   ): UnaryResponse;
 }
 

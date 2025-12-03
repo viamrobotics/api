@@ -7,6 +7,45 @@ import * as google_api_annotations_pb from "../../google/api/annotations_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
+import * as opentelemetry_proto_trace_v1_trace_pb from "../../opentelemetry/proto/trace/v1/trace_pb";
+
+export class SendTracesRequest extends jspb.Message {
+  clearResourceSpansList(): void;
+  getResourceSpansList(): Array<opentelemetry_proto_trace_v1_trace_pb.ResourceSpans>;
+  setResourceSpansList(value: Array<opentelemetry_proto_trace_v1_trace_pb.ResourceSpans>): void;
+  addResourceSpans(value?: opentelemetry_proto_trace_v1_trace_pb.ResourceSpans, index?: number): opentelemetry_proto_trace_v1_trace_pb.ResourceSpans;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SendTracesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SendTracesRequest): SendTracesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SendTracesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SendTracesRequest;
+  static deserializeBinaryFromReader(message: SendTracesRequest, reader: jspb.BinaryReader): SendTracesRequest;
+}
+
+export namespace SendTracesRequest {
+  export type AsObject = {
+    resourceSpansList: Array<opentelemetry_proto_trace_v1_trace_pb.ResourceSpans.AsObject>,
+  }
+}
+
+export class SendTracesResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SendTracesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SendTracesResponse): SendTracesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SendTracesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SendTracesResponse;
+  static deserializeBinaryFromReader(message: SendTracesResponse, reader: jspb.BinaryReader): SendTracesResponse;
+}
+
+export namespace SendTracesResponse {
+  export type AsObject = {
+  }
+}
 
 export class TunnelRequest extends jspb.Message {
   getDestinationPort(): number;
