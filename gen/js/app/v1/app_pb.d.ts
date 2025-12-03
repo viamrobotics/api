@@ -2381,6 +2381,11 @@ export class GetRobotPartLogsRequest extends jspb.Message {
   getSource(): string;
   setSource(value: string): void;
 
+  hasUserFacingOnly(): boolean;
+  clearUserFacingOnly(): void;
+  getUserFacingOnly(): boolean;
+  setUserFacingOnly(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartLogsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartLogsRequest): GetRobotPartLogsRequest.AsObject;
@@ -2402,6 +2407,7 @@ export namespace GetRobotPartLogsRequest {
     end?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     limit: number,
     source: string,
+    userFacingOnly: boolean,
   }
 }
 
