@@ -638,7 +638,8 @@ proto.viam.app.build.v1.StartBuildRequest.toObject = function(includeInstance, m
     moduleId: jspb.Message.getFieldWithDefault(msg, 4, ""),
     moduleVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
     token: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    workdir: jspb.Message.getFieldWithDefault(msg, 7, "")
+    workdir: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    packageVersion: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -702,6 +703,10 @@ proto.viam.app.build.v1.StartBuildRequest.deserializeBinaryFromReader = function
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setWorkdir(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPackageVersion(value);
       break;
     default:
       reader.skipField();
@@ -778,6 +783,13 @@ proto.viam.app.build.v1.StartBuildRequest.serializeBinaryToWriter = function(mes
   if (f != null) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 8));
+  if (f != null) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -980,6 +992,42 @@ proto.viam.app.build.v1.StartBuildRequest.prototype.clearWorkdir = function() {
  */
 proto.viam.app.build.v1.StartBuildRequest.prototype.hasWorkdir = function() {
   return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional string package_version = 8;
+ * @return {string}
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.getPackageVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.build.v1.StartBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.setPackageVersion = function(value) {
+  return jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.build.v1.StartBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.clearPackageVersion = function() {
+  return jspb.Message.setField(this, 8, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.build.v1.StartBuildRequest.prototype.hasPackageVersion = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
