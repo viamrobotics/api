@@ -54,6 +54,8 @@ message StartBuildRequest {
   optional string token = 6;
   // optional working directory. defaults to repo root.
   optional string workdir = 7;
+  // optional string of the package version to use for building instead of a repo
+  optional string package_version = 8;
 }
 
 message StartBuildResponse {
