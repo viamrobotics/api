@@ -6373,7 +6373,9 @@ proto.viam.app.v1.RobotPart.toObject = function(includeInstance, msg) {
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     secretsList: jspb.Message.toObjectList(msg.getSecretsList(),
     proto.viam.app.v1.SharedSecret.toObject, includeInstance),
-    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    onlineState: jspb.Message.getFieldWithDefault(msg, 16, ""),
+    lastOnlineText: jspb.Message.getFieldWithDefault(msg, 17, "")
   };
 
   if (includeInstance) {
@@ -6475,6 +6477,14 @@ proto.viam.app.v1.RobotPart.deserializeBinaryFromReader = function(msg, reader) 
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastUpdated(value);
+      break;
+    case 16:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOnlineState(value);
+      break;
+    case 17:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLastOnlineText(value);
       break;
     default:
       reader.skipField();
@@ -6614,6 +6624,20 @@ proto.viam.app.v1.RobotPart.serializeBinaryToWriter = function(message, writer) 
       15,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getOnlineState();
+  if (f.length > 0) {
+    writer.writeString(
+      16,
+      f
+    );
+  }
+  f = message.getLastOnlineText();
+  if (f.length > 0) {
+    writer.writeString(
+      17,
+      f
     );
   }
 };
@@ -7001,6 +7025,42 @@ proto.viam.app.v1.RobotPart.prototype.clearLastUpdated = function() {
  */
 proto.viam.app.v1.RobotPart.prototype.hasLastUpdated = function() {
   return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional string online_state = 16;
+ * @return {string}
+ */
+proto.viam.app.v1.RobotPart.prototype.getOnlineState = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.setOnlineState = function(value) {
+  return jspb.Message.setProto3StringField(this, 16, value);
+};
+
+
+/**
+ * optional string last_online_text = 17;
+ * @return {string}
+ */
+proto.viam.app.v1.RobotPart.prototype.getLastOnlineText = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.setLastOnlineText = function(value) {
+  return jspb.Message.setProto3StringField(this, 17, value);
 };
 
 
