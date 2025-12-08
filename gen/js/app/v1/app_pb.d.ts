@@ -107,8 +107,8 @@ export class RobotPart extends jspb.Message {
   getLastUpdated(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setLastUpdated(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  getOnlineState(): string;
-  setOnlineState(value: string): void;
+  getOnlineState(): OnlineStateMap[keyof OnlineStateMap];
+  setOnlineState(value: OnlineStateMap[keyof OnlineStateMap]): void;
 
   getSecondsSinceOnline(): number;
   setSecondsSinceOnline(value: number): void;
@@ -140,7 +140,7 @@ export namespace RobotPart {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     secretsList: Array<SharedSecret.AsObject>,
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    onlineState: string,
+    onlineState: OnlineStateMap[keyof OnlineStateMap],
     secondsSinceOnline: number,
   }
 }
@@ -7289,6 +7289,15 @@ export namespace MachinePickerCustomizations {
     subheading: string,
   }
 }
+
+export interface OnlineStateMap {
+  ONLINE_STATE_UNSPECIFIED: 0;
+  ONLINE_STATE_ONLINE: 1;
+  ONLINE_STATE_OFFLINE: 2;
+  ONLINE_STATE_AWAITING_SETUP: 3;
+}
+
+export const OnlineState: OnlineStateMap;
 
 export interface AuthenticationTypeMap {
   AUTHENTICATION_TYPE_UNSPECIFIED: 0;
