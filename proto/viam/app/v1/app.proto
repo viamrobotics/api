@@ -343,7 +343,7 @@ message RobotPart {
   // latest timestamp when a robot part was updated
   google.protobuf.Timestamp last_updated = 15 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
   string online_state = 16 [(tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
-  string last_online_text = 17 [(tagger.v1.tags) = "bson:\"last_online_text\" json:\"last_online_text,omitempty\""];
+  int64 seconds_since_online = 17 [(tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
 }
 
 message RobotPartHistoryEntry {
