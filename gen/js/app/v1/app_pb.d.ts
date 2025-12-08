@@ -110,8 +110,8 @@ export class RobotPart extends jspb.Message {
   getOnlineState(): string;
   setOnlineState(value: string): void;
 
-  getLastOnlineText(): string;
-  setLastOnlineText(value: string): void;
+  getSecondsSinceOnline(): number;
+  setSecondsSinceOnline(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotPart.AsObject;
@@ -141,7 +141,7 @@ export namespace RobotPart {
     secretsList: Array<SharedSecret.AsObject>,
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     onlineState: string,
-    lastOnlineText: string,
+    secondsSinceOnline: number,
   }
 }
 

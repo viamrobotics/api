@@ -6375,7 +6375,7 @@ proto.viam.app.v1.RobotPart.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.SharedSecret.toObject, includeInstance),
     lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     onlineState: jspb.Message.getFieldWithDefault(msg, 16, ""),
-    lastOnlineText: jspb.Message.getFieldWithDefault(msg, 17, "")
+    secondsSinceOnline: jspb.Message.getFieldWithDefault(msg, 17, 0)
   };
 
   if (includeInstance) {
@@ -6483,8 +6483,8 @@ proto.viam.app.v1.RobotPart.deserializeBinaryFromReader = function(msg, reader) 
       msg.setOnlineState(value);
       break;
     case 17:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setLastOnlineText(value);
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSecondsSinceOnline(value);
       break;
     default:
       reader.skipField();
@@ -6633,9 +6633,9 @@ proto.viam.app.v1.RobotPart.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getLastOnlineText();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getSecondsSinceOnline();
+  if (f !== 0) {
+    writer.writeInt64(
       17,
       f
     );
@@ -7047,20 +7047,20 @@ proto.viam.app.v1.RobotPart.prototype.setOnlineState = function(value) {
 
 
 /**
- * optional string last_online_text = 17;
- * @return {string}
+ * optional int64 seconds_since_online = 17;
+ * @return {number}
  */
-proto.viam.app.v1.RobotPart.prototype.getLastOnlineText = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
+proto.viam.app.v1.RobotPart.prototype.getSecondsSinceOnline = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 17, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.viam.app.v1.RobotPart} returns this
  */
-proto.viam.app.v1.RobotPart.prototype.setLastOnlineText = function(value) {
-  return jspb.Message.setProto3StringField(this, 17, value);
+proto.viam.app.v1.RobotPart.prototype.setSecondsSinceOnline = function(value) {
+  return jspb.Message.setProto3IntField(this, 17, value);
 };
 
 
