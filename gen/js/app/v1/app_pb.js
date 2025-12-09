@@ -219,6 +219,7 @@ goog.exportSymbol('proto.viam.app.v1.NewRobotPartResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.NewRobotRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.NewRobotResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.OAuthConfig', null, global);
+goog.exportSymbol('proto.viam.app.v1.OnlineState', null, global);
 goog.exportSymbol('proto.viam.app.v1.OrgDetails', null, global);
 goog.exportSymbol('proto.viam.app.v1.Organization', null, global);
 goog.exportSymbol('proto.viam.app.v1.OrganizationGetLogoRequest', null, global);
@@ -6373,7 +6374,9 @@ proto.viam.app.v1.RobotPart.toObject = function(includeInstance, msg) {
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     secretsList: jspb.Message.toObjectList(msg.getSecretsList(),
     proto.viam.app.v1.SharedSecret.toObject, includeInstance),
-    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    onlineState: jspb.Message.getFieldWithDefault(msg, 16, 0),
+    secondsSinceOnline: jspb.Message.getFieldWithDefault(msg, 17, 0)
   };
 
   if (includeInstance) {
@@ -6475,6 +6478,14 @@ proto.viam.app.v1.RobotPart.deserializeBinaryFromReader = function(msg, reader) 
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastUpdated(value);
+      break;
+    case 16:
+      var value = /** @type {!proto.viam.app.v1.OnlineState} */ (reader.readEnum());
+      msg.setOnlineState(value);
+      break;
+    case 17:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSecondsSinceOnline(value);
       break;
     default:
       reader.skipField();
@@ -6614,6 +6625,20 @@ proto.viam.app.v1.RobotPart.serializeBinaryToWriter = function(message, writer) 
       15,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getOnlineState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      16,
+      f
+    );
+  }
+  f = message.getSecondsSinceOnline();
+  if (f !== 0) {
+    writer.writeInt64(
+      17,
+      f
     );
   }
 };
@@ -7001,6 +7026,42 @@ proto.viam.app.v1.RobotPart.prototype.clearLastUpdated = function() {
  */
 proto.viam.app.v1.RobotPart.prototype.hasLastUpdated = function() {
   return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional OnlineState online_state = 16;
+ * @return {!proto.viam.app.v1.OnlineState}
+ */
+proto.viam.app.v1.RobotPart.prototype.getOnlineState = function() {
+  return /** @type {!proto.viam.app.v1.OnlineState} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.OnlineState} value
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.setOnlineState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 16, value);
+};
+
+
+/**
+ * optional int64 seconds_since_online = 17;
+ * @return {number}
+ */
+proto.viam.app.v1.RobotPart.prototype.getSecondsSinceOnline = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 17, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.setSecondsSinceOnline = function(value) {
+  return jspb.Message.setProto3IntField(this, 17, value);
 };
 
 
@@ -22147,7 +22208,8 @@ proto.viam.app.v1.GetRobotPartLogsRequest.toObject = function(includeInstance, m
     start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     limit: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    source: jspb.Message.getFieldWithDefault(msg, 9, "")
+    source: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    userFacingOnly: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -22221,6 +22283,10 @@ proto.viam.app.v1.GetRobotPartLogsRequest.deserializeBinaryFromReader = function
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setSource(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUserFacingOnly(value);
       break;
     default:
       reader.skipField();
@@ -22313,6 +22379,13 @@ proto.viam.app.v1.GetRobotPartLogsRequest.serializeBinaryToWriter = function(mes
   if (f != null) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeBool(
+      10,
       f
     );
   }
@@ -22607,6 +22680,42 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearSource = function() {
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasSource = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional bool user_facing_only = 10;
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getUserFacingOnly = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setUserFacingOnly = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearUserFacingOnly = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasUserFacingOnly = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
@@ -56846,6 +56955,16 @@ proto.viam.app.v1.MachinePickerCustomizations.prototype.hasSubheading = function
   return jspb.Message.getField(this, 2) != null;
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.v1.OnlineState = {
+  ONLINE_STATE_UNSPECIFIED: 0,
+  ONLINE_STATE_ONLINE: 1,
+  ONLINE_STATE_OFFLINE: 2,
+  ONLINE_STATE_AWAITING_SETUP: 3
+};
 
 /**
  * @enum {number}
