@@ -13,6 +13,8 @@ lint:
     - FIELD_NOT_REQUIRED
     - PACKAGE_DIRECTORY_MATCH
     - PACKAGE_NO_IMPORT_CYCLE
+  ignore:
+    - proto/viam/opentelemetry
   ignore_only:
     RPC_REQUEST_RESPONSE_UNIQUE:
       - proto/viam/component
