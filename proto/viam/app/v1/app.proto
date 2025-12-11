@@ -1434,6 +1434,8 @@ message RegistryItem {
   google.protobuf.Timestamp created_at = 15;
   // When the item was last updated, either through an update or upload.
   google.protobuf.Timestamp updated_at = 16;
+  // Whether the registry item is deprecated
+  bool deprecated = 17;
 }
 
 message GetRegistryItemRequest {
