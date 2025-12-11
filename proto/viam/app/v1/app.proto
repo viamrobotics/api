@@ -325,6 +325,8 @@ message Robot {
   string location = 3 [(tagger.v1.tags) = "bson:\"location\" json:\"location\""];
   google.protobuf.Timestamp last_access = 4 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
   google.protobuf.Timestamp created_on = 5 [(tagger.v1.tags) = "bson:\"created_on\""];
+  OnlineState online_state = 6 [(tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
+  int64 seconds_since_online = 7 [(tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
 }
 
 message RobotPart {
@@ -1197,6 +1199,9 @@ message PartSummary {
   string part_id = 1;
   string part_name = 2;
   bool is_main_part = 11;
+  OnlineState online_state = 12;
+  int64 seconds_since_online = 13;
+  optional google.protobuf.Timestamp last_access = 14;
   optional google.protobuf.Timestamp last_online = 3;
   optional ViamServerVersion viam_server_version = 4;
   optional ViamAgentVersion viam_agent_version = 5;
