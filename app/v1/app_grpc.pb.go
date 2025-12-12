@@ -194,6 +194,7 @@ type AppServiceClient interface {
 	ListRegistryItems(ctx context.Context, in *ListRegistryItemsRequest, opts ...grpc.CallOption) (*ListRegistryItemsResponse, error)
 	DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error)
 	RenameRegistryItem(ctx context.Context, in *RenameRegistryItemRequest, opts ...grpc.CallOption) (*RenameRegistryItemResponse, error)
+	DeprecateRegistryItem(ctx context.Context, in *DeprecateRegistryItemRequest, opts ...grpc.CallOption) (*DeprecateRegistryItemResponse, error)
 	TransferRegistryItem(ctx context.Context, in *TransferRegistryItemRequest, opts ...grpc.CallOption) (*TransferRegistryItemResponse, error)
 	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
 	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
@@ -1096,6 +1097,15 @@ func (c *appServiceClient) RenameRegistryItem(ctx context.Context, in *RenameReg
 	return out, nil
 }
 
+func (c *appServiceClient) DeprecateRegistryItem(ctx context.Context, in *DeprecateRegistryItemRequest, opts ...grpc.CallOption) (*DeprecateRegistryItemResponse, error) {
+	out := new(DeprecateRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeprecateRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) TransferRegistryItem(ctx context.Context, in *TransferRegistryItemRequest, opts ...grpc.CallOption) (*TransferRegistryItemResponse, error) {
 	out := new(TransferRegistryItemResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/TransferRegistryItem", in, out, opts...)
@@ -1423,6 +1433,7 @@ type AppServiceServer interface {
 	ListRegistryItems(context.Context, *ListRegistryItemsRequest) (*ListRegistryItemsResponse, error)
 	DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error)
 	RenameRegistryItem(context.Context, *RenameRegistryItemRequest) (*RenameRegistryItemResponse, error)
+	DeprecateRegistryItem(context.Context, *DeprecateRegistryItemRequest) (*DeprecateRegistryItemResponse, error)
 	TransferRegistryItem(context.Context, *TransferRegistryItemRequest) (*TransferRegistryItemResponse, error)
 	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
 	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
@@ -1728,6 +1739,9 @@ func (UnimplementedAppServiceServer) DeleteRegistryItem(context.Context, *Delete
 }
 func (UnimplementedAppServiceServer) RenameRegistryItem(context.Context, *RenameRegistryItemRequest) (*RenameRegistryItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameRegistryItem not implemented")
+}
+func (UnimplementedAppServiceServer) DeprecateRegistryItem(context.Context, *DeprecateRegistryItemRequest) (*DeprecateRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeprecateRegistryItem not implemented")
 }
 func (UnimplementedAppServiceServer) TransferRegistryItem(context.Context, *TransferRegistryItemRequest) (*TransferRegistryItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TransferRegistryItem not implemented")
@@ -3497,6 +3511,24 @@ func _AppService_RenameRegistryItem_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_DeprecateRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeprecateRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeprecateRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeprecateRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeprecateRegistryItem(ctx, req.(*DeprecateRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_TransferRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TransferRegistryItemRequest)
 	if err := dec(in); err != nil {
@@ -4139,6 +4171,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RenameRegistryItem",
 			Handler:    _AppService_RenameRegistryItem_Handler,
+		},
+		{
+			MethodName: "DeprecateRegistryItem",
+			Handler:    _AppService_DeprecateRegistryItem_Handler,
 		},
 		{
 			MethodName: "TransferRegistryItem",

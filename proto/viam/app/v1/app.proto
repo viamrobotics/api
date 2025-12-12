@@ -283,6 +283,8 @@ service AppService {
 
   rpc RenameRegistryItem(RenameRegistryItemRequest) returns (RenameRegistryItemResponse);
 
+  rpc DeprecateRegistryItem(DeprecateRegistryItemRequest) returns (DeprecateRegistryItemResponse);
+
   rpc TransferRegistryItem(TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
 
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
@@ -1435,7 +1437,7 @@ message RegistryItem {
   // When the item was last updated, either through an update or upload.
   google.protobuf.Timestamp updated_at = 16;
   // Whether the registry item is deprecated
-  bool deprecated = 17;
+  optional bool deprecated = 17;
 }
 
 message GetRegistryItemRequest {
@@ -1513,6 +1515,15 @@ message RenameRegistryItemRequest {
 }
 
 message RenameRegistryItemResponse {
+  RegistryItem item = 1;
+}
+
+message DeprecateRegistryItemRequest {
+  string item_id = 1;
+  bool new_status = 2;
+}
+
+message DeprecateRegistryItemResponse {
   RegistryItem item = 1;
 }
 
@@ -1693,6 +1704,8 @@ message Module {
   optional string markdown_description = 14;
   // A list of applications associated with the module
   repeated App apps = 15;
+  // Whether the module is deprecated
+  optional bool deprecated = 16;
 }
 
 message VersionHistory {

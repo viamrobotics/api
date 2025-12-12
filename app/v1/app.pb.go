@@ -11016,6 +11016,8 @@ type RegistryItem struct {
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// When the item was last updated, either through an update or upload.
 	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// Whether the registry item is deprecated
+	Deprecated *bool `protobuf:"varint,17,opt,name=deprecated,proto3,oneof" json:"deprecated,omitempty"`
 }
 
 func (x *RegistryItem) Reset() {
@@ -11172,6 +11174,13 @@ func (x *RegistryItem) GetUpdatedAt() *timestamppb.Timestamp {
 		return x.UpdatedAt
 	}
 	return nil
+}
+
+func (x *RegistryItem) GetDeprecated() bool {
+	if x != nil && x.Deprecated != nil {
+		return *x.Deprecated
+	}
+	return false
 }
 
 type isRegistryItem_Metadata interface {
@@ -11907,6 +11916,104 @@ func (x *RenameRegistryItemResponse) GetItem() *RegistryItem {
 	return nil
 }
 
+type DeprecateRegistryItemRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ItemId    string `protobuf:"bytes,1,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
+	NewStatus bool   `protobuf:"varint,2,opt,name=new_status,json=newStatus,proto3" json:"new_status,omitempty"`
+}
+
+func (x *DeprecateRegistryItemRequest) Reset() {
+	*x = DeprecateRegistryItemRequest{}
+	mi := &file_app_v1_app_proto_msgTypes[204]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeprecateRegistryItemRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeprecateRegistryItemRequest) ProtoMessage() {}
+
+func (x *DeprecateRegistryItemRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_app_proto_msgTypes[204]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeprecateRegistryItemRequest.ProtoReflect.Descriptor instead.
+func (*DeprecateRegistryItemRequest) Descriptor() ([]byte, []int) {
+	return file_app_v1_app_proto_rawDescGZIP(), []int{204}
+}
+
+func (x *DeprecateRegistryItemRequest) GetItemId() string {
+	if x != nil {
+		return x.ItemId
+	}
+	return ""
+}
+
+func (x *DeprecateRegistryItemRequest) GetNewStatus() bool {
+	if x != nil {
+		return x.NewStatus
+	}
+	return false
+}
+
+type DeprecateRegistryItemResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Item *RegistryItem `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
+}
+
+func (x *DeprecateRegistryItemResponse) Reset() {
+	*x = DeprecateRegistryItemResponse{}
+	mi := &file_app_v1_app_proto_msgTypes[205]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeprecateRegistryItemResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeprecateRegistryItemResponse) ProtoMessage() {}
+
+func (x *DeprecateRegistryItemResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_app_proto_msgTypes[205]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeprecateRegistryItemResponse.ProtoReflect.Descriptor instead.
+func (*DeprecateRegistryItemResponse) Descriptor() ([]byte, []int) {
+	return file_app_v1_app_proto_rawDescGZIP(), []int{205}
+}
+
+func (x *DeprecateRegistryItemResponse) GetItem() *RegistryItem {
+	if x != nil {
+		return x.Item
+	}
+	return nil
+}
+
 type TransferRegistryItemRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -11918,7 +12025,7 @@ type TransferRegistryItemRequest struct {
 
 func (x *TransferRegistryItemRequest) Reset() {
 	*x = TransferRegistryItemRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[204]
+	mi := &file_app_v1_app_proto_msgTypes[206]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11930,7 +12037,7 @@ func (x *TransferRegistryItemRequest) String() string {
 func (*TransferRegistryItemRequest) ProtoMessage() {}
 
 func (x *TransferRegistryItemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[204]
+	mi := &file_app_v1_app_proto_msgTypes[206]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11943,7 +12050,7 @@ func (x *TransferRegistryItemRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferRegistryItemRequest.ProtoReflect.Descriptor instead.
 func (*TransferRegistryItemRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{204}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{206}
 }
 
 func (x *TransferRegistryItemRequest) GetItemId() string {
@@ -11968,7 +12075,7 @@ type TransferRegistryItemResponse struct {
 
 func (x *TransferRegistryItemResponse) Reset() {
 	*x = TransferRegistryItemResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[205]
+	mi := &file_app_v1_app_proto_msgTypes[207]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11980,7 +12087,7 @@ func (x *TransferRegistryItemResponse) String() string {
 func (*TransferRegistryItemResponse) ProtoMessage() {}
 
 func (x *TransferRegistryItemResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[205]
+	mi := &file_app_v1_app_proto_msgTypes[207]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11993,7 +12100,7 @@ func (x *TransferRegistryItemResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferRegistryItemResponse.ProtoReflect.Descriptor instead.
 func (*TransferRegistryItemResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{205}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{207}
 }
 
 // Modules
@@ -12010,7 +12117,7 @@ type CreateModuleRequest struct {
 
 func (x *CreateModuleRequest) Reset() {
 	*x = CreateModuleRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[206]
+	mi := &file_app_v1_app_proto_msgTypes[208]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12022,7 +12129,7 @@ func (x *CreateModuleRequest) String() string {
 func (*CreateModuleRequest) ProtoMessage() {}
 
 func (x *CreateModuleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[206]
+	mi := &file_app_v1_app_proto_msgTypes[208]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12035,7 +12142,7 @@ func (x *CreateModuleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateModuleRequest.ProtoReflect.Descriptor instead.
 func (*CreateModuleRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{206}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{208}
 }
 
 func (x *CreateModuleRequest) GetOrganizationId() string {
@@ -12065,7 +12172,7 @@ type CreateModuleResponse struct {
 
 func (x *CreateModuleResponse) Reset() {
 	*x = CreateModuleResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[207]
+	mi := &file_app_v1_app_proto_msgTypes[209]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12077,7 +12184,7 @@ func (x *CreateModuleResponse) String() string {
 func (*CreateModuleResponse) ProtoMessage() {}
 
 func (x *CreateModuleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[207]
+	mi := &file_app_v1_app_proto_msgTypes[209]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12090,7 +12197,7 @@ func (x *CreateModuleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateModuleResponse.ProtoReflect.Descriptor instead.
 func (*CreateModuleResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{207}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{209}
 }
 
 func (x *CreateModuleResponse) GetModuleId() string {
@@ -12134,7 +12241,7 @@ type UpdateModuleRequest struct {
 
 func (x *UpdateModuleRequest) Reset() {
 	*x = UpdateModuleRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[208]
+	mi := &file_app_v1_app_proto_msgTypes[210]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12146,7 +12253,7 @@ func (x *UpdateModuleRequest) String() string {
 func (*UpdateModuleRequest) ProtoMessage() {}
 
 func (x *UpdateModuleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[208]
+	mi := &file_app_v1_app_proto_msgTypes[210]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12159,7 +12266,7 @@ func (x *UpdateModuleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateModuleRequest.ProtoReflect.Descriptor instead.
 func (*UpdateModuleRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{208}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{210}
 }
 
 func (x *UpdateModuleRequest) GetModuleId() string {
@@ -12246,7 +12353,7 @@ type App struct {
 
 func (x *App) Reset() {
 	*x = App{}
-	mi := &file_app_v1_app_proto_msgTypes[209]
+	mi := &file_app_v1_app_proto_msgTypes[211]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12258,7 +12365,7 @@ func (x *App) String() string {
 func (*App) ProtoMessage() {}
 
 func (x *App) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[209]
+	mi := &file_app_v1_app_proto_msgTypes[211]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12271,7 +12378,7 @@ func (x *App) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use App.ProtoReflect.Descriptor instead.
 func (*App) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{209}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{211}
 }
 
 func (x *App) GetName() string {
@@ -12327,7 +12434,7 @@ type UpdateModuleResponse struct {
 
 func (x *UpdateModuleResponse) Reset() {
 	*x = UpdateModuleResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[210]
+	mi := &file_app_v1_app_proto_msgTypes[212]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12339,7 +12446,7 @@ func (x *UpdateModuleResponse) String() string {
 func (*UpdateModuleResponse) ProtoMessage() {}
 
 func (x *UpdateModuleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[210]
+	mi := &file_app_v1_app_proto_msgTypes[212]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12352,7 +12459,7 @@ func (x *UpdateModuleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateModuleResponse.ProtoReflect.Descriptor instead.
 func (*UpdateModuleResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{210}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{212}
 }
 
 func (x *UpdateModuleResponse) GetUrl() string {
@@ -12377,7 +12484,7 @@ type UpdateModuleMetadata struct {
 
 func (x *UpdateModuleMetadata) Reset() {
 	*x = UpdateModuleMetadata{}
-	mi := &file_app_v1_app_proto_msgTypes[211]
+	mi := &file_app_v1_app_proto_msgTypes[213]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12389,7 +12496,7 @@ func (x *UpdateModuleMetadata) String() string {
 func (*UpdateModuleMetadata) ProtoMessage() {}
 
 func (x *UpdateModuleMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[211]
+	mi := &file_app_v1_app_proto_msgTypes[213]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12402,7 +12509,7 @@ func (x *UpdateModuleMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateModuleMetadata.ProtoReflect.Descriptor instead.
 func (*UpdateModuleMetadata) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{211}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{213}
 }
 
 func (x *UpdateModuleMetadata) GetModels() []*Model {
@@ -12437,7 +12544,7 @@ type UpdateMLModelMetadata struct {
 
 func (x *UpdateMLModelMetadata) Reset() {
 	*x = UpdateMLModelMetadata{}
-	mi := &file_app_v1_app_proto_msgTypes[212]
+	mi := &file_app_v1_app_proto_msgTypes[214]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12449,7 +12556,7 @@ func (x *UpdateMLModelMetadata) String() string {
 func (*UpdateMLModelMetadata) ProtoMessage() {}
 
 func (x *UpdateMLModelMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[212]
+	mi := &file_app_v1_app_proto_msgTypes[214]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12462,7 +12569,7 @@ func (x *UpdateMLModelMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateMLModelMetadata.ProtoReflect.Descriptor instead.
 func (*UpdateMLModelMetadata) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{212}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{214}
 }
 
 func (x *UpdateMLModelMetadata) GetModelType() v11.ModelType {
@@ -12491,7 +12598,7 @@ type UpdateMLTrainingMetadata struct {
 
 func (x *UpdateMLTrainingMetadata) Reset() {
 	*x = UpdateMLTrainingMetadata{}
-	mi := &file_app_v1_app_proto_msgTypes[213]
+	mi := &file_app_v1_app_proto_msgTypes[215]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12503,7 +12610,7 @@ func (x *UpdateMLTrainingMetadata) String() string {
 func (*UpdateMLTrainingMetadata) ProtoMessage() {}
 
 func (x *UpdateMLTrainingMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[213]
+	mi := &file_app_v1_app_proto_msgTypes[215]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12516,7 +12623,7 @@ func (x *UpdateMLTrainingMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateMLTrainingMetadata.ProtoReflect.Descriptor instead.
 func (*UpdateMLTrainingMetadata) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{213}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{215}
 }
 
 func (x *UpdateMLTrainingMetadata) GetModelType() v11.ModelType {
@@ -12559,7 +12666,7 @@ type Model struct {
 
 func (x *Model) Reset() {
 	*x = Model{}
-	mi := &file_app_v1_app_proto_msgTypes[214]
+	mi := &file_app_v1_app_proto_msgTypes[216]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12571,7 +12678,7 @@ func (x *Model) String() string {
 func (*Model) ProtoMessage() {}
 
 func (x *Model) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[214]
+	mi := &file_app_v1_app_proto_msgTypes[216]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12584,7 +12691,7 @@ func (x *Model) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Model.ProtoReflect.Descriptor instead.
 func (*Model) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{214}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{216}
 }
 
 func (x *Model) GetApi() string {
@@ -12641,7 +12748,7 @@ type ModuleFileInfo struct {
 
 func (x *ModuleFileInfo) Reset() {
 	*x = ModuleFileInfo{}
-	mi := &file_app_v1_app_proto_msgTypes[215]
+	mi := &file_app_v1_app_proto_msgTypes[217]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12653,7 +12760,7 @@ func (x *ModuleFileInfo) String() string {
 func (*ModuleFileInfo) ProtoMessage() {}
 
 func (x *ModuleFileInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[215]
+	mi := &file_app_v1_app_proto_msgTypes[217]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12666,7 +12773,7 @@ func (x *ModuleFileInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ModuleFileInfo.ProtoReflect.Descriptor instead.
 func (*ModuleFileInfo) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{215}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{217}
 }
 
 func (x *ModuleFileInfo) GetModuleId() string {
@@ -12711,7 +12818,7 @@ type UploadModuleFileRequest struct {
 
 func (x *UploadModuleFileRequest) Reset() {
 	*x = UploadModuleFileRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[216]
+	mi := &file_app_v1_app_proto_msgTypes[218]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12723,7 +12830,7 @@ func (x *UploadModuleFileRequest) String() string {
 func (*UploadModuleFileRequest) ProtoMessage() {}
 
 func (x *UploadModuleFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[216]
+	mi := &file_app_v1_app_proto_msgTypes[218]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12736,7 +12843,7 @@ func (x *UploadModuleFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadModuleFileRequest.ProtoReflect.Descriptor instead.
 func (*UploadModuleFileRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{216}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{218}
 }
 
 func (m *UploadModuleFileRequest) GetModuleFile() isUploadModuleFileRequest_ModuleFile {
@@ -12789,7 +12896,7 @@ type UploadModuleFileResponse struct {
 
 func (x *UploadModuleFileResponse) Reset() {
 	*x = UploadModuleFileResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[217]
+	mi := &file_app_v1_app_proto_msgTypes[219]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12801,7 +12908,7 @@ func (x *UploadModuleFileResponse) String() string {
 func (*UploadModuleFileResponse) ProtoMessage() {}
 
 func (x *UploadModuleFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[217]
+	mi := &file_app_v1_app_proto_msgTypes[219]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12814,7 +12921,7 @@ func (x *UploadModuleFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadModuleFileResponse.ProtoReflect.Descriptor instead.
 func (*UploadModuleFileResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{217}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{219}
 }
 
 func (x *UploadModuleFileResponse) GetUrl() string {
@@ -12836,7 +12943,7 @@ type GetModuleRequest struct {
 
 func (x *GetModuleRequest) Reset() {
 	*x = GetModuleRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[218]
+	mi := &file_app_v1_app_proto_msgTypes[220]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12848,7 +12955,7 @@ func (x *GetModuleRequest) String() string {
 func (*GetModuleRequest) ProtoMessage() {}
 
 func (x *GetModuleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[218]
+	mi := &file_app_v1_app_proto_msgTypes[220]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12861,7 +12968,7 @@ func (x *GetModuleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetModuleRequest.ProtoReflect.Descriptor instead.
 func (*GetModuleRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{218}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{220}
 }
 
 func (x *GetModuleRequest) GetModuleId() string {
@@ -12889,7 +12996,7 @@ type GetModuleResponse struct {
 
 func (x *GetModuleResponse) Reset() {
 	*x = GetModuleResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[219]
+	mi := &file_app_v1_app_proto_msgTypes[221]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12901,7 +13008,7 @@ func (x *GetModuleResponse) String() string {
 func (*GetModuleResponse) ProtoMessage() {}
 
 func (x *GetModuleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[219]
+	mi := &file_app_v1_app_proto_msgTypes[221]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12914,7 +13021,7 @@ func (x *GetModuleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetModuleResponse.ProtoReflect.Descriptor instead.
 func (*GetModuleResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{219}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{221}
 }
 
 func (x *GetModuleResponse) GetModule() *Module {
@@ -12961,11 +13068,13 @@ type Module struct {
 	MarkdownDescription *string `protobuf:"bytes,14,opt,name=markdown_description,json=markdownDescription,proto3,oneof" json:"markdown_description,omitempty"`
 	// A list of applications associated with the module
 	Apps []*App `protobuf:"bytes,15,rep,name=apps,proto3" json:"apps,omitempty"`
+	// Whether the module is deprecated
+	Deprecated *bool `protobuf:"varint,16,opt,name=deprecated,proto3,oneof" json:"deprecated,omitempty"`
 }
 
 func (x *Module) Reset() {
 	*x = Module{}
-	mi := &file_app_v1_app_proto_msgTypes[220]
+	mi := &file_app_v1_app_proto_msgTypes[222]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12977,7 +13086,7 @@ func (x *Module) String() string {
 func (*Module) ProtoMessage() {}
 
 func (x *Module) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[220]
+	mi := &file_app_v1_app_proto_msgTypes[222]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12990,7 +13099,7 @@ func (x *Module) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Module.ProtoReflect.Descriptor instead.
 func (*Module) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{220}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{222}
 }
 
 func (x *Module) GetModuleId() string {
@@ -13098,6 +13207,13 @@ func (x *Module) GetApps() []*App {
 	return nil
 }
 
+func (x *Module) GetDeprecated() bool {
+	if x != nil && x.Deprecated != nil {
+		return *x.Deprecated
+	}
+	return false
+}
+
 type VersionHistory struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -13121,7 +13237,7 @@ type VersionHistory struct {
 
 func (x *VersionHistory) Reset() {
 	*x = VersionHistory{}
-	mi := &file_app_v1_app_proto_msgTypes[221]
+	mi := &file_app_v1_app_proto_msgTypes[223]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13133,7 +13249,7 @@ func (x *VersionHistory) String() string {
 func (*VersionHistory) ProtoMessage() {}
 
 func (x *VersionHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[221]
+	mi := &file_app_v1_app_proto_msgTypes[223]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13146,7 +13262,7 @@ func (x *VersionHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VersionHistory.ProtoReflect.Descriptor instead.
 func (*VersionHistory) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{221}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{223}
 }
 
 func (x *VersionHistory) GetVersion() string {
@@ -13211,7 +13327,7 @@ type Uploads struct {
 
 func (x *Uploads) Reset() {
 	*x = Uploads{}
-	mi := &file_app_v1_app_proto_msgTypes[222]
+	mi := &file_app_v1_app_proto_msgTypes[224]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13223,7 +13339,7 @@ func (x *Uploads) String() string {
 func (*Uploads) ProtoMessage() {}
 
 func (x *Uploads) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[222]
+	mi := &file_app_v1_app_proto_msgTypes[224]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13236,7 +13352,7 @@ func (x *Uploads) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Uploads.ProtoReflect.Descriptor instead.
 func (*Uploads) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{222}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{224}
 }
 
 func (x *Uploads) GetPlatform() string {
@@ -13265,7 +13381,7 @@ type ListModulesRequest struct {
 
 func (x *ListModulesRequest) Reset() {
 	*x = ListModulesRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[223]
+	mi := &file_app_v1_app_proto_msgTypes[225]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13277,7 +13393,7 @@ func (x *ListModulesRequest) String() string {
 func (*ListModulesRequest) ProtoMessage() {}
 
 func (x *ListModulesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[223]
+	mi := &file_app_v1_app_proto_msgTypes[225]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13290,7 +13406,7 @@ func (x *ListModulesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModulesRequest.ProtoReflect.Descriptor instead.
 func (*ListModulesRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{223}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{225}
 }
 
 func (x *ListModulesRequest) GetOrganizationId() string {
@@ -13318,7 +13434,7 @@ type ListModulesResponse struct {
 
 func (x *ListModulesResponse) Reset() {
 	*x = ListModulesResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[224]
+	mi := &file_app_v1_app_proto_msgTypes[226]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13330,7 +13446,7 @@ func (x *ListModulesResponse) String() string {
 func (*ListModulesResponse) ProtoMessage() {}
 
 func (x *ListModulesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[224]
+	mi := &file_app_v1_app_proto_msgTypes[226]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13343,7 +13459,7 @@ func (x *ListModulesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListModulesResponse.ProtoReflect.Descriptor instead.
 func (*ListModulesResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{224}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{226}
 }
 
 func (x *ListModulesResponse) GetModules() []*Module {
@@ -13363,7 +13479,7 @@ type GetUserIDByEmailRequest struct {
 
 func (x *GetUserIDByEmailRequest) Reset() {
 	*x = GetUserIDByEmailRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[225]
+	mi := &file_app_v1_app_proto_msgTypes[227]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13375,7 +13491,7 @@ func (x *GetUserIDByEmailRequest) String() string {
 func (*GetUserIDByEmailRequest) ProtoMessage() {}
 
 func (x *GetUserIDByEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[225]
+	mi := &file_app_v1_app_proto_msgTypes[227]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13388,7 +13504,7 @@ func (x *GetUserIDByEmailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserIDByEmailRequest.ProtoReflect.Descriptor instead.
 func (*GetUserIDByEmailRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{225}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{227}
 }
 
 func (x *GetUserIDByEmailRequest) GetEmail() string {
@@ -13408,7 +13524,7 @@ type GetUserIDByEmailResponse struct {
 
 func (x *GetUserIDByEmailResponse) Reset() {
 	*x = GetUserIDByEmailResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[226]
+	mi := &file_app_v1_app_proto_msgTypes[228]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13420,7 +13536,7 @@ func (x *GetUserIDByEmailResponse) String() string {
 func (*GetUserIDByEmailResponse) ProtoMessage() {}
 
 func (x *GetUserIDByEmailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[226]
+	mi := &file_app_v1_app_proto_msgTypes[228]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13433,7 +13549,7 @@ func (x *GetUserIDByEmailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserIDByEmailResponse.ProtoReflect.Descriptor instead.
 func (*GetUserIDByEmailResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{226}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{228}
 }
 
 func (x *GetUserIDByEmailResponse) GetUserId() string {
@@ -13453,7 +13569,7 @@ type ListOrganizationsByUserRequest struct {
 
 func (x *ListOrganizationsByUserRequest) Reset() {
 	*x = ListOrganizationsByUserRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[227]
+	mi := &file_app_v1_app_proto_msgTypes[229]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13465,7 +13581,7 @@ func (x *ListOrganizationsByUserRequest) String() string {
 func (*ListOrganizationsByUserRequest) ProtoMessage() {}
 
 func (x *ListOrganizationsByUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[227]
+	mi := &file_app_v1_app_proto_msgTypes[229]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13478,7 +13594,7 @@ func (x *ListOrganizationsByUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListOrganizationsByUserRequest.ProtoReflect.Descriptor instead.
 func (*ListOrganizationsByUserRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{227}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{229}
 }
 
 func (x *ListOrganizationsByUserRequest) GetUserId() string {
@@ -13502,7 +13618,7 @@ type OrgDetails struct {
 
 func (x *OrgDetails) Reset() {
 	*x = OrgDetails{}
-	mi := &file_app_v1_app_proto_msgTypes[228]
+	mi := &file_app_v1_app_proto_msgTypes[230]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13514,7 +13630,7 @@ func (x *OrgDetails) String() string {
 func (*OrgDetails) ProtoMessage() {}
 
 func (x *OrgDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[228]
+	mi := &file_app_v1_app_proto_msgTypes[230]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13527,7 +13643,7 @@ func (x *OrgDetails) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrgDetails.ProtoReflect.Descriptor instead.
 func (*OrgDetails) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{228}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{230}
 }
 
 func (x *OrgDetails) GetOrgId() string {
@@ -13575,7 +13691,7 @@ type ListOrganizationsByUserResponse struct {
 
 func (x *ListOrganizationsByUserResponse) Reset() {
 	*x = ListOrganizationsByUserResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[229]
+	mi := &file_app_v1_app_proto_msgTypes[231]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13587,7 +13703,7 @@ func (x *ListOrganizationsByUserResponse) String() string {
 func (*ListOrganizationsByUserResponse) ProtoMessage() {}
 
 func (x *ListOrganizationsByUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[229]
+	mi := &file_app_v1_app_proto_msgTypes[231]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13600,7 +13716,7 @@ func (x *ListOrganizationsByUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListOrganizationsByUserResponse.ProtoReflect.Descriptor instead.
 func (*ListOrganizationsByUserResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{229}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{231}
 }
 
 func (x *ListOrganizationsByUserResponse) GetOrgs() []*OrgDetails {
@@ -13623,7 +13739,7 @@ type SearchOrganizationsRequest struct {
 
 func (x *SearchOrganizationsRequest) Reset() {
 	*x = SearchOrganizationsRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[230]
+	mi := &file_app_v1_app_proto_msgTypes[232]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13635,7 +13751,7 @@ func (x *SearchOrganizationsRequest) String() string {
 func (*SearchOrganizationsRequest) ProtoMessage() {}
 
 func (x *SearchOrganizationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[230]
+	mi := &file_app_v1_app_proto_msgTypes[232]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13648,7 +13764,7 @@ func (x *SearchOrganizationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchOrganizationsRequest.ProtoReflect.Descriptor instead.
 func (*SearchOrganizationsRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{230}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{232}
 }
 
 func (x *SearchOrganizationsRequest) GetOrgId() string {
@@ -13689,7 +13805,7 @@ type SearchOrganizationsResponse struct {
 
 func (x *SearchOrganizationsResponse) Reset() {
 	*x = SearchOrganizationsResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[231]
+	mi := &file_app_v1_app_proto_msgTypes[233]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13701,7 +13817,7 @@ func (x *SearchOrganizationsResponse) String() string {
 func (*SearchOrganizationsResponse) ProtoMessage() {}
 
 func (x *SearchOrganizationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[231]
+	mi := &file_app_v1_app_proto_msgTypes[233]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13714,7 +13830,7 @@ func (x *SearchOrganizationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchOrganizationsResponse.ProtoReflect.Descriptor instead.
 func (*SearchOrganizationsResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{231}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{233}
 }
 
 func (x *SearchOrganizationsResponse) GetOrganizations() []*OrgDetails {
@@ -13735,7 +13851,7 @@ type CreateKeyRequest struct {
 
 func (x *CreateKeyRequest) Reset() {
 	*x = CreateKeyRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[232]
+	mi := &file_app_v1_app_proto_msgTypes[234]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13747,7 +13863,7 @@ func (x *CreateKeyRequest) String() string {
 func (*CreateKeyRequest) ProtoMessage() {}
 
 func (x *CreateKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[232]
+	mi := &file_app_v1_app_proto_msgTypes[234]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13760,7 +13876,7 @@ func (x *CreateKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateKeyRequest.ProtoReflect.Descriptor instead.
 func (*CreateKeyRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{232}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{234}
 }
 
 func (x *CreateKeyRequest) GetAuthorizations() []*Authorization {
@@ -13788,7 +13904,7 @@ type CreateKeyResponse struct {
 
 func (x *CreateKeyResponse) Reset() {
 	*x = CreateKeyResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[233]
+	mi := &file_app_v1_app_proto_msgTypes[235]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13800,7 +13916,7 @@ func (x *CreateKeyResponse) String() string {
 func (*CreateKeyResponse) ProtoMessage() {}
 
 func (x *CreateKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[233]
+	mi := &file_app_v1_app_proto_msgTypes[235]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13813,7 +13929,7 @@ func (x *CreateKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateKeyResponse.ProtoReflect.Descriptor instead.
 func (*CreateKeyResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{233}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{235}
 }
 
 func (x *CreateKeyResponse) GetKey() string {
@@ -13840,7 +13956,7 @@ type DeleteKeyRequest struct {
 
 func (x *DeleteKeyRequest) Reset() {
 	*x = DeleteKeyRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[234]
+	mi := &file_app_v1_app_proto_msgTypes[236]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13852,7 +13968,7 @@ func (x *DeleteKeyRequest) String() string {
 func (*DeleteKeyRequest) ProtoMessage() {}
 
 func (x *DeleteKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[234]
+	mi := &file_app_v1_app_proto_msgTypes[236]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13865,7 +13981,7 @@ func (x *DeleteKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteKeyRequest.ProtoReflect.Descriptor instead.
 func (*DeleteKeyRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{234}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{236}
 }
 
 func (x *DeleteKeyRequest) GetId() string {
@@ -13883,7 +13999,7 @@ type DeleteKeyResponse struct {
 
 func (x *DeleteKeyResponse) Reset() {
 	*x = DeleteKeyResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[235]
+	mi := &file_app_v1_app_proto_msgTypes[237]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13895,7 +14011,7 @@ func (x *DeleteKeyResponse) String() string {
 func (*DeleteKeyResponse) ProtoMessage() {}
 
 func (x *DeleteKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[235]
+	mi := &file_app_v1_app_proto_msgTypes[237]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13908,7 +14024,7 @@ func (x *DeleteKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteKeyResponse.ProtoReflect.Descriptor instead.
 func (*DeleteKeyResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{235}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{237}
 }
 
 type RenameKeyRequest struct {
@@ -13922,7 +14038,7 @@ type RenameKeyRequest struct {
 
 func (x *RenameKeyRequest) Reset() {
 	*x = RenameKeyRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[236]
+	mi := &file_app_v1_app_proto_msgTypes[238]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13934,7 +14050,7 @@ func (x *RenameKeyRequest) String() string {
 func (*RenameKeyRequest) ProtoMessage() {}
 
 func (x *RenameKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[236]
+	mi := &file_app_v1_app_proto_msgTypes[238]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13947,7 +14063,7 @@ func (x *RenameKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameKeyRequest.ProtoReflect.Descriptor instead.
 func (*RenameKeyRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{236}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{238}
 }
 
 func (x *RenameKeyRequest) GetId() string {
@@ -13975,7 +14091,7 @@ type RenameKeyResponse struct {
 
 func (x *RenameKeyResponse) Reset() {
 	*x = RenameKeyResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[237]
+	mi := &file_app_v1_app_proto_msgTypes[239]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13987,7 +14103,7 @@ func (x *RenameKeyResponse) String() string {
 func (*RenameKeyResponse) ProtoMessage() {}
 
 func (x *RenameKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[237]
+	mi := &file_app_v1_app_proto_msgTypes[239]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14000,7 +14116,7 @@ func (x *RenameKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenameKeyResponse.ProtoReflect.Descriptor instead.
 func (*RenameKeyResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{237}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{239}
 }
 
 func (x *RenameKeyResponse) GetId() string {
@@ -14031,7 +14147,7 @@ type AuthorizationDetails struct {
 
 func (x *AuthorizationDetails) Reset() {
 	*x = AuthorizationDetails{}
-	mi := &file_app_v1_app_proto_msgTypes[238]
+	mi := &file_app_v1_app_proto_msgTypes[240]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14043,7 +14159,7 @@ func (x *AuthorizationDetails) String() string {
 func (*AuthorizationDetails) ProtoMessage() {}
 
 func (x *AuthorizationDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[238]
+	mi := &file_app_v1_app_proto_msgTypes[240]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14056,7 +14172,7 @@ func (x *AuthorizationDetails) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthorizationDetails.ProtoReflect.Descriptor instead.
 func (*AuthorizationDetails) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{238}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{240}
 }
 
 func (x *AuthorizationDetails) GetAuthorizationType() string {
@@ -14105,7 +14221,7 @@ type APIKeyWithAuthorizations struct {
 
 func (x *APIKeyWithAuthorizations) Reset() {
 	*x = APIKeyWithAuthorizations{}
-	mi := &file_app_v1_app_proto_msgTypes[239]
+	mi := &file_app_v1_app_proto_msgTypes[241]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14117,7 +14233,7 @@ func (x *APIKeyWithAuthorizations) String() string {
 func (*APIKeyWithAuthorizations) ProtoMessage() {}
 
 func (x *APIKeyWithAuthorizations) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[239]
+	mi := &file_app_v1_app_proto_msgTypes[241]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14130,7 +14246,7 @@ func (x *APIKeyWithAuthorizations) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use APIKeyWithAuthorizations.ProtoReflect.Descriptor instead.
 func (*APIKeyWithAuthorizations) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{239}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{241}
 }
 
 func (x *APIKeyWithAuthorizations) GetApiKey() *APIKey {
@@ -14157,7 +14273,7 @@ type ListKeysRequest struct {
 
 func (x *ListKeysRequest) Reset() {
 	*x = ListKeysRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[240]
+	mi := &file_app_v1_app_proto_msgTypes[242]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14169,7 +14285,7 @@ func (x *ListKeysRequest) String() string {
 func (*ListKeysRequest) ProtoMessage() {}
 
 func (x *ListKeysRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[240]
+	mi := &file_app_v1_app_proto_msgTypes[242]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14182,7 +14298,7 @@ func (x *ListKeysRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListKeysRequest.ProtoReflect.Descriptor instead.
 func (*ListKeysRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{240}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{242}
 }
 
 func (x *ListKeysRequest) GetOrgId() string {
@@ -14202,7 +14318,7 @@ type ListKeysResponse struct {
 
 func (x *ListKeysResponse) Reset() {
 	*x = ListKeysResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[241]
+	mi := &file_app_v1_app_proto_msgTypes[243]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14214,7 +14330,7 @@ func (x *ListKeysResponse) String() string {
 func (*ListKeysResponse) ProtoMessage() {}
 
 func (x *ListKeysResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[241]
+	mi := &file_app_v1_app_proto_msgTypes[243]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14227,7 +14343,7 @@ func (x *ListKeysResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListKeysResponse.ProtoReflect.Descriptor instead.
 func (*ListKeysResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{241}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{243}
 }
 
 func (x *ListKeysResponse) GetApiKeys() []*APIKeyWithAuthorizations {
@@ -14247,7 +14363,7 @@ type RotateKeyRequest struct {
 
 func (x *RotateKeyRequest) Reset() {
 	*x = RotateKeyRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[242]
+	mi := &file_app_v1_app_proto_msgTypes[244]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14259,7 +14375,7 @@ func (x *RotateKeyRequest) String() string {
 func (*RotateKeyRequest) ProtoMessage() {}
 
 func (x *RotateKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[242]
+	mi := &file_app_v1_app_proto_msgTypes[244]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14272,7 +14388,7 @@ func (x *RotateKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RotateKeyRequest.ProtoReflect.Descriptor instead.
 func (*RotateKeyRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{242}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{244}
 }
 
 func (x *RotateKeyRequest) GetId() string {
@@ -14293,7 +14409,7 @@ type RotateKeyResponse struct {
 
 func (x *RotateKeyResponse) Reset() {
 	*x = RotateKeyResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[243]
+	mi := &file_app_v1_app_proto_msgTypes[245]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14305,7 +14421,7 @@ func (x *RotateKeyResponse) String() string {
 func (*RotateKeyResponse) ProtoMessage() {}
 
 func (x *RotateKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[243]
+	mi := &file_app_v1_app_proto_msgTypes[245]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14318,7 +14434,7 @@ func (x *RotateKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RotateKeyResponse.ProtoReflect.Descriptor instead.
 func (*RotateKeyResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{243}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{245}
 }
 
 func (x *RotateKeyResponse) GetId() string {
@@ -14345,7 +14461,7 @@ type CreateKeyFromExistingKeyAuthorizationsRequest struct {
 
 func (x *CreateKeyFromExistingKeyAuthorizationsRequest) Reset() {
 	*x = CreateKeyFromExistingKeyAuthorizationsRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[244]
+	mi := &file_app_v1_app_proto_msgTypes[246]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14357,7 +14473,7 @@ func (x *CreateKeyFromExistingKeyAuthorizationsRequest) String() string {
 func (*CreateKeyFromExistingKeyAuthorizationsRequest) ProtoMessage() {}
 
 func (x *CreateKeyFromExistingKeyAuthorizationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[244]
+	mi := &file_app_v1_app_proto_msgTypes[246]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14370,7 +14486,7 @@ func (x *CreateKeyFromExistingKeyAuthorizationsRequest) ProtoReflect() protorefl
 
 // Deprecated: Use CreateKeyFromExistingKeyAuthorizationsRequest.ProtoReflect.Descriptor instead.
 func (*CreateKeyFromExistingKeyAuthorizationsRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{244}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{246}
 }
 
 func (x *CreateKeyFromExistingKeyAuthorizationsRequest) GetId() string {
@@ -14391,7 +14507,7 @@ type CreateKeyFromExistingKeyAuthorizationsResponse struct {
 
 func (x *CreateKeyFromExistingKeyAuthorizationsResponse) Reset() {
 	*x = CreateKeyFromExistingKeyAuthorizationsResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[245]
+	mi := &file_app_v1_app_proto_msgTypes[247]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14403,7 +14519,7 @@ func (x *CreateKeyFromExistingKeyAuthorizationsResponse) String() string {
 func (*CreateKeyFromExistingKeyAuthorizationsResponse) ProtoMessage() {}
 
 func (x *CreateKeyFromExistingKeyAuthorizationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[245]
+	mi := &file_app_v1_app_proto_msgTypes[247]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14416,7 +14532,7 @@ func (x *CreateKeyFromExistingKeyAuthorizationsResponse) ProtoReflect() protoref
 
 // Deprecated: Use CreateKeyFromExistingKeyAuthorizationsResponse.ProtoReflect.Descriptor instead.
 func (*CreateKeyFromExistingKeyAuthorizationsResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{245}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{247}
 }
 
 func (x *CreateKeyFromExistingKeyAuthorizationsResponse) GetId() string {
@@ -14444,7 +14560,7 @@ type GetAppContentRequest struct {
 
 func (x *GetAppContentRequest) Reset() {
 	*x = GetAppContentRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[246]
+	mi := &file_app_v1_app_proto_msgTypes[248]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14456,7 +14572,7 @@ func (x *GetAppContentRequest) String() string {
 func (*GetAppContentRequest) ProtoMessage() {}
 
 func (x *GetAppContentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[246]
+	mi := &file_app_v1_app_proto_msgTypes[248]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14469,7 +14585,7 @@ func (x *GetAppContentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAppContentRequest.ProtoReflect.Descriptor instead.
 func (*GetAppContentRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{246}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{248}
 }
 
 func (x *GetAppContentRequest) GetPublicNamespace() string {
@@ -14498,7 +14614,7 @@ type GetAppContentResponse struct {
 
 func (x *GetAppContentResponse) Reset() {
 	*x = GetAppContentResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[247]
+	mi := &file_app_v1_app_proto_msgTypes[249]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14510,7 +14626,7 @@ func (x *GetAppContentResponse) String() string {
 func (*GetAppContentResponse) ProtoMessage() {}
 
 func (x *GetAppContentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[247]
+	mi := &file_app_v1_app_proto_msgTypes[249]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14523,7 +14639,7 @@ func (x *GetAppContentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAppContentResponse.ProtoReflect.Descriptor instead.
 func (*GetAppContentResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{247}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{249}
 }
 
 func (x *GetAppContentResponse) GetBlobPath() string {
@@ -14558,7 +14674,7 @@ type OrganizationSetLogoRequest struct {
 
 func (x *OrganizationSetLogoRequest) Reset() {
 	*x = OrganizationSetLogoRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[248]
+	mi := &file_app_v1_app_proto_msgTypes[250]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14570,7 +14686,7 @@ func (x *OrganizationSetLogoRequest) String() string {
 func (*OrganizationSetLogoRequest) ProtoMessage() {}
 
 func (x *OrganizationSetLogoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[248]
+	mi := &file_app_v1_app_proto_msgTypes[250]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14583,7 +14699,7 @@ func (x *OrganizationSetLogoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrganizationSetLogoRequest.ProtoReflect.Descriptor instead.
 func (*OrganizationSetLogoRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{248}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{250}
 }
 
 func (x *OrganizationSetLogoRequest) GetOrgId() string {
@@ -14608,7 +14724,7 @@ type OrganizationSetLogoResponse struct {
 
 func (x *OrganizationSetLogoResponse) Reset() {
 	*x = OrganizationSetLogoResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[249]
+	mi := &file_app_v1_app_proto_msgTypes[251]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14620,7 +14736,7 @@ func (x *OrganizationSetLogoResponse) String() string {
 func (*OrganizationSetLogoResponse) ProtoMessage() {}
 
 func (x *OrganizationSetLogoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[249]
+	mi := &file_app_v1_app_proto_msgTypes[251]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14633,7 +14749,7 @@ func (x *OrganizationSetLogoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrganizationSetLogoResponse.ProtoReflect.Descriptor instead.
 func (*OrganizationSetLogoResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{249}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{251}
 }
 
 type OrganizationGetLogoRequest struct {
@@ -14646,7 +14762,7 @@ type OrganizationGetLogoRequest struct {
 
 func (x *OrganizationGetLogoRequest) Reset() {
 	*x = OrganizationGetLogoRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[250]
+	mi := &file_app_v1_app_proto_msgTypes[252]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14658,7 +14774,7 @@ func (x *OrganizationGetLogoRequest) String() string {
 func (*OrganizationGetLogoRequest) ProtoMessage() {}
 
 func (x *OrganizationGetLogoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[250]
+	mi := &file_app_v1_app_proto_msgTypes[252]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14671,7 +14787,7 @@ func (x *OrganizationGetLogoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrganizationGetLogoRequest.ProtoReflect.Descriptor instead.
 func (*OrganizationGetLogoRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{250}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{252}
 }
 
 func (x *OrganizationGetLogoRequest) GetOrgId() string {
@@ -14691,7 +14807,7 @@ type OrganizationGetLogoResponse struct {
 
 func (x *OrganizationGetLogoResponse) Reset() {
 	*x = OrganizationGetLogoResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[251]
+	mi := &file_app_v1_app_proto_msgTypes[253]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14703,7 +14819,7 @@ func (x *OrganizationGetLogoResponse) String() string {
 func (*OrganizationGetLogoResponse) ProtoMessage() {}
 
 func (x *OrganizationGetLogoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[251]
+	mi := &file_app_v1_app_proto_msgTypes[253]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14716,7 +14832,7 @@ func (x *OrganizationGetLogoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrganizationGetLogoResponse.ProtoReflect.Descriptor instead.
 func (*OrganizationGetLogoResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{251}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{253}
 }
 
 func (x *OrganizationGetLogoResponse) GetUrl() string {
@@ -14736,7 +14852,7 @@ type EnableAuthServiceRequest struct {
 
 func (x *EnableAuthServiceRequest) Reset() {
 	*x = EnableAuthServiceRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[252]
+	mi := &file_app_v1_app_proto_msgTypes[254]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14748,7 +14864,7 @@ func (x *EnableAuthServiceRequest) String() string {
 func (*EnableAuthServiceRequest) ProtoMessage() {}
 
 func (x *EnableAuthServiceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[252]
+	mi := &file_app_v1_app_proto_msgTypes[254]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14761,7 +14877,7 @@ func (x *EnableAuthServiceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnableAuthServiceRequest.ProtoReflect.Descriptor instead.
 func (*EnableAuthServiceRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{252}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{254}
 }
 
 func (x *EnableAuthServiceRequest) GetOrgId() string {
@@ -14779,7 +14895,7 @@ type EnableAuthServiceResponse struct {
 
 func (x *EnableAuthServiceResponse) Reset() {
 	*x = EnableAuthServiceResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[253]
+	mi := &file_app_v1_app_proto_msgTypes[255]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14791,7 +14907,7 @@ func (x *EnableAuthServiceResponse) String() string {
 func (*EnableAuthServiceResponse) ProtoMessage() {}
 
 func (x *EnableAuthServiceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[253]
+	mi := &file_app_v1_app_proto_msgTypes[255]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14804,7 +14920,7 @@ func (x *EnableAuthServiceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnableAuthServiceResponse.ProtoReflect.Descriptor instead.
 func (*EnableAuthServiceResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{253}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{255}
 }
 
 type DisableAuthServiceRequest struct {
@@ -14817,7 +14933,7 @@ type DisableAuthServiceRequest struct {
 
 func (x *DisableAuthServiceRequest) Reset() {
 	*x = DisableAuthServiceRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[254]
+	mi := &file_app_v1_app_proto_msgTypes[256]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14829,7 +14945,7 @@ func (x *DisableAuthServiceRequest) String() string {
 func (*DisableAuthServiceRequest) ProtoMessage() {}
 
 func (x *DisableAuthServiceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[254]
+	mi := &file_app_v1_app_proto_msgTypes[256]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14842,7 +14958,7 @@ func (x *DisableAuthServiceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DisableAuthServiceRequest.ProtoReflect.Descriptor instead.
 func (*DisableAuthServiceRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{254}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{256}
 }
 
 func (x *DisableAuthServiceRequest) GetOrgId() string {
@@ -14860,7 +14976,7 @@ type DisableAuthServiceResponse struct {
 
 func (x *DisableAuthServiceResponse) Reset() {
 	*x = DisableAuthServiceResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[255]
+	mi := &file_app_v1_app_proto_msgTypes[257]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14872,7 +14988,7 @@ func (x *DisableAuthServiceResponse) String() string {
 func (*DisableAuthServiceResponse) ProtoMessage() {}
 
 func (x *DisableAuthServiceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[255]
+	mi := &file_app_v1_app_proto_msgTypes[257]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14885,7 +15001,7 @@ func (x *DisableAuthServiceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DisableAuthServiceResponse.ProtoReflect.Descriptor instead.
 func (*DisableAuthServiceResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{255}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{257}
 }
 
 type CreateOAuthAppRequest struct {
@@ -14900,7 +15016,7 @@ type CreateOAuthAppRequest struct {
 
 func (x *CreateOAuthAppRequest) Reset() {
 	*x = CreateOAuthAppRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[256]
+	mi := &file_app_v1_app_proto_msgTypes[258]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14912,7 +15028,7 @@ func (x *CreateOAuthAppRequest) String() string {
 func (*CreateOAuthAppRequest) ProtoMessage() {}
 
 func (x *CreateOAuthAppRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[256]
+	mi := &file_app_v1_app_proto_msgTypes[258]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14925,7 +15041,7 @@ func (x *CreateOAuthAppRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateOAuthAppRequest.ProtoReflect.Descriptor instead.
 func (*CreateOAuthAppRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{256}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{258}
 }
 
 func (x *CreateOAuthAppRequest) GetOrgId() string {
@@ -14960,7 +15076,7 @@ type CreateOAuthAppResponse struct {
 
 func (x *CreateOAuthAppResponse) Reset() {
 	*x = CreateOAuthAppResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[257]
+	mi := &file_app_v1_app_proto_msgTypes[259]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14972,7 +15088,7 @@ func (x *CreateOAuthAppResponse) String() string {
 func (*CreateOAuthAppResponse) ProtoMessage() {}
 
 func (x *CreateOAuthAppResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[257]
+	mi := &file_app_v1_app_proto_msgTypes[259]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14985,7 +15101,7 @@ func (x *CreateOAuthAppResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateOAuthAppResponse.ProtoReflect.Descriptor instead.
 func (*CreateOAuthAppResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{257}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{259}
 }
 
 func (x *CreateOAuthAppResponse) GetClientId() string {
@@ -15013,7 +15129,7 @@ type ReadOAuthAppRequest struct {
 
 func (x *ReadOAuthAppRequest) Reset() {
 	*x = ReadOAuthAppRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[258]
+	mi := &file_app_v1_app_proto_msgTypes[260]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15025,7 +15141,7 @@ func (x *ReadOAuthAppRequest) String() string {
 func (*ReadOAuthAppRequest) ProtoMessage() {}
 
 func (x *ReadOAuthAppRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[258]
+	mi := &file_app_v1_app_proto_msgTypes[260]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15038,7 +15154,7 @@ func (x *ReadOAuthAppRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadOAuthAppRequest.ProtoReflect.Descriptor instead.
 func (*ReadOAuthAppRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{258}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{260}
 }
 
 func (x *ReadOAuthAppRequest) GetOrgId() string {
@@ -15067,7 +15183,7 @@ type ReadOAuthAppResponse struct {
 
 func (x *ReadOAuthAppResponse) Reset() {
 	*x = ReadOAuthAppResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[259]
+	mi := &file_app_v1_app_proto_msgTypes[261]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15079,7 +15195,7 @@ func (x *ReadOAuthAppResponse) String() string {
 func (*ReadOAuthAppResponse) ProtoMessage() {}
 
 func (x *ReadOAuthAppResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[259]
+	mi := &file_app_v1_app_proto_msgTypes[261]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15092,7 +15208,7 @@ func (x *ReadOAuthAppResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadOAuthAppResponse.ProtoReflect.Descriptor instead.
 func (*ReadOAuthAppResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{259}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{261}
 }
 
 func (x *ReadOAuthAppResponse) GetClientName() string {
@@ -15129,7 +15245,7 @@ type UpdateOAuthAppRequest struct {
 
 func (x *UpdateOAuthAppRequest) Reset() {
 	*x = UpdateOAuthAppRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[260]
+	mi := &file_app_v1_app_proto_msgTypes[262]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15141,7 +15257,7 @@ func (x *UpdateOAuthAppRequest) String() string {
 func (*UpdateOAuthAppRequest) ProtoMessage() {}
 
 func (x *UpdateOAuthAppRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[260]
+	mi := &file_app_v1_app_proto_msgTypes[262]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15154,7 +15270,7 @@ func (x *UpdateOAuthAppRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateOAuthAppRequest.ProtoReflect.Descriptor instead.
 func (*UpdateOAuthAppRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{260}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{262}
 }
 
 func (x *UpdateOAuthAppRequest) GetOrgId() string {
@@ -15193,7 +15309,7 @@ type UpdateOAuthAppResponse struct {
 
 func (x *UpdateOAuthAppResponse) Reset() {
 	*x = UpdateOAuthAppResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[261]
+	mi := &file_app_v1_app_proto_msgTypes[263]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15205,7 +15321,7 @@ func (x *UpdateOAuthAppResponse) String() string {
 func (*UpdateOAuthAppResponse) ProtoMessage() {}
 
 func (x *UpdateOAuthAppResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[261]
+	mi := &file_app_v1_app_proto_msgTypes[263]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15218,7 +15334,7 @@ func (x *UpdateOAuthAppResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateOAuthAppResponse.ProtoReflect.Descriptor instead.
 func (*UpdateOAuthAppResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{261}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{263}
 }
 
 type DeleteOAuthAppRequest struct {
@@ -15232,7 +15348,7 @@ type DeleteOAuthAppRequest struct {
 
 func (x *DeleteOAuthAppRequest) Reset() {
 	*x = DeleteOAuthAppRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[262]
+	mi := &file_app_v1_app_proto_msgTypes[264]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15244,7 +15360,7 @@ func (x *DeleteOAuthAppRequest) String() string {
 func (*DeleteOAuthAppRequest) ProtoMessage() {}
 
 func (x *DeleteOAuthAppRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[262]
+	mi := &file_app_v1_app_proto_msgTypes[264]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15257,7 +15373,7 @@ func (x *DeleteOAuthAppRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteOAuthAppRequest.ProtoReflect.Descriptor instead.
 func (*DeleteOAuthAppRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{262}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{264}
 }
 
 func (x *DeleteOAuthAppRequest) GetOrgId() string {
@@ -15282,7 +15398,7 @@ type DeleteOAuthAppResponse struct {
 
 func (x *DeleteOAuthAppResponse) Reset() {
 	*x = DeleteOAuthAppResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[263]
+	mi := &file_app_v1_app_proto_msgTypes[265]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15294,7 +15410,7 @@ func (x *DeleteOAuthAppResponse) String() string {
 func (*DeleteOAuthAppResponse) ProtoMessage() {}
 
 func (x *DeleteOAuthAppResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[263]
+	mi := &file_app_v1_app_proto_msgTypes[265]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15307,7 +15423,7 @@ func (x *DeleteOAuthAppResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteOAuthAppResponse.ProtoReflect.Descriptor instead.
 func (*DeleteOAuthAppResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{263}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{265}
 }
 
 type ListOAuthAppsRequest struct {
@@ -15320,7 +15436,7 @@ type ListOAuthAppsRequest struct {
 
 func (x *ListOAuthAppsRequest) Reset() {
 	*x = ListOAuthAppsRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[264]
+	mi := &file_app_v1_app_proto_msgTypes[266]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15332,7 +15448,7 @@ func (x *ListOAuthAppsRequest) String() string {
 func (*ListOAuthAppsRequest) ProtoMessage() {}
 
 func (x *ListOAuthAppsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[264]
+	mi := &file_app_v1_app_proto_msgTypes[266]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15345,7 +15461,7 @@ func (x *ListOAuthAppsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListOAuthAppsRequest.ProtoReflect.Descriptor instead.
 func (*ListOAuthAppsRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{264}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{266}
 }
 
 func (x *ListOAuthAppsRequest) GetOrgId() string {
@@ -15365,7 +15481,7 @@ type ListOAuthAppsResponse struct {
 
 func (x *ListOAuthAppsResponse) Reset() {
 	*x = ListOAuthAppsResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[265]
+	mi := &file_app_v1_app_proto_msgTypes[267]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15377,7 +15493,7 @@ func (x *ListOAuthAppsResponse) String() string {
 func (*ListOAuthAppsResponse) ProtoMessage() {}
 
 func (x *ListOAuthAppsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[265]
+	mi := &file_app_v1_app_proto_msgTypes[267]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15390,7 +15506,7 @@ func (x *ListOAuthAppsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListOAuthAppsResponse.ProtoReflect.Descriptor instead.
 func (*ListOAuthAppsResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{265}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{267}
 }
 
 func (x *ListOAuthAppsResponse) GetClientIds() []string {
@@ -15416,7 +15532,7 @@ type OAuthConfig struct {
 
 func (x *OAuthConfig) Reset() {
 	*x = OAuthConfig{}
-	mi := &file_app_v1_app_proto_msgTypes[266]
+	mi := &file_app_v1_app_proto_msgTypes[268]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15428,7 +15544,7 @@ func (x *OAuthConfig) String() string {
 func (*OAuthConfig) ProtoMessage() {}
 
 func (x *OAuthConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[266]
+	mi := &file_app_v1_app_proto_msgTypes[268]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15441,7 +15557,7 @@ func (x *OAuthConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OAuthConfig.ProtoReflect.Descriptor instead.
 func (*OAuthConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{266}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{268}
 }
 
 func (x *OAuthConfig) GetClientAuthentication() ClientAuthentication {
@@ -15505,7 +15621,7 @@ type GetAppBrandingRequest struct {
 
 func (x *GetAppBrandingRequest) Reset() {
 	*x = GetAppBrandingRequest{}
-	mi := &file_app_v1_app_proto_msgTypes[267]
+	mi := &file_app_v1_app_proto_msgTypes[269]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15517,7 +15633,7 @@ func (x *GetAppBrandingRequest) String() string {
 func (*GetAppBrandingRequest) ProtoMessage() {}
 
 func (x *GetAppBrandingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[267]
+	mi := &file_app_v1_app_proto_msgTypes[269]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15530,7 +15646,7 @@ func (x *GetAppBrandingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAppBrandingRequest.ProtoReflect.Descriptor instead.
 func (*GetAppBrandingRequest) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{267}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{269}
 }
 
 func (x *GetAppBrandingRequest) GetPublicNamespace() string {
@@ -15557,7 +15673,7 @@ type TextOverrides struct {
 
 func (x *TextOverrides) Reset() {
 	*x = TextOverrides{}
-	mi := &file_app_v1_app_proto_msgTypes[268]
+	mi := &file_app_v1_app_proto_msgTypes[270]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15569,7 +15685,7 @@ func (x *TextOverrides) String() string {
 func (*TextOverrides) ProtoMessage() {}
 
 func (x *TextOverrides) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[268]
+	mi := &file_app_v1_app_proto_msgTypes[270]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15582,7 +15698,7 @@ func (x *TextOverrides) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TextOverrides.ProtoReflect.Descriptor instead.
 func (*TextOverrides) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{268}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{270}
 }
 
 func (x *TextOverrides) GetFields() map[string]string {
@@ -15604,7 +15720,7 @@ type GetAppBrandingResponse struct {
 
 func (x *GetAppBrandingResponse) Reset() {
 	*x = GetAppBrandingResponse{}
-	mi := &file_app_v1_app_proto_msgTypes[269]
+	mi := &file_app_v1_app_proto_msgTypes[271]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15616,7 +15732,7 @@ func (x *GetAppBrandingResponse) String() string {
 func (*GetAppBrandingResponse) ProtoMessage() {}
 
 func (x *GetAppBrandingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[269]
+	mi := &file_app_v1_app_proto_msgTypes[271]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15629,7 +15745,7 @@ func (x *GetAppBrandingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAppBrandingResponse.ProtoReflect.Descriptor instead.
 func (*GetAppBrandingResponse) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{269}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{271}
 }
 
 func (x *GetAppBrandingResponse) GetLogoPath() string {
@@ -15663,7 +15779,7 @@ type AppCustomizations struct {
 
 func (x *AppCustomizations) Reset() {
 	*x = AppCustomizations{}
-	mi := &file_app_v1_app_proto_msgTypes[270]
+	mi := &file_app_v1_app_proto_msgTypes[272]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15675,7 +15791,7 @@ func (x *AppCustomizations) String() string {
 func (*AppCustomizations) ProtoMessage() {}
 
 func (x *AppCustomizations) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[270]
+	mi := &file_app_v1_app_proto_msgTypes[272]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15688,7 +15804,7 @@ func (x *AppCustomizations) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AppCustomizations.ProtoReflect.Descriptor instead.
 func (*AppCustomizations) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{270}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{272}
 }
 
 func (x *AppCustomizations) GetMachinePicker() *MachinePickerCustomizations {
@@ -15709,7 +15825,7 @@ type MachinePickerCustomizations struct {
 
 func (x *MachinePickerCustomizations) Reset() {
 	*x = MachinePickerCustomizations{}
-	mi := &file_app_v1_app_proto_msgTypes[271]
+	mi := &file_app_v1_app_proto_msgTypes[273]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15721,7 +15837,7 @@ func (x *MachinePickerCustomizations) String() string {
 func (*MachinePickerCustomizations) ProtoMessage() {}
 
 func (x *MachinePickerCustomizations) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_app_proto_msgTypes[271]
+	mi := &file_app_v1_app_proto_msgTypes[273]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15734,7 +15850,7 @@ func (x *MachinePickerCustomizations) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MachinePickerCustomizations.ProtoReflect.Descriptor instead.
 func (*MachinePickerCustomizations) Descriptor() ([]byte, []int) {
-	return file_app_v1_app_proto_rawDescGZIP(), []int{271}
+	return file_app_v1_app_proto_rawDescGZIP(), []int{273}
 }
 
 func (x *MachinePickerCustomizations) GetHeading() string {
@@ -17234,7 +17350,7 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x6f, 0x64, 0x65, 0x6c, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x77, 0x6f, 0x72, 0x6b, 0x52, 0x0e, 0x6d,
 	0x6f, 0x64, 0x65, 0x6c, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x77, 0x6f, 0x72, 0x6b, 0x12, 0x14, 0x0a,
 	0x05, 0x64, 0x72, 0x61, 0x66, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x64, 0x72,
-	0x61, 0x66, 0x74, 0x4a, 0x04, 0x08, 0x01, 0x10, 0x02, 0x22, 0x8c, 0x07, 0x0a, 0x0c, 0x52, 0x65,
+	0x61, 0x66, 0x74, 0x4a, 0x04, 0x08, 0x01, 0x10, 0x02, 0x22, 0xc0, 0x07, 0x0a, 0x0c, 0x52, 0x65,
 	0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x17, 0x0a, 0x07, 0x69, 0x74,
 	0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x69, 0x74, 0x65,
 	0x6d, 0x49, 0x64, 0x12, 0x27, 0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74,
@@ -17290,312 +17406,329 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x74, 0x12, 0x39, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18,
 	0x10, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
-	0x70, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x42, 0x0a, 0x0a, 0x08,
-	0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x22, 0x9f, 0x01, 0x0a, 0x16, 0x47, 0x65, 0x74,
-	0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x69, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x12, 0x49, 0x0a, 0x1e,
+	0x70, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x23, 0x0a, 0x0a,
+	0x64, 0x65, 0x70, 0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x64, 0x18, 0x11, 0x20, 0x01, 0x28, 0x08,
+	0x48, 0x01, 0x52, 0x0a, 0x64, 0x65, 0x70, 0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x64, 0x88, 0x01,
+	0x01, 0x42, 0x0a, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x42, 0x0d, 0x0a,
+	0x0b, 0x5f, 0x64, 0x65, 0x70, 0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x64, 0x22, 0x9f, 0x01, 0x0a,
+	0x16, 0x47, 0x65, 0x74, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x69, 0x74, 0x65, 0x6d, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x69, 0x74, 0x65, 0x6d, 0x49, 0x64,
+	0x12, 0x49, 0x0a, 0x1e, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b,
+	0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x48, 0x00, 0x52, 0x1c, 0x69, 0x6e, 0x63, 0x6c,
+	0x75, 0x64, 0x65, 0x4d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x44, 0x6f, 0x63, 0x75, 0x6d,
+	0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x42, 0x21, 0x0a, 0x1f, 0x5f,
 	0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e,
-	0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x08, 0x48, 0x00, 0x52, 0x1c, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x4d,
-	0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x42, 0x21, 0x0a, 0x1f, 0x5f, 0x69, 0x6e, 0x63, 0x6c,
-	0x75, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x6f, 0x63,
-	0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x48, 0x0a, 0x17, 0x47, 0x65,
-	0x74, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
-	0x31, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x04,
-	0x69, 0x74, 0x65, 0x6d, 0x22, 0x8f, 0x01, 0x0a, 0x19, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52,
-	0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x27, 0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6f, 0x72, 0x67,
-	0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e,
-	0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12,
-	0x35, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x21, 0x2e,
+	0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x48,
+	0x0a, 0x17, 0x47, 0x65, 0x74, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65,
+	0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a, 0x04, 0x69, 0x74, 0x65,
+	0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74,
+	0x65, 0x6d, 0x52, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x22, 0x8f, 0x01, 0x0a, 0x19, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69,
+	0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0e, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12,
+	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x12, 0x35, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0e, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x70, 0x61, 0x63,
+	0x6b, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65,
+	0x54, 0x79, 0x70, 0x65, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x1c, 0x0a, 0x1a, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xe4, 0x04, 0x0a, 0x19, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x69, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x12,
+	0x35, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x21, 0x2e,
 	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x70, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65,
 	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x54, 0x79, 0x70, 0x65,
-	0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x1c, 0x0a, 0x1a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0xe4, 0x04, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52,
-	0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x06, 0x69, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x12, 0x35, 0x0a, 0x04, 0x74,
-	0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d,
-	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x70, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x76, 0x31,
-	0x2e, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x54, 0x79, 0x70, 0x65, 0x52, 0x04, 0x74, 0x79,
-	0x70, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
-	0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70,
-	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x37, 0x0a, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69,
-	0x74, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
-	0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74,
-	0x79, 0x52, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x12, 0x15, 0x0a,
-	0x03, 0x75, 0x72, 0x6c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01, 0x52, 0x03, 0x75, 0x72,
-	0x6c, 0x88, 0x01, 0x01, 0x12, 0x59, 0x0a, 0x16, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x6d,
-	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x06,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
-	0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x4d,
-	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48, 0x00, 0x52, 0x14, 0x75, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12,
-	0x5d, 0x0a, 0x18, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x6d, 0x6c, 0x5f, 0x6d, 0x6f, 0x64,
-	0x65, 0x6c, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x07, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x22, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x4c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0x48, 0x00, 0x52, 0x15, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d,
-	0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x66,
-	0x0a, 0x1b, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x6d, 0x6c, 0x5f, 0x74, 0x72, 0x61, 0x69,
-	0x6e, 0x69, 0x6e, 0x67, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x08, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
-	0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x4c, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69,
-	0x6e, 0x67, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48, 0x00, 0x52, 0x18, 0x75, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x4d, 0x6c, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x36, 0x0a, 0x14, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f,
-	0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x09,
-	0x20, 0x01, 0x28, 0x09, 0x48, 0x02, 0x52, 0x13, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e,
-	0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x42, 0x0a,
-	0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x42, 0x06, 0x0a, 0x04, 0x5f, 0x75,
-	0x72, 0x6c, 0x42, 0x17, 0x0a, 0x15, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f,
-	0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x1c, 0x0a, 0x1a, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65,
-	0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xb1, 0x04, 0x0a, 0x18, 0x4c, 0x69,
-	0x73, 0x74, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2c, 0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69,
-	0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x48,
-	0x00, 0x52, 0x0e, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49,
-	0x64, 0x88, 0x01, 0x01, 0x12, 0x37, 0x0a, 0x05, 0x74, 0x79, 0x70, 0x65, 0x73, 0x18, 0x02, 0x20,
-	0x03, 0x28, 0x0e, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x70,
-	0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x63, 0x6b, 0x61,
-	0x67, 0x65, 0x54, 0x79, 0x70, 0x65, 0x52, 0x05, 0x74, 0x79, 0x70, 0x65, 0x73, 0x12, 0x3b, 0x0a,
-	0x0c, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x69, 0x65, 0x73, 0x18, 0x03, 0x20,
-	0x03, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
-	0x31, 0x2e, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x52, 0x0c, 0x76, 0x69,
-	0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x69, 0x65, 0x73, 0x12, 0x1c, 0x0a, 0x09, 0x70, 0x6c,
-	0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x09, 0x70,
-	0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x73, 0x12, 0x3b, 0x0a, 0x08, 0x73, 0x74, 0x61, 0x74,
-	0x75, 0x73, 0x65, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x1f, 0x2e, 0x76, 0x69, 0x61,
-	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72,
-	0x79, 0x49, 0x74, 0x65, 0x6d, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x08, 0x73, 0x74, 0x61,
-	0x74, 0x75, 0x73, 0x65, 0x73, 0x12, 0x24, 0x0a, 0x0b, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x5f,
-	0x74, 0x65, 0x72, 0x6d, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01, 0x52, 0x0a, 0x73, 0x65,
-	0x61, 0x72, 0x63, 0x68, 0x54, 0x65, 0x72, 0x6d, 0x88, 0x01, 0x01, 0x12, 0x22, 0x0a, 0x0a, 0x70,
-	0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x48,
-	0x02, 0x52, 0x09, 0x70, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x88, 0x01, 0x01, 0x12,
-	0x2b, 0x0a, 0x11, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70,
-	0x61, 0x63, 0x65, 0x73, 0x18, 0x08, 0x20, 0x03, 0x28, 0x09, 0x52, 0x10, 0x70, 0x75, 0x62, 0x6c,
-	0x69, 0x63, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x73, 0x12, 0x49, 0x0a, 0x1e,
-	0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e,
-	0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x09,
-	0x20, 0x01, 0x28, 0x08, 0x48, 0x03, 0x52, 0x1c, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x4d,
-	0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x42, 0x12, 0x0a, 0x10, 0x5f, 0x6f, 0x72, 0x67, 0x61,
-	0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x42, 0x0e, 0x0a, 0x0c, 0x5f,
-	0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x5f, 0x74, 0x65, 0x72, 0x6d, 0x42, 0x0d, 0x0a, 0x0b, 0x5f,
-	0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x42, 0x21, 0x0a, 0x1f, 0x5f, 0x69,
-	0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f,
-	0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x4c, 0x0a,
-	0x19, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65,
-	0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2f, 0x0a, 0x05, 0x69, 0x74,
-	0x65, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x76, 0x69, 0x61, 0x6d,
-	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79,
-	0x49, 0x74, 0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22, 0x34, 0x0a, 0x19, 0x44,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65,
+	0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69,
+	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73,
+	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x37, 0x0a, 0x0a, 0x76, 0x69, 0x73, 0x69,
+	0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x69, 0x73, 0x69, 0x62,
+	0x69, 0x6c, 0x69, 0x74, 0x79, 0x52, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74,
+	0x79, 0x12, 0x15, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01,
+	0x52, 0x03, 0x75, 0x72, 0x6c, 0x88, 0x01, 0x01, 0x12, 0x59, 0x0a, 0x16, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x5f, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64,
+	0x75, 0x6c, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48, 0x00, 0x52, 0x14, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0x12, 0x5d, 0x0a, 0x18, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x6d, 0x6c,
+	0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18,
+	0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
+	0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x4c, 0x4d, 0x6f, 0x64, 0x65,
+	0x6c, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48, 0x00, 0x52, 0x15, 0x75, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x4d, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0x12, 0x66, 0x0a, 0x1b, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x6d, 0x6c, 0x5f,
+	0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
+	0x61, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x4c, 0x54, 0x72,
+	0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48, 0x00,
+	0x52, 0x18, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6c, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69,
+	0x6e, 0x67, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x36, 0x0a, 0x14, 0x6d, 0x61,
+	0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
+	0x6f, 0x6e, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x48, 0x02, 0x52, 0x13, 0x6d, 0x61, 0x72, 0x6b,
+	0x64, 0x6f, 0x77, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88,
+	0x01, 0x01, 0x42, 0x0a, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x42, 0x06,
+	0x0a, 0x04, 0x5f, 0x75, 0x72, 0x6c, 0x42, 0x17, 0x0a, 0x15, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64,
+	0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x22,
+	0x1c, 0x0a, 0x1a, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72,
+	0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xb1, 0x04,
+	0x0a, 0x18, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74,
+	0x65, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2c, 0x0a, 0x0f, 0x6f, 0x72,
+	0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x0e, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x49, 0x64, 0x88, 0x01, 0x01, 0x12, 0x37, 0x0a, 0x05, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x70, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50,
+	0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x54, 0x79, 0x70, 0x65, 0x52, 0x05, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x12, 0x3b, 0x0a, 0x0c, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x69, 0x65,
+	0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79,
+	0x52, 0x0c, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x69, 0x65, 0x73, 0x12, 0x1c,
+	0x0a, 0x09, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28,
+	0x09, 0x52, 0x09, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x73, 0x12, 0x3b, 0x0a, 0x08,
+	0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x65, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x1f,
+	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52,
+	0x08, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x65, 0x73, 0x12, 0x24, 0x0a, 0x0b, 0x73, 0x65, 0x61,
+	0x72, 0x63, 0x68, 0x5f, 0x74, 0x65, 0x72, 0x6d, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01,
+	0x52, 0x0a, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x54, 0x65, 0x72, 0x6d, 0x88, 0x01, 0x01, 0x12,
+	0x22, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x07, 0x20,
+	0x01, 0x28, 0x09, 0x48, 0x02, 0x52, 0x09, 0x70, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
+	0x88, 0x01, 0x01, 0x12, 0x2b, 0x0a, 0x11, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f, 0x6e, 0x61,
+	0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x73, 0x18, 0x08, 0x20, 0x03, 0x28, 0x09, 0x52, 0x10,
+	0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x73,
+	0x12, 0x49, 0x0a, 0x1e, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b,
+	0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x18, 0x09, 0x20, 0x01, 0x28, 0x08, 0x48, 0x03, 0x52, 0x1c, 0x69, 0x6e, 0x63, 0x6c,
+	0x75, 0x64, 0x65, 0x4d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x44, 0x6f, 0x63, 0x75, 0x6d,
+	0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x42, 0x12, 0x0a, 0x10, 0x5f,
+	0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x42,
+	0x0e, 0x0a, 0x0c, 0x5f, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x5f, 0x74, 0x65, 0x72, 0x6d, 0x42,
+	0x0d, 0x0a, 0x0b, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x42, 0x21,
+	0x0a, 0x1f, 0x5f, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64,
+	0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x22, 0x4c, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72,
+	0x79, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2f,
+	0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x67, 0x69,
+	0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22,
+	0x34, 0x0a, 0x19, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72,
+	0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07,
+	0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x69,
+	0x74, 0x65, 0x6d, 0x49, 0x64, 0x22, 0x1c, 0x0a, 0x1a, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52,
+	0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x4f, 0x0a, 0x19, 0x52, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x17, 0x0a, 0x07, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x06, 0x69, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x6e, 0x65, 0x77,
+	0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6e, 0x65, 0x77,
+	0x4e, 0x61, 0x6d, 0x65, 0x22, 0x4b, 0x0a, 0x1a, 0x52, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x52, 0x65,
+	0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x2d, 0x0a, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x19, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52,
+	0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x04, 0x69, 0x74, 0x65,
+	0x6d, 0x22, 0x56, 0x0a, 0x1c, 0x44, 0x65, 0x70, 0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65,
+	0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x17, 0x0a, 0x07, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x69, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x12, 0x1d, 0x0a, 0x0a, 0x6e, 0x65,
+	0x77, 0x5f, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09,
+	0x6e, 0x65, 0x77, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x4e, 0x0a, 0x1d, 0x44, 0x65, 0x70,
+	0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74,
+	0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a, 0x04, 0x69, 0x74,
+	0x65, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49,
+	0x74, 0x65, 0x6d, 0x52, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x22, 0x68, 0x0a, 0x1b, 0x54, 0x72, 0x61,
+	0x6e, 0x73, 0x66, 0x65, 0x72, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65,
 	0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x69, 0x74, 0x65, 0x6d,
 	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x69, 0x74, 0x65, 0x6d, 0x49,
-	0x64, 0x22, 0x1c, 0x0a, 0x1a, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73,
-	0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x4f, 0x0a, 0x19, 0x52, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72,
-	0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07,
-	0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x69,
-	0x74, 0x65, 0x6d, 0x49, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x6e, 0x65, 0x77, 0x5f, 0x6e, 0x61, 0x6d,
-	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6e, 0x65, 0x77, 0x4e, 0x61, 0x6d, 0x65,
-	0x22, 0x4b, 0x0a, 0x1a, 0x52, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74,
-	0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2d,
-	0x0a, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73,
-	0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x22, 0x68, 0x0a,
-	0x1b, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x66, 0x65, 0x72, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72,
-	0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07,
-	0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x69,
-	0x74, 0x65, 0x6d, 0x49, 0x64, 0x12, 0x30, 0x0a, 0x14, 0x6e, 0x65, 0x77, 0x5f, 0x70, 0x75, 0x62,
-	0x6c, 0x69, 0x63, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x12, 0x6e, 0x65, 0x77, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4e, 0x61,
-	0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x22, 0x1e, 0x0a, 0x1c, 0x54, 0x72, 0x61, 0x6e, 0x73,
-	0x66, 0x65, 0x72, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x52, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74,
-	0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27,
-	0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x45, 0x0a, 0x14, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x69, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x49, 0x64,
-	0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75,
-	0x72, 0x6c, 0x22, 0x92, 0x03, 0x0a, 0x13, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64,
-	0x75, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x6d, 0x6f,
-	0x64, 0x75, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6d,
-	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x37, 0x0a, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62,
-	0x69, 0x6c, 0x69, 0x74, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x76, 0x69,
-	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69,
-	0x6c, 0x69, 0x74, 0x79, 0x52, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79,
-	0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75,
-	0x72, 0x6c, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
-	0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70,
-	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2a, 0x0a, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x18, 0x05,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
-	0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x52, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73,
-	0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x06,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74,
-	0x12, 0x20, 0x0a, 0x09, 0x66, 0x69, 0x72, 0x73, 0x74, 0x5f, 0x72, 0x75, 0x6e, 0x18, 0x07, 0x20,
-	0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x08, 0x66, 0x69, 0x72, 0x73, 0x74, 0x52, 0x75, 0x6e, 0x88,
-	0x01, 0x01, 0x12, 0x24, 0x0a, 0x04, 0x61, 0x70, 0x70, 0x73, 0x18, 0x08, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x10, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41,
-	0x70, 0x70, 0x52, 0x04, 0x61, 0x70, 0x70, 0x73, 0x12, 0x36, 0x0a, 0x14, 0x6d, 0x61, 0x72, 0x6b,
-	0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e,
-	0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01, 0x52, 0x13, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f,
-	0x77, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01,
-	0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x66, 0x69, 0x72, 0x73, 0x74, 0x5f, 0x72, 0x75, 0x6e, 0x42, 0x17,
-	0x0a, 0x15, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63,
-	0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xe8, 0x01, 0x0a, 0x03, 0x41, 0x70, 0x70, 0x12,
-	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
-	0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79,
-	0x70, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x6e, 0x74,
-	0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x21, 0x0a, 0x0c, 0x66, 0x72, 0x61, 0x67, 0x6d,
-	0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x66,
-	0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x73, 0x12, 0x20, 0x0a, 0x09, 0x6c, 0x6f,
-	0x67, 0x6f, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52,
-	0x08, 0x6c, 0x6f, 0x67, 0x6f, 0x50, 0x61, 0x74, 0x68, 0x88, 0x01, 0x01, 0x12, 0x46, 0x0a, 0x0e,
-	0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x06,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
-	0x76, 0x31, 0x2e, 0x41, 0x70, 0x70, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x73, 0x52, 0x0e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x73, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x6c, 0x6f, 0x67, 0x6f, 0x5f, 0x70, 0x61,
-	0x74, 0x68, 0x22, 0x28, 0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75,
-	0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72,
-	0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0x88, 0x01, 0x0a,
-	0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x4d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x2a, 0x0a, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x18,
-	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x52, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
-	0x73, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e,
-	0x74, 0x12, 0x24, 0x0a, 0x04, 0x61, 0x70, 0x70, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x10, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x70,
-	0x70, 0x52, 0x04, 0x61, 0x70, 0x70, 0x73, 0x22, 0xaa, 0x01, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x4d, 0x4c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
-	0x61, 0x12, 0x40, 0x0a, 0x0a, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
-	0x6f, 0x64, 0x65, 0x6c, 0x54, 0x79, 0x70, 0x65, 0x52, 0x09, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x54,
-	0x79, 0x70, 0x65, 0x12, 0x4f, 0x0a, 0x0f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x66, 0x72, 0x61,
-	0x6d, 0x65, 0x77, 0x6f, 0x72, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x26, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69,
-	0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x46, 0x72, 0x61, 0x6d, 0x65,
-	0x77, 0x6f, 0x72, 0x6b, 0x52, 0x0e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x46, 0x72, 0x61, 0x6d, 0x65,
-	0x77, 0x6f, 0x72, 0x6b, 0x22, 0xc3, 0x01, 0x0a, 0x18, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d,
-	0x4c, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
-	0x61, 0x12, 0x40, 0x0a, 0x0a, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
-	0x6f, 0x64, 0x65, 0x6c, 0x54, 0x79, 0x70, 0x65, 0x52, 0x09, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x54,
-	0x79, 0x70, 0x65, 0x12, 0x4f, 0x0a, 0x0f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x66, 0x72, 0x61,
-	0x6d, 0x65, 0x77, 0x6f, 0x72, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x26, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69,
-	0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x46, 0x72, 0x61, 0x6d, 0x65,
-	0x77, 0x6f, 0x72, 0x6b, 0x52, 0x0e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x46, 0x72, 0x61, 0x6d, 0x65,
-	0x77, 0x6f, 0x72, 0x6b, 0x12, 0x14, 0x0a, 0x05, 0x64, 0x72, 0x61, 0x66, 0x74, 0x18, 0x03, 0x20,
-	0x01, 0x28, 0x08, 0x52, 0x05, 0x64, 0x72, 0x61, 0x66, 0x74, 0x22, 0xec, 0x01, 0x0a, 0x05, 0x4d,
-	0x6f, 0x64, 0x65, 0x6c, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x14, 0x0a, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x12, 0x3a, 0x0a, 0x16,
-	0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e,
-	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x15,
-	0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x25, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63,
-	0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01, 0x52,
-	0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12,
-	0x2d, 0x0a, 0x12, 0x73, 0x75, 0x70, 0x70, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x68, 0x61, 0x72,
-	0x64, 0x77, 0x61, 0x72, 0x65, 0x18, 0x05, 0x20, 0x03, 0x28, 0x09, 0x52, 0x11, 0x73, 0x75, 0x70,
-	0x70, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x48, 0x61, 0x72, 0x64, 0x77, 0x61, 0x72, 0x65, 0x42, 0x19,
-	0x0a, 0x17, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x6f, 0x63, 0x75,
-	0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x0e, 0x0a, 0x0c, 0x5f, 0x64, 0x65,
-	0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x88, 0x01, 0x0a, 0x0e, 0x4d, 0x6f,
-	0x64, 0x75, 0x6c, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x1b, 0x0a, 0x09,
-	0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x08, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72,
-	0x73, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73,
-	0x69, 0x6f, 0x6e, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x12,
-	0x23, 0x0a, 0x0d, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x5f, 0x74, 0x61, 0x67, 0x73,
-	0x18, 0x05, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0c, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d,
-	0x54, 0x61, 0x67, 0x73, 0x22, 0x87, 0x01, 0x0a, 0x17, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4d,
-	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x47, 0x0a, 0x10, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x66, 0x69, 0x6c, 0x65, 0x5f,
-	0x69, 0x6e, 0x66, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x69, 0x61,
-	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x46,
-	0x69, 0x6c, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x48, 0x00, 0x52, 0x0e, 0x6d, 0x6f, 0x64, 0x75, 0x6c,
-	0x65, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x14, 0x0a, 0x04, 0x66, 0x69, 0x6c,
-	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x48, 0x00, 0x52, 0x04, 0x66, 0x69, 0x6c, 0x65, 0x42,
-	0x0d, 0x0a, 0x0b, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x66, 0x69, 0x6c, 0x65, 0x22, 0x2c,
-	0x0a, 0x18, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x46, 0x69,
-	0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72,
-	0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0x9d, 0x01, 0x0a,
-	0x10, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x1b, 0x0a, 0x09, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x49,
-	0x0a, 0x1e, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f,
-	0x77, 0x6e, 0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x48, 0x00, 0x52, 0x1c, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64,
-	0x65, 0x4d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e,
-	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x42, 0x21, 0x0a, 0x1f, 0x5f, 0x69, 0x6e,
-	0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64,
-	0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x40, 0x0a, 0x11,
-	0x47, 0x65, 0x74, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x2b, 0x0a, 0x06, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x13, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
-	0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x06, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x22, 0x8c,
-	0x05, 0x0a, 0x06, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6d, 0x6f, 0x64,
-	0x75, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6d, 0x6f,
-	0x64, 0x75, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x37, 0x0a, 0x0a, 0x76, 0x69,
-	0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17,
-	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x69, 0x73,
-	0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x52, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c,
-	0x69, 0x74, 0x79, 0x12, 0x37, 0x0a, 0x08, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x18,
-	0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x76, 0x31, 0x2e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x48, 0x69, 0x73, 0x74, 0x6f,
-	0x72, 0x79, 0x52, 0x08, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x10, 0x0a, 0x03,
-	0x75, 0x72, 0x6c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x12, 0x20,
-	0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20,
+	0x64, 0x12, 0x30, 0x0a, 0x14, 0x6e, 0x65, 0x77, 0x5f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f,
+	0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x12, 0x6e, 0x65, 0x77, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70,
+	0x61, 0x63, 0x65, 0x22, 0x1e, 0x0a, 0x1c, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x66, 0x65, 0x72, 0x52,
+	0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x52, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64,
+	0x75, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x0f, 0x6f, 0x72,
+	0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0e, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x45, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x1b, 0x0a, 0x09, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x08, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x10, 0x0a, 0x03,
+	0x75, 0x72, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0x92,
+	0x03, 0x0a, 0x13, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6d, 0x6f, 0x64, 0x75, 0x6c,
+	0x65, 0x49, 0x64, 0x12, 0x37, 0x0a, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74,
+	0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79,
+	0x52, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x12, 0x10, 0x0a, 0x03,
+	0x75, 0x72, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x12, 0x20,
+	0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e,
-	0x12, 0x2a, 0x0a, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0b,
+	0x12, 0x2a, 0x0a, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b,
 	0x32, 0x12, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
-	0x6f, 0x64, 0x65, 0x6c, 0x52, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x12, 0x2a, 0x0a, 0x11,
-	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x5f, 0x75, 0x73, 0x61, 0x67,
-	0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x52, 0x6f,
-	0x62, 0x6f, 0x74, 0x55, 0x73, 0x61, 0x67, 0x65, 0x12, 0x38, 0x0a, 0x18, 0x74, 0x6f, 0x74, 0x61,
-	0x6c, 0x5f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x75,
-	0x73, 0x61, 0x67, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x03, 0x52, 0x16, 0x74, 0x6f, 0x74, 0x61,
-	0x6c, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x61,
-	0x67, 0x65, 0x12, 0x27, 0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6f, 0x72, 0x67,
-	0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x65,
-	0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x29, 0x0a, 0x10, 0x70,
-	0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18,
-	0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4e, 0x61, 0x6d,
-	0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x12, 0x20, 0x0a, 0x09, 0x66, 0x69, 0x72, 0x73, 0x74, 0x5f,
-	0x72, 0x75, 0x6e, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x08, 0x66, 0x69, 0x72,
-	0x73, 0x74, 0x52, 0x75, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x36, 0x0a, 0x14, 0x6d, 0x61, 0x72, 0x6b,
-	0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e,
-	0x18, 0x0e, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01, 0x52, 0x13, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f,
-	0x77, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01,
-	0x12, 0x24, 0x0a, 0x04, 0x61, 0x70, 0x70, 0x73, 0x18, 0x0f, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10,
-	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x70, 0x70,
-	0x52, 0x04, 0x61, 0x70, 0x70, 0x73, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x66, 0x69, 0x72, 0x73, 0x74,
-	0x5f, 0x72, 0x75, 0x6e, 0x42, 0x17, 0x0a, 0x15, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77,
-	0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xc9, 0x02,
+	0x6f, 0x64, 0x65, 0x6c, 0x52, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x12, 0x1e, 0x0a, 0x0a,
+	0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x20, 0x0a, 0x09,
+	0x66, 0x69, 0x72, 0x73, 0x74, 0x5f, 0x72, 0x75, 0x6e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x48,
+	0x00, 0x52, 0x08, 0x66, 0x69, 0x72, 0x73, 0x74, 0x52, 0x75, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x24,
+	0x0a, 0x04, 0x61, 0x70, 0x70, 0x73, 0x18, 0x08, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x70, 0x70, 0x52, 0x04,
+	0x61, 0x70, 0x70, 0x73, 0x12, 0x36, 0x0a, 0x14, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e,
+	0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x09, 0x20, 0x01,
+	0x28, 0x09, 0x48, 0x01, 0x52, 0x13, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x44, 0x65,
+	0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x42, 0x0c, 0x0a, 0x0a,
+	0x5f, 0x66, 0x69, 0x72, 0x73, 0x74, 0x5f, 0x72, 0x75, 0x6e, 0x42, 0x17, 0x0a, 0x15, 0x5f, 0x6d,
+	0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74,
+	0x69, 0x6f, 0x6e, 0x22, 0xe8, 0x01, 0x0a, 0x03, 0x41, 0x70, 0x70, 0x12, 0x12, 0x0a, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12,
+	0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74,
+	0x79, 0x70, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e,
+	0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f,
+	0x69, 0x6e, 0x74, 0x12, 0x21, 0x0a, 0x0c, 0x66, 0x72, 0x61, 0x67, 0x6d, 0x65, 0x6e, 0x74, 0x5f,
+	0x69, 0x64, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x66, 0x72, 0x61, 0x67, 0x6d,
+	0x65, 0x6e, 0x74, 0x49, 0x64, 0x73, 0x12, 0x20, 0x0a, 0x09, 0x6c, 0x6f, 0x67, 0x6f, 0x5f, 0x70,
+	0x61, 0x74, 0x68, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x08, 0x6c, 0x6f, 0x67,
+	0x6f, 0x50, 0x61, 0x74, 0x68, 0x88, 0x01, 0x01, 0x12, 0x46, 0x0a, 0x0e, 0x63, 0x75, 0x73, 0x74,
+	0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41,
+	0x70, 0x70, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x52, 0x0e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x6c, 0x6f, 0x67, 0x6f, 0x5f, 0x70, 0x61, 0x74, 0x68, 0x22, 0x28,
+	0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0x88, 0x01, 0x0a, 0x14, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
+	0x61, 0x12, 0x2a, 0x0a, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x12, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
+	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x52, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x12, 0x1e, 0x0a,
+	0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x24, 0x0a,
+	0x04, 0x61, 0x70, 0x70, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x70, 0x70, 0x52, 0x04, 0x61,
+	0x70, 0x70, 0x73, 0x22, 0xaa, 0x01, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x4c,
+	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x40, 0x0a,
+	0x0a, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0e, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74,
+	0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
+	0x54, 0x79, 0x70, 0x65, 0x52, 0x09, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x54, 0x79, 0x70, 0x65, 0x12,
+	0x4f, 0x0a, 0x0f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x77, 0x6f,
+	0x72, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x26, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76,
+	0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x77, 0x6f, 0x72, 0x6b,
+	0x52, 0x0e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x77, 0x6f, 0x72, 0x6b,
+	0x22, 0xc3, 0x01, 0x0a, 0x18, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x4c, 0x54, 0x72, 0x61,
+	0x69, 0x6e, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x40, 0x0a,
+	0x0a, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0e, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74,
+	0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
+	0x54, 0x79, 0x70, 0x65, 0x52, 0x09, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x54, 0x79, 0x70, 0x65, 0x12,
+	0x4f, 0x0a, 0x0f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x77, 0x6f,
+	0x72, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x26, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76,
+	0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x77, 0x6f, 0x72, 0x6b,
+	0x52, 0x0e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x46, 0x72, 0x61, 0x6d, 0x65, 0x77, 0x6f, 0x72, 0x6b,
+	0x12, 0x14, 0x0a, 0x05, 0x64, 0x72, 0x61, 0x66, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x05, 0x64, 0x72, 0x61, 0x66, 0x74, 0x22, 0xec, 0x01, 0x0a, 0x05, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
+	0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61,
+	0x70, 0x69, 0x12, 0x14, 0x0a, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x12, 0x3a, 0x0a, 0x16, 0x6d, 0x61, 0x72, 0x6b,
+	0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x15, 0x6d, 0x61, 0x72, 0x6b,
+	0x64, 0x6f, 0x77, 0x6e, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x88, 0x01, 0x01, 0x12, 0x25, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74,
+	0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01, 0x52, 0x0b, 0x64, 0x65, 0x73,
+	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x2d, 0x0a, 0x12, 0x73,
+	0x75, 0x70, 0x70, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x68, 0x61, 0x72, 0x64, 0x77, 0x61, 0x72,
+	0x65, 0x18, 0x05, 0x20, 0x03, 0x28, 0x09, 0x52, 0x11, 0x73, 0x75, 0x70, 0x70, 0x6f, 0x72, 0x74,
+	0x65, 0x64, 0x48, 0x61, 0x72, 0x64, 0x77, 0x61, 0x72, 0x65, 0x42, 0x19, 0x0a, 0x17, 0x5f, 0x6d,
+	0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x0e, 0x0a, 0x0c, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69,
+	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x88, 0x01, 0x0a, 0x0e, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65,
+	0x46, 0x69, 0x6c, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x1b, 0x0a, 0x09, 0x6d, 0x6f, 0x64, 0x75,
+	0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6d, 0x6f, 0x64,
+	0x75, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12,
+	0x1a, 0x0a, 0x08, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x08, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x12, 0x23, 0x0a, 0x0d, 0x70,
+	0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x5f, 0x74, 0x61, 0x67, 0x73, 0x18, 0x05, 0x20, 0x03,
+	0x28, 0x09, 0x52, 0x0c, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x54, 0x61, 0x67, 0x73,
+	0x22, 0x87, 0x01, 0x0a, 0x17, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4d, 0x6f, 0x64, 0x75, 0x6c,
+	0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x47, 0x0a, 0x10,
+	0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x69, 0x6e, 0x66, 0x6f,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x49,
+	0x6e, 0x66, 0x6f, 0x48, 0x00, 0x52, 0x0e, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x46, 0x69, 0x6c,
+	0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x14, 0x0a, 0x04, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0c, 0x48, 0x00, 0x52, 0x04, 0x66, 0x69, 0x6c, 0x65, 0x42, 0x0d, 0x0a, 0x0b, 0x6d,
+	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x66, 0x69, 0x6c, 0x65, 0x22, 0x2c, 0x0a, 0x18, 0x55, 0x70,
+	0x6c, 0x6f, 0x61, 0x64, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0x9d, 0x01, 0x0a, 0x10, 0x47, 0x65, 0x74,
+	0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a,
+	0x09, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x08, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x49, 0x0a, 0x1e, 0x69, 0x6e,
+	0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64,
+	0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x08, 0x48, 0x00, 0x52, 0x1c, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x4d, 0x61, 0x72,
+	0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x88, 0x01, 0x01, 0x42, 0x21, 0x0a, 0x1f, 0x5f, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64,
+	0x65, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x6f, 0x63, 0x75, 0x6d,
+	0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x40, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x4d,
+	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a,
+	0x06, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x75,
+	0x6c, 0x65, 0x52, 0x06, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x22, 0xc0, 0x05, 0x0a, 0x06, 0x4d,
+	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65,
+	0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x37, 0x0a, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69,
+	0x6c, 0x69, 0x74, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c,
+	0x69, 0x74, 0x79, 0x52, 0x0a, 0x76, 0x69, 0x73, 0x69, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x12,
+	0x37, 0x0a, 0x08, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
+	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x08,
+	0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18,
+	0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65,
+	0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2a, 0x0a, 0x06,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
+	0x52, 0x06, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x12, 0x2a, 0x0a, 0x11, 0x74, 0x6f, 0x74, 0x61,
+	0x6c, 0x5f, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x5f, 0x75, 0x73, 0x61, 0x67, 0x65, 0x18, 0x08, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x52, 0x6f, 0x62, 0x6f, 0x74, 0x55,
+	0x73, 0x61, 0x67, 0x65, 0x12, 0x38, 0x0a, 0x18, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x6f, 0x72,
+	0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x75, 0x73, 0x61, 0x67, 0x65,
+	0x18, 0x09, 0x20, 0x01, 0x28, 0x03, 0x52, 0x16, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x4f, 0x72, 0x67,
+	0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x61, 0x67, 0x65, 0x12, 0x27,
+	0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69,
+	0x64, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x6e, 0x74, 0x72, 0x79,
+	0x70, 0x6f, 0x69, 0x6e, 0x74, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x6e, 0x74,
+	0x72, 0x79, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x29, 0x0a, 0x10, 0x70, 0x75, 0x62, 0x6c, 0x69,
+	0x63, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x0c, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61,
+	0x63, 0x65, 0x12, 0x20, 0x0a, 0x09, 0x66, 0x69, 0x72, 0x73, 0x74, 0x5f, 0x72, 0x75, 0x6e, 0x18,
+	0x0d, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x08, 0x66, 0x69, 0x72, 0x73, 0x74, 0x52, 0x75,
+	0x6e, 0x88, 0x01, 0x01, 0x12, 0x36, 0x0a, 0x14, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e,
+	0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x0e, 0x20, 0x01,
+	0x28, 0x09, 0x48, 0x01, 0x52, 0x13, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x44, 0x65,
+	0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x24, 0x0a, 0x04,
+	0x61, 0x70, 0x70, 0x73, 0x18, 0x0f, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x70, 0x70, 0x52, 0x04, 0x61, 0x70,
+	0x70, 0x73, 0x12, 0x23, 0x0a, 0x0a, 0x64, 0x65, 0x70, 0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x64,
+	0x18, 0x10, 0x20, 0x01, 0x28, 0x08, 0x48, 0x02, 0x52, 0x0a, 0x64, 0x65, 0x70, 0x72, 0x65, 0x63,
+	0x61, 0x74, 0x65, 0x64, 0x88, 0x01, 0x01, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x66, 0x69, 0x72, 0x73,
+	0x74, 0x5f, 0x72, 0x75, 0x6e, 0x42, 0x17, 0x0a, 0x15, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f,
+	0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x0d,
+	0x0a, 0x0b, 0x5f, 0x64, 0x65, 0x70, 0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x64, 0x22, 0xc9, 0x02,
 	0x0a, 0x0e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79,
 	0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x2a, 0x0a, 0x05, 0x66, 0x69,
@@ -18026,7 +18159,7 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x5f, 0x47, 0x52, 0x41, 0x4e, 0x54, 0x5f, 0x52, 0x45, 0x46, 0x52, 0x45, 0x53, 0x48, 0x5f, 0x54,
 	0x4f, 0x4b, 0x45, 0x4e, 0x10, 0x04, 0x12, 0x1d, 0x0a, 0x19, 0x45, 0x4e, 0x41, 0x42, 0x4c, 0x45,
 	0x44, 0x5f, 0x47, 0x52, 0x41, 0x4e, 0x54, 0x5f, 0x44, 0x45, 0x56, 0x49, 0x43, 0x45, 0x5f, 0x43,
-	0x4f, 0x44, 0x45, 0x10, 0x05, 0x32, 0xfa, 0x55, 0x0a, 0x0a, 0x41, 0x70, 0x70, 0x53, 0x65, 0x72,
+	0x4f, 0x44, 0x45, 0x10, 0x05, 0x32, 0xea, 0x56, 0x0a, 0x0a, 0x41, 0x70, 0x70, 0x53, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x12, 0x5f, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x49,
 	0x44, 0x42, 0x79, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
 	0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44,
@@ -18635,6 +18768,13 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
 	0x74, 0x1a, 0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
 	0x52, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74,
+	0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6e, 0x0a, 0x15, 0x44, 0x65,
+	0x70, 0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49,
+	0x74, 0x65, 0x6d, 0x12, 0x29, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
+	0x31, 0x2e, 0x44, 0x65, 0x70, 0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73,
+	0x74, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a,
+	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x70,
+	0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74,
 	0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6b, 0x0a, 0x14, 0x54, 0x72,
 	0x61, 0x6e, 0x73, 0x66, 0x65, 0x72, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x49, 0x74,
 	0x65, 0x6d, 0x12, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31,
@@ -18732,7 +18872,7 @@ func file_app_v1_app_proto_rawDescGZIP() []byte {
 }
 
 var file_app_v1_app_proto_enumTypes = make([]protoimpl.EnumInfo, 12)
-var file_app_v1_app_proto_msgTypes = make([]protoimpl.MessageInfo, 274)
+var file_app_v1_app_proto_msgTypes = make([]protoimpl.MessageInfo, 276)
 var file_app_v1_app_proto_goTypes = []any{
 	(OnlineState)(0),                                       // 0: viam.app.v1.OnlineState
 	(AuthenticationType)(0),                                // 1: viam.app.v1.AuthenticationType
@@ -18950,110 +19090,112 @@ var file_app_v1_app_proto_goTypes = []any{
 	(*DeleteRegistryItemResponse)(nil),                     // 213: viam.app.v1.DeleteRegistryItemResponse
 	(*RenameRegistryItemRequest)(nil),                      // 214: viam.app.v1.RenameRegistryItemRequest
 	(*RenameRegistryItemResponse)(nil),                     // 215: viam.app.v1.RenameRegistryItemResponse
-	(*TransferRegistryItemRequest)(nil),                    // 216: viam.app.v1.TransferRegistryItemRequest
-	(*TransferRegistryItemResponse)(nil),                   // 217: viam.app.v1.TransferRegistryItemResponse
-	(*CreateModuleRequest)(nil),                            // 218: viam.app.v1.CreateModuleRequest
-	(*CreateModuleResponse)(nil),                           // 219: viam.app.v1.CreateModuleResponse
-	(*UpdateModuleRequest)(nil),                            // 220: viam.app.v1.UpdateModuleRequest
-	(*App)(nil),                                            // 221: viam.app.v1.App
-	(*UpdateModuleResponse)(nil),                           // 222: viam.app.v1.UpdateModuleResponse
-	(*UpdateModuleMetadata)(nil),                           // 223: viam.app.v1.UpdateModuleMetadata
-	(*UpdateMLModelMetadata)(nil),                          // 224: viam.app.v1.UpdateMLModelMetadata
-	(*UpdateMLTrainingMetadata)(nil),                       // 225: viam.app.v1.UpdateMLTrainingMetadata
-	(*Model)(nil),                                          // 226: viam.app.v1.Model
-	(*ModuleFileInfo)(nil),                                 // 227: viam.app.v1.ModuleFileInfo
-	(*UploadModuleFileRequest)(nil),                        // 228: viam.app.v1.UploadModuleFileRequest
-	(*UploadModuleFileResponse)(nil),                       // 229: viam.app.v1.UploadModuleFileResponse
-	(*GetModuleRequest)(nil),                               // 230: viam.app.v1.GetModuleRequest
-	(*GetModuleResponse)(nil),                              // 231: viam.app.v1.GetModuleResponse
-	(*Module)(nil),                                         // 232: viam.app.v1.Module
-	(*VersionHistory)(nil),                                 // 233: viam.app.v1.VersionHistory
-	(*Uploads)(nil),                                        // 234: viam.app.v1.Uploads
-	(*ListModulesRequest)(nil),                             // 235: viam.app.v1.ListModulesRequest
-	(*ListModulesResponse)(nil),                            // 236: viam.app.v1.ListModulesResponse
-	(*GetUserIDByEmailRequest)(nil),                        // 237: viam.app.v1.GetUserIDByEmailRequest
-	(*GetUserIDByEmailResponse)(nil),                       // 238: viam.app.v1.GetUserIDByEmailResponse
-	(*ListOrganizationsByUserRequest)(nil),                 // 239: viam.app.v1.ListOrganizationsByUserRequest
-	(*OrgDetails)(nil),                                     // 240: viam.app.v1.OrgDetails
-	(*ListOrganizationsByUserResponse)(nil),                // 241: viam.app.v1.ListOrganizationsByUserResponse
-	(*SearchOrganizationsRequest)(nil),                     // 242: viam.app.v1.SearchOrganizationsRequest
-	(*SearchOrganizationsResponse)(nil),                    // 243: viam.app.v1.SearchOrganizationsResponse
-	(*CreateKeyRequest)(nil),                               // 244: viam.app.v1.CreateKeyRequest
-	(*CreateKeyResponse)(nil),                              // 245: viam.app.v1.CreateKeyResponse
-	(*DeleteKeyRequest)(nil),                               // 246: viam.app.v1.DeleteKeyRequest
-	(*DeleteKeyResponse)(nil),                              // 247: viam.app.v1.DeleteKeyResponse
-	(*RenameKeyRequest)(nil),                               // 248: viam.app.v1.RenameKeyRequest
-	(*RenameKeyResponse)(nil),                              // 249: viam.app.v1.RenameKeyResponse
-	(*AuthorizationDetails)(nil),                           // 250: viam.app.v1.AuthorizationDetails
-	(*APIKeyWithAuthorizations)(nil),                       // 251: viam.app.v1.APIKeyWithAuthorizations
-	(*ListKeysRequest)(nil),                                // 252: viam.app.v1.ListKeysRequest
-	(*ListKeysResponse)(nil),                               // 253: viam.app.v1.ListKeysResponse
-	(*RotateKeyRequest)(nil),                               // 254: viam.app.v1.RotateKeyRequest
-	(*RotateKeyResponse)(nil),                              // 255: viam.app.v1.RotateKeyResponse
-	(*CreateKeyFromExistingKeyAuthorizationsRequest)(nil),  // 256: viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest
-	(*CreateKeyFromExistingKeyAuthorizationsResponse)(nil), // 257: viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse
-	(*GetAppContentRequest)(nil),                           // 258: viam.app.v1.GetAppContentRequest
-	(*GetAppContentResponse)(nil),                          // 259: viam.app.v1.GetAppContentResponse
-	(*OrganizationSetLogoRequest)(nil),                     // 260: viam.app.v1.OrganizationSetLogoRequest
-	(*OrganizationSetLogoResponse)(nil),                    // 261: viam.app.v1.OrganizationSetLogoResponse
-	(*OrganizationGetLogoRequest)(nil),                     // 262: viam.app.v1.OrganizationGetLogoRequest
-	(*OrganizationGetLogoResponse)(nil),                    // 263: viam.app.v1.OrganizationGetLogoResponse
-	(*EnableAuthServiceRequest)(nil),                       // 264: viam.app.v1.EnableAuthServiceRequest
-	(*EnableAuthServiceResponse)(nil),                      // 265: viam.app.v1.EnableAuthServiceResponse
-	(*DisableAuthServiceRequest)(nil),                      // 266: viam.app.v1.DisableAuthServiceRequest
-	(*DisableAuthServiceResponse)(nil),                     // 267: viam.app.v1.DisableAuthServiceResponse
-	(*CreateOAuthAppRequest)(nil),                          // 268: viam.app.v1.CreateOAuthAppRequest
-	(*CreateOAuthAppResponse)(nil),                         // 269: viam.app.v1.CreateOAuthAppResponse
-	(*ReadOAuthAppRequest)(nil),                            // 270: viam.app.v1.ReadOAuthAppRequest
-	(*ReadOAuthAppResponse)(nil),                           // 271: viam.app.v1.ReadOAuthAppResponse
-	(*UpdateOAuthAppRequest)(nil),                          // 272: viam.app.v1.UpdateOAuthAppRequest
-	(*UpdateOAuthAppResponse)(nil),                         // 273: viam.app.v1.UpdateOAuthAppResponse
-	(*DeleteOAuthAppRequest)(nil),                          // 274: viam.app.v1.DeleteOAuthAppRequest
-	(*DeleteOAuthAppResponse)(nil),                         // 275: viam.app.v1.DeleteOAuthAppResponse
-	(*ListOAuthAppsRequest)(nil),                           // 276: viam.app.v1.ListOAuthAppsRequest
-	(*ListOAuthAppsResponse)(nil),                          // 277: viam.app.v1.ListOAuthAppsResponse
-	(*OAuthConfig)(nil),                                    // 278: viam.app.v1.OAuthConfig
-	(*GetAppBrandingRequest)(nil),                          // 279: viam.app.v1.GetAppBrandingRequest
-	(*TextOverrides)(nil),                                  // 280: viam.app.v1.TextOverrides
-	(*GetAppBrandingResponse)(nil),                         // 281: viam.app.v1.GetAppBrandingResponse
-	(*AppCustomizations)(nil),                              // 282: viam.app.v1.AppCustomizations
-	(*MachinePickerCustomizations)(nil),                    // 283: viam.app.v1.MachinePickerCustomizations
-	nil,                                                    // 284: viam.app.v1.TextOverrides.FieldsEntry
-	nil,                                                    // 285: viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry
-	(*timestamppb.Timestamp)(nil),                          // 286: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                                // 287: google.protobuf.Struct
-	(*v1.LogEntry)(nil),                                    // 288: viam.common.v1.LogEntry
-	(v11.ModelType)(0),                                     // 289: viam.app.mltraining.v1.ModelType
-	(v11.ModelFramework)(0),                                // 290: viam.app.mltraining.v1.ModelFramework
-	(v12.PackageType)(0),                                   // 291: viam.app.packages.v1.PackageType
+	(*DeprecateRegistryItemRequest)(nil),                   // 216: viam.app.v1.DeprecateRegistryItemRequest
+	(*DeprecateRegistryItemResponse)(nil),                  // 217: viam.app.v1.DeprecateRegistryItemResponse
+	(*TransferRegistryItemRequest)(nil),                    // 218: viam.app.v1.TransferRegistryItemRequest
+	(*TransferRegistryItemResponse)(nil),                   // 219: viam.app.v1.TransferRegistryItemResponse
+	(*CreateModuleRequest)(nil),                            // 220: viam.app.v1.CreateModuleRequest
+	(*CreateModuleResponse)(nil),                           // 221: viam.app.v1.CreateModuleResponse
+	(*UpdateModuleRequest)(nil),                            // 222: viam.app.v1.UpdateModuleRequest
+	(*App)(nil),                                            // 223: viam.app.v1.App
+	(*UpdateModuleResponse)(nil),                           // 224: viam.app.v1.UpdateModuleResponse
+	(*UpdateModuleMetadata)(nil),                           // 225: viam.app.v1.UpdateModuleMetadata
+	(*UpdateMLModelMetadata)(nil),                          // 226: viam.app.v1.UpdateMLModelMetadata
+	(*UpdateMLTrainingMetadata)(nil),                       // 227: viam.app.v1.UpdateMLTrainingMetadata
+	(*Model)(nil),                                          // 228: viam.app.v1.Model
+	(*ModuleFileInfo)(nil),                                 // 229: viam.app.v1.ModuleFileInfo
+	(*UploadModuleFileRequest)(nil),                        // 230: viam.app.v1.UploadModuleFileRequest
+	(*UploadModuleFileResponse)(nil),                       // 231: viam.app.v1.UploadModuleFileResponse
+	(*GetModuleRequest)(nil),                               // 232: viam.app.v1.GetModuleRequest
+	(*GetModuleResponse)(nil),                              // 233: viam.app.v1.GetModuleResponse
+	(*Module)(nil),                                         // 234: viam.app.v1.Module
+	(*VersionHistory)(nil),                                 // 235: viam.app.v1.VersionHistory
+	(*Uploads)(nil),                                        // 236: viam.app.v1.Uploads
+	(*ListModulesRequest)(nil),                             // 237: viam.app.v1.ListModulesRequest
+	(*ListModulesResponse)(nil),                            // 238: viam.app.v1.ListModulesResponse
+	(*GetUserIDByEmailRequest)(nil),                        // 239: viam.app.v1.GetUserIDByEmailRequest
+	(*GetUserIDByEmailResponse)(nil),                       // 240: viam.app.v1.GetUserIDByEmailResponse
+	(*ListOrganizationsByUserRequest)(nil),                 // 241: viam.app.v1.ListOrganizationsByUserRequest
+	(*OrgDetails)(nil),                                     // 242: viam.app.v1.OrgDetails
+	(*ListOrganizationsByUserResponse)(nil),                // 243: viam.app.v1.ListOrganizationsByUserResponse
+	(*SearchOrganizationsRequest)(nil),                     // 244: viam.app.v1.SearchOrganizationsRequest
+	(*SearchOrganizationsResponse)(nil),                    // 245: viam.app.v1.SearchOrganizationsResponse
+	(*CreateKeyRequest)(nil),                               // 246: viam.app.v1.CreateKeyRequest
+	(*CreateKeyResponse)(nil),                              // 247: viam.app.v1.CreateKeyResponse
+	(*DeleteKeyRequest)(nil),                               // 248: viam.app.v1.DeleteKeyRequest
+	(*DeleteKeyResponse)(nil),                              // 249: viam.app.v1.DeleteKeyResponse
+	(*RenameKeyRequest)(nil),                               // 250: viam.app.v1.RenameKeyRequest
+	(*RenameKeyResponse)(nil),                              // 251: viam.app.v1.RenameKeyResponse
+	(*AuthorizationDetails)(nil),                           // 252: viam.app.v1.AuthorizationDetails
+	(*APIKeyWithAuthorizations)(nil),                       // 253: viam.app.v1.APIKeyWithAuthorizations
+	(*ListKeysRequest)(nil),                                // 254: viam.app.v1.ListKeysRequest
+	(*ListKeysResponse)(nil),                               // 255: viam.app.v1.ListKeysResponse
+	(*RotateKeyRequest)(nil),                               // 256: viam.app.v1.RotateKeyRequest
+	(*RotateKeyResponse)(nil),                              // 257: viam.app.v1.RotateKeyResponse
+	(*CreateKeyFromExistingKeyAuthorizationsRequest)(nil),  // 258: viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest
+	(*CreateKeyFromExistingKeyAuthorizationsResponse)(nil), // 259: viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse
+	(*GetAppContentRequest)(nil),                           // 260: viam.app.v1.GetAppContentRequest
+	(*GetAppContentResponse)(nil),                          // 261: viam.app.v1.GetAppContentResponse
+	(*OrganizationSetLogoRequest)(nil),                     // 262: viam.app.v1.OrganizationSetLogoRequest
+	(*OrganizationSetLogoResponse)(nil),                    // 263: viam.app.v1.OrganizationSetLogoResponse
+	(*OrganizationGetLogoRequest)(nil),                     // 264: viam.app.v1.OrganizationGetLogoRequest
+	(*OrganizationGetLogoResponse)(nil),                    // 265: viam.app.v1.OrganizationGetLogoResponse
+	(*EnableAuthServiceRequest)(nil),                       // 266: viam.app.v1.EnableAuthServiceRequest
+	(*EnableAuthServiceResponse)(nil),                      // 267: viam.app.v1.EnableAuthServiceResponse
+	(*DisableAuthServiceRequest)(nil),                      // 268: viam.app.v1.DisableAuthServiceRequest
+	(*DisableAuthServiceResponse)(nil),                     // 269: viam.app.v1.DisableAuthServiceResponse
+	(*CreateOAuthAppRequest)(nil),                          // 270: viam.app.v1.CreateOAuthAppRequest
+	(*CreateOAuthAppResponse)(nil),                         // 271: viam.app.v1.CreateOAuthAppResponse
+	(*ReadOAuthAppRequest)(nil),                            // 272: viam.app.v1.ReadOAuthAppRequest
+	(*ReadOAuthAppResponse)(nil),                           // 273: viam.app.v1.ReadOAuthAppResponse
+	(*UpdateOAuthAppRequest)(nil),                          // 274: viam.app.v1.UpdateOAuthAppRequest
+	(*UpdateOAuthAppResponse)(nil),                         // 275: viam.app.v1.UpdateOAuthAppResponse
+	(*DeleteOAuthAppRequest)(nil),                          // 276: viam.app.v1.DeleteOAuthAppRequest
+	(*DeleteOAuthAppResponse)(nil),                         // 277: viam.app.v1.DeleteOAuthAppResponse
+	(*ListOAuthAppsRequest)(nil),                           // 278: viam.app.v1.ListOAuthAppsRequest
+	(*ListOAuthAppsResponse)(nil),                          // 279: viam.app.v1.ListOAuthAppsResponse
+	(*OAuthConfig)(nil),                                    // 280: viam.app.v1.OAuthConfig
+	(*GetAppBrandingRequest)(nil),                          // 281: viam.app.v1.GetAppBrandingRequest
+	(*TextOverrides)(nil),                                  // 282: viam.app.v1.TextOverrides
+	(*GetAppBrandingResponse)(nil),                         // 283: viam.app.v1.GetAppBrandingResponse
+	(*AppCustomizations)(nil),                              // 284: viam.app.v1.AppCustomizations
+	(*MachinePickerCustomizations)(nil),                    // 285: viam.app.v1.MachinePickerCustomizations
+	nil,                                                    // 286: viam.app.v1.TextOverrides.FieldsEntry
+	nil,                                                    // 287: viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry
+	(*timestamppb.Timestamp)(nil),                          // 288: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                                // 289: google.protobuf.Struct
+	(*v1.LogEntry)(nil),                                    // 290: viam.common.v1.LogEntry
+	(v11.ModelType)(0),                                     // 291: viam.app.mltraining.v1.ModelType
+	(v11.ModelFramework)(0),                                // 292: viam.app.mltraining.v1.ModelFramework
+	(v12.PackageType)(0),                                   // 293: viam.app.packages.v1.PackageType
 }
 var file_app_v1_app_proto_depIdxs = []int32{
-	286, // 0: viam.app.v1.Robot.last_access:type_name -> google.protobuf.Timestamp
-	286, // 1: viam.app.v1.Robot.created_on:type_name -> google.protobuf.Timestamp
-	287, // 2: viam.app.v1.RobotPart.robot_config:type_name -> google.protobuf.Struct
-	286, // 3: viam.app.v1.RobotPart.last_access:type_name -> google.protobuf.Timestamp
-	287, // 4: viam.app.v1.RobotPart.user_supplied_info:type_name -> google.protobuf.Struct
-	286, // 5: viam.app.v1.RobotPart.created_on:type_name -> google.protobuf.Timestamp
+	288, // 0: viam.app.v1.Robot.last_access:type_name -> google.protobuf.Timestamp
+	288, // 1: viam.app.v1.Robot.created_on:type_name -> google.protobuf.Timestamp
+	289, // 2: viam.app.v1.RobotPart.robot_config:type_name -> google.protobuf.Struct
+	288, // 3: viam.app.v1.RobotPart.last_access:type_name -> google.protobuf.Timestamp
+	289, // 4: viam.app.v1.RobotPart.user_supplied_info:type_name -> google.protobuf.Struct
+	288, // 5: viam.app.v1.RobotPart.created_on:type_name -> google.protobuf.Timestamp
 	67,  // 6: viam.app.v1.RobotPart.secrets:type_name -> viam.app.v1.SharedSecret
-	286, // 7: viam.app.v1.RobotPart.last_updated:type_name -> google.protobuf.Timestamp
+	288, // 7: viam.app.v1.RobotPart.last_updated:type_name -> google.protobuf.Timestamp
 	0,   // 8: viam.app.v1.RobotPart.online_state:type_name -> viam.app.v1.OnlineState
-	286, // 9: viam.app.v1.RobotPartHistoryEntry.when:type_name -> google.protobuf.Timestamp
+	288, // 9: viam.app.v1.RobotPartHistoryEntry.when:type_name -> google.protobuf.Timestamp
 	13,  // 10: viam.app.v1.RobotPartHistoryEntry.old:type_name -> viam.app.v1.RobotPart
 	15,  // 11: viam.app.v1.RobotPartHistoryEntry.edited_by:type_name -> viam.app.v1.AuthenticatorInfo
 	1,   // 12: viam.app.v1.AuthenticatorInfo.type:type_name -> viam.app.v1.AuthenticationType
-	286, // 13: viam.app.v1.Organization.created_on:type_name -> google.protobuf.Timestamp
-	286, // 14: viam.app.v1.OrganizationMember.date_added:type_name -> google.protobuf.Timestamp
-	286, // 15: viam.app.v1.OrganizationMember.last_login:type_name -> google.protobuf.Timestamp
-	286, // 16: viam.app.v1.OrganizationMember.last_access:type_name -> google.protobuf.Timestamp
+	288, // 13: viam.app.v1.Organization.created_on:type_name -> google.protobuf.Timestamp
+	288, // 14: viam.app.v1.OrganizationMember.date_added:type_name -> google.protobuf.Timestamp
+	288, // 15: viam.app.v1.OrganizationMember.last_login:type_name -> google.protobuf.Timestamp
+	288, // 16: viam.app.v1.OrganizationMember.last_access:type_name -> google.protobuf.Timestamp
 	17,  // 17: viam.app.v1.ListOrganizationsResponse.organizations:type_name -> viam.app.v1.Organization
-	286, // 18: viam.app.v1.OrganizationInvite.created_on:type_name -> google.protobuf.Timestamp
+	288, // 18: viam.app.v1.OrganizationInvite.created_on:type_name -> google.protobuf.Timestamp
 	186, // 19: viam.app.v1.OrganizationInvite.authorizations:type_name -> viam.app.v1.Authorization
 	17,  // 20: viam.app.v1.CreateOrganizationResponse.organization:type_name -> viam.app.v1.Organization
 	17,  // 21: viam.app.v1.GetOrganizationResponse.organization:type_name -> viam.app.v1.Organization
 	17,  // 22: viam.app.v1.UpdateOrganizationResponse.organization:type_name -> viam.app.v1.Organization
 	17,  // 23: viam.app.v1.UpdateOrganizationNamespaceResponse.organization:type_name -> viam.app.v1.Organization
-	287, // 24: viam.app.v1.GetOrganizationMetadataResponse.data:type_name -> google.protobuf.Struct
-	287, // 25: viam.app.v1.UpdateOrganizationMetadataRequest.data:type_name -> google.protobuf.Struct
+	289, // 24: viam.app.v1.GetOrganizationMetadataResponse.data:type_name -> google.protobuf.Struct
+	289, // 25: viam.app.v1.UpdateOrganizationMetadataRequest.data:type_name -> google.protobuf.Struct
 	18,  // 26: viam.app.v1.ListOrganizationMembersResponse.members:type_name -> viam.app.v1.OrganizationMember
 	20,  // 27: viam.app.v1.ListOrganizationMembersResponse.invites:type_name -> viam.app.v1.OrganizationInvite
 	186, // 28: viam.app.v1.CreateOrganizationInviteRequest.authorizations:type_name -> viam.app.v1.Authorization
@@ -19068,16 +19210,16 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	67,  // 37: viam.app.v1.LocationAuth.secrets:type_name -> viam.app.v1.SharedSecret
 	64,  // 38: viam.app.v1.Location.auth:type_name -> viam.app.v1.LocationAuth
 	63,  // 39: viam.app.v1.Location.organizations:type_name -> viam.app.v1.LocationOrganization
-	286, // 40: viam.app.v1.Location.created_on:type_name -> google.protobuf.Timestamp
+	288, // 40: viam.app.v1.Location.created_on:type_name -> google.protobuf.Timestamp
 	65,  // 41: viam.app.v1.Location.config:type_name -> viam.app.v1.StorageConfig
 	62,  // 42: viam.app.v1.Location.primary_org_identity:type_name -> viam.app.v1.OrganizationIdentity
-	286, // 43: viam.app.v1.SharedSecret.created_on:type_name -> google.protobuf.Timestamp
+	288, // 43: viam.app.v1.SharedSecret.created_on:type_name -> google.protobuf.Timestamp
 	11,  // 44: viam.app.v1.SharedSecret.state:type_name -> viam.app.v1.SharedSecret.State
 	66,  // 45: viam.app.v1.CreateLocationResponse.location:type_name -> viam.app.v1.Location
 	66,  // 46: viam.app.v1.GetLocationResponse.location:type_name -> viam.app.v1.Location
 	66,  // 47: viam.app.v1.UpdateLocationResponse.location:type_name -> viam.app.v1.Location
-	287, // 48: viam.app.v1.GetLocationMetadataResponse.data:type_name -> google.protobuf.Struct
-	287, // 49: viam.app.v1.UpdateLocationMetadataRequest.data:type_name -> google.protobuf.Struct
+	289, // 48: viam.app.v1.GetLocationMetadataResponse.data:type_name -> google.protobuf.Struct
+	289, // 49: viam.app.v1.UpdateLocationMetadataRequest.data:type_name -> google.protobuf.Struct
 	62,  // 50: viam.app.v1.GetOrganizationsWithAccessToLocationResponse.organization_identities:type_name -> viam.app.v1.OrganizationIdentity
 	66,  // 51: viam.app.v1.ListLocationsResponse.locations:type_name -> viam.app.v1.Location
 	64,  // 52: viam.app.v1.CreateLocationSecretResponse.auth:type_name -> viam.app.v1.LocationAuth
@@ -19087,29 +19229,29 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	13,  // 56: viam.app.v1.GetRobotPartsResponse.parts:type_name -> viam.app.v1.RobotPart
 	13,  // 57: viam.app.v1.GetRobotPartResponse.part:type_name -> viam.app.v1.RobotPart
 	13,  // 58: viam.app.v1.GetRobotPartByNameAndLocationResponse.part:type_name -> viam.app.v1.RobotPart
-	286, // 59: viam.app.v1.GetRobotPartLogsRequest.start:type_name -> google.protobuf.Timestamp
-	286, // 60: viam.app.v1.GetRobotPartLogsRequest.end:type_name -> google.protobuf.Timestamp
-	288, // 61: viam.app.v1.GetRobotPartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
-	288, // 62: viam.app.v1.TailRobotPartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
+	288, // 59: viam.app.v1.GetRobotPartLogsRequest.start:type_name -> google.protobuf.Timestamp
+	288, // 60: viam.app.v1.GetRobotPartLogsRequest.end:type_name -> google.protobuf.Timestamp
+	290, // 61: viam.app.v1.GetRobotPartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
+	290, // 62: viam.app.v1.TailRobotPartLogsResponse.logs:type_name -> viam.common.v1.LogEntry
 	14,  // 63: viam.app.v1.GetRobotPartHistoryResponse.history:type_name -> viam.app.v1.RobotPartHistoryEntry
-	287, // 64: viam.app.v1.UpdateRobotPartRequest.robot_config:type_name -> google.protobuf.Struct
-	286, // 65: viam.app.v1.UpdateRobotPartRequest.last_known_update:type_name -> google.protobuf.Timestamp
+	289, // 64: viam.app.v1.UpdateRobotPartRequest.robot_config:type_name -> google.protobuf.Struct
+	288, // 65: viam.app.v1.UpdateRobotPartRequest.last_known_update:type_name -> google.protobuf.Timestamp
 	13,  // 66: viam.app.v1.UpdateRobotPartResponse.part:type_name -> viam.app.v1.RobotPart
-	287, // 67: viam.app.v1.GetRobotPartMetadataResponse.data:type_name -> google.protobuf.Struct
-	287, // 68: viam.app.v1.UpdateRobotPartMetadataRequest.data:type_name -> google.protobuf.Struct
-	286, // 69: viam.app.v1.APIKey.created_on:type_name -> google.protobuf.Timestamp
-	251, // 70: viam.app.v1.GetRobotAPIKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
-	287, // 71: viam.app.v1.Fragment.fragment:type_name -> google.protobuf.Struct
-	286, // 72: viam.app.v1.Fragment.created_on:type_name -> google.protobuf.Timestamp
+	289, // 67: viam.app.v1.GetRobotPartMetadataResponse.data:type_name -> google.protobuf.Struct
+	289, // 68: viam.app.v1.UpdateRobotPartMetadataRequest.data:type_name -> google.protobuf.Struct
+	288, // 69: viam.app.v1.APIKey.created_on:type_name -> google.protobuf.Timestamp
+	253, // 70: viam.app.v1.GetRobotAPIKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
+	289, // 71: viam.app.v1.Fragment.fragment:type_name -> google.protobuf.Struct
+	288, // 72: viam.app.v1.Fragment.created_on:type_name -> google.protobuf.Timestamp
 	2,   // 73: viam.app.v1.Fragment.visibility:type_name -> viam.app.v1.FragmentVisibility
-	286, // 74: viam.app.v1.Fragment.last_updated:type_name -> google.protobuf.Timestamp
-	286, // 75: viam.app.v1.FragmentHistoryEntry.edited_on:type_name -> google.protobuf.Timestamp
+	288, // 74: viam.app.v1.Fragment.last_updated:type_name -> google.protobuf.Timestamp
+	288, // 75: viam.app.v1.FragmentHistoryEntry.edited_on:type_name -> google.protobuf.Timestamp
 	124, // 76: viam.app.v1.FragmentHistoryEntry.old:type_name -> viam.app.v1.Fragment
 	15,  // 77: viam.app.v1.FragmentHistoryEntry.edited_by:type_name -> viam.app.v1.AuthenticatorInfo
-	287, // 78: viam.app.v1.FragmentHistoryEntry.config:type_name -> google.protobuf.Struct
-	286, // 79: viam.app.v1.FragmentRevision.created_at:type_name -> google.protobuf.Timestamp
+	289, // 78: viam.app.v1.FragmentHistoryEntry.config:type_name -> google.protobuf.Struct
+	288, // 79: viam.app.v1.FragmentRevision.created_at:type_name -> google.protobuf.Timestamp
 	3,   // 80: viam.app.v1.FragmentError.error_type:type_name -> viam.app.v1.FragmentErrorType
-	287, // 81: viam.app.v1.ResolvedFragment.resolved_config:type_name -> google.protobuf.Struct
+	289, // 81: viam.app.v1.ResolvedFragment.resolved_config:type_name -> google.protobuf.Struct
 	128, // 82: viam.app.v1.ResolvedFragment.error:type_name -> viam.app.v1.FragmentError
 	2,   // 83: viam.app.v1.ListFragmentsRequest.fragment_visibility:type_name -> viam.app.v1.FragmentVisibility
 	124, // 84: viam.app.v1.ListFragmentsResponse.fragments:type_name -> viam.app.v1.Fragment
@@ -19118,12 +19260,12 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	129, // 87: viam.app.v1.GetFragmentResponse.fragment_usage:type_name -> viam.app.v1.FragmentUsage
 	126, // 88: viam.app.v1.GetFragmentResponse.revisions:type_name -> viam.app.v1.FragmentRevision
 	127, // 89: viam.app.v1.GetFragmentResponse.tags:type_name -> viam.app.v1.FragmentTag
-	287, // 90: viam.app.v1.CreateFragmentRequest.config:type_name -> google.protobuf.Struct
+	289, // 90: viam.app.v1.CreateFragmentRequest.config:type_name -> google.protobuf.Struct
 	2,   // 91: viam.app.v1.CreateFragmentRequest.visibility:type_name -> viam.app.v1.FragmentVisibility
 	124, // 92: viam.app.v1.CreateFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
-	287, // 93: viam.app.v1.UpdateFragmentRequest.config:type_name -> google.protobuf.Struct
+	289, // 93: viam.app.v1.UpdateFragmentRequest.config:type_name -> google.protobuf.Struct
 	2,   // 94: viam.app.v1.UpdateFragmentRequest.visibility:type_name -> viam.app.v1.FragmentVisibility
-	286, // 95: viam.app.v1.UpdateFragmentRequest.last_known_update:type_name -> google.protobuf.Timestamp
+	288, // 95: viam.app.v1.UpdateFragmentRequest.last_known_update:type_name -> google.protobuf.Timestamp
 	124, // 96: viam.app.v1.UpdateFragmentResponse.fragment:type_name -> viam.app.v1.Fragment
 	125, // 97: viam.app.v1.GetFragmentHistoryResponse.history:type_name -> viam.app.v1.FragmentHistoryEntry
 	129, // 98: viam.app.v1.GetFragmentUsageResponse.version_usages:type_name -> viam.app.v1.FragmentUsage
@@ -19138,7 +19280,7 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	159, // 107: viam.app.v1.ListMachineSummariesResponse.location_summaries:type_name -> viam.app.v1.LocationSummary
 	160, // 108: viam.app.v1.LocationSummary.machine_summaries:type_name -> viam.app.v1.MachineSummary
 	164, // 109: viam.app.v1.MachineSummary.part_summaries:type_name -> viam.app.v1.PartSummary
-	286, // 110: viam.app.v1.PartSummary.last_online:type_name -> google.protobuf.Timestamp
+	288, // 110: viam.app.v1.PartSummary.last_online:type_name -> google.protobuf.Timestamp
 	162, // 111: viam.app.v1.PartSummary.viam_server_version:type_name -> viam.app.v1.ViamServerVersion
 	163, // 112: viam.app.v1.PartSummary.viam_agent_version:type_name -> viam.app.v1.ViamAgentVersion
 	161, // 113: viam.app.v1.PartSummary.fragments:type_name -> viam.app.v1.FragmentSummary
@@ -19146,8 +19288,8 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	12,  // 115: viam.app.v1.ListRobotsForLocationsResponse.robots:type_name -> viam.app.v1.Robot
 	12,  // 116: viam.app.v1.ListRobotsForOrgResponse.robots:type_name -> viam.app.v1.Robot
 	12,  // 117: viam.app.v1.UpdateRobotResponse.robot:type_name -> viam.app.v1.Robot
-	287, // 118: viam.app.v1.GetRobotMetadataResponse.data:type_name -> google.protobuf.Struct
-	287, // 119: viam.app.v1.UpdateRobotMetadataRequest.data:type_name -> google.protobuf.Struct
+	289, // 118: viam.app.v1.GetRobotMetadataResponse.data:type_name -> google.protobuf.Struct
+	289, // 119: viam.app.v1.UpdateRobotMetadataRequest.data:type_name -> google.protobuf.Struct
 	13,  // 120: viam.app.v1.CreateRobotPartSecretResponse.part:type_name -> viam.app.v1.RobotPart
 	186, // 121: viam.app.v1.AddRoleRequest.authorization:type_name -> viam.app.v1.Authorization
 	186, // 122: viam.app.v1.RemoveRoleRequest.authorization:type_name -> viam.app.v1.Authorization
@@ -19156,299 +19298,302 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	186, // 125: viam.app.v1.ListAuthorizationsResponse.authorizations:type_name -> viam.app.v1.Authorization
 	196, // 126: viam.app.v1.CheckPermissionsRequest.permissions:type_name -> viam.app.v1.AuthorizedPermissions
 	196, // 127: viam.app.v1.CheckPermissionsResponse.authorized_permissions:type_name -> viam.app.v1.AuthorizedPermissions
-	234, // 128: viam.app.v1.ModuleVersion.files:type_name -> viam.app.v1.Uploads
-	226, // 129: viam.app.v1.ModuleVersion.models:type_name -> viam.app.v1.Model
-	221, // 130: viam.app.v1.ModuleVersion.apps:type_name -> viam.app.v1.App
-	226, // 131: viam.app.v1.ModuleMetadata.models:type_name -> viam.app.v1.Model
+	236, // 128: viam.app.v1.ModuleVersion.files:type_name -> viam.app.v1.Uploads
+	228, // 129: viam.app.v1.ModuleVersion.models:type_name -> viam.app.v1.Model
+	223, // 130: viam.app.v1.ModuleVersion.apps:type_name -> viam.app.v1.App
+	228, // 131: viam.app.v1.ModuleMetadata.models:type_name -> viam.app.v1.Model
 	198, // 132: viam.app.v1.ModuleMetadata.versions:type_name -> viam.app.v1.ModuleVersion
-	221, // 133: viam.app.v1.ModuleMetadata.apps:type_name -> viam.app.v1.App
-	289, // 134: viam.app.v1.MLModelMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	290, // 135: viam.app.v1.MLModelMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	286, // 136: viam.app.v1.MLTrainingVersion.created_on:type_name -> google.protobuf.Timestamp
+	223, // 133: viam.app.v1.ModuleMetadata.apps:type_name -> viam.app.v1.App
+	291, // 134: viam.app.v1.MLModelMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	292, // 135: viam.app.v1.MLModelMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	288, // 136: viam.app.v1.MLTrainingVersion.created_on:type_name -> google.protobuf.Timestamp
 	201, // 137: viam.app.v1.MLTrainingMetadata.versions:type_name -> viam.app.v1.MLTrainingVersion
-	289, // 138: viam.app.v1.MLTrainingMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	290, // 139: viam.app.v1.MLTrainingMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	291, // 140: viam.app.v1.RegistryItem.type:type_name -> viam.app.packages.v1.PackageType
+	291, // 138: viam.app.v1.MLTrainingMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	292, // 139: viam.app.v1.MLTrainingMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	293, // 140: viam.app.v1.RegistryItem.type:type_name -> viam.app.packages.v1.PackageType
 	5,   // 141: viam.app.v1.RegistryItem.visibility:type_name -> viam.app.v1.Visibility
 	199, // 142: viam.app.v1.RegistryItem.module_metadata:type_name -> viam.app.v1.ModuleMetadata
 	200, // 143: viam.app.v1.RegistryItem.ml_model_metadata:type_name -> viam.app.v1.MLModelMetadata
 	202, // 144: viam.app.v1.RegistryItem.ml_training_metadata:type_name -> viam.app.v1.MLTrainingMetadata
-	286, // 145: viam.app.v1.RegistryItem.created_at:type_name -> google.protobuf.Timestamp
-	286, // 146: viam.app.v1.RegistryItem.updated_at:type_name -> google.protobuf.Timestamp
+	288, // 145: viam.app.v1.RegistryItem.created_at:type_name -> google.protobuf.Timestamp
+	288, // 146: viam.app.v1.RegistryItem.updated_at:type_name -> google.protobuf.Timestamp
 	203, // 147: viam.app.v1.GetRegistryItemResponse.item:type_name -> viam.app.v1.RegistryItem
-	291, // 148: viam.app.v1.CreateRegistryItemRequest.type:type_name -> viam.app.packages.v1.PackageType
-	291, // 149: viam.app.v1.UpdateRegistryItemRequest.type:type_name -> viam.app.packages.v1.PackageType
+	293, // 148: viam.app.v1.CreateRegistryItemRequest.type:type_name -> viam.app.packages.v1.PackageType
+	293, // 149: viam.app.v1.UpdateRegistryItemRequest.type:type_name -> viam.app.packages.v1.PackageType
 	5,   // 150: viam.app.v1.UpdateRegistryItemRequest.visibility:type_name -> viam.app.v1.Visibility
-	223, // 151: viam.app.v1.UpdateRegistryItemRequest.update_module_metadata:type_name -> viam.app.v1.UpdateModuleMetadata
-	224, // 152: viam.app.v1.UpdateRegistryItemRequest.update_ml_model_metadata:type_name -> viam.app.v1.UpdateMLModelMetadata
-	225, // 153: viam.app.v1.UpdateRegistryItemRequest.update_ml_training_metadata:type_name -> viam.app.v1.UpdateMLTrainingMetadata
-	291, // 154: viam.app.v1.ListRegistryItemsRequest.types:type_name -> viam.app.packages.v1.PackageType
+	225, // 151: viam.app.v1.UpdateRegistryItemRequest.update_module_metadata:type_name -> viam.app.v1.UpdateModuleMetadata
+	226, // 152: viam.app.v1.UpdateRegistryItemRequest.update_ml_model_metadata:type_name -> viam.app.v1.UpdateMLModelMetadata
+	227, // 153: viam.app.v1.UpdateRegistryItemRequest.update_ml_training_metadata:type_name -> viam.app.v1.UpdateMLTrainingMetadata
+	293, // 154: viam.app.v1.ListRegistryItemsRequest.types:type_name -> viam.app.packages.v1.PackageType
 	5,   // 155: viam.app.v1.ListRegistryItemsRequest.visibilities:type_name -> viam.app.v1.Visibility
 	4,   // 156: viam.app.v1.ListRegistryItemsRequest.statuses:type_name -> viam.app.v1.RegistryItemStatus
 	203, // 157: viam.app.v1.ListRegistryItemsResponse.items:type_name -> viam.app.v1.RegistryItem
 	203, // 158: viam.app.v1.RenameRegistryItemResponse.item:type_name -> viam.app.v1.RegistryItem
-	5,   // 159: viam.app.v1.UpdateModuleRequest.visibility:type_name -> viam.app.v1.Visibility
-	226, // 160: viam.app.v1.UpdateModuleRequest.models:type_name -> viam.app.v1.Model
-	221, // 161: viam.app.v1.UpdateModuleRequest.apps:type_name -> viam.app.v1.App
-	282, // 162: viam.app.v1.App.customizations:type_name -> viam.app.v1.AppCustomizations
-	226, // 163: viam.app.v1.UpdateModuleMetadata.models:type_name -> viam.app.v1.Model
-	221, // 164: viam.app.v1.UpdateModuleMetadata.apps:type_name -> viam.app.v1.App
-	289, // 165: viam.app.v1.UpdateMLModelMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	290, // 166: viam.app.v1.UpdateMLModelMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	289, // 167: viam.app.v1.UpdateMLTrainingMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	290, // 168: viam.app.v1.UpdateMLTrainingMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	227, // 169: viam.app.v1.UploadModuleFileRequest.module_file_info:type_name -> viam.app.v1.ModuleFileInfo
-	232, // 170: viam.app.v1.GetModuleResponse.module:type_name -> viam.app.v1.Module
-	5,   // 171: viam.app.v1.Module.visibility:type_name -> viam.app.v1.Visibility
-	233, // 172: viam.app.v1.Module.versions:type_name -> viam.app.v1.VersionHistory
-	226, // 173: viam.app.v1.Module.models:type_name -> viam.app.v1.Model
-	221, // 174: viam.app.v1.Module.apps:type_name -> viam.app.v1.App
-	234, // 175: viam.app.v1.VersionHistory.files:type_name -> viam.app.v1.Uploads
-	226, // 176: viam.app.v1.VersionHistory.models:type_name -> viam.app.v1.Model
-	221, // 177: viam.app.v1.VersionHistory.apps:type_name -> viam.app.v1.App
-	286, // 178: viam.app.v1.Uploads.uploaded_at:type_name -> google.protobuf.Timestamp
-	232, // 179: viam.app.v1.ListModulesResponse.modules:type_name -> viam.app.v1.Module
-	240, // 180: viam.app.v1.ListOrganizationsByUserResponse.orgs:type_name -> viam.app.v1.OrgDetails
-	240, // 181: viam.app.v1.SearchOrganizationsResponse.organizations:type_name -> viam.app.v1.OrgDetails
-	186, // 182: viam.app.v1.CreateKeyRequest.authorizations:type_name -> viam.app.v1.Authorization
-	121, // 183: viam.app.v1.APIKeyWithAuthorizations.api_key:type_name -> viam.app.v1.APIKey
-	250, // 184: viam.app.v1.APIKeyWithAuthorizations.authorizations:type_name -> viam.app.v1.AuthorizationDetails
-	251, // 185: viam.app.v1.ListKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
-	6,   // 186: viam.app.v1.GetAppContentResponse.app_type:type_name -> viam.app.v1.AppType
-	278, // 187: viam.app.v1.CreateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
-	278, // 188: viam.app.v1.ReadOAuthAppResponse.oauth_config:type_name -> viam.app.v1.OAuthConfig
-	278, // 189: viam.app.v1.UpdateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
-	7,   // 190: viam.app.v1.OAuthConfig.client_authentication:type_name -> viam.app.v1.ClientAuthentication
-	8,   // 191: viam.app.v1.OAuthConfig.pkce:type_name -> viam.app.v1.PKCE
-	9,   // 192: viam.app.v1.OAuthConfig.url_validation:type_name -> viam.app.v1.URLValidation
-	10,  // 193: viam.app.v1.OAuthConfig.enabled_grants:type_name -> viam.app.v1.EnabledGrant
-	284, // 194: viam.app.v1.TextOverrides.fields:type_name -> viam.app.v1.TextOverrides.FieldsEntry
-	285, // 195: viam.app.v1.GetAppBrandingResponse.text_customizations:type_name -> viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry
-	283, // 196: viam.app.v1.AppCustomizations.machine_picker:type_name -> viam.app.v1.MachinePickerCustomizations
-	280, // 197: viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry.value:type_name -> viam.app.v1.TextOverrides
-	237, // 198: viam.app.v1.AppService.GetUserIDByEmail:input_type -> viam.app.v1.GetUserIDByEmailRequest
-	21,  // 199: viam.app.v1.AppService.CreateOrganization:input_type -> viam.app.v1.CreateOrganizationRequest
-	16,  // 200: viam.app.v1.AppService.ListOrganizations:input_type -> viam.app.v1.ListOrganizationsRequest
-	80,  // 201: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:input_type -> viam.app.v1.GetOrganizationsWithAccessToLocationRequest
-	239, // 202: viam.app.v1.AppService.ListOrganizationsByUser:input_type -> viam.app.v1.ListOrganizationsByUserRequest
-	242, // 203: viam.app.v1.AppService.SearchOrganizations:input_type -> viam.app.v1.SearchOrganizationsRequest
-	23,  // 204: viam.app.v1.AppService.GetOrganization:input_type -> viam.app.v1.GetOrganizationRequest
-	25,  // 205: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:input_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityRequest
-	27,  // 206: viam.app.v1.AppService.UpdateOrganization:input_type -> viam.app.v1.UpdateOrganizationRequest
-	29,  // 207: viam.app.v1.AppService.UpdateOrganizationNamespace:input_type -> viam.app.v1.UpdateOrganizationNamespaceRequest
-	31,  // 208: viam.app.v1.AppService.DeleteOrganization:input_type -> viam.app.v1.DeleteOrganizationRequest
-	33,  // 209: viam.app.v1.AppService.GetOrganizationMetadata:input_type -> viam.app.v1.GetOrganizationMetadataRequest
-	35,  // 210: viam.app.v1.AppService.UpdateOrganizationMetadata:input_type -> viam.app.v1.UpdateOrganizationMetadataRequest
-	37,  // 211: viam.app.v1.AppService.ListOrganizationMembers:input_type -> viam.app.v1.ListOrganizationMembersRequest
-	39,  // 212: viam.app.v1.AppService.CreateOrganizationInvite:input_type -> viam.app.v1.CreateOrganizationInviteRequest
-	41,  // 213: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:input_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest
-	47,  // 214: viam.app.v1.AppService.DeleteOrganizationMember:input_type -> viam.app.v1.DeleteOrganizationMemberRequest
-	43,  // 215: viam.app.v1.AppService.DeleteOrganizationInvite:input_type -> viam.app.v1.DeleteOrganizationInviteRequest
-	45,  // 216: viam.app.v1.AppService.ResendOrganizationInvite:input_type -> viam.app.v1.ResendOrganizationInviteRequest
-	50,  // 217: viam.app.v1.AppService.EnableBillingService:input_type -> viam.app.v1.EnableBillingServiceRequest
-	56,  // 218: viam.app.v1.AppService.DisableBillingService:input_type -> viam.app.v1.DisableBillingServiceRequest
-	52,  // 219: viam.app.v1.AppService.UpdateBillingService:input_type -> viam.app.v1.UpdateBillingServiceRequest
-	54,  // 220: viam.app.v1.AppService.GetBillingServiceConfig:input_type -> viam.app.v1.GetBillingServiceConfigRequest
-	58,  // 221: viam.app.v1.AppService.OrganizationSetSupportEmail:input_type -> viam.app.v1.OrganizationSetSupportEmailRequest
-	60,  // 222: viam.app.v1.AppService.OrganizationGetSupportEmail:input_type -> viam.app.v1.OrganizationGetSupportEmailRequest
-	260, // 223: viam.app.v1.AppService.OrganizationSetLogo:input_type -> viam.app.v1.OrganizationSetLogoRequest
-	262, // 224: viam.app.v1.AppService.OrganizationGetLogo:input_type -> viam.app.v1.OrganizationGetLogoRequest
-	264, // 225: viam.app.v1.AppService.EnableAuthService:input_type -> viam.app.v1.EnableAuthServiceRequest
-	266, // 226: viam.app.v1.AppService.DisableAuthService:input_type -> viam.app.v1.DisableAuthServiceRequest
-	268, // 227: viam.app.v1.AppService.CreateOAuthApp:input_type -> viam.app.v1.CreateOAuthAppRequest
-	270, // 228: viam.app.v1.AppService.ReadOAuthApp:input_type -> viam.app.v1.ReadOAuthAppRequest
-	272, // 229: viam.app.v1.AppService.UpdateOAuthApp:input_type -> viam.app.v1.UpdateOAuthAppRequest
-	274, // 230: viam.app.v1.AppService.DeleteOAuthApp:input_type -> viam.app.v1.DeleteOAuthAppRequest
-	276, // 231: viam.app.v1.AppService.ListOAuthApps:input_type -> viam.app.v1.ListOAuthAppsRequest
-	68,  // 232: viam.app.v1.AppService.CreateLocation:input_type -> viam.app.v1.CreateLocationRequest
-	70,  // 233: viam.app.v1.AppService.GetLocation:input_type -> viam.app.v1.GetLocationRequest
-	72,  // 234: viam.app.v1.AppService.UpdateLocation:input_type -> viam.app.v1.UpdateLocationRequest
-	74,  // 235: viam.app.v1.AppService.DeleteLocation:input_type -> viam.app.v1.DeleteLocationRequest
-	76,  // 236: viam.app.v1.AppService.GetLocationMetadata:input_type -> viam.app.v1.GetLocationMetadataRequest
-	78,  // 237: viam.app.v1.AppService.UpdateLocationMetadata:input_type -> viam.app.v1.UpdateLocationMetadataRequest
-	82,  // 238: viam.app.v1.AppService.ListLocations:input_type -> viam.app.v1.ListLocationsRequest
-	83,  // 239: viam.app.v1.AppService.ShareLocation:input_type -> viam.app.v1.ShareLocationRequest
-	85,  // 240: viam.app.v1.AppService.UnshareLocation:input_type -> viam.app.v1.UnshareLocationRequest
-	92,  // 241: viam.app.v1.AppService.LocationAuth:input_type -> viam.app.v1.LocationAuthRequest
-	88,  // 242: viam.app.v1.AppService.CreateLocationSecret:input_type -> viam.app.v1.CreateLocationSecretRequest
-	90,  // 243: viam.app.v1.AppService.DeleteLocationSecret:input_type -> viam.app.v1.DeleteLocationSecretRequest
-	94,  // 244: viam.app.v1.AppService.GetRobot:input_type -> viam.app.v1.GetRobotRequest
-	174, // 245: viam.app.v1.AppService.GetRobotMetadata:input_type -> viam.app.v1.GetRobotMetadataRequest
-	176, // 246: viam.app.v1.AppService.UpdateRobotMetadata:input_type -> viam.app.v1.UpdateRobotMetadataRequest
-	95,  // 247: viam.app.v1.AppService.GetRoverRentalRobots:input_type -> viam.app.v1.GetRoverRentalRobotsRequest
-	99,  // 248: viam.app.v1.AppService.GetRobotParts:input_type -> viam.app.v1.GetRobotPartsRequest
-	101, // 249: viam.app.v1.AppService.GetRobotPart:input_type -> viam.app.v1.GetRobotPartRequest
-	103, // 250: viam.app.v1.AppService.GetRobotPartByNameAndLocation:input_type -> viam.app.v1.GetRobotPartByNameAndLocationRequest
-	105, // 251: viam.app.v1.AppService.GetRobotPartLogs:input_type -> viam.app.v1.GetRobotPartLogsRequest
-	107, // 252: viam.app.v1.AppService.TailRobotPartLogs:input_type -> viam.app.v1.TailRobotPartLogsRequest
-	109, // 253: viam.app.v1.AppService.GetRobotPartHistory:input_type -> viam.app.v1.GetRobotPartHistoryRequest
-	111, // 254: viam.app.v1.AppService.UpdateRobotPart:input_type -> viam.app.v1.UpdateRobotPartRequest
-	113, // 255: viam.app.v1.AppService.NewRobotPart:input_type -> viam.app.v1.NewRobotPartRequest
-	115, // 256: viam.app.v1.AppService.DeleteRobotPart:input_type -> viam.app.v1.DeleteRobotPartRequest
-	116, // 257: viam.app.v1.AppService.GetRobotPartMetadata:input_type -> viam.app.v1.GetRobotPartMetadataRequest
-	118, // 258: viam.app.v1.AppService.UpdateRobotPartMetadata:input_type -> viam.app.v1.UpdateRobotPartMetadataRequest
-	120, // 259: viam.app.v1.AppService.GetRobotAPIKeys:input_type -> viam.app.v1.GetRobotAPIKeysRequest
-	178, // 260: viam.app.v1.AppService.MarkPartAsMain:input_type -> viam.app.v1.MarkPartAsMainRequest
-	180, // 261: viam.app.v1.AppService.MarkPartForRestart:input_type -> viam.app.v1.MarkPartForRestartRequest
-	182, // 262: viam.app.v1.AppService.CreateRobotPartSecret:input_type -> viam.app.v1.CreateRobotPartSecretRequest
-	184, // 263: viam.app.v1.AppService.DeleteRobotPartSecret:input_type -> viam.app.v1.DeleteRobotPartSecretRequest
-	149, // 264: viam.app.v1.AppService.ListRobots:input_type -> viam.app.v1.ListRobotsRequest
-	150, // 265: viam.app.v1.AppService.ListRobotsForLocations:input_type -> viam.app.v1.ListRobotsForLocationsRequest
-	151, // 266: viam.app.v1.AppService.ListRobotsForOrg:input_type -> viam.app.v1.ListRobotsForOrgRequest
-	168, // 267: viam.app.v1.AppService.NewRobot:input_type -> viam.app.v1.NewRobotRequest
-	170, // 268: viam.app.v1.AppService.UpdateRobot:input_type -> viam.app.v1.UpdateRobotRequest
-	172, // 269: viam.app.v1.AppService.DeleteRobot:input_type -> viam.app.v1.DeleteRobotRequest
-	131, // 270: viam.app.v1.AppService.ListFragments:input_type -> viam.app.v1.ListFragmentsRequest
-	133, // 271: viam.app.v1.AppService.GetFragment:input_type -> viam.app.v1.GetFragmentRequest
-	135, // 272: viam.app.v1.AppService.CreateFragment:input_type -> viam.app.v1.CreateFragmentRequest
-	137, // 273: viam.app.v1.AppService.UpdateFragment:input_type -> viam.app.v1.UpdateFragmentRequest
-	139, // 274: viam.app.v1.AppService.DeleteFragment:input_type -> viam.app.v1.DeleteFragmentRequest
-	153, // 275: viam.app.v1.AppService.ListNestedFragments:input_type -> viam.app.v1.ListNestedFragmentsRequest
-	155, // 276: viam.app.v1.AppService.ListMachineFragments:input_type -> viam.app.v1.ListMachineFragmentsRequest
-	157, // 277: viam.app.v1.AppService.ListMachineSummaries:input_type -> viam.app.v1.ListMachineSummariesRequest
-	141, // 278: viam.app.v1.AppService.GetFragmentHistory:input_type -> viam.app.v1.GetFragmentHistoryRequest
-	143, // 279: viam.app.v1.AppService.GetFragmentUsage:input_type -> viam.app.v1.GetFragmentUsageRequest
-	145, // 280: viam.app.v1.AppService.SetFragmentTag:input_type -> viam.app.v1.SetFragmentTagRequest
-	147, // 281: viam.app.v1.AppService.DeleteFragmentTag:input_type -> viam.app.v1.DeleteFragmentTagRequest
-	187, // 282: viam.app.v1.AppService.AddRole:input_type -> viam.app.v1.AddRoleRequest
-	189, // 283: viam.app.v1.AppService.RemoveRole:input_type -> viam.app.v1.RemoveRoleRequest
-	191, // 284: viam.app.v1.AppService.ChangeRole:input_type -> viam.app.v1.ChangeRoleRequest
-	193, // 285: viam.app.v1.AppService.ListAuthorizations:input_type -> viam.app.v1.ListAuthorizationsRequest
-	195, // 286: viam.app.v1.AppService.CheckPermissions:input_type -> viam.app.v1.CheckPermissionsRequest
-	204, // 287: viam.app.v1.AppService.GetRegistryItem:input_type -> viam.app.v1.GetRegistryItemRequest
-	206, // 288: viam.app.v1.AppService.CreateRegistryItem:input_type -> viam.app.v1.CreateRegistryItemRequest
-	208, // 289: viam.app.v1.AppService.UpdateRegistryItem:input_type -> viam.app.v1.UpdateRegistryItemRequest
-	210, // 290: viam.app.v1.AppService.ListRegistryItems:input_type -> viam.app.v1.ListRegistryItemsRequest
-	212, // 291: viam.app.v1.AppService.DeleteRegistryItem:input_type -> viam.app.v1.DeleteRegistryItemRequest
-	214, // 292: viam.app.v1.AppService.RenameRegistryItem:input_type -> viam.app.v1.RenameRegistryItemRequest
-	216, // 293: viam.app.v1.AppService.TransferRegistryItem:input_type -> viam.app.v1.TransferRegistryItemRequest
-	218, // 294: viam.app.v1.AppService.CreateModule:input_type -> viam.app.v1.CreateModuleRequest
-	220, // 295: viam.app.v1.AppService.UpdateModule:input_type -> viam.app.v1.UpdateModuleRequest
-	228, // 296: viam.app.v1.AppService.UploadModuleFile:input_type -> viam.app.v1.UploadModuleFileRequest
-	230, // 297: viam.app.v1.AppService.GetModule:input_type -> viam.app.v1.GetModuleRequest
-	235, // 298: viam.app.v1.AppService.ListModules:input_type -> viam.app.v1.ListModulesRequest
-	244, // 299: viam.app.v1.AppService.CreateKey:input_type -> viam.app.v1.CreateKeyRequest
-	246, // 300: viam.app.v1.AppService.DeleteKey:input_type -> viam.app.v1.DeleteKeyRequest
-	252, // 301: viam.app.v1.AppService.ListKeys:input_type -> viam.app.v1.ListKeysRequest
-	248, // 302: viam.app.v1.AppService.RenameKey:input_type -> viam.app.v1.RenameKeyRequest
-	254, // 303: viam.app.v1.AppService.RotateKey:input_type -> viam.app.v1.RotateKeyRequest
-	256, // 304: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:input_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest
-	258, // 305: viam.app.v1.AppService.GetAppContent:input_type -> viam.app.v1.GetAppContentRequest
-	279, // 306: viam.app.v1.AppService.GetAppBranding:input_type -> viam.app.v1.GetAppBrandingRequest
-	238, // 307: viam.app.v1.AppService.GetUserIDByEmail:output_type -> viam.app.v1.GetUserIDByEmailResponse
-	22,  // 308: viam.app.v1.AppService.CreateOrganization:output_type -> viam.app.v1.CreateOrganizationResponse
-	19,  // 309: viam.app.v1.AppService.ListOrganizations:output_type -> viam.app.v1.ListOrganizationsResponse
-	81,  // 310: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:output_type -> viam.app.v1.GetOrganizationsWithAccessToLocationResponse
-	241, // 311: viam.app.v1.AppService.ListOrganizationsByUser:output_type -> viam.app.v1.ListOrganizationsByUserResponse
-	243, // 312: viam.app.v1.AppService.SearchOrganizations:output_type -> viam.app.v1.SearchOrganizationsResponse
-	24,  // 313: viam.app.v1.AppService.GetOrganization:output_type -> viam.app.v1.GetOrganizationResponse
-	26,  // 314: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:output_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityResponse
-	28,  // 315: viam.app.v1.AppService.UpdateOrganization:output_type -> viam.app.v1.UpdateOrganizationResponse
-	30,  // 316: viam.app.v1.AppService.UpdateOrganizationNamespace:output_type -> viam.app.v1.UpdateOrganizationNamespaceResponse
-	32,  // 317: viam.app.v1.AppService.DeleteOrganization:output_type -> viam.app.v1.DeleteOrganizationResponse
-	34,  // 318: viam.app.v1.AppService.GetOrganizationMetadata:output_type -> viam.app.v1.GetOrganizationMetadataResponse
-	36,  // 319: viam.app.v1.AppService.UpdateOrganizationMetadata:output_type -> viam.app.v1.UpdateOrganizationMetadataResponse
-	38,  // 320: viam.app.v1.AppService.ListOrganizationMembers:output_type -> viam.app.v1.ListOrganizationMembersResponse
-	40,  // 321: viam.app.v1.AppService.CreateOrganizationInvite:output_type -> viam.app.v1.CreateOrganizationInviteResponse
-	42,  // 322: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:output_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse
-	48,  // 323: viam.app.v1.AppService.DeleteOrganizationMember:output_type -> viam.app.v1.DeleteOrganizationMemberResponse
-	44,  // 324: viam.app.v1.AppService.DeleteOrganizationInvite:output_type -> viam.app.v1.DeleteOrganizationInviteResponse
-	46,  // 325: viam.app.v1.AppService.ResendOrganizationInvite:output_type -> viam.app.v1.ResendOrganizationInviteResponse
-	51,  // 326: viam.app.v1.AppService.EnableBillingService:output_type -> viam.app.v1.EnableBillingServiceResponse
-	57,  // 327: viam.app.v1.AppService.DisableBillingService:output_type -> viam.app.v1.DisableBillingServiceResponse
-	53,  // 328: viam.app.v1.AppService.UpdateBillingService:output_type -> viam.app.v1.UpdateBillingServiceResponse
-	55,  // 329: viam.app.v1.AppService.GetBillingServiceConfig:output_type -> viam.app.v1.GetBillingServiceConfigResponse
-	59,  // 330: viam.app.v1.AppService.OrganizationSetSupportEmail:output_type -> viam.app.v1.OrganizationSetSupportEmailResponse
-	61,  // 331: viam.app.v1.AppService.OrganizationGetSupportEmail:output_type -> viam.app.v1.OrganizationGetSupportEmailResponse
-	261, // 332: viam.app.v1.AppService.OrganizationSetLogo:output_type -> viam.app.v1.OrganizationSetLogoResponse
-	263, // 333: viam.app.v1.AppService.OrganizationGetLogo:output_type -> viam.app.v1.OrganizationGetLogoResponse
-	265, // 334: viam.app.v1.AppService.EnableAuthService:output_type -> viam.app.v1.EnableAuthServiceResponse
-	267, // 335: viam.app.v1.AppService.DisableAuthService:output_type -> viam.app.v1.DisableAuthServiceResponse
-	269, // 336: viam.app.v1.AppService.CreateOAuthApp:output_type -> viam.app.v1.CreateOAuthAppResponse
-	271, // 337: viam.app.v1.AppService.ReadOAuthApp:output_type -> viam.app.v1.ReadOAuthAppResponse
-	273, // 338: viam.app.v1.AppService.UpdateOAuthApp:output_type -> viam.app.v1.UpdateOAuthAppResponse
-	275, // 339: viam.app.v1.AppService.DeleteOAuthApp:output_type -> viam.app.v1.DeleteOAuthAppResponse
-	277, // 340: viam.app.v1.AppService.ListOAuthApps:output_type -> viam.app.v1.ListOAuthAppsResponse
-	69,  // 341: viam.app.v1.AppService.CreateLocation:output_type -> viam.app.v1.CreateLocationResponse
-	71,  // 342: viam.app.v1.AppService.GetLocation:output_type -> viam.app.v1.GetLocationResponse
-	73,  // 343: viam.app.v1.AppService.UpdateLocation:output_type -> viam.app.v1.UpdateLocationResponse
-	75,  // 344: viam.app.v1.AppService.DeleteLocation:output_type -> viam.app.v1.DeleteLocationResponse
-	77,  // 345: viam.app.v1.AppService.GetLocationMetadata:output_type -> viam.app.v1.GetLocationMetadataResponse
-	79,  // 346: viam.app.v1.AppService.UpdateLocationMetadata:output_type -> viam.app.v1.UpdateLocationMetadataResponse
-	87,  // 347: viam.app.v1.AppService.ListLocations:output_type -> viam.app.v1.ListLocationsResponse
-	84,  // 348: viam.app.v1.AppService.ShareLocation:output_type -> viam.app.v1.ShareLocationResponse
-	86,  // 349: viam.app.v1.AppService.UnshareLocation:output_type -> viam.app.v1.UnshareLocationResponse
-	93,  // 350: viam.app.v1.AppService.LocationAuth:output_type -> viam.app.v1.LocationAuthResponse
-	89,  // 351: viam.app.v1.AppService.CreateLocationSecret:output_type -> viam.app.v1.CreateLocationSecretResponse
-	91,  // 352: viam.app.v1.AppService.DeleteLocationSecret:output_type -> viam.app.v1.DeleteLocationSecretResponse
-	98,  // 353: viam.app.v1.AppService.GetRobot:output_type -> viam.app.v1.GetRobotResponse
-	175, // 354: viam.app.v1.AppService.GetRobotMetadata:output_type -> viam.app.v1.GetRobotMetadataResponse
-	177, // 355: viam.app.v1.AppService.UpdateRobotMetadata:output_type -> viam.app.v1.UpdateRobotMetadataResponse
-	97,  // 356: viam.app.v1.AppService.GetRoverRentalRobots:output_type -> viam.app.v1.GetRoverRentalRobotsResponse
-	100, // 357: viam.app.v1.AppService.GetRobotParts:output_type -> viam.app.v1.GetRobotPartsResponse
-	102, // 358: viam.app.v1.AppService.GetRobotPart:output_type -> viam.app.v1.GetRobotPartResponse
-	104, // 359: viam.app.v1.AppService.GetRobotPartByNameAndLocation:output_type -> viam.app.v1.GetRobotPartByNameAndLocationResponse
-	106, // 360: viam.app.v1.AppService.GetRobotPartLogs:output_type -> viam.app.v1.GetRobotPartLogsResponse
-	108, // 361: viam.app.v1.AppService.TailRobotPartLogs:output_type -> viam.app.v1.TailRobotPartLogsResponse
-	110, // 362: viam.app.v1.AppService.GetRobotPartHistory:output_type -> viam.app.v1.GetRobotPartHistoryResponse
-	112, // 363: viam.app.v1.AppService.UpdateRobotPart:output_type -> viam.app.v1.UpdateRobotPartResponse
-	114, // 364: viam.app.v1.AppService.NewRobotPart:output_type -> viam.app.v1.NewRobotPartResponse
-	123, // 365: viam.app.v1.AppService.DeleteRobotPart:output_type -> viam.app.v1.DeleteRobotPartResponse
-	117, // 366: viam.app.v1.AppService.GetRobotPartMetadata:output_type -> viam.app.v1.GetRobotPartMetadataResponse
-	119, // 367: viam.app.v1.AppService.UpdateRobotPartMetadata:output_type -> viam.app.v1.UpdateRobotPartMetadataResponse
-	122, // 368: viam.app.v1.AppService.GetRobotAPIKeys:output_type -> viam.app.v1.GetRobotAPIKeysResponse
-	179, // 369: viam.app.v1.AppService.MarkPartAsMain:output_type -> viam.app.v1.MarkPartAsMainResponse
-	181, // 370: viam.app.v1.AppService.MarkPartForRestart:output_type -> viam.app.v1.MarkPartForRestartResponse
-	183, // 371: viam.app.v1.AppService.CreateRobotPartSecret:output_type -> viam.app.v1.CreateRobotPartSecretResponse
-	185, // 372: viam.app.v1.AppService.DeleteRobotPartSecret:output_type -> viam.app.v1.DeleteRobotPartSecretResponse
-	165, // 373: viam.app.v1.AppService.ListRobots:output_type -> viam.app.v1.ListRobotsResponse
-	166, // 374: viam.app.v1.AppService.ListRobotsForLocations:output_type -> viam.app.v1.ListRobotsForLocationsResponse
-	167, // 375: viam.app.v1.AppService.ListRobotsForOrg:output_type -> viam.app.v1.ListRobotsForOrgResponse
-	169, // 376: viam.app.v1.AppService.NewRobot:output_type -> viam.app.v1.NewRobotResponse
-	171, // 377: viam.app.v1.AppService.UpdateRobot:output_type -> viam.app.v1.UpdateRobotResponse
-	173, // 378: viam.app.v1.AppService.DeleteRobot:output_type -> viam.app.v1.DeleteRobotResponse
-	132, // 379: viam.app.v1.AppService.ListFragments:output_type -> viam.app.v1.ListFragmentsResponse
-	134, // 380: viam.app.v1.AppService.GetFragment:output_type -> viam.app.v1.GetFragmentResponse
-	136, // 381: viam.app.v1.AppService.CreateFragment:output_type -> viam.app.v1.CreateFragmentResponse
-	138, // 382: viam.app.v1.AppService.UpdateFragment:output_type -> viam.app.v1.UpdateFragmentResponse
-	140, // 383: viam.app.v1.AppService.DeleteFragment:output_type -> viam.app.v1.DeleteFragmentResponse
-	154, // 384: viam.app.v1.AppService.ListNestedFragments:output_type -> viam.app.v1.ListNestedFragmentsResponse
-	156, // 385: viam.app.v1.AppService.ListMachineFragments:output_type -> viam.app.v1.ListMachineFragmentsResponse
-	158, // 386: viam.app.v1.AppService.ListMachineSummaries:output_type -> viam.app.v1.ListMachineSummariesResponse
-	142, // 387: viam.app.v1.AppService.GetFragmentHistory:output_type -> viam.app.v1.GetFragmentHistoryResponse
-	144, // 388: viam.app.v1.AppService.GetFragmentUsage:output_type -> viam.app.v1.GetFragmentUsageResponse
-	146, // 389: viam.app.v1.AppService.SetFragmentTag:output_type -> viam.app.v1.SetFragmentTagResponse
-	148, // 390: viam.app.v1.AppService.DeleteFragmentTag:output_type -> viam.app.v1.DeleteFragmentTagResponse
-	188, // 391: viam.app.v1.AppService.AddRole:output_type -> viam.app.v1.AddRoleResponse
-	190, // 392: viam.app.v1.AppService.RemoveRole:output_type -> viam.app.v1.RemoveRoleResponse
-	192, // 393: viam.app.v1.AppService.ChangeRole:output_type -> viam.app.v1.ChangeRoleResponse
-	194, // 394: viam.app.v1.AppService.ListAuthorizations:output_type -> viam.app.v1.ListAuthorizationsResponse
-	197, // 395: viam.app.v1.AppService.CheckPermissions:output_type -> viam.app.v1.CheckPermissionsResponse
-	205, // 396: viam.app.v1.AppService.GetRegistryItem:output_type -> viam.app.v1.GetRegistryItemResponse
-	207, // 397: viam.app.v1.AppService.CreateRegistryItem:output_type -> viam.app.v1.CreateRegistryItemResponse
-	209, // 398: viam.app.v1.AppService.UpdateRegistryItem:output_type -> viam.app.v1.UpdateRegistryItemResponse
-	211, // 399: viam.app.v1.AppService.ListRegistryItems:output_type -> viam.app.v1.ListRegistryItemsResponse
-	213, // 400: viam.app.v1.AppService.DeleteRegistryItem:output_type -> viam.app.v1.DeleteRegistryItemResponse
-	215, // 401: viam.app.v1.AppService.RenameRegistryItem:output_type -> viam.app.v1.RenameRegistryItemResponse
-	217, // 402: viam.app.v1.AppService.TransferRegistryItem:output_type -> viam.app.v1.TransferRegistryItemResponse
-	219, // 403: viam.app.v1.AppService.CreateModule:output_type -> viam.app.v1.CreateModuleResponse
-	222, // 404: viam.app.v1.AppService.UpdateModule:output_type -> viam.app.v1.UpdateModuleResponse
-	229, // 405: viam.app.v1.AppService.UploadModuleFile:output_type -> viam.app.v1.UploadModuleFileResponse
-	231, // 406: viam.app.v1.AppService.GetModule:output_type -> viam.app.v1.GetModuleResponse
-	236, // 407: viam.app.v1.AppService.ListModules:output_type -> viam.app.v1.ListModulesResponse
-	245, // 408: viam.app.v1.AppService.CreateKey:output_type -> viam.app.v1.CreateKeyResponse
-	247, // 409: viam.app.v1.AppService.DeleteKey:output_type -> viam.app.v1.DeleteKeyResponse
-	253, // 410: viam.app.v1.AppService.ListKeys:output_type -> viam.app.v1.ListKeysResponse
-	249, // 411: viam.app.v1.AppService.RenameKey:output_type -> viam.app.v1.RenameKeyResponse
-	255, // 412: viam.app.v1.AppService.RotateKey:output_type -> viam.app.v1.RotateKeyResponse
-	257, // 413: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:output_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse
-	259, // 414: viam.app.v1.AppService.GetAppContent:output_type -> viam.app.v1.GetAppContentResponse
-	281, // 415: viam.app.v1.AppService.GetAppBranding:output_type -> viam.app.v1.GetAppBrandingResponse
-	307, // [307:416] is the sub-list for method output_type
-	198, // [198:307] is the sub-list for method input_type
-	198, // [198:198] is the sub-list for extension type_name
-	198, // [198:198] is the sub-list for extension extendee
-	0,   // [0:198] is the sub-list for field type_name
+	203, // 159: viam.app.v1.DeprecateRegistryItemResponse.item:type_name -> viam.app.v1.RegistryItem
+	5,   // 160: viam.app.v1.UpdateModuleRequest.visibility:type_name -> viam.app.v1.Visibility
+	228, // 161: viam.app.v1.UpdateModuleRequest.models:type_name -> viam.app.v1.Model
+	223, // 162: viam.app.v1.UpdateModuleRequest.apps:type_name -> viam.app.v1.App
+	284, // 163: viam.app.v1.App.customizations:type_name -> viam.app.v1.AppCustomizations
+	228, // 164: viam.app.v1.UpdateModuleMetadata.models:type_name -> viam.app.v1.Model
+	223, // 165: viam.app.v1.UpdateModuleMetadata.apps:type_name -> viam.app.v1.App
+	291, // 166: viam.app.v1.UpdateMLModelMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	292, // 167: viam.app.v1.UpdateMLModelMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	291, // 168: viam.app.v1.UpdateMLTrainingMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	292, // 169: viam.app.v1.UpdateMLTrainingMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	229, // 170: viam.app.v1.UploadModuleFileRequest.module_file_info:type_name -> viam.app.v1.ModuleFileInfo
+	234, // 171: viam.app.v1.GetModuleResponse.module:type_name -> viam.app.v1.Module
+	5,   // 172: viam.app.v1.Module.visibility:type_name -> viam.app.v1.Visibility
+	235, // 173: viam.app.v1.Module.versions:type_name -> viam.app.v1.VersionHistory
+	228, // 174: viam.app.v1.Module.models:type_name -> viam.app.v1.Model
+	223, // 175: viam.app.v1.Module.apps:type_name -> viam.app.v1.App
+	236, // 176: viam.app.v1.VersionHistory.files:type_name -> viam.app.v1.Uploads
+	228, // 177: viam.app.v1.VersionHistory.models:type_name -> viam.app.v1.Model
+	223, // 178: viam.app.v1.VersionHistory.apps:type_name -> viam.app.v1.App
+	288, // 179: viam.app.v1.Uploads.uploaded_at:type_name -> google.protobuf.Timestamp
+	234, // 180: viam.app.v1.ListModulesResponse.modules:type_name -> viam.app.v1.Module
+	242, // 181: viam.app.v1.ListOrganizationsByUserResponse.orgs:type_name -> viam.app.v1.OrgDetails
+	242, // 182: viam.app.v1.SearchOrganizationsResponse.organizations:type_name -> viam.app.v1.OrgDetails
+	186, // 183: viam.app.v1.CreateKeyRequest.authorizations:type_name -> viam.app.v1.Authorization
+	121, // 184: viam.app.v1.APIKeyWithAuthorizations.api_key:type_name -> viam.app.v1.APIKey
+	252, // 185: viam.app.v1.APIKeyWithAuthorizations.authorizations:type_name -> viam.app.v1.AuthorizationDetails
+	253, // 186: viam.app.v1.ListKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
+	6,   // 187: viam.app.v1.GetAppContentResponse.app_type:type_name -> viam.app.v1.AppType
+	280, // 188: viam.app.v1.CreateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
+	280, // 189: viam.app.v1.ReadOAuthAppResponse.oauth_config:type_name -> viam.app.v1.OAuthConfig
+	280, // 190: viam.app.v1.UpdateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
+	7,   // 191: viam.app.v1.OAuthConfig.client_authentication:type_name -> viam.app.v1.ClientAuthentication
+	8,   // 192: viam.app.v1.OAuthConfig.pkce:type_name -> viam.app.v1.PKCE
+	9,   // 193: viam.app.v1.OAuthConfig.url_validation:type_name -> viam.app.v1.URLValidation
+	10,  // 194: viam.app.v1.OAuthConfig.enabled_grants:type_name -> viam.app.v1.EnabledGrant
+	286, // 195: viam.app.v1.TextOverrides.fields:type_name -> viam.app.v1.TextOverrides.FieldsEntry
+	287, // 196: viam.app.v1.GetAppBrandingResponse.text_customizations:type_name -> viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry
+	285, // 197: viam.app.v1.AppCustomizations.machine_picker:type_name -> viam.app.v1.MachinePickerCustomizations
+	282, // 198: viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry.value:type_name -> viam.app.v1.TextOverrides
+	239, // 199: viam.app.v1.AppService.GetUserIDByEmail:input_type -> viam.app.v1.GetUserIDByEmailRequest
+	21,  // 200: viam.app.v1.AppService.CreateOrganization:input_type -> viam.app.v1.CreateOrganizationRequest
+	16,  // 201: viam.app.v1.AppService.ListOrganizations:input_type -> viam.app.v1.ListOrganizationsRequest
+	80,  // 202: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:input_type -> viam.app.v1.GetOrganizationsWithAccessToLocationRequest
+	241, // 203: viam.app.v1.AppService.ListOrganizationsByUser:input_type -> viam.app.v1.ListOrganizationsByUserRequest
+	244, // 204: viam.app.v1.AppService.SearchOrganizations:input_type -> viam.app.v1.SearchOrganizationsRequest
+	23,  // 205: viam.app.v1.AppService.GetOrganization:input_type -> viam.app.v1.GetOrganizationRequest
+	25,  // 206: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:input_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityRequest
+	27,  // 207: viam.app.v1.AppService.UpdateOrganization:input_type -> viam.app.v1.UpdateOrganizationRequest
+	29,  // 208: viam.app.v1.AppService.UpdateOrganizationNamespace:input_type -> viam.app.v1.UpdateOrganizationNamespaceRequest
+	31,  // 209: viam.app.v1.AppService.DeleteOrganization:input_type -> viam.app.v1.DeleteOrganizationRequest
+	33,  // 210: viam.app.v1.AppService.GetOrganizationMetadata:input_type -> viam.app.v1.GetOrganizationMetadataRequest
+	35,  // 211: viam.app.v1.AppService.UpdateOrganizationMetadata:input_type -> viam.app.v1.UpdateOrganizationMetadataRequest
+	37,  // 212: viam.app.v1.AppService.ListOrganizationMembers:input_type -> viam.app.v1.ListOrganizationMembersRequest
+	39,  // 213: viam.app.v1.AppService.CreateOrganizationInvite:input_type -> viam.app.v1.CreateOrganizationInviteRequest
+	41,  // 214: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:input_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest
+	47,  // 215: viam.app.v1.AppService.DeleteOrganizationMember:input_type -> viam.app.v1.DeleteOrganizationMemberRequest
+	43,  // 216: viam.app.v1.AppService.DeleteOrganizationInvite:input_type -> viam.app.v1.DeleteOrganizationInviteRequest
+	45,  // 217: viam.app.v1.AppService.ResendOrganizationInvite:input_type -> viam.app.v1.ResendOrganizationInviteRequest
+	50,  // 218: viam.app.v1.AppService.EnableBillingService:input_type -> viam.app.v1.EnableBillingServiceRequest
+	56,  // 219: viam.app.v1.AppService.DisableBillingService:input_type -> viam.app.v1.DisableBillingServiceRequest
+	52,  // 220: viam.app.v1.AppService.UpdateBillingService:input_type -> viam.app.v1.UpdateBillingServiceRequest
+	54,  // 221: viam.app.v1.AppService.GetBillingServiceConfig:input_type -> viam.app.v1.GetBillingServiceConfigRequest
+	58,  // 222: viam.app.v1.AppService.OrganizationSetSupportEmail:input_type -> viam.app.v1.OrganizationSetSupportEmailRequest
+	60,  // 223: viam.app.v1.AppService.OrganizationGetSupportEmail:input_type -> viam.app.v1.OrganizationGetSupportEmailRequest
+	262, // 224: viam.app.v1.AppService.OrganizationSetLogo:input_type -> viam.app.v1.OrganizationSetLogoRequest
+	264, // 225: viam.app.v1.AppService.OrganizationGetLogo:input_type -> viam.app.v1.OrganizationGetLogoRequest
+	266, // 226: viam.app.v1.AppService.EnableAuthService:input_type -> viam.app.v1.EnableAuthServiceRequest
+	268, // 227: viam.app.v1.AppService.DisableAuthService:input_type -> viam.app.v1.DisableAuthServiceRequest
+	270, // 228: viam.app.v1.AppService.CreateOAuthApp:input_type -> viam.app.v1.CreateOAuthAppRequest
+	272, // 229: viam.app.v1.AppService.ReadOAuthApp:input_type -> viam.app.v1.ReadOAuthAppRequest
+	274, // 230: viam.app.v1.AppService.UpdateOAuthApp:input_type -> viam.app.v1.UpdateOAuthAppRequest
+	276, // 231: viam.app.v1.AppService.DeleteOAuthApp:input_type -> viam.app.v1.DeleteOAuthAppRequest
+	278, // 232: viam.app.v1.AppService.ListOAuthApps:input_type -> viam.app.v1.ListOAuthAppsRequest
+	68,  // 233: viam.app.v1.AppService.CreateLocation:input_type -> viam.app.v1.CreateLocationRequest
+	70,  // 234: viam.app.v1.AppService.GetLocation:input_type -> viam.app.v1.GetLocationRequest
+	72,  // 235: viam.app.v1.AppService.UpdateLocation:input_type -> viam.app.v1.UpdateLocationRequest
+	74,  // 236: viam.app.v1.AppService.DeleteLocation:input_type -> viam.app.v1.DeleteLocationRequest
+	76,  // 237: viam.app.v1.AppService.GetLocationMetadata:input_type -> viam.app.v1.GetLocationMetadataRequest
+	78,  // 238: viam.app.v1.AppService.UpdateLocationMetadata:input_type -> viam.app.v1.UpdateLocationMetadataRequest
+	82,  // 239: viam.app.v1.AppService.ListLocations:input_type -> viam.app.v1.ListLocationsRequest
+	83,  // 240: viam.app.v1.AppService.ShareLocation:input_type -> viam.app.v1.ShareLocationRequest
+	85,  // 241: viam.app.v1.AppService.UnshareLocation:input_type -> viam.app.v1.UnshareLocationRequest
+	92,  // 242: viam.app.v1.AppService.LocationAuth:input_type -> viam.app.v1.LocationAuthRequest
+	88,  // 243: viam.app.v1.AppService.CreateLocationSecret:input_type -> viam.app.v1.CreateLocationSecretRequest
+	90,  // 244: viam.app.v1.AppService.DeleteLocationSecret:input_type -> viam.app.v1.DeleteLocationSecretRequest
+	94,  // 245: viam.app.v1.AppService.GetRobot:input_type -> viam.app.v1.GetRobotRequest
+	174, // 246: viam.app.v1.AppService.GetRobotMetadata:input_type -> viam.app.v1.GetRobotMetadataRequest
+	176, // 247: viam.app.v1.AppService.UpdateRobotMetadata:input_type -> viam.app.v1.UpdateRobotMetadataRequest
+	95,  // 248: viam.app.v1.AppService.GetRoverRentalRobots:input_type -> viam.app.v1.GetRoverRentalRobotsRequest
+	99,  // 249: viam.app.v1.AppService.GetRobotParts:input_type -> viam.app.v1.GetRobotPartsRequest
+	101, // 250: viam.app.v1.AppService.GetRobotPart:input_type -> viam.app.v1.GetRobotPartRequest
+	103, // 251: viam.app.v1.AppService.GetRobotPartByNameAndLocation:input_type -> viam.app.v1.GetRobotPartByNameAndLocationRequest
+	105, // 252: viam.app.v1.AppService.GetRobotPartLogs:input_type -> viam.app.v1.GetRobotPartLogsRequest
+	107, // 253: viam.app.v1.AppService.TailRobotPartLogs:input_type -> viam.app.v1.TailRobotPartLogsRequest
+	109, // 254: viam.app.v1.AppService.GetRobotPartHistory:input_type -> viam.app.v1.GetRobotPartHistoryRequest
+	111, // 255: viam.app.v1.AppService.UpdateRobotPart:input_type -> viam.app.v1.UpdateRobotPartRequest
+	113, // 256: viam.app.v1.AppService.NewRobotPart:input_type -> viam.app.v1.NewRobotPartRequest
+	115, // 257: viam.app.v1.AppService.DeleteRobotPart:input_type -> viam.app.v1.DeleteRobotPartRequest
+	116, // 258: viam.app.v1.AppService.GetRobotPartMetadata:input_type -> viam.app.v1.GetRobotPartMetadataRequest
+	118, // 259: viam.app.v1.AppService.UpdateRobotPartMetadata:input_type -> viam.app.v1.UpdateRobotPartMetadataRequest
+	120, // 260: viam.app.v1.AppService.GetRobotAPIKeys:input_type -> viam.app.v1.GetRobotAPIKeysRequest
+	178, // 261: viam.app.v1.AppService.MarkPartAsMain:input_type -> viam.app.v1.MarkPartAsMainRequest
+	180, // 262: viam.app.v1.AppService.MarkPartForRestart:input_type -> viam.app.v1.MarkPartForRestartRequest
+	182, // 263: viam.app.v1.AppService.CreateRobotPartSecret:input_type -> viam.app.v1.CreateRobotPartSecretRequest
+	184, // 264: viam.app.v1.AppService.DeleteRobotPartSecret:input_type -> viam.app.v1.DeleteRobotPartSecretRequest
+	149, // 265: viam.app.v1.AppService.ListRobots:input_type -> viam.app.v1.ListRobotsRequest
+	150, // 266: viam.app.v1.AppService.ListRobotsForLocations:input_type -> viam.app.v1.ListRobotsForLocationsRequest
+	151, // 267: viam.app.v1.AppService.ListRobotsForOrg:input_type -> viam.app.v1.ListRobotsForOrgRequest
+	168, // 268: viam.app.v1.AppService.NewRobot:input_type -> viam.app.v1.NewRobotRequest
+	170, // 269: viam.app.v1.AppService.UpdateRobot:input_type -> viam.app.v1.UpdateRobotRequest
+	172, // 270: viam.app.v1.AppService.DeleteRobot:input_type -> viam.app.v1.DeleteRobotRequest
+	131, // 271: viam.app.v1.AppService.ListFragments:input_type -> viam.app.v1.ListFragmentsRequest
+	133, // 272: viam.app.v1.AppService.GetFragment:input_type -> viam.app.v1.GetFragmentRequest
+	135, // 273: viam.app.v1.AppService.CreateFragment:input_type -> viam.app.v1.CreateFragmentRequest
+	137, // 274: viam.app.v1.AppService.UpdateFragment:input_type -> viam.app.v1.UpdateFragmentRequest
+	139, // 275: viam.app.v1.AppService.DeleteFragment:input_type -> viam.app.v1.DeleteFragmentRequest
+	153, // 276: viam.app.v1.AppService.ListNestedFragments:input_type -> viam.app.v1.ListNestedFragmentsRequest
+	155, // 277: viam.app.v1.AppService.ListMachineFragments:input_type -> viam.app.v1.ListMachineFragmentsRequest
+	157, // 278: viam.app.v1.AppService.ListMachineSummaries:input_type -> viam.app.v1.ListMachineSummariesRequest
+	141, // 279: viam.app.v1.AppService.GetFragmentHistory:input_type -> viam.app.v1.GetFragmentHistoryRequest
+	143, // 280: viam.app.v1.AppService.GetFragmentUsage:input_type -> viam.app.v1.GetFragmentUsageRequest
+	145, // 281: viam.app.v1.AppService.SetFragmentTag:input_type -> viam.app.v1.SetFragmentTagRequest
+	147, // 282: viam.app.v1.AppService.DeleteFragmentTag:input_type -> viam.app.v1.DeleteFragmentTagRequest
+	187, // 283: viam.app.v1.AppService.AddRole:input_type -> viam.app.v1.AddRoleRequest
+	189, // 284: viam.app.v1.AppService.RemoveRole:input_type -> viam.app.v1.RemoveRoleRequest
+	191, // 285: viam.app.v1.AppService.ChangeRole:input_type -> viam.app.v1.ChangeRoleRequest
+	193, // 286: viam.app.v1.AppService.ListAuthorizations:input_type -> viam.app.v1.ListAuthorizationsRequest
+	195, // 287: viam.app.v1.AppService.CheckPermissions:input_type -> viam.app.v1.CheckPermissionsRequest
+	204, // 288: viam.app.v1.AppService.GetRegistryItem:input_type -> viam.app.v1.GetRegistryItemRequest
+	206, // 289: viam.app.v1.AppService.CreateRegistryItem:input_type -> viam.app.v1.CreateRegistryItemRequest
+	208, // 290: viam.app.v1.AppService.UpdateRegistryItem:input_type -> viam.app.v1.UpdateRegistryItemRequest
+	210, // 291: viam.app.v1.AppService.ListRegistryItems:input_type -> viam.app.v1.ListRegistryItemsRequest
+	212, // 292: viam.app.v1.AppService.DeleteRegistryItem:input_type -> viam.app.v1.DeleteRegistryItemRequest
+	214, // 293: viam.app.v1.AppService.RenameRegistryItem:input_type -> viam.app.v1.RenameRegistryItemRequest
+	216, // 294: viam.app.v1.AppService.DeprecateRegistryItem:input_type -> viam.app.v1.DeprecateRegistryItemRequest
+	218, // 295: viam.app.v1.AppService.TransferRegistryItem:input_type -> viam.app.v1.TransferRegistryItemRequest
+	220, // 296: viam.app.v1.AppService.CreateModule:input_type -> viam.app.v1.CreateModuleRequest
+	222, // 297: viam.app.v1.AppService.UpdateModule:input_type -> viam.app.v1.UpdateModuleRequest
+	230, // 298: viam.app.v1.AppService.UploadModuleFile:input_type -> viam.app.v1.UploadModuleFileRequest
+	232, // 299: viam.app.v1.AppService.GetModule:input_type -> viam.app.v1.GetModuleRequest
+	237, // 300: viam.app.v1.AppService.ListModules:input_type -> viam.app.v1.ListModulesRequest
+	246, // 301: viam.app.v1.AppService.CreateKey:input_type -> viam.app.v1.CreateKeyRequest
+	248, // 302: viam.app.v1.AppService.DeleteKey:input_type -> viam.app.v1.DeleteKeyRequest
+	254, // 303: viam.app.v1.AppService.ListKeys:input_type -> viam.app.v1.ListKeysRequest
+	250, // 304: viam.app.v1.AppService.RenameKey:input_type -> viam.app.v1.RenameKeyRequest
+	256, // 305: viam.app.v1.AppService.RotateKey:input_type -> viam.app.v1.RotateKeyRequest
+	258, // 306: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:input_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest
+	260, // 307: viam.app.v1.AppService.GetAppContent:input_type -> viam.app.v1.GetAppContentRequest
+	281, // 308: viam.app.v1.AppService.GetAppBranding:input_type -> viam.app.v1.GetAppBrandingRequest
+	240, // 309: viam.app.v1.AppService.GetUserIDByEmail:output_type -> viam.app.v1.GetUserIDByEmailResponse
+	22,  // 310: viam.app.v1.AppService.CreateOrganization:output_type -> viam.app.v1.CreateOrganizationResponse
+	19,  // 311: viam.app.v1.AppService.ListOrganizations:output_type -> viam.app.v1.ListOrganizationsResponse
+	81,  // 312: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:output_type -> viam.app.v1.GetOrganizationsWithAccessToLocationResponse
+	243, // 313: viam.app.v1.AppService.ListOrganizationsByUser:output_type -> viam.app.v1.ListOrganizationsByUserResponse
+	245, // 314: viam.app.v1.AppService.SearchOrganizations:output_type -> viam.app.v1.SearchOrganizationsResponse
+	24,  // 315: viam.app.v1.AppService.GetOrganization:output_type -> viam.app.v1.GetOrganizationResponse
+	26,  // 316: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:output_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityResponse
+	28,  // 317: viam.app.v1.AppService.UpdateOrganization:output_type -> viam.app.v1.UpdateOrganizationResponse
+	30,  // 318: viam.app.v1.AppService.UpdateOrganizationNamespace:output_type -> viam.app.v1.UpdateOrganizationNamespaceResponse
+	32,  // 319: viam.app.v1.AppService.DeleteOrganization:output_type -> viam.app.v1.DeleteOrganizationResponse
+	34,  // 320: viam.app.v1.AppService.GetOrganizationMetadata:output_type -> viam.app.v1.GetOrganizationMetadataResponse
+	36,  // 321: viam.app.v1.AppService.UpdateOrganizationMetadata:output_type -> viam.app.v1.UpdateOrganizationMetadataResponse
+	38,  // 322: viam.app.v1.AppService.ListOrganizationMembers:output_type -> viam.app.v1.ListOrganizationMembersResponse
+	40,  // 323: viam.app.v1.AppService.CreateOrganizationInvite:output_type -> viam.app.v1.CreateOrganizationInviteResponse
+	42,  // 324: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:output_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse
+	48,  // 325: viam.app.v1.AppService.DeleteOrganizationMember:output_type -> viam.app.v1.DeleteOrganizationMemberResponse
+	44,  // 326: viam.app.v1.AppService.DeleteOrganizationInvite:output_type -> viam.app.v1.DeleteOrganizationInviteResponse
+	46,  // 327: viam.app.v1.AppService.ResendOrganizationInvite:output_type -> viam.app.v1.ResendOrganizationInviteResponse
+	51,  // 328: viam.app.v1.AppService.EnableBillingService:output_type -> viam.app.v1.EnableBillingServiceResponse
+	57,  // 329: viam.app.v1.AppService.DisableBillingService:output_type -> viam.app.v1.DisableBillingServiceResponse
+	53,  // 330: viam.app.v1.AppService.UpdateBillingService:output_type -> viam.app.v1.UpdateBillingServiceResponse
+	55,  // 331: viam.app.v1.AppService.GetBillingServiceConfig:output_type -> viam.app.v1.GetBillingServiceConfigResponse
+	59,  // 332: viam.app.v1.AppService.OrganizationSetSupportEmail:output_type -> viam.app.v1.OrganizationSetSupportEmailResponse
+	61,  // 333: viam.app.v1.AppService.OrganizationGetSupportEmail:output_type -> viam.app.v1.OrganizationGetSupportEmailResponse
+	263, // 334: viam.app.v1.AppService.OrganizationSetLogo:output_type -> viam.app.v1.OrganizationSetLogoResponse
+	265, // 335: viam.app.v1.AppService.OrganizationGetLogo:output_type -> viam.app.v1.OrganizationGetLogoResponse
+	267, // 336: viam.app.v1.AppService.EnableAuthService:output_type -> viam.app.v1.EnableAuthServiceResponse
+	269, // 337: viam.app.v1.AppService.DisableAuthService:output_type -> viam.app.v1.DisableAuthServiceResponse
+	271, // 338: viam.app.v1.AppService.CreateOAuthApp:output_type -> viam.app.v1.CreateOAuthAppResponse
+	273, // 339: viam.app.v1.AppService.ReadOAuthApp:output_type -> viam.app.v1.ReadOAuthAppResponse
+	275, // 340: viam.app.v1.AppService.UpdateOAuthApp:output_type -> viam.app.v1.UpdateOAuthAppResponse
+	277, // 341: viam.app.v1.AppService.DeleteOAuthApp:output_type -> viam.app.v1.DeleteOAuthAppResponse
+	279, // 342: viam.app.v1.AppService.ListOAuthApps:output_type -> viam.app.v1.ListOAuthAppsResponse
+	69,  // 343: viam.app.v1.AppService.CreateLocation:output_type -> viam.app.v1.CreateLocationResponse
+	71,  // 344: viam.app.v1.AppService.GetLocation:output_type -> viam.app.v1.GetLocationResponse
+	73,  // 345: viam.app.v1.AppService.UpdateLocation:output_type -> viam.app.v1.UpdateLocationResponse
+	75,  // 346: viam.app.v1.AppService.DeleteLocation:output_type -> viam.app.v1.DeleteLocationResponse
+	77,  // 347: viam.app.v1.AppService.GetLocationMetadata:output_type -> viam.app.v1.GetLocationMetadataResponse
+	79,  // 348: viam.app.v1.AppService.UpdateLocationMetadata:output_type -> viam.app.v1.UpdateLocationMetadataResponse
+	87,  // 349: viam.app.v1.AppService.ListLocations:output_type -> viam.app.v1.ListLocationsResponse
+	84,  // 350: viam.app.v1.AppService.ShareLocation:output_type -> viam.app.v1.ShareLocationResponse
+	86,  // 351: viam.app.v1.AppService.UnshareLocation:output_type -> viam.app.v1.UnshareLocationResponse
+	93,  // 352: viam.app.v1.AppService.LocationAuth:output_type -> viam.app.v1.LocationAuthResponse
+	89,  // 353: viam.app.v1.AppService.CreateLocationSecret:output_type -> viam.app.v1.CreateLocationSecretResponse
+	91,  // 354: viam.app.v1.AppService.DeleteLocationSecret:output_type -> viam.app.v1.DeleteLocationSecretResponse
+	98,  // 355: viam.app.v1.AppService.GetRobot:output_type -> viam.app.v1.GetRobotResponse
+	175, // 356: viam.app.v1.AppService.GetRobotMetadata:output_type -> viam.app.v1.GetRobotMetadataResponse
+	177, // 357: viam.app.v1.AppService.UpdateRobotMetadata:output_type -> viam.app.v1.UpdateRobotMetadataResponse
+	97,  // 358: viam.app.v1.AppService.GetRoverRentalRobots:output_type -> viam.app.v1.GetRoverRentalRobotsResponse
+	100, // 359: viam.app.v1.AppService.GetRobotParts:output_type -> viam.app.v1.GetRobotPartsResponse
+	102, // 360: viam.app.v1.AppService.GetRobotPart:output_type -> viam.app.v1.GetRobotPartResponse
+	104, // 361: viam.app.v1.AppService.GetRobotPartByNameAndLocation:output_type -> viam.app.v1.GetRobotPartByNameAndLocationResponse
+	106, // 362: viam.app.v1.AppService.GetRobotPartLogs:output_type -> viam.app.v1.GetRobotPartLogsResponse
+	108, // 363: viam.app.v1.AppService.TailRobotPartLogs:output_type -> viam.app.v1.TailRobotPartLogsResponse
+	110, // 364: viam.app.v1.AppService.GetRobotPartHistory:output_type -> viam.app.v1.GetRobotPartHistoryResponse
+	112, // 365: viam.app.v1.AppService.UpdateRobotPart:output_type -> viam.app.v1.UpdateRobotPartResponse
+	114, // 366: viam.app.v1.AppService.NewRobotPart:output_type -> viam.app.v1.NewRobotPartResponse
+	123, // 367: viam.app.v1.AppService.DeleteRobotPart:output_type -> viam.app.v1.DeleteRobotPartResponse
+	117, // 368: viam.app.v1.AppService.GetRobotPartMetadata:output_type -> viam.app.v1.GetRobotPartMetadataResponse
+	119, // 369: viam.app.v1.AppService.UpdateRobotPartMetadata:output_type -> viam.app.v1.UpdateRobotPartMetadataResponse
+	122, // 370: viam.app.v1.AppService.GetRobotAPIKeys:output_type -> viam.app.v1.GetRobotAPIKeysResponse
+	179, // 371: viam.app.v1.AppService.MarkPartAsMain:output_type -> viam.app.v1.MarkPartAsMainResponse
+	181, // 372: viam.app.v1.AppService.MarkPartForRestart:output_type -> viam.app.v1.MarkPartForRestartResponse
+	183, // 373: viam.app.v1.AppService.CreateRobotPartSecret:output_type -> viam.app.v1.CreateRobotPartSecretResponse
+	185, // 374: viam.app.v1.AppService.DeleteRobotPartSecret:output_type -> viam.app.v1.DeleteRobotPartSecretResponse
+	165, // 375: viam.app.v1.AppService.ListRobots:output_type -> viam.app.v1.ListRobotsResponse
+	166, // 376: viam.app.v1.AppService.ListRobotsForLocations:output_type -> viam.app.v1.ListRobotsForLocationsResponse
+	167, // 377: viam.app.v1.AppService.ListRobotsForOrg:output_type -> viam.app.v1.ListRobotsForOrgResponse
+	169, // 378: viam.app.v1.AppService.NewRobot:output_type -> viam.app.v1.NewRobotResponse
+	171, // 379: viam.app.v1.AppService.UpdateRobot:output_type -> viam.app.v1.UpdateRobotResponse
+	173, // 380: viam.app.v1.AppService.DeleteRobot:output_type -> viam.app.v1.DeleteRobotResponse
+	132, // 381: viam.app.v1.AppService.ListFragments:output_type -> viam.app.v1.ListFragmentsResponse
+	134, // 382: viam.app.v1.AppService.GetFragment:output_type -> viam.app.v1.GetFragmentResponse
+	136, // 383: viam.app.v1.AppService.CreateFragment:output_type -> viam.app.v1.CreateFragmentResponse
+	138, // 384: viam.app.v1.AppService.UpdateFragment:output_type -> viam.app.v1.UpdateFragmentResponse
+	140, // 385: viam.app.v1.AppService.DeleteFragment:output_type -> viam.app.v1.DeleteFragmentResponse
+	154, // 386: viam.app.v1.AppService.ListNestedFragments:output_type -> viam.app.v1.ListNestedFragmentsResponse
+	156, // 387: viam.app.v1.AppService.ListMachineFragments:output_type -> viam.app.v1.ListMachineFragmentsResponse
+	158, // 388: viam.app.v1.AppService.ListMachineSummaries:output_type -> viam.app.v1.ListMachineSummariesResponse
+	142, // 389: viam.app.v1.AppService.GetFragmentHistory:output_type -> viam.app.v1.GetFragmentHistoryResponse
+	144, // 390: viam.app.v1.AppService.GetFragmentUsage:output_type -> viam.app.v1.GetFragmentUsageResponse
+	146, // 391: viam.app.v1.AppService.SetFragmentTag:output_type -> viam.app.v1.SetFragmentTagResponse
+	148, // 392: viam.app.v1.AppService.DeleteFragmentTag:output_type -> viam.app.v1.DeleteFragmentTagResponse
+	188, // 393: viam.app.v1.AppService.AddRole:output_type -> viam.app.v1.AddRoleResponse
+	190, // 394: viam.app.v1.AppService.RemoveRole:output_type -> viam.app.v1.RemoveRoleResponse
+	192, // 395: viam.app.v1.AppService.ChangeRole:output_type -> viam.app.v1.ChangeRoleResponse
+	194, // 396: viam.app.v1.AppService.ListAuthorizations:output_type -> viam.app.v1.ListAuthorizationsResponse
+	197, // 397: viam.app.v1.AppService.CheckPermissions:output_type -> viam.app.v1.CheckPermissionsResponse
+	205, // 398: viam.app.v1.AppService.GetRegistryItem:output_type -> viam.app.v1.GetRegistryItemResponse
+	207, // 399: viam.app.v1.AppService.CreateRegistryItem:output_type -> viam.app.v1.CreateRegistryItemResponse
+	209, // 400: viam.app.v1.AppService.UpdateRegistryItem:output_type -> viam.app.v1.UpdateRegistryItemResponse
+	211, // 401: viam.app.v1.AppService.ListRegistryItems:output_type -> viam.app.v1.ListRegistryItemsResponse
+	213, // 402: viam.app.v1.AppService.DeleteRegistryItem:output_type -> viam.app.v1.DeleteRegistryItemResponse
+	215, // 403: viam.app.v1.AppService.RenameRegistryItem:output_type -> viam.app.v1.RenameRegistryItemResponse
+	217, // 404: viam.app.v1.AppService.DeprecateRegistryItem:output_type -> viam.app.v1.DeprecateRegistryItemResponse
+	219, // 405: viam.app.v1.AppService.TransferRegistryItem:output_type -> viam.app.v1.TransferRegistryItemResponse
+	221, // 406: viam.app.v1.AppService.CreateModule:output_type -> viam.app.v1.CreateModuleResponse
+	224, // 407: viam.app.v1.AppService.UpdateModule:output_type -> viam.app.v1.UpdateModuleResponse
+	231, // 408: viam.app.v1.AppService.UploadModuleFile:output_type -> viam.app.v1.UploadModuleFileResponse
+	233, // 409: viam.app.v1.AppService.GetModule:output_type -> viam.app.v1.GetModuleResponse
+	238, // 410: viam.app.v1.AppService.ListModules:output_type -> viam.app.v1.ListModulesResponse
+	247, // 411: viam.app.v1.AppService.CreateKey:output_type -> viam.app.v1.CreateKeyResponse
+	249, // 412: viam.app.v1.AppService.DeleteKey:output_type -> viam.app.v1.DeleteKeyResponse
+	255, // 413: viam.app.v1.AppService.ListKeys:output_type -> viam.app.v1.ListKeysResponse
+	251, // 414: viam.app.v1.AppService.RenameKey:output_type -> viam.app.v1.RenameKeyResponse
+	257, // 415: viam.app.v1.AppService.RotateKey:output_type -> viam.app.v1.RotateKeyResponse
+	259, // 416: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:output_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse
+	261, // 417: viam.app.v1.AppService.GetAppContent:output_type -> viam.app.v1.GetAppContentResponse
+	283, // 418: viam.app.v1.AppService.GetAppBranding:output_type -> viam.app.v1.GetAppBrandingResponse
+	309, // [309:419] is the sub-list for method output_type
+	199, // [199:309] is the sub-list for method input_type
+	199, // [199:199] is the sub-list for extension type_name
+	199, // [199:199] is the sub-list for extension extendee
+	0,   // [0:199] is the sub-list for field type_name
 }
 
 func init() { file_app_v1_app_proto_init() }
@@ -19499,28 +19644,28 @@ func file_app_v1_app_proto_init() {
 		(*UpdateRegistryItemRequest_UpdateMlTrainingMetadata)(nil),
 	}
 	file_app_v1_app_proto_msgTypes[198].OneofWrappers = []any{}
-	file_app_v1_app_proto_msgTypes[208].OneofWrappers = []any{}
-	file_app_v1_app_proto_msgTypes[209].OneofWrappers = []any{}
-	file_app_v1_app_proto_msgTypes[214].OneofWrappers = []any{}
-	file_app_v1_app_proto_msgTypes[216].OneofWrappers = []any{
+	file_app_v1_app_proto_msgTypes[210].OneofWrappers = []any{}
+	file_app_v1_app_proto_msgTypes[211].OneofWrappers = []any{}
+	file_app_v1_app_proto_msgTypes[216].OneofWrappers = []any{}
+	file_app_v1_app_proto_msgTypes[218].OneofWrappers = []any{
 		(*UploadModuleFileRequest_ModuleFileInfo)(nil),
 		(*UploadModuleFileRequest_File)(nil),
 	}
-	file_app_v1_app_proto_msgTypes[218].OneofWrappers = []any{}
 	file_app_v1_app_proto_msgTypes[220].OneofWrappers = []any{}
-	file_app_v1_app_proto_msgTypes[221].OneofWrappers = []any{}
+	file_app_v1_app_proto_msgTypes[222].OneofWrappers = []any{}
 	file_app_v1_app_proto_msgTypes[223].OneofWrappers = []any{}
-	file_app_v1_app_proto_msgTypes[228].OneofWrappers = []any{}
+	file_app_v1_app_proto_msgTypes[225].OneofWrappers = []any{}
 	file_app_v1_app_proto_msgTypes[230].OneofWrappers = []any{}
-	file_app_v1_app_proto_msgTypes[269].OneofWrappers = []any{}
+	file_app_v1_app_proto_msgTypes[232].OneofWrappers = []any{}
 	file_app_v1_app_proto_msgTypes[271].OneofWrappers = []any{}
+	file_app_v1_app_proto_msgTypes[273].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_v1_app_proto_rawDesc,
 			NumEnums:      12,
-			NumMessages:   274,
+			NumMessages:   276,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

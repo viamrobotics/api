@@ -5069,6 +5069,11 @@ export class RegistryItem extends jspb.Message {
   getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasDeprecated(): boolean;
+  clearDeprecated(): void;
+  getDeprecated(): boolean;
+  setDeprecated(value: boolean): void;
+
   getMetadataCase(): RegistryItem.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegistryItem.AsObject;
@@ -5099,6 +5104,7 @@ export namespace RegistryItem {
     mlTrainingMetadata?: MLTrainingMetadata.AsObject,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    deprecated: boolean,
   }
 
   export enum MetadataCase {
@@ -5996,6 +6002,11 @@ export class Module extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasDeprecated(): boolean;
+  clearDeprecated(): void;
+  getDeprecated(): boolean;
+  setDeprecated(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Module.AsObject;
   static toObject(includeInstance: boolean, msg: Module): Module.AsObject;
@@ -6023,6 +6034,7 @@ export namespace Module {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    deprecated: boolean,
   }
 }
 
