@@ -1525,7 +1525,8 @@ message RenameRegistryItemResponse {
 
 message DeprecateRegistryItemRequest {
   string item_id = 1;
-  optional string new_status = 2;
+  bool new_status = 2;
+  string message = 3;
 }
 
 message DeprecateRegistryItemResponse {
