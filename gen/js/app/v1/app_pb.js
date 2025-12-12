@@ -6064,7 +6064,9 @@ proto.viam.app.v1.Robot.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     location: jspb.Message.getFieldWithDefault(msg, 3, ""),
     lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    onlineState: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    secondsSinceOnline: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -6122,6 +6124,14 @@ proto.viam.app.v1.Robot.deserializeBinaryFromReader = function(msg, reader) {
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreatedOn(value);
+      break;
+    case 6:
+      var value = /** @type {!proto.viam.app.v1.OnlineState} */ (reader.readEnum());
+      msg.setOnlineState(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSecondsSinceOnline(value);
       break;
     default:
       reader.skipField();
@@ -6187,6 +6197,20 @@ proto.viam.app.v1.Robot.serializeBinaryToWriter = function(message, writer) {
       5,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getOnlineState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      6,
+      f
+    );
+  }
+  f = message.getSecondsSinceOnline();
+  if (f !== 0) {
+    writer.writeInt64(
+      7,
+      f
     );
   }
 };
@@ -6317,6 +6341,42 @@ proto.viam.app.v1.Robot.prototype.clearCreatedOn = function() {
  */
 proto.viam.app.v1.Robot.prototype.hasCreatedOn = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional OnlineState online_state = 6;
+ * @return {!proto.viam.app.v1.OnlineState}
+ */
+proto.viam.app.v1.Robot.prototype.getOnlineState = function() {
+  return /** @type {!proto.viam.app.v1.OnlineState} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.OnlineState} value
+ * @return {!proto.viam.app.v1.Robot} returns this
+ */
+proto.viam.app.v1.Robot.prototype.setOnlineState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 6, value);
+};
+
+
+/**
+ * optional int64 seconds_since_online = 7;
+ * @return {number}
+ */
+proto.viam.app.v1.Robot.prototype.getSecondsSinceOnline = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.Robot} returns this
+ */
+proto.viam.app.v1.Robot.prototype.setSecondsSinceOnline = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
@@ -34049,6 +34109,9 @@ proto.viam.app.v1.PartSummary.toObject = function(includeInstance, msg) {
     partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     partName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     isMainPart: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    onlineState: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    secondsSinceOnline: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     lastOnline: (f = msg.getLastOnline()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     viamServerVersion: (f = msg.getViamServerVersion()) && proto.viam.app.v1.ViamServerVersion.toObject(includeInstance, f),
     viamAgentVersion: (f = msg.getViamAgentVersion()) && proto.viam.app.v1.ViamAgentVersion.toObject(includeInstance, f),
@@ -34105,6 +34168,19 @@ proto.viam.app.v1.PartSummary.deserializeBinaryFromReader = function(msg, reader
     case 11:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsMainPart(value);
+      break;
+    case 12:
+      var value = /** @type {!proto.viam.app.v1.OnlineState} */ (reader.readEnum());
+      msg.setOnlineState(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSecondsSinceOnline(value);
+      break;
+    case 14:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastAccess(value);
       break;
     case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -34190,6 +34266,28 @@ proto.viam.app.v1.PartSummary.serializeBinaryToWriter = function(message, writer
     writer.writeBool(
       11,
       f
+    );
+  }
+  f = message.getOnlineState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      12,
+      f
+    );
+  }
+  f = message.getSecondsSinceOnline();
+  if (f !== 0) {
+    writer.writeInt64(
+      13,
+      f
+    );
+  }
+  f = message.getLastAccess();
+  if (f != null) {
+    writer.writeMessage(
+      14,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
   f = message.getLastOnline();
@@ -34306,6 +34404,79 @@ proto.viam.app.v1.PartSummary.prototype.getIsMainPart = function() {
  */
 proto.viam.app.v1.PartSummary.prototype.setIsMainPart = function(value) {
   return jspb.Message.setProto3BooleanField(this, 11, value);
+};
+
+
+/**
+ * optional OnlineState online_state = 12;
+ * @return {!proto.viam.app.v1.OnlineState}
+ */
+proto.viam.app.v1.PartSummary.prototype.getOnlineState = function() {
+  return /** @type {!proto.viam.app.v1.OnlineState} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.OnlineState} value
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+ */
+proto.viam.app.v1.PartSummary.prototype.setOnlineState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 12, value);
+};
+
+
+/**
+ * optional int64 seconds_since_online = 13;
+ * @return {number}
+ */
+proto.viam.app.v1.PartSummary.prototype.getSecondsSinceOnline = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+ */
+proto.viam.app.v1.PartSummary.prototype.setSecondsSinceOnline = function(value) {
+  return jspb.Message.setProto3IntField(this, 13, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_access = 14;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.PartSummary.prototype.getLastAccess = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 14));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+*/
+proto.viam.app.v1.PartSummary.prototype.setLastAccess = function(value) {
+  return jspb.Message.setWrapperField(this, 14, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+ */
+proto.viam.app.v1.PartSummary.prototype.clearLastAccess = function() {
+  return this.setLastAccess(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.PartSummary.prototype.hasLastAccess = function() {
+  return jspb.Message.getField(this, 14) != null;
 };
 
 
