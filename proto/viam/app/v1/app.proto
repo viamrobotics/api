@@ -1740,6 +1740,8 @@ message VersionHistory {
   optional string markdown_description = 6;
   // A list of applications associated with the module
   repeated App apps = 7;
+  // Whether this version is deprecated
+  optional bool deprecated = 8;
 }
 
 message Uploads {
