@@ -201,6 +201,7 @@ type AppServiceClient interface {
 	UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error)
 	GetModule(ctx context.Context, in *GetModuleRequest, opts ...grpc.CallOption) (*GetModuleResponse, error)
 	ListModules(ctx context.Context, in *ListModulesRequest, opts ...grpc.CallOption) (*ListModulesResponse, error)
+	DeprecateModuleVersion(ctx context.Context, in *DeprecateModuleVersionRequest, opts ...grpc.CallOption) (*DeprecateModuleVersionResponse, error)
 	CreateKey(ctx context.Context, in *CreateKeyRequest, opts ...grpc.CallOption) (*CreateKeyResponse, error)
 	DeleteKey(ctx context.Context, in *DeleteKeyRequest, opts ...grpc.CallOption) (*DeleteKeyResponse, error)
 	ListKeys(ctx context.Context, in *ListKeysRequest, opts ...grpc.CallOption) (*ListKeysResponse, error)
@@ -1185,6 +1186,15 @@ func (c *appServiceClient) ListModules(ctx context.Context, in *ListModulesReque
 	return out, nil
 }
 
+func (c *appServiceClient) DeprecateModuleVersion(ctx context.Context, in *DeprecateModuleVersionRequest, opts ...grpc.CallOption) (*DeprecateModuleVersionResponse, error) {
+	out := new(DeprecateModuleVersionResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeprecateModuleVersion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) CreateKey(ctx context.Context, in *CreateKeyRequest, opts ...grpc.CallOption) (*CreateKeyResponse, error) {
 	out := new(CreateKeyResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateKey", in, out, opts...)
@@ -1440,6 +1450,7 @@ type AppServiceServer interface {
 	UploadModuleFile(AppService_UploadModuleFileServer) error
 	GetModule(context.Context, *GetModuleRequest) (*GetModuleResponse, error)
 	ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error)
+	DeprecateModuleVersion(context.Context, *DeprecateModuleVersionRequest) (*DeprecateModuleVersionResponse, error)
 	CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error)
 	DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error)
 	ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error)
@@ -1760,6 +1771,9 @@ func (UnimplementedAppServiceServer) GetModule(context.Context, *GetModuleReques
 }
 func (UnimplementedAppServiceServer) ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModules not implemented")
+}
+func (UnimplementedAppServiceServer) DeprecateModuleVersion(context.Context, *DeprecateModuleVersionRequest) (*DeprecateModuleVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeprecateModuleVersion not implemented")
 }
 func (UnimplementedAppServiceServer) CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKey not implemented")
@@ -3645,6 +3659,24 @@ func _AppService_ListModules_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_DeprecateModuleVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeprecateModuleVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeprecateModuleVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeprecateModuleVersion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeprecateModuleVersion(ctx, req.(*DeprecateModuleVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_CreateKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateKeyRequest)
 	if err := dec(in); err != nil {
@@ -4195,6 +4227,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListModules",
 			Handler:    _AppService_ListModules_Handler,
+		},
+		{
+			MethodName: "DeprecateModuleVersion",
+			Handler:    _AppService_DeprecateModuleVersion_Handler,
 		},
 		{
 			MethodName: "CreateKey",

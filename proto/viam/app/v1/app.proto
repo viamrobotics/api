@@ -297,6 +297,8 @@ service AppService {
 
   rpc ListModules(ListModulesRequest) returns (ListModulesResponse);
 
+  rpc DeprecateModuleVersion(DeprecateModuleVersionRequest) returns (DeprecateModuleVersionResponse);
+
   rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
 
   rpc DeleteKey(DeleteKeyRequest) returns (DeleteKeyResponse);
@@ -1361,6 +1363,8 @@ message ModuleVersion {
   optional string markdown_description = 6;
   // A list of applications associated with the module
   repeated App apps = 7;
+  // Whether this version is deprecated
+  optional bool deprecated = 8;
 }
 
 message ModuleMetadata {
@@ -1754,6 +1758,19 @@ message ListModulesRequest {
 message ListModulesResponse {
   // A listed of modules. When authenticated, this API will return modules that are private for this org. Public modules are always returned.
   repeated Module modules = 1;
+}
+
+message DeprecateModuleVersionRequest {
+  // The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)
+  string module_id = 1;
+  // The semver string that represents the major/minor/patch version of the module
+  string version = 2;
+  // Whether the version should be deprecated
+  bool deprecated = 3;
+}
+
+message DeprecateModuleVersionResponse {
+  ModuleVersion version = 1;
 }
 
 message GetUserIDByEmailRequest {
