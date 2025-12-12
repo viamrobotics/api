@@ -41217,7 +41217,8 @@ proto.viam.app.v1.RegistryItem.toObject = function(includeInstance, msg) {
     mlModelMetadata: (f = msg.getMlModelMetadata()) && proto.viam.app.v1.MLModelMetadata.toObject(includeInstance, f),
     mlTrainingMetadata: (f = msg.getMlTrainingMetadata()) && proto.viam.app.v1.MLTrainingMetadata.toObject(includeInstance, f),
     createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    deprecated: jspb.Message.getBooleanFieldWithDefault(msg, 17, false)
   };
 
   if (includeInstance) {
@@ -41326,6 +41327,10 @@ proto.viam.app.v1.RegistryItem.deserializeBinaryFromReader = function(msg, reade
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setUpdatedAt(value);
+      break;
+    case 17:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDeprecated(value);
       break;
     default:
       reader.skipField();
@@ -41478,6 +41483,13 @@ proto.viam.app.v1.RegistryItem.serializeBinaryToWriter = function(message, write
       16,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 17));
+  if (f != null) {
+    writer.writeBool(
+      17,
+      f
     );
   }
 };
@@ -41881,6 +41893,42 @@ proto.viam.app.v1.RegistryItem.prototype.clearUpdatedAt = function() {
  */
 proto.viam.app.v1.RegistryItem.prototype.hasUpdatedAt = function() {
   return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional bool deprecated = 17;
+ * @return {boolean}
+ */
+proto.viam.app.v1.RegistryItem.prototype.getDeprecated = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 17, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.RegistryItem} returns this
+ */
+proto.viam.app.v1.RegistryItem.prototype.setDeprecated = function(value) {
+  return jspb.Message.setField(this, 17, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.RegistryItem} returns this
+ */
+proto.viam.app.v1.RegistryItem.prototype.clearDeprecated = function() {
+  return jspb.Message.setField(this, 17, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RegistryItem.prototype.hasDeprecated = function() {
+  return jspb.Message.getField(this, 17) != null;
 };
 
 
@@ -47783,7 +47831,8 @@ proto.viam.app.v1.Module.toObject = function(includeInstance, msg) {
     firstRun: jspb.Message.getFieldWithDefault(msg, 13, ""),
     markdownDescription: jspb.Message.getFieldWithDefault(msg, 14, ""),
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
-    proto.viam.app.v1.App.toObject, includeInstance)
+    proto.viam.app.v1.App.toObject, includeInstance),
+    deprecated: jspb.Message.getBooleanFieldWithDefault(msg, 16, false)
   };
 
   if (includeInstance) {
@@ -47882,6 +47931,10 @@ proto.viam.app.v1.Module.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.viam.app.v1.App;
       reader.readMessage(value,proto.viam.app.v1.App.deserializeBinaryFromReader);
       msg.addApps(value);
+      break;
+    case 16:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDeprecated(value);
       break;
     default:
       reader.skipField();
@@ -48018,6 +48071,13 @@ proto.viam.app.v1.Module.serializeBinaryToWriter = function(message, writer) {
       15,
       f,
       proto.viam.app.v1.App.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 16));
+  if (f != null) {
+    writer.writeBool(
+      16,
+      f
     );
   }
 };
@@ -48386,6 +48446,42 @@ proto.viam.app.v1.Module.prototype.addApps = function(opt_value, opt_index) {
  */
 proto.viam.app.v1.Module.prototype.clearAppsList = function() {
   return this.setAppsList([]);
+};
+
+
+/**
+ * optional bool deprecated = 16;
+ * @return {boolean}
+ */
+proto.viam.app.v1.Module.prototype.getDeprecated = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 16, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.Module} returns this
+ */
+proto.viam.app.v1.Module.prototype.setDeprecated = function(value) {
+  return jspb.Message.setField(this, 16, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.Module} returns this
+ */
+proto.viam.app.v1.Module.prototype.clearDeprecated = function() {
+  return jspb.Message.setField(this, 16, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Module.prototype.hasDeprecated = function() {
+  return jspb.Message.getField(this, 16) != null;
 };
 
 
