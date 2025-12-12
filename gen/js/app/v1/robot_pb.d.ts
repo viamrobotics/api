@@ -167,6 +167,11 @@ export class JobConfig extends jspb.Message {
   getCommand(): google_protobuf_struct_pb.Struct | undefined;
   setCommand(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasLogConfiguration(): boolean;
+  clearLogConfiguration(): void;
+  getLogConfiguration(): LogConfiguration | undefined;
+  setLogConfiguration(value?: LogConfiguration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): JobConfig.AsObject;
   static toObject(includeInstance: boolean, msg: JobConfig): JobConfig.AsObject;
@@ -184,6 +189,7 @@ export namespace JobConfig {
     resource: string,
     method: string,
     command?: google_protobuf_struct_pb.Struct.AsObject,
+    logConfiguration?: LogConfiguration.AsObject,
   }
 }
 

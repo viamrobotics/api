@@ -99,6 +99,24 @@ service DataService {
 
   // DeleteIndex drops the specified custom index from a collection
   rpc DeleteIndex(DeleteIndexRequest) returns (DeleteIndexResponse);
+
+  // CreateSavedQuery saves a mql query.
+  rpc CreateSavedQuery(CreateSavedQueryRequest) returns (CreateSavedQueryResponse);
+
+  // UpdateSavedQuery updates the saved query with the given id.
+  rpc UpdateSavedQuery(UpdateSavedQueryRequest) returns (UpdateSavedQueryResponse);
+
+  // GetSavedQuery retrieves a saved query by id.
+  rpc GetSavedQuery(GetSavedQueryRequest) returns (GetSavedQueryResponse);
+
+  // DeleteSavedQuery deletes a saved query based on the given id.
+  rpc DeleteSavedQuery(DeleteSavedQueryRequest) returns (DeleteSavedQueryResponse);
+
+  // ListSavedQueries lists saved queries for a given organization.
+  rpc ListSavedQueries(ListSavedQueriesRequest) returns (ListSavedQueriesResponse);
+
+  // CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
+  rpc CreateBinaryDataSignedURL(CreateBinaryDataSignedURLRequest) returns (CreateBinaryDataSignedURLResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -677,4 +695,74 @@ enum IndexCreator {
   INDEX_CREATOR_UNSPECIFIED = 0;
   INDEX_CREATOR_VIAM = 1;
   INDEX_CREATOR_CUSTOMER = 2;
+}
+
+// CreateSavedQueryRequest saves a mql query.
+message CreateSavedQueryRequest {
+  string organization_id = 1;
+  string name = 2;
+  repeated bytes mql_binary = 3;
+}
+
+message CreateSavedQueryResponse {
+  string id = 1;
+}
+
+message Query {
+  string id = 1;
+  string organization_id = 2;
+  string name = 3;
+  repeated bytes mql_binary = 4;
+  google.protobuf.Timestamp created_on = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+// DeleteSavedQuery deletes a saved query based on the given id.
+message DeleteSavedQueryRequest {
+  string id = 1;
+}
+
+message DeleteSavedQueryResponse {}
+
+// GetSavedQuery retrieves a saved query by id.
+message GetSavedQueryRequest {
+  string id = 1;
+}
+
+message GetSavedQueryResponse {
+  Query saved_query = 1;
+}
+
+// UpdateSavedQuery updates the saved query with the given id.
+message UpdateSavedQueryRequest {
+  string id = 1;
+  string name = 2;
+  repeated bytes mql_binary = 3;
+}
+
+message UpdateSavedQueryResponse {}
+
+// ListSavedQueries lists saved queries for a given organization.
+message ListSavedQueriesRequest {
+  string organization_id = 1;
+  int64 limit = 2;
+}
+
+message ListSavedQueriesResponse {
+  repeated Query queries = 1;
+}
+
+message CreateBinaryDataSignedURLRequest {
+  // The binary data ID of the file to create a signed URL for.
+  string binary_data_id = 1;
+  // Expiration time in minutes. Defaults to 15 minutes if not specified.
+  // Maximum allowed is 10080 minutes (7 days).
+  optional uint32 expiration_minutes = 2;
+}
+
+message CreateBinaryDataSignedURLResponse {
+  // The signed URL for the binary data file.
+  string signed_url = 1;
+  // Expiration time of the signed URL token.
+  google.protobuf.Timestamp expires_at = 2;
 }

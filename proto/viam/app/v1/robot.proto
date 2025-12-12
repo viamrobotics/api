@@ -70,6 +70,8 @@ message JobConfig {
   // in case method is "DoCommand", specifies the
   // command argument of the gRPC request.
   google.protobuf.Struct command = 5;
+  // configuration for this job's logger.
+  LogConfiguration log_configuration = 6;
 }
 
 // Valid location secret that can be used for authentication to the robot.

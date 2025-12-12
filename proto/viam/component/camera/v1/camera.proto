@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.component.camera.v1;
 
+import "app/data/v1/data.proto";
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
@@ -62,6 +63,8 @@ message Image {
   bytes image = 3;
   // The mime type of the image
   string mime_type = 4;
+  // annotations can be used to store additional information about the image
+  viam.app.data.v1.Annotations annotations = 5;
 }
 
 message GetPointCloudRequest {

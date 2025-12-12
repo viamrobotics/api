@@ -67,6 +67,11 @@ service ArmService {
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/arm/{name}/geometries"};
   }
+
+  // Get3DModels returns the 3D models of the component
+  rpc Get3DModels(common.v1.Get3DModelsRequest) returns (common.v1.Get3DModelsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/arm/{name}/3d_models"};
+  }
 }
 
 message GetEndPositionRequest {

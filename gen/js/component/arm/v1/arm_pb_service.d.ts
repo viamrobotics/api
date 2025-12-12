@@ -95,6 +95,15 @@ type ArmServiceGetGeometries = {
   readonly responseType: typeof common_v1_common_pb.GetGeometriesResponse;
 };
 
+type ArmServiceGet3DModels = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.Get3DModelsRequest;
+  readonly responseType: typeof common_v1_common_pb.Get3DModelsResponse;
+};
+
 export class ArmService {
   static readonly serviceName: string;
   static readonly GetEndPosition: ArmServiceGetEndPosition;
@@ -107,6 +116,7 @@ export class ArmService {
   static readonly DoCommand: ArmServiceDoCommand;
   static readonly GetKinematics: ArmServiceGetKinematics;
   static readonly GetGeometries: ArmServiceGetGeometries;
+  static readonly Get3DModels: ArmServiceGet3DModels;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -230,6 +240,15 @@ export class ArmServiceClient {
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetGeometriesResponse|null) => void
+  ): UnaryResponse;
+  get3DModels(
+    requestMessage: common_v1_common_pb.Get3DModelsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.Get3DModelsResponse|null) => void
+  ): UnaryResponse;
+  get3DModels(
+    requestMessage: common_v1_common_pb.Get3DModelsRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.Get3DModelsResponse|null) => void
   ): UnaryResponse;
 }
 

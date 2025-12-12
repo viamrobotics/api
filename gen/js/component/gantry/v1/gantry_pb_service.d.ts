@@ -68,6 +68,15 @@ type GantryServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type GantryServiceGetKinematics = {
+  readonly methodName: string;
+  readonly service: typeof GantryService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetKinematicsRequest;
+  readonly responseType: typeof common_v1_common_pb.GetKinematicsResponse;
+};
+
 type GantryServiceGetGeometries = {
   readonly methodName: string;
   readonly service: typeof GantryService;
@@ -86,6 +95,7 @@ export class GantryService {
   static readonly Stop: GantryServiceStop;
   static readonly IsMoving: GantryServiceIsMoving;
   static readonly DoCommand: GantryServiceDoCommand;
+  static readonly GetKinematics: GantryServiceGetKinematics;
   static readonly GetGeometries: GantryServiceGetGeometries;
 }
 
@@ -183,6 +193,15 @@ export class GantryServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getKinematics(
+    requestMessage: common_v1_common_pb.GetKinematicsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetKinematicsResponse|null) => void
+  ): UnaryResponse;
+  getKinematics(
+    requestMessage: common_v1_common_pb.GetKinematicsRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetKinematicsResponse|null) => void
   ): UnaryResponse;
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,
