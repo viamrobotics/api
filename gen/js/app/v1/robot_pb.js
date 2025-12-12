@@ -2595,8 +2595,8 @@ proto.viam.app.v1.TracingConfig.prototype.serializeBinary = function() {
  */
 proto.viam.app.v1.TracingConfig.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = /** @type {boolean} */ (jspb.Message.getField(message, 1));
-  if (f != null) {
+  f = message.getEnabled();
+  if (f) {
     writer.writeBool(
       1,
       f
@@ -2640,25 +2640,7 @@ proto.viam.app.v1.TracingConfig.prototype.getEnabled = function() {
  * @return {!proto.viam.app.v1.TracingConfig} returns this
  */
 proto.viam.app.v1.TracingConfig.prototype.setEnabled = function(value) {
-  return jspb.Message.setField(this, 1, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.v1.TracingConfig} returns this
- */
-proto.viam.app.v1.TracingConfig.prototype.clearEnabled = function() {
-  return jspb.Message.setField(this, 1, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.TracingConfig.prototype.hasEnabled = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 

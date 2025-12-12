@@ -48,7 +48,7 @@ message RobotConfig {
   // be output individually instead of aggregated.)
   bool disable_log_deduplication = 17;
   repeated JobConfig jobs = 18;
-  TracingConfig tracing = 19;
+  optional TracingConfig tracing = 19;
 }
 
 // LogPatternConfig allows you to specify a 2-tuple consisting
@@ -79,7 +79,7 @@ message JobConfig {
 // where it will export them.
 message TracingConfig {
   // Globally enable or disable tracing support.
-  optional bool enabled = 1;
+  bool enabled = 1;
   // Save trace spans to a file on disk.
   bool disk = 2;
   // Print trace spans to stdout.

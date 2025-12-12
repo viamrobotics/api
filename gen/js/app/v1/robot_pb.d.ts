@@ -200,8 +200,6 @@ export namespace JobConfig {
 }
 
 export class TracingConfig extends jspb.Message {
-  hasEnabled(): boolean;
-  clearEnabled(): void;
   getEnabled(): boolean;
   setEnabled(value: boolean): void;
 
