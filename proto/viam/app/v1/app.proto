@@ -1401,6 +1401,13 @@ message MLTrainingMetadata {
   reserved 1;
 }
 
+message DeprecatedStatus {
+  // Whether the item is deprecated
+  bool status = 1;
+  // Optional message explaining the deprecation
+  string message = 2;
+}
+
 message RegistryItem {
   // The id of the item, containing either:
   // namespace:item_name when a namespace exists on the org.
@@ -1442,7 +1449,7 @@ message RegistryItem {
   // When the item was last updated, either through an update or upload.
   google.protobuf.Timestamp updated_at = 16;
   // Whether the registry item is deprecated
-  optional string deprecated = 17;
+  optional DeprecatedStatus deprecated = 17;
 }
 
 message GetRegistryItemRequest {
@@ -1525,7 +1532,7 @@ message RenameRegistryItemResponse {
 
 message DeprecateRegistryItemRequest {
   string item_id = 1;
-  bool new_status = 2;
+  bool status = 2;
   string message = 3;
 }
 
@@ -1711,7 +1718,7 @@ message Module {
   // A list of applications associated with the module
   repeated App apps = 15;
   // Whether the module is deprecated
-  optional string deprecated = 16;
+  optional DeprecatedStatus deprecated = 16;
 }
 
 message VersionHistory {
