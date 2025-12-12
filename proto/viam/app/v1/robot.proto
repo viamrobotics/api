@@ -48,6 +48,7 @@ message RobotConfig {
   // be output individually instead of aggregated.)
   bool disable_log_deduplication = 17;
   repeated JobConfig jobs = 18;
+  TracingConfig tracing = 19;
 }
 
 // LogPatternConfig allows you to specify a 2-tuple consisting
@@ -72,6 +73,17 @@ message JobConfig {
   google.protobuf.Struct command = 5;
   // configuration for this job's logger.
   LogConfiguration log_configuration = 6;
+}
+
+message TracingConfig {
+  // Globally enable or disable tracing support.
+  bool enabled = 1;
+  // Save trace spans to a file on disk.
+  bool disk = 2;
+  // Print trace spans to stdout.
+  bool stdout = 3;
+  // Send trace spans to an OTLP gRPC endpoint.
+  string otlp_endpoint = 4;
 }
 
 // Valid location secret that can be used for authentication to the robot.
