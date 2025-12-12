@@ -421,6 +421,8 @@ func (x *JobConfig) GetLogConfiguration() *LogConfiguration {
 	return nil
 }
 
+// TracingConfig configures whether viam-server will record traces and if so
+// where it will export them.
 type TracingConfig struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

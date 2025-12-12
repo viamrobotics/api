@@ -75,6 +75,8 @@ message JobConfig {
   LogConfiguration log_configuration = 6;
 }
 
+// TracingConfig configures whether viam-server will record traces and if so
+// where it will export them.
 message TracingConfig {
   // Globally enable or disable tracing support.
   optional bool enabled = 1;
