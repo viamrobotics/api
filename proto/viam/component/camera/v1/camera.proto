@@ -15,7 +15,9 @@ option java_package = "com.viam.component.camera.v1";
 service CameraService {
   // GetImage returns a frame from a camera of the underlying robot. A specific MIME type
   // can be requested but may not necessarily be the same one returned.
+  // Deprecated: Use GetImages instead.
   rpc GetImage(GetImageRequest) returns (GetImageResponse) {
+    option deprecated = true;
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/image"};
   }
 
@@ -52,6 +54,7 @@ service CameraService {
 }
 
 message GetImageRequest {
+  option deprecated = true;
   // Name of a camera
   string name = 1;
   // Requested MIME type of response
@@ -61,6 +64,7 @@ message GetImageRequest {
 }
 
 message GetImageResponse {
+  option deprecated = true;
   // Actual MIME type of response
   string mime_type = 1;
   // Frame in bytes
