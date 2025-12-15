@@ -24,8 +24,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CameraServiceClient interface {
+	// Deprecated: Do not use.
 	// GetImage returns a frame from a camera of the underlying robot. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
+	// Deprecated: Use GetImages instead.
 	GetImage(ctx context.Context, in *GetImageRequest, opts ...grpc.CallOption) (*GetImageResponse, error)
 	GetImages(ctx context.Context, in *GetImagesRequest, opts ...grpc.CallOption) (*GetImagesResponse, error)
 	// RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
@@ -50,6 +52,7 @@ func NewCameraServiceClient(cc grpc.ClientConnInterface) CameraServiceClient {
 	return &cameraServiceClient{cc}
 }
 
+// Deprecated: Do not use.
 func (c *cameraServiceClient) GetImage(ctx context.Context, in *GetImageRequest, opts ...grpc.CallOption) (*GetImageResponse, error) {
 	out := new(GetImageResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.camera.v1.CameraService/GetImage", in, out, opts...)
@@ -117,8 +120,10 @@ func (c *cameraServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeome
 // All implementations must embed UnimplementedCameraServiceServer
 // for forward compatibility
 type CameraServiceServer interface {
+	// Deprecated: Do not use.
 	// GetImage returns a frame from a camera of the underlying robot. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
+	// Deprecated: Use GetImages instead.
 	GetImage(context.Context, *GetImageRequest) (*GetImageResponse, error)
 	GetImages(context.Context, *GetImagesRequest) (*GetImagesResponse, error)
 	// RenderFrame renders a frame from a camera of the underlying robot to an HTTP response. A specific MIME type
