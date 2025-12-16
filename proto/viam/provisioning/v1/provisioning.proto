@@ -80,4 +80,10 @@ message CloudConfig {
   // SmartMachine part secret
   string secret = 2;
   string app_address = 3;
+  APIKey api_key = 4;
+}
+
+message APIKey {
+  string id = 1;
+  string value = 2;
 }
