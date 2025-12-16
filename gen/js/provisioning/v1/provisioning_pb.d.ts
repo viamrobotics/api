@@ -295,6 +295,11 @@ export class CloudConfig extends jspb.Message {
   getAppAddress(): string;
   setAppAddress(value: string): void;
 
+  hasApiKey(): boolean;
+  clearApiKey(): void;
+  getApiKey(): APIKey | undefined;
+  setApiKey(value?: APIKey): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CloudConfig.AsObject;
   static toObject(includeInstance: boolean, msg: CloudConfig): CloudConfig.AsObject;
@@ -310,6 +315,31 @@ export namespace CloudConfig {
     id: string,
     secret: string,
     appAddress: string,
+    apiKey?: APIKey.AsObject,
+  }
+}
+
+export class APIKey extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getValue(): string;
+  setValue(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): APIKey.AsObject;
+  static toObject(includeInstance: boolean, msg: APIKey): APIKey.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: APIKey, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): APIKey;
+  static deserializeBinaryFromReader(message: APIKey, reader: jspb.BinaryReader): APIKey;
+}
+
+export namespace APIKey {
+  export type AsObject = {
+    id: string,
+    value: string,
   }
 }
 
