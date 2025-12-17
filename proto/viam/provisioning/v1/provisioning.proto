@@ -85,5 +85,5 @@ message CloudConfig {
 
 message APIKey {
   string id = 1;
-  string value = 2;
+  string key = 2;
 }
