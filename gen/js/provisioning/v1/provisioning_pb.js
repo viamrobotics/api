@@ -2522,7 +2522,7 @@ proto.viam.provisioning.v1.APIKey.prototype.toObject = function(opt_includeInsta
 proto.viam.provisioning.v1.APIKey.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 2, "")
+    key: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2565,7 +2565,7 @@ proto.viam.provisioning.v1.APIKey.deserializeBinaryFromReader = function(msg, re
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setValue(value);
+      msg.setKey(value);
       break;
     default:
       reader.skipField();
@@ -2603,7 +2603,7 @@ proto.viam.provisioning.v1.APIKey.serializeBinaryToWriter = function(message, wr
       f
     );
   }
-  f = message.getValue();
+  f = message.getKey();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -2632,10 +2632,10 @@ proto.viam.provisioning.v1.APIKey.prototype.setId = function(value) {
 
 
 /**
- * optional string value = 2;
+ * optional string key = 2;
  * @return {string}
  */
-proto.viam.provisioning.v1.APIKey.prototype.getValue = function() {
+proto.viam.provisioning.v1.APIKey.prototype.getKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -2644,7 +2644,7 @@ proto.viam.provisioning.v1.APIKey.prototype.getValue = function() {
  * @param {string} value
  * @return {!proto.viam.provisioning.v1.APIKey} returns this
  */
-proto.viam.provisioning.v1.APIKey.prototype.setValue = function(value) {
+proto.viam.provisioning.v1.APIKey.prototype.setKey = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 

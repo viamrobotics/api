@@ -323,8 +323,8 @@ export class APIKey extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getValue(): string;
-  setValue(value: string): void;
+  getKey(): string;
+  setKey(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): APIKey.AsObject;
@@ -339,7 +339,7 @@ export class APIKey extends jspb.Message {
 export namespace APIKey {
   export type AsObject = {
     id: string,
-    value: string,
+    key: string,
   }
 }
 
