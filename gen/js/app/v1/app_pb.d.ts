@@ -538,9 +538,9 @@ export class UpdateOrganizationRequest extends jspb.Message {
   setCid(value: string): void;
 
   clearFragmentImportsList(): void;
-  getFragmentImportsList(): Array<FragmentImports>;
-  setFragmentImportsList(value: Array<FragmentImports>): void;
-  addFragmentImports(value?: FragmentImports, index?: number): FragmentImports;
+  getFragmentImportsList(): Array<FragmentImport>;
+  setFragmentImportsList(value: Array<FragmentImport>): void;
+  addFragmentImports(value?: FragmentImport, index?: number): FragmentImport;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
@@ -559,7 +559,7 @@ export namespace UpdateOrganizationRequest {
     publicNamespace: string,
     region: string,
     cid: string,
-    fragmentImportsList: Array<FragmentImports.AsObject>,
+    fragmentImportsList: Array<FragmentImport.AsObject>,
   }
 }
 
@@ -3089,7 +3089,7 @@ export namespace FragmentUsage {
   }
 }
 
-export class FragmentImports extends jspb.Message {
+export class FragmentImport extends jspb.Message {
   getFragmentId(): string;
   setFragmentId(value: string): void;
 
@@ -3104,16 +3104,16 @@ export class FragmentImports extends jspb.Message {
   getVariablesMap(): jspb.Map<string, string>;
   clearVariablesMap(): void;
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FragmentImports.AsObject;
-  static toObject(includeInstance: boolean, msg: FragmentImports): FragmentImports.AsObject;
+  toObject(includeInstance?: boolean): FragmentImport.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentImport): FragmentImport.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FragmentImports, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FragmentImports;
-  static deserializeBinaryFromReader(message: FragmentImports, reader: jspb.BinaryReader): FragmentImports;
+  static serializeBinaryToWriter(message: FragmentImport, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentImport;
+  static deserializeBinaryFromReader(message: FragmentImport, reader: jspb.BinaryReader): FragmentImport;
 }
 
-export namespace FragmentImports {
+export namespace FragmentImport {
   export type AsObject = {
     fragmentId: string,
     version: string,
