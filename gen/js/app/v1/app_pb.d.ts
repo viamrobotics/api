@@ -537,6 +537,11 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getCid(): string;
   setCid(value: string): void;
 
+  clearFragmentImportsList(): void;
+  getFragmentImportsList(): Array<FragmentImports>;
+  setFragmentImportsList(value: Array<FragmentImports>): void;
+  addFragmentImports(value?: FragmentImports, index?: number): FragmentImports;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateOrganizationRequest): UpdateOrganizationRequest.AsObject;
@@ -554,6 +559,7 @@ export namespace UpdateOrganizationRequest {
     publicNamespace: string,
     region: string,
     cid: string,
+    fragmentImportsList: Array<FragmentImports.AsObject>,
   }
 }
 
@@ -3080,6 +3086,39 @@ export namespace FragmentUsage {
     machines: number,
     machinesInCurrentOrg: number,
     version: string,
+  }
+}
+
+export class FragmentImports extends jspb.Message {
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  hasPrefix(): boolean;
+  clearPrefix(): void;
+  getPrefix(): string;
+  setPrefix(value: string): void;
+
+  getVariablesMap(): jspb.Map<string, string>;
+  clearVariablesMap(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentImports.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentImports): FragmentImports.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentImports, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentImports;
+  static deserializeBinaryFromReader(message: FragmentImports, reader: jspb.BinaryReader): FragmentImports;
+}
+
+export namespace FragmentImports {
+  export type AsObject = {
+    fragmentId: string,
+    version: string,
+    prefix: string,
+    variablesMap: Array<[string, string]>,
   }
 }
 

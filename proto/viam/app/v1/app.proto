@@ -1009,9 +1009,9 @@ message FragmentUsage {
 
 message FragmentImports {
   string fragment_id = 1;
-  string version = 2;  // revision or tag
-  optional string prefix = 3;   // namespace prefix
-  map<string, string> variables = 4;  // key-value pairs for fragment variables
+  string version = 2; // revision or tag
+  optional string prefix = 3; // namespace prefix
+  map<string, string> variables = 4; // key-value pairs for fragment variables
 }
 
 message ResolvedFragment {
