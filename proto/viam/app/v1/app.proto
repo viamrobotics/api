@@ -441,7 +441,7 @@ message UpdateOrganizationRequest {
   // The new GCS region to associate the org with.
   optional string region = 4;
   optional string cid = 5;
-  repeated FragmentImports fragment_imports = 6;
+  repeated FragmentImport fragment_imports = 6;
 }
 
 message UpdateOrganizationResponse {
@@ -1007,7 +1007,7 @@ message FragmentUsage {
   optional string version = 5; // revision or tag
 }
 
-message FragmentImports {
+message FragmentImport {
   string fragment_id = 1;
   string version = 2; // revision or tag
   optional string prefix = 3; // namespace prefix
