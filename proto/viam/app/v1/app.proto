@@ -441,6 +441,7 @@ message UpdateOrganizationRequest {
   // The new GCS region to associate the org with.
   optional string region = 4;
   optional string cid = 5;
+  repeated FragmentImports fragment_imports = 6;
 }
 
 message UpdateOrganizationResponse {
@@ -1004,6 +1005,14 @@ message FragmentUsage {
   int32 machines = 3;
   int32 machines_in_current_org = 4;
   optional string version = 5; // revision or tag
+}
+
+message FragmentImports {
+  string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
+  string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
+  optional string version = 3 [(tagger.v1.tags) = "bson:\"version\" json:\"version,omitempty\""]; // revision or tag
+  optional string prefix = 4 [(tagger.v1.tags) = "bson:\"prefix\" json:\"prefix,omitempty\""];   // namespace prefix to  avoid name collisions
+  map<string, string> variables = 5 [(tagger.v1.tags) = "bson:\"variables\" json:\"variables,omitempty\""]; // key-value pairs for fragment variable
 }
 
 message ResolvedFragment {
