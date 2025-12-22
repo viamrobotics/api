@@ -1629,6 +1629,9 @@ message UpdateModuleMetadata {
   string entrypoint = 2;
   // A list of applications associated with the module
   repeated App apps = 3;
+  // Determines where the source code of module is managed, either externally or hosted by viam.
+  optional ModuleSourceType source_type = 4;
+  // The language the module is written in
 }
 
 message UpdateMLModelMetadata {
