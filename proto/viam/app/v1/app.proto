@@ -434,6 +434,10 @@ message GetOrganizationNamespaceAvailabilityResponse {
   bool available = 1;
 }
 
+message FragmentImportList {
+  repeated FragmentImport imports = 1;
+}
+
 message UpdateOrganizationRequest {
   string organization_id = 1;
   optional string name = 2;
@@ -441,6 +445,7 @@ message UpdateOrganizationRequest {
   // The new GCS region to associate the org with.
   optional string region = 4;
   optional string cid = 5;
+  optional FragmentImportList fragment_imports = 6;
 }
 
 message UpdateOrganizationResponse {
@@ -1004,6 +1009,13 @@ message FragmentUsage {
   int32 machines = 3;
   int32 machines_in_current_org = 4;
   optional string version = 5; // revision or tag
+}
+
+message FragmentImport {
+  string fragment_id = 1;
+  string version = 2; // revision or tag
+  optional string prefix = 3; // namespace prefix
+  map<string, string> variables = 4; // key-value pairs for fragment variables
 }
 
 message ResolvedFragment {
