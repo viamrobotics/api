@@ -1632,6 +1632,7 @@ message UpdateModuleMetadata {
   // Determines where the source code of module is managed, either externally or hosted by viam.
   optional ModuleSourceType source_type = 4;
   // The language the module is written in
+  optional ModuleLanguage language = 5;
 }
 
 message UpdateMLModelMetadata {
