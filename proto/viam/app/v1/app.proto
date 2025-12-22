@@ -1379,7 +1379,6 @@ message ModuleMetadata {
   optional ModuleSourceType source_type = 7;
   // Specifies the language that the module is written in.
   optional ModuleLanguage language = 8;
-
 }
 
 message MLModelMetadata {
@@ -1405,6 +1404,7 @@ message MLTrainingMetadata {
 }
 
 enum ModuleSourceType {
+  MODULE_SOURCE_TYPE_UNSPECIFIED = 0;
   // Module source code is stored externally, such as in github.
   MODULE_SOURCE_TYPE_EXTERNAL = 1;
   // Module source code is versioned and managed within Viam.
@@ -1412,11 +1412,11 @@ enum ModuleSourceType {
 }
 
 enum ModuleLanguage {
+  MODULE_LANGUAGE_UNSPECIFIED = 0;
   MODULE_LANGUAGE_GOLANG = 1;
   MODULE_LANGUAGE_PYTHON = 2;
   MODULE_LANGUAGE_CPP = 3;
 }
-
 
 message RegistryItem {
   // The id of the item, containing either:
@@ -1597,9 +1597,9 @@ message UpdateModuleRequest {
   // longer documentation provided in markdown format
   optional string markdown_description = 9;
   // Where the source code of module is managed, either externally or hosted by viam.
-  optional ModuleSourceType source_type = 4;
+  optional ModuleSourceType source_type = 10;
   // The language the module is written in
-  optional ModuleLanguage language = 5;
+  optional ModuleLanguage language = 11;
 }
 
 message App {
