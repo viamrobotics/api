@@ -97,7 +97,7 @@ message StartPackageBuildRequest {
   string module_version = 3;
 }
 
-message StartPackageBuildRequest {
+message StartPackageBuildResponse {
   string build_id = 1;
 }
 
