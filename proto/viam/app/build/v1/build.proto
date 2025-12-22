@@ -95,6 +95,8 @@ message StartPackageBuildRequest {
   string package_version = 2;
   // version of the module to publish to the registry. must be valid semver2.0 string (ex: 1.2.3-rc0)
   string module_version = 3;
+  // specify the platforms to build for (ex: linux/arm64)
+  repeated string platforms = 4;
 }
 
 message StartPackageBuildResponse {
