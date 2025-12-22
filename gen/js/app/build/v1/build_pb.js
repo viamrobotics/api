@@ -186,7 +186,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.build.v1.StartPackageBuildRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.build.v1.StartPackageBuildRequest.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.build.v1.StartPackageBuildRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1884,6 +1884,13 @@ proto.viam.app.build.v1.StartReloadBuildResponse.prototype.setBuildId = function
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.build.v1.StartPackageBuildRequest.repeatedFields_ = [4];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1917,7 +1924,8 @@ proto.viam.app.build.v1.StartPackageBuildRequest.toObject = function(includeInst
   var f, obj = {
     moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     packageVersion: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    moduleVersion: jspb.Message.getFieldWithDefault(msg, 3, "")
+    moduleVersion: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    platformsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1966,6 +1974,10 @@ proto.viam.app.build.v1.StartPackageBuildRequest.deserializeBinaryFromReader = f
       var value = /** @type {string} */ (reader.readString());
       msg.setModuleVersion(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addPlatforms(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2013,6 +2025,13 @@ proto.viam.app.build.v1.StartPackageBuildRequest.serializeBinaryToWriter = funct
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getPlatformsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
       f
     );
   }
@@ -2070,6 +2089,43 @@ proto.viam.app.build.v1.StartPackageBuildRequest.prototype.getModuleVersion = fu
  */
 proto.viam.app.build.v1.StartPackageBuildRequest.prototype.setModuleVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * repeated string platforms = 4;
+ * @return {!Array<string>}
+ */
+proto.viam.app.build.v1.StartPackageBuildRequest.prototype.getPlatformsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.build.v1.StartPackageBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartPackageBuildRequest.prototype.setPlatformsList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.build.v1.StartPackageBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartPackageBuildRequest.prototype.addPlatforms = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.build.v1.StartPackageBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartPackageBuildRequest.prototype.clearPlatformsList = function() {
+  return this.setPlatformsList([]);
 };
 
 

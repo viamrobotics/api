@@ -196,6 +196,11 @@ export class StartPackageBuildRequest extends jspb.Message {
   getModuleVersion(): string;
   setModuleVersion(value: string): void;
 
+  clearPlatformsList(): void;
+  getPlatformsList(): Array<string>;
+  setPlatformsList(value: Array<string>): void;
+  addPlatforms(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartPackageBuildRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StartPackageBuildRequest): StartPackageBuildRequest.AsObject;
@@ -211,6 +216,7 @@ export namespace StartPackageBuildRequest {
     moduleId: string,
     packageVersion: string,
     moduleVersion: string,
+    platformsList: Array<string>,
   }
 }
 
