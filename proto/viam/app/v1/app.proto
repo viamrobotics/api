@@ -1387,6 +1387,11 @@ message ModuleMetadata {
   optional string markdown_description = 5;
   // A list of applications associated with the module
   repeated App apps = 6;
+  // Determines the type of module, either a registry module or an inline module.
+  optional ModuleSourceType source_type = 7;
+  // Specifies the language that the module is written in.
+  optional ModuleLanguage language = 8;
+
 }
 
 message MLModelMetadata {
@@ -1410,6 +1415,20 @@ message MLTrainingMetadata {
 
   reserved 1;
 }
+
+enum ModuleSourceType {
+  // Module source code is stored externally, such as in github.
+  MODULE_SOURCE_TYPE_EXTERNAL = 1;
+  // Module source code is versioned and managed within Viam.
+  MODULE_SOURCE_TYPE_VIAM_HOSTED = 2;
+}
+
+enum ModuleLanguage {
+  MODULE_LANGUAGE_GOLANG = 1;
+  MODULE_LANGUAGE_PYTHON = 2;
+  MODULE_LANGUAGE_CPP = 3;
+}
+
 
 message RegistryItem {
   // The id of the item, containing either:
@@ -1451,6 +1470,11 @@ message RegistryItem {
   google.protobuf.Timestamp created_at = 15;
   // When the item was last updated, either through an update or upload.
   google.protobuf.Timestamp updated_at = 16;
+
+  // Where the source code of module is managed, either externally or hosted by viam.
+  ModuleSourceType source_type = 17;
+  // The language the module is written in
+  ModuleLanguage language = 19;
 }
 
 message GetRegistryItemRequest {
