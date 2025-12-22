@@ -4979,6 +4979,16 @@ export class ModuleMetadata extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasSourceType(): boolean;
+  clearSourceType(): void;
+  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
+
+  hasLanguage(): boolean;
+  clearLanguage(): void;
+  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
+  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleMetadata): ModuleMetadata.AsObject;
@@ -4997,6 +5007,8 @@ export namespace ModuleMetadata {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
+    language: ModuleLanguageMap[keyof ModuleLanguageMap],
   }
 }
 
@@ -5152,6 +5164,12 @@ export class RegistryItem extends jspb.Message {
   getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
+
+  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
+  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
+
   getMetadataCase(): RegistryItem.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegistryItem.AsObject;
@@ -5182,6 +5200,8 @@ export namespace RegistryItem {
     mlTrainingMetadata?: MLTrainingMetadata.AsObject,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
+    language: ModuleLanguageMap[keyof ModuleLanguageMap],
   }
 
   export enum MetadataCase {
@@ -5416,6 +5436,16 @@ export class ListRegistryItemsRequest extends jspb.Message {
   getIncludeMarkdownDocumentation(): boolean;
   setIncludeMarkdownDocumentation(value: boolean): void;
 
+  clearModuleSourceTypesList(): void;
+  getModuleSourceTypesList(): Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>;
+  setModuleSourceTypesList(value: Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>): void;
+  addModuleSourceTypes(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap], index?: number): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+
+  clearModuleLanguagesList(): void;
+  getModuleLanguagesList(): Array<ModuleLanguageMap[keyof ModuleLanguageMap]>;
+  setModuleLanguagesList(value: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>): void;
+  addModuleLanguages(value: ModuleLanguageMap[keyof ModuleLanguageMap], index?: number): ModuleLanguageMap[keyof ModuleLanguageMap];
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListRegistryItemsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListRegistryItemsRequest): ListRegistryItemsRequest.AsObject;
@@ -5437,6 +5467,8 @@ export namespace ListRegistryItemsRequest {
     pageToken: string,
     publicNamespacesList: Array<string>,
     includeMarkdownDocumentation: boolean,
+    moduleSourceTypesList: Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>,
+    moduleLanguagesList: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>,
   }
 }
 
@@ -5668,6 +5700,16 @@ export class UpdateModuleRequest extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
+  hasSourceType(): boolean;
+  clearSourceType(): void;
+  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
+
+  hasLanguage(): boolean;
+  clearLanguage(): void;
+  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
+  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleRequest): UpdateModuleRequest.AsObject;
@@ -5689,6 +5731,8 @@ export namespace UpdateModuleRequest {
     firstRun: string,
     appsList: Array<App.AsObject>,
     markdownDescription: string,
+    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
+    language: ModuleLanguageMap[keyof ModuleLanguageMap],
   }
 }
 
@@ -5772,6 +5816,16 @@ export class UpdateModuleMetadata extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasSourceType(): boolean;
+  clearSourceType(): void;
+  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
+
+  hasLanguage(): boolean;
+  clearLanguage(): void;
+  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
+  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleMetadata): UpdateModuleMetadata.AsObject;
@@ -5787,6 +5841,8 @@ export namespace UpdateModuleMetadata {
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
     appsList: Array<App.AsObject>,
+    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
+    language: ModuleLanguageMap[keyof ModuleLanguageMap],
   }
 }
 
@@ -7410,6 +7466,23 @@ export interface FragmentErrorTypeMap {
 }
 
 export const FragmentErrorType: FragmentErrorTypeMap;
+
+export interface ModuleSourceTypeMap {
+  MODULE_SOURCE_TYPE_UNSPECIFIED: 0;
+  MODULE_SOURCE_TYPE_EXTERNAL: 1;
+  MODULE_SOURCE_TYPE_VIAM_HOSTED: 2;
+}
+
+export const ModuleSourceType: ModuleSourceTypeMap;
+
+export interface ModuleLanguageMap {
+  MODULE_LANGUAGE_UNSPECIFIED: 0;
+  MODULE_LANGUAGE_GOLANG: 1;
+  MODULE_LANGUAGE_PYTHON: 2;
+  MODULE_LANGUAGE_CPP: 3;
+}
+
+export const ModuleLanguage: ModuleLanguageMap;
 
 export interface RegistryItemStatusMap {
   REGISTRY_ITEM_STATUS_UNSPECIFIED: 0;

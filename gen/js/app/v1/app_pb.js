@@ -214,7 +214,9 @@ goog.exportSymbol('proto.viam.app.v1.MarkPartForRestartResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.Model', null, global);
 goog.exportSymbol('proto.viam.app.v1.Module', null, global);
 goog.exportSymbol('proto.viam.app.v1.ModuleFileInfo', null, global);
+goog.exportSymbol('proto.viam.app.v1.ModuleLanguage', null, global);
 goog.exportSymbol('proto.viam.app.v1.ModuleMetadata', null, global);
+goog.exportSymbol('proto.viam.app.v1.ModuleSourceType', null, global);
 goog.exportSymbol('proto.viam.app.v1.ModuleVersion', null, global);
 goog.exportSymbol('proto.viam.app.v1.NewRobotPartRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.NewRobotPartResponse', null, global);
@@ -40646,7 +40648,9 @@ proto.viam.app.v1.ModuleMetadata.toObject = function(includeInstance, msg) {
     firstRun: jspb.Message.getFieldWithDefault(msg, 4, ""),
     markdownDescription: jspb.Message.getFieldWithDefault(msg, 5, ""),
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
-    proto.viam.app.v1.App.toObject, includeInstance)
+    proto.viam.app.v1.App.toObject, includeInstance),
+    sourceType: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    language: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -40709,6 +40713,14 @@ proto.viam.app.v1.ModuleMetadata.deserializeBinaryFromReader = function(msg, rea
       var value = new proto.viam.app.v1.App;
       reader.readMessage(value,proto.viam.app.v1.App.deserializeBinaryFromReader);
       msg.addApps(value);
+      break;
+    case 7:
+      var value = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (reader.readEnum());
+      msg.setSourceType(value);
+      break;
+    case 8:
+      var value = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (reader.readEnum());
+      msg.setLanguage(value);
       break;
     default:
       reader.skipField();
@@ -40782,6 +40794,20 @@ proto.viam.app.v1.ModuleMetadata.serializeBinaryToWriter = function(message, wri
       6,
       f,
       proto.viam.app.v1.App.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeEnum(
+      7,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getField(message, 8));
+  if (f != null) {
+    writer.writeEnum(
+      8,
+      f
     );
   }
 };
@@ -40988,6 +41014,78 @@ proto.viam.app.v1.ModuleMetadata.prototype.addApps = function(opt_value, opt_ind
  */
 proto.viam.app.v1.ModuleMetadata.prototype.clearAppsList = function() {
   return this.setAppsList([]);
+};
+
+
+/**
+ * optional ModuleSourceType source_type = 7;
+ * @return {!proto.viam.app.v1.ModuleSourceType}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.getSourceType = function() {
+  return /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleSourceType} value
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.setSourceType = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.clearSourceType = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.hasSourceType = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional ModuleLanguage language = 8;
+ * @return {!proto.viam.app.v1.ModuleLanguage}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.getLanguage = function() {
+  return /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleLanguage} value
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.setLanguage = function(value) {
+  return jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.clearLanguage = function() {
+  return jspb.Message.setField(this, 8, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.hasLanguage = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
@@ -41713,7 +41811,9 @@ proto.viam.app.v1.RegistryItem.toObject = function(includeInstance, msg) {
     mlModelMetadata: (f = msg.getMlModelMetadata()) && proto.viam.app.v1.MLModelMetadata.toObject(includeInstance, f),
     mlTrainingMetadata: (f = msg.getMlTrainingMetadata()) && proto.viam.app.v1.MLTrainingMetadata.toObject(includeInstance, f),
     createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    sourceType: jspb.Message.getFieldWithDefault(msg, 17, 0),
+    language: jspb.Message.getFieldWithDefault(msg, 19, 0)
   };
 
   if (includeInstance) {
@@ -41822,6 +41922,14 @@ proto.viam.app.v1.RegistryItem.deserializeBinaryFromReader = function(msg, reade
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setUpdatedAt(value);
+      break;
+    case 17:
+      var value = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (reader.readEnum());
+      msg.setSourceType(value);
+      break;
+    case 19:
+      var value = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (reader.readEnum());
+      msg.setLanguage(value);
       break;
     default:
       reader.skipField();
@@ -41974,6 +42082,20 @@ proto.viam.app.v1.RegistryItem.serializeBinaryToWriter = function(message, write
       16,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getSourceType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      17,
+      f
+    );
+  }
+  f = message.getLanguage();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      19,
+      f
     );
   }
 };
@@ -42377,6 +42499,42 @@ proto.viam.app.v1.RegistryItem.prototype.clearUpdatedAt = function() {
  */
 proto.viam.app.v1.RegistryItem.prototype.hasUpdatedAt = function() {
   return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional ModuleSourceType source_type = 17;
+ * @return {!proto.viam.app.v1.ModuleSourceType}
+ */
+proto.viam.app.v1.RegistryItem.prototype.getSourceType = function() {
+  return /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getFieldWithDefault(this, 17, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleSourceType} value
+ * @return {!proto.viam.app.v1.RegistryItem} returns this
+ */
+proto.viam.app.v1.RegistryItem.prototype.setSourceType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 17, value);
+};
+
+
+/**
+ * optional ModuleLanguage language = 19;
+ * @return {!proto.viam.app.v1.ModuleLanguage}
+ */
+proto.viam.app.v1.RegistryItem.prototype.getLanguage = function() {
+  return /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getFieldWithDefault(this, 19, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleLanguage} value
+ * @return {!proto.viam.app.v1.RegistryItem} returns this
+ */
+proto.viam.app.v1.RegistryItem.prototype.setLanguage = function(value) {
+  return jspb.Message.setProto3EnumField(this, 19, value);
 };
 
 
@@ -43603,7 +43761,7 @@ proto.viam.app.v1.UpdateRegistryItemResponse.serializeBinaryToWriter = function(
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.ListRegistryItemsRequest.repeatedFields_ = [2,3,4,5,8];
+proto.viam.app.v1.ListRegistryItemsRequest.repeatedFields_ = [2,3,4,5,8,10,11];
 
 
 
@@ -43644,7 +43802,9 @@ proto.viam.app.v1.ListRegistryItemsRequest.toObject = function(includeInstance, 
     searchTerm: jspb.Message.getFieldWithDefault(msg, 6, ""),
     pageToken: jspb.Message.getFieldWithDefault(msg, 7, ""),
     publicNamespacesList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
-    includeMarkdownDocumentation: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
+    includeMarkdownDocumentation: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    moduleSourceTypesList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
+    moduleLanguagesList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -43722,6 +43882,18 @@ proto.viam.app.v1.ListRegistryItemsRequest.deserializeBinaryFromReader = functio
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIncludeMarkdownDocumentation(value);
+      break;
+    case 10:
+      var values = /** @type {!Array<!proto.viam.app.v1.ModuleSourceType>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addModuleSourceTypes(values[i]);
+      }
+      break;
+    case 11:
+      var values = /** @type {!Array<!proto.viam.app.v1.ModuleLanguage>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addModuleLanguages(values[i]);
+      }
       break;
     default:
       reader.skipField();
@@ -43812,6 +43984,20 @@ proto.viam.app.v1.ListRegistryItemsRequest.serializeBinaryToWriter = function(me
   if (f != null) {
     writer.writeBool(
       9,
+      f
+    );
+  }
+  f = message.getModuleSourceTypesList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      10,
+      f
+    );
+  }
+  f = message.getModuleLanguagesList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      11,
       f
     );
   }
@@ -44144,6 +44330,80 @@ proto.viam.app.v1.ListRegistryItemsRequest.prototype.clearIncludeMarkdownDocumen
  */
 proto.viam.app.v1.ListRegistryItemsRequest.prototype.hasIncludeMarkdownDocumentation = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * repeated ModuleSourceType module_source_types = 10;
+ * @return {!Array<!proto.viam.app.v1.ModuleSourceType>}
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.getModuleSourceTypesList = function() {
+  return /** @type {!Array<!proto.viam.app.v1.ModuleSourceType>} */ (jspb.Message.getRepeatedField(this, 10));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.ModuleSourceType>} value
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.setModuleSourceTypesList = function(value) {
+  return jspb.Message.setField(this, 10, value || []);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleSourceType} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.addModuleSourceTypes = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 10, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.clearModuleSourceTypesList = function() {
+  return this.setModuleSourceTypesList([]);
+};
+
+
+/**
+ * repeated ModuleLanguage module_languages = 11;
+ * @return {!Array<!proto.viam.app.v1.ModuleLanguage>}
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.getModuleLanguagesList = function() {
+  return /** @type {!Array<!proto.viam.app.v1.ModuleLanguage>} */ (jspb.Message.getRepeatedField(this, 11));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.ModuleLanguage>} value
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.setModuleLanguagesList = function(value) {
+  return jspb.Message.setField(this, 11, value || []);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleLanguage} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.addModuleLanguages = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 11, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.clearModuleLanguagesList = function() {
+  return this.setModuleLanguagesList([]);
 };
 
 
@@ -45479,7 +45739,9 @@ proto.viam.app.v1.UpdateModuleRequest.toObject = function(includeInstance, msg) 
     firstRun: jspb.Message.getFieldWithDefault(msg, 7, ""),
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
     proto.viam.app.v1.App.toObject, includeInstance),
-    markdownDescription: jspb.Message.getFieldWithDefault(msg, 9, "")
+    markdownDescription: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    sourceType: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    language: jspb.Message.getFieldWithDefault(msg, 11, 0)
   };
 
   if (includeInstance) {
@@ -45553,6 +45815,14 @@ proto.viam.app.v1.UpdateModuleRequest.deserializeBinaryFromReader = function(msg
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setMarkdownDescription(value);
+      break;
+    case 10:
+      var value = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (reader.readEnum());
+      msg.setSourceType(value);
+      break;
+    case 11:
+      var value = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (reader.readEnum());
+      msg.setLanguage(value);
       break;
     default:
       reader.skipField();
@@ -45645,6 +45915,20 @@ proto.viam.app.v1.UpdateModuleRequest.serializeBinaryToWriter = function(message
   if (f != null) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeEnum(
+      10,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getField(message, 11));
+  if (f != null) {
+    writer.writeEnum(
+      11,
       f
     );
   }
@@ -45886,6 +46170,78 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.clearMarkdownDescription = funct
  */
 proto.viam.app.v1.UpdateModuleRequest.prototype.hasMarkdownDescription = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional ModuleSourceType source_type = 10;
+ * @return {!proto.viam.app.v1.ModuleSourceType}
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.getSourceType = function() {
+  return /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleSourceType} value
+ * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.setSourceType = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.clearSourceType = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.hasSourceType = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional ModuleLanguage language = 11;
+ * @return {!proto.viam.app.v1.ModuleLanguage}
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.getLanguage = function() {
+  return /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleLanguage} value
+ * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.setLanguage = function(value) {
+  return jspb.Message.setField(this, 11, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.clearLanguage = function() {
+  return jspb.Message.setField(this, 11, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateModuleRequest.prototype.hasLanguage = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
@@ -46407,7 +46763,9 @@ proto.viam.app.v1.UpdateModuleMetadata.toObject = function(includeInstance, msg)
     proto.viam.app.v1.Model.toObject, includeInstance),
     entrypoint: jspb.Message.getFieldWithDefault(msg, 2, ""),
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
-    proto.viam.app.v1.App.toObject, includeInstance)
+    proto.viam.app.v1.App.toObject, includeInstance),
+    sourceType: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    language: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -46457,6 +46815,14 @@ proto.viam.app.v1.UpdateModuleMetadata.deserializeBinaryFromReader = function(ms
       var value = new proto.viam.app.v1.App;
       reader.readMessage(value,proto.viam.app.v1.App.deserializeBinaryFromReader);
       msg.addApps(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (reader.readEnum());
+      msg.setSourceType(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (reader.readEnum());
+      msg.setLanguage(value);
       break;
     default:
       reader.skipField();
@@ -46508,6 +46874,20 @@ proto.viam.app.v1.UpdateModuleMetadata.serializeBinaryToWriter = function(messag
       3,
       f,
       proto.viam.app.v1.App.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeEnum(
+      5,
+      f
     );
   }
 };
@@ -46604,6 +46984,78 @@ proto.viam.app.v1.UpdateModuleMetadata.prototype.addApps = function(opt_value, o
  */
 proto.viam.app.v1.UpdateModuleMetadata.prototype.clearAppsList = function() {
   return this.setAppsList([]);
+};
+
+
+/**
+ * optional ModuleSourceType source_type = 4;
+ * @return {!proto.viam.app.v1.ModuleSourceType}
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.getSourceType = function() {
+  return /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleSourceType} value
+ * @return {!proto.viam.app.v1.UpdateModuleMetadata} returns this
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.setSourceType = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateModuleMetadata} returns this
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.clearSourceType = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.hasSourceType = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional ModuleLanguage language = 5;
+ * @return {!proto.viam.app.v1.ModuleLanguage}
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.getLanguage = function() {
+  return /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleLanguage} value
+ * @return {!proto.viam.app.v1.UpdateModuleMetadata} returns this
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.setLanguage = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateModuleMetadata} returns this
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.clearLanguage = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.hasLanguage = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -57663,6 +58115,25 @@ proto.viam.app.v1.FragmentErrorType = {
   FRAGMENT_ERROR_TYPE_NESTING_LIMIT_EXCEEDED: 2,
   FRAGMENT_ERROR_TYPE_CHILD_ID_INVALID: 3,
   FRAGMENT_ERROR_TYPE_CYCLE_DETECTED: 4
+};
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.v1.ModuleSourceType = {
+  MODULE_SOURCE_TYPE_UNSPECIFIED: 0,
+  MODULE_SOURCE_TYPE_EXTERNAL: 1,
+  MODULE_SOURCE_TYPE_VIAM_HOSTED: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.v1.ModuleLanguage = {
+  MODULE_LANGUAGE_UNSPECIFIED: 0,
+  MODULE_LANGUAGE_GOLANG: 1,
+  MODULE_LANGUAGE_PYTHON: 2,
+  MODULE_LANGUAGE_CPP: 3
 };
 
 /**
