@@ -186,6 +186,54 @@ export namespace StartReloadBuildResponse {
   }
 }
 
+export class StartPackageBuildRequest extends jspb.Message {
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  getPackageVersion(): string;
+  setPackageVersion(value: string): void;
+
+  getModuleVersion(): string;
+  setModuleVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartPackageBuildRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StartPackageBuildRequest): StartPackageBuildRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartPackageBuildRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartPackageBuildRequest;
+  static deserializeBinaryFromReader(message: StartPackageBuildRequest, reader: jspb.BinaryReader): StartPackageBuildRequest;
+}
+
+export namespace StartPackageBuildRequest {
+  export type AsObject = {
+    moduleId: string,
+    packageVersion: string,
+    moduleVersion: string,
+  }
+}
+
+export class StartPackageBuildResponse extends jspb.Message {
+  getBuildId(): string;
+  setBuildId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartPackageBuildResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StartPackageBuildResponse): StartPackageBuildResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartPackageBuildResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartPackageBuildResponse;
+  static deserializeBinaryFromReader(message: StartPackageBuildResponse, reader: jspb.BinaryReader): StartPackageBuildResponse;
+}
+
+export namespace StartPackageBuildResponse {
+  export type AsObject = {
+    buildId: string,
+  }
+}
+
 export class GetLogsResponse extends jspb.Message {
   getBuildStep(): string;
   setBuildStep(value: string): void;

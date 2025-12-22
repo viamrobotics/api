@@ -44,6 +44,8 @@ type BuildServiceClient interface {
 	UnlinkOrg(ctx context.Context, in *UnlinkOrgRequest, opts ...grpc.CallOption) (*UnlinkOrgResponse, error)
 	// upload the local dev environment and build a module for hot reloading
 	StartReloadBuild(ctx context.Context, opts ...grpc.CallOption) (BuildService_StartReloadBuildClient, error)
+	// Start a build where the source code is hosted by Viam
+	StartPackageBuild(ctx context.Context, opts ...grpc.CallOption) (BuildService_StartPackageBuildClient, error)
 }
 
 type buildServiceClient struct {
@@ -201,6 +203,40 @@ func (x *buildServiceStartReloadBuildClient) CloseAndRecv() (*StartReloadBuildRe
 	return m, nil
 }
 
+func (c *buildServiceClient) StartPackageBuild(ctx context.Context, opts ...grpc.CallOption) (BuildService_StartPackageBuildClient, error) {
+	stream, err := c.cc.NewStream(ctx, &BuildService_ServiceDesc.Streams[2], "/viam.app.build.v1.BuildService/StartPackageBuild", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &buildServiceStartPackageBuildClient{stream}
+	return x, nil
+}
+
+type BuildService_StartPackageBuildClient interface {
+	Send(*StartPackageBuildRequest) error
+	CloseAndRecv() (*StartPackageBuildResponse, error)
+	grpc.ClientStream
+}
+
+type buildServiceStartPackageBuildClient struct {
+	grpc.ClientStream
+}
+
+func (x *buildServiceStartPackageBuildClient) Send(m *StartPackageBuildRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *buildServiceStartPackageBuildClient) CloseAndRecv() (*StartPackageBuildResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(StartPackageBuildResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // BuildServiceServer is the server API for BuildService service.
 // All implementations must embed UnimplementedBuildServiceServer
 // for forward compatibility
@@ -227,6 +263,8 @@ type BuildServiceServer interface {
 	UnlinkOrg(context.Context, *UnlinkOrgRequest) (*UnlinkOrgResponse, error)
 	// upload the local dev environment and build a module for hot reloading
 	StartReloadBuild(BuildService_StartReloadBuildServer) error
+	// Start a build where the source code is hosted by Viam
+	StartPackageBuild(BuildService_StartPackageBuildServer) error
 	mustEmbedUnimplementedBuildServiceServer()
 }
 
@@ -266,6 +304,9 @@ func (UnimplementedBuildServiceServer) UnlinkOrg(context.Context, *UnlinkOrgRequ
 }
 func (UnimplementedBuildServiceServer) StartReloadBuild(BuildService_StartReloadBuildServer) error {
 	return status.Errorf(codes.Unimplemented, "method StartReloadBuild not implemented")
+}
+func (UnimplementedBuildServiceServer) StartPackageBuild(BuildService_StartPackageBuildServer) error {
+	return status.Errorf(codes.Unimplemented, "method StartPackageBuild not implemented")
 }
 func (UnimplementedBuildServiceServer) mustEmbedUnimplementedBuildServiceServer() {}
 
@@ -489,6 +530,32 @@ func (x *buildServiceStartReloadBuildServer) Recv() (*StartReloadBuildRequest, e
 	return m, nil
 }
 
+func _BuildService_StartPackageBuild_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(BuildServiceServer).StartPackageBuild(&buildServiceStartPackageBuildServer{stream})
+}
+
+type BuildService_StartPackageBuildServer interface {
+	SendAndClose(*StartPackageBuildResponse) error
+	Recv() (*StartPackageBuildRequest, error)
+	grpc.ServerStream
+}
+
+type buildServiceStartPackageBuildServer struct {
+	grpc.ServerStream
+}
+
+func (x *buildServiceStartPackageBuildServer) SendAndClose(m *StartPackageBuildResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *buildServiceStartPackageBuildServer) Recv() (*StartPackageBuildRequest, error) {
+	m := new(StartPackageBuildRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // BuildService_ServiceDesc is the grpc.ServiceDesc for BuildService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -542,6 +609,11 @@ var BuildService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "StartReloadBuild",
 			Handler:       _BuildService_StartReloadBuild_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "StartPackageBuild",
+			Handler:       _BuildService_StartPackageBuild_Handler,
 			ClientStreams: true,
 		},
 	},

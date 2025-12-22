@@ -109,6 +109,15 @@ BuildService.StartReloadBuild = {
   responseType: app_build_v1_build_pb.StartReloadBuildResponse
 };
 
+BuildService.StartPackageBuild = {
+  methodName: "StartPackageBuild",
+  service: BuildService,
+  requestStream: true,
+  responseStream: false,
+  requestType: app_build_v1_build_pb.StartPackageBuildRequest,
+  responseType: app_build_v1_build_pb.StartPackageBuildResponse
+};
+
 exports.BuildService = BuildService;
 
 function BuildServiceClient(serviceHost, options) {
@@ -440,6 +449,47 @@ BuildServiceClient.prototype.startReloadBuild = function startReloadBuild(metada
     status: []
   };
   var client = grpc.client(BuildService.StartReloadBuild, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      if (!client.started) {
+        client.start(metadata);
+      }
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
+      client.close();
+    }
+  };
+};
+
+BuildServiceClient.prototype.startPackageBuild = function startPackageBuild(metadata) {
+  var listeners = {
+    end: [],
+    status: []
+  };
+  var client = grpc.client(BuildService.StartPackageBuild, {
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport
