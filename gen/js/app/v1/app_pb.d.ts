@@ -513,6 +513,28 @@ export namespace GetOrganizationNamespaceAvailabilityResponse {
   }
 }
 
+export class FragmentImportList extends jspb.Message {
+  clearImportsList(): void;
+  getImportsList(): Array<FragmentImport>;
+  setImportsList(value: Array<FragmentImport>): void;
+  addImports(value?: FragmentImport, index?: number): FragmentImport;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentImportList.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentImportList): FragmentImportList.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentImportList, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentImportList;
+  static deserializeBinaryFromReader(message: FragmentImportList, reader: jspb.BinaryReader): FragmentImportList;
+}
+
+export namespace FragmentImportList {
+  export type AsObject = {
+    importsList: Array<FragmentImport.AsObject>,
+  }
+}
+
 export class UpdateOrganizationRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -537,10 +559,10 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getCid(): string;
   setCid(value: string): void;
 
-  clearFragmentImportsList(): void;
-  getFragmentImportsList(): Array<FragmentImport>;
-  setFragmentImportsList(value: Array<FragmentImport>): void;
-  addFragmentImports(value?: FragmentImport, index?: number): FragmentImport;
+  hasFragmentImports(): boolean;
+  clearFragmentImports(): void;
+  getFragmentImports(): FragmentImportList | undefined;
+  setFragmentImports(value?: FragmentImportList): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
@@ -559,7 +581,7 @@ export namespace UpdateOrganizationRequest {
     publicNamespace: string,
     region: string,
     cid: string,
-    fragmentImportsList: Array<FragmentImport.AsObject>,
+    fragmentImports?: FragmentImportList.AsObject,
   }
 }
 
