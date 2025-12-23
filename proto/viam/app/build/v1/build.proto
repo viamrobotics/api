@@ -38,7 +38,7 @@ service BuildService {
   rpc StartReloadBuild(stream StartReloadBuildRequest) returns (StartReloadBuildResponse);
 
   // Start a build where the source code is hosted by Viam
-  rpc StartPackageBuild(stream StartPackageBuildRequest) returns (StartPackageBuildResponse);
+  rpc StartPackageBuild(StartPackageBuildRequest) returns (StartPackageBuildResponse);
 }
 
 message StartBuildRequest {
