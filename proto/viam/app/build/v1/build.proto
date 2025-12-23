@@ -36,6 +36,9 @@ service BuildService {
   rpc UnlinkOrg(UnlinkOrgRequest) returns (UnlinkOrgResponse);
   // upload the local dev environment and build a module for hot reloading
   rpc StartReloadBuild(stream StartReloadBuildRequest) returns (StartReloadBuildResponse);
+
+  // Start a build where the source code is hosted by Viam
+  rpc StartPackageBuild(StartPackageBuildRequest) returns (StartPackageBuildResponse);
 }
 
 message StartBuildRequest {
@@ -82,6 +85,21 @@ message StartReloadBuildRequest {
 }
 
 message StartReloadBuildResponse {
+  string build_id = 1;
+}
+
+message StartPackageBuildRequest {
+  // module_id to build for
+  string module_id = 1;
+  // the version of source code to build for
+  string package_version = 2;
+  // version of the module to publish to the registry. must be valid semver2.0 string (ex: 1.2.3-rc0)
+  string module_version = 3;
+  // specify the platforms to build for (ex: linux/arm64)
+  repeated string platforms = 4;
+}
+
+message StartPackageBuildResponse {
   string build_id = 1;
 }
 
