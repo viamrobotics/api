@@ -106,7 +106,7 @@ type BuildServiceStartReloadBuild = {
 type BuildServiceStartPackageBuild = {
   readonly methodName: string;
   readonly service: typeof BuildService;
-  readonly requestStream: true;
+  readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof app_build_v1_build_pb.StartPackageBuildRequest;
   readonly responseType: typeof app_build_v1_build_pb.StartPackageBuildResponse;
@@ -243,6 +243,14 @@ export class BuildServiceClient {
     callback: (error: ServiceError|null, responseMessage: app_build_v1_build_pb.UnlinkOrgResponse|null) => void
   ): UnaryResponse;
   startReloadBuild(metadata?: grpc.Metadata): RequestStream<app_build_v1_build_pb.StartReloadBuildRequest>;
-  startPackageBuild(metadata?: grpc.Metadata): RequestStream<app_build_v1_build_pb.StartPackageBuildRequest>;
+  startPackageBuild(
+    requestMessage: app_build_v1_build_pb.StartPackageBuildRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_build_v1_build_pb.StartPackageBuildResponse|null) => void
+  ): UnaryResponse;
+  startPackageBuild(
+    requestMessage: app_build_v1_build_pb.StartPackageBuildRequest,
+    callback: (error: ServiceError|null, responseMessage: app_build_v1_build_pb.StartPackageBuildResponse|null) => void
+  ): UnaryResponse;
 }
 

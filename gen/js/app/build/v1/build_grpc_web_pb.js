@@ -686,5 +686,66 @@ proto.viam.app.build.v1.BuildServicePromiseClient.prototype.unlinkOrg =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.build.v1.StartPackageBuildRequest,
+ *   !proto.viam.app.build.v1.StartPackageBuildResponse>}
+ */
+const methodDescriptor_BuildService_StartPackageBuild = new grpc.web.MethodDescriptor(
+  '/viam.app.build.v1.BuildService/StartPackageBuild',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.build.v1.StartPackageBuildRequest,
+  proto.viam.app.build.v1.StartPackageBuildResponse,
+  /**
+   * @param {!proto.viam.app.build.v1.StartPackageBuildRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.build.v1.StartPackageBuildResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.build.v1.StartPackageBuildRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.build.v1.StartPackageBuildResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.build.v1.StartPackageBuildResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.build.v1.BuildServiceClient.prototype.startPackageBuild =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/StartPackageBuild',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_StartPackageBuild,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.build.v1.StartPackageBuildRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.build.v1.StartPackageBuildResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.build.v1.BuildServicePromiseClient.prototype.startPackageBuild =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.build.v1.BuildService/StartPackageBuild',
+      request,
+      metadata || {},
+      methodDescriptor_BuildService_StartPackageBuild);
+};
+
+
 module.exports = proto.viam.app.build.v1;
 
