@@ -1511,6 +1511,8 @@ message UpdateRegistryItemRequest {
   }
 
   optional string markdown_description = 9;
+  optional ModuleSourceType source_type = 10;
+  optional ModuleLanguage language = 11;
 }
 
 message UpdateRegistryItemResponse {}
