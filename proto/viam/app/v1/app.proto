@@ -1470,11 +1470,6 @@ message RegistryItem {
   google.protobuf.Timestamp created_at = 15;
   // When the item was last updated, either through an update or upload.
   google.protobuf.Timestamp updated_at = 16;
-
-  // Where the source code of module is managed, either externally or hosted by viam.
-  ModuleSourceType source_type = 17;
-  // The language the module is written in
-  ModuleLanguage language = 19;
 }
 
 message GetRegistryItemRequest {

@@ -41811,9 +41811,7 @@ proto.viam.app.v1.RegistryItem.toObject = function(includeInstance, msg) {
     mlModelMetadata: (f = msg.getMlModelMetadata()) && proto.viam.app.v1.MLModelMetadata.toObject(includeInstance, f),
     mlTrainingMetadata: (f = msg.getMlTrainingMetadata()) && proto.viam.app.v1.MLTrainingMetadata.toObject(includeInstance, f),
     createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    sourceType: jspb.Message.getFieldWithDefault(msg, 17, 0),
-    language: jspb.Message.getFieldWithDefault(msg, 19, 0)
+    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -41922,14 +41920,6 @@ proto.viam.app.v1.RegistryItem.deserializeBinaryFromReader = function(msg, reade
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setUpdatedAt(value);
-      break;
-    case 17:
-      var value = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (reader.readEnum());
-      msg.setSourceType(value);
-      break;
-    case 19:
-      var value = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (reader.readEnum());
-      msg.setLanguage(value);
       break;
     default:
       reader.skipField();
@@ -42082,20 +42072,6 @@ proto.viam.app.v1.RegistryItem.serializeBinaryToWriter = function(message, write
       16,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
-  f = message.getSourceType();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      17,
-      f
-    );
-  }
-  f = message.getLanguage();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      19,
-      f
     );
   }
 };
@@ -42499,42 +42475,6 @@ proto.viam.app.v1.RegistryItem.prototype.clearUpdatedAt = function() {
  */
 proto.viam.app.v1.RegistryItem.prototype.hasUpdatedAt = function() {
   return jspb.Message.getField(this, 16) != null;
-};
-
-
-/**
- * optional ModuleSourceType source_type = 17;
- * @return {!proto.viam.app.v1.ModuleSourceType}
- */
-proto.viam.app.v1.RegistryItem.prototype.getSourceType = function() {
-  return /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getFieldWithDefault(this, 17, 0));
-};
-
-
-/**
- * @param {!proto.viam.app.v1.ModuleSourceType} value
- * @return {!proto.viam.app.v1.RegistryItem} returns this
- */
-proto.viam.app.v1.RegistryItem.prototype.setSourceType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 17, value);
-};
-
-
-/**
- * optional ModuleLanguage language = 19;
- * @return {!proto.viam.app.v1.ModuleLanguage}
- */
-proto.viam.app.v1.RegistryItem.prototype.getLanguage = function() {
-  return /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getFieldWithDefault(this, 19, 0));
-};
-
-
-/**
- * @param {!proto.viam.app.v1.ModuleLanguage} value
- * @return {!proto.viam.app.v1.RegistryItem} returns this
- */
-proto.viam.app.v1.RegistryItem.prototype.setLanguage = function(value) {
-  return jspb.Message.setProto3EnumField(this, 19, value);
 };
 
 

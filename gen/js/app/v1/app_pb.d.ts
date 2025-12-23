@@ -5164,12 +5164,6 @@ export class RegistryItem extends jspb.Message {
   getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
-  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
-
-  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
-  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
-
   getMetadataCase(): RegistryItem.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegistryItem.AsObject;
@@ -5200,8 +5194,6 @@ export namespace RegistryItem {
     mlTrainingMetadata?: MLTrainingMetadata.AsObject,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
-    language: ModuleLanguageMap[keyof ModuleLanguageMap],
   }
 
   export enum MetadataCase {
