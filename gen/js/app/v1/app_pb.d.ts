@@ -5342,16 +5342,6 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
-  hasSourceType(): boolean;
-  clearSourceType(): void;
-  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
-  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
-
-  hasLanguage(): boolean;
-  clearLanguage(): void;
-  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
-  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
-
   getMetadataCase(): UpdateRegistryItemRequest.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
@@ -5374,8 +5364,6 @@ export namespace UpdateRegistryItemRequest {
     updateMlModelMetadata?: UpdateMLModelMetadata.AsObject,
     updateMlTrainingMetadata?: UpdateMLTrainingMetadata.AsObject,
     markdownDescription: string,
-    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
-    language: ModuleLanguageMap[keyof ModuleLanguageMap],
   }
 
   export enum MetadataCase {
