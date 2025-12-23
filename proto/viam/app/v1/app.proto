@@ -1603,10 +1603,6 @@ message UpdateModuleRequest {
   repeated App apps = 8;
   // longer documentation provided in markdown format
   optional string markdown_description = 9;
-  // Where the source code of module is managed, either externally or hosted by viam.
-  optional ModuleSourceType source_type = 10;
-  // The language the module is written in
-  optional ModuleLanguage language = 11;
 }
 
 message App {

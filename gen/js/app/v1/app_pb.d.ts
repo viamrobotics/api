@@ -5692,16 +5692,6 @@ export class UpdateModuleRequest extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
-  hasSourceType(): boolean;
-  clearSourceType(): void;
-  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
-  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
-
-  hasLanguage(): boolean;
-  clearLanguage(): void;
-  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
-  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleRequest): UpdateModuleRequest.AsObject;
@@ -5723,8 +5713,6 @@ export namespace UpdateModuleRequest {
     firstRun: string,
     appsList: Array<App.AsObject>,
     markdownDescription: string,
-    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
-    language: ModuleLanguageMap[keyof ModuleLanguageMap],
   }
 }
 

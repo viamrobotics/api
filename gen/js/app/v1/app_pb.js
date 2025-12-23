@@ -45679,9 +45679,7 @@ proto.viam.app.v1.UpdateModuleRequest.toObject = function(includeInstance, msg) 
     firstRun: jspb.Message.getFieldWithDefault(msg, 7, ""),
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
     proto.viam.app.v1.App.toObject, includeInstance),
-    markdownDescription: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    sourceType: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    language: jspb.Message.getFieldWithDefault(msg, 11, 0)
+    markdownDescription: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -45755,14 +45753,6 @@ proto.viam.app.v1.UpdateModuleRequest.deserializeBinaryFromReader = function(msg
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setMarkdownDescription(value);
-      break;
-    case 10:
-      var value = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (reader.readEnum());
-      msg.setSourceType(value);
-      break;
-    case 11:
-      var value = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (reader.readEnum());
-      msg.setLanguage(value);
       break;
     default:
       reader.skipField();
@@ -45855,20 +45845,6 @@ proto.viam.app.v1.UpdateModuleRequest.serializeBinaryToWriter = function(message
   if (f != null) {
     writer.writeString(
       9,
-      f
-    );
-  }
-  f = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getField(message, 10));
-  if (f != null) {
-    writer.writeEnum(
-      10,
-      f
-    );
-  }
-  f = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getField(message, 11));
-  if (f != null) {
-    writer.writeEnum(
-      11,
       f
     );
   }
@@ -46110,78 +46086,6 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.clearMarkdownDescription = funct
  */
 proto.viam.app.v1.UpdateModuleRequest.prototype.hasMarkdownDescription = function() {
   return jspb.Message.getField(this, 9) != null;
-};
-
-
-/**
- * optional ModuleSourceType source_type = 10;
- * @return {!proto.viam.app.v1.ModuleSourceType}
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.getSourceType = function() {
-  return /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
-};
-
-
-/**
- * @param {!proto.viam.app.v1.ModuleSourceType} value
- * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.setSourceType = function(value) {
-  return jspb.Message.setField(this, 10, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.clearSourceType = function() {
-  return jspb.Message.setField(this, 10, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.hasSourceType = function() {
-  return jspb.Message.getField(this, 10) != null;
-};
-
-
-/**
- * optional ModuleLanguage language = 11;
- * @return {!proto.viam.app.v1.ModuleLanguage}
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.getLanguage = function() {
-  return /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
-};
-
-
-/**
- * @param {!proto.viam.app.v1.ModuleLanguage} value
- * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.setLanguage = function(value) {
-  return jspb.Message.setField(this, 11, value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.viam.app.v1.UpdateModuleRequest} returns this
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.clearLanguage = function() {
-  return jspb.Message.setField(this, 11, undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.UpdateModuleRequest.prototype.hasLanguage = function() {
-  return jspb.Message.getField(this, 11) != null;
 };
 
 

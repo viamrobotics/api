@@ -12429,10 +12429,6 @@ type UpdateModuleRequest struct {
 	Apps []*App `protobuf:"bytes,8,rep,name=apps,proto3" json:"apps,omitempty"`
 	// longer documentation provided in markdown format
 	MarkdownDescription *string `protobuf:"bytes,9,opt,name=markdown_description,json=markdownDescription,proto3,oneof" json:"markdown_description,omitempty"`
-	// Where the source code of module is managed, either externally or hosted by viam.
-	SourceType *ModuleSourceType `protobuf:"varint,10,opt,name=source_type,json=sourceType,proto3,enum=viam.app.v1.ModuleSourceType,oneof" json:"source_type,omitempty"`
-	// The language the module is written in
-	Language *ModuleLanguage `protobuf:"varint,11,opt,name=language,proto3,enum=viam.app.v1.ModuleLanguage,oneof" json:"language,omitempty"`
 }
 
 func (x *UpdateModuleRequest) Reset() {
@@ -12526,20 +12522,6 @@ func (x *UpdateModuleRequest) GetMarkdownDescription() string {
 		return *x.MarkdownDescription
 	}
 	return ""
-}
-
-func (x *UpdateModuleRequest) GetSourceType() ModuleSourceType {
-	if x != nil && x.SourceType != nil {
-		return *x.SourceType
-	}
-	return ModuleSourceType_MODULE_SOURCE_TYPE_UNSPECIFIED
-}
-
-func (x *UpdateModuleRequest) GetLanguage() ModuleLanguage {
-	if x != nil && x.Language != nil {
-		return *x.Language
-	}
-	return ModuleLanguage_MODULE_LANGUAGE_UNSPECIFIED
 }
 
 type App struct {
@@ -17839,7 +17821,7 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x75, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6d,
 	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
 	0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0xb2, 0x04, 0x0a, 0x13, 0x55,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0x92, 0x03, 0x0a, 0x13, 0x55,
 	0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x49, 0x64, 0x12,
@@ -17862,19 +17844,9 @@ var file_app_v1_app_proto_rawDesc = []byte{
 	0x12, 0x36, 0x0a, 0x14, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73,
 	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01,
 	0x52, 0x13, 0x6d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69,
-	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x43, 0x0a, 0x0b, 0x73, 0x6f, 0x75, 0x72,
-	0x63, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1d, 0x2e,
-	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x75,
-	0x6c, 0x65, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x54, 0x79, 0x70, 0x65, 0x48, 0x02, 0x52, 0x0a,
-	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x54, 0x79, 0x70, 0x65, 0x88, 0x01, 0x01, 0x12, 0x3c, 0x0a,
-	0x08, 0x6c, 0x61, 0x6e, 0x67, 0x75, 0x61, 0x67, 0x65, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x0e, 0x32,
-	0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f,
-	0x64, 0x75, 0x6c, 0x65, 0x4c, 0x61, 0x6e, 0x67, 0x75, 0x61, 0x67, 0x65, 0x48, 0x03, 0x52, 0x08,
-	0x6c, 0x61, 0x6e, 0x67, 0x75, 0x61, 0x67, 0x65, 0x88, 0x01, 0x01, 0x42, 0x0c, 0x0a, 0x0a, 0x5f,
-	0x66, 0x69, 0x72, 0x73, 0x74, 0x5f, 0x72, 0x75, 0x6e, 0x42, 0x17, 0x0a, 0x15, 0x5f, 0x6d, 0x61,
-	0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
-	0x6f, 0x6e, 0x42, 0x0e, 0x0a, 0x0c, 0x5f, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x74, 0x79,
-	0x70, 0x65, 0x42, 0x0b, 0x0a, 0x09, 0x5f, 0x6c, 0x61, 0x6e, 0x67, 0x75, 0x61, 0x67, 0x65, 0x22,
+	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x66, 0x69, 0x72,
+	0x73, 0x74, 0x5f, 0x72, 0x75, 0x6e, 0x42, 0x17, 0x0a, 0x15, 0x5f, 0x6d, 0x61, 0x72, 0x6b, 0x64,
+	0x6f, 0x77, 0x6e, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x22,
 	0xe8, 0x01, 0x0a, 0x03, 0x41, 0x70, 0x70, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74,
 	0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12,
@@ -19649,269 +19621,267 @@ var file_app_v1_app_proto_depIdxs = []int32{
 	7,   // 169: viam.app.v1.UpdateModuleRequest.visibility:type_name -> viam.app.v1.Visibility
 	230, // 170: viam.app.v1.UpdateModuleRequest.models:type_name -> viam.app.v1.Model
 	225, // 171: viam.app.v1.UpdateModuleRequest.apps:type_name -> viam.app.v1.App
-	4,   // 172: viam.app.v1.UpdateModuleRequest.source_type:type_name -> viam.app.v1.ModuleSourceType
-	5,   // 173: viam.app.v1.UpdateModuleRequest.language:type_name -> viam.app.v1.ModuleLanguage
-	286, // 174: viam.app.v1.App.customizations:type_name -> viam.app.v1.AppCustomizations
-	230, // 175: viam.app.v1.UpdateModuleMetadata.models:type_name -> viam.app.v1.Model
-	225, // 176: viam.app.v1.UpdateModuleMetadata.apps:type_name -> viam.app.v1.App
-	4,   // 177: viam.app.v1.UpdateModuleMetadata.source_type:type_name -> viam.app.v1.ModuleSourceType
-	5,   // 178: viam.app.v1.UpdateModuleMetadata.language:type_name -> viam.app.v1.ModuleLanguage
-	294, // 179: viam.app.v1.UpdateMLModelMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	295, // 180: viam.app.v1.UpdateMLModelMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	294, // 181: viam.app.v1.UpdateMLTrainingMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
-	295, // 182: viam.app.v1.UpdateMLTrainingMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	231, // 183: viam.app.v1.UploadModuleFileRequest.module_file_info:type_name -> viam.app.v1.ModuleFileInfo
-	236, // 184: viam.app.v1.GetModuleResponse.module:type_name -> viam.app.v1.Module
-	7,   // 185: viam.app.v1.Module.visibility:type_name -> viam.app.v1.Visibility
-	237, // 186: viam.app.v1.Module.versions:type_name -> viam.app.v1.VersionHistory
-	230, // 187: viam.app.v1.Module.models:type_name -> viam.app.v1.Model
-	225, // 188: viam.app.v1.Module.apps:type_name -> viam.app.v1.App
-	238, // 189: viam.app.v1.VersionHistory.files:type_name -> viam.app.v1.Uploads
-	230, // 190: viam.app.v1.VersionHistory.models:type_name -> viam.app.v1.Model
-	225, // 191: viam.app.v1.VersionHistory.apps:type_name -> viam.app.v1.App
-	291, // 192: viam.app.v1.Uploads.uploaded_at:type_name -> google.protobuf.Timestamp
-	236, // 193: viam.app.v1.ListModulesResponse.modules:type_name -> viam.app.v1.Module
-	244, // 194: viam.app.v1.ListOrganizationsByUserResponse.orgs:type_name -> viam.app.v1.OrgDetails
-	244, // 195: viam.app.v1.SearchOrganizationsResponse.organizations:type_name -> viam.app.v1.OrgDetails
-	190, // 196: viam.app.v1.CreateKeyRequest.authorizations:type_name -> viam.app.v1.Authorization
-	124, // 197: viam.app.v1.APIKeyWithAuthorizations.api_key:type_name -> viam.app.v1.APIKey
-	254, // 198: viam.app.v1.APIKeyWithAuthorizations.authorizations:type_name -> viam.app.v1.AuthorizationDetails
-	255, // 199: viam.app.v1.ListKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
-	8,   // 200: viam.app.v1.GetAppContentResponse.app_type:type_name -> viam.app.v1.AppType
-	282, // 201: viam.app.v1.CreateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
-	282, // 202: viam.app.v1.ReadOAuthAppResponse.oauth_config:type_name -> viam.app.v1.OAuthConfig
-	282, // 203: viam.app.v1.UpdateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
-	9,   // 204: viam.app.v1.OAuthConfig.client_authentication:type_name -> viam.app.v1.ClientAuthentication
-	10,  // 205: viam.app.v1.OAuthConfig.pkce:type_name -> viam.app.v1.PKCE
-	11,  // 206: viam.app.v1.OAuthConfig.url_validation:type_name -> viam.app.v1.URLValidation
-	12,  // 207: viam.app.v1.OAuthConfig.enabled_grants:type_name -> viam.app.v1.EnabledGrant
-	289, // 208: viam.app.v1.TextOverrides.fields:type_name -> viam.app.v1.TextOverrides.FieldsEntry
-	290, // 209: viam.app.v1.GetAppBrandingResponse.text_customizations:type_name -> viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry
-	287, // 210: viam.app.v1.AppCustomizations.machine_picker:type_name -> viam.app.v1.MachinePickerCustomizations
-	284, // 211: viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry.value:type_name -> viam.app.v1.TextOverrides
-	241, // 212: viam.app.v1.AppService.GetUserIDByEmail:input_type -> viam.app.v1.GetUserIDByEmailRequest
-	23,  // 213: viam.app.v1.AppService.CreateOrganization:input_type -> viam.app.v1.CreateOrganizationRequest
-	18,  // 214: viam.app.v1.AppService.ListOrganizations:input_type -> viam.app.v1.ListOrganizationsRequest
-	83,  // 215: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:input_type -> viam.app.v1.GetOrganizationsWithAccessToLocationRequest
-	243, // 216: viam.app.v1.AppService.ListOrganizationsByUser:input_type -> viam.app.v1.ListOrganizationsByUserRequest
-	246, // 217: viam.app.v1.AppService.SearchOrganizations:input_type -> viam.app.v1.SearchOrganizationsRequest
-	25,  // 218: viam.app.v1.AppService.GetOrganization:input_type -> viam.app.v1.GetOrganizationRequest
-	27,  // 219: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:input_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityRequest
-	30,  // 220: viam.app.v1.AppService.UpdateOrganization:input_type -> viam.app.v1.UpdateOrganizationRequest
-	32,  // 221: viam.app.v1.AppService.UpdateOrganizationNamespace:input_type -> viam.app.v1.UpdateOrganizationNamespaceRequest
-	34,  // 222: viam.app.v1.AppService.DeleteOrganization:input_type -> viam.app.v1.DeleteOrganizationRequest
-	36,  // 223: viam.app.v1.AppService.GetOrganizationMetadata:input_type -> viam.app.v1.GetOrganizationMetadataRequest
-	38,  // 224: viam.app.v1.AppService.UpdateOrganizationMetadata:input_type -> viam.app.v1.UpdateOrganizationMetadataRequest
-	40,  // 225: viam.app.v1.AppService.ListOrganizationMembers:input_type -> viam.app.v1.ListOrganizationMembersRequest
-	42,  // 226: viam.app.v1.AppService.CreateOrganizationInvite:input_type -> viam.app.v1.CreateOrganizationInviteRequest
-	44,  // 227: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:input_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest
-	50,  // 228: viam.app.v1.AppService.DeleteOrganizationMember:input_type -> viam.app.v1.DeleteOrganizationMemberRequest
-	46,  // 229: viam.app.v1.AppService.DeleteOrganizationInvite:input_type -> viam.app.v1.DeleteOrganizationInviteRequest
-	48,  // 230: viam.app.v1.AppService.ResendOrganizationInvite:input_type -> viam.app.v1.ResendOrganizationInviteRequest
-	53,  // 231: viam.app.v1.AppService.EnableBillingService:input_type -> viam.app.v1.EnableBillingServiceRequest
-	59,  // 232: viam.app.v1.AppService.DisableBillingService:input_type -> viam.app.v1.DisableBillingServiceRequest
-	55,  // 233: viam.app.v1.AppService.UpdateBillingService:input_type -> viam.app.v1.UpdateBillingServiceRequest
-	57,  // 234: viam.app.v1.AppService.GetBillingServiceConfig:input_type -> viam.app.v1.GetBillingServiceConfigRequest
-	61,  // 235: viam.app.v1.AppService.OrganizationSetSupportEmail:input_type -> viam.app.v1.OrganizationSetSupportEmailRequest
-	63,  // 236: viam.app.v1.AppService.OrganizationGetSupportEmail:input_type -> viam.app.v1.OrganizationGetSupportEmailRequest
-	264, // 237: viam.app.v1.AppService.OrganizationSetLogo:input_type -> viam.app.v1.OrganizationSetLogoRequest
-	266, // 238: viam.app.v1.AppService.OrganizationGetLogo:input_type -> viam.app.v1.OrganizationGetLogoRequest
-	268, // 239: viam.app.v1.AppService.EnableAuthService:input_type -> viam.app.v1.EnableAuthServiceRequest
-	270, // 240: viam.app.v1.AppService.DisableAuthService:input_type -> viam.app.v1.DisableAuthServiceRequest
-	272, // 241: viam.app.v1.AppService.CreateOAuthApp:input_type -> viam.app.v1.CreateOAuthAppRequest
-	274, // 242: viam.app.v1.AppService.ReadOAuthApp:input_type -> viam.app.v1.ReadOAuthAppRequest
-	276, // 243: viam.app.v1.AppService.UpdateOAuthApp:input_type -> viam.app.v1.UpdateOAuthAppRequest
-	278, // 244: viam.app.v1.AppService.DeleteOAuthApp:input_type -> viam.app.v1.DeleteOAuthAppRequest
-	280, // 245: viam.app.v1.AppService.ListOAuthApps:input_type -> viam.app.v1.ListOAuthAppsRequest
-	71,  // 246: viam.app.v1.AppService.CreateLocation:input_type -> viam.app.v1.CreateLocationRequest
-	73,  // 247: viam.app.v1.AppService.GetLocation:input_type -> viam.app.v1.GetLocationRequest
-	75,  // 248: viam.app.v1.AppService.UpdateLocation:input_type -> viam.app.v1.UpdateLocationRequest
-	77,  // 249: viam.app.v1.AppService.DeleteLocation:input_type -> viam.app.v1.DeleteLocationRequest
-	79,  // 250: viam.app.v1.AppService.GetLocationMetadata:input_type -> viam.app.v1.GetLocationMetadataRequest
-	81,  // 251: viam.app.v1.AppService.UpdateLocationMetadata:input_type -> viam.app.v1.UpdateLocationMetadataRequest
-	85,  // 252: viam.app.v1.AppService.ListLocations:input_type -> viam.app.v1.ListLocationsRequest
-	86,  // 253: viam.app.v1.AppService.ShareLocation:input_type -> viam.app.v1.ShareLocationRequest
-	88,  // 254: viam.app.v1.AppService.UnshareLocation:input_type -> viam.app.v1.UnshareLocationRequest
-	95,  // 255: viam.app.v1.AppService.LocationAuth:input_type -> viam.app.v1.LocationAuthRequest
-	91,  // 256: viam.app.v1.AppService.CreateLocationSecret:input_type -> viam.app.v1.CreateLocationSecretRequest
-	93,  // 257: viam.app.v1.AppService.DeleteLocationSecret:input_type -> viam.app.v1.DeleteLocationSecretRequest
-	97,  // 258: viam.app.v1.AppService.GetRobot:input_type -> viam.app.v1.GetRobotRequest
-	178, // 259: viam.app.v1.AppService.GetRobotMetadata:input_type -> viam.app.v1.GetRobotMetadataRequest
-	180, // 260: viam.app.v1.AppService.UpdateRobotMetadata:input_type -> viam.app.v1.UpdateRobotMetadataRequest
-	98,  // 261: viam.app.v1.AppService.GetRoverRentalRobots:input_type -> viam.app.v1.GetRoverRentalRobotsRequest
-	102, // 262: viam.app.v1.AppService.GetRobotParts:input_type -> viam.app.v1.GetRobotPartsRequest
-	104, // 263: viam.app.v1.AppService.GetRobotPart:input_type -> viam.app.v1.GetRobotPartRequest
-	106, // 264: viam.app.v1.AppService.GetRobotPartByNameAndLocation:input_type -> viam.app.v1.GetRobotPartByNameAndLocationRequest
-	108, // 265: viam.app.v1.AppService.GetRobotPartLogs:input_type -> viam.app.v1.GetRobotPartLogsRequest
-	110, // 266: viam.app.v1.AppService.TailRobotPartLogs:input_type -> viam.app.v1.TailRobotPartLogsRequest
-	112, // 267: viam.app.v1.AppService.GetRobotPartHistory:input_type -> viam.app.v1.GetRobotPartHistoryRequest
-	114, // 268: viam.app.v1.AppService.UpdateRobotPart:input_type -> viam.app.v1.UpdateRobotPartRequest
-	116, // 269: viam.app.v1.AppService.NewRobotPart:input_type -> viam.app.v1.NewRobotPartRequest
-	118, // 270: viam.app.v1.AppService.DeleteRobotPart:input_type -> viam.app.v1.DeleteRobotPartRequest
-	119, // 271: viam.app.v1.AppService.GetRobotPartMetadata:input_type -> viam.app.v1.GetRobotPartMetadataRequest
-	121, // 272: viam.app.v1.AppService.UpdateRobotPartMetadata:input_type -> viam.app.v1.UpdateRobotPartMetadataRequest
-	123, // 273: viam.app.v1.AppService.GetRobotAPIKeys:input_type -> viam.app.v1.GetRobotAPIKeysRequest
-	182, // 274: viam.app.v1.AppService.MarkPartAsMain:input_type -> viam.app.v1.MarkPartAsMainRequest
-	184, // 275: viam.app.v1.AppService.MarkPartForRestart:input_type -> viam.app.v1.MarkPartForRestartRequest
-	186, // 276: viam.app.v1.AppService.CreateRobotPartSecret:input_type -> viam.app.v1.CreateRobotPartSecretRequest
-	188, // 277: viam.app.v1.AppService.DeleteRobotPartSecret:input_type -> viam.app.v1.DeleteRobotPartSecretRequest
-	153, // 278: viam.app.v1.AppService.ListRobots:input_type -> viam.app.v1.ListRobotsRequest
-	154, // 279: viam.app.v1.AppService.ListRobotsForLocations:input_type -> viam.app.v1.ListRobotsForLocationsRequest
-	155, // 280: viam.app.v1.AppService.ListRobotsForOrg:input_type -> viam.app.v1.ListRobotsForOrgRequest
-	172, // 281: viam.app.v1.AppService.NewRobot:input_type -> viam.app.v1.NewRobotRequest
-	174, // 282: viam.app.v1.AppService.UpdateRobot:input_type -> viam.app.v1.UpdateRobotRequest
-	176, // 283: viam.app.v1.AppService.DeleteRobot:input_type -> viam.app.v1.DeleteRobotRequest
-	135, // 284: viam.app.v1.AppService.ListFragments:input_type -> viam.app.v1.ListFragmentsRequest
-	137, // 285: viam.app.v1.AppService.GetFragment:input_type -> viam.app.v1.GetFragmentRequest
-	139, // 286: viam.app.v1.AppService.CreateFragment:input_type -> viam.app.v1.CreateFragmentRequest
-	141, // 287: viam.app.v1.AppService.UpdateFragment:input_type -> viam.app.v1.UpdateFragmentRequest
-	143, // 288: viam.app.v1.AppService.DeleteFragment:input_type -> viam.app.v1.DeleteFragmentRequest
-	157, // 289: viam.app.v1.AppService.ListNestedFragments:input_type -> viam.app.v1.ListNestedFragmentsRequest
-	159, // 290: viam.app.v1.AppService.ListMachineFragments:input_type -> viam.app.v1.ListMachineFragmentsRequest
-	161, // 291: viam.app.v1.AppService.ListMachineSummaries:input_type -> viam.app.v1.ListMachineSummariesRequest
-	145, // 292: viam.app.v1.AppService.GetFragmentHistory:input_type -> viam.app.v1.GetFragmentHistoryRequest
-	147, // 293: viam.app.v1.AppService.GetFragmentUsage:input_type -> viam.app.v1.GetFragmentUsageRequest
-	149, // 294: viam.app.v1.AppService.SetFragmentTag:input_type -> viam.app.v1.SetFragmentTagRequest
-	151, // 295: viam.app.v1.AppService.DeleteFragmentTag:input_type -> viam.app.v1.DeleteFragmentTagRequest
-	191, // 296: viam.app.v1.AppService.AddRole:input_type -> viam.app.v1.AddRoleRequest
-	193, // 297: viam.app.v1.AppService.RemoveRole:input_type -> viam.app.v1.RemoveRoleRequest
-	195, // 298: viam.app.v1.AppService.ChangeRole:input_type -> viam.app.v1.ChangeRoleRequest
-	197, // 299: viam.app.v1.AppService.ListAuthorizations:input_type -> viam.app.v1.ListAuthorizationsRequest
-	199, // 300: viam.app.v1.AppService.CheckPermissions:input_type -> viam.app.v1.CheckPermissionsRequest
-	208, // 301: viam.app.v1.AppService.GetRegistryItem:input_type -> viam.app.v1.GetRegistryItemRequest
-	210, // 302: viam.app.v1.AppService.CreateRegistryItem:input_type -> viam.app.v1.CreateRegistryItemRequest
-	212, // 303: viam.app.v1.AppService.UpdateRegistryItem:input_type -> viam.app.v1.UpdateRegistryItemRequest
-	214, // 304: viam.app.v1.AppService.ListRegistryItems:input_type -> viam.app.v1.ListRegistryItemsRequest
-	216, // 305: viam.app.v1.AppService.DeleteRegistryItem:input_type -> viam.app.v1.DeleteRegistryItemRequest
-	218, // 306: viam.app.v1.AppService.RenameRegistryItem:input_type -> viam.app.v1.RenameRegistryItemRequest
-	220, // 307: viam.app.v1.AppService.TransferRegistryItem:input_type -> viam.app.v1.TransferRegistryItemRequest
-	222, // 308: viam.app.v1.AppService.CreateModule:input_type -> viam.app.v1.CreateModuleRequest
-	224, // 309: viam.app.v1.AppService.UpdateModule:input_type -> viam.app.v1.UpdateModuleRequest
-	232, // 310: viam.app.v1.AppService.UploadModuleFile:input_type -> viam.app.v1.UploadModuleFileRequest
-	234, // 311: viam.app.v1.AppService.GetModule:input_type -> viam.app.v1.GetModuleRequest
-	239, // 312: viam.app.v1.AppService.ListModules:input_type -> viam.app.v1.ListModulesRequest
-	248, // 313: viam.app.v1.AppService.CreateKey:input_type -> viam.app.v1.CreateKeyRequest
-	250, // 314: viam.app.v1.AppService.DeleteKey:input_type -> viam.app.v1.DeleteKeyRequest
-	256, // 315: viam.app.v1.AppService.ListKeys:input_type -> viam.app.v1.ListKeysRequest
-	252, // 316: viam.app.v1.AppService.RenameKey:input_type -> viam.app.v1.RenameKeyRequest
-	258, // 317: viam.app.v1.AppService.RotateKey:input_type -> viam.app.v1.RotateKeyRequest
-	260, // 318: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:input_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest
-	262, // 319: viam.app.v1.AppService.GetAppContent:input_type -> viam.app.v1.GetAppContentRequest
-	283, // 320: viam.app.v1.AppService.GetAppBranding:input_type -> viam.app.v1.GetAppBrandingRequest
-	242, // 321: viam.app.v1.AppService.GetUserIDByEmail:output_type -> viam.app.v1.GetUserIDByEmailResponse
-	24,  // 322: viam.app.v1.AppService.CreateOrganization:output_type -> viam.app.v1.CreateOrganizationResponse
-	21,  // 323: viam.app.v1.AppService.ListOrganizations:output_type -> viam.app.v1.ListOrganizationsResponse
-	84,  // 324: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:output_type -> viam.app.v1.GetOrganizationsWithAccessToLocationResponse
-	245, // 325: viam.app.v1.AppService.ListOrganizationsByUser:output_type -> viam.app.v1.ListOrganizationsByUserResponse
-	247, // 326: viam.app.v1.AppService.SearchOrganizations:output_type -> viam.app.v1.SearchOrganizationsResponse
-	26,  // 327: viam.app.v1.AppService.GetOrganization:output_type -> viam.app.v1.GetOrganizationResponse
-	28,  // 328: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:output_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityResponse
-	31,  // 329: viam.app.v1.AppService.UpdateOrganization:output_type -> viam.app.v1.UpdateOrganizationResponse
-	33,  // 330: viam.app.v1.AppService.UpdateOrganizationNamespace:output_type -> viam.app.v1.UpdateOrganizationNamespaceResponse
-	35,  // 331: viam.app.v1.AppService.DeleteOrganization:output_type -> viam.app.v1.DeleteOrganizationResponse
-	37,  // 332: viam.app.v1.AppService.GetOrganizationMetadata:output_type -> viam.app.v1.GetOrganizationMetadataResponse
-	39,  // 333: viam.app.v1.AppService.UpdateOrganizationMetadata:output_type -> viam.app.v1.UpdateOrganizationMetadataResponse
-	41,  // 334: viam.app.v1.AppService.ListOrganizationMembers:output_type -> viam.app.v1.ListOrganizationMembersResponse
-	43,  // 335: viam.app.v1.AppService.CreateOrganizationInvite:output_type -> viam.app.v1.CreateOrganizationInviteResponse
-	45,  // 336: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:output_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse
-	51,  // 337: viam.app.v1.AppService.DeleteOrganizationMember:output_type -> viam.app.v1.DeleteOrganizationMemberResponse
-	47,  // 338: viam.app.v1.AppService.DeleteOrganizationInvite:output_type -> viam.app.v1.DeleteOrganizationInviteResponse
-	49,  // 339: viam.app.v1.AppService.ResendOrganizationInvite:output_type -> viam.app.v1.ResendOrganizationInviteResponse
-	54,  // 340: viam.app.v1.AppService.EnableBillingService:output_type -> viam.app.v1.EnableBillingServiceResponse
-	60,  // 341: viam.app.v1.AppService.DisableBillingService:output_type -> viam.app.v1.DisableBillingServiceResponse
-	56,  // 342: viam.app.v1.AppService.UpdateBillingService:output_type -> viam.app.v1.UpdateBillingServiceResponse
-	58,  // 343: viam.app.v1.AppService.GetBillingServiceConfig:output_type -> viam.app.v1.GetBillingServiceConfigResponse
-	62,  // 344: viam.app.v1.AppService.OrganizationSetSupportEmail:output_type -> viam.app.v1.OrganizationSetSupportEmailResponse
-	64,  // 345: viam.app.v1.AppService.OrganizationGetSupportEmail:output_type -> viam.app.v1.OrganizationGetSupportEmailResponse
-	265, // 346: viam.app.v1.AppService.OrganizationSetLogo:output_type -> viam.app.v1.OrganizationSetLogoResponse
-	267, // 347: viam.app.v1.AppService.OrganizationGetLogo:output_type -> viam.app.v1.OrganizationGetLogoResponse
-	269, // 348: viam.app.v1.AppService.EnableAuthService:output_type -> viam.app.v1.EnableAuthServiceResponse
-	271, // 349: viam.app.v1.AppService.DisableAuthService:output_type -> viam.app.v1.DisableAuthServiceResponse
-	273, // 350: viam.app.v1.AppService.CreateOAuthApp:output_type -> viam.app.v1.CreateOAuthAppResponse
-	275, // 351: viam.app.v1.AppService.ReadOAuthApp:output_type -> viam.app.v1.ReadOAuthAppResponse
-	277, // 352: viam.app.v1.AppService.UpdateOAuthApp:output_type -> viam.app.v1.UpdateOAuthAppResponse
-	279, // 353: viam.app.v1.AppService.DeleteOAuthApp:output_type -> viam.app.v1.DeleteOAuthAppResponse
-	281, // 354: viam.app.v1.AppService.ListOAuthApps:output_type -> viam.app.v1.ListOAuthAppsResponse
-	72,  // 355: viam.app.v1.AppService.CreateLocation:output_type -> viam.app.v1.CreateLocationResponse
-	74,  // 356: viam.app.v1.AppService.GetLocation:output_type -> viam.app.v1.GetLocationResponse
-	76,  // 357: viam.app.v1.AppService.UpdateLocation:output_type -> viam.app.v1.UpdateLocationResponse
-	78,  // 358: viam.app.v1.AppService.DeleteLocation:output_type -> viam.app.v1.DeleteLocationResponse
-	80,  // 359: viam.app.v1.AppService.GetLocationMetadata:output_type -> viam.app.v1.GetLocationMetadataResponse
-	82,  // 360: viam.app.v1.AppService.UpdateLocationMetadata:output_type -> viam.app.v1.UpdateLocationMetadataResponse
-	90,  // 361: viam.app.v1.AppService.ListLocations:output_type -> viam.app.v1.ListLocationsResponse
-	87,  // 362: viam.app.v1.AppService.ShareLocation:output_type -> viam.app.v1.ShareLocationResponse
-	89,  // 363: viam.app.v1.AppService.UnshareLocation:output_type -> viam.app.v1.UnshareLocationResponse
-	96,  // 364: viam.app.v1.AppService.LocationAuth:output_type -> viam.app.v1.LocationAuthResponse
-	92,  // 365: viam.app.v1.AppService.CreateLocationSecret:output_type -> viam.app.v1.CreateLocationSecretResponse
-	94,  // 366: viam.app.v1.AppService.DeleteLocationSecret:output_type -> viam.app.v1.DeleteLocationSecretResponse
-	101, // 367: viam.app.v1.AppService.GetRobot:output_type -> viam.app.v1.GetRobotResponse
-	179, // 368: viam.app.v1.AppService.GetRobotMetadata:output_type -> viam.app.v1.GetRobotMetadataResponse
-	181, // 369: viam.app.v1.AppService.UpdateRobotMetadata:output_type -> viam.app.v1.UpdateRobotMetadataResponse
-	100, // 370: viam.app.v1.AppService.GetRoverRentalRobots:output_type -> viam.app.v1.GetRoverRentalRobotsResponse
-	103, // 371: viam.app.v1.AppService.GetRobotParts:output_type -> viam.app.v1.GetRobotPartsResponse
-	105, // 372: viam.app.v1.AppService.GetRobotPart:output_type -> viam.app.v1.GetRobotPartResponse
-	107, // 373: viam.app.v1.AppService.GetRobotPartByNameAndLocation:output_type -> viam.app.v1.GetRobotPartByNameAndLocationResponse
-	109, // 374: viam.app.v1.AppService.GetRobotPartLogs:output_type -> viam.app.v1.GetRobotPartLogsResponse
-	111, // 375: viam.app.v1.AppService.TailRobotPartLogs:output_type -> viam.app.v1.TailRobotPartLogsResponse
-	113, // 376: viam.app.v1.AppService.GetRobotPartHistory:output_type -> viam.app.v1.GetRobotPartHistoryResponse
-	115, // 377: viam.app.v1.AppService.UpdateRobotPart:output_type -> viam.app.v1.UpdateRobotPartResponse
-	117, // 378: viam.app.v1.AppService.NewRobotPart:output_type -> viam.app.v1.NewRobotPartResponse
-	126, // 379: viam.app.v1.AppService.DeleteRobotPart:output_type -> viam.app.v1.DeleteRobotPartResponse
-	120, // 380: viam.app.v1.AppService.GetRobotPartMetadata:output_type -> viam.app.v1.GetRobotPartMetadataResponse
-	122, // 381: viam.app.v1.AppService.UpdateRobotPartMetadata:output_type -> viam.app.v1.UpdateRobotPartMetadataResponse
-	125, // 382: viam.app.v1.AppService.GetRobotAPIKeys:output_type -> viam.app.v1.GetRobotAPIKeysResponse
-	183, // 383: viam.app.v1.AppService.MarkPartAsMain:output_type -> viam.app.v1.MarkPartAsMainResponse
-	185, // 384: viam.app.v1.AppService.MarkPartForRestart:output_type -> viam.app.v1.MarkPartForRestartResponse
-	187, // 385: viam.app.v1.AppService.CreateRobotPartSecret:output_type -> viam.app.v1.CreateRobotPartSecretResponse
-	189, // 386: viam.app.v1.AppService.DeleteRobotPartSecret:output_type -> viam.app.v1.DeleteRobotPartSecretResponse
-	169, // 387: viam.app.v1.AppService.ListRobots:output_type -> viam.app.v1.ListRobotsResponse
-	170, // 388: viam.app.v1.AppService.ListRobotsForLocations:output_type -> viam.app.v1.ListRobotsForLocationsResponse
-	171, // 389: viam.app.v1.AppService.ListRobotsForOrg:output_type -> viam.app.v1.ListRobotsForOrgResponse
-	173, // 390: viam.app.v1.AppService.NewRobot:output_type -> viam.app.v1.NewRobotResponse
-	175, // 391: viam.app.v1.AppService.UpdateRobot:output_type -> viam.app.v1.UpdateRobotResponse
-	177, // 392: viam.app.v1.AppService.DeleteRobot:output_type -> viam.app.v1.DeleteRobotResponse
-	136, // 393: viam.app.v1.AppService.ListFragments:output_type -> viam.app.v1.ListFragmentsResponse
-	138, // 394: viam.app.v1.AppService.GetFragment:output_type -> viam.app.v1.GetFragmentResponse
-	140, // 395: viam.app.v1.AppService.CreateFragment:output_type -> viam.app.v1.CreateFragmentResponse
-	142, // 396: viam.app.v1.AppService.UpdateFragment:output_type -> viam.app.v1.UpdateFragmentResponse
-	144, // 397: viam.app.v1.AppService.DeleteFragment:output_type -> viam.app.v1.DeleteFragmentResponse
-	158, // 398: viam.app.v1.AppService.ListNestedFragments:output_type -> viam.app.v1.ListNestedFragmentsResponse
-	160, // 399: viam.app.v1.AppService.ListMachineFragments:output_type -> viam.app.v1.ListMachineFragmentsResponse
-	162, // 400: viam.app.v1.AppService.ListMachineSummaries:output_type -> viam.app.v1.ListMachineSummariesResponse
-	146, // 401: viam.app.v1.AppService.GetFragmentHistory:output_type -> viam.app.v1.GetFragmentHistoryResponse
-	148, // 402: viam.app.v1.AppService.GetFragmentUsage:output_type -> viam.app.v1.GetFragmentUsageResponse
-	150, // 403: viam.app.v1.AppService.SetFragmentTag:output_type -> viam.app.v1.SetFragmentTagResponse
-	152, // 404: viam.app.v1.AppService.DeleteFragmentTag:output_type -> viam.app.v1.DeleteFragmentTagResponse
-	192, // 405: viam.app.v1.AppService.AddRole:output_type -> viam.app.v1.AddRoleResponse
-	194, // 406: viam.app.v1.AppService.RemoveRole:output_type -> viam.app.v1.RemoveRoleResponse
-	196, // 407: viam.app.v1.AppService.ChangeRole:output_type -> viam.app.v1.ChangeRoleResponse
-	198, // 408: viam.app.v1.AppService.ListAuthorizations:output_type -> viam.app.v1.ListAuthorizationsResponse
-	201, // 409: viam.app.v1.AppService.CheckPermissions:output_type -> viam.app.v1.CheckPermissionsResponse
-	209, // 410: viam.app.v1.AppService.GetRegistryItem:output_type -> viam.app.v1.GetRegistryItemResponse
-	211, // 411: viam.app.v1.AppService.CreateRegistryItem:output_type -> viam.app.v1.CreateRegistryItemResponse
-	213, // 412: viam.app.v1.AppService.UpdateRegistryItem:output_type -> viam.app.v1.UpdateRegistryItemResponse
-	215, // 413: viam.app.v1.AppService.ListRegistryItems:output_type -> viam.app.v1.ListRegistryItemsResponse
-	217, // 414: viam.app.v1.AppService.DeleteRegistryItem:output_type -> viam.app.v1.DeleteRegistryItemResponse
-	219, // 415: viam.app.v1.AppService.RenameRegistryItem:output_type -> viam.app.v1.RenameRegistryItemResponse
-	221, // 416: viam.app.v1.AppService.TransferRegistryItem:output_type -> viam.app.v1.TransferRegistryItemResponse
-	223, // 417: viam.app.v1.AppService.CreateModule:output_type -> viam.app.v1.CreateModuleResponse
-	226, // 418: viam.app.v1.AppService.UpdateModule:output_type -> viam.app.v1.UpdateModuleResponse
-	233, // 419: viam.app.v1.AppService.UploadModuleFile:output_type -> viam.app.v1.UploadModuleFileResponse
-	235, // 420: viam.app.v1.AppService.GetModule:output_type -> viam.app.v1.GetModuleResponse
-	240, // 421: viam.app.v1.AppService.ListModules:output_type -> viam.app.v1.ListModulesResponse
-	249, // 422: viam.app.v1.AppService.CreateKey:output_type -> viam.app.v1.CreateKeyResponse
-	251, // 423: viam.app.v1.AppService.DeleteKey:output_type -> viam.app.v1.DeleteKeyResponse
-	257, // 424: viam.app.v1.AppService.ListKeys:output_type -> viam.app.v1.ListKeysResponse
-	253, // 425: viam.app.v1.AppService.RenameKey:output_type -> viam.app.v1.RenameKeyResponse
-	259, // 426: viam.app.v1.AppService.RotateKey:output_type -> viam.app.v1.RotateKeyResponse
-	261, // 427: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:output_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse
-	263, // 428: viam.app.v1.AppService.GetAppContent:output_type -> viam.app.v1.GetAppContentResponse
-	285, // 429: viam.app.v1.AppService.GetAppBranding:output_type -> viam.app.v1.GetAppBrandingResponse
-	321, // [321:430] is the sub-list for method output_type
-	212, // [212:321] is the sub-list for method input_type
-	212, // [212:212] is the sub-list for extension type_name
-	212, // [212:212] is the sub-list for extension extendee
-	0,   // [0:212] is the sub-list for field type_name
+	286, // 172: viam.app.v1.App.customizations:type_name -> viam.app.v1.AppCustomizations
+	230, // 173: viam.app.v1.UpdateModuleMetadata.models:type_name -> viam.app.v1.Model
+	225, // 174: viam.app.v1.UpdateModuleMetadata.apps:type_name -> viam.app.v1.App
+	4,   // 175: viam.app.v1.UpdateModuleMetadata.source_type:type_name -> viam.app.v1.ModuleSourceType
+	5,   // 176: viam.app.v1.UpdateModuleMetadata.language:type_name -> viam.app.v1.ModuleLanguage
+	294, // 177: viam.app.v1.UpdateMLModelMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	295, // 178: viam.app.v1.UpdateMLModelMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	294, // 179: viam.app.v1.UpdateMLTrainingMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
+	295, // 180: viam.app.v1.UpdateMLTrainingMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
+	231, // 181: viam.app.v1.UploadModuleFileRequest.module_file_info:type_name -> viam.app.v1.ModuleFileInfo
+	236, // 182: viam.app.v1.GetModuleResponse.module:type_name -> viam.app.v1.Module
+	7,   // 183: viam.app.v1.Module.visibility:type_name -> viam.app.v1.Visibility
+	237, // 184: viam.app.v1.Module.versions:type_name -> viam.app.v1.VersionHistory
+	230, // 185: viam.app.v1.Module.models:type_name -> viam.app.v1.Model
+	225, // 186: viam.app.v1.Module.apps:type_name -> viam.app.v1.App
+	238, // 187: viam.app.v1.VersionHistory.files:type_name -> viam.app.v1.Uploads
+	230, // 188: viam.app.v1.VersionHistory.models:type_name -> viam.app.v1.Model
+	225, // 189: viam.app.v1.VersionHistory.apps:type_name -> viam.app.v1.App
+	291, // 190: viam.app.v1.Uploads.uploaded_at:type_name -> google.protobuf.Timestamp
+	236, // 191: viam.app.v1.ListModulesResponse.modules:type_name -> viam.app.v1.Module
+	244, // 192: viam.app.v1.ListOrganizationsByUserResponse.orgs:type_name -> viam.app.v1.OrgDetails
+	244, // 193: viam.app.v1.SearchOrganizationsResponse.organizations:type_name -> viam.app.v1.OrgDetails
+	190, // 194: viam.app.v1.CreateKeyRequest.authorizations:type_name -> viam.app.v1.Authorization
+	124, // 195: viam.app.v1.APIKeyWithAuthorizations.api_key:type_name -> viam.app.v1.APIKey
+	254, // 196: viam.app.v1.APIKeyWithAuthorizations.authorizations:type_name -> viam.app.v1.AuthorizationDetails
+	255, // 197: viam.app.v1.ListKeysResponse.api_keys:type_name -> viam.app.v1.APIKeyWithAuthorizations
+	8,   // 198: viam.app.v1.GetAppContentResponse.app_type:type_name -> viam.app.v1.AppType
+	282, // 199: viam.app.v1.CreateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
+	282, // 200: viam.app.v1.ReadOAuthAppResponse.oauth_config:type_name -> viam.app.v1.OAuthConfig
+	282, // 201: viam.app.v1.UpdateOAuthAppRequest.oauth_config:type_name -> viam.app.v1.OAuthConfig
+	9,   // 202: viam.app.v1.OAuthConfig.client_authentication:type_name -> viam.app.v1.ClientAuthentication
+	10,  // 203: viam.app.v1.OAuthConfig.pkce:type_name -> viam.app.v1.PKCE
+	11,  // 204: viam.app.v1.OAuthConfig.url_validation:type_name -> viam.app.v1.URLValidation
+	12,  // 205: viam.app.v1.OAuthConfig.enabled_grants:type_name -> viam.app.v1.EnabledGrant
+	289, // 206: viam.app.v1.TextOverrides.fields:type_name -> viam.app.v1.TextOverrides.FieldsEntry
+	290, // 207: viam.app.v1.GetAppBrandingResponse.text_customizations:type_name -> viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry
+	287, // 208: viam.app.v1.AppCustomizations.machine_picker:type_name -> viam.app.v1.MachinePickerCustomizations
+	284, // 209: viam.app.v1.GetAppBrandingResponse.TextCustomizationsEntry.value:type_name -> viam.app.v1.TextOverrides
+	241, // 210: viam.app.v1.AppService.GetUserIDByEmail:input_type -> viam.app.v1.GetUserIDByEmailRequest
+	23,  // 211: viam.app.v1.AppService.CreateOrganization:input_type -> viam.app.v1.CreateOrganizationRequest
+	18,  // 212: viam.app.v1.AppService.ListOrganizations:input_type -> viam.app.v1.ListOrganizationsRequest
+	83,  // 213: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:input_type -> viam.app.v1.GetOrganizationsWithAccessToLocationRequest
+	243, // 214: viam.app.v1.AppService.ListOrganizationsByUser:input_type -> viam.app.v1.ListOrganizationsByUserRequest
+	246, // 215: viam.app.v1.AppService.SearchOrganizations:input_type -> viam.app.v1.SearchOrganizationsRequest
+	25,  // 216: viam.app.v1.AppService.GetOrganization:input_type -> viam.app.v1.GetOrganizationRequest
+	27,  // 217: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:input_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityRequest
+	30,  // 218: viam.app.v1.AppService.UpdateOrganization:input_type -> viam.app.v1.UpdateOrganizationRequest
+	32,  // 219: viam.app.v1.AppService.UpdateOrganizationNamespace:input_type -> viam.app.v1.UpdateOrganizationNamespaceRequest
+	34,  // 220: viam.app.v1.AppService.DeleteOrganization:input_type -> viam.app.v1.DeleteOrganizationRequest
+	36,  // 221: viam.app.v1.AppService.GetOrganizationMetadata:input_type -> viam.app.v1.GetOrganizationMetadataRequest
+	38,  // 222: viam.app.v1.AppService.UpdateOrganizationMetadata:input_type -> viam.app.v1.UpdateOrganizationMetadataRequest
+	40,  // 223: viam.app.v1.AppService.ListOrganizationMembers:input_type -> viam.app.v1.ListOrganizationMembersRequest
+	42,  // 224: viam.app.v1.AppService.CreateOrganizationInvite:input_type -> viam.app.v1.CreateOrganizationInviteRequest
+	44,  // 225: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:input_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsRequest
+	50,  // 226: viam.app.v1.AppService.DeleteOrganizationMember:input_type -> viam.app.v1.DeleteOrganizationMemberRequest
+	46,  // 227: viam.app.v1.AppService.DeleteOrganizationInvite:input_type -> viam.app.v1.DeleteOrganizationInviteRequest
+	48,  // 228: viam.app.v1.AppService.ResendOrganizationInvite:input_type -> viam.app.v1.ResendOrganizationInviteRequest
+	53,  // 229: viam.app.v1.AppService.EnableBillingService:input_type -> viam.app.v1.EnableBillingServiceRequest
+	59,  // 230: viam.app.v1.AppService.DisableBillingService:input_type -> viam.app.v1.DisableBillingServiceRequest
+	55,  // 231: viam.app.v1.AppService.UpdateBillingService:input_type -> viam.app.v1.UpdateBillingServiceRequest
+	57,  // 232: viam.app.v1.AppService.GetBillingServiceConfig:input_type -> viam.app.v1.GetBillingServiceConfigRequest
+	61,  // 233: viam.app.v1.AppService.OrganizationSetSupportEmail:input_type -> viam.app.v1.OrganizationSetSupportEmailRequest
+	63,  // 234: viam.app.v1.AppService.OrganizationGetSupportEmail:input_type -> viam.app.v1.OrganizationGetSupportEmailRequest
+	264, // 235: viam.app.v1.AppService.OrganizationSetLogo:input_type -> viam.app.v1.OrganizationSetLogoRequest
+	266, // 236: viam.app.v1.AppService.OrganizationGetLogo:input_type -> viam.app.v1.OrganizationGetLogoRequest
+	268, // 237: viam.app.v1.AppService.EnableAuthService:input_type -> viam.app.v1.EnableAuthServiceRequest
+	270, // 238: viam.app.v1.AppService.DisableAuthService:input_type -> viam.app.v1.DisableAuthServiceRequest
+	272, // 239: viam.app.v1.AppService.CreateOAuthApp:input_type -> viam.app.v1.CreateOAuthAppRequest
+	274, // 240: viam.app.v1.AppService.ReadOAuthApp:input_type -> viam.app.v1.ReadOAuthAppRequest
+	276, // 241: viam.app.v1.AppService.UpdateOAuthApp:input_type -> viam.app.v1.UpdateOAuthAppRequest
+	278, // 242: viam.app.v1.AppService.DeleteOAuthApp:input_type -> viam.app.v1.DeleteOAuthAppRequest
+	280, // 243: viam.app.v1.AppService.ListOAuthApps:input_type -> viam.app.v1.ListOAuthAppsRequest
+	71,  // 244: viam.app.v1.AppService.CreateLocation:input_type -> viam.app.v1.CreateLocationRequest
+	73,  // 245: viam.app.v1.AppService.GetLocation:input_type -> viam.app.v1.GetLocationRequest
+	75,  // 246: viam.app.v1.AppService.UpdateLocation:input_type -> viam.app.v1.UpdateLocationRequest
+	77,  // 247: viam.app.v1.AppService.DeleteLocation:input_type -> viam.app.v1.DeleteLocationRequest
+	79,  // 248: viam.app.v1.AppService.GetLocationMetadata:input_type -> viam.app.v1.GetLocationMetadataRequest
+	81,  // 249: viam.app.v1.AppService.UpdateLocationMetadata:input_type -> viam.app.v1.UpdateLocationMetadataRequest
+	85,  // 250: viam.app.v1.AppService.ListLocations:input_type -> viam.app.v1.ListLocationsRequest
+	86,  // 251: viam.app.v1.AppService.ShareLocation:input_type -> viam.app.v1.ShareLocationRequest
+	88,  // 252: viam.app.v1.AppService.UnshareLocation:input_type -> viam.app.v1.UnshareLocationRequest
+	95,  // 253: viam.app.v1.AppService.LocationAuth:input_type -> viam.app.v1.LocationAuthRequest
+	91,  // 254: viam.app.v1.AppService.CreateLocationSecret:input_type -> viam.app.v1.CreateLocationSecretRequest
+	93,  // 255: viam.app.v1.AppService.DeleteLocationSecret:input_type -> viam.app.v1.DeleteLocationSecretRequest
+	97,  // 256: viam.app.v1.AppService.GetRobot:input_type -> viam.app.v1.GetRobotRequest
+	178, // 257: viam.app.v1.AppService.GetRobotMetadata:input_type -> viam.app.v1.GetRobotMetadataRequest
+	180, // 258: viam.app.v1.AppService.UpdateRobotMetadata:input_type -> viam.app.v1.UpdateRobotMetadataRequest
+	98,  // 259: viam.app.v1.AppService.GetRoverRentalRobots:input_type -> viam.app.v1.GetRoverRentalRobotsRequest
+	102, // 260: viam.app.v1.AppService.GetRobotParts:input_type -> viam.app.v1.GetRobotPartsRequest
+	104, // 261: viam.app.v1.AppService.GetRobotPart:input_type -> viam.app.v1.GetRobotPartRequest
+	106, // 262: viam.app.v1.AppService.GetRobotPartByNameAndLocation:input_type -> viam.app.v1.GetRobotPartByNameAndLocationRequest
+	108, // 263: viam.app.v1.AppService.GetRobotPartLogs:input_type -> viam.app.v1.GetRobotPartLogsRequest
+	110, // 264: viam.app.v1.AppService.TailRobotPartLogs:input_type -> viam.app.v1.TailRobotPartLogsRequest
+	112, // 265: viam.app.v1.AppService.GetRobotPartHistory:input_type -> viam.app.v1.GetRobotPartHistoryRequest
+	114, // 266: viam.app.v1.AppService.UpdateRobotPart:input_type -> viam.app.v1.UpdateRobotPartRequest
+	116, // 267: viam.app.v1.AppService.NewRobotPart:input_type -> viam.app.v1.NewRobotPartRequest
+	118, // 268: viam.app.v1.AppService.DeleteRobotPart:input_type -> viam.app.v1.DeleteRobotPartRequest
+	119, // 269: viam.app.v1.AppService.GetRobotPartMetadata:input_type -> viam.app.v1.GetRobotPartMetadataRequest
+	121, // 270: viam.app.v1.AppService.UpdateRobotPartMetadata:input_type -> viam.app.v1.UpdateRobotPartMetadataRequest
+	123, // 271: viam.app.v1.AppService.GetRobotAPIKeys:input_type -> viam.app.v1.GetRobotAPIKeysRequest
+	182, // 272: viam.app.v1.AppService.MarkPartAsMain:input_type -> viam.app.v1.MarkPartAsMainRequest
+	184, // 273: viam.app.v1.AppService.MarkPartForRestart:input_type -> viam.app.v1.MarkPartForRestartRequest
+	186, // 274: viam.app.v1.AppService.CreateRobotPartSecret:input_type -> viam.app.v1.CreateRobotPartSecretRequest
+	188, // 275: viam.app.v1.AppService.DeleteRobotPartSecret:input_type -> viam.app.v1.DeleteRobotPartSecretRequest
+	153, // 276: viam.app.v1.AppService.ListRobots:input_type -> viam.app.v1.ListRobotsRequest
+	154, // 277: viam.app.v1.AppService.ListRobotsForLocations:input_type -> viam.app.v1.ListRobotsForLocationsRequest
+	155, // 278: viam.app.v1.AppService.ListRobotsForOrg:input_type -> viam.app.v1.ListRobotsForOrgRequest
+	172, // 279: viam.app.v1.AppService.NewRobot:input_type -> viam.app.v1.NewRobotRequest
+	174, // 280: viam.app.v1.AppService.UpdateRobot:input_type -> viam.app.v1.UpdateRobotRequest
+	176, // 281: viam.app.v1.AppService.DeleteRobot:input_type -> viam.app.v1.DeleteRobotRequest
+	135, // 282: viam.app.v1.AppService.ListFragments:input_type -> viam.app.v1.ListFragmentsRequest
+	137, // 283: viam.app.v1.AppService.GetFragment:input_type -> viam.app.v1.GetFragmentRequest
+	139, // 284: viam.app.v1.AppService.CreateFragment:input_type -> viam.app.v1.CreateFragmentRequest
+	141, // 285: viam.app.v1.AppService.UpdateFragment:input_type -> viam.app.v1.UpdateFragmentRequest
+	143, // 286: viam.app.v1.AppService.DeleteFragment:input_type -> viam.app.v1.DeleteFragmentRequest
+	157, // 287: viam.app.v1.AppService.ListNestedFragments:input_type -> viam.app.v1.ListNestedFragmentsRequest
+	159, // 288: viam.app.v1.AppService.ListMachineFragments:input_type -> viam.app.v1.ListMachineFragmentsRequest
+	161, // 289: viam.app.v1.AppService.ListMachineSummaries:input_type -> viam.app.v1.ListMachineSummariesRequest
+	145, // 290: viam.app.v1.AppService.GetFragmentHistory:input_type -> viam.app.v1.GetFragmentHistoryRequest
+	147, // 291: viam.app.v1.AppService.GetFragmentUsage:input_type -> viam.app.v1.GetFragmentUsageRequest
+	149, // 292: viam.app.v1.AppService.SetFragmentTag:input_type -> viam.app.v1.SetFragmentTagRequest
+	151, // 293: viam.app.v1.AppService.DeleteFragmentTag:input_type -> viam.app.v1.DeleteFragmentTagRequest
+	191, // 294: viam.app.v1.AppService.AddRole:input_type -> viam.app.v1.AddRoleRequest
+	193, // 295: viam.app.v1.AppService.RemoveRole:input_type -> viam.app.v1.RemoveRoleRequest
+	195, // 296: viam.app.v1.AppService.ChangeRole:input_type -> viam.app.v1.ChangeRoleRequest
+	197, // 297: viam.app.v1.AppService.ListAuthorizations:input_type -> viam.app.v1.ListAuthorizationsRequest
+	199, // 298: viam.app.v1.AppService.CheckPermissions:input_type -> viam.app.v1.CheckPermissionsRequest
+	208, // 299: viam.app.v1.AppService.GetRegistryItem:input_type -> viam.app.v1.GetRegistryItemRequest
+	210, // 300: viam.app.v1.AppService.CreateRegistryItem:input_type -> viam.app.v1.CreateRegistryItemRequest
+	212, // 301: viam.app.v1.AppService.UpdateRegistryItem:input_type -> viam.app.v1.UpdateRegistryItemRequest
+	214, // 302: viam.app.v1.AppService.ListRegistryItems:input_type -> viam.app.v1.ListRegistryItemsRequest
+	216, // 303: viam.app.v1.AppService.DeleteRegistryItem:input_type -> viam.app.v1.DeleteRegistryItemRequest
+	218, // 304: viam.app.v1.AppService.RenameRegistryItem:input_type -> viam.app.v1.RenameRegistryItemRequest
+	220, // 305: viam.app.v1.AppService.TransferRegistryItem:input_type -> viam.app.v1.TransferRegistryItemRequest
+	222, // 306: viam.app.v1.AppService.CreateModule:input_type -> viam.app.v1.CreateModuleRequest
+	224, // 307: viam.app.v1.AppService.UpdateModule:input_type -> viam.app.v1.UpdateModuleRequest
+	232, // 308: viam.app.v1.AppService.UploadModuleFile:input_type -> viam.app.v1.UploadModuleFileRequest
+	234, // 309: viam.app.v1.AppService.GetModule:input_type -> viam.app.v1.GetModuleRequest
+	239, // 310: viam.app.v1.AppService.ListModules:input_type -> viam.app.v1.ListModulesRequest
+	248, // 311: viam.app.v1.AppService.CreateKey:input_type -> viam.app.v1.CreateKeyRequest
+	250, // 312: viam.app.v1.AppService.DeleteKey:input_type -> viam.app.v1.DeleteKeyRequest
+	256, // 313: viam.app.v1.AppService.ListKeys:input_type -> viam.app.v1.ListKeysRequest
+	252, // 314: viam.app.v1.AppService.RenameKey:input_type -> viam.app.v1.RenameKeyRequest
+	258, // 315: viam.app.v1.AppService.RotateKey:input_type -> viam.app.v1.RotateKeyRequest
+	260, // 316: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:input_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsRequest
+	262, // 317: viam.app.v1.AppService.GetAppContent:input_type -> viam.app.v1.GetAppContentRequest
+	283, // 318: viam.app.v1.AppService.GetAppBranding:input_type -> viam.app.v1.GetAppBrandingRequest
+	242, // 319: viam.app.v1.AppService.GetUserIDByEmail:output_type -> viam.app.v1.GetUserIDByEmailResponse
+	24,  // 320: viam.app.v1.AppService.CreateOrganization:output_type -> viam.app.v1.CreateOrganizationResponse
+	21,  // 321: viam.app.v1.AppService.ListOrganizations:output_type -> viam.app.v1.ListOrganizationsResponse
+	84,  // 322: viam.app.v1.AppService.GetOrganizationsWithAccessToLocation:output_type -> viam.app.v1.GetOrganizationsWithAccessToLocationResponse
+	245, // 323: viam.app.v1.AppService.ListOrganizationsByUser:output_type -> viam.app.v1.ListOrganizationsByUserResponse
+	247, // 324: viam.app.v1.AppService.SearchOrganizations:output_type -> viam.app.v1.SearchOrganizationsResponse
+	26,  // 325: viam.app.v1.AppService.GetOrganization:output_type -> viam.app.v1.GetOrganizationResponse
+	28,  // 326: viam.app.v1.AppService.GetOrganizationNamespaceAvailability:output_type -> viam.app.v1.GetOrganizationNamespaceAvailabilityResponse
+	31,  // 327: viam.app.v1.AppService.UpdateOrganization:output_type -> viam.app.v1.UpdateOrganizationResponse
+	33,  // 328: viam.app.v1.AppService.UpdateOrganizationNamespace:output_type -> viam.app.v1.UpdateOrganizationNamespaceResponse
+	35,  // 329: viam.app.v1.AppService.DeleteOrganization:output_type -> viam.app.v1.DeleteOrganizationResponse
+	37,  // 330: viam.app.v1.AppService.GetOrganizationMetadata:output_type -> viam.app.v1.GetOrganizationMetadataResponse
+	39,  // 331: viam.app.v1.AppService.UpdateOrganizationMetadata:output_type -> viam.app.v1.UpdateOrganizationMetadataResponse
+	41,  // 332: viam.app.v1.AppService.ListOrganizationMembers:output_type -> viam.app.v1.ListOrganizationMembersResponse
+	43,  // 333: viam.app.v1.AppService.CreateOrganizationInvite:output_type -> viam.app.v1.CreateOrganizationInviteResponse
+	45,  // 334: viam.app.v1.AppService.UpdateOrganizationInviteAuthorizations:output_type -> viam.app.v1.UpdateOrganizationInviteAuthorizationsResponse
+	51,  // 335: viam.app.v1.AppService.DeleteOrganizationMember:output_type -> viam.app.v1.DeleteOrganizationMemberResponse
+	47,  // 336: viam.app.v1.AppService.DeleteOrganizationInvite:output_type -> viam.app.v1.DeleteOrganizationInviteResponse
+	49,  // 337: viam.app.v1.AppService.ResendOrganizationInvite:output_type -> viam.app.v1.ResendOrganizationInviteResponse
+	54,  // 338: viam.app.v1.AppService.EnableBillingService:output_type -> viam.app.v1.EnableBillingServiceResponse
+	60,  // 339: viam.app.v1.AppService.DisableBillingService:output_type -> viam.app.v1.DisableBillingServiceResponse
+	56,  // 340: viam.app.v1.AppService.UpdateBillingService:output_type -> viam.app.v1.UpdateBillingServiceResponse
+	58,  // 341: viam.app.v1.AppService.GetBillingServiceConfig:output_type -> viam.app.v1.GetBillingServiceConfigResponse
+	62,  // 342: viam.app.v1.AppService.OrganizationSetSupportEmail:output_type -> viam.app.v1.OrganizationSetSupportEmailResponse
+	64,  // 343: viam.app.v1.AppService.OrganizationGetSupportEmail:output_type -> viam.app.v1.OrganizationGetSupportEmailResponse
+	265, // 344: viam.app.v1.AppService.OrganizationSetLogo:output_type -> viam.app.v1.OrganizationSetLogoResponse
+	267, // 345: viam.app.v1.AppService.OrganizationGetLogo:output_type -> viam.app.v1.OrganizationGetLogoResponse
+	269, // 346: viam.app.v1.AppService.EnableAuthService:output_type -> viam.app.v1.EnableAuthServiceResponse
+	271, // 347: viam.app.v1.AppService.DisableAuthService:output_type -> viam.app.v1.DisableAuthServiceResponse
+	273, // 348: viam.app.v1.AppService.CreateOAuthApp:output_type -> viam.app.v1.CreateOAuthAppResponse
+	275, // 349: viam.app.v1.AppService.ReadOAuthApp:output_type -> viam.app.v1.ReadOAuthAppResponse
+	277, // 350: viam.app.v1.AppService.UpdateOAuthApp:output_type -> viam.app.v1.UpdateOAuthAppResponse
+	279, // 351: viam.app.v1.AppService.DeleteOAuthApp:output_type -> viam.app.v1.DeleteOAuthAppResponse
+	281, // 352: viam.app.v1.AppService.ListOAuthApps:output_type -> viam.app.v1.ListOAuthAppsResponse
+	72,  // 353: viam.app.v1.AppService.CreateLocation:output_type -> viam.app.v1.CreateLocationResponse
+	74,  // 354: viam.app.v1.AppService.GetLocation:output_type -> viam.app.v1.GetLocationResponse
+	76,  // 355: viam.app.v1.AppService.UpdateLocation:output_type -> viam.app.v1.UpdateLocationResponse
+	78,  // 356: viam.app.v1.AppService.DeleteLocation:output_type -> viam.app.v1.DeleteLocationResponse
+	80,  // 357: viam.app.v1.AppService.GetLocationMetadata:output_type -> viam.app.v1.GetLocationMetadataResponse
+	82,  // 358: viam.app.v1.AppService.UpdateLocationMetadata:output_type -> viam.app.v1.UpdateLocationMetadataResponse
+	90,  // 359: viam.app.v1.AppService.ListLocations:output_type -> viam.app.v1.ListLocationsResponse
+	87,  // 360: viam.app.v1.AppService.ShareLocation:output_type -> viam.app.v1.ShareLocationResponse
+	89,  // 361: viam.app.v1.AppService.UnshareLocation:output_type -> viam.app.v1.UnshareLocationResponse
+	96,  // 362: viam.app.v1.AppService.LocationAuth:output_type -> viam.app.v1.LocationAuthResponse
+	92,  // 363: viam.app.v1.AppService.CreateLocationSecret:output_type -> viam.app.v1.CreateLocationSecretResponse
+	94,  // 364: viam.app.v1.AppService.DeleteLocationSecret:output_type -> viam.app.v1.DeleteLocationSecretResponse
+	101, // 365: viam.app.v1.AppService.GetRobot:output_type -> viam.app.v1.GetRobotResponse
+	179, // 366: viam.app.v1.AppService.GetRobotMetadata:output_type -> viam.app.v1.GetRobotMetadataResponse
+	181, // 367: viam.app.v1.AppService.UpdateRobotMetadata:output_type -> viam.app.v1.UpdateRobotMetadataResponse
+	100, // 368: viam.app.v1.AppService.GetRoverRentalRobots:output_type -> viam.app.v1.GetRoverRentalRobotsResponse
+	103, // 369: viam.app.v1.AppService.GetRobotParts:output_type -> viam.app.v1.GetRobotPartsResponse
+	105, // 370: viam.app.v1.AppService.GetRobotPart:output_type -> viam.app.v1.GetRobotPartResponse
+	107, // 371: viam.app.v1.AppService.GetRobotPartByNameAndLocation:output_type -> viam.app.v1.GetRobotPartByNameAndLocationResponse
+	109, // 372: viam.app.v1.AppService.GetRobotPartLogs:output_type -> viam.app.v1.GetRobotPartLogsResponse
+	111, // 373: viam.app.v1.AppService.TailRobotPartLogs:output_type -> viam.app.v1.TailRobotPartLogsResponse
+	113, // 374: viam.app.v1.AppService.GetRobotPartHistory:output_type -> viam.app.v1.GetRobotPartHistoryResponse
+	115, // 375: viam.app.v1.AppService.UpdateRobotPart:output_type -> viam.app.v1.UpdateRobotPartResponse
+	117, // 376: viam.app.v1.AppService.NewRobotPart:output_type -> viam.app.v1.NewRobotPartResponse
+	126, // 377: viam.app.v1.AppService.DeleteRobotPart:output_type -> viam.app.v1.DeleteRobotPartResponse
+	120, // 378: viam.app.v1.AppService.GetRobotPartMetadata:output_type -> viam.app.v1.GetRobotPartMetadataResponse
+	122, // 379: viam.app.v1.AppService.UpdateRobotPartMetadata:output_type -> viam.app.v1.UpdateRobotPartMetadataResponse
+	125, // 380: viam.app.v1.AppService.GetRobotAPIKeys:output_type -> viam.app.v1.GetRobotAPIKeysResponse
+	183, // 381: viam.app.v1.AppService.MarkPartAsMain:output_type -> viam.app.v1.MarkPartAsMainResponse
+	185, // 382: viam.app.v1.AppService.MarkPartForRestart:output_type -> viam.app.v1.MarkPartForRestartResponse
+	187, // 383: viam.app.v1.AppService.CreateRobotPartSecret:output_type -> viam.app.v1.CreateRobotPartSecretResponse
+	189, // 384: viam.app.v1.AppService.DeleteRobotPartSecret:output_type -> viam.app.v1.DeleteRobotPartSecretResponse
+	169, // 385: viam.app.v1.AppService.ListRobots:output_type -> viam.app.v1.ListRobotsResponse
+	170, // 386: viam.app.v1.AppService.ListRobotsForLocations:output_type -> viam.app.v1.ListRobotsForLocationsResponse
+	171, // 387: viam.app.v1.AppService.ListRobotsForOrg:output_type -> viam.app.v1.ListRobotsForOrgResponse
+	173, // 388: viam.app.v1.AppService.NewRobot:output_type -> viam.app.v1.NewRobotResponse
+	175, // 389: viam.app.v1.AppService.UpdateRobot:output_type -> viam.app.v1.UpdateRobotResponse
+	177, // 390: viam.app.v1.AppService.DeleteRobot:output_type -> viam.app.v1.DeleteRobotResponse
+	136, // 391: viam.app.v1.AppService.ListFragments:output_type -> viam.app.v1.ListFragmentsResponse
+	138, // 392: viam.app.v1.AppService.GetFragment:output_type -> viam.app.v1.GetFragmentResponse
+	140, // 393: viam.app.v1.AppService.CreateFragment:output_type -> viam.app.v1.CreateFragmentResponse
+	142, // 394: viam.app.v1.AppService.UpdateFragment:output_type -> viam.app.v1.UpdateFragmentResponse
+	144, // 395: viam.app.v1.AppService.DeleteFragment:output_type -> viam.app.v1.DeleteFragmentResponse
+	158, // 396: viam.app.v1.AppService.ListNestedFragments:output_type -> viam.app.v1.ListNestedFragmentsResponse
+	160, // 397: viam.app.v1.AppService.ListMachineFragments:output_type -> viam.app.v1.ListMachineFragmentsResponse
+	162, // 398: viam.app.v1.AppService.ListMachineSummaries:output_type -> viam.app.v1.ListMachineSummariesResponse
+	146, // 399: viam.app.v1.AppService.GetFragmentHistory:output_type -> viam.app.v1.GetFragmentHistoryResponse
+	148, // 400: viam.app.v1.AppService.GetFragmentUsage:output_type -> viam.app.v1.GetFragmentUsageResponse
+	150, // 401: viam.app.v1.AppService.SetFragmentTag:output_type -> viam.app.v1.SetFragmentTagResponse
+	152, // 402: viam.app.v1.AppService.DeleteFragmentTag:output_type -> viam.app.v1.DeleteFragmentTagResponse
+	192, // 403: viam.app.v1.AppService.AddRole:output_type -> viam.app.v1.AddRoleResponse
+	194, // 404: viam.app.v1.AppService.RemoveRole:output_type -> viam.app.v1.RemoveRoleResponse
+	196, // 405: viam.app.v1.AppService.ChangeRole:output_type -> viam.app.v1.ChangeRoleResponse
+	198, // 406: viam.app.v1.AppService.ListAuthorizations:output_type -> viam.app.v1.ListAuthorizationsResponse
+	201, // 407: viam.app.v1.AppService.CheckPermissions:output_type -> viam.app.v1.CheckPermissionsResponse
+	209, // 408: viam.app.v1.AppService.GetRegistryItem:output_type -> viam.app.v1.GetRegistryItemResponse
+	211, // 409: viam.app.v1.AppService.CreateRegistryItem:output_type -> viam.app.v1.CreateRegistryItemResponse
+	213, // 410: viam.app.v1.AppService.UpdateRegistryItem:output_type -> viam.app.v1.UpdateRegistryItemResponse
+	215, // 411: viam.app.v1.AppService.ListRegistryItems:output_type -> viam.app.v1.ListRegistryItemsResponse
+	217, // 412: viam.app.v1.AppService.DeleteRegistryItem:output_type -> viam.app.v1.DeleteRegistryItemResponse
+	219, // 413: viam.app.v1.AppService.RenameRegistryItem:output_type -> viam.app.v1.RenameRegistryItemResponse
+	221, // 414: viam.app.v1.AppService.TransferRegistryItem:output_type -> viam.app.v1.TransferRegistryItemResponse
+	223, // 415: viam.app.v1.AppService.CreateModule:output_type -> viam.app.v1.CreateModuleResponse
+	226, // 416: viam.app.v1.AppService.UpdateModule:output_type -> viam.app.v1.UpdateModuleResponse
+	233, // 417: viam.app.v1.AppService.UploadModuleFile:output_type -> viam.app.v1.UploadModuleFileResponse
+	235, // 418: viam.app.v1.AppService.GetModule:output_type -> viam.app.v1.GetModuleResponse
+	240, // 419: viam.app.v1.AppService.ListModules:output_type -> viam.app.v1.ListModulesResponse
+	249, // 420: viam.app.v1.AppService.CreateKey:output_type -> viam.app.v1.CreateKeyResponse
+	251, // 421: viam.app.v1.AppService.DeleteKey:output_type -> viam.app.v1.DeleteKeyResponse
+	257, // 422: viam.app.v1.AppService.ListKeys:output_type -> viam.app.v1.ListKeysResponse
+	253, // 423: viam.app.v1.AppService.RenameKey:output_type -> viam.app.v1.RenameKeyResponse
+	259, // 424: viam.app.v1.AppService.RotateKey:output_type -> viam.app.v1.RotateKeyResponse
+	261, // 425: viam.app.v1.AppService.CreateKeyFromExistingKeyAuthorizations:output_type -> viam.app.v1.CreateKeyFromExistingKeyAuthorizationsResponse
+	263, // 426: viam.app.v1.AppService.GetAppContent:output_type -> viam.app.v1.GetAppContentResponse
+	285, // 427: viam.app.v1.AppService.GetAppBranding:output_type -> viam.app.v1.GetAppBrandingResponse
+	319, // [319:428] is the sub-list for method output_type
+	210, // [210:319] is the sub-list for method input_type
+	210, // [210:210] is the sub-list for extension type_name
+	210, // [210:210] is the sub-list for extension extendee
+	0,   // [0:210] is the sub-list for field type_name
 }
 
 func init() { file_app_v1_app_proto_init() }
