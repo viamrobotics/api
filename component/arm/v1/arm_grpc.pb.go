@@ -30,6 +30,8 @@ type ArmServiceClient interface {
 	MoveToPosition(ctx context.Context, in *MoveToPositionRequest, opts ...grpc.CallOption) (*MoveToPositionResponse, error)
 	// GetJointPositions lists the joint positions (in degrees) of every joint on a robot
 	GetJointPositions(ctx context.Context, in *GetJointPositionsRequest, opts ...grpc.CallOption) (*GetJointPositionsResponse, error)
+	// StreamJointPositions streams joint positions at a specified rate
+	StreamJointPositions(ctx context.Context, in *StreamJointPositionsRequest, opts ...grpc.CallOption) (ArmService_StreamJointPositionsClient, error)
 	// MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
 	// This will block until done or a new operation cancels this one
 	MoveToJointPositions(ctx context.Context, in *MoveToJointPositionsRequest, opts ...grpc.CallOption) (*MoveToJointPositionsResponse, error)
@@ -84,6 +86,38 @@ func (c *armServiceClient) GetJointPositions(ctx context.Context, in *GetJointPo
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *armServiceClient) StreamJointPositions(ctx context.Context, in *StreamJointPositionsRequest, opts ...grpc.CallOption) (ArmService_StreamJointPositionsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ArmService_ServiceDesc.Streams[0], "/viam.component.arm.v1.ArmService/StreamJointPositions", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &armServiceStreamJointPositionsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type ArmService_StreamJointPositionsClient interface {
+	Recv() (*StreamJointPositionsResponse, error)
+	grpc.ClientStream
+}
+
+type armServiceStreamJointPositionsClient struct {
+	grpc.ClientStream
+}
+
+func (x *armServiceStreamJointPositionsClient) Recv() (*StreamJointPositionsResponse, error) {
+	m := new(StreamJointPositionsResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *armServiceClient) MoveToJointPositions(ctx context.Context, in *MoveToJointPositionsRequest, opts ...grpc.CallOption) (*MoveToJointPositionsResponse, error) {
@@ -169,6 +203,8 @@ type ArmServiceServer interface {
 	MoveToPosition(context.Context, *MoveToPositionRequest) (*MoveToPositionResponse, error)
 	// GetJointPositions lists the joint positions (in degrees) of every joint on a robot
 	GetJointPositions(context.Context, *GetJointPositionsRequest) (*GetJointPositionsResponse, error)
+	// StreamJointPositions streams joint positions at a specified rate
+	StreamJointPositions(*StreamJointPositionsRequest, ArmService_StreamJointPositionsServer) error
 	// MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
 	// This will block until done or a new operation cancels this one
 	MoveToJointPositions(context.Context, *MoveToJointPositionsRequest) (*MoveToJointPositionsResponse, error)
@@ -203,6 +239,9 @@ func (UnimplementedArmServiceServer) MoveToPosition(context.Context, *MoveToPosi
 }
 func (UnimplementedArmServiceServer) GetJointPositions(context.Context, *GetJointPositionsRequest) (*GetJointPositionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetJointPositions not implemented")
+}
+func (UnimplementedArmServiceServer) StreamJointPositions(*StreamJointPositionsRequest, ArmService_StreamJointPositionsServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamJointPositions not implemented")
 }
 func (UnimplementedArmServiceServer) MoveToJointPositions(context.Context, *MoveToJointPositionsRequest) (*MoveToJointPositionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveToJointPositions not implemented")
@@ -293,6 +332,27 @@ func _ArmService_GetJointPositions_Handler(srv interface{}, ctx context.Context,
 		return srv.(ArmServiceServer).GetJointPositions(ctx, req.(*GetJointPositionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _ArmService_StreamJointPositions_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StreamJointPositionsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ArmServiceServer).StreamJointPositions(m, &armServiceStreamJointPositionsServer{stream})
+}
+
+type ArmService_StreamJointPositionsServer interface {
+	Send(*StreamJointPositionsResponse) error
+	grpc.ServerStream
+}
+
+type armServiceStreamJointPositionsServer struct {
+	grpc.ServerStream
+}
+
+func (x *armServiceStreamJointPositionsServer) Send(m *StreamJointPositionsResponse) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 func _ArmService_MoveToJointPositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -491,6 +551,12 @@ var ArmService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArmService_Get3DModels_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StreamJointPositions",
+			Handler:       _ArmService_StreamJointPositions_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "component/arm/v1/arm.proto",
 }

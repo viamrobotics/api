@@ -5,6 +5,7 @@ import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class GetEndPositionRequest extends jspb.Message {
   getName(): string;
@@ -121,6 +122,70 @@ export class GetJointPositionsResponse extends jspb.Message {
 export namespace GetJointPositionsResponse {
   export type AsObject = {
     positions?: JointPositions.AsObject,
+  }
+}
+
+export class StreamJointPositionsRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasFps(): boolean;
+  clearFps(): void;
+  getFps(): number;
+  setFps(value: number): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StreamJointPositionsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamJointPositionsRequest): StreamJointPositionsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StreamJointPositionsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamJointPositionsRequest;
+  static deserializeBinaryFromReader(message: StreamJointPositionsRequest, reader: jspb.BinaryReader): StreamJointPositionsRequest;
+}
+
+export namespace StreamJointPositionsRequest {
+  export type AsObject = {
+    name: string,
+    fps: number,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class StreamJointPositionsResponse extends jspb.Message {
+  hasPositions(): boolean;
+  clearPositions(): void;
+  getPositions(): JointPositions | undefined;
+  setPositions(value?: JointPositions): void;
+
+  hasTimestamp(): boolean;
+  clearTimestamp(): void;
+  getTimestamp(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTimestamp(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getSequence(): number;
+  setSequence(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StreamJointPositionsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamJointPositionsResponse): StreamJointPositionsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StreamJointPositionsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamJointPositionsResponse;
+  static deserializeBinaryFromReader(message: StreamJointPositionsResponse, reader: jspb.BinaryReader): StreamJointPositionsResponse;
+}
+
+export namespace StreamJointPositionsResponse {
+  export type AsObject = {
+    positions?: JointPositions.AsObject,
+    timestamp?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    sequence: number,
   }
 }
 

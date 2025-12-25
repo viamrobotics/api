@@ -25,6 +25,8 @@ var common_v1_common_pb = require('../../../common/v1/common_pb.js')
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
+
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.component = {};
@@ -263,6 +265,62 @@ proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.getJointPositions 
       request,
       metadata || {},
       methodDescriptor_ArmService_GetJointPositions);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.arm.v1.StreamJointPositionsRequest,
+ *   !proto.viam.component.arm.v1.StreamJointPositionsResponse>}
+ */
+const methodDescriptor_ArmService_StreamJointPositions = new grpc.web.MethodDescriptor(
+  '/viam.component.arm.v1.ArmService/StreamJointPositions',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.component.arm.v1.StreamJointPositionsRequest,
+  proto.viam.component.arm.v1.StreamJointPositionsResponse,
+  /**
+   * @param {!proto.viam.component.arm.v1.StreamJointPositionsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.arm.v1.StreamJointPositionsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.arm.v1.StreamJointPositionsRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.arm.v1.StreamJointPositionsResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.arm.v1.ArmServiceClient.prototype.streamJointPositions =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/StreamJointPositions',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_StreamJointPositions);
+};
+
+
+/**
+ * @param {!proto.viam.component.arm.v1.StreamJointPositionsRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.arm.v1.StreamJointPositionsResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.streamJointPositions =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/StreamJointPositions',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_StreamJointPositions);
 };
 
 

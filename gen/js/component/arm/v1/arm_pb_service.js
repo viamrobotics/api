@@ -38,6 +38,15 @@ ArmService.GetJointPositions = {
   responseType: component_arm_v1_arm_pb.GetJointPositionsResponse
 };
 
+ArmService.StreamJointPositions = {
+  methodName: "StreamJointPositions",
+  service: ArmService,
+  requestStream: false,
+  responseStream: true,
+  requestType: component_arm_v1_arm_pb.StreamJointPositionsRequest,
+  responseType: component_arm_v1_arm_pb.StreamJointPositionsResponse
+};
+
 ArmService.MoveToJointPositions = {
   methodName: "MoveToJointPositions",
   service: ArmService,
@@ -205,6 +214,45 @@ ArmServiceClient.prototype.getJointPositions = function getJointPositions(reques
   return {
     cancel: function () {
       callback = null;
+      client.close();
+    }
+  };
+};
+
+ArmServiceClient.prototype.streamJointPositions = function streamJointPositions(requestMessage, metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.invoke(ArmService.StreamJointPositions, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onMessage: function (responseMessage) {
+      listeners.data.forEach(function (handler) {
+        handler(responseMessage);
+      });
+    },
+    onEnd: function (status, statusMessage, trailers) {
+      listeners.status.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners.end.forEach(function (handler) {
+        handler({ code: status, details: statusMessage, metadata: trailers });
+      });
+      listeners = null;
+    }
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    cancel: function () {
+      listeners = null;
       client.close();
     }
   };

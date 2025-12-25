@@ -32,6 +32,15 @@ type ArmServiceGetJointPositions = {
   readonly responseType: typeof component_arm_v1_arm_pb.GetJointPositionsResponse;
 };
 
+type ArmServiceStreamJointPositions = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof component_arm_v1_arm_pb.StreamJointPositionsRequest;
+  readonly responseType: typeof component_arm_v1_arm_pb.StreamJointPositionsResponse;
+};
+
 type ArmServiceMoveToJointPositions = {
   readonly methodName: string;
   readonly service: typeof ArmService;
@@ -109,6 +118,7 @@ export class ArmService {
   static readonly GetEndPosition: ArmServiceGetEndPosition;
   static readonly MoveToPosition: ArmServiceMoveToPosition;
   static readonly GetJointPositions: ArmServiceGetJointPositions;
+  static readonly StreamJointPositions: ArmServiceStreamJointPositions;
   static readonly MoveToJointPositions: ArmServiceMoveToJointPositions;
   static readonly MoveThroughJointPositions: ArmServiceMoveThroughJointPositions;
   static readonly Stop: ArmServiceStop;
@@ -178,6 +188,7 @@ export class ArmServiceClient {
     requestMessage: component_arm_v1_arm_pb.GetJointPositionsRequest,
     callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.GetJointPositionsResponse|null) => void
   ): UnaryResponse;
+  streamJointPositions(requestMessage: component_arm_v1_arm_pb.StreamJointPositionsRequest, metadata?: grpc.Metadata): ResponseStream<component_arm_v1_arm_pb.StreamJointPositionsResponse>;
   moveToJointPositions(
     requestMessage: component_arm_v1_arm_pb.MoveToJointPositionsRequest,
     metadata: grpc.Metadata,
