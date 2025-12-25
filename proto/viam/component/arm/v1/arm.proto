@@ -5,6 +5,7 @@ package viam.component.arm.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/component/arm/v1";
 option java_package = "com.viam.component.arm.v1";
@@ -26,6 +27,11 @@ service ArmService {
   // GetJointPositions lists the joint positions (in degrees) of every joint on a robot
   rpc GetJointPositions(GetJointPositionsRequest) returns (GetJointPositionsResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/arm/{name}/joint_positions"};
+  }
+
+  // StreamJointPositions streams joint positions at a specified rate
+  rpc StreamJointPositions(StreamJointPositionsRequest) returns (stream StreamJointPositionsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/arm/{name}/stream_joint_positions"};
   }
 
   // MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
@@ -103,6 +109,24 @@ message GetJointPositionsRequest {
 message GetJointPositionsResponse {
   //a list JointPositions
   JointPositions positions = 1;
+}
+
+message StreamJointPositionsRequest {
+  // Name of an arm
+  string name = 1;
+  // Target frames per second for the stream
+  optional int32 fps = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message StreamJointPositionsResponse {
+  // Current joint positions
+  JointPositions positions = 1;
+  // Timestamp when positions were captured from the arm hardware
+  google.protobuf.Timestamp timestamp = 2;
+  // Sequential message number, used to detect dropped messages
+  int32 sequence = 3;
 }
 
 // Moves an arm to the specified pose that is within the reference frame of the arm.
