@@ -5,6 +5,7 @@ package viam.component.gripper.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/component/gripper/v1";
 option java_package = "com.viam.component.gripper.v1";
@@ -36,6 +37,16 @@ service GripperService {
   // IsHoldingSomething returns whether the gripper is currently holding onto an object
   rpc IsHoldingSomething(IsHoldingSomethingRequest) returns (IsHoldingSomethingResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/is_holding_something"};
+  }
+
+  // GetGripperPosition gets the current gripper position
+  rpc GetGripperPosition(GetGripperPositionRequest) returns (GetGripperPositionResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/gripper_position"};
+  }
+
+  // StreamGripperPosition streams gripper positions at a specified rate
+  rpc StreamGripperPosition(StreamGripperPositionRequest) returns (stream StreamGripperPositionResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/stream_gripper_position"};
   }
 
   // DoCommand sends/receives arbitrary commands
@@ -95,4 +106,40 @@ message IsHoldingSomethingRequest {
 message IsHoldingSomethingResponse {
   bool is_holding_something = 1;
   google.protobuf.Struct meta = 99;
+}
+
+message GripperPosition {
+  // A list of gripper position values (e.g., joint angles or linear positions)
+  // The interpretation depends on the gripper model
+  repeated double values = 1;
+}
+
+message GetGripperPositionRequest {
+  // Name of a gripper
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetGripperPositionResponse {
+  // Current gripper position
+  GripperPosition position = 1;
+}
+
+message StreamGripperPositionRequest {
+  // Name of a gripper
+  string name = 1;
+  // Target frames per second for the stream
+  optional int32 fps = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message StreamGripperPositionResponse {
+  // Current gripper position
+  GripperPosition position = 1;
+  // Timestamp when position was captured from the gripper hardware
+  google.protobuf.Timestamp timestamp = 2;
+  // Sequential message number, used to detect dropped messages
+  int32 sequence = 3;
 }
