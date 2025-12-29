@@ -2512,7 +2512,7 @@ proto.viam.app.v1.TracingConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
     enabled: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
     disk: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    stdout: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    console: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     otlpEndpoint: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
@@ -2560,7 +2560,7 @@ proto.viam.app.v1.TracingConfig.deserializeBinaryFromReader = function(msg, read
       break;
     case 3:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setStdout(value);
+      msg.setConsole(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -2609,7 +2609,7 @@ proto.viam.app.v1.TracingConfig.serializeBinaryToWriter = function(message, writ
       f
     );
   }
-  f = message.getStdout();
+  f = message.getConsole();
   if (f) {
     writer.writeBool(
       3,
@@ -2663,10 +2663,10 @@ proto.viam.app.v1.TracingConfig.prototype.setDisk = function(value) {
 
 
 /**
- * optional bool stdout = 3;
+ * optional bool console = 3;
  * @return {boolean}
  */
-proto.viam.app.v1.TracingConfig.prototype.getStdout = function() {
+proto.viam.app.v1.TracingConfig.prototype.getConsole = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
 };
 
@@ -2675,7 +2675,7 @@ proto.viam.app.v1.TracingConfig.prototype.getStdout = function() {
  * @param {boolean} value
  * @return {!proto.viam.app.v1.TracingConfig} returns this
  */
-proto.viam.app.v1.TracingConfig.prototype.setStdout = function(value) {
+proto.viam.app.v1.TracingConfig.prototype.setConsole = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
