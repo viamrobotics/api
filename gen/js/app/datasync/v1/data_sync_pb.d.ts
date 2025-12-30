@@ -317,6 +317,9 @@ export class UploadMetadata extends jspb.Message {
   setDatasetIdsList(value: Array<string>): void;
   addDatasetIds(value: string, index?: number): string;
 
+  getMimeType(): string;
+  setMimeType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UploadMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UploadMetadata): UploadMetadata.AsObject;
@@ -339,6 +342,7 @@ export namespace UploadMetadata {
     fileExtension: string,
     tagsList: Array<string>,
     datasetIdsList: Array<string>,
+    mimeType: string,
   }
 }
 
