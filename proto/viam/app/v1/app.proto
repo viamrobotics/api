@@ -435,7 +435,7 @@ message GetOrganizationNamespaceAvailabilityResponse {
 }
 
 message FragmentImportList {
-  repeated FragmentImport imports = 1;
+  repeated FragmentImport fragments = 1;
 }
 
 message UpdateOrganizationRequest {
@@ -445,7 +445,7 @@ message UpdateOrganizationRequest {
   // The new GCS region to associate the org with.
   optional string region = 4;
   optional string cid = 5;
-  optional FragmentImportList fragment_imports = 6;
+  optional FragmentImportList default_fragments = 6;
 }
 
 message UpdateOrganizationResponse {
