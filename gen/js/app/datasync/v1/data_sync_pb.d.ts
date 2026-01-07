@@ -448,6 +448,7 @@ export interface MimeTypeMap {
   MIME_TYPE_IMAGE_JPEG: 1;
   MIME_TYPE_IMAGE_PNG: 2;
   MIME_TYPE_APPLICATION_PCD: 3;
+  MIME_TYPE_VIDEO_MP4: 4;
 }
 
 export const MimeType: MimeTypeMap;

@@ -434,6 +434,10 @@ message GetOrganizationNamespaceAvailabilityResponse {
   bool available = 1;
 }
 
+message FragmentImportList {
+  repeated FragmentImport imports = 1;
+}
+
 message UpdateOrganizationRequest {
   string organization_id = 1;
   optional string name = 2;
@@ -441,6 +445,7 @@ message UpdateOrganizationRequest {
   // The new GCS region to associate the org with.
   optional string region = 4;
   optional string cid = 5;
+  optional FragmentImportList fragment_imports = 6;
 }
 
 message UpdateOrganizationResponse {
@@ -1006,6 +1011,13 @@ message FragmentUsage {
   optional string version = 5; // revision or tag
 }
 
+message FragmentImport {
+  string fragment_id = 1;
+  string version = 2; // revision or tag
+  optional string prefix = 3; // namespace prefix
+  map<string, string> variables = 4; // key-value pairs for fragment variables
+}
+
 message ResolvedFragment {
   string fragment_id = 1;
   google.protobuf.Struct resolved_config = 2;
@@ -1375,6 +1387,10 @@ message ModuleMetadata {
   optional string markdown_description = 5;
   // A list of applications associated with the module
   repeated App apps = 6;
+  // Determines the type of module, either a registry module or an inline module.
+  optional ModuleSourceType source_type = 7;
+  // Specifies the language that the module is written in.
+  optional ModuleLanguage language = 8;
 }
 
 message MLModelMetadata {
@@ -1397,6 +1413,21 @@ message MLTrainingMetadata {
   bool draft = 4;
 
   reserved 1;
+}
+
+enum ModuleSourceType {
+  MODULE_SOURCE_TYPE_UNSPECIFIED = 0;
+  // Module source code is stored externally, such as in github.
+  MODULE_SOURCE_TYPE_EXTERNAL = 1;
+  // Module source code is versioned and managed within Viam.
+  MODULE_SOURCE_TYPE_VIAM_HOSTED = 2;
+}
+
+enum ModuleLanguage {
+  MODULE_LANGUAGE_UNSPECIFIED = 0;
+  MODULE_LANGUAGE_GOLANG = 1;
+  MODULE_LANGUAGE_PYTHON = 2;
+  MODULE_LANGUAGE_CPP = 3;
 }
 
 message RegistryItem {
@@ -1497,6 +1528,8 @@ message ListRegistryItemsRequest {
   // One or more public namespaces to return results for.
   repeated string public_namespaces = 8;
   optional bool include_markdown_documentation = 9;
+  repeated ModuleSourceType module_source_types = 10;
+  repeated ModuleLanguage module_languages = 11;
 }
 
 message ListRegistryItemsResponse {
@@ -1599,6 +1632,10 @@ message UpdateModuleMetadata {
   string entrypoint = 2;
   // A list of applications associated with the module
   repeated App apps = 3;
+  // Determines where the source code of module is managed, either externally or hosted by viam.
+  optional ModuleSourceType source_type = 4;
+  // The language the module is written in
+  optional ModuleLanguage language = 5;
 }
 
 message UpdateMLModelMetadata {
