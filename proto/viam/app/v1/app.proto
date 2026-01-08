@@ -1393,11 +1393,17 @@ message ModuleMetadata {
   optional ModuleLanguage language = 8;
 }
 
+message MLModelVersion {
+  string version = 1;
+  google.protobuf.Timestamp created_on = 2;
+}
+
 message MLModelMetadata {
   // A list of package versions for a ML model
-  repeated string versions = 1;
+  repeated string versions = 1 [deprecated = true];
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
+  repeated MLModelVersion detailed_versions = 4;
 }
 
 message MLTrainingVersion {
