@@ -5258,7 +5258,8 @@ proto.viam.common.v1.GetKinematicsResponse.prototype.toObject = function(opt_inc
 proto.viam.common.v1.GetKinematicsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     format: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    kinematicsData: msg.getKinematicsData_asB64()
+    kinematicsData: msg.getKinematicsData_asB64(),
+    meshesByUrdfFilepathMap: (f = msg.getMeshesByUrdfFilepathMap()) ? f.toObject(includeInstance, proto.viam.common.v1.Mesh.toObject) : []
   };
 
   if (includeInstance) {
@@ -5303,6 +5304,12 @@ proto.viam.common.v1.GetKinematicsResponse.deserializeBinaryFromReader = functio
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setKinematicsData(value);
       break;
+    case 3:
+      var value = msg.getMeshesByUrdfFilepathMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.viam.common.v1.Mesh.deserializeBinaryFromReader, "", new proto.viam.common.v1.Mesh());
+         });
+      break;
     default:
       reader.skipField();
       break;
@@ -5345,6 +5352,10 @@ proto.viam.common.v1.GetKinematicsResponse.serializeBinaryToWriter = function(me
       2,
       f
     );
+  }
+  f = message.getMeshesByUrdfFilepathMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.viam.common.v1.Mesh.serializeBinaryToWriter);
   }
 };
 
@@ -5407,6 +5418,28 @@ proto.viam.common.v1.GetKinematicsResponse.prototype.getKinematicsData_asU8 = fu
 proto.viam.common.v1.GetKinematicsResponse.prototype.setKinematicsData = function(value) {
   return jspb.Message.setProto3BytesField(this, 2, value);
 };
+
+
+/**
+ * map<string, Mesh> meshes_by_urdf_filepath = 3;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,!proto.viam.common.v1.Mesh>}
+ */
+proto.viam.common.v1.GetKinematicsResponse.prototype.getMeshesByUrdfFilepathMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,!proto.viam.common.v1.Mesh>} */ (
+      jspb.Message.getMapField(this, 3, opt_noLazyCreate,
+      proto.viam.common.v1.Mesh));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.viam.common.v1.GetKinematicsResponse} returns this
+ */
+proto.viam.common.v1.GetKinematicsResponse.prototype.clearMeshesByUrdfFilepathMap = function() {
+  this.getMeshesByUrdfFilepathMap().clear();
+  return this;};
 
 
 
