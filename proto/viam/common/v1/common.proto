@@ -214,6 +214,8 @@ message GetKinematicsResponse {
   KinematicsFileFormat format = 1;
   // The byte contents of the file
   bytes kinematics_data = 2;
+  // Map of URDF mesh file paths to mesh data
+  map<string, Mesh> meshes_by_urdf_filepath = 3;
 }
 
 message GetGeometriesRequest {
