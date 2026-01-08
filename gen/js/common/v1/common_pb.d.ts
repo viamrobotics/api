@@ -651,6 +651,8 @@ export class GetKinematicsResponse extends jspb.Message {
   getKinematicsData_asB64(): string;
   setKinematicsData(value: Uint8Array | string): void;
 
+  getMeshesByUrdfFilepathMap(): jspb.Map<string, Mesh>;
+  clearMeshesByUrdfFilepathMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetKinematicsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetKinematicsResponse): GetKinematicsResponse.AsObject;
@@ -665,6 +667,7 @@ export namespace GetKinematicsResponse {
   export type AsObject = {
     format: KinematicsFileFormatMap[keyof KinematicsFileFormatMap],
     kinematicsData: Uint8Array | string,
+    meshesByUrdfFilepathMap: Array<[string, Mesh.AsObject]>,
   }
 }
 
