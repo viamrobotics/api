@@ -514,10 +514,10 @@ export namespace GetOrganizationNamespaceAvailabilityResponse {
 }
 
 export class FragmentImportList extends jspb.Message {
-  clearImportsList(): void;
-  getImportsList(): Array<FragmentImport>;
-  setImportsList(value: Array<FragmentImport>): void;
-  addImports(value?: FragmentImport, index?: number): FragmentImport;
+  clearFragmentsList(): void;
+  getFragmentsList(): Array<FragmentImport>;
+  setFragmentsList(value: Array<FragmentImport>): void;
+  addFragments(value?: FragmentImport, index?: number): FragmentImport;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FragmentImportList.AsObject;
@@ -531,7 +531,7 @@ export class FragmentImportList extends jspb.Message {
 
 export namespace FragmentImportList {
   export type AsObject = {
-    importsList: Array<FragmentImport.AsObject>,
+    fragmentsList: Array<FragmentImport.AsObject>,
   }
 }
 
@@ -559,10 +559,10 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getCid(): string;
   setCid(value: string): void;
 
-  hasFragmentImports(): boolean;
-  clearFragmentImports(): void;
-  getFragmentImports(): FragmentImportList | undefined;
-  setFragmentImports(value?: FragmentImportList): void;
+  hasDefaultFragments(): boolean;
+  clearDefaultFragments(): void;
+  getDefaultFragments(): FragmentImportList | undefined;
+  setDefaultFragments(value?: FragmentImportList): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
@@ -581,7 +581,7 @@ export namespace UpdateOrganizationRequest {
     publicNamespace: string,
     region: string,
     cid: string,
-    fragmentImports?: FragmentImportList.AsObject,
+    defaultFragments?: FragmentImportList.AsObject,
   }
 }
 
