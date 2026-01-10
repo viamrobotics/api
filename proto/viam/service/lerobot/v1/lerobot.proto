@@ -1,0 +1,161 @@
+syntax = "proto3";
+
+package viam.service.lerobot.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "go.viam.com/api/service/lerobot/v1";
+option java_package = "com.viam.service.lerobot.v1";
+
+// LeRobotService provides methods for controlling and interacting with the LeRobot.
+service LeRobotService {
+  // StartRecording begins a new recording session for the specified dataset.
+  rpc StartRecording(StartRecordingRequest) returns (StartRecordingResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/lerobot/{name}/start_recording"};
+  }
+
+  // StopRecording ends the current recording session and saves the data.
+  rpc StopRecording(StopRecordingRequest) returns (StopRecordingResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/lerobot/{name}/stop_recording"};
+  }
+
+  // RecordEpisode records a single episode with the specified parameters.
+  rpc RecordEpisode(RecordEpisodeRequest) returns (RecordEpisodeResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/lerobot/{name}/record_episode"};
+  }
+
+  // ReplayEpisode plays back a previously recorded episode.
+  rpc ReplayEpisode(ReplayEpisodeRequest) returns (ReplayEpisodeResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/lerobot/{name}/replay_episode"};
+  }
+
+  // StartTeleoperation begins a teleoperation session with the specified device.
+  rpc StartTeleoperation(StartTeleoperationRequest) returns (StartTeleoperationResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/lerobot/{name}/start_teleoperation"};
+  }
+
+  // StopTeleoperation ends the current teleoperation session.
+  rpc StopTeleoperation(StopTeleoperationRequest) returns (StopTeleoperationResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/lerobot/{name}/stop_teleoperation"};
+  }
+
+  // LoadPolicy loads a policy from a HuggingFace repo or local path.
+  rpc LoadPolicy(LoadPolicyRequest) returns (LoadPolicyResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/lerobot/{name}/load_policy"};
+  }
+
+  // RunPolicyEpisode executes a loaded policy for a single episode.
+  rpc RunPolicyEpisode(RunPolicyEpisodeRequest) returns (RunPolicyEpisodeResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/lerobot/{name}/run_policy_episode"};
+  }
+}
+
+message RecordEpisodeRequest {
+  string name = 1; // Service name
+  string dataset_name = 2;
+  int32 episode_index = 3;
+  RecordingSource source = 4;
+  int32 warmup_time_s = 5;
+  int32 episode_time_s = 6;
+  int32 reset_time_s = 7;
+  int32 fps = 8;
+  repeated string tags = 9;
+  google.protobuf.Struct extra = 99;
+}
+
+enum RecordingSource {
+  RECORDING_SOURCE_UNSPECIFIED = 0;
+  RECORDING_SOURCE_TELEOPERATION = 1;
+  RECORDING_SOURCE_POLICY = 2;
+}
+
+message RecordEpisodeResponse {
+  int32 num_frames = 1;
+  float actual_duration_s = 2;
+  string episode_path = 3;
+}
+
+message StartRecordingRequest {
+  string name = 1;
+  string dataset_name = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message StartRecordingResponse {
+  string session_id = 1;
+}
+
+message StopRecordingRequest {
+  string name = 1;
+  string session_id = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message StopRecordingResponse {
+  float duration_s = 1;
+}
+
+message ReplayEpisodeRequest {
+  string name = 1;
+  string dataset_name = 2;
+  int32 episode_index = 3;
+  int32 fps = 4;
+  google.protobuf.Struct extra = 99;
+}
+
+message ReplayEpisodeResponse {
+  int32 num_frames_replayed = 1;
+  float duration_s = 2;
+}
+
+message StartTeleoperationRequest {
+  string name = 1;
+  string teleop_device_type = 2; // e.g., "keyboard", "spacemouse", "leader_arm"
+  int32 fps = 3;
+  bool display_cameras = 4;
+  google.protobuf.Struct extra = 99;
+}
+
+message StartTeleoperationResponse {
+  string session_id = 1;
+}
+
+message StopTeleoperationRequest {
+  string name = 1;
+  string session_id = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message StopTeleoperationResponse {
+  float duration_s = 1;
+}
+
+message LoadPolicyRequest {
+  string name = 1;
+  string policy_repo_id = 2; // HuggingFace repo or local path
+  google.protobuf.Struct extra = 99;
+}
+
+message LoadPolicyResponse {
+  string policy_id = 1;
+  string policy_type = 2; // "act", "diffusion", etc.
+}
+
+message RunPolicyEpisodeRequest {
+  string name = 1;
+  string policy_id = 2;
+  int32 max_steps = 3;
+  int32 fps = 4;
+  bool record_to_dataset = 5; // Optional: record for evaluation
+  string dataset_name = 6;
+  int32 episode_index = 7;
+  google.protobuf.Struct extra = 99;
+}
+
+message RunPolicyEpisodeResponse {
+  int32 num_steps = 1;
+  float duration_s = 2;
+  bool success = 3; // If task has success criteria
+  string episode_path = 4; // If recorded
+}
