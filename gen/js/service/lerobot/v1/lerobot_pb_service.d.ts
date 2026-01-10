@@ -2,6 +2,7 @@
 // file: service/lerobot/v1/lerobot.proto
 
 import * as service_lerobot_v1_lerobot_pb from "../../../service/lerobot/v1/lerobot_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type LeRobotServiceStartRecording = {
@@ -76,6 +77,15 @@ type LeRobotServiceRunPolicyEpisode = {
   readonly responseType: typeof service_lerobot_v1_lerobot_pb.RunPolicyEpisodeResponse;
 };
 
+type LeRobotServiceDoCommand = {
+  readonly methodName: string;
+  readonly service: typeof LeRobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
+  readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
 export class LeRobotService {
   static readonly serviceName: string;
   static readonly StartRecording: LeRobotServiceStartRecording;
@@ -86,6 +96,7 @@ export class LeRobotService {
   static readonly StopTeleoperation: LeRobotServiceStopTeleoperation;
   static readonly LoadPolicy: LeRobotServiceLoadPolicy;
   static readonly RunPolicyEpisode: LeRobotServiceRunPolicyEpisode;
+  static readonly DoCommand: LeRobotServiceDoCommand;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -191,6 +202,15 @@ export class LeRobotServiceClient {
   runPolicyEpisode(
     requestMessage: service_lerobot_v1_lerobot_pb.RunPolicyEpisodeRequest,
     callback: (error: ServiceError|null, responseMessage: service_lerobot_v1_lerobot_pb.RunPolicyEpisodeResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  doCommand(
+    requestMessage: common_v1_common_pb.DoCommandRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
   ): UnaryResponse;
 }
 

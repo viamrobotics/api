@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package viam.service.lerobot.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
-import "common/v1/common.proto";
 
 option go_package = "go.viam.com/api/service/lerobot/v1";
 option java_package = "com.viam.service.lerobot.v1";

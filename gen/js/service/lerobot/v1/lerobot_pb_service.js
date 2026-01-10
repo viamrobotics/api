@@ -2,6 +2,7 @@
 // file: service/lerobot/v1/lerobot.proto
 
 var service_lerobot_v1_lerobot_pb = require("../../../service/lerobot/v1/lerobot_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var LeRobotService = (function () {
@@ -80,6 +81,15 @@ LeRobotService.RunPolicyEpisode = {
   responseStream: false,
   requestType: service_lerobot_v1_lerobot_pb.RunPolicyEpisodeRequest,
   responseType: service_lerobot_v1_lerobot_pb.RunPolicyEpisodeResponse
+};
+
+LeRobotService.DoCommand = {
+  methodName: "DoCommand",
+  service: LeRobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.DoCommandRequest,
+  responseType: common_v1_common_pb.DoCommandResponse
 };
 
 exports.LeRobotService = LeRobotService;
@@ -311,6 +321,37 @@ LeRobotServiceClient.prototype.runPolicyEpisode = function runPolicyEpisode(requ
     callback = arguments[1];
   }
   var client = grpc.unary(LeRobotService.RunPolicyEpisode, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+LeRobotServiceClient.prototype.doCommand = function doCommand(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(LeRobotService.DoCommand, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

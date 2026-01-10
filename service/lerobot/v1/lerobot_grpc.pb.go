@@ -8,6 +8,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -38,6 +39,8 @@ type LeRobotServiceClient interface {
 	LoadPolicy(ctx context.Context, in *LoadPolicyRequest, opts ...grpc.CallOption) (*LoadPolicyResponse, error)
 	// RunPolicyEpisode executes a loaded policy for a single episode.
 	RunPolicyEpisode(ctx context.Context, in *RunPolicyEpisodeRequest, opts ...grpc.CallOption) (*RunPolicyEpisodeResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
 
 type leRobotServiceClient struct {
@@ -120,6 +123,15 @@ func (c *leRobotServiceClient) RunPolicyEpisode(ctx context.Context, in *RunPoli
 	return out, nil
 }
 
+func (c *leRobotServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
+	out := new(v1.DoCommandResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.lerobot.v1.LeRobotService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LeRobotServiceServer is the server API for LeRobotService service.
 // All implementations must embed UnimplementedLeRobotServiceServer
 // for forward compatibility
@@ -140,6 +152,8 @@ type LeRobotServiceServer interface {
 	LoadPolicy(context.Context, *LoadPolicyRequest) (*LoadPolicyResponse, error)
 	// RunPolicyEpisode executes a loaded policy for a single episode.
 	RunPolicyEpisode(context.Context, *RunPolicyEpisodeRequest) (*RunPolicyEpisodeResponse, error)
+	// DoCommand sends/receives arbitrary commands
+	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedLeRobotServiceServer()
 }
 
@@ -170,6 +184,9 @@ func (UnimplementedLeRobotServiceServer) LoadPolicy(context.Context, *LoadPolicy
 }
 func (UnimplementedLeRobotServiceServer) RunPolicyEpisode(context.Context, *RunPolicyEpisodeRequest) (*RunPolicyEpisodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunPolicyEpisode not implemented")
+}
+func (UnimplementedLeRobotServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
 }
 func (UnimplementedLeRobotServiceServer) mustEmbedUnimplementedLeRobotServiceServer() {}
 
@@ -328,6 +345,24 @@ func _LeRobotService_RunPolicyEpisode_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LeRobotService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.DoCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LeRobotServiceServer).DoCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.lerobot.v1.LeRobotService/DoCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LeRobotServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // LeRobotService_ServiceDesc is the grpc.ServiceDesc for LeRobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -366,6 +401,10 @@ var LeRobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RunPolicyEpisode",
 			Handler:    _LeRobotService_RunPolicyEpisode_Handler,
+		},
+		{
+			MethodName: "DoCommand",
+			Handler:    _LeRobotService_DoCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
