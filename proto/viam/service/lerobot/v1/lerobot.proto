@@ -4,7 +4,7 @@ package viam.service.lerobot.v1;
 
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
-import "proto/viam/common/v1/common.proto";
+import "common/v1/common.proto";
 
 option go_package = "go.viam.com/api/service/lerobot/v1";
 option java_package = "com.viam.service.lerobot.v1";
