@@ -162,6 +162,5 @@ message RunPolicyEpisodeRequest {
 message RunPolicyEpisodeResponse {
   int32 num_steps = 1;
   float duration_s = 2;
-  bool success = 3; // If task has success criteria
   string episode_path = 4; // If recorded
 }
