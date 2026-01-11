@@ -475,9 +475,6 @@ export class RunPolicyEpisodeResponse extends jspb.Message {
   getDurationS(): number;
   setDurationS(value: number): void;
 
-  getSuccess(): boolean;
-  setSuccess(value: boolean): void;
-
   getEpisodePath(): string;
   setEpisodePath(value: string): void;
 
@@ -495,7 +492,6 @@ export namespace RunPolicyEpisodeResponse {
   export type AsObject = {
     numSteps: number,
     durationS: number,
-    success: boolean,
     episodePath: string,
   }
 }

@@ -3632,7 +3632,6 @@ proto.viam.service.lerobot.v1.RunPolicyEpisodeResponse.toObject = function(inclu
   var f, obj = {
     numSteps: jspb.Message.getFieldWithDefault(msg, 1, 0),
     durationS: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    success: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     episodePath: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
@@ -3677,10 +3676,6 @@ proto.viam.service.lerobot.v1.RunPolicyEpisodeResponse.deserializeBinaryFromRead
     case 2:
       var value = /** @type {number} */ (reader.readFloat());
       msg.setDurationS(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setSuccess(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -3729,13 +3724,6 @@ proto.viam.service.lerobot.v1.RunPolicyEpisodeResponse.serializeBinaryToWriter =
       f
     );
   }
-  f = message.getSuccess();
-  if (f) {
-    writer.writeBool(
-      3,
-      f
-    );
-  }
   f = message.getEpisodePath();
   if (f.length > 0) {
     writer.writeString(
@@ -3779,24 +3767,6 @@ proto.viam.service.lerobot.v1.RunPolicyEpisodeResponse.prototype.getDurationS = 
  */
 proto.viam.service.lerobot.v1.RunPolicyEpisodeResponse.prototype.setDurationS = function(value) {
   return jspb.Message.setProto3FloatField(this, 2, value);
-};
-
-
-/**
- * optional bool success = 3;
- * @return {boolean}
- */
-proto.viam.service.lerobot.v1.RunPolicyEpisodeResponse.prototype.getSuccess = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.viam.service.lerobot.v1.RunPolicyEpisodeResponse} returns this
- */
-proto.viam.service.lerobot.v1.RunPolicyEpisodeResponse.prototype.setSuccess = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
