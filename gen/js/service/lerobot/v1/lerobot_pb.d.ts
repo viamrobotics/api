@@ -270,9 +270,6 @@ export class StartTeleoperationRequest extends jspb.Message {
   getFps(): number;
   setFps(value: number): void;
 
-  getDisplayCameras(): boolean;
-  setDisplayCameras(value: boolean): void;
-
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -293,7 +290,6 @@ export namespace StartTeleoperationRequest {
     name: string,
     teleopDeviceType: string,
     fps: number,
-    displayCameras: boolean,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }

@@ -2189,7 +2189,6 @@ proto.viam.service.lerobot.v1.StartTeleoperationRequest.toObject = function(incl
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     teleopDeviceType: jspb.Message.getFieldWithDefault(msg, 2, ""),
     fps: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    displayCameras: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -2238,10 +2237,6 @@ proto.viam.service.lerobot.v1.StartTeleoperationRequest.deserializeBinaryFromRea
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setFps(value);
-      break;
-    case 4:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setDisplayCameras(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -2295,13 +2290,6 @@ proto.viam.service.lerobot.v1.StartTeleoperationRequest.serializeBinaryToWriter 
   if (f !== 0) {
     writer.writeInt32(
       3,
-      f
-    );
-  }
-  f = message.getDisplayCameras();
-  if (f) {
-    writer.writeBool(
-      4,
       f
     );
   }
@@ -2367,24 +2355,6 @@ proto.viam.service.lerobot.v1.StartTeleoperationRequest.prototype.getFps = funct
  */
 proto.viam.service.lerobot.v1.StartTeleoperationRequest.prototype.setFps = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
-};
-
-
-/**
- * optional bool display_cameras = 4;
- * @return {boolean}
- */
-proto.viam.service.lerobot.v1.StartTeleoperationRequest.prototype.getDisplayCameras = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.viam.service.lerobot.v1.StartTeleoperationRequest} returns this
- */
-proto.viam.service.lerobot.v1.StartTeleoperationRequest.prototype.setDisplayCameras = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
