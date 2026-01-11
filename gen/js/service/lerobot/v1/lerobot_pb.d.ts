@@ -440,6 +440,9 @@ export class RunPolicyEpisodeRequest extends jspb.Message {
   getEpisodeIndex(): number;
   setEpisodeIndex(value: number): void;
 
+  getTask(): string;
+  setTask(value: string): void;
+
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -464,6 +467,7 @@ export namespace RunPolicyEpisodeRequest {
     recordToDataset: boolean,
     datasetName: string,
     episodeIndex: number,
+    task: string,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }

@@ -3276,6 +3276,7 @@ proto.viam.service.lerobot.v1.RunPolicyEpisodeRequest.toObject = function(includ
     recordToDataset: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     datasetName: jspb.Message.getFieldWithDefault(msg, 6, ""),
     episodeIndex: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    task: jspb.Message.getFieldWithDefault(msg, 8, ""),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -3340,6 +3341,10 @@ proto.viam.service.lerobot.v1.RunPolicyEpisodeRequest.deserializeBinaryFromReade
     case 7:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setEpisodeIndex(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTask(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -3421,6 +3426,13 @@ proto.viam.service.lerobot.v1.RunPolicyEpisodeRequest.serializeBinaryToWriter = 
   if (f !== 0) {
     writer.writeInt32(
       7,
+      f
+    );
+  }
+  f = message.getTask();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -3558,6 +3570,24 @@ proto.viam.service.lerobot.v1.RunPolicyEpisodeRequest.prototype.getEpisodeIndex 
  */
 proto.viam.service.lerobot.v1.RunPolicyEpisodeRequest.prototype.setEpisodeIndex = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional string task = 8;
+ * @return {string}
+ */
+proto.viam.service.lerobot.v1.RunPolicyEpisodeRequest.prototype.getTask = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.lerobot.v1.RunPolicyEpisodeRequest} returns this
+ */
+proto.viam.service.lerobot.v1.RunPolicyEpisodeRequest.prototype.setTask = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
