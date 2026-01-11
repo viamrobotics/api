@@ -120,7 +120,6 @@ message StartTeleoperationRequest {
   string name = 1;
   string teleop_device_type = 2; // e.g., "keyboard", "spacemouse", "leader_arm"
   int32 fps = 3;
-  bool display_cameras = 4;
   google.protobuf.Struct extra = 99;
 }
 
