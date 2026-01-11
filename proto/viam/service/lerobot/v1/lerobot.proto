@@ -156,6 +156,7 @@ message RunPolicyEpisodeRequest {
   bool record_to_dataset = 5; // Optional: record for evaluation
   string dataset_name = 6;
   int32 episode_index = 7;
+  string task = 8;
   google.protobuf.Struct extra = 99;
 }
 
