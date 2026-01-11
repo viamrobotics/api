@@ -67,6 +67,7 @@ message RecordEpisodeRequest {
   int32 reset_time_s = 7;
   int32 fps = 8;
   repeated string tags = 9;
+  string task = 10;
   google.protobuf.Struct extra = 99;
 }
 
