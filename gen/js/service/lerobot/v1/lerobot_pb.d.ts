@@ -36,6 +36,9 @@ export class RecordEpisodeRequest extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
+  getTask(): string;
+  setTask(value: string): void;
+
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -62,6 +65,7 @@ export namespace RecordEpisodeRequest {
     resetTimeS: number,
     fps: number,
     tagsList: Array<string>,
+    task: string,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }

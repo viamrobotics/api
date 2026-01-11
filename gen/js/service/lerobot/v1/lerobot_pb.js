@@ -422,6 +422,7 @@ proto.viam.service.lerobot.v1.RecordEpisodeRequest.toObject = function(includeIn
     resetTimeS: jspb.Message.getFieldWithDefault(msg, 7, 0),
     fps: jspb.Message.getFieldWithDefault(msg, 8, 0),
     tagsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
+    task: jspb.Message.getFieldWithDefault(msg, 10, ""),
     extra: (f = msg.getExtra()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
@@ -494,6 +495,10 @@ proto.viam.service.lerobot.v1.RecordEpisodeRequest.deserializeBinaryFromReader =
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.addTags(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTask(value);
       break;
     case 99:
       var value = new google_protobuf_struct_pb.Struct;
@@ -589,6 +594,13 @@ proto.viam.service.lerobot.v1.RecordEpisodeRequest.serializeBinaryToWriter = fun
   if (f.length > 0) {
     writer.writeRepeatedString(
       9,
+      f
+    );
+  }
+  f = message.getTask();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -781,6 +793,24 @@ proto.viam.service.lerobot.v1.RecordEpisodeRequest.prototype.addTags = function(
  */
 proto.viam.service.lerobot.v1.RecordEpisodeRequest.prototype.clearTagsList = function() {
   return this.setTagsList([]);
+};
+
+
+/**
+ * optional string task = 10;
+ * @return {string}
+ */
+proto.viam.service.lerobot.v1.RecordEpisodeRequest.prototype.getTask = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.lerobot.v1.RecordEpisodeRequest} returns this
+ */
+proto.viam.service.lerobot.v1.RecordEpisodeRequest.prototype.setTask = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
