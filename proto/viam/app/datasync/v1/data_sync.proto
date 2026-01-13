@@ -112,6 +112,7 @@ message UploadMetadata {
   string file_extension = 9;
   repeated string tags = 10;
   repeated string dataset_ids = 12;
+  string mime_type = 13;
 
   reserved 4, 11;
   reserved "component_model", "session_id";
