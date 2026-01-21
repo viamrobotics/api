@@ -1441,6 +1441,11 @@ export class AddBoundingBoxToImageByIDRequest extends jspb.Message {
   getYMaxNormalized(): number;
   setYMaxNormalized(value: number): void;
 
+  hasConfidence(): boolean;
+  clearConfidence(): void;
+  getConfidence(): number;
+  setConfidence(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddBoundingBoxToImageByIDRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddBoundingBoxToImageByIDRequest): AddBoundingBoxToImageByIDRequest.AsObject;
@@ -1460,6 +1465,7 @@ export namespace AddBoundingBoxToImageByIDRequest {
     yMinNormalized: number,
     xMaxNormalized: number,
     yMaxNormalized: number,
+    confidence: number,
   }
 }
 
@@ -1566,6 +1572,11 @@ export class UpdateBoundingBoxRequest extends jspb.Message {
   getYMaxNormalized(): number;
   setYMaxNormalized(value: number): void;
 
+  hasConfidence(): boolean;
+  clearConfidence(): void;
+  getConfidence(): number;
+  setConfidence(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateBoundingBoxRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateBoundingBoxRequest): UpdateBoundingBoxRequest.AsObject;
@@ -1586,6 +1597,7 @@ export namespace UpdateBoundingBoxRequest {
     yMinNormalized: number,
     xMaxNormalized: number,
     yMaxNormalized: number,
+    confidence: number,
   }
 }
 
