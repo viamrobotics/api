@@ -552,7 +552,8 @@ message AddBoundingBoxToImageByIDRequest {
   double y_min_normalized = 4;
   double x_max_normalized = 5;
   double y_max_normalized = 6;
-
+  optional double confidence_score = 9;
+  
   reserved 1;
   reserved "file_id";
 }
