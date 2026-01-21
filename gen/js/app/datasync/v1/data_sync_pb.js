@@ -2269,7 +2269,8 @@ proto.viam.app.datasync.v1.UploadMetadata.toObject = function(includeInstance, m
     methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
     fileExtension: jspb.Message.getFieldWithDefault(msg, 9, ""),
     tagsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
-    datasetIdsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f
+    datasetIdsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
+    mimeType: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -2347,6 +2348,10 @@ proto.viam.app.datasync.v1.UploadMetadata.deserializeBinaryFromReader = function
     case 12:
       var value = /** @type {string} */ (reader.readString());
       msg.addDatasetIds(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMimeType(value);
       break;
     default:
       reader.skipField();
@@ -2441,6 +2446,13 @@ proto.viam.app.datasync.v1.UploadMetadata.serializeBinaryToWriter = function(mes
   if (f.length > 0) {
     writer.writeRepeatedString(
       12,
+      f
+    );
+  }
+  f = message.getMimeType();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
       f
     );
   }
@@ -2666,6 +2678,24 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.addDatasetIds = function(val
  */
 proto.viam.app.datasync.v1.UploadMetadata.prototype.clearDatasetIdsList = function() {
   return this.setDatasetIdsList([]);
+};
+
+
+/**
+ * optional string mime_type = 13;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.getMimeType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.setMimeType = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
@@ -3419,7 +3449,8 @@ proto.viam.app.datasync.v1.MimeType = {
   MIME_TYPE_UNSPECIFIED: 0,
   MIME_TYPE_IMAGE_JPEG: 1,
   MIME_TYPE_IMAGE_PNG: 2,
-  MIME_TYPE_APPLICATION_PCD: 3
+  MIME_TYPE_APPLICATION_PCD: 3,
+  MIME_TYPE_VIDEO_MP4: 4
 };
 
 /**

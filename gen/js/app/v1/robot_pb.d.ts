@@ -92,6 +92,11 @@ export class RobotConfig extends jspb.Message {
   setJobsList(value: Array<JobConfig>): void;
   addJobs(value?: JobConfig, index?: number): JobConfig;
 
+  hasTracing(): boolean;
+  clearTracing(): void;
+  getTracing(): TracingConfig | undefined;
+  setTracing(value?: TracingConfig): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotConfig.AsObject;
   static toObject(includeInstance: boolean, msg: RobotConfig): RobotConfig.AsObject;
@@ -122,6 +127,7 @@ export namespace RobotConfig {
     maintenance?: MaintenanceConfig.AsObject,
     disableLogDeduplication: boolean,
     jobsList: Array<JobConfig.AsObject>,
+    tracing?: TracingConfig.AsObject,
   }
 }
 
@@ -167,6 +173,11 @@ export class JobConfig extends jspb.Message {
   getCommand(): google_protobuf_struct_pb.Struct | undefined;
   setCommand(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasLogConfiguration(): boolean;
+  clearLogConfiguration(): void;
+  getLogConfiguration(): LogConfiguration | undefined;
+  setLogConfiguration(value?: LogConfiguration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): JobConfig.AsObject;
   static toObject(includeInstance: boolean, msg: JobConfig): JobConfig.AsObject;
@@ -184,6 +195,39 @@ export namespace JobConfig {
     resource: string,
     method: string,
     command?: google_protobuf_struct_pb.Struct.AsObject,
+    logConfiguration?: LogConfiguration.AsObject,
+  }
+}
+
+export class TracingConfig extends jspb.Message {
+  getEnabled(): boolean;
+  setEnabled(value: boolean): void;
+
+  getDisk(): boolean;
+  setDisk(value: boolean): void;
+
+  getConsole(): boolean;
+  setConsole(value: boolean): void;
+
+  getOtlpEndpoint(): string;
+  setOtlpEndpoint(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TracingConfig.AsObject;
+  static toObject(includeInstance: boolean, msg: TracingConfig): TracingConfig.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TracingConfig, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TracingConfig;
+  static deserializeBinaryFromReader(message: TracingConfig, reader: jspb.BinaryReader): TracingConfig;
+}
+
+export namespace TracingConfig {
+  export type AsObject = {
+    enabled: boolean,
+    disk: boolean,
+    console: boolean,
+    otlpEndpoint: string,
   }
 }
 

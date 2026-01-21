@@ -29,6 +29,12 @@ export class Robot extends jspb.Message {
   getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getOnlineState(): OnlineStateMap[keyof OnlineStateMap];
+  setOnlineState(value: OnlineStateMap[keyof OnlineStateMap]): void;
+
+  getSecondsSinceOnline(): number;
+  setSecondsSinceOnline(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Robot.AsObject;
   static toObject(includeInstance: boolean, msg: Robot): Robot.AsObject;
@@ -46,6 +52,8 @@ export namespace Robot {
     location: string,
     lastAccess?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    onlineState: OnlineStateMap[keyof OnlineStateMap],
+    secondsSinceOnline: number,
   }
 }
 
@@ -107,6 +115,12 @@ export class RobotPart extends jspb.Message {
   getLastUpdated(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setLastUpdated(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getOnlineState(): OnlineStateMap[keyof OnlineStateMap];
+  setOnlineState(value: OnlineStateMap[keyof OnlineStateMap]): void;
+
+  getSecondsSinceOnline(): number;
+  setSecondsSinceOnline(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotPart.AsObject;
   static toObject(includeInstance: boolean, msg: RobotPart): RobotPart.AsObject;
@@ -134,6 +148,8 @@ export namespace RobotPart {
     createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     secretsList: Array<SharedSecret.AsObject>,
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    onlineState: OnlineStateMap[keyof OnlineStateMap],
+    secondsSinceOnline: number,
   }
 }
 
@@ -497,6 +513,28 @@ export namespace GetOrganizationNamespaceAvailabilityResponse {
   }
 }
 
+export class FragmentImportList extends jspb.Message {
+  clearFragmentsList(): void;
+  getFragmentsList(): Array<FragmentImport>;
+  setFragmentsList(value: Array<FragmentImport>): void;
+  addFragments(value?: FragmentImport, index?: number): FragmentImport;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentImportList.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentImportList): FragmentImportList.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentImportList, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentImportList;
+  static deserializeBinaryFromReader(message: FragmentImportList, reader: jspb.BinaryReader): FragmentImportList;
+}
+
+export namespace FragmentImportList {
+  export type AsObject = {
+    fragmentsList: Array<FragmentImport.AsObject>,
+  }
+}
+
 export class UpdateOrganizationRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -521,6 +559,11 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getCid(): string;
   setCid(value: string): void;
 
+  hasDefaultFragments(): boolean;
+  clearDefaultFragments(): void;
+  getDefaultFragments(): FragmentImportList | undefined;
+  setDefaultFragments(value?: FragmentImportList): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateOrganizationRequest): UpdateOrganizationRequest.AsObject;
@@ -538,6 +581,7 @@ export namespace UpdateOrganizationRequest {
     publicNamespace: string,
     region: string,
     cid: string,
+    defaultFragments?: FragmentImportList.AsObject,
   }
 }
 
@@ -2381,6 +2425,11 @@ export class GetRobotPartLogsRequest extends jspb.Message {
   getSource(): string;
   setSource(value: string): void;
 
+  hasUserFacingOnly(): boolean;
+  clearUserFacingOnly(): void;
+  getUserFacingOnly(): boolean;
+  setUserFacingOnly(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartLogsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartLogsRequest): GetRobotPartLogsRequest.AsObject;
@@ -2402,6 +2451,7 @@ export namespace GetRobotPartLogsRequest {
     end?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     limit: number,
     source: string,
+    userFacingOnly: boolean,
   }
 }
 
@@ -3058,6 +3108,39 @@ export namespace FragmentUsage {
     machines: number,
     machinesInCurrentOrg: number,
     version: string,
+  }
+}
+
+export class FragmentImport extends jspb.Message {
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  hasPrefix(): boolean;
+  clearPrefix(): void;
+  getPrefix(): string;
+  setPrefix(value: string): void;
+
+  getVariablesMap(): jspb.Map<string, string>;
+  clearVariablesMap(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentImport.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentImport): FragmentImport.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentImport, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentImport;
+  static deserializeBinaryFromReader(message: FragmentImport, reader: jspb.BinaryReader): FragmentImport;
+}
+
+export namespace FragmentImport {
+  export type AsObject = {
+    fragmentId: string,
+    version: string,
+    prefix: string,
+    variablesMap: Array<[string, string]>,
   }
 }
 
@@ -4013,6 +4096,17 @@ export class PartSummary extends jspb.Message {
   getIsMainPart(): boolean;
   setIsMainPart(value: boolean): void;
 
+  getOnlineState(): OnlineStateMap[keyof OnlineStateMap];
+  setOnlineState(value: OnlineStateMap[keyof OnlineStateMap]): void;
+
+  getSecondsSinceOnline(): number;
+  setSecondsSinceOnline(value: number): void;
+
+  hasLastAccess(): boolean;
+  clearLastAccess(): void;
+  getLastAccess(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastAccess(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   hasLastOnline(): boolean;
   clearLastOnline(): void;
   getLastOnline(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -4068,6 +4162,9 @@ export namespace PartSummary {
     partId: string,
     partName: string,
     isMainPart: boolean,
+    onlineState: OnlineStateMap[keyof OnlineStateMap],
+    secondsSinceOnline: number,
+    lastAccess?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     lastOnline?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     viamServerVersion?: ViamServerVersion.AsObject,
     viamAgentVersion?: ViamAgentVersion.AsObject,
@@ -4882,6 +4979,16 @@ export class ModuleMetadata extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasSourceType(): boolean;
+  clearSourceType(): void;
+  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
+
+  hasLanguage(): boolean;
+  clearLanguage(): void;
+  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
+  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleMetadata): ModuleMetadata.AsObject;
@@ -4900,6 +5007,8 @@ export namespace ModuleMetadata {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
+    language: ModuleLanguageMap[keyof ModuleLanguageMap],
   }
 }
 
@@ -5319,6 +5428,16 @@ export class ListRegistryItemsRequest extends jspb.Message {
   getIncludeMarkdownDocumentation(): boolean;
   setIncludeMarkdownDocumentation(value: boolean): void;
 
+  clearModuleSourceTypesList(): void;
+  getModuleSourceTypesList(): Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>;
+  setModuleSourceTypesList(value: Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>): void;
+  addModuleSourceTypes(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap], index?: number): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+
+  clearModuleLanguagesList(): void;
+  getModuleLanguagesList(): Array<ModuleLanguageMap[keyof ModuleLanguageMap]>;
+  setModuleLanguagesList(value: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>): void;
+  addModuleLanguages(value: ModuleLanguageMap[keyof ModuleLanguageMap], index?: number): ModuleLanguageMap[keyof ModuleLanguageMap];
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListRegistryItemsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListRegistryItemsRequest): ListRegistryItemsRequest.AsObject;
@@ -5340,6 +5459,8 @@ export namespace ListRegistryItemsRequest {
     pageToken: string,
     publicNamespacesList: Array<string>,
     includeMarkdownDocumentation: boolean,
+    moduleSourceTypesList: Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>,
+    moduleLanguagesList: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>,
   }
 }
 
@@ -5675,6 +5796,16 @@ export class UpdateModuleMetadata extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasSourceType(): boolean;
+  clearSourceType(): void;
+  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
+
+  hasLanguage(): boolean;
+  clearLanguage(): void;
+  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
+  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleMetadata): UpdateModuleMetadata.AsObject;
@@ -5690,6 +5821,8 @@ export namespace UpdateModuleMetadata {
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
     appsList: Array<App.AsObject>,
+    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
+    language: ModuleLanguageMap[keyof ModuleLanguageMap],
   }
 }
 
@@ -7276,6 +7409,15 @@ export namespace MachinePickerCustomizations {
   }
 }
 
+export interface OnlineStateMap {
+  ONLINE_STATE_UNSPECIFIED: 0;
+  ONLINE_STATE_ONLINE: 1;
+  ONLINE_STATE_OFFLINE: 2;
+  ONLINE_STATE_AWAITING_SETUP: 3;
+}
+
+export const OnlineState: OnlineStateMap;
+
 export interface AuthenticationTypeMap {
   AUTHENTICATION_TYPE_UNSPECIFIED: 0;
   AUTHENTICATION_TYPE_WEB_OAUTH: 1;
@@ -7304,6 +7446,23 @@ export interface FragmentErrorTypeMap {
 }
 
 export const FragmentErrorType: FragmentErrorTypeMap;
+
+export interface ModuleSourceTypeMap {
+  MODULE_SOURCE_TYPE_UNSPECIFIED: 0;
+  MODULE_SOURCE_TYPE_EXTERNAL: 1;
+  MODULE_SOURCE_TYPE_VIAM_HOSTED: 2;
+}
+
+export const ModuleSourceType: ModuleSourceTypeMap;
+
+export interface ModuleLanguageMap {
+  MODULE_LANGUAGE_UNSPECIFIED: 0;
+  MODULE_LANGUAGE_GOLANG: 1;
+  MODULE_LANGUAGE_PYTHON: 2;
+  MODULE_LANGUAGE_CPP: 3;
+}
+
+export const ModuleLanguage: ModuleLanguageMap;
 
 export interface RegistryItemStatusMap {
   REGISTRY_ITEM_STATUS_UNSPECIFIED: 0;

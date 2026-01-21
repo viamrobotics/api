@@ -289,6 +289,15 @@ DataService.ListSavedQueries = {
   responseType: app_data_v1_data_pb.ListSavedQueriesResponse
 };
 
+DataService.CreateBinaryDataSignedURL = {
+  methodName: "CreateBinaryDataSignedURL",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.CreateBinaryDataSignedURLRequest,
+  responseType: app_data_v1_data_pb.CreateBinaryDataSignedURLResponse
+};
+
 exports.DataService = DataService;
 
 function DataServiceClient(serviceHost, options) {
@@ -1239,6 +1248,37 @@ DataServiceClient.prototype.listSavedQueries = function listSavedQueries(request
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.ListSavedQueries, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.createBinaryDataSignedURL = function createBinaryDataSignedURL(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.CreateBinaryDataSignedURL, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

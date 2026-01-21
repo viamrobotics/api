@@ -7,6 +7,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
+import "opentelemetry/proto/trace/v1/trace.proto";
 
 option go_package = "go.viam.com/api/robot/v1";
 option java_package = "com.viam.robot.v1";
@@ -132,7 +133,17 @@ service RobotService {
   rpc TransformPCD(TransformPCDRequest) returns (TransformPCDResponse) {
     option (google.api.http) = {get: "/viam/api/v1/frame_system/transform_pcd"};
   }
+
+  rpc SendTraces(SendTracesRequest) returns (SendTracesResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/traces"};
+  }
 }
+
+message SendTracesRequest {
+  repeated opentelemetry.proto.trace.v1.ResourceSpans resource_spans = 1;
+}
+
+message SendTracesResponse {}
 
 message TunnelRequest {
   uint32 destination_port = 1;
@@ -378,6 +389,13 @@ message GetMachineStatusResponse {
   repeated ResourceStatus resources = 1;
   ConfigStatus config = 2;
   State state = 3;
+  repeated JobStatus job_statuses = 4;
+}
+
+message JobStatus {
+  string job_name = 1;
+  repeated google.protobuf.Timestamp recent_successful_runs = 2;
+  repeated google.protobuf.Timestamp recent_failed_runs = 3;
 }
 
 message ResourceStatus {

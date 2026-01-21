@@ -462,6 +462,124 @@ func (x *StartReloadBuildResponse) GetBuildId() string {
 	return ""
 }
 
+type StartPackageBuildRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// module_id to build for
+	ModuleId string `protobuf:"bytes,1,opt,name=module_id,json=moduleId,proto3" json:"module_id,omitempty"`
+	// the version of source code to build for
+	PackageVersion string `protobuf:"bytes,2,opt,name=package_version,json=packageVersion,proto3" json:"package_version,omitempty"`
+	// version of the module to publish to the registry. must be valid semver2.0 string (ex: 1.2.3-rc0)
+	ModuleVersion string `protobuf:"bytes,3,opt,name=module_version,json=moduleVersion,proto3" json:"module_version,omitempty"`
+	// specify the platforms to build for (ex: linux/arm64)
+	Platforms []string `protobuf:"bytes,4,rep,name=platforms,proto3" json:"platforms,omitempty"`
+}
+
+func (x *StartPackageBuildRequest) Reset() {
+	*x = StartPackageBuildRequest{}
+	mi := &file_app_build_v1_build_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StartPackageBuildRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StartPackageBuildRequest) ProtoMessage() {}
+
+func (x *StartPackageBuildRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_build_v1_build_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StartPackageBuildRequest.ProtoReflect.Descriptor instead.
+func (*StartPackageBuildRequest) Descriptor() ([]byte, []int) {
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *StartPackageBuildRequest) GetModuleId() string {
+	if x != nil {
+		return x.ModuleId
+	}
+	return ""
+}
+
+func (x *StartPackageBuildRequest) GetPackageVersion() string {
+	if x != nil {
+		return x.PackageVersion
+	}
+	return ""
+}
+
+func (x *StartPackageBuildRequest) GetModuleVersion() string {
+	if x != nil {
+		return x.ModuleVersion
+	}
+	return ""
+}
+
+func (x *StartPackageBuildRequest) GetPlatforms() []string {
+	if x != nil {
+		return x.Platforms
+	}
+	return nil
+}
+
+type StartPackageBuildResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	BuildId string `protobuf:"bytes,1,opt,name=build_id,json=buildId,proto3" json:"build_id,omitempty"`
+}
+
+func (x *StartPackageBuildResponse) Reset() {
+	*x = StartPackageBuildResponse{}
+	mi := &file_app_build_v1_build_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StartPackageBuildResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StartPackageBuildResponse) ProtoMessage() {}
+
+func (x *StartPackageBuildResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_build_v1_build_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StartPackageBuildResponse.ProtoReflect.Descriptor instead.
+func (*StartPackageBuildResponse) Descriptor() ([]byte, []int) {
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *StartPackageBuildResponse) GetBuildId() string {
+	if x != nil {
+		return x.BuildId
+	}
+	return ""
+}
+
 // GetLogsResponse is a streaming endpoint that may have multiple messages that belong
 // to the same build_step if there are too many bytes to fit into a single gRPC
 // response.
@@ -477,7 +595,7 @@ type GetLogsResponse struct {
 
 func (x *GetLogsResponse) Reset() {
 	*x = GetLogsResponse{}
-	mi := &file_app_build_v1_build_proto_msgTypes[6]
+	mi := &file_app_build_v1_build_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -489,7 +607,7 @@ func (x *GetLogsResponse) String() string {
 func (*GetLogsResponse) ProtoMessage() {}
 
 func (x *GetLogsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[6]
+	mi := &file_app_build_v1_build_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -502,7 +620,7 @@ func (x *GetLogsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLogsResponse.ProtoReflect.Descriptor instead.
 func (*GetLogsResponse) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{6}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetLogsResponse) GetBuildStep() string {
@@ -535,7 +653,7 @@ type JobInfo struct {
 
 func (x *JobInfo) Reset() {
 	*x = JobInfo{}
-	mi := &file_app_build_v1_build_proto_msgTypes[7]
+	mi := &file_app_build_v1_build_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -547,7 +665,7 @@ func (x *JobInfo) String() string {
 func (*JobInfo) ProtoMessage() {}
 
 func (x *JobInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[7]
+	mi := &file_app_build_v1_build_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -560,7 +678,7 @@ func (x *JobInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JobInfo.ProtoReflect.Descriptor instead.
 func (*JobInfo) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{7}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *JobInfo) GetBuildId() string {
@@ -629,7 +747,7 @@ type ListJobsRequest struct {
 
 func (x *ListJobsRequest) Reset() {
 	*x = ListJobsRequest{}
-	mi := &file_app_build_v1_build_proto_msgTypes[8]
+	mi := &file_app_build_v1_build_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -641,7 +759,7 @@ func (x *ListJobsRequest) String() string {
 func (*ListJobsRequest) ProtoMessage() {}
 
 func (x *ListJobsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[8]
+	mi := &file_app_build_v1_build_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -654,7 +772,7 @@ func (x *ListJobsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListJobsRequest.ProtoReflect.Descriptor instead.
 func (*ListJobsRequest) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{8}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListJobsRequest) GetModuleId() string {
@@ -689,7 +807,7 @@ type ListJobsResponse struct {
 
 func (x *ListJobsResponse) Reset() {
 	*x = ListJobsResponse{}
-	mi := &file_app_build_v1_build_proto_msgTypes[9]
+	mi := &file_app_build_v1_build_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -701,7 +819,7 @@ func (x *ListJobsResponse) String() string {
 func (*ListJobsResponse) ProtoMessage() {}
 
 func (x *ListJobsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[9]
+	mi := &file_app_build_v1_build_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -714,7 +832,7 @@ func (x *ListJobsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListJobsResponse.ProtoReflect.Descriptor instead.
 func (*ListJobsResponse) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{9}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListJobsResponse) GetJobs() []*JobInfo {
@@ -746,7 +864,7 @@ type RepoLink struct {
 
 func (x *RepoLink) Reset() {
 	*x = RepoLink{}
-	mi := &file_app_build_v1_build_proto_msgTypes[10]
+	mi := &file_app_build_v1_build_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -758,7 +876,7 @@ func (x *RepoLink) String() string {
 func (*RepoLink) ProtoMessage() {}
 
 func (x *RepoLink) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[10]
+	mi := &file_app_build_v1_build_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -771,7 +889,7 @@ func (x *RepoLink) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RepoLink.ProtoReflect.Descriptor instead.
 func (*RepoLink) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{10}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *RepoLink) GetOauthAppLinkId() string {
@@ -826,7 +944,7 @@ type LinkRepoRequest struct {
 
 func (x *LinkRepoRequest) Reset() {
 	*x = LinkRepoRequest{}
-	mi := &file_app_build_v1_build_proto_msgTypes[11]
+	mi := &file_app_build_v1_build_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -838,7 +956,7 @@ func (x *LinkRepoRequest) String() string {
 func (*LinkRepoRequest) ProtoMessage() {}
 
 func (x *LinkRepoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[11]
+	mi := &file_app_build_v1_build_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -851,7 +969,7 @@ func (x *LinkRepoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkRepoRequest.ProtoReflect.Descriptor instead.
 func (*LinkRepoRequest) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{11}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *LinkRepoRequest) GetLink() *RepoLink {
@@ -871,7 +989,7 @@ type LinkRepoResponse struct {
 
 func (x *LinkRepoResponse) Reset() {
 	*x = LinkRepoResponse{}
-	mi := &file_app_build_v1_build_proto_msgTypes[12]
+	mi := &file_app_build_v1_build_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -883,7 +1001,7 @@ func (x *LinkRepoResponse) String() string {
 func (*LinkRepoResponse) ProtoMessage() {}
 
 func (x *LinkRepoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[12]
+	mi := &file_app_build_v1_build_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -896,7 +1014,7 @@ func (x *LinkRepoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkRepoResponse.ProtoReflect.Descriptor instead.
 func (*LinkRepoResponse) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{12}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *LinkRepoResponse) GetRepoLinkId() string {
@@ -916,7 +1034,7 @@ type UnlinkRepoRequest struct {
 
 func (x *UnlinkRepoRequest) Reset() {
 	*x = UnlinkRepoRequest{}
-	mi := &file_app_build_v1_build_proto_msgTypes[13]
+	mi := &file_app_build_v1_build_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -928,7 +1046,7 @@ func (x *UnlinkRepoRequest) String() string {
 func (*UnlinkRepoRequest) ProtoMessage() {}
 
 func (x *UnlinkRepoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[13]
+	mi := &file_app_build_v1_build_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -941,7 +1059,7 @@ func (x *UnlinkRepoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnlinkRepoRequest.ProtoReflect.Descriptor instead.
 func (*UnlinkRepoRequest) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{13}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *UnlinkRepoRequest) GetRepoLinkId() string {
@@ -959,7 +1077,7 @@ type UnlinkRepoResponse struct {
 
 func (x *UnlinkRepoResponse) Reset() {
 	*x = UnlinkRepoResponse{}
-	mi := &file_app_build_v1_build_proto_msgTypes[14]
+	mi := &file_app_build_v1_build_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -971,7 +1089,7 @@ func (x *UnlinkRepoResponse) String() string {
 func (*UnlinkRepoResponse) ProtoMessage() {}
 
 func (x *UnlinkRepoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[14]
+	mi := &file_app_build_v1_build_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -984,7 +1102,7 @@ func (x *UnlinkRepoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnlinkRepoResponse.ProtoReflect.Descriptor instead.
 func (*UnlinkRepoResponse) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{14}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{16}
 }
 
 type ListRepoLinksRequest struct {
@@ -995,7 +1113,7 @@ type ListRepoLinksRequest struct {
 
 func (x *ListRepoLinksRequest) Reset() {
 	*x = ListRepoLinksRequest{}
-	mi := &file_app_build_v1_build_proto_msgTypes[15]
+	mi := &file_app_build_v1_build_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1007,7 +1125,7 @@ func (x *ListRepoLinksRequest) String() string {
 func (*ListRepoLinksRequest) ProtoMessage() {}
 
 func (x *ListRepoLinksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[15]
+	mi := &file_app_build_v1_build_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1020,7 +1138,7 @@ func (x *ListRepoLinksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRepoLinksRequest.ProtoReflect.Descriptor instead.
 func (*ListRepoLinksRequest) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{15}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{17}
 }
 
 type ListRepoLinksResponse struct {
@@ -1033,7 +1151,7 @@ type ListRepoLinksResponse struct {
 
 func (x *ListRepoLinksResponse) Reset() {
 	*x = ListRepoLinksResponse{}
-	mi := &file_app_build_v1_build_proto_msgTypes[16]
+	mi := &file_app_build_v1_build_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1045,7 +1163,7 @@ func (x *ListRepoLinksResponse) String() string {
 func (*ListRepoLinksResponse) ProtoMessage() {}
 
 func (x *ListRepoLinksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[16]
+	mi := &file_app_build_v1_build_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1058,7 +1176,7 @@ func (x *ListRepoLinksResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRepoLinksResponse.ProtoReflect.Descriptor instead.
 func (*ListRepoLinksResponse) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{16}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ListRepoLinksResponse) GetLinks() []*RepoLink {
@@ -1076,7 +1194,7 @@ type ListAppLinksRequest struct {
 
 func (x *ListAppLinksRequest) Reset() {
 	*x = ListAppLinksRequest{}
-	mi := &file_app_build_v1_build_proto_msgTypes[17]
+	mi := &file_app_build_v1_build_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1088,7 +1206,7 @@ func (x *ListAppLinksRequest) String() string {
 func (*ListAppLinksRequest) ProtoMessage() {}
 
 func (x *ListAppLinksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[17]
+	mi := &file_app_build_v1_build_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1101,7 +1219,7 @@ func (x *ListAppLinksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAppLinksRequest.ProtoReflect.Descriptor instead.
 func (*ListAppLinksRequest) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{17}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{19}
 }
 
 // represents a link between viam users / orgs and an external oauth app
@@ -1122,7 +1240,7 @@ type AppLink struct {
 
 func (x *AppLink) Reset() {
 	*x = AppLink{}
-	mi := &file_app_build_v1_build_proto_msgTypes[18]
+	mi := &file_app_build_v1_build_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1134,7 +1252,7 @@ func (x *AppLink) String() string {
 func (*AppLink) ProtoMessage() {}
 
 func (x *AppLink) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[18]
+	mi := &file_app_build_v1_build_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1147,7 +1265,7 @@ func (x *AppLink) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AppLink.ProtoReflect.Descriptor instead.
 func (*AppLink) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{18}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *AppLink) GetOauthAppLinkId() string {
@@ -1188,7 +1306,7 @@ type ListAppLinksResponse struct {
 
 func (x *ListAppLinksResponse) Reset() {
 	*x = ListAppLinksResponse{}
-	mi := &file_app_build_v1_build_proto_msgTypes[19]
+	mi := &file_app_build_v1_build_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1200,7 +1318,7 @@ func (x *ListAppLinksResponse) String() string {
 func (*ListAppLinksResponse) ProtoMessage() {}
 
 func (x *ListAppLinksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[19]
+	mi := &file_app_build_v1_build_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1213,7 +1331,7 @@ func (x *ListAppLinksResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAppLinksResponse.ProtoReflect.Descriptor instead.
 func (*ListAppLinksResponse) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{19}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ListAppLinksResponse) GetLinks() []*AppLink {
@@ -1234,7 +1352,7 @@ type RemoveAppLinkRequest struct {
 
 func (x *RemoveAppLinkRequest) Reset() {
 	*x = RemoveAppLinkRequest{}
-	mi := &file_app_build_v1_build_proto_msgTypes[20]
+	mi := &file_app_build_v1_build_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1246,7 +1364,7 @@ func (x *RemoveAppLinkRequest) String() string {
 func (*RemoveAppLinkRequest) ProtoMessage() {}
 
 func (x *RemoveAppLinkRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[20]
+	mi := &file_app_build_v1_build_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1259,7 +1377,7 @@ func (x *RemoveAppLinkRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveAppLinkRequest.ProtoReflect.Descriptor instead.
 func (*RemoveAppLinkRequest) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{20}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *RemoveAppLinkRequest) GetOauthAppLinkId() string {
@@ -1277,7 +1395,7 @@ type RemoveAppLinkResponse struct {
 
 func (x *RemoveAppLinkResponse) Reset() {
 	*x = RemoveAppLinkResponse{}
-	mi := &file_app_build_v1_build_proto_msgTypes[21]
+	mi := &file_app_build_v1_build_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1289,7 +1407,7 @@ func (x *RemoveAppLinkResponse) String() string {
 func (*RemoveAppLinkResponse) ProtoMessage() {}
 
 func (x *RemoveAppLinkResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[21]
+	mi := &file_app_build_v1_build_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1302,7 +1420,7 @@ func (x *RemoveAppLinkResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveAppLinkResponse.ProtoReflect.Descriptor instead.
 func (*RemoveAppLinkResponse) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{21}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{23}
 }
 
 type LinkOrgRequest struct {
@@ -1317,7 +1435,7 @@ type LinkOrgRequest struct {
 
 func (x *LinkOrgRequest) Reset() {
 	*x = LinkOrgRequest{}
-	mi := &file_app_build_v1_build_proto_msgTypes[22]
+	mi := &file_app_build_v1_build_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1329,7 +1447,7 @@ func (x *LinkOrgRequest) String() string {
 func (*LinkOrgRequest) ProtoMessage() {}
 
 func (x *LinkOrgRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[22]
+	mi := &file_app_build_v1_build_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1342,7 +1460,7 @@ func (x *LinkOrgRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkOrgRequest.ProtoReflect.Descriptor instead.
 func (*LinkOrgRequest) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{22}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *LinkOrgRequest) GetOauthAppLinkId() string {
@@ -1367,7 +1485,7 @@ type LinkOrgResponse struct {
 
 func (x *LinkOrgResponse) Reset() {
 	*x = LinkOrgResponse{}
-	mi := &file_app_build_v1_build_proto_msgTypes[23]
+	mi := &file_app_build_v1_build_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1379,7 +1497,7 @@ func (x *LinkOrgResponse) String() string {
 func (*LinkOrgResponse) ProtoMessage() {}
 
 func (x *LinkOrgResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[23]
+	mi := &file_app_build_v1_build_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1392,7 +1510,7 @@ func (x *LinkOrgResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkOrgResponse.ProtoReflect.Descriptor instead.
 func (*LinkOrgResponse) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{23}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{25}
 }
 
 type UnlinkOrgRequest struct {
@@ -1407,7 +1525,7 @@ type UnlinkOrgRequest struct {
 
 func (x *UnlinkOrgRequest) Reset() {
 	*x = UnlinkOrgRequest{}
-	mi := &file_app_build_v1_build_proto_msgTypes[24]
+	mi := &file_app_build_v1_build_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1419,7 +1537,7 @@ func (x *UnlinkOrgRequest) String() string {
 func (*UnlinkOrgRequest) ProtoMessage() {}
 
 func (x *UnlinkOrgRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[24]
+	mi := &file_app_build_v1_build_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1432,7 +1550,7 @@ func (x *UnlinkOrgRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnlinkOrgRequest.ProtoReflect.Descriptor instead.
 func (*UnlinkOrgRequest) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{24}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *UnlinkOrgRequest) GetOauthAppLinkId() string {
@@ -1457,7 +1575,7 @@ type UnlinkOrgResponse struct {
 
 func (x *UnlinkOrgResponse) Reset() {
 	*x = UnlinkOrgResponse{}
-	mi := &file_app_build_v1_build_proto_msgTypes[25]
+	mi := &file_app_build_v1_build_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1469,7 +1587,7 @@ func (x *UnlinkOrgResponse) String() string {
 func (*UnlinkOrgResponse) ProtoMessage() {}
 
 func (x *UnlinkOrgResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_build_v1_build_proto_msgTypes[25]
+	mi := &file_app_build_v1_build_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1482,7 +1600,7 @@ func (x *UnlinkOrgResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnlinkOrgResponse.ProtoReflect.Descriptor instead.
 func (*UnlinkOrgResponse) Descriptor() ([]byte, []int) {
-	return file_app_build_v1_build_proto_rawDescGZIP(), []int{25}
+	return file_app_build_v1_build_proto_rawDescGZIP(), []int{27}
 }
 
 var File_app_build_v1_build_proto protoreflect.FileDescriptor
@@ -1539,6 +1657,20 @@ var file_app_build_v1_build_proto_rawDesc = []byte{
 	0x6e, 0x66, 0x6f, 0x42, 0x0d, 0x0a, 0x0b, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5f, 0x62, 0x75, 0x69,
 	0x6c, 0x64, 0x22, 0x35, 0x0a, 0x18, 0x53, 0x74, 0x61, 0x72, 0x74, 0x52, 0x65, 0x6c, 0x6f, 0x61,
 	0x64, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x19,
+	0x0a, 0x08, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x07, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x64, 0x22, 0xa5, 0x01, 0x0a, 0x18, 0x53, 0x74,
+	0x61, 0x72, 0x74, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6d, 0x6f, 0x64, 0x75, 0x6c,
+	0x65, 0x49, 0x64, 0x12, 0x27, 0x0a, 0x0f, 0x70, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x5f, 0x76,
+	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x70, 0x61,
+	0x63, 0x6b, 0x61, 0x67, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x25, 0x0a, 0x0e,
+	0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x5f, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73,
+	0x69, 0x6f, 0x6e, 0x12, 0x1c, 0x0a, 0x09, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x73,
+	0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x09, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d,
+	0x73, 0x22, 0x36, 0x0a, 0x19, 0x53, 0x74, 0x61, 0x72, 0x74, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67,
+	0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x19,
 	0x0a, 0x08, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x07, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x64, 0x22, 0x44, 0x0a, 0x0f, 0x47, 0x65, 0x74,
 	0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a,
@@ -1653,7 +1785,7 @@ var file_app_build_v1_build_proto_rawDesc = []byte{
 	0x47, 0x52, 0x45, 0x53, 0x53, 0x10, 0x01, 0x12, 0x15, 0x0a, 0x11, 0x4a, 0x4f, 0x42, 0x5f, 0x53,
 	0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x46, 0x41, 0x49, 0x4c, 0x45, 0x44, 0x10, 0x02, 0x12, 0x13,
 	0x0a, 0x0f, 0x4a, 0x4f, 0x42, 0x5f, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x44, 0x4f, 0x4e,
-	0x45, 0x10, 0x03, 0x32, 0x84, 0x08, 0x0a, 0x0c, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x53, 0x65, 0x72,
+	0x45, 0x10, 0x03, 0x32, 0xf4, 0x08, 0x0a, 0x0c, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x53, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x12, 0x59, 0x0a, 0x0a, 0x53, 0x74, 0x61, 0x72, 0x74, 0x42, 0x75, 0x69,
 	0x6c, 0x64, 0x12, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x62, 0x75,
 	0x69, 0x6c, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x61, 0x72, 0x74, 0x42, 0x75, 0x69, 0x6c,
@@ -1717,7 +1849,14 @@ var file_app_build_v1_build_proto_rawDesc = []byte{
 	0x75, 0x69, 0x6c, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x76, 0x69,
 	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x76, 0x31, 0x2e,
 	0x53, 0x74, 0x61, 0x72, 0x74, 0x52, 0x65, 0x6c, 0x6f, 0x61, 0x64, 0x42, 0x75, 0x69, 0x6c, 0x64,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x28, 0x01, 0x42, 0x1e, 0x5a, 0x1c, 0x67, 0x6f,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x28, 0x01, 0x12, 0x6e, 0x0a, 0x11, 0x53, 0x74,
+	0x61, 0x72, 0x74, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x12,
+	0x2b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x62, 0x75, 0x69, 0x6c, 0x64,
+	0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x61, 0x72, 0x74, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65,
+	0x42, 0x75, 0x69, 0x6c, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x76, 0x31,
+	0x2e, 0x53, 0x74, 0x61, 0x72, 0x74, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x42, 0x75, 0x69,
+	0x6c, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1e, 0x5a, 0x1c, 0x67, 0x6f,
 	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70,
 	0x70, 0x2f, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x33,
@@ -1736,72 +1875,76 @@ func file_app_build_v1_build_proto_rawDescGZIP() []byte {
 }
 
 var file_app_build_v1_build_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_app_build_v1_build_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
+var file_app_build_v1_build_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_app_build_v1_build_proto_goTypes = []any{
-	(JobStatus)(0),                   // 0: viam.app.build.v1.JobStatus
-	(*StartBuildRequest)(nil),        // 1: viam.app.build.v1.StartBuildRequest
-	(*StartBuildResponse)(nil),       // 2: viam.app.build.v1.StartBuildResponse
-	(*GetLogsRequest)(nil),           // 3: viam.app.build.v1.GetLogsRequest
-	(*ReloadBuildInfo)(nil),          // 4: viam.app.build.v1.ReloadBuildInfo
-	(*StartReloadBuildRequest)(nil),  // 5: viam.app.build.v1.StartReloadBuildRequest
-	(*StartReloadBuildResponse)(nil), // 6: viam.app.build.v1.StartReloadBuildResponse
-	(*GetLogsResponse)(nil),          // 7: viam.app.build.v1.GetLogsResponse
-	(*JobInfo)(nil),                  // 8: viam.app.build.v1.JobInfo
-	(*ListJobsRequest)(nil),          // 9: viam.app.build.v1.ListJobsRequest
-	(*ListJobsResponse)(nil),         // 10: viam.app.build.v1.ListJobsResponse
-	(*RepoLink)(nil),                 // 11: viam.app.build.v1.RepoLink
-	(*LinkRepoRequest)(nil),          // 12: viam.app.build.v1.LinkRepoRequest
-	(*LinkRepoResponse)(nil),         // 13: viam.app.build.v1.LinkRepoResponse
-	(*UnlinkRepoRequest)(nil),        // 14: viam.app.build.v1.UnlinkRepoRequest
-	(*UnlinkRepoResponse)(nil),       // 15: viam.app.build.v1.UnlinkRepoResponse
-	(*ListRepoLinksRequest)(nil),     // 16: viam.app.build.v1.ListRepoLinksRequest
-	(*ListRepoLinksResponse)(nil),    // 17: viam.app.build.v1.ListRepoLinksResponse
-	(*ListAppLinksRequest)(nil),      // 18: viam.app.build.v1.ListAppLinksRequest
-	(*AppLink)(nil),                  // 19: viam.app.build.v1.AppLink
-	(*ListAppLinksResponse)(nil),     // 20: viam.app.build.v1.ListAppLinksResponse
-	(*RemoveAppLinkRequest)(nil),     // 21: viam.app.build.v1.RemoveAppLinkRequest
-	(*RemoveAppLinkResponse)(nil),    // 22: viam.app.build.v1.RemoveAppLinkResponse
-	(*LinkOrgRequest)(nil),           // 23: viam.app.build.v1.LinkOrgRequest
-	(*LinkOrgResponse)(nil),          // 24: viam.app.build.v1.LinkOrgResponse
-	(*UnlinkOrgRequest)(nil),         // 25: viam.app.build.v1.UnlinkOrgRequest
-	(*UnlinkOrgResponse)(nil),        // 26: viam.app.build.v1.UnlinkOrgResponse
-	(*v1.CreatePackageRequest)(nil),  // 27: viam.app.packages.v1.CreatePackageRequest
-	(*timestamppb.Timestamp)(nil),    // 28: google.protobuf.Timestamp
+	(JobStatus)(0),                    // 0: viam.app.build.v1.JobStatus
+	(*StartBuildRequest)(nil),         // 1: viam.app.build.v1.StartBuildRequest
+	(*StartBuildResponse)(nil),        // 2: viam.app.build.v1.StartBuildResponse
+	(*GetLogsRequest)(nil),            // 3: viam.app.build.v1.GetLogsRequest
+	(*ReloadBuildInfo)(nil),           // 4: viam.app.build.v1.ReloadBuildInfo
+	(*StartReloadBuildRequest)(nil),   // 5: viam.app.build.v1.StartReloadBuildRequest
+	(*StartReloadBuildResponse)(nil),  // 6: viam.app.build.v1.StartReloadBuildResponse
+	(*StartPackageBuildRequest)(nil),  // 7: viam.app.build.v1.StartPackageBuildRequest
+	(*StartPackageBuildResponse)(nil), // 8: viam.app.build.v1.StartPackageBuildResponse
+	(*GetLogsResponse)(nil),           // 9: viam.app.build.v1.GetLogsResponse
+	(*JobInfo)(nil),                   // 10: viam.app.build.v1.JobInfo
+	(*ListJobsRequest)(nil),           // 11: viam.app.build.v1.ListJobsRequest
+	(*ListJobsResponse)(nil),          // 12: viam.app.build.v1.ListJobsResponse
+	(*RepoLink)(nil),                  // 13: viam.app.build.v1.RepoLink
+	(*LinkRepoRequest)(nil),           // 14: viam.app.build.v1.LinkRepoRequest
+	(*LinkRepoResponse)(nil),          // 15: viam.app.build.v1.LinkRepoResponse
+	(*UnlinkRepoRequest)(nil),         // 16: viam.app.build.v1.UnlinkRepoRequest
+	(*UnlinkRepoResponse)(nil),        // 17: viam.app.build.v1.UnlinkRepoResponse
+	(*ListRepoLinksRequest)(nil),      // 18: viam.app.build.v1.ListRepoLinksRequest
+	(*ListRepoLinksResponse)(nil),     // 19: viam.app.build.v1.ListRepoLinksResponse
+	(*ListAppLinksRequest)(nil),       // 20: viam.app.build.v1.ListAppLinksRequest
+	(*AppLink)(nil),                   // 21: viam.app.build.v1.AppLink
+	(*ListAppLinksResponse)(nil),      // 22: viam.app.build.v1.ListAppLinksResponse
+	(*RemoveAppLinkRequest)(nil),      // 23: viam.app.build.v1.RemoveAppLinkRequest
+	(*RemoveAppLinkResponse)(nil),     // 24: viam.app.build.v1.RemoveAppLinkResponse
+	(*LinkOrgRequest)(nil),            // 25: viam.app.build.v1.LinkOrgRequest
+	(*LinkOrgResponse)(nil),           // 26: viam.app.build.v1.LinkOrgResponse
+	(*UnlinkOrgRequest)(nil),          // 27: viam.app.build.v1.UnlinkOrgRequest
+	(*UnlinkOrgResponse)(nil),         // 28: viam.app.build.v1.UnlinkOrgResponse
+	(*v1.CreatePackageRequest)(nil),   // 29: viam.app.packages.v1.CreatePackageRequest
+	(*timestamppb.Timestamp)(nil),     // 30: google.protobuf.Timestamp
 }
 var file_app_build_v1_build_proto_depIdxs = []int32{
-	27, // 0: viam.app.build.v1.StartReloadBuildRequest.package:type_name -> viam.app.packages.v1.CreatePackageRequest
+	29, // 0: viam.app.build.v1.StartReloadBuildRequest.package:type_name -> viam.app.packages.v1.CreatePackageRequest
 	4,  // 1: viam.app.build.v1.StartReloadBuildRequest.build_info:type_name -> viam.app.build.v1.ReloadBuildInfo
 	0,  // 2: viam.app.build.v1.JobInfo.status:type_name -> viam.app.build.v1.JobStatus
-	28, // 3: viam.app.build.v1.JobInfo.start_time:type_name -> google.protobuf.Timestamp
-	28, // 4: viam.app.build.v1.JobInfo.end_time:type_name -> google.protobuf.Timestamp
-	8,  // 5: viam.app.build.v1.ListJobsResponse.jobs:type_name -> viam.app.build.v1.JobInfo
-	11, // 6: viam.app.build.v1.LinkRepoRequest.link:type_name -> viam.app.build.v1.RepoLink
-	11, // 7: viam.app.build.v1.ListRepoLinksResponse.links:type_name -> viam.app.build.v1.RepoLink
-	19, // 8: viam.app.build.v1.ListAppLinksResponse.links:type_name -> viam.app.build.v1.AppLink
+	30, // 3: viam.app.build.v1.JobInfo.start_time:type_name -> google.protobuf.Timestamp
+	30, // 4: viam.app.build.v1.JobInfo.end_time:type_name -> google.protobuf.Timestamp
+	10, // 5: viam.app.build.v1.ListJobsResponse.jobs:type_name -> viam.app.build.v1.JobInfo
+	13, // 6: viam.app.build.v1.LinkRepoRequest.link:type_name -> viam.app.build.v1.RepoLink
+	13, // 7: viam.app.build.v1.ListRepoLinksResponse.links:type_name -> viam.app.build.v1.RepoLink
+	21, // 8: viam.app.build.v1.ListAppLinksResponse.links:type_name -> viam.app.build.v1.AppLink
 	1,  // 9: viam.app.build.v1.BuildService.StartBuild:input_type -> viam.app.build.v1.StartBuildRequest
 	3,  // 10: viam.app.build.v1.BuildService.GetLogs:input_type -> viam.app.build.v1.GetLogsRequest
-	9,  // 11: viam.app.build.v1.BuildService.ListJobs:input_type -> viam.app.build.v1.ListJobsRequest
-	12, // 12: viam.app.build.v1.BuildService.LinkRepo:input_type -> viam.app.build.v1.LinkRepoRequest
-	14, // 13: viam.app.build.v1.BuildService.UnlinkRepo:input_type -> viam.app.build.v1.UnlinkRepoRequest
-	16, // 14: viam.app.build.v1.BuildService.ListRepoLinks:input_type -> viam.app.build.v1.ListRepoLinksRequest
-	18, // 15: viam.app.build.v1.BuildService.ListAppLinks:input_type -> viam.app.build.v1.ListAppLinksRequest
-	21, // 16: viam.app.build.v1.BuildService.RemoveAppLink:input_type -> viam.app.build.v1.RemoveAppLinkRequest
-	23, // 17: viam.app.build.v1.BuildService.LinkOrg:input_type -> viam.app.build.v1.LinkOrgRequest
-	25, // 18: viam.app.build.v1.BuildService.UnlinkOrg:input_type -> viam.app.build.v1.UnlinkOrgRequest
+	11, // 11: viam.app.build.v1.BuildService.ListJobs:input_type -> viam.app.build.v1.ListJobsRequest
+	14, // 12: viam.app.build.v1.BuildService.LinkRepo:input_type -> viam.app.build.v1.LinkRepoRequest
+	16, // 13: viam.app.build.v1.BuildService.UnlinkRepo:input_type -> viam.app.build.v1.UnlinkRepoRequest
+	18, // 14: viam.app.build.v1.BuildService.ListRepoLinks:input_type -> viam.app.build.v1.ListRepoLinksRequest
+	20, // 15: viam.app.build.v1.BuildService.ListAppLinks:input_type -> viam.app.build.v1.ListAppLinksRequest
+	23, // 16: viam.app.build.v1.BuildService.RemoveAppLink:input_type -> viam.app.build.v1.RemoveAppLinkRequest
+	25, // 17: viam.app.build.v1.BuildService.LinkOrg:input_type -> viam.app.build.v1.LinkOrgRequest
+	27, // 18: viam.app.build.v1.BuildService.UnlinkOrg:input_type -> viam.app.build.v1.UnlinkOrgRequest
 	5,  // 19: viam.app.build.v1.BuildService.StartReloadBuild:input_type -> viam.app.build.v1.StartReloadBuildRequest
-	2,  // 20: viam.app.build.v1.BuildService.StartBuild:output_type -> viam.app.build.v1.StartBuildResponse
-	7,  // 21: viam.app.build.v1.BuildService.GetLogs:output_type -> viam.app.build.v1.GetLogsResponse
-	10, // 22: viam.app.build.v1.BuildService.ListJobs:output_type -> viam.app.build.v1.ListJobsResponse
-	13, // 23: viam.app.build.v1.BuildService.LinkRepo:output_type -> viam.app.build.v1.LinkRepoResponse
-	15, // 24: viam.app.build.v1.BuildService.UnlinkRepo:output_type -> viam.app.build.v1.UnlinkRepoResponse
-	17, // 25: viam.app.build.v1.BuildService.ListRepoLinks:output_type -> viam.app.build.v1.ListRepoLinksResponse
-	20, // 26: viam.app.build.v1.BuildService.ListAppLinks:output_type -> viam.app.build.v1.ListAppLinksResponse
-	22, // 27: viam.app.build.v1.BuildService.RemoveAppLink:output_type -> viam.app.build.v1.RemoveAppLinkResponse
-	24, // 28: viam.app.build.v1.BuildService.LinkOrg:output_type -> viam.app.build.v1.LinkOrgResponse
-	26, // 29: viam.app.build.v1.BuildService.UnlinkOrg:output_type -> viam.app.build.v1.UnlinkOrgResponse
-	6,  // 30: viam.app.build.v1.BuildService.StartReloadBuild:output_type -> viam.app.build.v1.StartReloadBuildResponse
-	20, // [20:31] is the sub-list for method output_type
-	9,  // [9:20] is the sub-list for method input_type
+	7,  // 20: viam.app.build.v1.BuildService.StartPackageBuild:input_type -> viam.app.build.v1.StartPackageBuildRequest
+	2,  // 21: viam.app.build.v1.BuildService.StartBuild:output_type -> viam.app.build.v1.StartBuildResponse
+	9,  // 22: viam.app.build.v1.BuildService.GetLogs:output_type -> viam.app.build.v1.GetLogsResponse
+	12, // 23: viam.app.build.v1.BuildService.ListJobs:output_type -> viam.app.build.v1.ListJobsResponse
+	15, // 24: viam.app.build.v1.BuildService.LinkRepo:output_type -> viam.app.build.v1.LinkRepoResponse
+	17, // 25: viam.app.build.v1.BuildService.UnlinkRepo:output_type -> viam.app.build.v1.UnlinkRepoResponse
+	19, // 26: viam.app.build.v1.BuildService.ListRepoLinks:output_type -> viam.app.build.v1.ListRepoLinksResponse
+	22, // 27: viam.app.build.v1.BuildService.ListAppLinks:output_type -> viam.app.build.v1.ListAppLinksResponse
+	24, // 28: viam.app.build.v1.BuildService.RemoveAppLink:output_type -> viam.app.build.v1.RemoveAppLinkResponse
+	26, // 29: viam.app.build.v1.BuildService.LinkOrg:output_type -> viam.app.build.v1.LinkOrgResponse
+	28, // 30: viam.app.build.v1.BuildService.UnlinkOrg:output_type -> viam.app.build.v1.UnlinkOrgResponse
+	6,  // 31: viam.app.build.v1.BuildService.StartReloadBuild:output_type -> viam.app.build.v1.StartReloadBuildResponse
+	8,  // 32: viam.app.build.v1.BuildService.StartPackageBuild:output_type -> viam.app.build.v1.StartPackageBuildResponse
+	21, // [21:33] is the sub-list for method output_type
+	9,  // [9:21] is the sub-list for method input_type
 	9,  // [9:9] is the sub-list for extension type_name
 	9,  // [9:9] is the sub-list for extension extendee
 	0,  // [0:9] is the sub-list for field type_name
@@ -1818,16 +1961,16 @@ func file_app_build_v1_build_proto_init() {
 		(*StartReloadBuildRequest_Package)(nil),
 		(*StartReloadBuildRequest_BuildInfo)(nil),
 	}
-	file_app_build_v1_build_proto_msgTypes[7].OneofWrappers = []any{}
-	file_app_build_v1_build_proto_msgTypes[8].OneofWrappers = []any{}
+	file_app_build_v1_build_proto_msgTypes[9].OneofWrappers = []any{}
 	file_app_build_v1_build_proto_msgTypes[10].OneofWrappers = []any{}
+	file_app_build_v1_build_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_build_v1_build_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   26,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

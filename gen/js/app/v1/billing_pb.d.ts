@@ -639,6 +639,9 @@ export namespace CreateInvoiceAndChargeImmediatelyRequest {
 }
 
 export class CreateInvoiceAndChargeImmediatelyResponse extends jspb.Message {
+  getInvoiceId(): string;
+  setInvoiceId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateInvoiceAndChargeImmediatelyResponse.AsObject;
   static toObject(includeInstance: boolean, msg: CreateInvoiceAndChargeImmediatelyResponse): CreateInvoiceAndChargeImmediatelyResponse.AsObject;
@@ -651,6 +654,7 @@ export class CreateInvoiceAndChargeImmediatelyResponse extends jspb.Message {
 
 export namespace CreateInvoiceAndChargeImmediatelyResponse {
   export type AsObject = {
+    invoiceId: string,
   }
 }
 
@@ -688,6 +692,8 @@ export interface UsageCostTypeMap {
   USAGE_COST_TYPE_TABULAR_DATA_DATABASE_CLOUD_STORAGE: 22;
   USAGE_COST_TYPE_TABULAR_DATA_DATABASE_COMPUTE: 23;
   USAGE_COST_TYPE_BINARY_DATA_CROSS_REGION_EGRESS: 24;
+  USAGE_COST_TYPE_PIPELINE_SINK_CLOUD_STORAGE: 25;
+  USAGE_COST_TYPE_PIPELINE_SINK_COMPUTE: 26;
 }
 
 export const UsageCostType: UsageCostTypeMap;

@@ -312,12 +312,21 @@ service AppService {
   rpc GetAppBranding(GetAppBrandingRequest) returns (GetAppBrandingResponse);
 }
 
+enum OnlineState {
+  ONLINE_STATE_UNSPECIFIED = 0;
+  ONLINE_STATE_ONLINE = 1;
+  ONLINE_STATE_OFFLINE = 2;
+  ONLINE_STATE_AWAITING_SETUP = 3;
+}
+
 message Robot {
   string id = 1 [(tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   string name = 2 [(tagger.v1.tags) = "bson:\"name\" json:\"name\""];
   string location = 3 [(tagger.v1.tags) = "bson:\"location\" json:\"location\""];
   google.protobuf.Timestamp last_access = 4 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
   google.protobuf.Timestamp created_on = 5 [(tagger.v1.tags) = "bson:\"created_on\""];
+  OnlineState online_state = 6 [(tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
+  int64 seconds_since_online = 7 [(tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
 }
 
 message RobotPart {
@@ -342,6 +351,8 @@ message RobotPart {
   repeated SharedSecret secrets = 14 [(tagger.v1.tags) = "bson:\"secrets\""];
   // latest timestamp when a robot part was updated
   google.protobuf.Timestamp last_updated = 15 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
+  OnlineState online_state = 16 [(tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
+  int64 seconds_since_online = 17 [(tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
 }
 
 message RobotPartHistoryEntry {
@@ -423,6 +434,10 @@ message GetOrganizationNamespaceAvailabilityResponse {
   bool available = 1;
 }
 
+message FragmentImportList {
+  repeated FragmentImport fragments = 1;
+}
+
 message UpdateOrganizationRequest {
   string organization_id = 1;
   optional string name = 2;
@@ -430,6 +445,7 @@ message UpdateOrganizationRequest {
   // The new GCS region to associate the org with.
   optional string region = 4;
   optional string cid = 5;
+  optional FragmentImportList default_fragments = 6;
 }
 
 message UpdateOrganizationResponse {
@@ -843,6 +859,7 @@ message GetRobotPartLogsRequest {
   optional google.protobuf.Timestamp end = 7;
   optional int64 limit = 8;
   optional string source = 9;
+  optional bool user_facing_only = 10;
 }
 
 message GetRobotPartLogsResponse {
@@ -992,6 +1009,13 @@ message FragmentUsage {
   int32 machines = 3;
   int32 machines_in_current_org = 4;
   optional string version = 5; // revision or tag
+}
+
+message FragmentImport {
+  string fragment_id = 1;
+  string version = 2; // revision or tag
+  optional string prefix = 3; // namespace prefix
+  map<string, string> variables = 4; // key-value pairs for fragment variables
 }
 
 message ResolvedFragment {
@@ -1187,6 +1211,9 @@ message PartSummary {
   string part_id = 1;
   string part_name = 2;
   bool is_main_part = 11;
+  OnlineState online_state = 12;
+  int64 seconds_since_online = 13;
+  optional google.protobuf.Timestamp last_access = 14;
   optional google.protobuf.Timestamp last_online = 3;
   optional ViamServerVersion viam_server_version = 4;
   optional ViamAgentVersion viam_agent_version = 5;
@@ -1360,6 +1387,10 @@ message ModuleMetadata {
   optional string markdown_description = 5;
   // A list of applications associated with the module
   repeated App apps = 6;
+  // Determines the type of module, either a registry module or an inline module.
+  optional ModuleSourceType source_type = 7;
+  // Specifies the language that the module is written in.
+  optional ModuleLanguage language = 8;
 }
 
 message MLModelMetadata {
@@ -1382,6 +1413,21 @@ message MLTrainingMetadata {
   bool draft = 4;
 
   reserved 1;
+}
+
+enum ModuleSourceType {
+  MODULE_SOURCE_TYPE_UNSPECIFIED = 0;
+  // Module source code is stored externally, such as in github.
+  MODULE_SOURCE_TYPE_EXTERNAL = 1;
+  // Module source code is versioned and managed within Viam.
+  MODULE_SOURCE_TYPE_VIAM_HOSTED = 2;
+}
+
+enum ModuleLanguage {
+  MODULE_LANGUAGE_UNSPECIFIED = 0;
+  MODULE_LANGUAGE_GOLANG = 1;
+  MODULE_LANGUAGE_PYTHON = 2;
+  MODULE_LANGUAGE_CPP = 3;
 }
 
 message RegistryItem {
@@ -1482,6 +1528,8 @@ message ListRegistryItemsRequest {
   // One or more public namespaces to return results for.
   repeated string public_namespaces = 8;
   optional bool include_markdown_documentation = 9;
+  repeated ModuleSourceType module_source_types = 10;
+  repeated ModuleLanguage module_languages = 11;
 }
 
 message ListRegistryItemsResponse {
@@ -1584,6 +1632,10 @@ message UpdateModuleMetadata {
   string entrypoint = 2;
   // A list of applications associated with the module
   repeated App apps = 3;
+  // Determines where the source code of module is managed, either externally or hosted by viam.
+  optional ModuleSourceType source_type = 4;
+  // The language the module is written in
+  optional ModuleLanguage language = 5;
 }
 
 message UpdateMLModelMetadata {
