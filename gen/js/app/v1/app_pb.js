@@ -7834,7 +7834,8 @@ proto.viam.app.v1.Organization.toObject = function(includeInstance, msg) {
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, ""),
     defaultRegion: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    cid: jspb.Message.getFieldWithDefault(msg, 6, "")
+    cid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    defaultFragments: (f = msg.getDefaultFragments()) && proto.viam.app.v1.FragmentImportList.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7895,6 +7896,11 @@ proto.viam.app.v1.Organization.deserializeBinaryFromReader = function(msg, reade
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setCid(value);
+      break;
+    case 7:
+      var value = new proto.viam.app.v1.FragmentImportList;
+      reader.readMessage(value,proto.viam.app.v1.FragmentImportList.deserializeBinaryFromReader);
+      msg.setDefaultFragments(value);
       break;
     default:
       reader.skipField();
@@ -7966,6 +7972,14 @@ proto.viam.app.v1.Organization.serializeBinaryToWriter = function(message, write
     writer.writeString(
       6,
       f
+    );
+  }
+  f = message.getDefaultFragments();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      proto.viam.app.v1.FragmentImportList.serializeBinaryToWriter
     );
   }
 };
@@ -8113,6 +8127,43 @@ proto.viam.app.v1.Organization.prototype.clearCid = function() {
  */
 proto.viam.app.v1.Organization.prototype.hasCid = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional FragmentImportList default_fragments = 7;
+ * @return {?proto.viam.app.v1.FragmentImportList}
+ */
+proto.viam.app.v1.Organization.prototype.getDefaultFragments = function() {
+  return /** @type{?proto.viam.app.v1.FragmentImportList} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.FragmentImportList, 7));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.FragmentImportList|undefined} value
+ * @return {!proto.viam.app.v1.Organization} returns this
+*/
+proto.viam.app.v1.Organization.prototype.setDefaultFragments = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Organization} returns this
+ */
+proto.viam.app.v1.Organization.prototype.clearDefaultFragments = function() {
+  return this.setDefaultFragments(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Organization.prototype.hasDefaultFragments = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
