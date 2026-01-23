@@ -21,7 +21,9 @@ service BillingService {
   rpc GetAvailableBillingTiers(GetAvailableBillingTiersRequest) returns (GetAvailableBillingTiersResponse);
   // Update an organization's billing tier
   rpc UpdateOrganizationBillingTier(UpdateOrganizationBillingTierRequest) returns (UpdateOrganizationBillingTierResponse);
-  // Directly create a flat fee invoice for an organization and charge on the spot
+  // Charge an organization on the spot
+  rpc ChargeOrganization(ChargeOrganizationRequest) returns (ChargeOrganizationResponse);
+  // Deprecated: Use ChargeOrganization instead
   rpc CreateInvoiceAndChargeImmediately(CreateInvoiceAndChargeImmediatelyRequest) returns (CreateInvoiceAndChargeImmediatelyResponse);
 }
 
@@ -192,6 +194,20 @@ message UpdateOrganizationBillingTierRequest {
 
 message UpdateOrganizationBillingTierResponse {}
 
+message ChargeOrganizationRequest {
+  string org_id_to_charge = 1;
+  optional string description = 2;
+  double subtotal = 3;
+  double tax = 4;
+  optional string org_id_for_branding = 5;
+  bool disable_confirmation_email = 6;
+}
+
+message ChargeOrganizationResponse {
+  string invoice_id = 1;
+}
+
+// Deprecated: Use ChargeOrganizationRequest instead
 message CreateInvoiceAndChargeImmediatelyRequest {
   string org_id_to_charge = 1;
   double amount = 2;
@@ -200,6 +216,7 @@ message CreateInvoiceAndChargeImmediatelyRequest {
   bool disable_email = 5;
 }
 
+// Deprecated: Use ChargeOrganizationResponse instead
 message CreateInvoiceAndChargeImmediatelyResponse {
   string invoice_id = 1;
 }
