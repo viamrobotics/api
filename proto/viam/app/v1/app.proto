@@ -388,6 +388,7 @@ message Organization {
   // associated with this org will be stored in this region.
   string default_region = 5;
   optional string cid = 6;
+  optional FragmentImportList default_fragments = 7;
 }
 
 message OrganizationMember {

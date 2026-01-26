@@ -262,6 +262,11 @@ export class Organization extends jspb.Message {
   getCid(): string;
   setCid(value: string): void;
 
+  hasDefaultFragments(): boolean;
+  clearDefaultFragments(): void;
+  getDefaultFragments(): FragmentImportList | undefined;
+  setDefaultFragments(value?: FragmentImportList): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -280,6 +285,7 @@ export namespace Organization {
     publicNamespace: string,
     defaultRegion: string,
     cid: string,
+    defaultFragments?: FragmentImportList.AsObject,
   }
 }
 
