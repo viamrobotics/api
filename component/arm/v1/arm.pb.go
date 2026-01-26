@@ -834,10 +834,10 @@ type MoveOptions struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Maximum allowable velocity of an arm joint, in degrees per second.
-	// Applies uniformly to all joints when set.
+	// Ignored when max_vel_degs_per_sec_joints is set.
 	MaxVelDegsPerSec *float64 `protobuf:"fixed64,1,opt,name=max_vel_degs_per_sec,json=maxVelDegsPerSec,proto3,oneof" json:"max_vel_degs_per_sec,omitempty"`
 	// Maximum allowable acceleration of an arm joint, in degrees per second squared.
-	// Applies uniformly to all joints when set.
+	// ignopred when max_acc_degs_per_sec2_joints is set.
 	MaxAccDegsPerSec2 *float64 `protobuf:"fixed64,2,opt,name=max_acc_degs_per_sec2,json=maxAccDegsPerSec2,proto3,oneof" json:"max_acc_degs_per_sec2,omitempty"`
 	// Per-joint maximum velocity in degrees per second.
 	MaxVelDegsPerSecJoints []float64 `protobuf:"fixed64,3,rep,packed,name=max_vel_degs_per_sec_joints,json=maxVelDegsPerSecJoints,proto3" json:"max_vel_degs_per_sec_joints,omitempty"`
