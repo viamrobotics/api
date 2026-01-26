@@ -1892,7 +1892,7 @@ message GetAppContentResponse {
   string blob_path = 1;
   string entrypoint = 2;
   AppType app_type = 3;
-  public bool = 4;
+  bool public = 4;
 }
 
 message OrganizationSetLogoRequest {
