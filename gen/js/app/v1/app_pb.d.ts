@@ -6861,6 +6861,9 @@ export class GetAppContentResponse extends jspb.Message {
   getAppType(): AppTypeMap[keyof AppTypeMap];
   setAppType(value: AppTypeMap[keyof AppTypeMap]): void;
 
+  getPublic(): boolean;
+  setPublic(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAppContentResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetAppContentResponse): GetAppContentResponse.AsObject;
@@ -6876,6 +6879,7 @@ export namespace GetAppContentResponse {
     blobPath: string,
     entrypoint: string,
     appType: AppTypeMap[keyof AppTypeMap],
+    pb_public: boolean,
   }
 }
 
