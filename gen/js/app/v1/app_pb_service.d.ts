@@ -364,6 +364,15 @@ type AppServiceUpdateLocationMetadata = {
   readonly responseType: typeof app_v1_app_pb.UpdateLocationMetadataResponse;
 };
 
+type AppServiceUpdateLocationBillingOrganization = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UpdateLocationBillingOrganizationRequest;
+  readonly responseType: typeof app_v1_app_pb.UpdateLocationBillingOrganizationResponse;
+};
+
 type AppServiceListLocations = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -1027,6 +1036,7 @@ export class AppService {
   static readonly DeleteLocation: AppServiceDeleteLocation;
   static readonly GetLocationMetadata: AppServiceGetLocationMetadata;
   static readonly UpdateLocationMetadata: AppServiceUpdateLocationMetadata;
+  static readonly UpdateLocationBillingOrganization: AppServiceUpdateLocationBillingOrganization;
   static readonly ListLocations: AppServiceListLocations;
   static readonly ShareLocation: AppServiceShareLocation;
   static readonly UnshareLocation: AppServiceUnshareLocation;
@@ -1489,6 +1499,15 @@ export class AppServiceClient {
   updateLocationMetadata(
     requestMessage: app_v1_app_pb.UpdateLocationMetadataRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateLocationMetadataResponse|null) => void
+  ): UnaryResponse;
+  updateLocationBillingOrganization(
+    requestMessage: app_v1_app_pb.UpdateLocationBillingOrganizationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateLocationBillingOrganizationResponse|null) => void
+  ): UnaryResponse;
+  updateLocationBillingOrganization(
+    requestMessage: app_v1_app_pb.UpdateLocationBillingOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateLocationBillingOrganizationResponse|null) => void
   ): UnaryResponse;
   listLocations(
     requestMessage: app_v1_app_pb.ListLocationsRequest,
