@@ -598,6 +598,70 @@ export namespace UpdateOrganizationBillingTierResponse {
   }
 }
 
+export class ChargeOrganizationRequest extends jspb.Message {
+  getOrgIdToCharge(): string;
+  setOrgIdToCharge(value: string): void;
+
+  hasDescription(): boolean;
+  clearDescription(): void;
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  getSubtotal(): number;
+  setSubtotal(value: number): void;
+
+  getTax(): number;
+  setTax(value: number): void;
+
+  hasOrgIdForBranding(): boolean;
+  clearOrgIdForBranding(): void;
+  getOrgIdForBranding(): string;
+  setOrgIdForBranding(value: string): void;
+
+  getDisableConfirmationEmail(): boolean;
+  setDisableConfirmationEmail(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChargeOrganizationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ChargeOrganizationRequest): ChargeOrganizationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChargeOrganizationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChargeOrganizationRequest;
+  static deserializeBinaryFromReader(message: ChargeOrganizationRequest, reader: jspb.BinaryReader): ChargeOrganizationRequest;
+}
+
+export namespace ChargeOrganizationRequest {
+  export type AsObject = {
+    orgIdToCharge: string,
+    description: string,
+    subtotal: number,
+    tax: number,
+    orgIdForBranding: string,
+    disableConfirmationEmail: boolean,
+  }
+}
+
+export class ChargeOrganizationResponse extends jspb.Message {
+  getInvoiceId(): string;
+  setInvoiceId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChargeOrganizationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ChargeOrganizationResponse): ChargeOrganizationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChargeOrganizationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChargeOrganizationResponse;
+  static deserializeBinaryFromReader(message: ChargeOrganizationResponse, reader: jspb.BinaryReader): ChargeOrganizationResponse;
+}
+
+export namespace ChargeOrganizationResponse {
+  export type AsObject = {
+    invoiceId: string,
+  }
+}
+
 export class CreateInvoiceAndChargeImmediatelyRequest extends jspb.Message {
   getOrgIdToCharge(): string;
   setOrgIdToCharge(value: string): void;
