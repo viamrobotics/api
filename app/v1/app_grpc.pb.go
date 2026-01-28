@@ -87,8 +87,6 @@ type AppServiceClient interface {
 	GetLocationMetadata(ctx context.Context, in *GetLocationMetadataRequest, opts ...grpc.CallOption) (*GetLocationMetadataResponse, error)
 	// Update user-defined metadata for a location
 	UpdateLocationMetadata(ctx context.Context, in *UpdateLocationMetadataRequest, opts ...grpc.CallOption) (*UpdateLocationMetadataResponse, error)
-	// Update the billing organization for a location
-	UpdateLocationBillingOrganization(ctx context.Context, in *UpdateLocationBillingOrganizationRequest, opts ...grpc.CallOption) (*UpdateLocationBillingOrganizationResponse, error)
 	// Get a list of locations
 	ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error)
 	// Share a location with an organization
@@ -574,15 +572,6 @@ func (c *appServiceClient) GetLocationMetadata(ctx context.Context, in *GetLocat
 func (c *appServiceClient) UpdateLocationMetadata(ctx context.Context, in *UpdateLocationMetadataRequest, opts ...grpc.CallOption) (*UpdateLocationMetadataResponse, error) {
 	out := new(UpdateLocationMetadataResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateLocationMetadata", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *appServiceClient) UpdateLocationBillingOrganization(ctx context.Context, in *UpdateLocationBillingOrganizationRequest, opts ...grpc.CallOption) (*UpdateLocationBillingOrganizationResponse, error) {
-	out := new(UpdateLocationBillingOrganizationResponse)
-	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateLocationBillingOrganization", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1327,8 +1316,6 @@ type AppServiceServer interface {
 	GetLocationMetadata(context.Context, *GetLocationMetadataRequest) (*GetLocationMetadataResponse, error)
 	// Update user-defined metadata for a location
 	UpdateLocationMetadata(context.Context, *UpdateLocationMetadataRequest) (*UpdateLocationMetadataResponse, error)
-	// Update the billing organization for a location
-	UpdateLocationBillingOrganization(context.Context, *UpdateLocationBillingOrganizationRequest) (*UpdateLocationBillingOrganizationResponse, error)
 	// Get a list of locations
 	ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error)
 	// Share a location with an organization
@@ -1576,9 +1563,6 @@ func (UnimplementedAppServiceServer) GetLocationMetadata(context.Context, *GetLo
 }
 func (UnimplementedAppServiceServer) UpdateLocationMetadata(context.Context, *UpdateLocationMetadataRequest) (*UpdateLocationMetadataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocationMetadata not implemented")
-}
-func (UnimplementedAppServiceServer) UpdateLocationBillingOrganization(context.Context, *UpdateLocationBillingOrganizationRequest) (*UpdateLocationBillingOrganizationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocationBillingOrganization not implemented")
 }
 func (UnimplementedAppServiceServer) ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLocations not implemented")
@@ -2516,24 +2500,6 @@ func _AppService_UpdateLocationMetadata_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).UpdateLocationMetadata(ctx, req.(*UpdateLocationMetadataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AppService_UpdateLocationBillingOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateLocationBillingOrganizationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppServiceServer).UpdateLocationBillingOrganization(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.app.v1.AppService/UpdateLocationBillingOrganization",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServiceServer).UpdateLocationBillingOrganization(ctx, req.(*UpdateLocationBillingOrganizationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3957,10 +3923,6 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateLocationMetadata",
 			Handler:    _AppService_UpdateLocationMetadata_Handler,
-		},
-		{
-			MethodName: "UpdateLocationBillingOrganization",
-			Handler:    _AppService_UpdateLocationBillingOrganization_Handler,
 		},
 		{
 			MethodName: "ListLocations",

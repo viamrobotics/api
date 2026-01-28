@@ -21,6 +21,10 @@ service BillingService {
   rpc GetAvailableBillingTiers(GetAvailableBillingTiersRequest) returns (GetAvailableBillingTiersResponse);
   // Update an organization's billing tier
   rpc UpdateOrganizationBillingTier(UpdateOrganizationBillingTierRequest) returns (UpdateOrganizationBillingTierResponse);
+  // Get the billing organization for a location
+  rpc GetLocationBillingOrganization(GetLocationBillingOrganizationRequest) returns (GetLocationBillingOrganizationResponse);
+  // Update the billing organization for a location
+  rpc UpdateLocationBillingOrganization(UpdateLocationBillingOrganizationRequest) returns (UpdateLocationBillingOrganizationResponse);
   // Charge an organization on the spot
   rpc ChargeOrganization(ChargeOrganizationRequest) returns (ChargeOrganizationResponse);
   // Deprecated: Use ChargeOrganization instead
@@ -193,6 +197,21 @@ message UpdateOrganizationBillingTierRequest {
 }
 
 message UpdateOrganizationBillingTierResponse {}
+
+message GetLocationBillingOrganizationRequest {
+  string location_id = 1;
+}
+
+message GetLocationBillingOrganizationResponse {
+  string billing_organization_id = 1;
+}
+
+message UpdateLocationBillingOrganizationRequest {
+  string location_id = 1;
+  string billing_organization_id = 2;
+}
+
+message UpdateLocationBillingOrganizationResponse {}
 
 message ChargeOrganizationRequest {
   string org_id_to_charge = 1;

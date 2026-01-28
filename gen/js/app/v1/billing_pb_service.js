@@ -73,6 +73,24 @@ BillingService.UpdateOrganizationBillingTier = {
   responseType: app_v1_billing_pb.UpdateOrganizationBillingTierResponse
 };
 
+BillingService.GetLocationBillingOrganization = {
+  methodName: "GetLocationBillingOrganization",
+  service: BillingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_billing_pb.GetLocationBillingOrganizationRequest,
+  responseType: app_v1_billing_pb.GetLocationBillingOrganizationResponse
+};
+
+BillingService.UpdateLocationBillingOrganization = {
+  methodName: "UpdateLocationBillingOrganization",
+  service: BillingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_billing_pb.UpdateLocationBillingOrganizationRequest,
+  responseType: app_v1_billing_pb.UpdateLocationBillingOrganizationResponse
+};
+
 BillingService.ChargeOrganization = {
   methodName: "ChargeOrganization",
   service: BillingService,
@@ -297,6 +315,68 @@ BillingServiceClient.prototype.updateOrganizationBillingTier = function updateOr
     callback = arguments[1];
   }
   var client = grpc.unary(BillingService.UpdateOrganizationBillingTier, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BillingServiceClient.prototype.getLocationBillingOrganization = function getLocationBillingOrganization(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BillingService.GetLocationBillingOrganization, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+BillingServiceClient.prototype.updateLocationBillingOrganization = function updateLocationBillingOrganization(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(BillingService.UpdateLocationBillingOrganization, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
