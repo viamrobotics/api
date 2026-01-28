@@ -119,12 +119,6 @@ service AppService {
   // Update user-defined metadata for a location
   rpc UpdateLocationMetadata(UpdateLocationMetadataRequest) returns (UpdateLocationMetadataResponse);
 
-  // Get the billing organization for a location
-  rpc GetLocationBillingOrganization(GetLocationBillingOrganizationRequest) returns (GetLocationBillingOrganizationResponse);
-
-  // Update the billing organization for a location
-  rpc UpdateLocationBillingOrganization(UpdateLocationBillingOrganizationRequest) returns (UpdateLocationBillingOrganizationResponse);
-
   // Get a list of locations
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
@@ -745,21 +739,6 @@ message UpdateLocationMetadataRequest {
 }
 
 message UpdateLocationMetadataResponse {}
-
-message GetLocationBillingOrganizationRequest {
-  string location_id = 1;
-}
-
-message GetLocationBillingOrganizationResponse {
-  string billing_organization_id = 1;
-}
-
-message UpdateLocationBillingOrganizationRequest {
-  string location_id = 1;
-  string billing_organization_id = 2;
-}
-
-message UpdateLocationBillingOrganizationResponse {}
 
 message GetOrganizationsWithAccessToLocationRequest {
   string location_id = 1;
