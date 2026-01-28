@@ -1851,46 +1851,6 @@ export namespace UpdateLocationMetadataResponse {
   }
 }
 
-export class UpdateLocationBillingOrganizationRequest extends jspb.Message {
-  getLocationId(): string;
-  setLocationId(value: string): void;
-
-  getBillingOrganizationId(): string;
-  setBillingOrganizationId(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateLocationBillingOrganizationRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateLocationBillingOrganizationRequest): UpdateLocationBillingOrganizationRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateLocationBillingOrganizationRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateLocationBillingOrganizationRequest;
-  static deserializeBinaryFromReader(message: UpdateLocationBillingOrganizationRequest, reader: jspb.BinaryReader): UpdateLocationBillingOrganizationRequest;
-}
-
-export namespace UpdateLocationBillingOrganizationRequest {
-  export type AsObject = {
-    locationId: string,
-    billingOrganizationId: string,
-  }
-}
-
-export class UpdateLocationBillingOrganizationResponse extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateLocationBillingOrganizationResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateLocationBillingOrganizationResponse): UpdateLocationBillingOrganizationResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: UpdateLocationBillingOrganizationResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateLocationBillingOrganizationResponse;
-  static deserializeBinaryFromReader(message: UpdateLocationBillingOrganizationResponse, reader: jspb.BinaryReader): UpdateLocationBillingOrganizationResponse;
-}
-
-export namespace UpdateLocationBillingOrganizationResponse {
-  export type AsObject = {
-  }
-}
-
 export class GetOrganizationsWithAccessToLocationRequest extends jspb.Message {
   getLocationId(): string;
   setLocationId(value: string): void;

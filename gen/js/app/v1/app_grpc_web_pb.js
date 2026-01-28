@@ -2531,67 +2531,6 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.updateLocationMetadata =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.app.v1.UpdateLocationBillingOrganizationRequest,
- *   !proto.viam.app.v1.UpdateLocationBillingOrganizationResponse>}
- */
-const methodDescriptor_AppService_UpdateLocationBillingOrganization = new grpc.web.MethodDescriptor(
-  '/viam.app.v1.AppService/UpdateLocationBillingOrganization',
-  grpc.web.MethodType.UNARY,
-  proto.viam.app.v1.UpdateLocationBillingOrganizationRequest,
-  proto.viam.app.v1.UpdateLocationBillingOrganizationResponse,
-  /**
-   * @param {!proto.viam.app.v1.UpdateLocationBillingOrganizationRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.app.v1.UpdateLocationBillingOrganizationResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.app.v1.UpdateLocationBillingOrganizationRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateLocationBillingOrganizationResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateLocationBillingOrganizationResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.app.v1.AppServiceClient.prototype.updateLocationBillingOrganization =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.app.v1.AppService/UpdateLocationBillingOrganization',
-      request,
-      metadata || {},
-      methodDescriptor_AppService_UpdateLocationBillingOrganization,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.app.v1.UpdateLocationBillingOrganizationRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.app.v1.UpdateLocationBillingOrganizationResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.app.v1.AppServicePromiseClient.prototype.updateLocationBillingOrganization =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.app.v1.AppService/UpdateLocationBillingOrganization',
-      request,
-      metadata || {},
-      methodDescriptor_AppService_UpdateLocationBillingOrganization);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.ListLocationsRequest,
  *   !proto.viam.app.v1.ListLocationsResponse>}
  */
