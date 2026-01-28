@@ -399,6 +399,16 @@ export class MoveOptions extends jspb.Message {
   getMaxAccDegsPerSec2(): number;
   setMaxAccDegsPerSec2(value: number): void;
 
+  clearMaxVelDegsPerSecJointsList(): void;
+  getMaxVelDegsPerSecJointsList(): Array<number>;
+  setMaxVelDegsPerSecJointsList(value: Array<number>): void;
+  addMaxVelDegsPerSecJoints(value: number, index?: number): number;
+
+  clearMaxAccDegsPerSec2JointsList(): void;
+  getMaxAccDegsPerSec2JointsList(): Array<number>;
+  setMaxAccDegsPerSec2JointsList(value: Array<number>): void;
+  addMaxAccDegsPerSec2Joints(value: number, index?: number): number;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MoveOptions.AsObject;
   static toObject(includeInstance: boolean, msg: MoveOptions): MoveOptions.AsObject;
@@ -413,6 +423,8 @@ export namespace MoveOptions {
   export type AsObject = {
     maxVelDegsPerSec: number,
     maxAccDegsPerSec2: number,
+    maxVelDegsPerSecJointsList: Array<number>,
+    maxAccDegsPerSec2JointsList: Array<number>,
   }
 }
 
