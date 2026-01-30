@@ -107,9 +107,11 @@ message UploadMetadata {
   string component_name = 3;
   string method_name = 5;
   DataType type = 6;
-  string file_name = 7;
   map<string, google.protobuf.Any> method_parameters = 8;
+  string file_name = 7;
   string file_extension = 9;
+  google.protobuf.Timestamp file_create_time = 14;
+  google.protobuf.Timestamp file_modification_time = 15;
   repeated string tags = 10;
   repeated string dataset_ids = 12;
   string mime_type = 13;
