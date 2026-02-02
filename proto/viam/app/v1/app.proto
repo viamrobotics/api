@@ -310,6 +310,22 @@ service AppService {
   rpc GetAppContent(GetAppContentRequest) returns (GetAppContentResponse);
 
   rpc GetAppBranding(GetAppBrandingRequest) returns (GetAppBrandingResponse);
+
+  // Push Notifications
+
+  rpc UploadDeviceToken(UploadDeviceTokenRequest) returns (UploadDeviceTokenResponse);
+
+  rpc DeleteDeviceToken(DeleteDeviceTokenRequest) returns (DeleteDeviceTokenResponse);
+
+  rpc GetDeviceTokens(GetDeviceTokensRequest) returns (GetDeviceTokensResponse);
+
+  // Internal Firebase Config
+
+  rpc UploadFirebaseConfig(UploadFirebaseConfigRequest) returns (UploadFirebaseConfigResponse);
+
+  rpc GetFirebaseConfig(GetFirebaseConfigRequest) returns (GetFirebaseConfigResponse);
+
+  rpc DeleteFirebaseConfig(DeleteFirebaseConfigRequest) returns (DeleteFirebaseConfigResponse);
 }
 
 enum OnlineState {
@@ -2022,3 +2038,53 @@ message MachinePickerCustomizations {
   optional string heading = 1;
   optional string subheading = 2;
 }
+
+message UploadDeviceTokenRequest {
+    string email = 1;
+    string bundle_id = 2;
+    string device_token = 3;
+    string device_uuid = 4;
+}
+
+message UploadDeviceTokenResponse {}
+
+message DeleteDeviceTokenRequest {
+    string email = 1;
+    string bundle_id = 2;
+    string device_uuid = 3;
+}
+
+message DeleteDeviceTokenResponse {}
+
+message GetDeviceTokensRequest {
+    string email = 1;
+    string bundle_id = 2;
+}
+
+message GetDeviceTokensResponse {
+    repeated string device_tokens = 1;
+}
+
+message UploadFirebaseConfigRequest {
+    string org_id = 1;
+    string bundle_id = 2;
+    string config_json = 3;
+}
+
+message UploadFirebaseConfigResponse {}
+
+message GetFirebaseConfigRequest {
+    string org_id = 1;
+    string bundle_id = 2;
+}
+
+message GetFirebaseConfigResponse {
+    string config_json = 1;
+}
+
+message DeleteFirebaseConfigRequest {
+    string org_id = 1;
+    string bundle_id = 2;
+}
+
+message DeleteFirebaseConfigResponse {}
