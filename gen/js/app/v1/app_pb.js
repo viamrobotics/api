@@ -7834,7 +7834,8 @@ proto.viam.app.v1.Organization.toObject = function(includeInstance, msg) {
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, ""),
     defaultRegion: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    cid: jspb.Message.getFieldWithDefault(msg, 6, "")
+    cid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    defaultFragments: (f = msg.getDefaultFragments()) && proto.viam.app.v1.FragmentImportList.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7895,6 +7896,11 @@ proto.viam.app.v1.Organization.deserializeBinaryFromReader = function(msg, reade
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setCid(value);
+      break;
+    case 7:
+      var value = new proto.viam.app.v1.FragmentImportList;
+      reader.readMessage(value,proto.viam.app.v1.FragmentImportList.deserializeBinaryFromReader);
+      msg.setDefaultFragments(value);
       break;
     default:
       reader.skipField();
@@ -7966,6 +7972,14 @@ proto.viam.app.v1.Organization.serializeBinaryToWriter = function(message, write
     writer.writeString(
       6,
       f
+    );
+  }
+  f = message.getDefaultFragments();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      proto.viam.app.v1.FragmentImportList.serializeBinaryToWriter
     );
   }
 };
@@ -8113,6 +8127,43 @@ proto.viam.app.v1.Organization.prototype.clearCid = function() {
  */
 proto.viam.app.v1.Organization.prototype.hasCid = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional FragmentImportList default_fragments = 7;
+ * @return {?proto.viam.app.v1.FragmentImportList}
+ */
+proto.viam.app.v1.Organization.prototype.getDefaultFragments = function() {
+  return /** @type{?proto.viam.app.v1.FragmentImportList} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.FragmentImportList, 7));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.FragmentImportList|undefined} value
+ * @return {!proto.viam.app.v1.Organization} returns this
+*/
+proto.viam.app.v1.Organization.prototype.setDefaultFragments = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Organization} returns this
+ */
+proto.viam.app.v1.Organization.prototype.clearDefaultFragments = function() {
+  return this.setDefaultFragments(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Organization.prototype.hasDefaultFragments = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -54128,7 +54179,8 @@ proto.viam.app.v1.GetAppContentResponse.toObject = function(includeInstance, msg
   var f, obj = {
     blobPath: jspb.Message.getFieldWithDefault(msg, 1, ""),
     entrypoint: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    appType: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    appType: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -54177,6 +54229,10 @@ proto.viam.app.v1.GetAppContentResponse.deserializeBinaryFromReader = function(m
       var value = /** @type {!proto.viam.app.v1.AppType} */ (reader.readEnum());
       msg.setAppType(value);
       break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setPublic(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -54224,6 +54280,13 @@ proto.viam.app.v1.GetAppContentResponse.serializeBinaryToWriter = function(messa
   if (f !== 0.0) {
     writer.writeEnum(
       3,
+      f
+    );
+  }
+  f = message.getPublic();
+  if (f) {
+    writer.writeBool(
+      4,
       f
     );
   }
@@ -54281,6 +54344,24 @@ proto.viam.app.v1.GetAppContentResponse.prototype.getAppType = function() {
  */
 proto.viam.app.v1.GetAppContentResponse.prototype.setAppType = function(value) {
   return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional bool public = 4;
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetAppContentResponse.prototype.getPublic = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.GetAppContentResponse} returns this
+ */
+proto.viam.app.v1.GetAppContentResponse.prototype.setPublic = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
