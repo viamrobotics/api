@@ -2269,7 +2269,7 @@ proto.viam.app.datasync.v1.UploadMetadata.toObject = function(includeInstance, m
     fileName: jspb.Message.getFieldWithDefault(msg, 7, ""),
     fileExtension: jspb.Message.getFieldWithDefault(msg, 9, ""),
     fileCreateTime: (f = msg.getFileCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    fileModificationTime: (f = msg.getFileModificationTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    fileModifyTime: (f = msg.getFileModifyTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     tagsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
     datasetIdsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
     mimeType: jspb.Message.getFieldWithDefault(msg, 13, "")
@@ -2351,7 +2351,7 @@ proto.viam.app.datasync.v1.UploadMetadata.deserializeBinaryFromReader = function
     case 15:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setFileModificationTime(value);
+      msg.setFileModifyTime(value);
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
@@ -2455,7 +2455,7 @@ proto.viam.app.datasync.v1.UploadMetadata.serializeBinaryToWriter = function(mes
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
-  f = message.getFileModificationTime();
+  f = message.getFileModifyTime();
   if (f != null) {
     writer.writeMessage(
       15,
@@ -2673,10 +2673,10 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.hasFileCreateTime = function
 
 
 /**
- * optional google.protobuf.Timestamp file_modification_time = 15;
+ * optional google.protobuf.Timestamp file_modify_time = 15;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.viam.app.datasync.v1.UploadMetadata.prototype.getFileModificationTime = function() {
+proto.viam.app.datasync.v1.UploadMetadata.prototype.getFileModifyTime = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 15));
 };
@@ -2686,7 +2686,7 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.getFileModificationTime = fu
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
 */
-proto.viam.app.datasync.v1.UploadMetadata.prototype.setFileModificationTime = function(value) {
+proto.viam.app.datasync.v1.UploadMetadata.prototype.setFileModifyTime = function(value) {
   return jspb.Message.setWrapperField(this, 15, value);
 };
 
@@ -2695,8 +2695,8 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.setFileModificationTime = fu
  * Clears the message field making it undefined.
  * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
  */
-proto.viam.app.datasync.v1.UploadMetadata.prototype.clearFileModificationTime = function() {
-  return this.setFileModificationTime(undefined);
+proto.viam.app.datasync.v1.UploadMetadata.prototype.clearFileModifyTime = function() {
+  return this.setFileModifyTime(undefined);
 };
 
 
@@ -2704,7 +2704,7 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.clearFileModificationTime = 
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.app.datasync.v1.UploadMetadata.prototype.hasFileModificationTime = function() {
+proto.viam.app.datasync.v1.UploadMetadata.prototype.hasFileModifyTime = function() {
   return jspb.Message.getField(this, 15) != null;
 };
 

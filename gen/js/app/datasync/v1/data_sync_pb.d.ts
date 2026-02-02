@@ -312,10 +312,10 @@ export class UploadMetadata extends jspb.Message {
   getFileCreateTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setFileCreateTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  hasFileModificationTime(): boolean;
-  clearFileModificationTime(): void;
-  getFileModificationTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setFileModificationTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  hasFileModifyTime(): boolean;
+  clearFileModifyTime(): void;
+  getFileModifyTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setFileModifyTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   clearTagsList(): void;
   getTagsList(): Array<string>;
@@ -351,7 +351,7 @@ export namespace UploadMetadata {
     fileName: string,
     fileExtension: string,
     fileCreateTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    fileModificationTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    fileModifyTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     tagsList: Array<string>,
     datasetIdsList: Array<string>,
     mimeType: string,
