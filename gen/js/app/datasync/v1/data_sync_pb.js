@@ -2265,9 +2265,11 @@ proto.viam.app.datasync.v1.UploadMetadata.toObject = function(includeInstance, m
     componentName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     methodName: jspb.Message.getFieldWithDefault(msg, 5, ""),
     type: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    fileName: jspb.Message.getFieldWithDefault(msg, 7, ""),
     methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
+    fileName: jspb.Message.getFieldWithDefault(msg, 7, ""),
     fileExtension: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    fileCreateTime: (f = msg.getFileCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    fileModificationTime: (f = msg.getFileModificationTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     tagsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
     datasetIdsList: (f = jspb.Message.getRepeatedField(msg, 12)) == null ? undefined : f,
     mimeType: jspb.Message.getFieldWithDefault(msg, 13, "")
@@ -2327,19 +2329,29 @@ proto.viam.app.datasync.v1.UploadMetadata.deserializeBinaryFromReader = function
       var value = /** @type {!proto.viam.app.datasync.v1.DataType} */ (reader.readEnum());
       msg.setType(value);
       break;
-    case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setFileName(value);
-      break;
     case 8:
       var value = msg.getMethodParametersMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.google.protobuf.Any.deserializeBinaryFromReader, "", new proto.google.protobuf.Any());
          });
       break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFileName(value);
+      break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setFileExtension(value);
+      break;
+    case 14:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setFileCreateTime(value);
+      break;
+    case 15:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setFileModificationTime(value);
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
@@ -2417,6 +2429,10 @@ proto.viam.app.datasync.v1.UploadMetadata.serializeBinaryToWriter = function(mes
       f
     );
   }
+  f = message.getMethodParametersMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(8, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
+  }
   f = message.getFileName();
   if (f.length > 0) {
     writer.writeString(
@@ -2424,15 +2440,27 @@ proto.viam.app.datasync.v1.UploadMetadata.serializeBinaryToWriter = function(mes
       f
     );
   }
-  f = message.getMethodParametersMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(8, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.google.protobuf.Any.serializeBinaryToWriter);
-  }
   f = message.getFileExtension();
   if (f.length > 0) {
     writer.writeString(
       9,
       f
+    );
+  }
+  f = message.getFileCreateTime();
+  if (f != null) {
+    writer.writeMessage(
+      14,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getFileModificationTime();
+  if (f != null) {
+    writer.writeMessage(
+      15,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
   f = message.getTagsList();
@@ -2550,24 +2578,6 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.setType = function(value) {
 
 
 /**
- * optional string file_name = 7;
- * @return {string}
- */
-proto.viam.app.datasync.v1.UploadMetadata.prototype.getFileName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
- */
-proto.viam.app.datasync.v1.UploadMetadata.prototype.setFileName = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
-};
-
-
-/**
  * map<string, google.protobuf.Any> method_parameters = 8;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
@@ -2590,6 +2600,24 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.clearMethodParametersMap = f
 
 
 /**
+ * optional string file_name = 7;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.getFileName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.setFileName = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
  * optional string file_extension = 9;
  * @return {string}
  */
@@ -2604,6 +2632,80 @@ proto.viam.app.datasync.v1.UploadMetadata.prototype.getFileExtension = function(
  */
 proto.viam.app.datasync.v1.UploadMetadata.prototype.setFileExtension = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp file_create_time = 14;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.getFileCreateTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 14));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
+*/
+proto.viam.app.datasync.v1.UploadMetadata.prototype.setFileCreateTime = function(value) {
+  return jspb.Message.setWrapperField(this, 14, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.clearFileCreateTime = function() {
+  return this.setFileCreateTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.hasFileCreateTime = function() {
+  return jspb.Message.getField(this, 14) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp file_modification_time = 15;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.getFileModificationTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 15));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
+*/
+proto.viam.app.datasync.v1.UploadMetadata.prototype.setFileModificationTime = function(value) {
+  return jspb.Message.setWrapperField(this, 15, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.datasync.v1.UploadMetadata} returns this
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.clearFileModificationTime = function() {
+  return this.setFileModificationTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.datasync.v1.UploadMetadata.prototype.hasFileModificationTime = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 

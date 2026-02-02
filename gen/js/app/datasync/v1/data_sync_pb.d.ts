@@ -299,13 +299,23 @@ export class UploadMetadata extends jspb.Message {
   getType(): DataTypeMap[keyof DataTypeMap];
   setType(value: DataTypeMap[keyof DataTypeMap]): void;
 
+  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
+  clearMethodParametersMap(): void;
   getFileName(): string;
   setFileName(value: string): void;
 
-  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearMethodParametersMap(): void;
   getFileExtension(): string;
   setFileExtension(value: string): void;
+
+  hasFileCreateTime(): boolean;
+  clearFileCreateTime(): void;
+  getFileCreateTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setFileCreateTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasFileModificationTime(): boolean;
+  clearFileModificationTime(): void;
+  getFileModificationTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setFileModificationTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   clearTagsList(): void;
   getTagsList(): Array<string>;
@@ -337,9 +347,11 @@ export namespace UploadMetadata {
     componentName: string,
     methodName: string,
     type: DataTypeMap[keyof DataTypeMap],
-    fileName: string,
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    fileName: string,
     fileExtension: string,
+    fileCreateTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    fileModificationTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     tagsList: Array<string>,
     datasetIdsList: Array<string>,
     mimeType: string,
