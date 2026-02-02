@@ -111,7 +111,7 @@ message UploadMetadata {
   string file_name = 7;
   string file_extension = 9;
   google.protobuf.Timestamp file_create_time = 14;
-  google.protobuf.Timestamp file_modification_time = 15;
+  google.protobuf.Timestamp file_modify_time = 15;
   repeated string tags = 10;
   repeated string dataset_ids = 12;
   string mime_type = 13;
