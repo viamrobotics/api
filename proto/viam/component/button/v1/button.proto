@@ -13,6 +13,7 @@ option java_package = "com.viam.component.button.v1";
 service ButtonService {
   // Pushes a button
   rpc Push(PushRequest) returns (PushResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {put: "/viam/api/v1/component/button/{name}/push"};
   }
 
