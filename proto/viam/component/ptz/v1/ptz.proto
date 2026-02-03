@@ -1,0 +1,212 @@
+syntax = "proto3";
+
+package viam.component.ptz.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/component/ptz/v1";
+option java_package = "com.viam.component.ptz.v1";
+
+// PTZService provides Pan-Tilt-Zoom camera control capabilities.
+service PTZService {
+  // GetStatus returns the current PTZ position and movement status.
+  // Maps to DoCommand: "get-status"
+  rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/ptz/{name}/status"};
+  }
+
+  // GetCapabilities returns standardized PTZ capabilities for this device.
+  rpc GetCapabilities(GetCapabilitiesRequest) returns (GetCapabilitiesResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/ptz/{name}/capabilities"};
+  }
+
+  // Stop halts any ongoing PTZ movement.
+  // Maps to DoCommand: "stop"
+  rpc Stop(StopRequest) returns (StopResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/component/ptz/{name}/stop"};
+  }
+
+  // Move executes a PTZ movement command (continuous, relative, or absolute).
+  // Maps to DoCommand: "continuous-move", "relative-move", "absolute-move"
+  rpc Move(MoveRequest) returns (MoveResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
+    option (google.api.http) = {post: "/viam/api/v1/component/ptz/{name}/move"};
+  }
+
+  // DoCommand sends/receives arbitrary commands.
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/component/ptz/{name}/do_command"};
+  }
+}
+
+// Vector2D represents pan/tilt values with optional ONVIF coordinate space URI.
+message Vector2D {
+  double x = 1;
+  double y = 2;
+  // Optional opaque coordinate-space identifier (e.g., an ONVIF URI).
+  // Clients should treat this as uninterpreted unless they know the backend.
+  string space = 3;
+}
+
+// Vector1D represents zoom value with optional ONVIF coordinate space URI.
+message Vector1D {
+  double x = 1;
+  // Optional opaque coordinate-space identifier (e.g., an ONVIF URI).
+  // Clients should treat this as uninterpreted unless they know the backend.
+  string space = 2;
+}
+
+// Pose represents a complete PTZ position.
+message Pose {
+  // Pan/tilt position. X=pan, Y=tilt. Normalized range: -1.0 to 1.0.
+  Vector2D pan_tilt = 1;
+  // Zoom position. Normalized range: 0.0 (wide) to 1.0 (telephoto).
+  Vector1D zoom = 2;
+}
+
+// Speed represents non-negative pan/tilt/zoom speed scalars.
+// Used for absolute/relative moves. The valid range depends on the coordinate
+// space; generic normalized spaces are typically 0.0 to 1.0.
+message Speed {
+  double pan = 1;
+  double tilt = 2;
+  double zoom = 3;
+}
+
+// Velocity represents signed pan/tilt/zoom velocity values.
+// Used for continuous moves. The valid range depends on the coordinate
+// space; generic normalized spaces are typically -1.0 to 1.0 (negative = reverse direction).
+message Velocity {
+  double pan = 1;
+  double tilt = 2;
+  double zoom = 3;
+}
+
+message GetStatusRequest {
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message GetStatusResponse {
+  // Current PTZ position.
+  Pose position = 1;
+  // Pan/tilt movement status (e.g., "IDLE", "MOVING").
+  PTZMoveStatus pan_tilt_status = 2;
+  // Zoom movement status (e.g., "IDLE", "MOVING").
+  PTZMoveStatus zoom_status = 3;
+  // UTC timestamp of the status reading.
+  google.protobuf.Timestamp utc_time = 4;
+}
+
+// PTZMoveStatus represents the movement status for pan/tilt or zoom.
+enum PTZMoveStatus {
+  PTZ_MOVE_STATUS_UNSPECIFIED = 0;
+  PTZ_MOVE_STATUS_IDLE = 1;
+  PTZ_MOVE_STATUS_MOVING = 2;
+  PTZ_MOVE_STATUS_UNKNOWN = 3;
+}
+
+message GetCapabilitiesRequest {
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+// PTZMoveType indicates the kind of movement supported.
+enum PTZMoveType {
+  PTZ_MOVE_TYPE_UNSPECIFIED = 0;
+  PTZ_MOVE_TYPE_ABSOLUTE = 1;
+  PTZ_MOVE_TYPE_RELATIVE = 2;
+  PTZ_MOVE_TYPE_CONTINUOUS = 3;
+}
+
+// Range1D describes a min/max for a single axis, optionally with a space identifier.
+// If space is provided, the range applies to that coordinate space.
+message Range1D {
+  double min = 1;
+  double max = 2;
+  // Optional opaque coordinate-space identifier (e.g., an ONVIF URI).
+  // Clients should treat this as uninterpreted unless they know the backend.
+  string space = 3;
+}
+
+// Range2D describes min/max for pan (x) and tilt (y), optionally with a space identifier.
+// If space is provided, the range applies to that coordinate space.
+message Range2D {
+  double x_min = 1;
+  double x_max = 2;
+  double y_min = 3;
+  double y_max = 4;
+  // Optional opaque coordinate-space identifier (e.g., an ONVIF URI).
+  // Clients should treat this as uninterpreted unless they know the backend.
+  string space = 5;
+}
+
+// PTZMoveCapability describes supported ranges for a given move type.
+message PTZMoveCapability {
+  PTZMoveType type = 1;
+  Range2D pan_tilt = 2;
+  Range1D zoom = 3;
+  // Optional speed range (absolute/relative moves only).
+  Range2D pan_tilt_speed = 4;
+  Range1D zoom_speed = 5;
+  // Optional velocity range (continuous moves only).
+  Range2D pan_tilt_velocity = 6;
+  Range1D zoom_velocity = 7;
+}
+
+message GetCapabilitiesResponse {
+  repeated PTZMoveCapability move_capabilities = 1;
+  optional bool supports_status = 2;
+  optional bool supports_stop = 3;
+}
+
+message StopRequest {
+  string name = 1;
+  // Stop pan/tilt movement. Default: true.
+  optional bool pan_tilt = 2;
+  // Stop zoom movement. Default: true.
+  optional bool zoom = 3;
+  google.protobuf.Struct extra = 99;
+}
+
+message StopResponse {}
+
+message MoveRequest {
+  string name = 1;
+  oneof command {
+    ContinuousMove continuous = 2;
+    RelativeMove relative = 3;
+    AbsoluteMove absolute = 4;
+  }
+  google.protobuf.Struct extra = 99;
+}
+
+// ContinuousMove: velocity-based movement until stopped or timeout.
+message ContinuousMove {
+  // Velocity: signed direction and magnitude for each axis.
+  // Typical normalized range is -1.0 to 1.0; negative = reverse direction.
+  Velocity velocity = 1;
+  // Timeout as ISO 8601 duration (e.g., "PT10S"). Default: "PT10S".
+  optional string timeout = 2;
+}
+
+// RelativeMove: move by offset from current position.
+message RelativeMove {
+  // Translation offset for each axis.
+  Pose translation = 1;
+  // Optional non-negative speed scalar. If omitted, camera default is used.
+  optional Speed speed = 2;
+}
+
+// AbsoluteMove: move to absolute position.
+message AbsoluteMove {
+  // Target position: pan/tilt (-1.0 to 1.0), zoom (0.0 to 1.0).
+  Pose position = 1;
+  // Optional non-negative speed scalar. If omitted, camera default is used.
+  optional Speed speed = 2;
+}
+
+message MoveResponse {}
