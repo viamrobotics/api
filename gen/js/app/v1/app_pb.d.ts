@@ -262,6 +262,11 @@ export class Organization extends jspb.Message {
   getCid(): string;
   setCid(value: string): void;
 
+  hasDefaultFragments(): boolean;
+  clearDefaultFragments(): void;
+  getDefaultFragments(): FragmentImportList | undefined;
+  setDefaultFragments(value?: FragmentImportList): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -280,6 +285,7 @@ export namespace Organization {
     publicNamespace: string,
     defaultRegion: string,
     cid: string,
+    defaultFragments?: FragmentImportList.AsObject,
   }
 }
 
@@ -6855,6 +6861,9 @@ export class GetAppContentResponse extends jspb.Message {
   getAppType(): AppTypeMap[keyof AppTypeMap];
   setAppType(value: AppTypeMap[keyof AppTypeMap]): void;
 
+  getPublic(): boolean;
+  setPublic(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAppContentResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetAppContentResponse): GetAppContentResponse.AsObject;
@@ -6870,6 +6879,7 @@ export namespace GetAppContentResponse {
     blobPath: string,
     entrypoint: string,
     appType: AppTypeMap[keyof AppTypeMap],
+    pb_public: boolean,
   }
 }
 

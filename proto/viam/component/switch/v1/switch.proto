@@ -15,6 +15,7 @@ option java_package = "com.viam.component.switch.v1";
 service SwitchService {
   // Set the position of the switch
   rpc SetPosition(SetPositionRequest) returns (SetPositionResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {put: "/viam/api/v1/component/switch/{name}/set_position"};
   }
 

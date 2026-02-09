@@ -503,6 +503,189 @@ proto.viam.app.v1.BillingServicePromiseClient.prototype.updateOrganizationBillin
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetLocationBillingOrganizationRequest,
+ *   !proto.viam.app.v1.GetLocationBillingOrganizationResponse>}
+ */
+const methodDescriptor_BillingService_GetLocationBillingOrganization = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/GetLocationBillingOrganization',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetLocationBillingOrganizationRequest,
+  proto.viam.app.v1.GetLocationBillingOrganizationResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetLocationBillingOrganizationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetLocationBillingOrganizationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetLocationBillingOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetLocationBillingOrganizationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetLocationBillingOrganizationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.getLocationBillingOrganization =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetLocationBillingOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetLocationBillingOrganization,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetLocationBillingOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetLocationBillingOrganizationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.getLocationBillingOrganization =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/GetLocationBillingOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_GetLocationBillingOrganization);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UpdateLocationBillingOrganizationRequest,
+ *   !proto.viam.app.v1.UpdateLocationBillingOrganizationResponse>}
+ */
+const methodDescriptor_BillingService_UpdateLocationBillingOrganization = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/UpdateLocationBillingOrganization',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UpdateLocationBillingOrganizationRequest,
+  proto.viam.app.v1.UpdateLocationBillingOrganizationResponse,
+  /**
+   * @param {!proto.viam.app.v1.UpdateLocationBillingOrganizationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UpdateLocationBillingOrganizationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateLocationBillingOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UpdateLocationBillingOrganizationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UpdateLocationBillingOrganizationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.updateLocationBillingOrganization =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/UpdateLocationBillingOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_UpdateLocationBillingOrganization,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UpdateLocationBillingOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UpdateLocationBillingOrganizationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.updateLocationBillingOrganization =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/UpdateLocationBillingOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_UpdateLocationBillingOrganization);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ChargeOrganizationRequest,
+ *   !proto.viam.app.v1.ChargeOrganizationResponse>}
+ */
+const methodDescriptor_BillingService_ChargeOrganization = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.BillingService/ChargeOrganization',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ChargeOrganizationRequest,
+  proto.viam.app.v1.ChargeOrganizationResponse,
+  /**
+   * @param {!proto.viam.app.v1.ChargeOrganizationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ChargeOrganizationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ChargeOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ChargeOrganizationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ChargeOrganizationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.BillingServiceClient.prototype.chargeOrganization =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.BillingService/ChargeOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_ChargeOrganization,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ChargeOrganizationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ChargeOrganizationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.BillingServicePromiseClient.prototype.chargeOrganization =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.BillingService/ChargeOrganization',
+      request,
+      metadata || {},
+      methodDescriptor_BillingService_ChargeOrganization);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest,
  *   !proto.viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse>}
  */
