@@ -172,7 +172,7 @@ message MoveOptions {
   // Ignored when max_vel_degs_per_sec_joints is set.
   optional double max_vel_degs_per_sec = 1;
   // Maximum allowable acceleration of an arm joint, in degrees per second squared.
-  // ignopred when max_acc_degs_per_sec2_joints is set.
+  // ignored when max_acc_degs_per_sec2_joints is set.
   optional double max_acc_degs_per_sec2 = 2;
   // Per-joint maximum velocity in degrees per second.
   repeated double max_vel_degs_per_sec_joints = 3;
