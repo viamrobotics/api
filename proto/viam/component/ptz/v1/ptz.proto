@@ -4,6 +4,7 @@ package viam.component.ptz.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -189,8 +190,8 @@ message ContinuousMove {
   // Velocity: signed direction and magnitude for each axis.
   // Typical normalized range is -1.0 to 1.0; negative = reverse direction.
   Velocity velocity = 1;
-  // Timeout as ISO 8601 duration (e.g., "PT10S"). Default: "PT10S".
-  optional string timeout = 2;
+  // Timeout as a duration (e.g., 10 seconds). Default: 10s.
+  google.protobuf.Duration timeout = 2;
 }
 
 // RelativeMove: move by offset from current position.
