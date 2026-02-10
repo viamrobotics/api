@@ -43,28 +43,30 @@ service PTZService {
   }
 }
 
-// Vector2D represents pan/tilt values with optional ONVIF coordinate space URI.
+// Vector2D represents pan/tilt values.
 message Vector2D {
   double x = 1;
   double y = 2;
-  // Optional opaque coordinate-space identifier (e.g., an ONVIF URI).
+  // Opaque coordinate-space identifier (e.g., an ONVIF URI).
   // Clients should treat this as uninterpreted unless they know the backend.
   string space = 3;
 }
 
-// Vector1D represents zoom value with optional ONVIF coordinate space URI.
+// Vector1D represents a zoom value.
 message Vector1D {
   double x = 1;
-  // Optional opaque coordinate-space identifier (e.g., an ONVIF URI).
+  // Opaque coordinate-space identifier (e.g., an ONVIF URI).
   // Clients should treat this as uninterpreted unless they know the backend.
   string space = 2;
 }
 
-// Pose represents a complete PTZ position.
+// Pose represents a complete PTZ position or translation.
 message Pose {
-  // Pan/tilt position. X=pan, Y=tilt. Normalized range: -1.0 to 1.0.
+  // Pan/tilt position. X=pan, Y=tilt.
+  // Values are defined by the coordinate space; generic spaces are typically normalized (-1.0 to 1.0).
   Vector2D pan_tilt = 1;
-  // Zoom position. Normalized range: 0.0 (wide) to 1.0 (telephoto).
+  // Zoom position.
+  // Values are defined by the coordinate space; generic spaces are typically normalized (0.0 wide to 1.0 telephoto).
   Vector1D zoom = 2;
 }
 
@@ -128,7 +130,7 @@ enum PTZMoveType {
 message Range1D {
   double min = 1;
   double max = 2;
-  // Optional opaque coordinate-space identifier (e.g., an ONVIF URI).
+  // Opaque coordinate-space identifier (e.g., an ONVIF URI).
   // Clients should treat this as uninterpreted unless they know the backend.
   string space = 3;
 }
@@ -140,7 +142,7 @@ message Range2D {
   double x_max = 2;
   double y_min = 3;
   double y_max = 4;
-  // Optional opaque coordinate-space identifier (e.g., an ONVIF URI).
+  // Opaque coordinate-space identifier (e.g., an ONVIF URI).
   // Clients should treat this as uninterpreted unless they know the backend.
   string space = 5;
 }
@@ -166,9 +168,9 @@ message GetCapabilitiesResponse {
 
 message StopRequest {
   string name = 1;
-  // Stop pan/tilt movement. Default: true.
+  // Stop pan/tilt movement. If unset, server treats as true.
   optional bool pan_tilt = 2;
-  // Stop zoom movement. Default: true.
+  // Stop zoom movement. If unset, server treats as true.
   optional bool zoom = 3;
   google.protobuf.Struct extra = 99;
 }
@@ -190,13 +192,14 @@ message ContinuousMove {
   // Velocity: signed direction and magnitude for each axis.
   // Typical normalized range is -1.0 to 1.0; negative = reverse direction.
   Velocity velocity = 1;
-  // Timeout as a duration (e.g., 10 seconds). Default: 10s.
-  optional google.protobuf.Duration timeout = 2;
+  // Timeout as a duration (e.g., 10 seconds).
+  google.protobuf.Duration timeout = 2;
 }
 
 // RelativeMove: move by offset from current position.
 message RelativeMove {
   // Translation offset for each axis.
+  // Values are defined by the coordinate space; may be normalized, FOV-relative, or degrees.
   Pose translation = 1;
   // Optional non-negative speed scalar. If omitted, camera default is used.
   optional Speed speed = 2;
@@ -204,7 +207,7 @@ message RelativeMove {
 
 // AbsoluteMove: move to absolute position.
 message AbsoluteMove {
-  // Target position: pan/tilt (-1.0 to 1.0), zoom (0.0 to 1.0).
+  // Target position. Values are defined by the coordinate space.
   Pose position = 1;
   // Optional non-negative speed scalar. If omitted, camera default is used.
   optional Speed speed = 2;
