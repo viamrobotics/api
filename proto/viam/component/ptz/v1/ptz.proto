@@ -191,7 +191,7 @@ message ContinuousMove {
   // Typical normalized range is -1.0 to 1.0; negative = reverse direction.
   Velocity velocity = 1;
   // Timeout as a duration (e.g., 10 seconds). Default: 10s.
-  google.protobuf.Duration timeout = 2;
+  optional google.protobuf.Duration timeout = 2;
 }
 
 // RelativeMove: move by offset from current position.
