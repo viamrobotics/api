@@ -5,64 +5,7 @@ import * as jspb from "google-protobuf";
 import * as app_data_v1_data_pb from "../../../app/data/v1/data_pb";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
-import * as google_api_httpbody_pb from "../../../google/api/httpbody_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
-
-export class GetImageRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getMimeType(): string;
-  setMimeType(value: string): void;
-
-  hasExtra(): boolean;
-  clearExtra(): void;
-  getExtra(): google_protobuf_struct_pb.Struct | undefined;
-  setExtra(value?: google_protobuf_struct_pb.Struct): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetImageRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetImageRequest): GetImageRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetImageRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetImageRequest;
-  static deserializeBinaryFromReader(message: GetImageRequest, reader: jspb.BinaryReader): GetImageRequest;
-}
-
-export namespace GetImageRequest {
-  export type AsObject = {
-    name: string,
-    mimeType: string,
-    extra?: google_protobuf_struct_pb.Struct.AsObject,
-  }
-}
-
-export class GetImageResponse extends jspb.Message {
-  getMimeType(): string;
-  setMimeType(value: string): void;
-
-  getImage(): Uint8Array | string;
-  getImage_asU8(): Uint8Array;
-  getImage_asB64(): string;
-  setImage(value: Uint8Array | string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetImageResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetImageResponse): GetImageResponse.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetImageResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetImageResponse;
-  static deserializeBinaryFromReader(message: GetImageResponse, reader: jspb.BinaryReader): GetImageResponse;
-}
-
-export namespace GetImageResponse {
-  export type AsObject = {
-    mimeType: string,
-    image: Uint8Array | string,
-  }
-}
 
 export class GetImagesRequest extends jspb.Message {
   getName(): string;
@@ -128,9 +71,6 @@ export class Image extends jspb.Message {
   getSourceName(): string;
   setSourceName(value: string): void;
 
-  getFormat(): FormatMap[keyof FormatMap];
-  setFormat(value: FormatMap[keyof FormatMap]): void;
-
   getImage(): Uint8Array | string;
   getImage_asU8(): Uint8Array;
   getImage_asB64(): string;
@@ -157,40 +97,9 @@ export class Image extends jspb.Message {
 export namespace Image {
   export type AsObject = {
     sourceName: string,
-    format: FormatMap[keyof FormatMap],
     image: Uint8Array | string,
     mimeType: string,
     annotations?: app_data_v1_data_pb.Annotations.AsObject,
-  }
-}
-
-export class RenderFrameRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getMimeType(): string;
-  setMimeType(value: string): void;
-
-  hasExtra(): boolean;
-  clearExtra(): void;
-  getExtra(): google_protobuf_struct_pb.Struct | undefined;
-  setExtra(value?: google_protobuf_struct_pb.Struct): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RenderFrameRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RenderFrameRequest): RenderFrameRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RenderFrameRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RenderFrameRequest;
-  static deserializeBinaryFromReader(message: RenderFrameRequest, reader: jspb.BinaryReader): RenderFrameRequest;
-}
-
-export namespace RenderFrameRequest {
-  export type AsObject = {
-    name: string,
-    mimeType: string,
-    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -471,14 +380,4 @@ export namespace DistortionParameters {
     parametersList: Array<number>,
   }
 }
-
-export interface FormatMap {
-  FORMAT_UNSPECIFIED: 0;
-  FORMAT_RAW_RGBA: 1;
-  FORMAT_RAW_DEPTH: 2;
-  FORMAT_JPEG: 3;
-  FORMAT_PNG: 4;
-}
-
-export const Format: FormatMap;
 

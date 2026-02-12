@@ -26,8 +26,6 @@ var common_v1_common_pb = require('../../../common/v1/common_pb.js')
 
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 
-var google_api_httpbody_pb = require('../../../google/api/httpbody_pb.js')
-
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
 const proto = {};
 proto.viam = {};
@@ -90,67 +88,6 @@ proto.viam.component.camera.v1.CameraServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.component.camera.v1.GetImageRequest,
- *   !proto.viam.component.camera.v1.GetImageResponse>}
- */
-const methodDescriptor_CameraService_GetImage = new grpc.web.MethodDescriptor(
-  '/viam.component.camera.v1.CameraService/GetImage',
-  grpc.web.MethodType.UNARY,
-  proto.viam.component.camera.v1.GetImageRequest,
-  proto.viam.component.camera.v1.GetImageResponse,
-  /**
-   * @param {!proto.viam.component.camera.v1.GetImageRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.component.camera.v1.GetImageResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.component.camera.v1.GetImageRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.component.camera.v1.GetImageResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.component.camera.v1.GetImageResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.component.camera.v1.CameraServiceClient.prototype.getImage =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.component.camera.v1.CameraService/GetImage',
-      request,
-      metadata || {},
-      methodDescriptor_CameraService_GetImage,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.component.camera.v1.GetImageRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.component.camera.v1.GetImageResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.component.camera.v1.CameraServicePromiseClient.prototype.getImage =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.component.camera.v1.CameraService/GetImage',
-      request,
-      metadata || {},
-      methodDescriptor_CameraService_GetImage);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.component.camera.v1.GetImagesRequest,
  *   !proto.viam.component.camera.v1.GetImagesResponse>}
  */
@@ -206,67 +143,6 @@ proto.viam.component.camera.v1.CameraServicePromiseClient.prototype.getImages =
       request,
       metadata || {},
       methodDescriptor_CameraService_GetImages);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.component.camera.v1.RenderFrameRequest,
- *   !proto.google.api.HttpBody>}
- */
-const methodDescriptor_CameraService_RenderFrame = new grpc.web.MethodDescriptor(
-  '/viam.component.camera.v1.CameraService/RenderFrame',
-  grpc.web.MethodType.UNARY,
-  proto.viam.component.camera.v1.RenderFrameRequest,
-  google_api_httpbody_pb.HttpBody,
-  /**
-   * @param {!proto.viam.component.camera.v1.RenderFrameRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  google_api_httpbody_pb.HttpBody.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.component.camera.v1.RenderFrameRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.google.api.HttpBody)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.google.api.HttpBody>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.component.camera.v1.CameraServiceClient.prototype.renderFrame =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.component.camera.v1.CameraService/RenderFrame',
-      request,
-      metadata || {},
-      methodDescriptor_CameraService_RenderFrame,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.component.camera.v1.RenderFrameRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.google.api.HttpBody>}
- *     Promise that resolves to the response
- */
-proto.viam.component.camera.v1.CameraServicePromiseClient.prototype.renderFrame =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.component.camera.v1.CameraService/RenderFrame',
-      request,
-      metadata || {},
-      methodDescriptor_CameraService_RenderFrame);
 };
 
 
