@@ -1518,7 +1518,6 @@ proto.viam.app.datasync.v1.SensorMetadata.toObject = function(includeInstance, m
   var f, obj = {
     timeRequested: (f = msg.getTimeRequested()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     timeReceived: (f = msg.getTimeReceived()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    mimeType: jspb.Message.getFieldWithDefault(msg, 3, 0),
     annotations: (f = msg.getAnnotations()) && app_data_v1_data_pb.Annotations.toObject(includeInstance, f)
   };
 
@@ -1565,10 +1564,6 @@ proto.viam.app.datasync.v1.SensorMetadata.deserializeBinaryFromReader = function
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimeReceived(value);
-      break;
-    case 3:
-      var value = /** @type {!proto.viam.app.datasync.v1.MimeType} */ (reader.readEnum());
-      msg.setMimeType(value);
       break;
     case 4:
       var value = new app_data_v1_data_pb.Annotations;
@@ -1618,13 +1613,6 @@ proto.viam.app.datasync.v1.SensorMetadata.serializeBinaryToWriter = function(mes
       2,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
-  f = message.getMimeType();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      3,
-      f
     );
   }
   f = message.getAnnotations();
@@ -1709,24 +1697,6 @@ proto.viam.app.datasync.v1.SensorMetadata.prototype.clearTimeReceived = function
  */
 proto.viam.app.datasync.v1.SensorMetadata.prototype.hasTimeReceived = function() {
   return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional MimeType mime_type = 3;
- * @return {!proto.viam.app.datasync.v1.MimeType}
- */
-proto.viam.app.datasync.v1.SensorMetadata.prototype.getMimeType = function() {
-  return /** @type {!proto.viam.app.datasync.v1.MimeType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {!proto.viam.app.datasync.v1.MimeType} value
- * @return {!proto.viam.app.datasync.v1.SensorMetadata} returns this
- */
-proto.viam.app.datasync.v1.SensorMetadata.prototype.setMimeType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -3048,7 +3018,8 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.toObject = function(includeInstan
     type: jspb.Message.getFieldWithDefault(msg, 5, 0),
     methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
     fileExtension: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
+    mimeType: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -3114,6 +3085,10 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.deserializeBinaryFromReader = fun
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.addTags(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMimeType(value);
       break;
     default:
       reader.skipField();
@@ -3187,6 +3162,13 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.serializeBinaryToWriter = functio
   if (f.length > 0) {
     writer.writeRepeatedString(
       8,
+      f
+    );
+  }
+  f = message.getMimeType();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -3339,6 +3321,24 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.addTags = function(valu
  */
 proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.clearTagsList = function() {
   return this.setTagsList([]);
+};
+
+
+/**
+ * optional string mime_type = 10;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.getMimeType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.DataCaptureMetadata} returns this
+ */
+proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.setMimeType = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 

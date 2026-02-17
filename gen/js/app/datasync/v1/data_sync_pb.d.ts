@@ -191,9 +191,6 @@ export class SensorMetadata extends jspb.Message {
   getTimeReceived(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTimeReceived(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  getMimeType(): MimeTypeMap[keyof MimeTypeMap];
-  setMimeType(value: MimeTypeMap[keyof MimeTypeMap]): void;
-
   hasAnnotations(): boolean;
   clearAnnotations(): void;
   getAnnotations(): app_data_v1_data_pb.Annotations | undefined;
@@ -213,7 +210,6 @@ export namespace SensorMetadata {
   export type AsObject = {
     timeRequested?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     timeReceived?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    mimeType: MimeTypeMap[keyof MimeTypeMap],
     annotations?: app_data_v1_data_pb.Annotations.AsObject,
   }
 }
@@ -409,6 +405,9 @@ export class DataCaptureMetadata extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
+  getMimeType(): string;
+  setMimeType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataCaptureMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: DataCaptureMetadata): DataCaptureMetadata.AsObject;
@@ -428,6 +427,7 @@ export namespace DataCaptureMetadata {
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     fileExtension: string,
     tagsList: Array<string>,
+    mimeType: string,
   }
 }
 
