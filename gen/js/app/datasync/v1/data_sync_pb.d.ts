@@ -409,6 +409,9 @@ export class DataCaptureMetadata extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
+  getMimeType(): string;
+  setMimeType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataCaptureMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: DataCaptureMetadata): DataCaptureMetadata.AsObject;
@@ -428,6 +431,7 @@ export namespace DataCaptureMetadata {
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     fileExtension: string,
     tagsList: Array<string>,
+    mimeType: string,
   }
 }
 

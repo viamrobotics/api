@@ -3048,7 +3048,8 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.toObject = function(includeInstan
     type: jspb.Message.getFieldWithDefault(msg, 5, 0),
     methodParametersMap: (f = msg.getMethodParametersMap()) ? f.toObject(includeInstance, proto.google.protobuf.Any.toObject) : [],
     fileExtension: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    tagsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
+    mimeType: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -3114,6 +3115,10 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.deserializeBinaryFromReader = fun
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.addTags(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMimeType(value);
       break;
     default:
       reader.skipField();
@@ -3187,6 +3192,13 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.serializeBinaryToWriter = functio
   if (f.length > 0) {
     writer.writeRepeatedString(
       8,
+      f
+    );
+  }
+  f = message.getMimeType();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -3339,6 +3351,24 @@ proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.addTags = function(valu
  */
 proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.clearTagsList = function() {
   return this.setTagsList([]);
+};
+
+
+/**
+ * optional string mime_type = 10;
+ * @return {string}
+ */
+proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.getMimeType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.datasync.v1.DataCaptureMetadata} returns this
+ */
+proto.viam.app.datasync.v1.DataCaptureMetadata.prototype.setMimeType = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
