@@ -525,7 +525,9 @@ type SensorMetadata struct {
 
 	TimeRequested *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=time_requested,json=timeRequested,proto3" json:"time_requested,omitempty"`
 	TimeReceived  *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=time_received,json=timeReceived,proto3" json:"time_received,omitempty"`
-	Annotations   *v1.Annotations        `protobuf:"bytes,4,opt,name=annotations,proto3" json:"annotations,omitempty"`
+	// Deprecated: Marked as deprecated in app/datasync/v1/data_sync.proto.
+	MimeType    MimeType        `protobuf:"varint,3,opt,name=mime_type,json=mimeType,proto3,enum=viam.app.datasync.v1.MimeType" json:"mime_type,omitempty"`
+	Annotations *v1.Annotations `protobuf:"bytes,4,opt,name=annotations,proto3" json:"annotations,omitempty"`
 }
 
 func (x *SensorMetadata) Reset() {
@@ -570,6 +572,14 @@ func (x *SensorMetadata) GetTimeReceived() *timestamppb.Timestamp {
 		return x.TimeReceived
 	}
 	return nil
+}
+
+// Deprecated: Marked as deprecated in app/datasync/v1/data_sync.proto.
+func (x *SensorMetadata) GetMimeType() MimeType {
+	if x != nil {
+		return x.MimeType
+	}
+	return MimeType_MIME_TYPE_UNSPECIFIED
 }
 
 func (x *SensorMetadata) GetAnnotations() *v1.Annotations {
@@ -1129,7 +1139,7 @@ var file_app_datasync_v1_data_sync_proto_rawDesc = []byte{
 	0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x02, 0x18, 0x01, 0x52,
 	0x06, 0x66, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x24, 0x0a, 0x0e, 0x62, 0x69, 0x6e, 0x61, 0x72,
 	0x79, 0x5f, 0x64, 0x61, 0x74, 0x61, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x0c, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x49, 0x64, 0x22, 0xe6, 0x01,
+	0x0c, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x49, 0x64, 0x22, 0x96, 0x02,
 	0x0a, 0x0e, 0x53, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
 	0x12, 0x41, 0x0a, 0x0e, 0x74, 0x69, 0x6d, 0x65, 0x5f, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
@@ -1139,12 +1149,15 @@ var file_app_datasync_v1_data_sync_proto_rawDesc = []byte{
 	0x69, 0x76, 0x65, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d,
 	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0c, 0x74, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x63, 0x65,
-	0x69, 0x76, 0x65, 0x64, 0x12, 0x3f, 0x0a, 0x0b, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x76, 0x69, 0x61, 0x6d,
-	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x6e, 0x6e,
-	0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x0b, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x4a, 0x04, 0x08, 0x03, 0x10, 0x04, 0x52, 0x09, 0x6d, 0x69, 0x6d,
-	0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x22, 0xa3, 0x01, 0x0a, 0x0a, 0x53, 0x65, 0x6e, 0x73, 0x6f,
+	0x69, 0x76, 0x65, 0x64, 0x12, 0x3f, 0x0a, 0x09, 0x6d, 0x69, 0x6d, 0x65, 0x5f, 0x74, 0x79, 0x70,
+	0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x73, 0x79, 0x6e, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
+	0x69, 0x6d, 0x65, 0x54, 0x79, 0x70, 0x65, 0x42, 0x02, 0x18, 0x01, 0x52, 0x08, 0x6d, 0x69, 0x6d,
+	0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x3f, 0x0a, 0x0b, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x6e,
+	0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x0b, 0x61, 0x6e, 0x6e, 0x6f, 0x74,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0xa3, 0x01, 0x0a, 0x0a, 0x53, 0x65, 0x6e, 0x73, 0x6f,
 	0x72, 0x44, 0x61, 0x74, 0x61, 0x12, 0x40, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
 	0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
 	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x73, 0x79, 0x6e, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x53,
@@ -1353,32 +1366,33 @@ var file_app_datasync_v1_data_sync_proto_depIdxs = []int32{
 	14, // 4: viam.app.datasync.v1.StreamingDataCaptureUploadRequest.metadata:type_name -> viam.app.datasync.v1.DataCaptureUploadMetadata
 	17, // 5: viam.app.datasync.v1.SensorMetadata.time_requested:type_name -> google.protobuf.Timestamp
 	17, // 6: viam.app.datasync.v1.SensorMetadata.time_received:type_name -> google.protobuf.Timestamp
-	18, // 7: viam.app.datasync.v1.SensorMetadata.annotations:type_name -> viam.app.data.v1.Annotations
-	8,  // 8: viam.app.datasync.v1.SensorData.metadata:type_name -> viam.app.datasync.v1.SensorMetadata
-	19, // 9: viam.app.datasync.v1.SensorData.struct:type_name -> google.protobuf.Struct
-	1,  // 10: viam.app.datasync.v1.UploadMetadata.type:type_name -> viam.app.datasync.v1.DataType
-	15, // 11: viam.app.datasync.v1.UploadMetadata.method_parameters:type_name -> viam.app.datasync.v1.UploadMetadata.MethodParametersEntry
-	17, // 12: viam.app.datasync.v1.UploadMetadata.file_create_time:type_name -> google.protobuf.Timestamp
-	17, // 13: viam.app.datasync.v1.UploadMetadata.file_modify_time:type_name -> google.protobuf.Timestamp
-	17, // 14: viam.app.datasync.v1.CaptureInterval.start:type_name -> google.protobuf.Timestamp
-	17, // 15: viam.app.datasync.v1.CaptureInterval.end:type_name -> google.protobuf.Timestamp
-	1,  // 16: viam.app.datasync.v1.DataCaptureMetadata.type:type_name -> viam.app.datasync.v1.DataType
-	16, // 17: viam.app.datasync.v1.DataCaptureMetadata.method_parameters:type_name -> viam.app.datasync.v1.DataCaptureMetadata.MethodParametersEntry
-	11, // 18: viam.app.datasync.v1.DataCaptureUploadMetadata.upload_metadata:type_name -> viam.app.datasync.v1.UploadMetadata
-	8,  // 19: viam.app.datasync.v1.DataCaptureUploadMetadata.sensor_metadata:type_name -> viam.app.datasync.v1.SensorMetadata
-	20, // 20: viam.app.datasync.v1.UploadMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
-	20, // 21: viam.app.datasync.v1.DataCaptureMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
-	2,  // 22: viam.app.datasync.v1.DataSyncService.DataCaptureUpload:input_type -> viam.app.datasync.v1.DataCaptureUploadRequest
-	4,  // 23: viam.app.datasync.v1.DataSyncService.FileUpload:input_type -> viam.app.datasync.v1.FileUploadRequest
-	6,  // 24: viam.app.datasync.v1.DataSyncService.StreamingDataCaptureUpload:input_type -> viam.app.datasync.v1.StreamingDataCaptureUploadRequest
-	3,  // 25: viam.app.datasync.v1.DataSyncService.DataCaptureUpload:output_type -> viam.app.datasync.v1.DataCaptureUploadResponse
-	5,  // 26: viam.app.datasync.v1.DataSyncService.FileUpload:output_type -> viam.app.datasync.v1.FileUploadResponse
-	7,  // 27: viam.app.datasync.v1.DataSyncService.StreamingDataCaptureUpload:output_type -> viam.app.datasync.v1.StreamingDataCaptureUploadResponse
-	25, // [25:28] is the sub-list for method output_type
-	22, // [22:25] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	0,  // 7: viam.app.datasync.v1.SensorMetadata.mime_type:type_name -> viam.app.datasync.v1.MimeType
+	18, // 8: viam.app.datasync.v1.SensorMetadata.annotations:type_name -> viam.app.data.v1.Annotations
+	8,  // 9: viam.app.datasync.v1.SensorData.metadata:type_name -> viam.app.datasync.v1.SensorMetadata
+	19, // 10: viam.app.datasync.v1.SensorData.struct:type_name -> google.protobuf.Struct
+	1,  // 11: viam.app.datasync.v1.UploadMetadata.type:type_name -> viam.app.datasync.v1.DataType
+	15, // 12: viam.app.datasync.v1.UploadMetadata.method_parameters:type_name -> viam.app.datasync.v1.UploadMetadata.MethodParametersEntry
+	17, // 13: viam.app.datasync.v1.UploadMetadata.file_create_time:type_name -> google.protobuf.Timestamp
+	17, // 14: viam.app.datasync.v1.UploadMetadata.file_modify_time:type_name -> google.protobuf.Timestamp
+	17, // 15: viam.app.datasync.v1.CaptureInterval.start:type_name -> google.protobuf.Timestamp
+	17, // 16: viam.app.datasync.v1.CaptureInterval.end:type_name -> google.protobuf.Timestamp
+	1,  // 17: viam.app.datasync.v1.DataCaptureMetadata.type:type_name -> viam.app.datasync.v1.DataType
+	16, // 18: viam.app.datasync.v1.DataCaptureMetadata.method_parameters:type_name -> viam.app.datasync.v1.DataCaptureMetadata.MethodParametersEntry
+	11, // 19: viam.app.datasync.v1.DataCaptureUploadMetadata.upload_metadata:type_name -> viam.app.datasync.v1.UploadMetadata
+	8,  // 20: viam.app.datasync.v1.DataCaptureUploadMetadata.sensor_metadata:type_name -> viam.app.datasync.v1.SensorMetadata
+	20, // 21: viam.app.datasync.v1.UploadMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	20, // 22: viam.app.datasync.v1.DataCaptureMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	2,  // 23: viam.app.datasync.v1.DataSyncService.DataCaptureUpload:input_type -> viam.app.datasync.v1.DataCaptureUploadRequest
+	4,  // 24: viam.app.datasync.v1.DataSyncService.FileUpload:input_type -> viam.app.datasync.v1.FileUploadRequest
+	6,  // 25: viam.app.datasync.v1.DataSyncService.StreamingDataCaptureUpload:input_type -> viam.app.datasync.v1.StreamingDataCaptureUploadRequest
+	3,  // 26: viam.app.datasync.v1.DataSyncService.DataCaptureUpload:output_type -> viam.app.datasync.v1.DataCaptureUploadResponse
+	5,  // 27: viam.app.datasync.v1.DataSyncService.FileUpload:output_type -> viam.app.datasync.v1.FileUploadResponse
+	7,  // 28: viam.app.datasync.v1.DataSyncService.StreamingDataCaptureUpload:output_type -> viam.app.datasync.v1.StreamingDataCaptureUploadResponse
+	26, // [26:29] is the sub-list for method output_type
+	23, // [23:26] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_app_datasync_v1_data_sync_proto_init() }

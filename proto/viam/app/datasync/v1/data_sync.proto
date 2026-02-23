@@ -82,7 +82,7 @@ enum MimeType {
 message SensorMetadata {
   google.protobuf.Timestamp time_requested = 1;
   google.protobuf.Timestamp time_received = 2;
-  MimeType mime_type = 3; [deprecated = true];
+  MimeType mime_type = 3 [deprecated = true];
   app.data.v1.Annotations annotations = 4;
 }
 
