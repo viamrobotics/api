@@ -294,6 +294,11 @@ export class GetPropertiesResponse extends jspb.Message {
   getFrameRate(): number;
   setFrameRate(value: number): void;
 
+  hasExtrinsicParameters(): boolean;
+  clearExtrinsicParameters(): void;
+  getExtrinsicParameters(): ExtrinsicParameters | undefined;
+  setExtrinsicParameters(value?: ExtrinsicParameters): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
@@ -311,6 +316,7 @@ export namespace GetPropertiesResponse {
     distortionParameters?: DistortionParameters.AsObject,
     mimeTypesList: Array<string>,
     frameRate: number,
+    extrinsicParameters?: ExtrinsicParameters.AsObject,
   }
 }
 
@@ -469,6 +475,28 @@ export namespace DistortionParameters {
   export type AsObject = {
     model: string,
     parametersList: Array<number>,
+  }
+}
+
+export class ExtrinsicParameters extends jspb.Message {
+  hasPose(): boolean;
+  clearPose(): void;
+  getPose(): common_v1_common_pb.Pose | undefined;
+  setPose(value?: common_v1_common_pb.Pose): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExtrinsicParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: ExtrinsicParameters): ExtrinsicParameters.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ExtrinsicParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExtrinsicParameters;
+  static deserializeBinaryFromReader(message: ExtrinsicParameters, reader: jspb.BinaryReader): ExtrinsicParameters;
+}
+
+export namespace ExtrinsicParameters {
+  export type AsObject = {
+    pose?: common_v1_common_pb.Pose.AsObject,
   }
 }
 
