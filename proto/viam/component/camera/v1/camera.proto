@@ -150,7 +150,7 @@ message GetPropertiesResponse {
   repeated string mime_types = 4;
   // Optional camera frame rate for image capture timing
   optional float frame_rate = 5;
-  // Parameters for the camera's position and orientation relative to a reference frame
+  // Parameters for the camera's position relative to a reference frame
   // If camera does not provide extrinsic parameters, leave the field empty
   ExtrinsicParameters extrinsic_parameters = 6;
 }
@@ -197,9 +197,9 @@ message DistortionParameters {
   repeated double parameters = 2;
 }
 
-// ExtrinsicParameters define the position and orientation of the camera
+// ExtrinsicParameters define the position of the camera
 // relative to a reference frame (the world or another sensor).
 message ExtrinsicParameters {
-  // The pose of the camera in the reference frame
-  common.v1.Pose pose = 1;
+  // The translation from the reference frame to the camera.
+  common.v1.Vector3 translation = 1;
 }
