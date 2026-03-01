@@ -3799,7 +3799,7 @@ proto.viam.component.camera.v1.ExtrinsicParameters.prototype.toObject = function
  */
 proto.viam.component.camera.v1.ExtrinsicParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pose: (f = msg.getPose()) && common_v1_common_pb.Pose.toObject(includeInstance, f)
+    translation: (f = msg.getTranslation()) && common_v1_common_pb.Vector3.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3837,9 +3837,9 @@ proto.viam.component.camera.v1.ExtrinsicParameters.deserializeBinaryFromReader =
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new common_v1_common_pb.Pose;
-      reader.readMessage(value,common_v1_common_pb.Pose.deserializeBinaryFromReader);
-      msg.setPose(value);
+      var value = new common_v1_common_pb.Vector3;
+      reader.readMessage(value,common_v1_common_pb.Vector3.deserializeBinaryFromReader);
+      msg.setTranslation(value);
       break;
     default:
       reader.skipField();
@@ -3870,32 +3870,32 @@ proto.viam.component.camera.v1.ExtrinsicParameters.prototype.serializeBinary = f
  */
 proto.viam.component.camera.v1.ExtrinsicParameters.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPose();
+  f = message.getTranslation();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      common_v1_common_pb.Pose.serializeBinaryToWriter
+      common_v1_common_pb.Vector3.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional viam.common.v1.Pose pose = 1;
- * @return {?proto.viam.common.v1.Pose}
+ * optional viam.common.v1.Vector3 translation = 1;
+ * @return {?proto.viam.common.v1.Vector3}
  */
-proto.viam.component.camera.v1.ExtrinsicParameters.prototype.getPose = function() {
-  return /** @type{?proto.viam.common.v1.Pose} */ (
-    jspb.Message.getWrapperField(this, common_v1_common_pb.Pose, 1));
+proto.viam.component.camera.v1.ExtrinsicParameters.prototype.getTranslation = function() {
+  return /** @type{?proto.viam.common.v1.Vector3} */ (
+    jspb.Message.getWrapperField(this, common_v1_common_pb.Vector3, 1));
 };
 
 
 /**
- * @param {?proto.viam.common.v1.Pose|undefined} value
+ * @param {?proto.viam.common.v1.Vector3|undefined} value
  * @return {!proto.viam.component.camera.v1.ExtrinsicParameters} returns this
 */
-proto.viam.component.camera.v1.ExtrinsicParameters.prototype.setPose = function(value) {
+proto.viam.component.camera.v1.ExtrinsicParameters.prototype.setTranslation = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -3904,8 +3904,8 @@ proto.viam.component.camera.v1.ExtrinsicParameters.prototype.setPose = function(
  * Clears the message field making it undefined.
  * @return {!proto.viam.component.camera.v1.ExtrinsicParameters} returns this
  */
-proto.viam.component.camera.v1.ExtrinsicParameters.prototype.clearPose = function() {
-  return this.setPose(undefined);
+proto.viam.component.camera.v1.ExtrinsicParameters.prototype.clearTranslation = function() {
+  return this.setTranslation(undefined);
 };
 
 
@@ -3913,7 +3913,7 @@ proto.viam.component.camera.v1.ExtrinsicParameters.prototype.clearPose = functio
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.component.camera.v1.ExtrinsicParameters.prototype.hasPose = function() {
+proto.viam.component.camera.v1.ExtrinsicParameters.prototype.hasTranslation = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 

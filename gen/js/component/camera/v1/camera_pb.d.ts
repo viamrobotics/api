@@ -479,10 +479,10 @@ export namespace DistortionParameters {
 }
 
 export class ExtrinsicParameters extends jspb.Message {
-  hasPose(): boolean;
-  clearPose(): void;
-  getPose(): common_v1_common_pb.Pose | undefined;
-  setPose(value?: common_v1_common_pb.Pose): void;
+  hasTranslation(): boolean;
+  clearTranslation(): void;
+  getTranslation(): common_v1_common_pb.Vector3 | undefined;
+  setTranslation(value?: common_v1_common_pb.Vector3): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ExtrinsicParameters.AsObject;
@@ -496,7 +496,7 @@ export class ExtrinsicParameters extends jspb.Message {
 
 export namespace ExtrinsicParameters {
   export type AsObject = {
-    pose?: common_v1_common_pb.Pose.AsObject,
+    translation?: common_v1_common_pb.Vector3.AsObject,
   }
 }
 
