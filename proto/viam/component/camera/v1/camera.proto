@@ -202,4 +202,6 @@ message DistortionParameters {
 message ExtrinsicParameters {
   // The translation from the reference frame to the camera.
   common.v1.Vector3 translation = 1;
+  // The orientation from the reference frame to the camera.
+  common.v1.Orientation orientation = 2;
 }
