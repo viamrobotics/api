@@ -34,7 +34,7 @@ type CameraServiceClient interface {
 	// GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	GetPointCloud(ctx context.Context, in *GetPointCloudRequest, opts ...grpc.CallOption) (*GetPointCloudResponse, error)
-	// GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+	// GetProperties returns the camera intrinsic parameters, camera distortion parameters, and extrinsic parameters from a camera of the underlying robot, if available.
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
@@ -127,7 +127,7 @@ type CameraServiceServer interface {
 	// GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
 	// can be requested but may not necessarily be the same one returned.
 	GetPointCloud(context.Context, *GetPointCloudRequest) (*GetPointCloudResponse, error)
-	// GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+	// GetProperties returns the camera intrinsic parameters, camera distortion parameters, and extrinsic parameters from a camera of the underlying robot, if available.
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
