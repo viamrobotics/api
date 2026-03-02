@@ -484,6 +484,11 @@ export class ExtrinsicParameters extends jspb.Message {
   getTranslation(): common_v1_common_pb.Vector3 | undefined;
   setTranslation(value?: common_v1_common_pb.Vector3): void;
 
+  hasOrientation(): boolean;
+  clearOrientation(): void;
+  getOrientation(): common_v1_common_pb.Orientation | undefined;
+  setOrientation(value?: common_v1_common_pb.Orientation): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ExtrinsicParameters.AsObject;
   static toObject(includeInstance: boolean, msg: ExtrinsicParameters): ExtrinsicParameters.AsObject;
@@ -497,6 +502,7 @@ export class ExtrinsicParameters extends jspb.Message {
 export namespace ExtrinsicParameters {
   export type AsObject = {
     translation?: common_v1_common_pb.Vector3.AsObject,
+    orientation?: common_v1_common_pb.Orientation.AsObject,
   }
 }
 

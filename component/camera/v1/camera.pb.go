@@ -1073,6 +1073,8 @@ type ExtrinsicParameters struct {
 
 	// The translation from the reference frame to the camera.
 	Translation *v1.Vector3 `protobuf:"bytes,1,opt,name=translation,proto3" json:"translation,omitempty"`
+	// The orientation from the reference frame to the camera.
+	Orientation *v1.Orientation `protobuf:"bytes,2,opt,name=orientation,proto3" json:"orientation,omitempty"`
 }
 
 func (x *ExtrinsicParameters) Reset() {
@@ -1108,6 +1110,13 @@ func (*ExtrinsicParameters) Descriptor() ([]byte, []int) {
 func (x *ExtrinsicParameters) GetTranslation() *v1.Vector3 {
 	if x != nil {
 		return x.Translation
+	}
+	return nil
+}
+
+func (x *ExtrinsicParameters) GetOrientation() *v1.Orientation {
+	if x != nil {
+		return x.Orientation
 	}
 	return nil
 }
@@ -1262,11 +1271,15 @@ var file_component_camera_v1_camera_proto_rawDesc = []byte{
 	0x64, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
 	0x12, 0x1e, 0x0a, 0x0a, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x18, 0x02,
 	0x20, 0x03, 0x28, 0x01, 0x52, 0x0a, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73,
-	0x22, 0x50, 0x0a, 0x13, 0x45, 0x78, 0x74, 0x72, 0x69, 0x6e, 0x73, 0x69, 0x63, 0x50, 0x61, 0x72,
-	0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x12, 0x39, 0x0a, 0x0b, 0x74, 0x72, 0x61, 0x6e, 0x73,
-	0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x65,
-	0x63, 0x74, 0x6f, 0x72, 0x33, 0x52, 0x0b, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74, 0x69,
+	0x22, 0x8f, 0x01, 0x0a, 0x13, 0x45, 0x78, 0x74, 0x72, 0x69, 0x6e, 0x73, 0x69, 0x63, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x12, 0x39, 0x0a, 0x0b, 0x74, 0x72, 0x61, 0x6e,
+	0x73, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x56,
+	0x65, 0x63, 0x74, 0x6f, 0x72, 0x33, 0x52, 0x0b, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x12, 0x3d, 0x0a, 0x0b, 0x6f, 0x72, 0x69, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4f, 0x72, 0x69, 0x65, 0x6e, 0x74,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0b, 0x6f, 0x72, 0x69, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69,
 	0x6f, 0x6e, 0x2a, 0x6c, 0x0a, 0x06, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x12, 0x16, 0x0a, 0x12,
 	0x46, 0x4f, 0x52, 0x4d, 0x41, 0x54, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49,
 	0x45, 0x44, 0x10, 0x00, 0x12, 0x13, 0x0a, 0x0f, 0x46, 0x4f, 0x52, 0x4d, 0x41, 0x54, 0x5f, 0x52,
@@ -1386,11 +1399,12 @@ var file_component_camera_v1_camera_proto_goTypes = []any{
 	(*v1.ResponseMetadata)(nil),      // 18: viam.common.v1.ResponseMetadata
 	(*v11.Annotations)(nil),          // 19: viam.app.data.v1.Annotations
 	(*v1.Vector3)(nil),               // 20: viam.common.v1.Vector3
-	(*v1.DoCommandRequest)(nil),      // 21: viam.common.v1.DoCommandRequest
-	(*v1.GetGeometriesRequest)(nil),  // 22: viam.common.v1.GetGeometriesRequest
-	(*httpbody.HttpBody)(nil),        // 23: google.api.HttpBody
-	(*v1.DoCommandResponse)(nil),     // 24: viam.common.v1.DoCommandResponse
-	(*v1.GetGeometriesResponse)(nil), // 25: viam.common.v1.GetGeometriesResponse
+	(*v1.Orientation)(nil),           // 21: viam.common.v1.Orientation
+	(*v1.DoCommandRequest)(nil),      // 22: viam.common.v1.DoCommandRequest
+	(*v1.GetGeometriesRequest)(nil),  // 23: viam.common.v1.GetGeometriesRequest
+	(*httpbody.HttpBody)(nil),        // 24: google.api.HttpBody
+	(*v1.DoCommandResponse)(nil),     // 25: viam.common.v1.DoCommandResponse
+	(*v1.GetGeometriesResponse)(nil), // 26: viam.common.v1.GetGeometriesResponse
 }
 var file_component_camera_v1_camera_proto_depIdxs = []int32{
 	17, // 0: viam.component.camera.v1.GetImageRequest.extra:type_name -> google.protobuf.Struct
@@ -1407,25 +1421,26 @@ var file_component_camera_v1_camera_proto_depIdxs = []int32{
 	12, // 11: viam.component.camera.v1.Webcams.webcams:type_name -> viam.component.camera.v1.Webcam
 	13, // 12: viam.component.camera.v1.Webcam.properties:type_name -> viam.component.camera.v1.Property
 	20, // 13: viam.component.camera.v1.ExtrinsicParameters.translation:type_name -> viam.common.v1.Vector3
-	1,  // 14: viam.component.camera.v1.CameraService.GetImage:input_type -> viam.component.camera.v1.GetImageRequest
-	3,  // 15: viam.component.camera.v1.CameraService.GetImages:input_type -> viam.component.camera.v1.GetImagesRequest
-	6,  // 16: viam.component.camera.v1.CameraService.RenderFrame:input_type -> viam.component.camera.v1.RenderFrameRequest
-	7,  // 17: viam.component.camera.v1.CameraService.GetPointCloud:input_type -> viam.component.camera.v1.GetPointCloudRequest
-	9,  // 18: viam.component.camera.v1.CameraService.GetProperties:input_type -> viam.component.camera.v1.GetPropertiesRequest
-	21, // 19: viam.component.camera.v1.CameraService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
-	22, // 20: viam.component.camera.v1.CameraService.GetGeometries:input_type -> viam.common.v1.GetGeometriesRequest
-	2,  // 21: viam.component.camera.v1.CameraService.GetImage:output_type -> viam.component.camera.v1.GetImageResponse
-	4,  // 22: viam.component.camera.v1.CameraService.GetImages:output_type -> viam.component.camera.v1.GetImagesResponse
-	23, // 23: viam.component.camera.v1.CameraService.RenderFrame:output_type -> google.api.HttpBody
-	8,  // 24: viam.component.camera.v1.CameraService.GetPointCloud:output_type -> viam.component.camera.v1.GetPointCloudResponse
-	10, // 25: viam.component.camera.v1.CameraService.GetProperties:output_type -> viam.component.camera.v1.GetPropertiesResponse
-	24, // 26: viam.component.camera.v1.CameraService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
-	25, // 27: viam.component.camera.v1.CameraService.GetGeometries:output_type -> viam.common.v1.GetGeometriesResponse
-	21, // [21:28] is the sub-list for method output_type
-	14, // [14:21] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	21, // 14: viam.component.camera.v1.ExtrinsicParameters.orientation:type_name -> viam.common.v1.Orientation
+	1,  // 15: viam.component.camera.v1.CameraService.GetImage:input_type -> viam.component.camera.v1.GetImageRequest
+	3,  // 16: viam.component.camera.v1.CameraService.GetImages:input_type -> viam.component.camera.v1.GetImagesRequest
+	6,  // 17: viam.component.camera.v1.CameraService.RenderFrame:input_type -> viam.component.camera.v1.RenderFrameRequest
+	7,  // 18: viam.component.camera.v1.CameraService.GetPointCloud:input_type -> viam.component.camera.v1.GetPointCloudRequest
+	9,  // 19: viam.component.camera.v1.CameraService.GetProperties:input_type -> viam.component.camera.v1.GetPropertiesRequest
+	22, // 20: viam.component.camera.v1.CameraService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
+	23, // 21: viam.component.camera.v1.CameraService.GetGeometries:input_type -> viam.common.v1.GetGeometriesRequest
+	2,  // 22: viam.component.camera.v1.CameraService.GetImage:output_type -> viam.component.camera.v1.GetImageResponse
+	4,  // 23: viam.component.camera.v1.CameraService.GetImages:output_type -> viam.component.camera.v1.GetImagesResponse
+	24, // 24: viam.component.camera.v1.CameraService.RenderFrame:output_type -> google.api.HttpBody
+	8,  // 25: viam.component.camera.v1.CameraService.GetPointCloud:output_type -> viam.component.camera.v1.GetPointCloudResponse
+	10, // 26: viam.component.camera.v1.CameraService.GetProperties:output_type -> viam.component.camera.v1.GetPropertiesResponse
+	25, // 27: viam.component.camera.v1.CameraService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
+	26, // 28: viam.component.camera.v1.CameraService.GetGeometries:output_type -> viam.common.v1.GetGeometriesResponse
+	22, // [22:29] is the sub-list for method output_type
+	15, // [15:22] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_component_camera_v1_camera_proto_init() }

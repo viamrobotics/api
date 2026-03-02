@@ -3799,7 +3799,8 @@ proto.viam.component.camera.v1.ExtrinsicParameters.prototype.toObject = function
  */
 proto.viam.component.camera.v1.ExtrinsicParameters.toObject = function(includeInstance, msg) {
   var f, obj = {
-    translation: (f = msg.getTranslation()) && common_v1_common_pb.Vector3.toObject(includeInstance, f)
+    translation: (f = msg.getTranslation()) && common_v1_common_pb.Vector3.toObject(includeInstance, f),
+    orientation: (f = msg.getOrientation()) && common_v1_common_pb.Orientation.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3841,6 +3842,11 @@ proto.viam.component.camera.v1.ExtrinsicParameters.deserializeBinaryFromReader =
       reader.readMessage(value,common_v1_common_pb.Vector3.deserializeBinaryFromReader);
       msg.setTranslation(value);
       break;
+    case 2:
+      var value = new common_v1_common_pb.Orientation;
+      reader.readMessage(value,common_v1_common_pb.Orientation.deserializeBinaryFromReader);
+      msg.setOrientation(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3876,6 +3882,14 @@ proto.viam.component.camera.v1.ExtrinsicParameters.serializeBinaryToWriter = fun
       1,
       f,
       common_v1_common_pb.Vector3.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrientation();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      common_v1_common_pb.Orientation.serializeBinaryToWriter
     );
   }
 };
@@ -3915,6 +3929,43 @@ proto.viam.component.camera.v1.ExtrinsicParameters.prototype.clearTranslation = 
  */
 proto.viam.component.camera.v1.ExtrinsicParameters.prototype.hasTranslation = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional viam.common.v1.Orientation orientation = 2;
+ * @return {?proto.viam.common.v1.Orientation}
+ */
+proto.viam.component.camera.v1.ExtrinsicParameters.prototype.getOrientation = function() {
+  return /** @type{?proto.viam.common.v1.Orientation} */ (
+    jspb.Message.getWrapperField(this, common_v1_common_pb.Orientation, 2));
+};
+
+
+/**
+ * @param {?proto.viam.common.v1.Orientation|undefined} value
+ * @return {!proto.viam.component.camera.v1.ExtrinsicParameters} returns this
+*/
+proto.viam.component.camera.v1.ExtrinsicParameters.prototype.setOrientation = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.component.camera.v1.ExtrinsicParameters} returns this
+ */
+proto.viam.component.camera.v1.ExtrinsicParameters.prototype.clearOrientation = function() {
+  return this.setOrientation(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.camera.v1.ExtrinsicParameters.prototype.hasOrientation = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
