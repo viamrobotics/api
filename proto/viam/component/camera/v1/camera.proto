@@ -35,7 +35,7 @@ service CameraService {
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/point_cloud"};
   }
 
-  // GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+  // GetProperties returns the camera intrinsic parameters, camera distortion parameters, and extrinsic parameters from a camera of the underlying robot, if available.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/camera/{name}/properties"};
   }
@@ -150,6 +150,9 @@ message GetPropertiesResponse {
   repeated string mime_types = 4;
   // Optional camera frame rate for image capture timing
   optional float frame_rate = 5;
+  // Parameters for the camera's position relative to a reference frame
+  // If camera does not provide extrinsic parameters, leave the field empty
+  ExtrinsicParameters extrinsic_parameters = 6;
 }
 
 message Webcams {
@@ -192,4 +195,13 @@ message IntrinsicParameters {
 message DistortionParameters {
   string model = 1;
   repeated double parameters = 2;
+}
+
+// ExtrinsicParameters define the position of the camera
+// relative to a reference frame (the world or another sensor).
+message ExtrinsicParameters {
+  // The translation from the reference frame to the camera.
+  common.v1.Vector3 translation = 1;
+  // The orientation from the reference frame to the camera.
+  common.v1.Orientation orientation = 2;
 }

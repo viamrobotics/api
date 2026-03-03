@@ -385,7 +385,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.component.arm.v1.MoveOptions = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.component.arm.v1.MoveOptions.repeatedFields_, null);
 };
 goog.inherits(proto.viam.component.arm.v1.MoveOptions, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -3051,6 +3051,13 @@ proto.viam.component.arm.v1.IsMovingResponse.prototype.setIsMoving = function(va
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.component.arm.v1.MoveOptions.repeatedFields_ = [3,4];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -3083,7 +3090,9 @@ proto.viam.component.arm.v1.MoveOptions.prototype.toObject = function(opt_includ
 proto.viam.component.arm.v1.MoveOptions.toObject = function(includeInstance, msg) {
   var f, obj = {
     maxVelDegsPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    maxAccDegsPerSec2: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+    maxAccDegsPerSec2: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    maxVelDegsPerSecJointsList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 3)) == null ? undefined : f,
+    maxAccDegsPerSec2JointsList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -3128,6 +3137,18 @@ proto.viam.component.arm.v1.MoveOptions.deserializeBinaryFromReader = function(m
       var value = /** @type {number} */ (reader.readDouble());
       msg.setMaxAccDegsPerSec2(value);
       break;
+    case 3:
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedDouble() : [reader.readDouble()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addMaxVelDegsPerSecJoints(values[i]);
+      }
+      break;
+    case 4:
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedDouble() : [reader.readDouble()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addMaxAccDegsPerSec2Joints(values[i]);
+      }
+      break;
     default:
       reader.skipField();
       break;
@@ -3168,6 +3189,20 @@ proto.viam.component.arm.v1.MoveOptions.serializeBinaryToWriter = function(messa
   if (f != null) {
     writer.writeDouble(
       2,
+      f
+    );
+  }
+  f = message.getMaxVelDegsPerSecJointsList();
+  if (f.length > 0) {
+    writer.writePackedDouble(
+      3,
+      f
+    );
+  }
+  f = message.getMaxAccDegsPerSec2JointsList();
+  if (f.length > 0) {
+    writer.writePackedDouble(
+      4,
       f
     );
   }
@@ -3243,6 +3278,80 @@ proto.viam.component.arm.v1.MoveOptions.prototype.clearMaxAccDegsPerSec2 = funct
  */
 proto.viam.component.arm.v1.MoveOptions.prototype.hasMaxAccDegsPerSec2 = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * repeated double max_vel_degs_per_sec_joints = 3;
+ * @return {!Array<number>}
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.getMaxVelDegsPerSecJointsList = function() {
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedFloatingPointField(this, 3));
+};
+
+
+/**
+ * @param {!Array<number>} value
+ * @return {!proto.viam.component.arm.v1.MoveOptions} returns this
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.setMaxVelDegsPerSecJointsList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {number} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.component.arm.v1.MoveOptions} returns this
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.addMaxVelDegsPerSecJoints = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.component.arm.v1.MoveOptions} returns this
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.clearMaxVelDegsPerSecJointsList = function() {
+  return this.setMaxVelDegsPerSecJointsList([]);
+};
+
+
+/**
+ * repeated double max_acc_degs_per_sec2_joints = 4;
+ * @return {!Array<number>}
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.getMaxAccDegsPerSec2JointsList = function() {
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedFloatingPointField(this, 4));
+};
+
+
+/**
+ * @param {!Array<number>} value
+ * @return {!proto.viam.component.arm.v1.MoveOptions} returns this
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.setMaxAccDegsPerSec2JointsList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {number} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.component.arm.v1.MoveOptions} returns this
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.addMaxAccDegsPerSec2Joints = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.component.arm.v1.MoveOptions} returns this
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.clearMaxAccDegsPerSec2JointsList = function() {
+  return this.setMaxAccDegsPerSec2JointsList([]);
 };
 
 

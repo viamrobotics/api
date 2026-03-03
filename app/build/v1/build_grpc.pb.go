@@ -44,6 +44,8 @@ type BuildServiceClient interface {
 	UnlinkOrg(ctx context.Context, in *UnlinkOrgRequest, opts ...grpc.CallOption) (*UnlinkOrgResponse, error)
 	// upload the local dev environment and build a module for hot reloading
 	StartReloadBuild(ctx context.Context, opts ...grpc.CallOption) (BuildService_StartReloadBuildClient, error)
+	// Start a build where the source code is hosted by Viam
+	StartPackageBuild(ctx context.Context, in *StartPackageBuildRequest, opts ...grpc.CallOption) (*StartPackageBuildResponse, error)
 }
 
 type buildServiceClient struct {
@@ -201,6 +203,15 @@ func (x *buildServiceStartReloadBuildClient) CloseAndRecv() (*StartReloadBuildRe
 	return m, nil
 }
 
+func (c *buildServiceClient) StartPackageBuild(ctx context.Context, in *StartPackageBuildRequest, opts ...grpc.CallOption) (*StartPackageBuildResponse, error) {
+	out := new(StartPackageBuildResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.build.v1.BuildService/StartPackageBuild", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BuildServiceServer is the server API for BuildService service.
 // All implementations must embed UnimplementedBuildServiceServer
 // for forward compatibility
@@ -227,6 +238,8 @@ type BuildServiceServer interface {
 	UnlinkOrg(context.Context, *UnlinkOrgRequest) (*UnlinkOrgResponse, error)
 	// upload the local dev environment and build a module for hot reloading
 	StartReloadBuild(BuildService_StartReloadBuildServer) error
+	// Start a build where the source code is hosted by Viam
+	StartPackageBuild(context.Context, *StartPackageBuildRequest) (*StartPackageBuildResponse, error)
 	mustEmbedUnimplementedBuildServiceServer()
 }
 
@@ -266,6 +279,9 @@ func (UnimplementedBuildServiceServer) UnlinkOrg(context.Context, *UnlinkOrgRequ
 }
 func (UnimplementedBuildServiceServer) StartReloadBuild(BuildService_StartReloadBuildServer) error {
 	return status.Errorf(codes.Unimplemented, "method StartReloadBuild not implemented")
+}
+func (UnimplementedBuildServiceServer) StartPackageBuild(context.Context, *StartPackageBuildRequest) (*StartPackageBuildResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartPackageBuild not implemented")
 }
 func (UnimplementedBuildServiceServer) mustEmbedUnimplementedBuildServiceServer() {}
 
@@ -489,6 +505,24 @@ func (x *buildServiceStartReloadBuildServer) Recv() (*StartReloadBuildRequest, e
 	return m, nil
 }
 
+func _BuildService_StartPackageBuild_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartPackageBuildRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BuildServiceServer).StartPackageBuild(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.build.v1.BuildService/StartPackageBuild",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BuildServiceServer).StartPackageBuild(ctx, req.(*StartPackageBuildRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BuildService_ServiceDesc is the grpc.ServiceDesc for BuildService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -531,6 +565,10 @@ var BuildService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnlinkOrg",
 			Handler:    _BuildService_UnlinkOrg_Handler,
+		},
+		{
+			MethodName: "StartPackageBuild",
+			Handler:    _BuildService_StartPackageBuild_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

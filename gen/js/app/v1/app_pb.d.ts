@@ -262,6 +262,11 @@ export class Organization extends jspb.Message {
   getCid(): string;
   setCid(value: string): void;
 
+  hasDefaultFragments(): boolean;
+  clearDefaultFragments(): void;
+  getDefaultFragments(): FragmentImportList | undefined;
+  setDefaultFragments(value?: FragmentImportList): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -280,6 +285,7 @@ export namespace Organization {
     publicNamespace: string,
     defaultRegion: string,
     cid: string,
+    defaultFragments?: FragmentImportList.AsObject,
   }
 }
 
@@ -513,6 +519,28 @@ export namespace GetOrganizationNamespaceAvailabilityResponse {
   }
 }
 
+export class FragmentImportList extends jspb.Message {
+  clearFragmentsList(): void;
+  getFragmentsList(): Array<FragmentImport>;
+  setFragmentsList(value: Array<FragmentImport>): void;
+  addFragments(value?: FragmentImport, index?: number): FragmentImport;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentImportList.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentImportList): FragmentImportList.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentImportList, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentImportList;
+  static deserializeBinaryFromReader(message: FragmentImportList, reader: jspb.BinaryReader): FragmentImportList;
+}
+
+export namespace FragmentImportList {
+  export type AsObject = {
+    fragmentsList: Array<FragmentImport.AsObject>,
+  }
+}
+
 export class UpdateOrganizationRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -537,6 +565,11 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getCid(): string;
   setCid(value: string): void;
 
+  hasDefaultFragments(): boolean;
+  clearDefaultFragments(): void;
+  getDefaultFragments(): FragmentImportList | undefined;
+  setDefaultFragments(value?: FragmentImportList): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateOrganizationRequest): UpdateOrganizationRequest.AsObject;
@@ -554,6 +587,7 @@ export namespace UpdateOrganizationRequest {
     publicNamespace: string,
     region: string,
     cid: string,
+    defaultFragments?: FragmentImportList.AsObject,
   }
 }
 
@@ -3083,6 +3117,39 @@ export namespace FragmentUsage {
   }
 }
 
+export class FragmentImport extends jspb.Message {
+  getFragmentId(): string;
+  setFragmentId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  hasPrefix(): boolean;
+  clearPrefix(): void;
+  getPrefix(): string;
+  setPrefix(value: string): void;
+
+  getVariablesMap(): jspb.Map<string, string>;
+  clearVariablesMap(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentImport.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentImport): FragmentImport.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentImport, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentImport;
+  static deserializeBinaryFromReader(message: FragmentImport, reader: jspb.BinaryReader): FragmentImport;
+}
+
+export namespace FragmentImport {
+  export type AsObject = {
+    fragmentId: string,
+    version: string,
+    prefix: string,
+    variablesMap: Array<[string, string]>,
+  }
+}
+
 export class ResolvedFragment extends jspb.Message {
   getFragmentId(): string;
   setFragmentId(value: string): void;
@@ -4918,6 +4985,16 @@ export class ModuleMetadata extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasSourceType(): boolean;
+  clearSourceType(): void;
+  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
+
+  hasLanguage(): boolean;
+  clearLanguage(): void;
+  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
+  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleMetadata): ModuleMetadata.AsObject;
@@ -4936,6 +5013,34 @@ export namespace ModuleMetadata {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
+    language: ModuleLanguageMap[keyof ModuleLanguageMap],
+  }
+}
+
+export class MLModelVersion extends jspb.Message {
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MLModelVersion.AsObject;
+  static toObject(includeInstance: boolean, msg: MLModelVersion): MLModelVersion.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MLModelVersion, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MLModelVersion;
+  static deserializeBinaryFromReader(message: MLModelVersion, reader: jspb.BinaryReader): MLModelVersion;
+}
+
+export namespace MLModelVersion {
+  export type AsObject = {
+    version: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -4950,6 +5055,11 @@ export class MLModelMetadata extends jspb.Message {
 
   getModelFramework(): app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap];
   setModelFramework(value: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap]): void;
+
+  clearDetailedVersionsList(): void;
+  getDetailedVersionsList(): Array<MLModelVersion>;
+  setDetailedVersionsList(value: Array<MLModelVersion>): void;
+  addDetailedVersions(value?: MLModelVersion, index?: number): MLModelVersion;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MLModelMetadata.AsObject;
@@ -4966,6 +5076,7 @@ export namespace MLModelMetadata {
     versionsList: Array<string>,
     modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
     modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
+    detailedVersionsList: Array<MLModelVersion.AsObject>,
   }
 }
 
@@ -5355,6 +5466,16 @@ export class ListRegistryItemsRequest extends jspb.Message {
   getIncludeMarkdownDocumentation(): boolean;
   setIncludeMarkdownDocumentation(value: boolean): void;
 
+  clearModuleSourceTypesList(): void;
+  getModuleSourceTypesList(): Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>;
+  setModuleSourceTypesList(value: Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>): void;
+  addModuleSourceTypes(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap], index?: number): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+
+  clearModuleLanguagesList(): void;
+  getModuleLanguagesList(): Array<ModuleLanguageMap[keyof ModuleLanguageMap]>;
+  setModuleLanguagesList(value: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>): void;
+  addModuleLanguages(value: ModuleLanguageMap[keyof ModuleLanguageMap], index?: number): ModuleLanguageMap[keyof ModuleLanguageMap];
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListRegistryItemsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListRegistryItemsRequest): ListRegistryItemsRequest.AsObject;
@@ -5376,6 +5497,8 @@ export namespace ListRegistryItemsRequest {
     pageToken: string,
     publicNamespacesList: Array<string>,
     includeMarkdownDocumentation: boolean,
+    moduleSourceTypesList: Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>,
+    moduleLanguagesList: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>,
   }
 }
 
@@ -5711,6 +5834,16 @@ export class UpdateModuleMetadata extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasSourceType(): boolean;
+  clearSourceType(): void;
+  getSourceType(): ModuleSourceTypeMap[keyof ModuleSourceTypeMap];
+  setSourceType(value: ModuleSourceTypeMap[keyof ModuleSourceTypeMap]): void;
+
+  hasLanguage(): boolean;
+  clearLanguage(): void;
+  getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
+  setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleMetadata): UpdateModuleMetadata.AsObject;
@@ -5726,6 +5859,8 @@ export namespace UpdateModuleMetadata {
     modelsList: Array<Model.AsObject>,
     entrypoint: string,
     appsList: Array<App.AsObject>,
+    sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
+    language: ModuleLanguageMap[keyof ModuleLanguageMap],
   }
 }
 
@@ -6726,6 +6861,9 @@ export class GetAppContentResponse extends jspb.Message {
   getAppType(): AppTypeMap[keyof AppTypeMap];
   setAppType(value: AppTypeMap[keyof AppTypeMap]): void;
 
+  getPublic(): boolean;
+  setPublic(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAppContentResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetAppContentResponse): GetAppContentResponse.AsObject;
@@ -6741,6 +6879,7 @@ export namespace GetAppContentResponse {
     blobPath: string,
     entrypoint: string,
     appType: AppTypeMap[keyof AppTypeMap],
+    pb_public: boolean,
   }
 }
 
@@ -7349,6 +7488,23 @@ export interface FragmentErrorTypeMap {
 }
 
 export const FragmentErrorType: FragmentErrorTypeMap;
+
+export interface ModuleSourceTypeMap {
+  MODULE_SOURCE_TYPE_UNSPECIFIED: 0;
+  MODULE_SOURCE_TYPE_EXTERNAL: 1;
+  MODULE_SOURCE_TYPE_VIAM_HOSTED: 2;
+}
+
+export const ModuleSourceType: ModuleSourceTypeMap;
+
+export interface ModuleLanguageMap {
+  MODULE_LANGUAGE_UNSPECIFIED: 0;
+  MODULE_LANGUAGE_GOLANG: 1;
+  MODULE_LANGUAGE_PYTHON: 2;
+  MODULE_LANGUAGE_CPP: 3;
+}
+
+export const ModuleLanguage: ModuleLanguageMap;
 
 export interface RegistryItemStatusMap {
   REGISTRY_ITEM_STATUS_UNSPECIFIED: 0;

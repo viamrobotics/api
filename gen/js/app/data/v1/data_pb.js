@@ -12055,7 +12055,8 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.toObject = function(incl
     xMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     yMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     xMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
+    yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+    confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0)
   };
 
   if (includeInstance) {
@@ -12120,6 +12121,10 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.deserializeBinaryFromRea
     case 6:
       var value = /** @type {number} */ (reader.readDouble());
       msg.setYMaxNormalized(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setConfidence(value);
       break;
     default:
       reader.skipField();
@@ -12197,6 +12202,13 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.serializeBinaryToWriter 
   if (f !== 0.0) {
     writer.writeDouble(
       6,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeDouble(
+      9,
       f
     );
   }
@@ -12345,6 +12357,42 @@ proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.getYMaxNormali
  */
 proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.setYMaxNormalized = function(value) {
   return jspb.Message.setProto3FloatField(this, 6, value);
+};
+
+
+/**
+ * optional double confidence = 9;
+ * @return {number}
+ */
+proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.getConfidence = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 9, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest} returns this
+ */
+proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.setConfidence = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest} returns this
+ */
+proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.clearConfidence = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.AddBoundingBoxToImageByIDRequest.prototype.hasConfidence = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
@@ -12829,7 +12877,8 @@ proto.viam.app.data.v1.UpdateBoundingBoxRequest.toObject = function(includeInsta
     xMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     yMinNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     xMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0)
+    yMaxNormalized: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+    confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0)
   };
 
   if (includeInstance) {
@@ -12898,6 +12947,10 @@ proto.viam.app.data.v1.UpdateBoundingBoxRequest.deserializeBinaryFromReader = fu
     case 7:
       var value = /** @type {number} */ (reader.readDouble());
       msg.setYMaxNormalized(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setConfidence(value);
       break;
     default:
       reader.skipField();
@@ -12982,6 +13035,13 @@ proto.viam.app.data.v1.UpdateBoundingBoxRequest.serializeBinaryToWriter = functi
   if (f != null) {
     writer.writeDouble(
       7,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeDouble(
+      9,
       f
     );
   }
@@ -13238,6 +13298,42 @@ proto.viam.app.data.v1.UpdateBoundingBoxRequest.prototype.clearYMaxNormalized = 
  */
 proto.viam.app.data.v1.UpdateBoundingBoxRequest.prototype.hasYMaxNormalized = function() {
   return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional double confidence = 9;
+ * @return {number}
+ */
+proto.viam.app.data.v1.UpdateBoundingBoxRequest.prototype.getConfidence = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 9, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.UpdateBoundingBoxRequest} returns this
+ */
+proto.viam.app.data.v1.UpdateBoundingBoxRequest.prototype.setConfidence = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.data.v1.UpdateBoundingBoxRequest} returns this
+ */
+proto.viam.app.data.v1.UpdateBoundingBoxRequest.prototype.clearConfidence = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.UpdateBoundingBoxRequest.prototype.hasConfidence = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 

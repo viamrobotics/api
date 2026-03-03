@@ -299,13 +299,23 @@ export class UploadMetadata extends jspb.Message {
   getType(): DataTypeMap[keyof DataTypeMap];
   setType(value: DataTypeMap[keyof DataTypeMap]): void;
 
+  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
+  clearMethodParametersMap(): void;
   getFileName(): string;
   setFileName(value: string): void;
 
-  getMethodParametersMap(): jspb.Map<string, google_protobuf_any_pb.Any>;
-  clearMethodParametersMap(): void;
   getFileExtension(): string;
   setFileExtension(value: string): void;
+
+  hasFileCreateTime(): boolean;
+  clearFileCreateTime(): void;
+  getFileCreateTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setFileCreateTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasFileModifyTime(): boolean;
+  clearFileModifyTime(): void;
+  getFileModifyTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setFileModifyTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   clearTagsList(): void;
   getTagsList(): Array<string>;
@@ -316,6 +326,9 @@ export class UploadMetadata extends jspb.Message {
   getDatasetIdsList(): Array<string>;
   setDatasetIdsList(value: Array<string>): void;
   addDatasetIds(value: string, index?: number): string;
+
+  getMimeType(): string;
+  setMimeType(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UploadMetadata.AsObject;
@@ -334,11 +347,14 @@ export namespace UploadMetadata {
     componentName: string,
     methodName: string,
     type: DataTypeMap[keyof DataTypeMap],
-    fileName: string,
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
+    fileName: string,
     fileExtension: string,
+    fileCreateTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    fileModifyTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     tagsList: Array<string>,
     datasetIdsList: Array<string>,
+    mimeType: string,
   }
 }
 
@@ -393,6 +409,9 @@ export class DataCaptureMetadata extends jspb.Message {
   setTagsList(value: Array<string>): void;
   addTags(value: string, index?: number): string;
 
+  getMimeType(): string;
+  setMimeType(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataCaptureMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: DataCaptureMetadata): DataCaptureMetadata.AsObject;
@@ -412,6 +431,7 @@ export namespace DataCaptureMetadata {
     methodParametersMap: Array<[string, google_protobuf_any_pb.Any.AsObject]>,
     fileExtension: string,
     tagsList: Array<string>,
+    mimeType: string,
   }
 }
 
@@ -448,6 +468,7 @@ export interface MimeTypeMap {
   MIME_TYPE_IMAGE_JPEG: 1;
   MIME_TYPE_IMAGE_PNG: 2;
   MIME_TYPE_APPLICATION_PCD: 3;
+  MIME_TYPE_VIDEO_MP4: 4;
 }
 
 export const MimeType: MimeTypeMap;

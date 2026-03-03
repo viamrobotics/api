@@ -206,8 +206,8 @@ export class TracingConfig extends jspb.Message {
   getDisk(): boolean;
   setDisk(value: boolean): void;
 
-  getStdout(): boolean;
-  setStdout(value: boolean): void;
+  getConsole(): boolean;
+  setConsole(value: boolean): void;
 
   getOtlpEndpoint(): string;
   setOtlpEndpoint(value: string): void;
@@ -226,7 +226,7 @@ export namespace TracingConfig {
   export type AsObject = {
     enabled: boolean,
     disk: boolean,
-    stdout: boolean,
+    console: boolean,
     otlpEndpoint: string,
   }
 }

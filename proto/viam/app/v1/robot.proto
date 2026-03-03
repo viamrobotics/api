@@ -82,8 +82,8 @@ message TracingConfig {
   bool enabled = 1;
   // Save trace spans to a file on disk.
   bool disk = 2;
-  // Print trace spans to stdout.
-  bool stdout = 3;
+  // Print trace spans to the console.
+  bool console = 3;
   // Send trace spans to an OTLP gRPC endpoint.
   string otlp_endpoint = 4;
 }
