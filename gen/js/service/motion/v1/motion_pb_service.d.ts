@@ -77,6 +77,15 @@ type MotionServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type MotionServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof MotionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 export class MotionService {
   static readonly serviceName: string;
   static readonly Move: MotionServiceMove;
@@ -87,6 +96,7 @@ export class MotionService {
   static readonly ListPlanStatuses: MotionServiceListPlanStatuses;
   static readonly GetPlan: MotionServiceGetPlan;
   static readonly DoCommand: MotionServiceDoCommand;
+  static readonly GetStatus: MotionServiceGetStatus;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -192,6 +202,15 @@ export class MotionServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
 }
 

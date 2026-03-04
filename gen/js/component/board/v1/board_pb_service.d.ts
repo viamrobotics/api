@@ -68,6 +68,15 @@ type BoardServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type BoardServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof BoardService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type BoardServiceReadAnalogReader = {
   readonly methodName: string;
   readonly service: typeof BoardService;
@@ -131,6 +140,7 @@ export class BoardService {
   static readonly PWMFrequency: BoardServicePWMFrequency;
   static readonly SetPWMFrequency: BoardServiceSetPWMFrequency;
   static readonly DoCommand: BoardServiceDoCommand;
+  static readonly GetStatus: BoardServiceGetStatus;
   static readonly ReadAnalogReader: BoardServiceReadAnalogReader;
   static readonly WriteAnalog: BoardServiceWriteAnalog;
   static readonly GetDigitalInterruptValue: BoardServiceGetDigitalInterruptValue;
@@ -233,6 +243,15 @@ export class BoardServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   readAnalogReader(
     requestMessage: component_board_v1_board_pb.ReadAnalogReaderRequest,
