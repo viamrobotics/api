@@ -32,6 +32,15 @@ type AudioOutServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type AudioOutServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof AudioOutService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type AudioOutServiceGetGeometries = {
   readonly methodName: string;
   readonly service: typeof AudioOutService;
@@ -46,6 +55,7 @@ export class AudioOutService {
   static readonly Play: AudioOutServicePlay;
   static readonly GetProperties: AudioOutServiceGetProperties;
   static readonly DoCommand: AudioOutServiceDoCommand;
+  static readonly GetStatus: AudioOutServiceGetStatus;
   static readonly GetGeometries: AudioOutServiceGetGeometries;
 }
 
@@ -107,6 +117,15 @@ export class AudioOutServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,

@@ -77,6 +77,15 @@ type ArmServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type ArmServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type ArmServiceGetKinematics = {
   readonly methodName: string;
   readonly service: typeof ArmService;
@@ -114,6 +123,7 @@ export class ArmService {
   static readonly Stop: ArmServiceStop;
   static readonly IsMoving: ArmServiceIsMoving;
   static readonly DoCommand: ArmServiceDoCommand;
+  static readonly GetStatus: ArmServiceGetStatus;
   static readonly GetKinematics: ArmServiceGetKinematics;
   static readonly GetGeometries: ArmServiceGetGeometries;
   static readonly Get3DModels: ArmServiceGet3DModels;
@@ -222,6 +232,15 @@ export class ArmServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   getKinematics(
     requestMessage: common_v1_common_pb.GetKinematicsRequest,
