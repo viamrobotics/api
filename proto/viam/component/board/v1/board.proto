@@ -46,6 +46,11 @@ service BoardService {
     option (google.api.http) = {post: "/viam/api/v1/component/board/{name}/do_command"};
   }
 
+  // GetStatus returns the status of the resource
+  rpc GetStatus(common.v1.GetStatusRequest) returns (common.v1.GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/board/{name}/get_status"};
+  }
+
   // Analog Reader
 
   // ReadAnalogReader reads off the current value of an analog reader of a board of the underlying robot.

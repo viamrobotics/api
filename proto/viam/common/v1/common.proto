@@ -195,6 +195,16 @@ message DoCommandResponse {
   google.protobuf.Struct result = 1;
 }
 
+// GetStatusRequest represents a generic GetStatus input
+message GetStatusRequest {
+  string name = 1;
+}
+
+// GetStatusResponse represents a generic GetStatus output
+message GetStatusResponse {
+  google.protobuf.Struct result = 1;
+}
+
 message GetKinematicsRequest {
   // The component name
   string name = 1;
