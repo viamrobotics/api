@@ -187,7 +187,9 @@ proto.viam.app.agent.v1.DeviceAgentConfigRequest.toObject = function(includeInst
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     hostInfo: (f = msg.getHostInfo()) && proto.viam.app.agent.v1.HostInfo.toObject(includeInstance, f),
     subsystemVersionsMap: (f = msg.getSubsystemVersionsMap()) ? f.toObject(includeInstance, undefined) : [],
-    versionInfo: (f = msg.getVersionInfo()) && proto.viam.app.agent.v1.VersionInfo.toObject(includeInstance, f)
+    versionInfo: (f = msg.getVersionInfo()) && proto.viam.app.agent.v1.VersionInfo.toObject(includeInstance, f),
+    agentUptime: (f = msg.getAgentUptime()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+    viamServerUptime: (f = msg.getViamServerUptime()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -244,6 +246,16 @@ proto.viam.app.agent.v1.DeviceAgentConfigRequest.deserializeBinaryFromReader = f
       reader.readMessage(value,proto.viam.app.agent.v1.VersionInfo.deserializeBinaryFromReader);
       msg.setVersionInfo(value);
       break;
+    case 5:
+      var value = new google_protobuf_duration_pb.Duration;
+      reader.readMessage(value,google_protobuf_duration_pb.Duration.deserializeBinaryFromReader);
+      msg.setAgentUptime(value);
+      break;
+    case 6:
+      var value = new google_protobuf_duration_pb.Duration;
+      reader.readMessage(value,google_protobuf_duration_pb.Duration.deserializeBinaryFromReader);
+      msg.setViamServerUptime(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -298,6 +310,22 @@ proto.viam.app.agent.v1.DeviceAgentConfigRequest.serializeBinaryToWriter = funct
       4,
       f,
       proto.viam.app.agent.v1.VersionInfo.serializeBinaryToWriter
+    );
+  }
+  f = message.getAgentUptime();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_duration_pb.Duration.serializeBinaryToWriter
+    );
+  }
+  f = message.getViamServerUptime();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_duration_pb.Duration.serializeBinaryToWriter
     );
   }
 };
@@ -414,6 +442,80 @@ proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.clearVersionInfo = fu
  */
 proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.hasVersionInfo = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.Duration agent_uptime = 5;
+ * @return {?proto.google.protobuf.Duration}
+ */
+proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.getAgentUptime = function() {
+  return /** @type{?proto.google.protobuf.Duration} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_duration_pb.Duration, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Duration|undefined} value
+ * @return {!proto.viam.app.agent.v1.DeviceAgentConfigRequest} returns this
+*/
+proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.setAgentUptime = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.agent.v1.DeviceAgentConfigRequest} returns this
+ */
+proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.clearAgentUptime = function() {
+  return this.setAgentUptime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.hasAgentUptime = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional google.protobuf.Duration viam_server_uptime = 6;
+ * @return {?proto.google.protobuf.Duration}
+ */
+proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.getViamServerUptime = function() {
+  return /** @type{?proto.google.protobuf.Duration} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_duration_pb.Duration, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Duration|undefined} value
+ * @return {!proto.viam.app.agent.v1.DeviceAgentConfigRequest} returns this
+*/
+proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.setViamServerUptime = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.agent.v1.DeviceAgentConfigRequest} returns this
+ */
+proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.clearViamServerUptime = function() {
+  return this.setViamServerUptime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.agent.v1.DeviceAgentConfigRequest.prototype.hasViamServerUptime = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
