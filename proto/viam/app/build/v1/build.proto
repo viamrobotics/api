@@ -57,6 +57,9 @@ message StartBuildRequest {
   optional string token = 6;
   // optional working directory. defaults to repo root.
   optional string workdir = 7;
+  // optional distro for linux platforms. defaults to bullseye.
+  // must be bookworm for cpp module builds.
+  optional string distro = 8;
 }
 
 message StartBuildResponse {
