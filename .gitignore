@@ -38,3 +38,7 @@ dist/*
 
 # license finder
 lf_logs/
+
+# Claude Code
+.claude/worktrees
+.claude/settings.local.json
