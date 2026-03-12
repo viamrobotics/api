@@ -1996,6 +1996,7 @@ message OAuthConfig {
   repeated string redirect_uris = 5;
   string logout_uri = 6;
   repeated EnabledGrant enabled_grants = 7;
+  string invite_redirect_uri = 8;
 }
 
 // Branding and customization for app machine picker
