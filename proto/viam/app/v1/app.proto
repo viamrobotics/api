@@ -323,7 +323,7 @@ service AppService {
   // Set the Firebase config JSON for a specific app bundle id.
   rpc SetFirebaseConfig(SetFirebaseConfigRequest) returns (SetFirebaseConfigResponse);
 
-  // Read a Firebase config JSON for a specific app bundle id. (internal only)
+  // Read a Firebase config JSON for a specific app bundle id.
   rpc GetFirebaseConfig(GetFirebaseConfigRequest) returns (GetFirebaseConfigResponse);
 
   // Deletes a Firebase config JSON for a specific app bundle id.
