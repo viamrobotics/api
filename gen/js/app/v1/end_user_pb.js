@@ -368,7 +368,8 @@ proto.viam.app.v1.IsLegalAcceptedResponse.prototype.toObject = function(opt_incl
  */
 proto.viam.app.v1.IsLegalAcceptedResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    acceptedLegal: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    acceptedLegal: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    everAcceptedLegal: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -409,6 +410,10 @@ proto.viam.app.v1.IsLegalAcceptedResponse.deserializeBinaryFromReader = function
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setAcceptedLegal(value);
       break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setEverAcceptedLegal(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -445,6 +450,13 @@ proto.viam.app.v1.IsLegalAcceptedResponse.serializeBinaryToWriter = function(mes
       f
     );
   }
+  f = message.getEverAcceptedLegal();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -463,6 +475,24 @@ proto.viam.app.v1.IsLegalAcceptedResponse.prototype.getAcceptedLegal = function(
  */
 proto.viam.app.v1.IsLegalAcceptedResponse.prototype.setAcceptedLegal = function(value) {
   return jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional bool ever_accepted_legal = 2;
+ * @return {boolean}
+ */
+proto.viam.app.v1.IsLegalAcceptedResponse.prototype.getEverAcceptedLegal = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.IsLegalAcceptedResponse} returns this
+ */
+proto.viam.app.v1.IsLegalAcceptedResponse.prototype.setEverAcceptedLegal = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
