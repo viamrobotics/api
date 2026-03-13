@@ -53,10 +53,21 @@ message Orientation {
   double theta = 4;
 }
 
+message PoseCloud {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+  double o_x = 4;
+  double o_y = 5;
+  double o_z = 6;
+  double theta = 7;
+}
+
 // PoseInFrame contains a pose and the reference frame in which it was observed
 message PoseInFrame {
   string reference_frame = 1;
   Pose pose = 2;
+  optional PoseCloud goal_cloud = 3;
 }
 
 message Vector3 {
