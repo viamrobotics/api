@@ -7,7 +7,6 @@ on:
       - main
     types:
       - labeled
-      - unlabeled
 
 env:
   label-checks-pass:
