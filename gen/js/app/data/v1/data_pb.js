@@ -8938,7 +8938,8 @@ proto.viam.app.data.v1.BinaryMetadata.toObject = function(includeInstance, msg) 
     uri: jspb.Message.getFieldWithDefault(msg, 7, ""),
     annotations: (f = msg.getAnnotations()) && proto.viam.app.data.v1.Annotations.toObject(includeInstance, f),
     datasetIdsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
-    binaryDataId: jspb.Message.getFieldWithDefault(msg, 10, "")
+    binaryDataId: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    fileSizeBytes: jspb.Message.getFieldWithDefault(msg, 11, 0)
   };
 
   if (includeInstance) {
@@ -9018,6 +9019,10 @@ proto.viam.app.data.v1.BinaryMetadata.deserializeBinaryFromReader = function(msg
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setBinaryDataId(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setFileSizeBytes(value);
       break;
     default:
       reader.skipField();
@@ -9119,6 +9124,13 @@ proto.viam.app.data.v1.BinaryMetadata.serializeBinaryToWriter = function(message
   if (f.length > 0) {
     writer.writeString(
       10,
+      f
+    );
+  }
+  f = message.getFileSizeBytes();
+  if (f !== 0) {
+    writer.writeUint64(
+      11,
       f
     );
   }
@@ -9397,6 +9409,24 @@ proto.viam.app.data.v1.BinaryMetadata.prototype.getBinaryDataId = function() {
  */
 proto.viam.app.data.v1.BinaryMetadata.prototype.setBinaryDataId = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional uint64 file_size_bytes = 11;
+ * @return {number}
+ */
+proto.viam.app.data.v1.BinaryMetadata.prototype.getFileSizeBytes = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.BinaryMetadata} returns this
+ */
+proto.viam.app.data.v1.BinaryMetadata.prototype.setFileSizeBytes = function(value) {
+  return jspb.Message.setProto3IntField(this, 11, value);
 };
 
 
