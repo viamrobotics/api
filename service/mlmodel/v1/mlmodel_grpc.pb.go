@@ -8,6 +8,7 @@ package v1
 
 import (
 	context "context"
+	v1 "go.viam.com/api/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -26,6 +27,8 @@ type MLModelServiceClient interface {
 	Infer(ctx context.Context, in *InferRequest, opts ...grpc.CallOption) (*InferResponse, error)
 	// Metadata returns the metadata associated with the ML model.
 	Metadata(ctx context.Context, in *MetadataRequest, opts ...grpc.CallOption) (*MetadataResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 }
 
 type mLModelServiceClient struct {
@@ -54,6 +57,15 @@ func (c *mLModelServiceClient) Metadata(ctx context.Context, in *MetadataRequest
 	return out, nil
 }
 
+func (c *mLModelServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.mlmodel.v1.MLModelService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MLModelServiceServer is the server API for MLModelService service.
 // All implementations must embed UnimplementedMLModelServiceServer
 // for forward compatibility
@@ -62,6 +74,8 @@ type MLModelServiceServer interface {
 	Infer(context.Context, *InferRequest) (*InferResponse, error)
 	// Metadata returns the metadata associated with the ML model.
 	Metadata(context.Context, *MetadataRequest) (*MetadataResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	mustEmbedUnimplementedMLModelServiceServer()
 }
 
@@ -74,6 +88,9 @@ func (UnimplementedMLModelServiceServer) Infer(context.Context, *InferRequest) (
 }
 func (UnimplementedMLModelServiceServer) Metadata(context.Context, *MetadataRequest) (*MetadataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Metadata not implemented")
+}
+func (UnimplementedMLModelServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedMLModelServiceServer) mustEmbedUnimplementedMLModelServiceServer() {}
 
@@ -124,6 +141,24 @@ func _MLModelService_Metadata_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MLModelService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MLModelServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.mlmodel.v1.MLModelService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MLModelServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MLModelService_ServiceDesc is the grpc.ServiceDesc for MLModelService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -138,6 +173,10 @@ var MLModelService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Metadata",
 			Handler:    _MLModelService_Metadata_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _MLModelService_GetStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

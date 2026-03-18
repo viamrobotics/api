@@ -37,6 +37,8 @@ type GantryServiceClient interface {
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 	GetKinematics(ctx context.Context, in *v1.GetKinematicsRequest, opts ...grpc.CallOption) (*v1.GetKinematicsResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
@@ -113,6 +115,15 @@ func (c *gantryServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReq
 	return out, nil
 }
 
+func (c *gantryServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gantry.v1.GantryService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gantryServiceClient) GetKinematics(ctx context.Context, in *v1.GetKinematicsRequest, opts ...grpc.CallOption) (*v1.GetKinematicsResponse, error) {
 	out := new(v1.GetKinematicsResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.gantry.v1.GantryService/GetKinematics", in, out, opts...)
@@ -149,6 +160,8 @@ type GantryServiceServer interface {
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	GetKinematics(context.Context, *v1.GetKinematicsRequest) (*v1.GetKinematicsResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
@@ -179,6 +192,9 @@ func (UnimplementedGantryServiceServer) IsMoving(context.Context, *IsMovingReque
 }
 func (UnimplementedGantryServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedGantryServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedGantryServiceServer) GetKinematics(context.Context, *v1.GetKinematicsRequest) (*v1.GetKinematicsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKinematics not implemented")
@@ -325,6 +341,24 @@ func _GantryService_DoCommand_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GantryService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GantryServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gantry.v1.GantryService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GantryServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GantryService_GetKinematics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.GetKinematicsRequest)
 	if err := dec(in); err != nil {
@@ -395,6 +429,10 @@ var GantryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _GantryService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _GantryService_GetStatus_Handler,
 		},
 		{
 			MethodName: "GetKinematics",
