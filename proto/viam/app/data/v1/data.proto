@@ -431,6 +431,18 @@ message BinaryMetadata {
   Annotations annotations = 8;
   repeated string dataset_ids = 9;
   string binary_data_id = 10;
+  uint64 file_size_bytes = 11;
+}
+
+// TabularFilter filters tabular data. All fields are optional; omitted fields are treated as unconstrained.
+message DeleteTabularFilter {
+  repeated string location_ids = 1;
+  string robot_id = 2;
+  string part_id = 3;
+  string component_type = 4;
+  string component_name = 5;
+  string method = 6;
+  TagsFilter tags_filter = 7;
 }
 
 // DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`
@@ -439,9 +451,11 @@ message BinaryMetadata {
 // If the request is at 10PM EST on March 11 (March 12 2AM UTC), this deletes all data captured
 // through March 11 11:59:59PM UTC.
 // If delete_older_than_days is 0, all existing data is deleted.
+// If no filter is provided, data will be deleted based on organization_id.
 message DeleteTabularDataRequest {
   string organization_id = 1;
   uint32 delete_older_than_days = 2;
+  optional DeleteTabularFilter filter = 3;
 }
 
 // DeleteBinaryDataResponse returns the number of tabular datapoints deleted.
