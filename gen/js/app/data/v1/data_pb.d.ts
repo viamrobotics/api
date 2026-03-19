@@ -1014,6 +1014,9 @@ export class BinaryMetadata extends jspb.Message {
   getBinaryDataId(): string;
   setBinaryDataId(value: string): void;
 
+  getFileSizeBytes(): number;
+  setFileSizeBytes(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryMetadata): BinaryMetadata.AsObject;
@@ -1036,6 +1039,55 @@ export namespace BinaryMetadata {
     annotations?: Annotations.AsObject,
     datasetIdsList: Array<string>,
     binaryDataId: string,
+    fileSizeBytes: number,
+  }
+}
+
+export class DeleteTabularFilter extends jspb.Message {
+  clearLocationIdsList(): void;
+  getLocationIdsList(): Array<string>;
+  setLocationIdsList(value: Array<string>): void;
+  addLocationIds(value: string, index?: number): string;
+
+  getRobotId(): string;
+  setRobotId(value: string): void;
+
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  getComponentType(): string;
+  setComponentType(value: string): void;
+
+  getComponentName(): string;
+  setComponentName(value: string): void;
+
+  getMethod(): string;
+  setMethod(value: string): void;
+
+  hasTagsFilter(): boolean;
+  clearTagsFilter(): void;
+  getTagsFilter(): TagsFilter | undefined;
+  setTagsFilter(value?: TagsFilter): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteTabularFilter.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteTabularFilter): DeleteTabularFilter.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteTabularFilter, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteTabularFilter;
+  static deserializeBinaryFromReader(message: DeleteTabularFilter, reader: jspb.BinaryReader): DeleteTabularFilter;
+}
+
+export namespace DeleteTabularFilter {
+  export type AsObject = {
+    locationIdsList: Array<string>,
+    robotId: string,
+    partId: string,
+    componentType: string,
+    componentName: string,
+    method: string,
+    tagsFilter?: TagsFilter.AsObject,
   }
 }
 
@@ -1045,6 +1097,11 @@ export class DeleteTabularDataRequest extends jspb.Message {
 
   getDeleteOlderThanDays(): number;
   setDeleteOlderThanDays(value: number): void;
+
+  hasFilter(): boolean;
+  clearFilter(): void;
+  getFilter(): DeleteTabularFilter | undefined;
+  setFilter(value?: DeleteTabularFilter): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteTabularDataRequest.AsObject;
@@ -1060,6 +1117,7 @@ export namespace DeleteTabularDataRequest {
   export type AsObject = {
     organizationId: string,
     deleteOlderThanDays: number,
+    filter?: DeleteTabularFilter.AsObject,
   }
 }
 

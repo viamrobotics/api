@@ -57048,7 +57048,8 @@ proto.viam.app.v1.OAuthConfig.toObject = function(includeInstance, msg) {
     originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
     logoutUri: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    enabledGrantsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
+    enabledGrantsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+    inviteRedirectUri: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -57114,6 +57115,10 @@ proto.viam.app.v1.OAuthConfig.deserializeBinaryFromReader = function(msg, reader
       for (var i = 0; i < values.length; i++) {
         msg.addEnabledGrants(values[i]);
       }
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInviteRedirectUri(value);
       break;
     default:
       reader.skipField();
@@ -57190,6 +57195,13 @@ proto.viam.app.v1.OAuthConfig.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writePackedEnum(
       7,
+      f
+    );
+  }
+  f = message.getInviteRedirectUri();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -57376,6 +57388,24 @@ proto.viam.app.v1.OAuthConfig.prototype.addEnabledGrants = function(value, opt_i
  */
 proto.viam.app.v1.OAuthConfig.prototype.clearEnabledGrantsList = function() {
   return this.setEnabledGrantsList([]);
+};
+
+
+/**
+ * optional string invite_redirect_uri = 8;
+ * @return {string}
+ */
+proto.viam.app.v1.OAuthConfig.prototype.getInviteRedirectUri = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.OAuthConfig} returns this
+ */
+proto.viam.app.v1.OAuthConfig.prototype.setInviteRedirectUri = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 

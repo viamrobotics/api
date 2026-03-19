@@ -23,6 +23,10 @@ message DeviceAgentConfigRequest {
   map<string, string> subsystem_versions = 3 [deprecated = true];
   // Currently installed versions for agent and viam-server
   VersionInfo version_info = 4;
+  // how long viam-agent has been running since its most recent start
+  google.protobuf.Duration agent_uptime = 5;
+  // how long viam-server has been running since its most recent start (omitted if not running)
+  google.protobuf.Duration viam_server_uptime = 6;
 }
 
 message DeviceAgentConfigResponse {
