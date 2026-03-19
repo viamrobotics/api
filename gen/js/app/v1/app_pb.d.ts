@@ -7305,6 +7305,9 @@ export class OAuthConfig extends jspb.Message {
   setEnabledGrantsList(value: Array<EnabledGrantMap[keyof EnabledGrantMap]>): void;
   addEnabledGrants(value: EnabledGrantMap[keyof EnabledGrantMap], index?: number): EnabledGrantMap[keyof EnabledGrantMap];
 
+  getInviteRedirectUri(): string;
+  setInviteRedirectUri(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OAuthConfig.AsObject;
   static toObject(includeInstance: boolean, msg: OAuthConfig): OAuthConfig.AsObject;
@@ -7324,6 +7327,7 @@ export namespace OAuthConfig {
     redirectUrisList: Array<string>,
     logoutUri: string,
     enabledGrantsList: Array<EnabledGrantMap[keyof EnabledGrantMap]>,
+    inviteRedirectUri: string,
   }
 }
 
