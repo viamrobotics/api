@@ -1088,9 +1088,6 @@ export namespace GetCloudMetadataRequest {
 }
 
 export class GetCloudMetadataResponse extends jspb.Message {
-  getRobotPartId(): string;
-  setRobotPartId(value: string): void;
-
   getPrimaryOrgId(): string;
   setPrimaryOrgId(value: string): void;
 
@@ -1115,7 +1112,6 @@ export class GetCloudMetadataResponse extends jspb.Message {
 
 export namespace GetCloudMetadataResponse {
   export type AsObject = {
-    robotPartId: string,
     primaryOrgId: string,
     locationId: string,
     machineId: string,
