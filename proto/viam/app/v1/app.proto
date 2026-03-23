@@ -2065,8 +2065,6 @@ message GetDevicePushTokensResponse {
   repeated string device_tokens = 1;
 }
 
-// Firebase config messages
-
 message SetFirebaseConfigRequest {
   string org_id = 1;
   string bundle_id = 2;
