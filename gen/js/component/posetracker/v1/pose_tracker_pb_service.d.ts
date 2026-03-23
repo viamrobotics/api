@@ -23,6 +23,15 @@ type PoseTrackerServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type PoseTrackerServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof PoseTrackerService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type PoseTrackerServiceGetGeometries = {
   readonly methodName: string;
   readonly service: typeof PoseTrackerService;
@@ -36,6 +45,7 @@ export class PoseTrackerService {
   static readonly serviceName: string;
   static readonly GetPoses: PoseTrackerServiceGetPoses;
   static readonly DoCommand: PoseTrackerServiceDoCommand;
+  static readonly GetStatus: PoseTrackerServiceGetStatus;
   static readonly GetGeometries: PoseTrackerServiceGetGeometries;
 }
 
@@ -88,6 +98,15 @@ export class PoseTrackerServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,

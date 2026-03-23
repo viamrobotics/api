@@ -44,6 +44,8 @@ type ShellServiceClient interface {
 	CopyFilesFromMachine(ctx context.Context, opts ...grpc.CallOption) (ShellService_CopyFilesFromMachineClient, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 }
 
 type shellServiceClient struct {
@@ -156,6 +158,15 @@ func (c *shellServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequ
 	return out, nil
 }
 
+func (c *shellServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.shell.v1.ShellService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ShellServiceServer is the server API for ShellService service.
 // All implementations must embed UnimplementedShellServiceServer
 // for forward compatibility
@@ -181,6 +192,8 @@ type ShellServiceServer interface {
 	CopyFilesFromMachine(ShellService_CopyFilesFromMachineServer) error
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	mustEmbedUnimplementedShellServiceServer()
 }
 
@@ -199,6 +212,9 @@ func (UnimplementedShellServiceServer) CopyFilesFromMachine(ShellService_CopyFil
 }
 func (UnimplementedShellServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedShellServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedShellServiceServer) mustEmbedUnimplementedShellServiceServer() {}
 
@@ -309,6 +325,24 @@ func _ShellService_DoCommand_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ShellService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShellServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.shell.v1.ShellService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShellServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ShellService_ServiceDesc is the grpc.ServiceDesc for ShellService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -319,6 +353,10 @@ var ShellService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _ShellService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _ShellService_GetStatus_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

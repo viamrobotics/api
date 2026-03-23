@@ -30,6 +30,11 @@ service SensorsService {
     option (google.api.http) = {post: "/viam/api/v1/service/sensors/{name}/do_command"};
     option deprecated = true;
   }
+
+  // GetStatus returns the status of the resource
+  rpc GetStatus(common.v1.GetStatusRequest) returns (common.v1.GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/sensors/{name}/get_status"};
+  }
 }
 
 // The sensors service messages are deprecated
