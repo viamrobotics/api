@@ -2042,10 +2042,7 @@ message MachinePickerCustomizations {
   optional string subheading = 2;
 }
 
-// Device push token messages
-
 message UploadDevicePushTokenRequest {
-  string email = 1;
   string bundle_id = 2;
   string device_token = 3;
   string device_uuid = 4;
@@ -2054,7 +2051,6 @@ message UploadDevicePushTokenRequest {
 message UploadDevicePushTokenResponse {}
 
 message DeleteDevicePushTokenRequest {
-  string email = 1;
   string bundle_id = 2;
   string device_uuid = 3;
 }
@@ -2062,7 +2058,6 @@ message DeleteDevicePushTokenRequest {
 message DeleteDevicePushTokenResponse {}
 
 message GetDevicePushTokensRequest {
-  string email = 1;
   string bundle_id = 2;
 }
 
