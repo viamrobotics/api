@@ -310,6 +310,15 @@ service AppService {
   rpc GetAppContent(GetAppContentRequest) returns (GetAppContentResponse);
 
   rpc GetAppBranding(GetAppBrandingRequest) returns (GetAppBrandingResponse);
+
+  // DoCommand Results
+
+  // PostDoCommandResult stores the result of a DoCommand execution.
+  rpc PostDoCommandResult(PostDoCommandResultRequest) returns (PostDoCommandResultResponse);
+
+  // GetDoCommandResults retrieves recent DoCommand results for a machine.
+  rpc GetDoCommandResults(GetDoCommandResultsRequest) returns (GetDoCommandResultsResponse);
+
 }
 
 enum OnlineState {
@@ -2027,4 +2036,48 @@ message AppCustomizations {
 message MachinePickerCustomizations {
   optional string heading = 1;
   optional string subheading = 2;
+}
+
+// DoCommand Results
+
+// DoCommandResult stores the metadata and outcome of a DoCommand execution.
+message DoCommandResult {
+  string id = 1;
+  // The command input that was sent, as a JSON string.
+  string input = 2;
+  string user_id = 3;
+  // The error message returned by the command, if any.
+  optional string error_message = 4;
+  // The status code returned by the command, if any.
+  optional int32 status_code = 5;
+  google.protobuf.Timestamp timestamp = 6;
+  string machine_id = 7;
+  // The resource the command was executed against (e.g. "motor-1").
+  string resource_name = 8;
+}
+
+message PostDoCommandResultRequest {
+  string input = 1;
+  string user_id = 2;
+  optional string error_message = 3;
+  optional int32 status_code = 4;
+  string machine_id = 5;
+  string resource_name = 6;
+}
+
+message PostDoCommandResultResponse {
+  string id = 1;
+}
+
+// GetDoCommandResultsRequest retrieves recent DoCommand results for a machine,
+// optionally filtered by resource name.
+message GetDoCommandResultsRequest {
+  string machine_id = 1;
+  optional string resource_name = 2;
+  // Maximum number of results to return. Defaults to server-side limit if unset.
+  optional int32 limit = 3;
+}
+
+message GetDoCommandResultsResponse {
+  repeated DoCommandResult results = 1;
 }
