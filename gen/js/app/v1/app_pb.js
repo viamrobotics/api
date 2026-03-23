@@ -6504,7 +6504,8 @@ proto.viam.app.v1.RobotPart.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.SharedSecret.toObject, includeInstance),
     lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     onlineState: jspb.Message.getFieldWithDefault(msg, 16, 0),
-    secondsSinceOnline: jspb.Message.getFieldWithDefault(msg, 17, 0)
+    secondsSinceOnline: jspb.Message.getFieldWithDefault(msg, 17, 0),
+    robotConfigJson: jspb.Message.getFieldWithDefault(msg, 18, "")
   };
 
   if (includeInstance) {
@@ -6614,6 +6615,10 @@ proto.viam.app.v1.RobotPart.deserializeBinaryFromReader = function(msg, reader) 
     case 17:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setSecondsSinceOnline(value);
+      break;
+    case 18:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRobotConfigJson(value);
       break;
     default:
       reader.skipField();
@@ -6766,6 +6771,13 @@ proto.viam.app.v1.RobotPart.serializeBinaryToWriter = function(message, writer) 
   if (f !== 0) {
     writer.writeInt64(
       17,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 18));
+  if (f != null) {
+    writer.writeString(
+      18,
       f
     );
   }
@@ -7190,6 +7202,42 @@ proto.viam.app.v1.RobotPart.prototype.getSecondsSinceOnline = function() {
  */
 proto.viam.app.v1.RobotPart.prototype.setSecondsSinceOnline = function(value) {
   return jspb.Message.setProto3IntField(this, 17, value);
+};
+
+
+/**
+ * optional string robot_config_json = 18;
+ * @return {string}
+ */
+proto.viam.app.v1.RobotPart.prototype.getRobotConfigJson = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 18, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.setRobotConfigJson = function(value) {
+  return jspb.Message.setField(this, 18, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.clearRobotConfigJson = function() {
+  return jspb.Message.setField(this, 18, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotPart.prototype.hasRobotConfigJson = function() {
+  return jspb.Message.getField(this, 18) != null;
 };
 
 
@@ -23992,7 +24040,8 @@ proto.viam.app.v1.UpdateRobotPartRequest.toObject = function(includeInstance, ms
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     robotConfig: (f = msg.getRobotConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    lastKnownUpdate: (f = msg.getLastKnownUpdate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    lastKnownUpdate: (f = msg.getLastKnownUpdate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    robotConfigJson: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -24046,6 +24095,10 @@ proto.viam.app.v1.UpdateRobotPartRequest.deserializeBinaryFromReader = function(
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastKnownUpdate(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRobotConfigJson(value);
       break;
     default:
       reader.skipField();
@@ -24104,6 +24157,13 @@ proto.viam.app.v1.UpdateRobotPartRequest.serializeBinaryToWriter = function(mess
       4,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
+      f
     );
   }
 };
@@ -24216,6 +24276,42 @@ proto.viam.app.v1.UpdateRobotPartRequest.prototype.clearLastKnownUpdate = functi
  */
 proto.viam.app.v1.UpdateRobotPartRequest.prototype.hasLastKnownUpdate = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string robot_config_json = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateRobotPartRequest.prototype.getRobotConfigJson = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateRobotPartRequest} returns this
+ */
+proto.viam.app.v1.UpdateRobotPartRequest.prototype.setRobotConfigJson = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateRobotPartRequest} returns this
+ */
+proto.viam.app.v1.UpdateRobotPartRequest.prototype.clearRobotConfigJson = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateRobotPartRequest.prototype.hasRobotConfigJson = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -57048,7 +57144,8 @@ proto.viam.app.v1.OAuthConfig.toObject = function(includeInstance, msg) {
     originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
     logoutUri: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    enabledGrantsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
+    enabledGrantsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+    inviteRedirectUri: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -57114,6 +57211,10 @@ proto.viam.app.v1.OAuthConfig.deserializeBinaryFromReader = function(msg, reader
       for (var i = 0; i < values.length; i++) {
         msg.addEnabledGrants(values[i]);
       }
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInviteRedirectUri(value);
       break;
     default:
       reader.skipField();
@@ -57190,6 +57291,13 @@ proto.viam.app.v1.OAuthConfig.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writePackedEnum(
       7,
+      f
+    );
+  }
+  f = message.getInviteRedirectUri();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -57376,6 +57484,24 @@ proto.viam.app.v1.OAuthConfig.prototype.addEnabledGrants = function(value, opt_i
  */
 proto.viam.app.v1.OAuthConfig.prototype.clearEnabledGrantsList = function() {
   return this.setEnabledGrantsList([]);
+};
+
+
+/**
+ * optional string invite_redirect_uri = 8;
+ * @return {string}
+ */
+proto.viam.app.v1.OAuthConfig.prototype.getInviteRedirectUri = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.OAuthConfig} returns this
+ */
+proto.viam.app.v1.OAuthConfig.prototype.setInviteRedirectUri = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 

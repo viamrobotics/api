@@ -53,6 +53,11 @@ service NavigationService {
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/do_command"};
   }
+
+  // GetStatus returns the status of the resource
+  rpc GetStatus(common.v1.GetStatusRequest) returns (common.v1.GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/get_status"};
+  }
 }
 
 // MapType represents the various types of maps the navigation service can ingest.

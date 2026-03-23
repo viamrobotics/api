@@ -431,6 +431,7 @@ message BinaryMetadata {
   Annotations annotations = 8;
   repeated string dataset_ids = 9;
   string binary_data_id = 10;
+  uint64 file_size_bytes = 11;
 }
 
 // TabularFilter filters tabular data. All fields are optional; omitted fields are treated as unconstrained.

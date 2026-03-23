@@ -372,6 +372,8 @@ message RobotPart {
   google.protobuf.Timestamp last_updated = 15 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
   OnlineState online_state = 16 [(tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
   int64 seconds_since_online = 17 [(tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
+  // robot_config_json is the raw JSON string of the robot config, preserving user-defined key order.
+  optional string robot_config_json = 18 [(tagger.v1.tags) = "bson:\"config_json,omitempty\" json:\"config_json,omitempty\""];
 }
 
 message RobotPartHistoryEntry {
@@ -910,6 +912,9 @@ message UpdateRobotPartRequest {
   string name = 2;
   google.protobuf.Struct robot_config = 3;
   optional google.protobuf.Timestamp last_known_update = 4;
+  // robot_config_json is the raw JSON string of the robot config, preserving user-defined key order.
+  // When set, this takes precedence over robot_config for storage purposes.
+  optional string robot_config_json = 5;
 }
 
 message UpdateRobotPartResponse {
@@ -2015,6 +2020,7 @@ message OAuthConfig {
   repeated string redirect_uris = 5;
   string logout_uri = 6;
   repeated EnabledGrant enabled_grants = 7;
+  string invite_redirect_uri = 8;
 }
 
 // Branding and customization for app machine picker

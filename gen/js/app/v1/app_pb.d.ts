@@ -121,6 +121,11 @@ export class RobotPart extends jspb.Message {
   getSecondsSinceOnline(): number;
   setSecondsSinceOnline(value: number): void;
 
+  hasRobotConfigJson(): boolean;
+  clearRobotConfigJson(): void;
+  getRobotConfigJson(): string;
+  setRobotConfigJson(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RobotPart.AsObject;
   static toObject(includeInstance: boolean, msg: RobotPart): RobotPart.AsObject;
@@ -150,6 +155,7 @@ export namespace RobotPart {
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     onlineState: OnlineStateMap[keyof OnlineStateMap],
     secondsSinceOnline: number,
+    robotConfigJson: string,
   }
 }
 
@@ -2598,6 +2604,11 @@ export class UpdateRobotPartRequest extends jspb.Message {
   getLastKnownUpdate(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setLastKnownUpdate(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasRobotConfigJson(): boolean;
+  clearRobotConfigJson(): void;
+  getRobotConfigJson(): string;
+  setRobotConfigJson(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRobotPartRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateRobotPartRequest): UpdateRobotPartRequest.AsObject;
@@ -2614,6 +2625,7 @@ export namespace UpdateRobotPartRequest {
     name: string,
     robotConfig?: google_protobuf_struct_pb.Struct.AsObject,
     lastKnownUpdate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    robotConfigJson: string,
   }
 }
 
@@ -7305,6 +7317,9 @@ export class OAuthConfig extends jspb.Message {
   setEnabledGrantsList(value: Array<EnabledGrantMap[keyof EnabledGrantMap]>): void;
   addEnabledGrants(value: EnabledGrantMap[keyof EnabledGrantMap], index?: number): EnabledGrantMap[keyof EnabledGrantMap];
 
+  getInviteRedirectUri(): string;
+  setInviteRedirectUri(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OAuthConfig.AsObject;
   static toObject(includeInstance: boolean, msg: OAuthConfig): OAuthConfig.AsObject;
@@ -7324,6 +7339,7 @@ export namespace OAuthConfig {
     redirectUrisList: Array<string>,
     logoutUri: string,
     enabledGrantsList: Array<EnabledGrantMap[keyof EnabledGrantMap]>,
+    inviteRedirectUri: string,
   }
 }
 

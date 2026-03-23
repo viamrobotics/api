@@ -1014,6 +1014,9 @@ export class BinaryMetadata extends jspb.Message {
   getBinaryDataId(): string;
   setBinaryDataId(value: string): void;
 
+  getFileSizeBytes(): number;
+  setFileSizeBytes(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BinaryMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: BinaryMetadata): BinaryMetadata.AsObject;
@@ -1036,6 +1039,7 @@ export namespace BinaryMetadata {
     annotations?: Annotations.AsObject,
     datasetIdsList: Array<string>,
     binaryDataId: string,
+    fileSizeBytes: number,
   }
 }
 

@@ -32,6 +32,8 @@ type MovementSensorServiceClient interface {
 	GetAccuracy(ctx context.Context, in *GetAccuracyRequest, opts ...grpc.CallOption) (*GetAccuracyResponse, error)
 	GetLinearAcceleration(ctx context.Context, in *GetLinearAccelerationRequest, opts ...grpc.CallOption) (*GetLinearAccelerationResponse, error)
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 	// GetReadings returns the readings of a sensor of the underlying robot.
@@ -127,6 +129,15 @@ func (c *movementSensorServiceClient) DoCommand(ctx context.Context, in *v1.DoCo
 	return out, nil
 }
 
+func (c *movementSensorServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.movementsensor.v1.MovementSensorService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *movementSensorServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
 	out := new(v1.GetGeometriesResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.movementsensor.v1.MovementSensorService/GetGeometries", in, out, opts...)
@@ -158,6 +169,8 @@ type MovementSensorServiceServer interface {
 	GetAccuracy(context.Context, *GetAccuracyRequest) (*GetAccuracyResponse, error)
 	GetLinearAcceleration(context.Context, *GetLinearAccelerationRequest) (*GetLinearAccelerationResponse, error)
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	// GetReadings returns the readings of a sensor of the underlying robot.
@@ -195,6 +208,9 @@ func (UnimplementedMovementSensorServiceServer) GetLinearAcceleration(context.Co
 }
 func (UnimplementedMovementSensorServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedMovementSensorServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedMovementSensorServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
@@ -377,6 +393,24 @@ func _MovementSensorService_DoCommand_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MovementSensorService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MovementSensorServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.movementsensor.v1.MovementSensorService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MovementSensorServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MovementSensorService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.GetGeometriesRequest)
 	if err := dec(in); err != nil {
@@ -455,6 +489,10 @@ var MovementSensorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _MovementSensorService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _MovementSensorService_GetStatus_Handler,
 		},
 		{
 			MethodName: "GetGeometries",

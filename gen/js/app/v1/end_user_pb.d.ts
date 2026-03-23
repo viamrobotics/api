@@ -23,6 +23,9 @@ export class IsLegalAcceptedResponse extends jspb.Message {
   getAcceptedLegal(): boolean;
   setAcceptedLegal(value: boolean): void;
 
+  getEverAcceptedLegal(): boolean;
+  setEverAcceptedLegal(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): IsLegalAcceptedResponse.AsObject;
   static toObject(includeInstance: boolean, msg: IsLegalAcceptedResponse): IsLegalAcceptedResponse.AsObject;
@@ -36,6 +39,7 @@ export class IsLegalAcceptedResponse extends jspb.Message {
 export namespace IsLegalAcceptedResponse {
   export type AsObject = {
     acceptedLegal: boolean,
+    everAcceptedLegal: boolean,
   }
 }
 
