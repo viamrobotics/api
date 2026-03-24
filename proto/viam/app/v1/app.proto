@@ -317,7 +317,7 @@ service AppService {
   // Delete a device push token for the user.
   rpc DeleteDevicePushToken(DeleteDevicePushTokenRequest) returns (DeleteDevicePushTokenResponse);
 
-  // Gets all device push tokens for the user.
+  // Gets all device push tokens for the user for the given app ID.
   rpc GetDevicePushTokens(GetDevicePushTokensRequest) returns (GetDevicePushTokensResponse);
 
   // Set the Firebase config JSON for a specific app bundle id.
@@ -2049,7 +2049,7 @@ message MachinePickerCustomizations {
 }
 
 message UploadDevicePushTokenRequest {
-  string bundle_id = 2;
+  string app_id = 2;
   string device_token = 3;
   string device_uuid = 4;
 }
@@ -2057,7 +2057,7 @@ message UploadDevicePushTokenRequest {
 message UploadDevicePushTokenResponse {}
 
 message DeleteDevicePushTokenRequest {
-  string bundle_id = 2;
+  string app_id = 2;
   string device_uuid = 3;
 }
 
