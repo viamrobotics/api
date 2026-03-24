@@ -320,14 +320,14 @@ service AppService {
   // Gets all device push tokens for the user for the given app ID.
   rpc GetDevicePushTokens(GetDevicePushTokensRequest) returns (GetDevicePushTokensResponse);
 
-  // Set the Firebase config JSON for a specific app bundle id.
+  // Set the Firebase config JSON for a specific app id.
   rpc SetFirebaseConfig(SetFirebaseConfigRequest) returns (SetFirebaseConfigResponse);
 
-  // Read the bundle ID for an organization.
-  // This RPC returns only the bundle_id configured for the org, not the Firebase config JSON.
+  // Read the app ID for an organization.
+  // This returns only the app_id configured for the org, not the Firebase config JSON.
   rpc GetFirebaseConfig(GetFirebaseConfigRequest) returns (GetFirebaseConfigResponse);
 
-  // Deletes a Firebase config JSON for a specific app bundle id.
+  // Deletes a Firebase config JSON for a specific app id.
   rpc DeleteFirebaseConfig(DeleteFirebaseConfigRequest) returns (DeleteFirebaseConfigResponse);
 }
 
@@ -2049,22 +2049,22 @@ message MachinePickerCustomizations {
 }
 
 message UploadDevicePushTokenRequest {
-  string app_id = 2;
-  string device_token = 3;
-  string device_uuid = 4;
+  string app_id = 1;
+  string device_token = 2;
+  string device_uuid = 3;
 }
 
 message UploadDevicePushTokenResponse {}
 
 message DeleteDevicePushTokenRequest {
-  string app_id = 2;
-  string device_uuid = 3;
+  string app_id = 1;
+  string device_uuid = 2;
 }
 
 message DeleteDevicePushTokenResponse {}
 
 message GetDevicePushTokensRequest {
-  string bundle_id = 2;
+  string app_id = 1;
 }
 
 message GetDevicePushTokensResponse {
@@ -2073,7 +2073,7 @@ message GetDevicePushTokensResponse {
 
 message SetFirebaseConfigRequest {
   string org_id = 1;
-  string bundle_id = 2;
+  string app_id = 2;
   string config_json = 3;
 }
 
@@ -2084,12 +2084,12 @@ message GetFirebaseConfigRequest {
 }
 
 message GetFirebaseConfigResponse {
-  string bundle_id = 1;
+  string app_id = 1;
 }
 
 message DeleteFirebaseConfigRequest {
   string org_id = 1;
-  string bundle_id = 2;
+  string app_id = 2;
 }
 
 message DeleteFirebaseConfigResponse {}
