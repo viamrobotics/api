@@ -208,6 +208,19 @@ type AppServiceClient interface {
 	CreateKeyFromExistingKeyAuthorizations(ctx context.Context, in *CreateKeyFromExistingKeyAuthorizationsRequest, opts ...grpc.CallOption) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
 	GetAppContent(ctx context.Context, in *GetAppContentRequest, opts ...grpc.CallOption) (*GetAppContentResponse, error)
 	GetAppBranding(ctx context.Context, in *GetAppBrandingRequest, opts ...grpc.CallOption) (*GetAppBrandingResponse, error)
+	// Upload a device push token for the user.
+	UploadDevicePushToken(ctx context.Context, in *UploadDevicePushTokenRequest, opts ...grpc.CallOption) (*UploadDevicePushTokenResponse, error)
+	// Delete a device push token for the user.
+	DeleteDevicePushToken(ctx context.Context, in *DeleteDevicePushTokenRequest, opts ...grpc.CallOption) (*DeleteDevicePushTokenResponse, error)
+	// Gets all device push tokens for the user for the given app ID.
+	GetDevicePushTokens(ctx context.Context, in *GetDevicePushTokensRequest, opts ...grpc.CallOption) (*GetDevicePushTokensResponse, error)
+	// Set the Firebase config JSON for a specific app id.
+	SetFirebaseConfig(ctx context.Context, in *SetFirebaseConfigRequest, opts ...grpc.CallOption) (*SetFirebaseConfigResponse, error)
+	// Read the app ID for an organization.
+	// This returns only the app_id configured for the org, not the Firebase config JSON.
+	GetFirebaseConfig(ctx context.Context, in *GetFirebaseConfigRequest, opts ...grpc.CallOption) (*GetFirebaseConfigResponse, error)
+	// Deletes a Firebase config JSON for a specific app id.
+	DeleteFirebaseConfig(ctx context.Context, in *DeleteFirebaseConfigRequest, opts ...grpc.CallOption) (*DeleteFirebaseConfigResponse, error)
 }
 
 type appServiceClient struct {
@@ -1247,6 +1260,60 @@ func (c *appServiceClient) GetAppBranding(ctx context.Context, in *GetAppBrandin
 	return out, nil
 }
 
+func (c *appServiceClient) UploadDevicePushToken(ctx context.Context, in *UploadDevicePushTokenRequest, opts ...grpc.CallOption) (*UploadDevicePushTokenResponse, error) {
+	out := new(UploadDevicePushTokenResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UploadDevicePushToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteDevicePushToken(ctx context.Context, in *DeleteDevicePushTokenRequest, opts ...grpc.CallOption) (*DeleteDevicePushTokenResponse, error) {
+	out := new(DeleteDevicePushTokenResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteDevicePushToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetDevicePushTokens(ctx context.Context, in *GetDevicePushTokensRequest, opts ...grpc.CallOption) (*GetDevicePushTokensResponse, error) {
+	out := new(GetDevicePushTokensResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetDevicePushTokens", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) SetFirebaseConfig(ctx context.Context, in *SetFirebaseConfigRequest, opts ...grpc.CallOption) (*SetFirebaseConfigResponse, error) {
+	out := new(SetFirebaseConfigResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/SetFirebaseConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetFirebaseConfig(ctx context.Context, in *GetFirebaseConfigRequest, opts ...grpc.CallOption) (*GetFirebaseConfigResponse, error) {
+	out := new(GetFirebaseConfigResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetFirebaseConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeleteFirebaseConfig(ctx context.Context, in *DeleteFirebaseConfigRequest, opts ...grpc.CallOption) (*DeleteFirebaseConfigResponse, error) {
+	out := new(DeleteFirebaseConfigResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeleteFirebaseConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -1437,6 +1504,19 @@ type AppServiceServer interface {
 	CreateKeyFromExistingKeyAuthorizations(context.Context, *CreateKeyFromExistingKeyAuthorizationsRequest) (*CreateKeyFromExistingKeyAuthorizationsResponse, error)
 	GetAppContent(context.Context, *GetAppContentRequest) (*GetAppContentResponse, error)
 	GetAppBranding(context.Context, *GetAppBrandingRequest) (*GetAppBrandingResponse, error)
+	// Upload a device push token for the user.
+	UploadDevicePushToken(context.Context, *UploadDevicePushTokenRequest) (*UploadDevicePushTokenResponse, error)
+	// Delete a device push token for the user.
+	DeleteDevicePushToken(context.Context, *DeleteDevicePushTokenRequest) (*DeleteDevicePushTokenResponse, error)
+	// Gets all device push tokens for the user for the given app ID.
+	GetDevicePushTokens(context.Context, *GetDevicePushTokensRequest) (*GetDevicePushTokensResponse, error)
+	// Set the Firebase config JSON for a specific app id.
+	SetFirebaseConfig(context.Context, *SetFirebaseConfigRequest) (*SetFirebaseConfigResponse, error)
+	// Read the app ID for an organization.
+	// This returns only the app_id configured for the org, not the Firebase config JSON.
+	GetFirebaseConfig(context.Context, *GetFirebaseConfigRequest) (*GetFirebaseConfigResponse, error)
+	// Deletes a Firebase config JSON for a specific app id.
+	DeleteFirebaseConfig(context.Context, *DeleteFirebaseConfigRequest) (*DeleteFirebaseConfigResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -1770,6 +1850,24 @@ func (UnimplementedAppServiceServer) GetAppContent(context.Context, *GetAppConte
 }
 func (UnimplementedAppServiceServer) GetAppBranding(context.Context, *GetAppBrandingRequest) (*GetAppBrandingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAppBranding not implemented")
+}
+func (UnimplementedAppServiceServer) UploadDevicePushToken(context.Context, *UploadDevicePushTokenRequest) (*UploadDevicePushTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadDevicePushToken not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteDevicePushToken(context.Context, *DeleteDevicePushTokenRequest) (*DeleteDevicePushTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDevicePushToken not implemented")
+}
+func (UnimplementedAppServiceServer) GetDevicePushTokens(context.Context, *GetDevicePushTokensRequest) (*GetDevicePushTokensResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDevicePushTokens not implemented")
+}
+func (UnimplementedAppServiceServer) SetFirebaseConfig(context.Context, *SetFirebaseConfigRequest) (*SetFirebaseConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetFirebaseConfig not implemented")
+}
+func (UnimplementedAppServiceServer) GetFirebaseConfig(context.Context, *GetFirebaseConfigRequest) (*GetFirebaseConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFirebaseConfig not implemented")
+}
+func (UnimplementedAppServiceServer) DeleteFirebaseConfig(context.Context, *DeleteFirebaseConfigRequest) (*DeleteFirebaseConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFirebaseConfig not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -3757,6 +3855,114 @@ func _AppService_GetAppBranding_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_UploadDevicePushToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadDevicePushTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UploadDevicePushToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UploadDevicePushToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UploadDevicePushToken(ctx, req.(*UploadDevicePushTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteDevicePushToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteDevicePushTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteDevicePushToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteDevicePushToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteDevicePushToken(ctx, req.(*DeleteDevicePushTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetDevicePushTokens_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDevicePushTokensRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetDevicePushTokens(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetDevicePushTokens",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetDevicePushTokens(ctx, req.(*GetDevicePushTokensRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_SetFirebaseConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetFirebaseConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).SetFirebaseConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/SetFirebaseConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).SetFirebaseConfig(ctx, req.(*SetFirebaseConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetFirebaseConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFirebaseConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetFirebaseConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetFirebaseConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetFirebaseConfig(ctx, req.(*GetFirebaseConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeleteFirebaseConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFirebaseConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeleteFirebaseConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeleteFirebaseConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeleteFirebaseConfig(ctx, req.(*DeleteFirebaseConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4191,6 +4397,30 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAppBranding",
 			Handler:    _AppService_GetAppBranding_Handler,
+		},
+		{
+			MethodName: "UploadDevicePushToken",
+			Handler:    _AppService_UploadDevicePushToken_Handler,
+		},
+		{
+			MethodName: "DeleteDevicePushToken",
+			Handler:    _AppService_DeleteDevicePushToken_Handler,
+		},
+		{
+			MethodName: "GetDevicePushTokens",
+			Handler:    _AppService_GetDevicePushTokens_Handler,
+		},
+		{
+			MethodName: "SetFirebaseConfig",
+			Handler:    _AppService_SetFirebaseConfig_Handler,
+		},
+		{
+			MethodName: "GetFirebaseConfig",
+			Handler:    _AppService_GetFirebaseConfig_Handler,
+		},
+		{
+			MethodName: "DeleteFirebaseConfig",
+			Handler:    _AppService_DeleteFirebaseConfig_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

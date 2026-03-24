@@ -7467,6 +7467,256 @@ export namespace MachinePickerCustomizations {
   }
 }
 
+export class UploadDevicePushTokenRequest extends jspb.Message {
+  getAppId(): string;
+  setAppId(value: string): void;
+
+  getDeviceToken(): string;
+  setDeviceToken(value: string): void;
+
+  getDeviceUuid(): string;
+  setDeviceUuid(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UploadDevicePushTokenRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UploadDevicePushTokenRequest): UploadDevicePushTokenRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UploadDevicePushTokenRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UploadDevicePushTokenRequest;
+  static deserializeBinaryFromReader(message: UploadDevicePushTokenRequest, reader: jspb.BinaryReader): UploadDevicePushTokenRequest;
+}
+
+export namespace UploadDevicePushTokenRequest {
+  export type AsObject = {
+    appId: string,
+    deviceToken: string,
+    deviceUuid: string,
+  }
+}
+
+export class UploadDevicePushTokenResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UploadDevicePushTokenResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UploadDevicePushTokenResponse): UploadDevicePushTokenResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UploadDevicePushTokenResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UploadDevicePushTokenResponse;
+  static deserializeBinaryFromReader(message: UploadDevicePushTokenResponse, reader: jspb.BinaryReader): UploadDevicePushTokenResponse;
+}
+
+export namespace UploadDevicePushTokenResponse {
+  export type AsObject = {
+  }
+}
+
+export class DeleteDevicePushTokenRequest extends jspb.Message {
+  getAppId(): string;
+  setAppId(value: string): void;
+
+  getDeviceUuid(): string;
+  setDeviceUuid(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteDevicePushTokenRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteDevicePushTokenRequest): DeleteDevicePushTokenRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteDevicePushTokenRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteDevicePushTokenRequest;
+  static deserializeBinaryFromReader(message: DeleteDevicePushTokenRequest, reader: jspb.BinaryReader): DeleteDevicePushTokenRequest;
+}
+
+export namespace DeleteDevicePushTokenRequest {
+  export type AsObject = {
+    appId: string,
+    deviceUuid: string,
+  }
+}
+
+export class DeleteDevicePushTokenResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteDevicePushTokenResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteDevicePushTokenResponse): DeleteDevicePushTokenResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteDevicePushTokenResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteDevicePushTokenResponse;
+  static deserializeBinaryFromReader(message: DeleteDevicePushTokenResponse, reader: jspb.BinaryReader): DeleteDevicePushTokenResponse;
+}
+
+export namespace DeleteDevicePushTokenResponse {
+  export type AsObject = {
+  }
+}
+
+export class GetDevicePushTokensRequest extends jspb.Message {
+  getAppId(): string;
+  setAppId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDevicePushTokensRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDevicePushTokensRequest): GetDevicePushTokensRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDevicePushTokensRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDevicePushTokensRequest;
+  static deserializeBinaryFromReader(message: GetDevicePushTokensRequest, reader: jspb.BinaryReader): GetDevicePushTokensRequest;
+}
+
+export namespace GetDevicePushTokensRequest {
+  export type AsObject = {
+    appId: string,
+  }
+}
+
+export class GetDevicePushTokensResponse extends jspb.Message {
+  clearDeviceTokensList(): void;
+  getDeviceTokensList(): Array<string>;
+  setDeviceTokensList(value: Array<string>): void;
+  addDeviceTokens(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDevicePushTokensResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDevicePushTokensResponse): GetDevicePushTokensResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDevicePushTokensResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDevicePushTokensResponse;
+  static deserializeBinaryFromReader(message: GetDevicePushTokensResponse, reader: jspb.BinaryReader): GetDevicePushTokensResponse;
+}
+
+export namespace GetDevicePushTokensResponse {
+  export type AsObject = {
+    deviceTokensList: Array<string>,
+  }
+}
+
+export class SetFirebaseConfigRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getAppId(): string;
+  setAppId(value: string): void;
+
+  getConfigJson(): string;
+  setConfigJson(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetFirebaseConfigRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetFirebaseConfigRequest): SetFirebaseConfigRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetFirebaseConfigRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetFirebaseConfigRequest;
+  static deserializeBinaryFromReader(message: SetFirebaseConfigRequest, reader: jspb.BinaryReader): SetFirebaseConfigRequest;
+}
+
+export namespace SetFirebaseConfigRequest {
+  export type AsObject = {
+    orgId: string,
+    appId: string,
+    configJson: string,
+  }
+}
+
+export class SetFirebaseConfigResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetFirebaseConfigResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SetFirebaseConfigResponse): SetFirebaseConfigResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetFirebaseConfigResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetFirebaseConfigResponse;
+  static deserializeBinaryFromReader(message: SetFirebaseConfigResponse, reader: jspb.BinaryReader): SetFirebaseConfigResponse;
+}
+
+export namespace SetFirebaseConfigResponse {
+  export type AsObject = {
+  }
+}
+
+export class GetFirebaseConfigRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetFirebaseConfigRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetFirebaseConfigRequest): GetFirebaseConfigRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetFirebaseConfigRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetFirebaseConfigRequest;
+  static deserializeBinaryFromReader(message: GetFirebaseConfigRequest, reader: jspb.BinaryReader): GetFirebaseConfigRequest;
+}
+
+export namespace GetFirebaseConfigRequest {
+  export type AsObject = {
+    orgId: string,
+  }
+}
+
+export class GetFirebaseConfigResponse extends jspb.Message {
+  getAppId(): string;
+  setAppId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetFirebaseConfigResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetFirebaseConfigResponse): GetFirebaseConfigResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetFirebaseConfigResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetFirebaseConfigResponse;
+  static deserializeBinaryFromReader(message: GetFirebaseConfigResponse, reader: jspb.BinaryReader): GetFirebaseConfigResponse;
+}
+
+export namespace GetFirebaseConfigResponse {
+  export type AsObject = {
+    appId: string,
+  }
+}
+
+export class DeleteFirebaseConfigRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getAppId(): string;
+  setAppId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteFirebaseConfigRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteFirebaseConfigRequest): DeleteFirebaseConfigRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteFirebaseConfigRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteFirebaseConfigRequest;
+  static deserializeBinaryFromReader(message: DeleteFirebaseConfigRequest, reader: jspb.BinaryReader): DeleteFirebaseConfigRequest;
+}
+
+export namespace DeleteFirebaseConfigRequest {
+  export type AsObject = {
+    orgId: string,
+    appId: string,
+  }
+}
+
+export class DeleteFirebaseConfigResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteFirebaseConfigResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteFirebaseConfigResponse): DeleteFirebaseConfigResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteFirebaseConfigResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteFirebaseConfigResponse;
+  static deserializeBinaryFromReader(message: DeleteFirebaseConfigResponse, reader: jspb.BinaryReader): DeleteFirebaseConfigResponse;
+}
+
+export namespace DeleteFirebaseConfigResponse {
+  export type AsObject = {
+  }
+}
+
 export interface OnlineStateMap {
   ONLINE_STATE_UNSPECIFIED: 0;
   ONLINE_STATE_ONLINE: 1;

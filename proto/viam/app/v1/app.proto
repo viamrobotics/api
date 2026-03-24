@@ -310,6 +310,25 @@ service AppService {
   rpc GetAppContent(GetAppContentRequest) returns (GetAppContentResponse);
 
   rpc GetAppBranding(GetAppBrandingRequest) returns (GetAppBrandingResponse);
+
+  // Upload a device push token for the user.
+  rpc UploadDevicePushToken(UploadDevicePushTokenRequest) returns (UploadDevicePushTokenResponse);
+
+  // Delete a device push token for the user.
+  rpc DeleteDevicePushToken(DeleteDevicePushTokenRequest) returns (DeleteDevicePushTokenResponse);
+
+  // Gets all device push tokens for the user for the given app ID.
+  rpc GetDevicePushTokens(GetDevicePushTokensRequest) returns (GetDevicePushTokensResponse);
+
+  // Set the Firebase config JSON for a specific app id.
+  rpc SetFirebaseConfig(SetFirebaseConfigRequest) returns (SetFirebaseConfigResponse);
+
+  // Read the app ID for an organization.
+  // This returns only the app_id configured for the org, not the Firebase config JSON.
+  rpc GetFirebaseConfig(GetFirebaseConfigRequest) returns (GetFirebaseConfigResponse);
+
+  // Deletes a Firebase config JSON for a specific app id.
+  rpc DeleteFirebaseConfig(DeleteFirebaseConfigRequest) returns (DeleteFirebaseConfigResponse);
 }
 
 enum OnlineState {
@@ -2028,3 +2047,49 @@ message MachinePickerCustomizations {
   optional string heading = 1;
   optional string subheading = 2;
 }
+
+message UploadDevicePushTokenRequest {
+  string app_id = 1;
+  string device_token = 2;
+  string device_uuid = 3;
+}
+
+message UploadDevicePushTokenResponse {}
+
+message DeleteDevicePushTokenRequest {
+  string app_id = 1;
+  string device_uuid = 2;
+}
+
+message DeleteDevicePushTokenResponse {}
+
+message GetDevicePushTokensRequest {
+  string app_id = 1;
+}
+
+message GetDevicePushTokensResponse {
+  repeated string device_tokens = 1;
+}
+
+message SetFirebaseConfigRequest {
+  string org_id = 1;
+  string app_id = 2;
+  string config_json = 3;
+}
+
+message SetFirebaseConfigResponse {}
+
+message GetFirebaseConfigRequest {
+  string org_id = 1;
+}
+
+message GetFirebaseConfigResponse {
+  string app_id = 1;
+}
+
+message DeleteFirebaseConfigRequest {
+  string org_id = 1;
+  string app_id = 2;
+}
+
+message DeleteFirebaseConfigResponse {}
