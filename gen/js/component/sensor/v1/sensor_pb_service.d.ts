@@ -23,6 +23,15 @@ type SensorServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type SensorServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof SensorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type SensorServiceGetGeometries = {
   readonly methodName: string;
   readonly service: typeof SensorService;
@@ -36,6 +45,7 @@ export class SensorService {
   static readonly serviceName: string;
   static readonly GetReadings: SensorServiceGetReadings;
   static readonly DoCommand: SensorServiceDoCommand;
+  static readonly GetStatus: SensorServiceGetStatus;
   static readonly GetGeometries: SensorServiceGetGeometries;
 }
 
@@ -88,6 +98,15 @@ export class SensorServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,

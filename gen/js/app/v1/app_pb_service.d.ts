@@ -985,6 +985,60 @@ type AppServiceGetAppBranding = {
   readonly responseType: typeof app_v1_app_pb.GetAppBrandingResponse;
 };
 
+type AppServiceUploadDevicePushToken = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UploadDevicePushTokenRequest;
+  readonly responseType: typeof app_v1_app_pb.UploadDevicePushTokenResponse;
+};
+
+type AppServiceDeleteDevicePushToken = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteDevicePushTokenRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteDevicePushTokenResponse;
+};
+
+type AppServiceGetDevicePushTokens = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetDevicePushTokensRequest;
+  readonly responseType: typeof app_v1_app_pb.GetDevicePushTokensResponse;
+};
+
+type AppServiceSetFirebaseConfig = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.SetFirebaseConfigRequest;
+  readonly responseType: typeof app_v1_app_pb.SetFirebaseConfigResponse;
+};
+
+type AppServiceGetFirebaseConfig = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.GetFirebaseConfigRequest;
+  readonly responseType: typeof app_v1_app_pb.GetFirebaseConfigResponse;
+};
+
+type AppServiceDeleteFirebaseConfig = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeleteFirebaseConfigRequest;
+  readonly responseType: typeof app_v1_app_pb.DeleteFirebaseConfigResponse;
+};
+
 export class AppService {
   static readonly serviceName: string;
   static readonly GetUserIDByEmail: AppServiceGetUserIDByEmail;
@@ -1096,6 +1150,12 @@ export class AppService {
   static readonly CreateKeyFromExistingKeyAuthorizations: AppServiceCreateKeyFromExistingKeyAuthorizations;
   static readonly GetAppContent: AppServiceGetAppContent;
   static readonly GetAppBranding: AppServiceGetAppBranding;
+  static readonly UploadDevicePushToken: AppServiceUploadDevicePushToken;
+  static readonly DeleteDevicePushToken: AppServiceDeleteDevicePushToken;
+  static readonly GetDevicePushTokens: AppServiceGetDevicePushTokens;
+  static readonly SetFirebaseConfig: AppServiceSetFirebaseConfig;
+  static readonly GetFirebaseConfig: AppServiceGetFirebaseConfig;
+  static readonly DeleteFirebaseConfig: AppServiceDeleteFirebaseConfig;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -2094,6 +2154,60 @@ export class AppServiceClient {
   getAppBranding(
     requestMessage: app_v1_app_pb.GetAppBrandingRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetAppBrandingResponse|null) => void
+  ): UnaryResponse;
+  uploadDevicePushToken(
+    requestMessage: app_v1_app_pb.UploadDevicePushTokenRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UploadDevicePushTokenResponse|null) => void
+  ): UnaryResponse;
+  uploadDevicePushToken(
+    requestMessage: app_v1_app_pb.UploadDevicePushTokenRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UploadDevicePushTokenResponse|null) => void
+  ): UnaryResponse;
+  deleteDevicePushToken(
+    requestMessage: app_v1_app_pb.DeleteDevicePushTokenRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteDevicePushTokenResponse|null) => void
+  ): UnaryResponse;
+  deleteDevicePushToken(
+    requestMessage: app_v1_app_pb.DeleteDevicePushTokenRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteDevicePushTokenResponse|null) => void
+  ): UnaryResponse;
+  getDevicePushTokens(
+    requestMessage: app_v1_app_pb.GetDevicePushTokensRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetDevicePushTokensResponse|null) => void
+  ): UnaryResponse;
+  getDevicePushTokens(
+    requestMessage: app_v1_app_pb.GetDevicePushTokensRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetDevicePushTokensResponse|null) => void
+  ): UnaryResponse;
+  setFirebaseConfig(
+    requestMessage: app_v1_app_pb.SetFirebaseConfigRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SetFirebaseConfigResponse|null) => void
+  ): UnaryResponse;
+  setFirebaseConfig(
+    requestMessage: app_v1_app_pb.SetFirebaseConfigRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SetFirebaseConfigResponse|null) => void
+  ): UnaryResponse;
+  getFirebaseConfig(
+    requestMessage: app_v1_app_pb.GetFirebaseConfigRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFirebaseConfigResponse|null) => void
+  ): UnaryResponse;
+  getFirebaseConfig(
+    requestMessage: app_v1_app_pb.GetFirebaseConfigRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.GetFirebaseConfigResponse|null) => void
+  ): UnaryResponse;
+  deleteFirebaseConfig(
+    requestMessage: app_v1_app_pb.DeleteFirebaseConfigRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFirebaseConfigResponse|null) => void
+  ): UnaryResponse;
+  deleteFirebaseConfig(
+    requestMessage: app_v1_app_pb.DeleteFirebaseConfigRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteFirebaseConfigResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -41,12 +41,22 @@ type SwitchServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type SwitchServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof SwitchService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 export class SwitchService {
   static readonly serviceName: string;
   static readonly SetPosition: SwitchServiceSetPosition;
   static readonly GetPosition: SwitchServiceGetPosition;
   static readonly GetNumberOfPositions: SwitchServiceGetNumberOfPositions;
   static readonly DoCommand: SwitchServiceDoCommand;
+  static readonly GetStatus: SwitchServiceGetStatus;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -116,6 +126,15 @@ export class SwitchServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
 }
 
