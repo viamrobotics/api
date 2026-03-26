@@ -8946,7 +8946,6 @@ proto.viam.robot.v1.GetCloudMetadataResponse.prototype.toObject = function(opt_i
  */
 proto.viam.robot.v1.GetCloudMetadataResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    robotPartId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     primaryOrgId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     locationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     machineId: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -8987,10 +8986,6 @@ proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinaryFromReader = funct
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setRobotPartId(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setPrimaryOrgId(value);
@@ -9036,13 +9031,6 @@ proto.viam.robot.v1.GetCloudMetadataResponse.prototype.serializeBinary = functio
  */
 proto.viam.robot.v1.GetCloudMetadataResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRobotPartId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getPrimaryOrgId();
   if (f.length > 0) {
     writer.writeString(
@@ -9071,24 +9059,6 @@ proto.viam.robot.v1.GetCloudMetadataResponse.serializeBinaryToWriter = function(
       f
     );
   }
-};
-
-
-/**
- * optional string robot_part_id = 1;
- * @return {string}
- */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.getRobotPartId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.robot.v1.GetCloudMetadataResponse} returns this
- */
-proto.viam.robot.v1.GetCloudMetadataResponse.prototype.setRobotPartId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
