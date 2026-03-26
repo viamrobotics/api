@@ -57,7 +57,7 @@ message StartBuildRequest {
   optional string token = 6;
   // optional working directory. defaults to repo root.
   optional string workdir = 7;
-  // optional distro for linux platforms. defaults to bullseye.
+  // optional distro for linux platforms.
   // must be bookworm for cpp module builds.
   optional string distro = 8;
 }
@@ -78,7 +78,7 @@ message ReloadBuildInfo {
   optional string workdir = 2;
   // org ID for the module
   string module_id = 3;
-  // optional distro for linux platforms. defaults to bullseye.
+  // optional distro for linux platforms.
   // must be bookworm for cpp module builds.
   optional string distro = 4;
 }
@@ -103,9 +103,9 @@ message StartPackageBuildRequest {
   string module_version = 3;
   // specify the platforms to build for (ex: linux/arm64)
   repeated string platforms = 4;
-  // optional distro for linux platforms. defaults to bullseye.
+  // optional distro for linux platforms.
   // must be bookworm for cpp module builds.
-  optional string distro = 4;
+  optional string distro = 5;
 }
 
 message StartPackageBuildResponse {
