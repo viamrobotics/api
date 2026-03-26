@@ -119,6 +119,11 @@ export class ReloadBuildInfo extends jspb.Message {
   getModuleId(): string;
   setModuleId(value: string): void;
 
+  hasDistro(): boolean;
+  clearDistro(): void;
+  getDistro(): string;
+  setDistro(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ReloadBuildInfo.AsObject;
   static toObject(includeInstance: boolean, msg: ReloadBuildInfo): ReloadBuildInfo.AsObject;
@@ -134,6 +139,7 @@ export namespace ReloadBuildInfo {
     platform: string,
     workdir: string,
     moduleId: string,
+    distro: string,
   }
 }
 
@@ -207,6 +213,11 @@ export class StartPackageBuildRequest extends jspb.Message {
   setPlatformsList(value: Array<string>): void;
   addPlatforms(value: string, index?: number): string;
 
+  hasDistro(): boolean;
+  clearDistro(): void;
+  getDistro(): string;
+  setDistro(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartPackageBuildRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StartPackageBuildRequest): StartPackageBuildRequest.AsObject;
@@ -223,6 +234,7 @@ export namespace StartPackageBuildRequest {
     packageVersion: string,
     moduleVersion: string,
     platformsList: Array<string>,
+    distro: string,
   }
 }
 
