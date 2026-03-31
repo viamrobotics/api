@@ -46762,7 +46762,7 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.hasMarkdownDescription = functio
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.App.repeatedFields_ = [4];
+proto.viam.app.v1.App.repeatedFields_ = [4,7];
 
 
 
@@ -46800,7 +46800,8 @@ proto.viam.app.v1.App.toObject = function(includeInstance, msg) {
     entrypoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
     fragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     logoPath: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    customizations: (f = msg.getCustomizations()) && proto.viam.app.v1.AppCustomizations.toObject(includeInstance, f)
+    customizations: (f = msg.getCustomizations()) && proto.viam.app.v1.AppCustomizations.toObject(includeInstance, f),
+    allowedOrgIdsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -46861,6 +46862,10 @@ proto.viam.app.v1.App.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.viam.app.v1.AppCustomizations;
       reader.readMessage(value,proto.viam.app.v1.AppCustomizations.deserializeBinaryFromReader);
       msg.setCustomizations(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addAllowedOrgIds(value);
       break;
     default:
       reader.skipField();
@@ -46932,6 +46937,13 @@ proto.viam.app.v1.App.serializeBinaryToWriter = function(message, writer) {
       6,
       f,
       proto.viam.app.v1.AppCustomizations.serializeBinaryToWriter
+    );
+  }
+  f = message.getAllowedOrgIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      7,
+      f
     );
   }
 };
@@ -47098,6 +47110,43 @@ proto.viam.app.v1.App.prototype.clearCustomizations = function() {
  */
 proto.viam.app.v1.App.prototype.hasCustomizations = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * repeated string allowed_org_ids = 7;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.App.prototype.getAllowedOrgIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 7));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.App} returns this
+ */
+proto.viam.app.v1.App.prototype.setAllowedOrgIdsList = function(value) {
+  return jspb.Message.setField(this, 7, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.App} returns this
+ */
+proto.viam.app.v1.App.prototype.addAllowedOrgIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 7, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.App} returns this
+ */
+proto.viam.app.v1.App.prototype.clearAllowedOrgIdsList = function() {
+  return this.setAllowedOrgIdsList([]);
 };
 
 
@@ -58068,7 +58117,7 @@ proto.viam.app.v1.TextOverrides.prototype.clearFieldsMap = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.GetAppBrandingResponse.repeatedFields_ = [3];
+proto.viam.app.v1.GetAppBrandingResponse.repeatedFields_ = [3,4];
 
 
 
@@ -58103,7 +58152,8 @@ proto.viam.app.v1.GetAppBrandingResponse.toObject = function(includeInstance, ms
   var f, obj = {
     logoPath: jspb.Message.getFieldWithDefault(msg, 1, ""),
     textCustomizationsMap: (f = msg.getTextCustomizationsMap()) ? f.toObject(includeInstance, proto.viam.app.v1.TextOverrides.toObject) : [],
-    fragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+    fragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    allowedOrgIdsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -58154,6 +58204,10 @@ proto.viam.app.v1.GetAppBrandingResponse.deserializeBinaryFromReader = function(
       var value = /** @type {string} */ (reader.readString());
       msg.addFragmentIds(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addAllowedOrgIds(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -58198,6 +58252,13 @@ proto.viam.app.v1.GetAppBrandingResponse.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writeRepeatedString(
       3,
+      f
+    );
+  }
+  f = message.getAllowedOrgIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
       f
     );
   }
@@ -58296,6 +58357,43 @@ proto.viam.app.v1.GetAppBrandingResponse.prototype.addFragmentIds = function(val
  */
 proto.viam.app.v1.GetAppBrandingResponse.prototype.clearFragmentIdsList = function() {
   return this.setFragmentIdsList([]);
+};
+
+
+/**
+ * repeated string allowed_org_ids = 4;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.getAllowedOrgIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.GetAppBrandingResponse} returns this
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.setAllowedOrgIdsList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.GetAppBrandingResponse} returns this
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.addAllowedOrgIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.GetAppBrandingResponse} returns this
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.clearAllowedOrgIdsList = function() {
+  return this.setAllowedOrgIdsList([]);
 };
 
 

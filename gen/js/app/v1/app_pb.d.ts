@@ -5791,6 +5791,11 @@ export class App extends jspb.Message {
   getCustomizations(): AppCustomizations | undefined;
   setCustomizations(value?: AppCustomizations): void;
 
+  clearAllowedOrgIdsList(): void;
+  getAllowedOrgIdsList(): Array<string>;
+  setAllowedOrgIdsList(value: Array<string>): void;
+  addAllowedOrgIds(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): App.AsObject;
   static toObject(includeInstance: boolean, msg: App): App.AsObject;
@@ -5809,6 +5814,7 @@ export namespace App {
     fragmentIdsList: Array<string>,
     logoPath: string,
     customizations?: AppCustomizations.AsObject,
+    allowedOrgIdsList: Array<string>,
   }
 }
 
@@ -7399,6 +7405,11 @@ export class GetAppBrandingResponse extends jspb.Message {
   setFragmentIdsList(value: Array<string>): void;
   addFragmentIds(value: string, index?: number): string;
 
+  clearAllowedOrgIdsList(): void;
+  getAllowedOrgIdsList(): Array<string>;
+  setAllowedOrgIdsList(value: Array<string>): void;
+  addAllowedOrgIds(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAppBrandingResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetAppBrandingResponse): GetAppBrandingResponse.AsObject;
@@ -7414,6 +7425,7 @@ export namespace GetAppBrandingResponse {
     logoPath: string,
     textCustomizationsMap: Array<[string, TextOverrides.AsObject]>,
     fragmentIdsList: Array<string>,
+    allowedOrgIdsList: Array<string>,
   }
 }
 
