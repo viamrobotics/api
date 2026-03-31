@@ -6671,5 +6671,371 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.getAppBranding =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.UploadDevicePushTokenRequest,
+ *   !proto.viam.app.v1.UploadDevicePushTokenResponse>}
+ */
+const methodDescriptor_AppService_UploadDevicePushToken = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/UploadDevicePushToken',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.UploadDevicePushTokenRequest,
+  proto.viam.app.v1.UploadDevicePushTokenResponse,
+  /**
+   * @param {!proto.viam.app.v1.UploadDevicePushTokenRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.UploadDevicePushTokenResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.UploadDevicePushTokenRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.UploadDevicePushTokenResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.UploadDevicePushTokenResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.uploadDevicePushToken =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/UploadDevicePushToken',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UploadDevicePushToken,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.UploadDevicePushTokenRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.UploadDevicePushTokenResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.uploadDevicePushToken =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/UploadDevicePushToken',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_UploadDevicePushToken);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteDevicePushTokenRequest,
+ *   !proto.viam.app.v1.DeleteDevicePushTokenResponse>}
+ */
+const methodDescriptor_AppService_DeleteDevicePushToken = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteDevicePushToken',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteDevicePushTokenRequest,
+  proto.viam.app.v1.DeleteDevicePushTokenResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteDevicePushTokenRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteDevicePushTokenResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteDevicePushTokenRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteDevicePushTokenResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteDevicePushTokenResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteDevicePushToken =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteDevicePushToken',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteDevicePushToken,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteDevicePushTokenRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteDevicePushTokenResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteDevicePushToken =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteDevicePushToken',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteDevicePushToken);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetDevicePushTokensRequest,
+ *   !proto.viam.app.v1.GetDevicePushTokensResponse>}
+ */
+const methodDescriptor_AppService_GetDevicePushTokens = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetDevicePushTokens',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetDevicePushTokensRequest,
+  proto.viam.app.v1.GetDevicePushTokensResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetDevicePushTokensRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetDevicePushTokensResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetDevicePushTokensRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetDevicePushTokensResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetDevicePushTokensResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getDevicePushTokens =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetDevicePushTokens',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetDevicePushTokens,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetDevicePushTokensRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetDevicePushTokensResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getDevicePushTokens =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetDevicePushTokens',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetDevicePushTokens);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.SetFirebaseConfigRequest,
+ *   !proto.viam.app.v1.SetFirebaseConfigResponse>}
+ */
+const methodDescriptor_AppService_SetFirebaseConfig = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/SetFirebaseConfig',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.SetFirebaseConfigRequest,
+  proto.viam.app.v1.SetFirebaseConfigResponse,
+  /**
+   * @param {!proto.viam.app.v1.SetFirebaseConfigRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.SetFirebaseConfigResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.SetFirebaseConfigRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.SetFirebaseConfigResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.SetFirebaseConfigResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.setFirebaseConfig =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/SetFirebaseConfig',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_SetFirebaseConfig,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.SetFirebaseConfigRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.SetFirebaseConfigResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.setFirebaseConfig =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/SetFirebaseConfig',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_SetFirebaseConfig);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.GetFirebaseConfigRequest,
+ *   !proto.viam.app.v1.GetFirebaseConfigResponse>}
+ */
+const methodDescriptor_AppService_GetFirebaseConfig = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/GetFirebaseConfig',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.GetFirebaseConfigRequest,
+  proto.viam.app.v1.GetFirebaseConfigResponse,
+  /**
+   * @param {!proto.viam.app.v1.GetFirebaseConfigRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.GetFirebaseConfigResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.GetFirebaseConfigRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.GetFirebaseConfigResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.GetFirebaseConfigResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.getFirebaseConfig =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetFirebaseConfig',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetFirebaseConfig,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.GetFirebaseConfigRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.GetFirebaseConfigResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.getFirebaseConfig =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/GetFirebaseConfig',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_GetFirebaseConfig);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeleteFirebaseConfigRequest,
+ *   !proto.viam.app.v1.DeleteFirebaseConfigResponse>}
+ */
+const methodDescriptor_AppService_DeleteFirebaseConfig = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeleteFirebaseConfig',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeleteFirebaseConfigRequest,
+  proto.viam.app.v1.DeleteFirebaseConfigResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeleteFirebaseConfigRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeleteFirebaseConfigResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteFirebaseConfigRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeleteFirebaseConfigResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeleteFirebaseConfigResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deleteFirebaseConfig =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteFirebaseConfig',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteFirebaseConfig,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeleteFirebaseConfigRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeleteFirebaseConfigResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deleteFirebaseConfig =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeleteFirebaseConfig',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeleteFirebaseConfig);
+};
+
+
 module.exports = proto.viam.app.v1;
 

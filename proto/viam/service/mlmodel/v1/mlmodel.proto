@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.service.mlmodel.v1;
 
+import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
@@ -18,6 +19,11 @@ service MLModelService {
   // Metadata returns the metadata associated with the ML model.
   rpc Metadata(MetadataRequest) returns (MetadataResponse) {
     option (google.api.http) = {get: "/viam/api/v1/service/mlmodel/{name}/metadata"};
+  }
+
+  // GetStatus returns the status of the resource
+  rpc GetStatus(common.v1.GetStatusRequest) returns (common.v1.GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/mlmodel/{name}/get_status"};
   }
 }
 

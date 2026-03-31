@@ -110,6 +110,15 @@ MotorService.DoCommand = {
   responseType: common_v1_common_pb.DoCommandResponse
 };
 
+MotorService.GetStatus = {
+  methodName: "GetStatus",
+  service: MotorService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.GetStatusRequest,
+  responseType: common_v1_common_pb.GetStatusResponse
+};
+
 MotorService.GetGeometries = {
   methodName: "GetGeometries",
   service: MotorService,
@@ -441,6 +450,37 @@ MotorServiceClient.prototype.doCommand = function doCommand(requestMessage, meta
     callback = arguments[1];
   }
   var client = grpc.unary(MotorService.DoCommand, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MotorServiceClient.prototype.getStatus = function getStatus(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MotorService.GetStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

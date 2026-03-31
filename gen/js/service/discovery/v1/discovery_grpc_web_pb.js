@@ -207,5 +207,66 @@ proto.viam.service.discovery.v1.DiscoveryServicePromiseClient.prototype.doComman
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.GetStatusRequest,
+ *   !proto.viam.common.v1.GetStatusResponse>}
+ */
+const methodDescriptor_DiscoveryService_GetStatus = new grpc.web.MethodDescriptor(
+  '/viam.service.discovery.v1.DiscoveryService/GetStatus',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.GetStatusRequest,
+  common_v1_common_pb.GetStatusResponse,
+  /**
+   * @param {!proto.viam.common.v1.GetStatusRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.GetStatusResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.GetStatusRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.GetStatusResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.GetStatusResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.discovery.v1.DiscoveryServiceClient.prototype.getStatus =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.discovery.v1.DiscoveryService/GetStatus',
+      request,
+      metadata || {},
+      methodDescriptor_DiscoveryService_GetStatus,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.GetStatusRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.GetStatusResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.discovery.v1.DiscoveryServicePromiseClient.prototype.getStatus =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.discovery.v1.DiscoveryService/GetStatus',
+      request,
+      metadata || {},
+      methodDescriptor_DiscoveryService_GetStatus);
+};
+
+
 module.exports = proto.viam.service.discovery.v1;
 

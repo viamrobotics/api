@@ -1399,7 +1399,8 @@ proto.viam.app.build.v1.ReloadBuildInfo.toObject = function(includeInstance, msg
   var f, obj = {
     platform: jspb.Message.getFieldWithDefault(msg, 1, ""),
     workdir: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    moduleId: jspb.Message.getFieldWithDefault(msg, 3, "")
+    moduleId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    distro: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1448,6 +1449,10 @@ proto.viam.app.build.v1.ReloadBuildInfo.deserializeBinaryFromReader = function(m
       var value = /** @type {string} */ (reader.readString());
       msg.setModuleId(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDistro(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1495,6 +1500,13 @@ proto.viam.app.build.v1.ReloadBuildInfo.serializeBinaryToWriter = function(messa
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -1570,6 +1582,42 @@ proto.viam.app.build.v1.ReloadBuildInfo.prototype.getModuleId = function() {
  */
 proto.viam.app.build.v1.ReloadBuildInfo.prototype.setModuleId = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string distro = 4;
+ * @return {string}
+ */
+proto.viam.app.build.v1.ReloadBuildInfo.prototype.getDistro = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.build.v1.ReloadBuildInfo} returns this
+ */
+proto.viam.app.build.v1.ReloadBuildInfo.prototype.setDistro = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.build.v1.ReloadBuildInfo} returns this
+ */
+proto.viam.app.build.v1.ReloadBuildInfo.prototype.clearDistro = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.build.v1.ReloadBuildInfo.prototype.hasDistro = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -1973,7 +2021,8 @@ proto.viam.app.build.v1.StartPackageBuildRequest.toObject = function(includeInst
     moduleId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     packageVersion: jspb.Message.getFieldWithDefault(msg, 2, ""),
     moduleVersion: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    platformsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    platformsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+    distro: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -2025,6 +2074,10 @@ proto.viam.app.build.v1.StartPackageBuildRequest.deserializeBinaryFromReader = f
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.addPlatforms(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDistro(value);
       break;
     default:
       reader.skipField();
@@ -2080,6 +2133,13 @@ proto.viam.app.build.v1.StartPackageBuildRequest.serializeBinaryToWriter = funct
   if (f.length > 0) {
     writer.writeRepeatedString(
       4,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -2174,6 +2234,42 @@ proto.viam.app.build.v1.StartPackageBuildRequest.prototype.addPlatforms = functi
  */
 proto.viam.app.build.v1.StartPackageBuildRequest.prototype.clearPlatformsList = function() {
   return this.setPlatformsList([]);
+};
+
+
+/**
+ * optional string distro = 5;
+ * @return {string}
+ */
+proto.viam.app.build.v1.StartPackageBuildRequest.prototype.getDistro = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.build.v1.StartPackageBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartPackageBuildRequest.prototype.setDistro = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.build.v1.StartPackageBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartPackageBuildRequest.prototype.clearDistro = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.build.v1.StartPackageBuildRequest.prototype.hasDistro = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 

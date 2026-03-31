@@ -104,6 +104,15 @@ type MotorServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type MotorServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof MotorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type MotorServiceGetGeometries = {
   readonly methodName: string;
   readonly service: typeof MotorService;
@@ -126,6 +135,7 @@ export class MotorService {
   static readonly IsPowered: MotorServiceIsPowered;
   static readonly IsMoving: MotorServiceIsMoving;
   static readonly DoCommand: MotorServiceDoCommand;
+  static readonly GetStatus: MotorServiceGetStatus;
   static readonly GetGeometries: MotorServiceGetGeometries;
 }
 
@@ -259,6 +269,15 @@ export class MotorServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,

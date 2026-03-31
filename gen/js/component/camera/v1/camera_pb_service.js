@@ -3,7 +3,6 @@
 
 var component_camera_v1_camera_pb = require("../../../component/camera/v1/camera_pb");
 var common_v1_common_pb = require("../../../common/v1/common_pb");
-var google_api_httpbody_pb = require("../../../google/api/httpbody_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var CameraService = (function () {
@@ -12,15 +11,6 @@ var CameraService = (function () {
   return CameraService;
 }());
 
-CameraService.GetImage = {
-  methodName: "GetImage",
-  service: CameraService,
-  requestStream: false,
-  responseStream: false,
-  requestType: component_camera_v1_camera_pb.GetImageRequest,
-  responseType: component_camera_v1_camera_pb.GetImageResponse
-};
-
 CameraService.GetImages = {
   methodName: "GetImages",
   service: CameraService,
@@ -28,15 +18,6 @@ CameraService.GetImages = {
   responseStream: false,
   requestType: component_camera_v1_camera_pb.GetImagesRequest,
   responseType: component_camera_v1_camera_pb.GetImagesResponse
-};
-
-CameraService.RenderFrame = {
-  methodName: "RenderFrame",
-  service: CameraService,
-  requestStream: false,
-  responseStream: false,
-  requestType: component_camera_v1_camera_pb.RenderFrameRequest,
-  responseType: google_api_httpbody_pb.HttpBody
 };
 
 CameraService.GetPointCloud = {
@@ -66,6 +47,15 @@ CameraService.DoCommand = {
   responseType: common_v1_common_pb.DoCommandResponse
 };
 
+CameraService.GetStatus = {
+  methodName: "GetStatus",
+  service: CameraService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.GetStatusRequest,
+  responseType: common_v1_common_pb.GetStatusResponse
+};
+
 CameraService.GetGeometries = {
   methodName: "GetGeometries",
   service: CameraService,
@@ -82,73 +72,11 @@ function CameraServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-CameraServiceClient.prototype.getImage = function getImage(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(CameraService.GetImage, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
 CameraServiceClient.prototype.getImages = function getImages(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
   var client = grpc.unary(CameraService.GetImages, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-CameraServiceClient.prototype.renderFrame = function renderFrame(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(CameraService.RenderFrame, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -242,6 +170,37 @@ CameraServiceClient.prototype.doCommand = function doCommand(requestMessage, met
     callback = arguments[1];
   }
   var client = grpc.unary(CameraService.DoCommand, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+CameraServiceClient.prototype.getStatus = function getStatus(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(CameraService.GetStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
