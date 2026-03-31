@@ -160,6 +160,7 @@ message Filter {
   // bbox_labels are used to match documents with the specified bounding box labels (using logical OR).
   repeated string bbox_labels = 15;
   string dataset_id = 16;
+  DatasetFilter dataset_filter = 17;
 
   reserved 3, 5;
   reserved "component_model", "tags";
@@ -181,6 +182,24 @@ enum TagsFilterType {
   TAGS_FILTER_TYPE_TAGGED = 2;
   // TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned.
   TAGS_FILTER_TYPE_UNTAGGED = 3;
+}
+
+// DatasetFilter defines the type of filtering for datasets.
+message DatasetFilter {
+  DatasetFilterType type = 1;
+  // dataset_id is used when type is MATCH to filter by a specific dataset.
+  string dataset_id = 2;
+}
+
+// DatasetFilterType specifies how data can be filtered based on dataset membership.
+enum DatasetFilterType {
+  DATASET_FILTER_TYPE_UNSPECIFIED = 0;
+  // DATASET_FILTER_TYPE_MATCH specifies documents belonging to the dataset in dataset_id.
+  DATASET_FILTER_TYPE_MATCH = 1;
+  // DATASET_FILTER_TYPE_IN_ANY_DATASET specifies that all documents belonging to any dataset should be returned.
+  DATASET_FILTER_TYPE_IN_ANY_DATASET = 2;
+  // DATASET_FILTER_TYPE_NOT_IN_ANY_DATASET specifies that all documents not belonging to any dataset should be returned.
+  DATASET_FILTER_TYPE_NOT_IN_ANY_DATASET = 3;
 }
 
 // CaptureMetadata contains information on the settings used for the data capture.
