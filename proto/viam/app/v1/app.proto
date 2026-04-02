@@ -1636,6 +1636,10 @@ message UpdateModuleRequest {
   optional string markdown_description = 9;
 }
 
+message AllowedOrgIDs {
+  repeated string ids = 1;
+}
+
 message App {
   // The name of the application
   string name = 1;
@@ -1650,7 +1654,7 @@ message App {
   // Optional: structured customizations for the app (e.g., machine picker headings)
   AppCustomizations customizations = 6;
   // Optional: list of org IDs that are allowed to use this app; if empty, all orgs are allowed
-  repeated string allowed_org_ids = 7;
+  optional AllowedOrgIDs allowed_org_ids = 7;
 }
 
 message UpdateModuleResponse {
