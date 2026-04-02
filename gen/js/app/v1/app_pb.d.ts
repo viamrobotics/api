@@ -5766,6 +5766,28 @@ export namespace UpdateModuleRequest {
   }
 }
 
+export class AllowedOrgIDs extends jspb.Message {
+  clearIdsList(): void;
+  getIdsList(): Array<string>;
+  setIdsList(value: Array<string>): void;
+  addIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AllowedOrgIDs.AsObject;
+  static toObject(includeInstance: boolean, msg: AllowedOrgIDs): AllowedOrgIDs.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AllowedOrgIDs, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AllowedOrgIDs;
+  static deserializeBinaryFromReader(message: AllowedOrgIDs, reader: jspb.BinaryReader): AllowedOrgIDs;
+}
+
+export namespace AllowedOrgIDs {
+  export type AsObject = {
+    idsList: Array<string>,
+  }
+}
+
 export class App extends jspb.Message {
   getName(): string;
   setName(value: string): void;
@@ -5791,10 +5813,10 @@ export class App extends jspb.Message {
   getCustomizations(): AppCustomizations | undefined;
   setCustomizations(value?: AppCustomizations): void;
 
-  clearAllowedOrgIdsList(): void;
-  getAllowedOrgIdsList(): Array<string>;
-  setAllowedOrgIdsList(value: Array<string>): void;
-  addAllowedOrgIds(value: string, index?: number): string;
+  hasAllowedOrgIds(): boolean;
+  clearAllowedOrgIds(): void;
+  getAllowedOrgIds(): AllowedOrgIDs | undefined;
+  setAllowedOrgIds(value?: AllowedOrgIDs): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): App.AsObject;
@@ -5814,7 +5836,7 @@ export namespace App {
     fragmentIdsList: Array<string>,
     logoPath: string,
     customizations?: AppCustomizations.AsObject,
-    allowedOrgIdsList: Array<string>,
+    allowedOrgIds?: AllowedOrgIDs.AsObject,
   }
 }
 
