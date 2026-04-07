@@ -99,6 +99,8 @@ service AppService {
   rpc DeleteOAuthApp(DeleteOAuthAppRequest) returns (DeleteOAuthAppResponse);
   rpc ListOAuthApps(ListOAuthAppsRequest) returns (ListOAuthAppsResponse);
 
+  rpc CreateOAuthAppUser(CreateOAuthAppUserRequest) returns (CreateOAuthAppUserResponse);
+
   // Location
 
   // Create a location
@@ -1992,6 +1994,20 @@ message ListOAuthAppsRequest {
 }
 message ListOAuthAppsResponse {
   repeated string client_ids = 1;
+}
+
+message CreateOAuthAppUserRequest {
+  string application_id = 1;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string password = 5;
+}
+
+message CreateOAuthAppUserResponse {
+  string auth_token = 1;
+  string registration_id = 2;
+  string user_id = 3;
 }
 
 enum ClientAuthentication {
