@@ -2549,6 +2549,26 @@ export class GetRobotPartHistoryRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  hasPageToken(): boolean;
+  clearPageToken(): void;
+  getPageToken(): string;
+  setPageToken(value: string): void;
+
+  hasPageLimit(): boolean;
+  clearPageLimit(): void;
+  getPageLimit(): number;
+  setPageLimit(value: number): void;
+
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStart(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEnd(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartHistoryRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartHistoryRequest): GetRobotPartHistoryRequest.AsObject;
@@ -2562,6 +2582,10 @@ export class GetRobotPartHistoryRequest extends jspb.Message {
 export namespace GetRobotPartHistoryRequest {
   export type AsObject = {
     id: string,
+    pageToken: string,
+    pageLimit: number,
+    start?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    end?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -2570,6 +2594,9 @@ export class GetRobotPartHistoryResponse extends jspb.Message {
   getHistoryList(): Array<RobotPartHistoryEntry>;
   setHistoryList(value: Array<RobotPartHistoryEntry>): void;
   addHistory(value?: RobotPartHistoryEntry, index?: number): RobotPartHistoryEntry;
+
+  getNextPageToken(): string;
+  setNextPageToken(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartHistoryResponse.AsObject;
@@ -2584,6 +2611,7 @@ export class GetRobotPartHistoryResponse extends jspb.Message {
 export namespace GetRobotPartHistoryResponse {
   export type AsObject = {
     historyList: Array<RobotPartHistoryEntry.AsObject>,
+    nextPageToken: string,
   }
 }
 

@@ -24033,7 +24033,11 @@ proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.GetRobotPartHistoryRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    pageLimit: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -24074,6 +24078,24 @@ proto.viam.app.v1.GetRobotPartHistoryRequest.deserializeBinaryFromReader = funct
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPageToken(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPageLimit(value);
+      break;
+    case 4:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setStart(value);
+      break;
+    case 5:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setEnd(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -24110,6 +24132,36 @@ proto.viam.app.v1.GetRobotPartHistoryRequest.serializeBinaryToWriter = function(
       f
     );
   }
+  f = /** @type {string} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeInt64(
+      3,
+      f
+    );
+  }
+  f = message.getStart();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getEnd();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -24128,6 +24180,152 @@ proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.getId = function() {
  */
 proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string page_token = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.getPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.setPageToken = function(value) {
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.clearPageToken = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.hasPageToken = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional int64 page_limit = 3;
+ * @return {number}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.getPageLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.setPageLimit = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.clearPageLimit = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.hasPageLimit = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp start = 4;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.getStart = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+*/
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.setStart = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.clearStart = function() {
+  return this.setStart(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.hasStart = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp end = 5;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.getEnd = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+*/
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.setEnd = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.clearEnd = function() {
+  return this.setEnd(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.hasEnd = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -24171,7 +24369,8 @@ proto.viam.app.v1.GetRobotPartHistoryResponse.prototype.toObject = function(opt_
 proto.viam.app.v1.GetRobotPartHistoryResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     historyList: jspb.Message.toObjectList(msg.getHistoryList(),
-    proto.viam.app.v1.RobotPartHistoryEntry.toObject, includeInstance)
+    proto.viam.app.v1.RobotPartHistoryEntry.toObject, includeInstance),
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -24213,6 +24412,10 @@ proto.viam.app.v1.GetRobotPartHistoryResponse.deserializeBinaryFromReader = func
       reader.readMessage(value,proto.viam.app.v1.RobotPartHistoryEntry.deserializeBinaryFromReader);
       msg.addHistory(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNextPageToken(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -24248,6 +24451,13 @@ proto.viam.app.v1.GetRobotPartHistoryResponse.serializeBinaryToWriter = function
       1,
       f,
       proto.viam.app.v1.RobotPartHistoryEntry.serializeBinaryToWriter
+    );
+  }
+  f = message.getNextPageToken();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
     );
   }
 };
@@ -24288,6 +24498,24 @@ proto.viam.app.v1.GetRobotPartHistoryResponse.prototype.addHistory = function(op
  */
 proto.viam.app.v1.GetRobotPartHistoryResponse.prototype.clearHistoryList = function() {
   return this.setHistoryList([]);
+};
+
+
+/**
+ * optional string next_page_token = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.GetRobotPartHistoryResponse.prototype.getNextPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryResponse} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryResponse.prototype.setNextPageToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
