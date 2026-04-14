@@ -799,9 +799,7 @@ message RenameFavoriteDoCommandRequest {
   string name = 2;
 }
 
-message RenameFavoriteDoCommandResponse {
-  FavoriteDoCommandItem favorite = 1;
-}
+message RenameFavoriteDoCommandResponse {}
 
 message RemoveFavoriteDoCommandRequest {
   string id = 1;
