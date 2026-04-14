@@ -119,6 +119,15 @@ service AppService {
   // Update user-defined metadata for a location
   rpc UpdateLocationMetadata(UpdateLocationMetadataRequest) returns (UpdateLocationMetadataResponse);
 
+  // Add favorite DoCommand
+  rpc AddFavoriteDoCommand(AddFavoriteDoCommandRequest) returns (AddFavoriteDoCommandResponse);
+
+  // Rename favorite DoCommand
+  rpc RenameFavoriteDoCommand(RenameFavoriteDoCommandRequest) returns (RenameFavoriteDoCommandResponse);
+
+  // Remove favorite DoCommand
+  rpc RemoveFavoriteDoCommand(RemoveFavoriteDoCommandRequest) returns (RemoveFavoriteDoCommandResponse);
+
   // Get a list of locations
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
@@ -760,6 +769,51 @@ message UpdateLocationMetadataRequest {
 }
 
 message UpdateLocationMetadataResponse {}
+
+message FavoriteDoCommandItem {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Struct input = 3;
+  string machine_id = 4;
+  string resource_name = 5;
+  string user_id = 6;
+  google.protobuf.Timestamp created_on = 7;
+}
+
+message AddFavoriteDoCommandRequest {
+  string name = 1;
+  google.protobuf.Struct input = 2;
+  string machine_id = 3;
+  string resource_name = 4;
+}
+
+message AddFavoriteDoCommandResponse {
+  FavoriteDoCommandItem favorite = 1;
+}
+
+message RenameFavoriteDoCommandRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message RenameFavoriteDoCommandResponse {
+  FavoriteDoCommandItem favorite = 1;
+}
+
+message RemoveFavoriteDoCommandRequest {
+  string id = 1;
+}
+
+message RemoveFavoriteDoCommandResponse {}
+
+message ListFavoriteDoCommandsRequest {
+  string machine_id = 1;
+  optional string resource_name = 2;
+}
+
+message ListFavoriteDoCommandsResponse {
+  repeated FavoriteDoCommandItem favorites = 1;
+}
 
 message GetOrganizationsWithAccessToLocationRequest {
   string location_id = 1;
