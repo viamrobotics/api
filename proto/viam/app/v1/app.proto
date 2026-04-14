@@ -128,6 +128,9 @@ service AppService {
   // Remove favorite DoCommand
   rpc RemoveFavoriteDoCommand(RemoveFavoriteDoCommandRequest) returns (RemoveFavoriteDoCommandResponse);
 
+  // List favorite DoCommands
+  rpc ListFavoriteDoCommands(ListFavoriteDoCommandsRequest) returns (ListFavoriteDoCommandsResponse);
+
   // Get a list of locations
   rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
 
