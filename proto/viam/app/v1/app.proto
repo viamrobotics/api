@@ -2009,6 +2009,7 @@ message CreateOAuthAppUserResponse {
   string auth_token = 1;
   string registration_id = 2;
   string user_id = 3;
+  string refresh_token = 4;
 }
 
 enum ClientAuthentication {
