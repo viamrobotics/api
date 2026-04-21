@@ -310,6 +310,15 @@ type AppServiceListOAuthApps = {
   readonly responseType: typeof app_v1_app_pb.ListOAuthAppsResponse;
 };
 
+type AppServiceCreateOAuthAppUser = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.CreateOAuthAppUserRequest;
+  readonly responseType: typeof app_v1_app_pb.CreateOAuthAppUserResponse;
+};
+
 type AppServiceCreateLocation = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -1075,6 +1084,7 @@ export class AppService {
   static readonly UpdateOAuthApp: AppServiceUpdateOAuthApp;
   static readonly DeleteOAuthApp: AppServiceDeleteOAuthApp;
   static readonly ListOAuthApps: AppServiceListOAuthApps;
+  static readonly CreateOAuthAppUser: AppServiceCreateOAuthAppUser;
   static readonly CreateLocation: AppServiceCreateLocation;
   static readonly GetLocation: AppServiceGetLocation;
   static readonly UpdateLocation: AppServiceUpdateLocation;
@@ -1495,6 +1505,15 @@ export class AppServiceClient {
   listOAuthApps(
     requestMessage: app_v1_app_pb.ListOAuthAppsRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListOAuthAppsResponse|null) => void
+  ): UnaryResponse;
+  createOAuthAppUser(
+    requestMessage: app_v1_app_pb.CreateOAuthAppUserRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOAuthAppUserResponse|null) => void
+  ): UnaryResponse;
+  createOAuthAppUser(
+    requestMessage: app_v1_app_pb.CreateOAuthAppUserRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.CreateOAuthAppUserResponse|null) => void
   ): UnaryResponse;
   createLocation(
     requestMessage: app_v1_app_pb.CreateLocationRequest,

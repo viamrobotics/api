@@ -316,6 +316,15 @@ AppService.ListOAuthApps = {
   responseType: app_v1_app_pb.ListOAuthAppsResponse
 };
 
+AppService.CreateOAuthAppUser = {
+  methodName: "CreateOAuthAppUser",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CreateOAuthAppUserRequest,
+  responseType: app_v1_app_pb.CreateOAuthAppUserResponse
+};
+
 AppService.CreateLocation = {
   methodName: "CreateLocation",
   service: AppService,
@@ -2080,6 +2089,37 @@ AppServiceClient.prototype.listOAuthApps = function listOAuthApps(requestMessage
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListOAuthApps, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.createOAuthAppUser = function createOAuthAppUser(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CreateOAuthAppUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

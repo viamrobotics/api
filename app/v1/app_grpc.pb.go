@@ -75,6 +75,7 @@ type AppServiceClient interface {
 	UpdateOAuthApp(ctx context.Context, in *UpdateOAuthAppRequest, opts ...grpc.CallOption) (*UpdateOAuthAppResponse, error)
 	DeleteOAuthApp(ctx context.Context, in *DeleteOAuthAppRequest, opts ...grpc.CallOption) (*DeleteOAuthAppResponse, error)
 	ListOAuthApps(ctx context.Context, in *ListOAuthAppsRequest, opts ...grpc.CallOption) (*ListOAuthAppsResponse, error)
+	CreateOAuthAppUser(ctx context.Context, in *CreateOAuthAppUserRequest, opts ...grpc.CallOption) (*CreateOAuthAppUserResponse, error)
 	// Create a location
 	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
 	// Get a location
@@ -531,6 +532,15 @@ func (c *appServiceClient) DeleteOAuthApp(ctx context.Context, in *DeleteOAuthAp
 func (c *appServiceClient) ListOAuthApps(ctx context.Context, in *ListOAuthAppsRequest, opts ...grpc.CallOption) (*ListOAuthAppsResponse, error) {
 	out := new(ListOAuthAppsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOAuthApps", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) CreateOAuthAppUser(ctx context.Context, in *CreateOAuthAppUserRequest, opts ...grpc.CallOption) (*CreateOAuthAppUserResponse, error) {
+	out := new(CreateOAuthAppUserResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateOAuthAppUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1371,6 +1381,7 @@ type AppServiceServer interface {
 	UpdateOAuthApp(context.Context, *UpdateOAuthAppRequest) (*UpdateOAuthAppResponse, error)
 	DeleteOAuthApp(context.Context, *DeleteOAuthAppRequest) (*DeleteOAuthAppResponse, error)
 	ListOAuthApps(context.Context, *ListOAuthAppsRequest) (*ListOAuthAppsResponse, error)
+	CreateOAuthAppUser(context.Context, *CreateOAuthAppUserRequest) (*CreateOAuthAppUserResponse, error)
 	// Create a location
 	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
 	// Get a location
@@ -1625,6 +1636,9 @@ func (UnimplementedAppServiceServer) DeleteOAuthApp(context.Context, *DeleteOAut
 }
 func (UnimplementedAppServiceServer) ListOAuthApps(context.Context, *ListOAuthAppsRequest) (*ListOAuthAppsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOAuthApps not implemented")
+}
+func (UnimplementedAppServiceServer) CreateOAuthAppUser(context.Context, *CreateOAuthAppUserRequest) (*CreateOAuthAppUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOAuthAppUser not implemented")
 }
 func (UnimplementedAppServiceServer) CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateLocation not implemented")
@@ -2490,6 +2504,24 @@ func _AppService_ListOAuthApps_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListOAuthApps(ctx, req.(*ListOAuthAppsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_CreateOAuthAppUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOAuthAppUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateOAuthAppUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateOAuthAppUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateOAuthAppUser(ctx, req.(*CreateOAuthAppUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4105,6 +4137,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListOAuthApps",
 			Handler:    _AppService_ListOAuthApps_Handler,
+		},
+		{
+			MethodName: "CreateOAuthAppUser",
+			Handler:    _AppService_CreateOAuthAppUser_Handler,
 		},
 		{
 			MethodName: "CreateLocation",
