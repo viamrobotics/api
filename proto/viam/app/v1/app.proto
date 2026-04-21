@@ -1997,11 +1997,12 @@ message ListOAuthAppsResponse {
 }
 
 message CreateOAuthAppUserRequest {
-  string application_id = 1;
-  string email = 2;
-  string first_name = 3;
-  string last_name = 4;
-  string password = 5;
+  string org_id = 1;
+  string application_id = 2;
+  string email = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string password = 6;
 }
 
 message CreateOAuthAppUserResponse {
