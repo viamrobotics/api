@@ -2165,6 +2165,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listOAuthApps =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.CreateOAuthAppUserRequest,
+ *   !proto.viam.app.v1.CreateOAuthAppUserResponse>}
+ */
+const methodDescriptor_AppService_CreateOAuthAppUser = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/CreateOAuthAppUser',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.CreateOAuthAppUserRequest,
+  proto.viam.app.v1.CreateOAuthAppUserResponse,
+  /**
+   * @param {!proto.viam.app.v1.CreateOAuthAppUserRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.CreateOAuthAppUserResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateOAuthAppUserRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.CreateOAuthAppUserResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.CreateOAuthAppUserResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.createOAuthAppUser =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateOAuthAppUser',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateOAuthAppUser,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.CreateOAuthAppUserRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.CreateOAuthAppUserResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.createOAuthAppUser =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/CreateOAuthAppUser',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_CreateOAuthAppUser);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateLocationRequest,
  *   !proto.viam.app.v1.CreateLocationResponse>}
  */

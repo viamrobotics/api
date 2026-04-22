@@ -7345,6 +7345,78 @@ export namespace ListOAuthAppsResponse {
   }
 }
 
+export class CreateOAuthAppUserRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getApplicationId(): string;
+  setApplicationId(value: string): void;
+
+  getEmail(): string;
+  setEmail(value: string): void;
+
+  getFirstName(): string;
+  setFirstName(value: string): void;
+
+  getLastName(): string;
+  setLastName(value: string): void;
+
+  getPassword(): string;
+  setPassword(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateOAuthAppUserRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateOAuthAppUserRequest): CreateOAuthAppUserRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateOAuthAppUserRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateOAuthAppUserRequest;
+  static deserializeBinaryFromReader(message: CreateOAuthAppUserRequest, reader: jspb.BinaryReader): CreateOAuthAppUserRequest;
+}
+
+export namespace CreateOAuthAppUserRequest {
+  export type AsObject = {
+    orgId: string,
+    applicationId: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    password: string,
+  }
+}
+
+export class CreateOAuthAppUserResponse extends jspb.Message {
+  getAuthToken(): string;
+  setAuthToken(value: string): void;
+
+  getRegistrationId(): string;
+  setRegistrationId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getRefreshToken(): string;
+  setRefreshToken(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateOAuthAppUserResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateOAuthAppUserResponse): CreateOAuthAppUserResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateOAuthAppUserResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateOAuthAppUserResponse;
+  static deserializeBinaryFromReader(message: CreateOAuthAppUserResponse, reader: jspb.BinaryReader): CreateOAuthAppUserResponse;
+}
+
+export namespace CreateOAuthAppUserResponse {
+  export type AsObject = {
+    authToken: string,
+    registrationId: string,
+    userId: string,
+    refreshToken: string,
+  }
+}
+
 export class OAuthConfig extends jspb.Message {
   getClientAuthentication(): ClientAuthenticationMap[keyof ClientAuthenticationMap];
   setClientAuthentication(value: ClientAuthenticationMap[keyof ClientAuthenticationMap]): void;
