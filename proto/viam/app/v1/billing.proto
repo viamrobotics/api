@@ -38,6 +38,15 @@ message InvoiceSummary {
   string status = 4;
   google.protobuf.Timestamp due_date = 5;
   google.protobuf.Timestamp paid_date = 6;
+
+  // Category of the most recent payment failure. One of: card_declined,
+  // insufficient_funds, expired_card, incorrect_cvc, incorrect_card_number,
+  // authentication_required, fraud_suspected, processing_error, other.
+  // Empty when no failure is recorded. Clients must tolerate unknown values.
+  string last_payment_failure_reason = 7;
+
+  // Time of the most recent payment failure. Empty when no failure recorded.
+  google.protobuf.Timestamp last_payment_failure_at = 8;
 }
 
 enum PaymentMethodType {
