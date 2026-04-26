@@ -99,6 +99,8 @@ service AppService {
   rpc DeleteOAuthApp(DeleteOAuthAppRequest) returns (DeleteOAuthAppResponse);
   rpc ListOAuthApps(ListOAuthAppsRequest) returns (ListOAuthAppsResponse);
 
+  rpc CreateOAuthAppUser(CreateOAuthAppUserRequest) returns (CreateOAuthAppUserResponse);
+
   // Location
 
   // Create a location
@@ -310,6 +312,25 @@ service AppService {
   rpc GetAppContent(GetAppContentRequest) returns (GetAppContentResponse);
 
   rpc GetAppBranding(GetAppBrandingRequest) returns (GetAppBrandingResponse);
+
+  // Upload a device push token for the user.
+  rpc UploadDevicePushToken(UploadDevicePushTokenRequest) returns (UploadDevicePushTokenResponse);
+
+  // Delete a device push token for the user.
+  rpc DeleteDevicePushToken(DeleteDevicePushTokenRequest) returns (DeleteDevicePushTokenResponse);
+
+  // Gets all device push tokens for the user for the given app ID.
+  rpc GetDevicePushTokens(GetDevicePushTokensRequest) returns (GetDevicePushTokensResponse);
+
+  // Set the Firebase config JSON for a specific app id.
+  rpc SetFirebaseConfig(SetFirebaseConfigRequest) returns (SetFirebaseConfigResponse);
+
+  // Read the app ID for an organization.
+  // This returns only the app_id configured for the org, not the Firebase config JSON.
+  rpc GetFirebaseConfig(GetFirebaseConfigRequest) returns (GetFirebaseConfigResponse);
+
+  // Deletes a Firebase config JSON for a specific app id.
+  rpc DeleteFirebaseConfig(DeleteFirebaseConfigRequest) returns (DeleteFirebaseConfigResponse);
 }
 
 enum OnlineState {
@@ -353,6 +374,8 @@ message RobotPart {
   google.protobuf.Timestamp last_updated = 15 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
   OnlineState online_state = 16 [(tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
   int64 seconds_since_online = 17 [(tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
+  // robot_config_json is the raw JSON string of the robot config, preserving user-defined key order.
+  optional string robot_config_json = 18 [(tagger.v1.tags) = "bson:\"config_json,omitempty\" json:\"config_json,omitempty\""];
 }
 
 message RobotPartHistoryEntry {
@@ -880,10 +903,15 @@ message TailRobotPartLogsResponse {
 
 message GetRobotPartHistoryRequest {
   string id = 1;
+  optional string page_token = 2;
+  optional int64 page_limit = 3;
+  optional google.protobuf.Timestamp start = 4;
+  optional google.protobuf.Timestamp end = 5;
 }
 
 message GetRobotPartHistoryResponse {
   repeated RobotPartHistoryEntry history = 1;
+  string next_page_token = 2;
 }
 
 message UpdateRobotPartRequest {
@@ -891,6 +919,9 @@ message UpdateRobotPartRequest {
   string name = 2;
   google.protobuf.Struct robot_config = 3;
   optional google.protobuf.Timestamp last_known_update = 4;
+  // robot_config_json is the raw JSON string of the robot config, preserving user-defined key order.
+  // When set, this takes precedence over robot_config for storage purposes.
+  optional string robot_config_json = 5;
 }
 
 message UpdateRobotPartResponse {
@@ -1612,6 +1643,10 @@ message UpdateModuleRequest {
   optional string markdown_description = 9;
 }
 
+message AllowedOrgIDs {
+  repeated string ids = 1;
+}
+
 message App {
   // The name of the application
   string name = 1;
@@ -1625,6 +1660,8 @@ message App {
   optional string logo_path = 5;
   // Optional: structured customizations for the app (e.g., machine picker headings)
   AppCustomizations customizations = 6;
+  // Optional: list of org IDs that are allowed to use this app; if empty, all orgs are allowed
+  optional AllowedOrgIDs allowed_org_ids = 7;
 }
 
 message UpdateModuleResponse {
@@ -1959,6 +1996,22 @@ message ListOAuthAppsResponse {
   repeated string client_ids = 1;
 }
 
+message CreateOAuthAppUserRequest {
+  string org_id = 1;
+  string application_id = 2;
+  string email = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string password = 6;
+}
+
+message CreateOAuthAppUserResponse {
+  string auth_token = 1;
+  string registration_id = 2;
+  string user_id = 3;
+  string refresh_token = 4;
+}
+
 enum ClientAuthentication {
   CLIENT_AUTHENTICATION_UNSPECIFIED = 0;
   CLIENT_AUTHENTICATION_REQUIRED = 1;
@@ -2013,6 +2066,7 @@ message GetAppBrandingResponse {
   optional string logo_path = 1;
   map<string, TextOverrides> text_customizations = 2;
   repeated string fragment_ids = 3;
+  repeated string allowed_org_ids = 4;
 }
 
 message AppCustomizations {
@@ -2023,3 +2077,49 @@ message MachinePickerCustomizations {
   optional string heading = 1;
   optional string subheading = 2;
 }
+
+message UploadDevicePushTokenRequest {
+  string app_id = 1;
+  string device_token = 2;
+  string device_uuid = 3;
+}
+
+message UploadDevicePushTokenResponse {}
+
+message DeleteDevicePushTokenRequest {
+  string app_id = 1;
+  string device_uuid = 2;
+}
+
+message DeleteDevicePushTokenResponse {}
+
+message GetDevicePushTokensRequest {
+  string app_id = 1;
+}
+
+message GetDevicePushTokensResponse {
+  repeated string device_tokens = 1;
+}
+
+message SetFirebaseConfigRequest {
+  string org_id = 1;
+  string app_id = 2;
+  string config_json = 3;
+}
+
+message SetFirebaseConfigResponse {}
+
+message GetFirebaseConfigRequest {
+  string org_id = 1;
+}
+
+message GetFirebaseConfigResponse {
+  string app_id = 1;
+}
+
+message DeleteFirebaseConfigRequest {
+  string org_id = 1;
+  string app_id = 2;
+}
+
+message DeleteFirebaseConfigResponse {}

@@ -59,6 +59,15 @@ type GripperServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type GripperServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type GripperServiceGetGeometries = {
   readonly methodName: string;
   readonly service: typeof GripperService;
@@ -85,6 +94,7 @@ export class GripperService {
   static readonly IsMoving: GripperServiceIsMoving;
   static readonly IsHoldingSomething: GripperServiceIsHoldingSomething;
   static readonly DoCommand: GripperServiceDoCommand;
+  static readonly GetStatus: GripperServiceGetStatus;
   static readonly GetGeometries: GripperServiceGetGeometries;
   static readonly GetKinematics: GripperServiceGetKinematics;
 }
@@ -174,6 +184,15 @@ export class GripperServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,

@@ -2,6 +2,7 @@
 // file: service/mlmodel/v1/mlmodel.proto
 
 import * as service_mlmodel_v1_mlmodel_pb from "../../../service/mlmodel/v1/mlmodel_pb";
+import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type MLModelServiceInfer = {
@@ -22,10 +23,20 @@ type MLModelServiceMetadata = {
   readonly responseType: typeof service_mlmodel_v1_mlmodel_pb.MetadataResponse;
 };
 
+type MLModelServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof MLModelService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 export class MLModelService {
   static readonly serviceName: string;
   static readonly Infer: MLModelServiceInfer;
   static readonly Metadata: MLModelServiceMetadata;
+  static readonly GetStatus: MLModelServiceGetStatus;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -77,6 +88,15 @@ export class MLModelServiceClient {
   metadata(
     requestMessage: service_mlmodel_v1_mlmodel_pb.MetadataRequest,
     callback: (error: ServiceError|null, responseMessage: service_mlmodel_v1_mlmodel_pb.MetadataResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
 }
 

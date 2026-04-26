@@ -64,6 +64,11 @@ service MotionService {
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/motion/{name}/do_command"};
   }
+
+  // GetStatus returns the status of the resource
+  rpc GetStatus(common.v1.GetStatusRequest) returns (common.v1.GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/motion/{name}/get_status"};
+  }
 }
 
 // Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot.

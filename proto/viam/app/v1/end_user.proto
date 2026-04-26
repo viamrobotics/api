@@ -33,6 +33,8 @@ message IsLegalAcceptedRequest {}
 message IsLegalAcceptedResponse {
   // If false, the user should not be able to use the application.
   bool accepted_legal = 1;
+  // Whether the user has ever accepted any version of the legal terms.
+  bool ever_accepted_legal = 2;
 }
 
 message AcceptLegalRequest {}
