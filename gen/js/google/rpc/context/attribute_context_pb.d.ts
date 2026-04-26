@@ -219,6 +219,9 @@ export namespace AttributeContext {
     getAuth(): AttributeContext.Auth | undefined;
     setAuth(value?: AttributeContext.Auth): void;
 
+    getOrigin(): string;
+    setOrigin(value: string): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Request.AsObject;
     static toObject(includeInstance: boolean, msg: Request): Request.AsObject;
@@ -243,6 +246,7 @@ export namespace AttributeContext {
       protocol: string,
       reason: string,
       auth?: AttributeContext.Auth.AsObject,
+      origin: string,
     }
   }
 
