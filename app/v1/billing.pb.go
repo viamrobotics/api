@@ -257,8 +257,8 @@ type InvoiceSummary struct {
 	PaidDate      *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=paid_date,json=paidDate,proto3" json:"paid_date,omitempty"`
 	// Category of the most recent payment failure. One of: card_declined,
 	// insufficient_funds, expired_card, incorrect_cvc, incorrect_card_number,
-	// authentication_required, fraud_suspected, processing_error, other.
-	// Empty when no failure is recorded. Clients must tolerate unknown values.
+	// authentication_required, processing_error, other. Empty when no failure
+	// is recorded. Clients must tolerate unknown values.
 	LastPaymentFailureReason string `protobuf:"bytes,7,opt,name=last_payment_failure_reason,json=lastPaymentFailureReason,proto3" json:"last_payment_failure_reason,omitempty"`
 	// Time of the most recent payment failure. Empty when no failure recorded.
 	LastPaymentFailureAt *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=last_payment_failure_at,json=lastPaymentFailureAt,proto3" json:"last_payment_failure_at,omitempty"`
