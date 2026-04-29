@@ -1425,7 +1425,6 @@ message ModuleMetadata {
   optional ModuleLanguage language = 8;
   // The machine id tied to the hosted module
   optional string machine_id = 9;
-
 }
 
 message MLModelVersion {
