@@ -5912,6 +5912,11 @@ export class UpdateModuleMetadata extends jspb.Message {
   getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
   setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
 
+  hasMachineId(): boolean;
+  clearMachineId(): void;
+  getMachineId(): string;
+  setMachineId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleMetadata): UpdateModuleMetadata.AsObject;
@@ -5929,6 +5934,7 @@ export namespace UpdateModuleMetadata {
     appsList: Array<App.AsObject>,
     sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
     language: ModuleLanguageMap[keyof ModuleLanguageMap],
+    machineId: string,
   }
 }
 
