@@ -1423,6 +1423,8 @@ message ModuleMetadata {
   optional ModuleSourceType source_type = 7;
   // Specifies the language that the module is written in.
   optional ModuleLanguage language = 8;
+  // The machine id tied to the hosted module
+  optional string machine_id = 9;
 }
 
 message MLModelVersion {
@@ -1680,6 +1682,8 @@ message UpdateModuleMetadata {
   optional ModuleSourceType source_type = 4;
   // The language the module is written in
   optional ModuleLanguage language = 5;
+  // The machine id tied to the hosted module
+  optional string machine_id = 6;
 }
 
 message UpdateMLModelMetadata {

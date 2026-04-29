@@ -41377,7 +41377,8 @@ proto.viam.app.v1.ModuleMetadata.toObject = function(includeInstance, msg) {
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
     proto.viam.app.v1.App.toObject, includeInstance),
     sourceType: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    language: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    language: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    machineId: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -41448,6 +41449,10 @@ proto.viam.app.v1.ModuleMetadata.deserializeBinaryFromReader = function(msg, rea
     case 8:
       var value = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (reader.readEnum());
       msg.setLanguage(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMachineId(value);
       break;
     default:
       reader.skipField();
@@ -41534,6 +41539,13 @@ proto.viam.app.v1.ModuleMetadata.serializeBinaryToWriter = function(message, wri
   if (f != null) {
     writer.writeEnum(
       8,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeString(
+      9,
       f
     );
   }
@@ -41813,6 +41825,42 @@ proto.viam.app.v1.ModuleMetadata.prototype.clearLanguage = function() {
  */
 proto.viam.app.v1.ModuleMetadata.prototype.hasLanguage = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional string machine_id = 9;
+ * @return {string}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.getMachineId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.setMachineId = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.clearMachineId = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.hasMachineId = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
@@ -47777,7 +47825,8 @@ proto.viam.app.v1.UpdateModuleMetadata.toObject = function(includeInstance, msg)
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
     proto.viam.app.v1.App.toObject, includeInstance),
     sourceType: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    language: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    language: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    machineId: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -47835,6 +47884,10 @@ proto.viam.app.v1.UpdateModuleMetadata.deserializeBinaryFromReader = function(ms
     case 5:
       var value = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (reader.readEnum());
       msg.setLanguage(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMachineId(value);
       break;
     default:
       reader.skipField();
@@ -47899,6 +47952,13 @@ proto.viam.app.v1.UpdateModuleMetadata.serializeBinaryToWriter = function(messag
   if (f != null) {
     writer.writeEnum(
       5,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 6));
+  if (f != null) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -48068,6 +48128,42 @@ proto.viam.app.v1.UpdateModuleMetadata.prototype.clearLanguage = function() {
  */
 proto.viam.app.v1.UpdateModuleMetadata.prototype.hasLanguage = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional string machine_id = 6;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.getMachineId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateModuleMetadata} returns this
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.setMachineId = function(value) {
+  return jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateModuleMetadata} returns this
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.clearMachineId = function() {
+  return jspb.Message.setField(this, 6, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.hasMachineId = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
