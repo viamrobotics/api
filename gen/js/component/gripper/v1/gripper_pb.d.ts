@@ -234,3 +234,99 @@ export namespace IsHoldingSomethingResponse {
   }
 }
 
+export class GetCurrentInputsRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetCurrentInputsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetCurrentInputsRequest): GetCurrentInputsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetCurrentInputsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetCurrentInputsRequest;
+  static deserializeBinaryFromReader(message: GetCurrentInputsRequest, reader: jspb.BinaryReader): GetCurrentInputsRequest;
+}
+
+export namespace GetCurrentInputsRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetCurrentInputsResponse extends jspb.Message {
+  clearValuesList(): void;
+  getValuesList(): Array<number>;
+  setValuesList(value: Array<number>): void;
+  addValues(value: number, index?: number): number;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetCurrentInputsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetCurrentInputsResponse): GetCurrentInputsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetCurrentInputsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetCurrentInputsResponse;
+  static deserializeBinaryFromReader(message: GetCurrentInputsResponse, reader: jspb.BinaryReader): GetCurrentInputsResponse;
+}
+
+export namespace GetCurrentInputsResponse {
+  export type AsObject = {
+    valuesList: Array<number>,
+  }
+}
+
+export class GoToInputsRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  clearValuesList(): void;
+  getValuesList(): Array<number>;
+  setValuesList(value: Array<number>): void;
+  addValues(value: number, index?: number): number;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GoToInputsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GoToInputsRequest): GoToInputsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GoToInputsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GoToInputsRequest;
+  static deserializeBinaryFromReader(message: GoToInputsRequest, reader: jspb.BinaryReader): GoToInputsRequest;
+}
+
+export namespace GoToInputsRequest {
+  export type AsObject = {
+    name: string,
+    valuesList: Array<number>,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GoToInputsResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GoToInputsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GoToInputsResponse): GoToInputsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GoToInputsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GoToInputsResponse;
+  static deserializeBinaryFromReader(message: GoToInputsResponse, reader: jspb.BinaryReader): GoToInputsResponse;
+}
+
+export namespace GoToInputsResponse {
+  export type AsObject = {
+  }
+}
+
