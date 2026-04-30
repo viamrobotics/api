@@ -36,7 +36,6 @@ type GripperServiceClient interface {
 	// GetCurrentInputs returns the current input values of a gripper
 	GetCurrentInputs(ctx context.Context, in *GetCurrentInputsRequest, opts ...grpc.CallOption) (*GetCurrentInputsResponse, error)
 	// GoToInputs moves the gripper to the given input values.
-	// This will block until done or a new operation cancels this one.
 	GoToInputs(ctx context.Context, in *GoToInputsRequest, opts ...grpc.CallOption) (*GoToInputsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
@@ -172,7 +171,6 @@ type GripperServiceServer interface {
 	// GetCurrentInputs returns the current input values of a gripper
 	GetCurrentInputs(context.Context, *GetCurrentInputsRequest) (*GetCurrentInputsResponse, error)
 	// GoToInputs moves the gripper to the given input values.
-	// This will block until done or a new operation cancels this one.
 	GoToInputs(context.Context, *GoToInputsRequest) (*GoToInputsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
