@@ -44,7 +44,6 @@ service GripperService {
   }
 
   // GoToInputs moves the gripper to the given input values.
-  // This will block until done or a new operation cancels this one.
   rpc GoToInputs(GoToInputsRequest) returns (GoToInputsResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {put: "/viam/api/v1/component/gripper/{name}/inputs"};
