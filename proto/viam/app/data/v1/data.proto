@@ -119,7 +119,7 @@ service DataService {
   // CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
   rpc CreateBinaryDataSignedURL(CreateBinaryDataSignedURLRequest) returns (CreateBinaryDataSignedURLResponse);
 
-  // CreateSequence creates a new sequence of binary data IDs.
+  // CreateSequence creates a new sequence.
   rpc CreateSequence(CreateSequenceRequest) returns (CreateSequenceResponse);
 
   // GetSequence retrieves a sequence by ID.
@@ -814,11 +814,11 @@ message Sequence {
   google.protobuf.Timestamp created_at = 4;
   google.protobuf.Timestamp updated_at = 5;
 
-  // the time range the sequence applies to
+  // The time range the sequence applies to.
   google.protobuf.Timestamp start_at = 6;
   google.protobuf.Timestamp end_at = 7;
 
-  // the resources' data that will be associated with the sequence.
+  // The resources of which their data will be associated with the sequence.
   repeated SequenceResourceFilter resources = 8;
 }
 
@@ -844,7 +844,7 @@ message GetSequenceResponse {
 
 // UpdateSequenceRequest updates the mutable fields of a sequence.
 // Only fields listed in field_mask will be updated; others are left unchanged.
-// Fields 2-5 are allowed fields in the field_mask.
+// Fields 2-5 are allowed fields for the field_mask.
 message UpdateSequenceRequest {
   string id = 1;
   repeated SequenceResourceFilter filters = 2;
