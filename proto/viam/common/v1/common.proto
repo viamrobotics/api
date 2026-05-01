@@ -263,6 +263,14 @@ message Get3DModelsResponse {
   map<string, Mesh> models = 1;
 }
 
+message GetWorldPoseRequest {
+  // The component name
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+// GetWorldPoseResponse contains the pose of a component in the world reference frame
 message GetWorldPoseResponse {
   // Pose of the component in the world reference frame
   Pose pose = 1;
