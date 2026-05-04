@@ -3092,7 +3092,8 @@ proto.viam.component.arm.v1.MoveOptions.toObject = function(includeInstance, msg
     maxVelDegsPerSec: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
     maxAccDegsPerSec2: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
     maxVelDegsPerSecJointsList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 3)) == null ? undefined : f,
-    maxAccDegsPerSec2JointsList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 4)) == null ? undefined : f
+    maxAccDegsPerSec2JointsList: (f = jspb.Message.getRepeatedFloatingPointField(msg, 4)) == null ? undefined : f,
+    maxTcpSpeed: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0)
   };
 
   if (includeInstance) {
@@ -3149,6 +3150,10 @@ proto.viam.component.arm.v1.MoveOptions.deserializeBinaryFromReader = function(m
         msg.addMaxAccDegsPerSec2Joints(values[i]);
       }
       break;
+    case 5:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setMaxTcpSpeed(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3203,6 +3208,13 @@ proto.viam.component.arm.v1.MoveOptions.serializeBinaryToWriter = function(messa
   if (f.length > 0) {
     writer.writePackedDouble(
       4,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeDouble(
+      5,
       f
     );
   }
@@ -3352,6 +3364,42 @@ proto.viam.component.arm.v1.MoveOptions.prototype.addMaxAccDegsPerSec2Joints = f
  */
 proto.viam.component.arm.v1.MoveOptions.prototype.clearMaxAccDegsPerSec2JointsList = function() {
   return this.setMaxAccDegsPerSec2JointsList([]);
+};
+
+
+/**
+ * optional double max_tcp_speed = 5;
+ * @return {number}
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.getMaxTcpSpeed = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 5, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.component.arm.v1.MoveOptions} returns this
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.setMaxTcpSpeed = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.component.arm.v1.MoveOptions} returns this
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.clearMaxTcpSpeed = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.component.arm.v1.MoveOptions.prototype.hasMaxTcpSpeed = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
