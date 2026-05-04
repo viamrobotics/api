@@ -20875,7 +20875,7 @@ proto.viam.app.data.v1.UpdateSequenceRequest.prototype.toObject = function(opt_i
 proto.viam.app.data.v1.UpdateSequenceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    filtersList: jspb.Message.toObjectList(msg.getFiltersList(),
+    resourcesList: jspb.Message.toObjectList(msg.getResourcesList(),
     proto.viam.app.data.v1.SequenceResourceFilter.toObject, includeInstance),
     sequenceTagsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
     startAt: (f = msg.getStartAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
@@ -20924,7 +20924,7 @@ proto.viam.app.data.v1.UpdateSequenceRequest.deserializeBinaryFromReader = funct
     case 2:
       var value = new proto.viam.app.data.v1.SequenceResourceFilter;
       reader.readMessage(value,proto.viam.app.data.v1.SequenceResourceFilter.deserializeBinaryFromReader);
-      msg.addFilters(value);
+      msg.addResources(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -20981,7 +20981,7 @@ proto.viam.app.data.v1.UpdateSequenceRequest.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getFiltersList();
+  f = message.getResourcesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       2,
@@ -21042,10 +21042,10 @@ proto.viam.app.data.v1.UpdateSequenceRequest.prototype.setId = function(value) {
 
 
 /**
- * repeated SequenceResourceFilter filters = 2;
+ * repeated SequenceResourceFilter resources = 2;
  * @return {!Array<!proto.viam.app.data.v1.SequenceResourceFilter>}
  */
-proto.viam.app.data.v1.UpdateSequenceRequest.prototype.getFiltersList = function() {
+proto.viam.app.data.v1.UpdateSequenceRequest.prototype.getResourcesList = function() {
   return /** @type{!Array<!proto.viam.app.data.v1.SequenceResourceFilter>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.viam.app.data.v1.SequenceResourceFilter, 2));
 };
@@ -21055,7 +21055,7 @@ proto.viam.app.data.v1.UpdateSequenceRequest.prototype.getFiltersList = function
  * @param {!Array<!proto.viam.app.data.v1.SequenceResourceFilter>} value
  * @return {!proto.viam.app.data.v1.UpdateSequenceRequest} returns this
 */
-proto.viam.app.data.v1.UpdateSequenceRequest.prototype.setFiltersList = function(value) {
+proto.viam.app.data.v1.UpdateSequenceRequest.prototype.setResourcesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
@@ -21065,7 +21065,7 @@ proto.viam.app.data.v1.UpdateSequenceRequest.prototype.setFiltersList = function
  * @param {number=} opt_index
  * @return {!proto.viam.app.data.v1.SequenceResourceFilter}
  */
-proto.viam.app.data.v1.UpdateSequenceRequest.prototype.addFilters = function(opt_value, opt_index) {
+proto.viam.app.data.v1.UpdateSequenceRequest.prototype.addResources = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.viam.app.data.v1.SequenceResourceFilter, opt_index);
 };
 
@@ -21074,8 +21074,8 @@ proto.viam.app.data.v1.UpdateSequenceRequest.prototype.addFilters = function(opt
  * Clears the list making it empty but non-null.
  * @return {!proto.viam.app.data.v1.UpdateSequenceRequest} returns this
  */
-proto.viam.app.data.v1.UpdateSequenceRequest.prototype.clearFiltersList = function() {
-  return this.setFiltersList([]);
+proto.viam.app.data.v1.UpdateSequenceRequest.prototype.clearResourcesList = function() {
+  return this.setResourcesList([]);
 };
 
 

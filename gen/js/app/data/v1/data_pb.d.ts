@@ -2624,10 +2624,10 @@ export class UpdateSequenceRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  clearFiltersList(): void;
-  getFiltersList(): Array<SequenceResourceFilter>;
-  setFiltersList(value: Array<SequenceResourceFilter>): void;
-  addFilters(value?: SequenceResourceFilter, index?: number): SequenceResourceFilter;
+  clearResourcesList(): void;
+  getResourcesList(): Array<SequenceResourceFilter>;
+  setResourcesList(value: Array<SequenceResourceFilter>): void;
+  addResources(value?: SequenceResourceFilter, index?: number): SequenceResourceFilter;
 
   clearSequenceTagsList(): void;
   getSequenceTagsList(): Array<string>;
@@ -2662,7 +2662,7 @@ export class UpdateSequenceRequest extends jspb.Message {
 export namespace UpdateSequenceRequest {
   export type AsObject = {
     id: string,
-    filtersList: Array<SequenceResourceFilter.AsObject>,
+    resourcesList: Array<SequenceResourceFilter.AsObject>,
     sequenceTagsList: Array<string>,
     startAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     endAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
