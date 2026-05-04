@@ -18,7 +18,7 @@ service AudioOutService {
   // PlayStream streams audio chunks to the audioout component for playback.
   // The first message must contain PlayStreamInit with the component name and audio info.
   // Subsequent messages contain raw audio chunks.
-  rpc PlayStream(stream PlayStreamRequest) returns (PlayResponse);
+  rpc PlayStream(stream PlayStreamRequest) returns (PlayStreamResponse);
   // GetProperties returns the properties of the audioout.
   rpc GetProperties(common.v1.GetPropertiesRequest) returns (common.v1.GetPropertiesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/audioout/{name}/properties"};
@@ -58,6 +58,9 @@ message PlayStreamRequest {
 message PlayStreamInit {
   string name = 1;
   common.v1.AudioInfo audio_info = 2;
+  google.protobuf.Struct extra = 99;
 }
 
 message PlayResponse {}
+
+message PlayStreamResponse {}
