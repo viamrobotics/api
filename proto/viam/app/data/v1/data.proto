@@ -847,7 +847,7 @@ message GetSequenceResponse {
 // Fields 2-5 are allowed fields for the field_mask.
 message UpdateSequenceRequest {
   string id = 1;
-  repeated SequenceResourceFilter filters = 2;
+  repeated SequenceResourceFilter resources = 2;
   repeated string sequence_tags = 3;
   google.protobuf.Timestamp start_at = 4;
   google.protobuf.Timestamp end_at = 5;
