@@ -391,6 +391,128 @@ proto.viam.component.gripper.v1.GripperServicePromiseClient.prototype.isHoldingS
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.gripper.v1.GetCurrentInputsRequest,
+ *   !proto.viam.component.gripper.v1.GetCurrentInputsResponse>}
+ */
+const methodDescriptor_GripperService_GetCurrentInputs = new grpc.web.MethodDescriptor(
+  '/viam.component.gripper.v1.GripperService/GetCurrentInputs',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.gripper.v1.GetCurrentInputsRequest,
+  proto.viam.component.gripper.v1.GetCurrentInputsResponse,
+  /**
+   * @param {!proto.viam.component.gripper.v1.GetCurrentInputsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.gripper.v1.GetCurrentInputsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.gripper.v1.GetCurrentInputsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.gripper.v1.GetCurrentInputsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.gripper.v1.GetCurrentInputsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.gripper.v1.GripperServiceClient.prototype.getCurrentInputs =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/GetCurrentInputs',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_GetCurrentInputs,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.gripper.v1.GetCurrentInputsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.gripper.v1.GetCurrentInputsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.gripper.v1.GripperServicePromiseClient.prototype.getCurrentInputs =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/GetCurrentInputs',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_GetCurrentInputs);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.gripper.v1.GoToInputsRequest,
+ *   !proto.viam.component.gripper.v1.GoToInputsResponse>}
+ */
+const methodDescriptor_GripperService_GoToInputs = new grpc.web.MethodDescriptor(
+  '/viam.component.gripper.v1.GripperService/GoToInputs',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.gripper.v1.GoToInputsRequest,
+  proto.viam.component.gripper.v1.GoToInputsResponse,
+  /**
+   * @param {!proto.viam.component.gripper.v1.GoToInputsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.gripper.v1.GoToInputsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.gripper.v1.GoToInputsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.gripper.v1.GoToInputsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.gripper.v1.GoToInputsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.gripper.v1.GripperServiceClient.prototype.goToInputs =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/GoToInputs',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_GoToInputs,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.gripper.v1.GoToInputsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.gripper.v1.GoToInputsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.gripper.v1.GripperServicePromiseClient.prototype.goToInputs =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/GoToInputs',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_GoToInputs);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.common.v1.DoCommandRequest,
  *   !proto.viam.common.v1.DoCommandResponse>}
  */

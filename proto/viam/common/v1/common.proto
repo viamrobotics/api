@@ -263,6 +263,11 @@ message Get3DModelsResponse {
   map<string, Mesh> models = 1;
 }
 
+message GetWorldPoseResponse {
+  // Pose of the component in the world reference frame
+  Pose pose = 1;
+}
+
 message GetReadingsRequest {
   // Name of a sensor
   string name = 1;

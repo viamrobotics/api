@@ -695,7 +695,9 @@ proto.viam.app.v1.InvoiceSummary.toObject = function(includeInstance, msg) {
     invoiceAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     status: jspb.Message.getFieldWithDefault(msg, 4, ""),
     dueDate: (f = msg.getDueDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    paidDate: (f = msg.getPaidDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    paidDate: (f = msg.getPaidDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    lastPaymentFailureReason: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    lastPaymentFailureAt: (f = msg.getLastPaymentFailureAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -758,6 +760,15 @@ proto.viam.app.v1.InvoiceSummary.deserializeBinaryFromReader = function(msg, rea
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setPaidDate(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLastPaymentFailureReason(value);
+      break;
+    case 8:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastPaymentFailureAt(value);
       break;
     default:
       reader.skipField();
@@ -829,6 +840,21 @@ proto.viam.app.v1.InvoiceSummary.serializeBinaryToWriter = function(message, wri
   if (f != null) {
     writer.writeMessage(
       6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastPaymentFailureReason();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getLastPaymentFailureAt();
+  if (f != null) {
+    writer.writeMessage(
+      8,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -998,6 +1024,61 @@ proto.viam.app.v1.InvoiceSummary.prototype.clearPaidDate = function() {
  */
 proto.viam.app.v1.InvoiceSummary.prototype.hasPaidDate = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string last_payment_failure_reason = 7;
+ * @return {string}
+ */
+proto.viam.app.v1.InvoiceSummary.prototype.getLastPaymentFailureReason = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.InvoiceSummary} returns this
+ */
+proto.viam.app.v1.InvoiceSummary.prototype.setLastPaymentFailureReason = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_payment_failure_at = 8;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.InvoiceSummary.prototype.getLastPaymentFailureAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.InvoiceSummary} returns this
+*/
+proto.viam.app.v1.InvoiceSummary.prototype.setLastPaymentFailureAt = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.InvoiceSummary} returns this
+ */
+proto.viam.app.v1.InvoiceSummary.prototype.clearLastPaymentFailureAt = function() {
+  return this.setLastPaymentFailureAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.InvoiceSummary.prototype.hasLastPaymentFailureAt = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
