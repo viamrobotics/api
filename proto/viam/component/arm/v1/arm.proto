@@ -172,15 +172,26 @@ message IsMovingResponse {
   bool is_moving = 1;
 }
 
+// MoveOptions specifies kinematic constraints for an arm motion. All fields
+// are optional ceilings; any combination may be set. Every constraint that
+// is set is respected at every point along the executed trajectory.
+// The limiting constraint may change throughout execution.
 message MoveOptions {
   // Maximum allowable velocity of an arm joint, in degrees per second.
+  // The arm driver will move as fast as possible up to the set value.
   // Ignored when max_vel_degs_per_sec_joints is set.
   optional double max_vel_degs_per_sec = 1;
   // Maximum allowable acceleration of an arm joint, in degrees per second squared.
+  // The arm driver will accelerate as fast as possible up to the set value.
   // ignored when max_acc_degs_per_sec2_joints is set.
   optional double max_acc_degs_per_sec2 = 2;
   // Per-joint maximum velocity in degrees per second.
+  // The arm driver will move each joint as fast as possible up to its respective set value.
   repeated double max_vel_degs_per_sec_joints = 3;
   // Per-joint maximum acceleration in degrees per second squared.
+  // The arm driver will accelerate each joint as fast as possible up to its respective set value.
   repeated double max_acc_degs_per_sec2_joints = 4;
+  // Maximum allowable speed of an arm's tool center point in meters per second.
+  // The arm driver will move the tool center point as fast as possible up to this set value.
+  optional double max_tcp_speed = 5;
 }
