@@ -40,6 +40,11 @@ export class StartBuildRequest extends jspb.Message {
   getDistro(): string;
   setDistro(value: string): void;
 
+  hasBuilder(): boolean;
+  clearBuilder(): void;
+  getBuilder(): string;
+  setBuilder(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartBuildRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StartBuildRequest): StartBuildRequest.AsObject;
@@ -60,12 +65,18 @@ export namespace StartBuildRequest {
     token: string,
     workdir: string,
     distro: string,
+    builder: string,
   }
 }
 
 export class StartBuildResponse extends jspb.Message {
   getBuildId(): string;
   setBuildId(value: string): void;
+
+  hasBuilderFallbackMessage(): boolean;
+  clearBuilderFallbackMessage(): void;
+  getBuilderFallbackMessage(): string;
+  setBuilderFallbackMessage(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartBuildResponse.AsObject;
@@ -80,6 +91,7 @@ export class StartBuildResponse extends jspb.Message {
 export namespace StartBuildResponse {
   export type AsObject = {
     buildId: string,
+    builderFallbackMessage: string,
   }
 }
 
