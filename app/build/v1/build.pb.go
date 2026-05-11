@@ -98,7 +98,7 @@ type StartBuildRequest struct {
 	// optional distro for linux platforms.
 	// must be bookworm for cpp module builds.
 	Distro *string `protobuf:"bytes,8,opt,name=distro,proto3,oneof" json:"distro,omitempty"`
-	// optional target builder. defaults to 'default' (CircleCI-based).
+	// optional target builder. defaults to 'default'.
 	// use 'viam-cloudbuild-test' to target the new Viam build service (org must be whitelisted).
 	Builder *string `protobuf:"bytes,9,opt,name=builder,proto3,oneof" json:"builder,omitempty"`
 }
