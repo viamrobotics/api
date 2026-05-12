@@ -818,7 +818,7 @@ message Sequence {
   google.protobuf.Timestamp start_time = 6;
   google.protobuf.Timestamp end_time = 7;
 
-  // The resources of which their data will be associated with the sequence.
+ // Resources whose data is associated with this sequence. 
   repeated SequenceResourceFilter resources = 8;
 }
 
