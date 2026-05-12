@@ -818,7 +818,7 @@ message Sequence {
   google.protobuf.Timestamp start_time = 6;
   google.protobuf.Timestamp end_time = 7;
 
- // Resources whose data is associated with this sequence. 
+  // Resources whose data is associated with this sequence.
   repeated SequenceResourceFilter resources = 8;
 }
 
@@ -865,6 +865,7 @@ message DeleteSequenceResponse {}
 message ListSequencesRequest {
   string organization_id = 1;
   string page_token = 2;
+  uint32 page_size = 3;
 }
 
 message ListSequencesResponse {

@@ -21592,7 +21592,8 @@ proto.viam.app.data.v1.ListSequencesRequest.prototype.toObject = function(opt_in
 proto.viam.app.data.v1.ListSequencesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -21637,6 +21638,10 @@ proto.viam.app.data.v1.ListSequencesRequest.deserializeBinaryFromReader = functi
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setPageSize(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -21680,6 +21685,13 @@ proto.viam.app.data.v1.ListSequencesRequest.serializeBinaryToWriter = function(m
       f
     );
   }
+  f = message.getPageSize();
+  if (f !== 0) {
+    writer.writeUint32(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -21716,6 +21728,24 @@ proto.viam.app.data.v1.ListSequencesRequest.prototype.getPageToken = function() 
  */
 proto.viam.app.data.v1.ListSequencesRequest.prototype.setPageToken = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional uint32 page_size = 3;
+ * @return {number}
+ */
+proto.viam.app.data.v1.ListSequencesRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.ListSequencesRequest} returns this
+ */
+proto.viam.app.data.v1.ListSequencesRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 

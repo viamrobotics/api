@@ -2729,6 +2729,9 @@ export class ListSequencesRequest extends jspb.Message {
   getPageToken(): string;
   setPageToken(value: string): void;
 
+  getPageSize(): number;
+  setPageSize(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListSequencesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListSequencesRequest): ListSequencesRequest.AsObject;
@@ -2743,6 +2746,7 @@ export namespace ListSequencesRequest {
   export type AsObject = {
     organizationId: string,
     pageToken: string,
+    pageSize: number,
   }
 }
 
