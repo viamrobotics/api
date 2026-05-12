@@ -93,7 +93,7 @@ type DataServiceClient interface {
 	ListSavedQueries(ctx context.Context, in *ListSavedQueriesRequest, opts ...grpc.CallOption) (*ListSavedQueriesResponse, error)
 	// CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
 	CreateBinaryDataSignedURL(ctx context.Context, in *CreateBinaryDataSignedURLRequest, opts ...grpc.CallOption) (*CreateBinaryDataSignedURLResponse, error)
-	// CreateSequence creates a new sequence of binary data IDs.
+	// CreateSequence creates a new sequence.
 	CreateSequence(ctx context.Context, in *CreateSequenceRequest, opts ...grpc.CallOption) (*CreateSequenceResponse, error)
 	// GetSequence retrieves a sequence by ID.
 	GetSequence(ctx context.Context, in *GetSequenceRequest, opts ...grpc.CallOption) (*GetSequenceResponse, error)
@@ -549,7 +549,7 @@ type DataServiceServer interface {
 	ListSavedQueries(context.Context, *ListSavedQueriesRequest) (*ListSavedQueriesResponse, error)
 	// CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
 	CreateBinaryDataSignedURL(context.Context, *CreateBinaryDataSignedURLRequest) (*CreateBinaryDataSignedURLResponse, error)
-	// CreateSequence creates a new sequence of binary data IDs.
+	// CreateSequence creates a new sequence.
 	CreateSequence(context.Context, *CreateSequenceRequest) (*CreateSequenceResponse, error)
 	// GetSequence retrieves a sequence by ID.
 	GetSequence(context.Context, *GetSequenceRequest) (*GetSequenceResponse, error)

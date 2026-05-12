@@ -5616,6 +5616,7 @@ func (x *GetSequenceResponse) GetSequence() *Sequence {
 
 // UpdateSequenceRequest updates the mutable fields of a sequence.
 // Only fields listed in field_mask will be updated; others are left unchanged.
+// Fields 2-5 are allowed fields for the field_mask.
 type UpdateSequenceRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
