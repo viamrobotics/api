@@ -802,7 +802,7 @@ message CreateBinaryDataSignedURLResponse {
 // SequenceResourceFilter filters binary and/or tabular data by source identifiers.
 message SequenceResourceFilter {
   string part_id = 1;
-  string component_name = 2;
+  string resource_name = 2;
   string method_name = 3;
 }
 
@@ -815,8 +815,8 @@ message Sequence {
   google.protobuf.Timestamp updated_at = 5;
 
   // The time range the sequence applies to.
-  google.protobuf.Timestamp start_at = 6;
-  google.protobuf.Timestamp end_at = 7;
+  google.protobuf.Timestamp start_time = 6;
+  google.protobuf.Timestamp end_time = 7;
 
   // The resources of which their data will be associated with the sequence.
   repeated SequenceResourceFilter resources = 8;
@@ -826,8 +826,8 @@ message CreateSequenceRequest {
   string organization_id = 1;
   repeated SequenceResourceFilter resources = 2;
   repeated string sequence_tags = 3;
-  google.protobuf.Timestamp start_at = 4;
-  google.protobuf.Timestamp end_at = 5;
+  google.protobuf.Timestamp start_time = 4;
+  google.protobuf.Timestamp end_time = 5;
 }
 
 message CreateSequenceResponse {
@@ -849,8 +849,8 @@ message UpdateSequenceRequest {
   string id = 1;
   repeated SequenceResourceFilter resources = 2;
   repeated string sequence_tags = 3;
-  google.protobuf.Timestamp start_at = 4;
-  google.protobuf.Timestamp end_at = 5;
+  google.protobuf.Timestamp start_time = 4;
+  google.protobuf.Timestamp end_time = 5;
   google.protobuf.FieldMask field_mask = 6;
 }
 
@@ -870,5 +870,4 @@ message ListSequencesRequest {
 message ListSequencesResponse {
   repeated Sequence sequences = 1;
   string next_page_token = 2;
-  int64 total_count = 3;
 }

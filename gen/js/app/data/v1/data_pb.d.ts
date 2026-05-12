@@ -2430,8 +2430,8 @@ export class SequenceResourceFilter extends jspb.Message {
   getPartId(): string;
   setPartId(value: string): void;
 
-  getComponentName(): string;
-  setComponentName(value: string): void;
+  getResourceName(): string;
+  setResourceName(value: string): void;
 
   getMethodName(): string;
   setMethodName(value: string): void;
@@ -2449,7 +2449,7 @@ export class SequenceResourceFilter extends jspb.Message {
 export namespace SequenceResourceFilter {
   export type AsObject = {
     partId: string,
-    componentName: string,
+    resourceName: string,
     methodName: string,
   }
 }
@@ -2476,15 +2476,15 @@ export class Sequence extends jspb.Message {
   getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  hasStartAt(): boolean;
-  clearStartAt(): void;
-  getStartAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setStartAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  hasStartTime(): boolean;
+  clearStartTime(): void;
+  getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  hasEndAt(): boolean;
-  clearEndAt(): void;
-  getEndAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setEndAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  hasEndTime(): boolean;
+  clearEndTime(): void;
+  getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   clearResourcesList(): void;
   getResourcesList(): Array<SequenceResourceFilter>;
@@ -2508,8 +2508,8 @@ export namespace Sequence {
     sequenceTagsList: Array<string>,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    startAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    endAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     resourcesList: Array<SequenceResourceFilter.AsObject>,
   }
 }
@@ -2528,15 +2528,15 @@ export class CreateSequenceRequest extends jspb.Message {
   setSequenceTagsList(value: Array<string>): void;
   addSequenceTags(value: string, index?: number): string;
 
-  hasStartAt(): boolean;
-  clearStartAt(): void;
-  getStartAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setStartAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  hasStartTime(): boolean;
+  clearStartTime(): void;
+  getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  hasEndAt(): boolean;
-  clearEndAt(): void;
-  getEndAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setEndAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  hasEndTime(): boolean;
+  clearEndTime(): void;
+  getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateSequenceRequest.AsObject;
@@ -2553,8 +2553,8 @@ export namespace CreateSequenceRequest {
     organizationId: string,
     resourcesList: Array<SequenceResourceFilter.AsObject>,
     sequenceTagsList: Array<string>,
-    startAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    endAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -2634,15 +2634,15 @@ export class UpdateSequenceRequest extends jspb.Message {
   setSequenceTagsList(value: Array<string>): void;
   addSequenceTags(value: string, index?: number): string;
 
-  hasStartAt(): boolean;
-  clearStartAt(): void;
-  getStartAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setStartAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  hasStartTime(): boolean;
+  clearStartTime(): void;
+  getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  hasEndAt(): boolean;
-  clearEndAt(): void;
-  getEndAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setEndAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  hasEndTime(): boolean;
+  clearEndTime(): void;
+  getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   hasFieldMask(): boolean;
   clearFieldMask(): void;
@@ -2664,8 +2664,8 @@ export namespace UpdateSequenceRequest {
     id: string,
     resourcesList: Array<SequenceResourceFilter.AsObject>,
     sequenceTagsList: Array<string>,
-    startAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    endAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
   }
 }
@@ -2755,9 +2755,6 @@ export class ListSequencesResponse extends jspb.Message {
   getNextPageToken(): string;
   setNextPageToken(value: string): void;
 
-  getTotalCount(): number;
-  setTotalCount(value: number): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListSequencesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ListSequencesResponse): ListSequencesResponse.AsObject;
@@ -2772,7 +2769,6 @@ export namespace ListSequencesResponse {
   export type AsObject = {
     sequencesList: Array<Sequence.AsObject>,
     nextPageToken: string,
-    totalCount: number,
   }
 }
 
