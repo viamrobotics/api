@@ -93,6 +93,16 @@ type DataServiceClient interface {
 	ListSavedQueries(ctx context.Context, in *ListSavedQueriesRequest, opts ...grpc.CallOption) (*ListSavedQueriesResponse, error)
 	// CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
 	CreateBinaryDataSignedURL(ctx context.Context, in *CreateBinaryDataSignedURLRequest, opts ...grpc.CallOption) (*CreateBinaryDataSignedURLResponse, error)
+	// CreateSequence creates a new sequence.
+	CreateSequence(ctx context.Context, in *CreateSequenceRequest, opts ...grpc.CallOption) (*CreateSequenceResponse, error)
+	// GetSequence retrieves a sequence by ID.
+	GetSequence(ctx context.Context, in *GetSequenceRequest, opts ...grpc.CallOption) (*GetSequenceResponse, error)
+	// UpdateSequence updates the mutable fields of a sequence.
+	UpdateSequence(ctx context.Context, in *UpdateSequenceRequest, opts ...grpc.CallOption) (*UpdateSequenceResponse, error)
+	// DeleteSequence deletes a sequence by ID.
+	DeleteSequence(ctx context.Context, in *DeleteSequenceRequest, opts ...grpc.CallOption) (*DeleteSequenceResponse, error)
+	// ListSequences lists sequences for a given organization.
+	ListSequences(ctx context.Context, in *ListSequencesRequest, opts ...grpc.CallOption) (*ListSequencesResponse, error)
 }
 
 type dataServiceClient struct {
@@ -419,6 +429,51 @@ func (c *dataServiceClient) CreateBinaryDataSignedURL(ctx context.Context, in *C
 	return out, nil
 }
 
+func (c *dataServiceClient) CreateSequence(ctx context.Context, in *CreateSequenceRequest, opts ...grpc.CallOption) (*CreateSequenceResponse, error) {
+	out := new(CreateSequenceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/CreateSequence", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) GetSequence(ctx context.Context, in *GetSequenceRequest, opts ...grpc.CallOption) (*GetSequenceResponse, error) {
+	out := new(GetSequenceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetSequence", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) UpdateSequence(ctx context.Context, in *UpdateSequenceRequest, opts ...grpc.CallOption) (*UpdateSequenceResponse, error) {
+	out := new(UpdateSequenceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/UpdateSequence", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) DeleteSequence(ctx context.Context, in *DeleteSequenceRequest, opts ...grpc.CallOption) (*DeleteSequenceResponse, error) {
+	out := new(DeleteSequenceResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/DeleteSequence", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataServiceClient) ListSequences(ctx context.Context, in *ListSequencesRequest, opts ...grpc.CallOption) (*ListSequencesResponse, error) {
+	out := new(ListSequencesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/ListSequences", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -494,6 +549,16 @@ type DataServiceServer interface {
 	ListSavedQueries(context.Context, *ListSavedQueriesRequest) (*ListSavedQueriesResponse, error)
 	// CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
 	CreateBinaryDataSignedURL(context.Context, *CreateBinaryDataSignedURLRequest) (*CreateBinaryDataSignedURLResponse, error)
+	// CreateSequence creates a new sequence.
+	CreateSequence(context.Context, *CreateSequenceRequest) (*CreateSequenceResponse, error)
+	// GetSequence retrieves a sequence by ID.
+	GetSequence(context.Context, *GetSequenceRequest) (*GetSequenceResponse, error)
+	// UpdateSequence updates the mutable fields of a sequence.
+	UpdateSequence(context.Context, *UpdateSequenceRequest) (*UpdateSequenceResponse, error)
+	// DeleteSequence deletes a sequence by ID.
+	DeleteSequence(context.Context, *DeleteSequenceRequest) (*DeleteSequenceResponse, error)
+	// ListSequences lists sequences for a given organization.
+	ListSequences(context.Context, *ListSequencesRequest) (*ListSequencesResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -596,6 +661,21 @@ func (UnimplementedDataServiceServer) ListSavedQueries(context.Context, *ListSav
 }
 func (UnimplementedDataServiceServer) CreateBinaryDataSignedURL(context.Context, *CreateBinaryDataSignedURLRequest) (*CreateBinaryDataSignedURLResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBinaryDataSignedURL not implemented")
+}
+func (UnimplementedDataServiceServer) CreateSequence(context.Context, *CreateSequenceRequest) (*CreateSequenceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSequence not implemented")
+}
+func (UnimplementedDataServiceServer) GetSequence(context.Context, *GetSequenceRequest) (*GetSequenceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSequence not implemented")
+}
+func (UnimplementedDataServiceServer) UpdateSequence(context.Context, *UpdateSequenceRequest) (*UpdateSequenceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSequence not implemented")
+}
+func (UnimplementedDataServiceServer) DeleteSequence(context.Context, *DeleteSequenceRequest) (*DeleteSequenceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSequence not implemented")
+}
+func (UnimplementedDataServiceServer) ListSequences(context.Context, *ListSequencesRequest) (*ListSequencesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSequences not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -1189,6 +1269,96 @@ func _DataService_CreateBinaryDataSignedURL_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_CreateSequence_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSequenceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).CreateSequence(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/CreateSequence",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).CreateSequence(ctx, req.(*CreateSequenceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_GetSequence_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSequenceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).GetSequence(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/GetSequence",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).GetSequence(ctx, req.(*GetSequenceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_UpdateSequence_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSequenceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).UpdateSequence(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/UpdateSequence",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).UpdateSequence(ctx, req.(*UpdateSequenceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_DeleteSequence_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSequenceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).DeleteSequence(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/DeleteSequence",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).DeleteSequence(ctx, req.(*DeleteSequenceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_ListSequences_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSequencesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).ListSequences(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/ListSequences",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).ListSequences(ctx, req.(*ListSequencesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1319,6 +1489,26 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateBinaryDataSignedURL",
 			Handler:    _DataService_CreateBinaryDataSignedURL_Handler,
+		},
+		{
+			MethodName: "CreateSequence",
+			Handler:    _DataService_CreateSequence_Handler,
+		},
+		{
+			MethodName: "GetSequence",
+			Handler:    _DataService_GetSequence_Handler,
+		},
+		{
+			MethodName: "UpdateSequence",
+			Handler:    _DataService_UpdateSequence_Handler,
+		},
+		{
+			MethodName: "DeleteSequence",
+			Handler:    _DataService_DeleteSequence_Handler,
+		},
+		{
+			MethodName: "ListSequences",
+			Handler:    _DataService_ListSequences_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
