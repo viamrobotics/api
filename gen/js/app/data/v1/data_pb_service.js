@@ -298,6 +298,51 @@ DataService.CreateBinaryDataSignedURL = {
   responseType: app_data_v1_data_pb.CreateBinaryDataSignedURLResponse
 };
 
+DataService.CreateSequence = {
+  methodName: "CreateSequence",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.CreateSequenceRequest,
+  responseType: app_data_v1_data_pb.CreateSequenceResponse
+};
+
+DataService.GetSequence = {
+  methodName: "GetSequence",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.GetSequenceRequest,
+  responseType: app_data_v1_data_pb.GetSequenceResponse
+};
+
+DataService.UpdateSequence = {
+  methodName: "UpdateSequence",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.UpdateSequenceRequest,
+  responseType: app_data_v1_data_pb.UpdateSequenceResponse
+};
+
+DataService.DeleteSequence = {
+  methodName: "DeleteSequence",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteSequenceRequest,
+  responseType: app_data_v1_data_pb.DeleteSequenceResponse
+};
+
+DataService.ListSequences = {
+  methodName: "ListSequences",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.ListSequencesRequest,
+  responseType: app_data_v1_data_pb.ListSequencesResponse
+};
+
 exports.DataService = DataService;
 
 function DataServiceClient(serviceHost, options) {
@@ -1279,6 +1324,161 @@ DataServiceClient.prototype.createBinaryDataSignedURL = function createBinaryDat
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.CreateBinaryDataSignedURL, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.createSequence = function createSequence(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.CreateSequence, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.getSequence = function getSequence(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.GetSequence, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.updateSequence = function updateSequence(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.UpdateSequence, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteSequence = function deleteSequence(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteSequence, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.listSequences = function listSequences(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.ListSequences, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

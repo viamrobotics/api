@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.app.data.v1;
 
 import "google/protobuf/any.proto";
+import "google/protobuf/field_mask.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -117,6 +118,21 @@ service DataService {
 
   // CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
   rpc CreateBinaryDataSignedURL(CreateBinaryDataSignedURLRequest) returns (CreateBinaryDataSignedURLResponse);
+
+  // CreateSequence creates a new sequence.
+  rpc CreateSequence(CreateSequenceRequest) returns (CreateSequenceResponse);
+
+  // GetSequence retrieves a sequence by ID.
+  rpc GetSequence(GetSequenceRequest) returns (GetSequenceResponse);
+
+  // UpdateSequence updates the mutable fields of a sequence.
+  rpc UpdateSequence(UpdateSequenceRequest) returns (UpdateSequenceResponse);
+
+  // DeleteSequence deletes a sequence by ID.
+  rpc DeleteSequence(DeleteSequenceRequest) returns (DeleteSequenceResponse);
+
+  // ListSequences lists sequences for a given organization.
+  rpc ListSequences(ListSequencesRequest) returns (ListSequencesResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -781,4 +797,78 @@ message CreateBinaryDataSignedURLResponse {
   string signed_url = 1;
   // Expiration time of the signed URL token.
   google.protobuf.Timestamp expires_at = 2;
+}
+
+// SequenceResourceFilter filters binary and/or tabular data by source identifiers.
+message SequenceResourceFilter {
+  string part_id = 1;
+  string resource_name = 2;
+  string method_name = 3;
+}
+
+message Sequence {
+  // Metadata associated with the sequence.
+  string id = 1;
+  string organization_id = 2;
+  repeated string sequence_tags = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+
+  // The time range the sequence applies to.
+  google.protobuf.Timestamp start_time = 6;
+  google.protobuf.Timestamp end_time = 7;
+
+  // Resources whose data is associated with this sequence.
+  repeated SequenceResourceFilter resources = 8;
+}
+
+message CreateSequenceRequest {
+  string organization_id = 1;
+  repeated SequenceResourceFilter resources = 2;
+  repeated string sequence_tags = 3;
+  google.protobuf.Timestamp start_time = 4;
+  google.protobuf.Timestamp end_time = 5;
+}
+
+message CreateSequenceResponse {
+  string id = 1;
+}
+
+message GetSequenceRequest {
+  string id = 1;
+}
+
+message GetSequenceResponse {
+  Sequence sequence = 1;
+}
+
+// UpdateSequenceRequest updates the mutable fields of a sequence.
+// Only fields listed in field_mask will be updated; others are left unchanged.
+// Fields 2-5 are allowed fields for the field_mask.
+message UpdateSequenceRequest {
+  string id = 1;
+  repeated SequenceResourceFilter resources = 2;
+  repeated string sequence_tags = 3;
+  google.protobuf.Timestamp start_time = 4;
+  google.protobuf.Timestamp end_time = 5;
+  google.protobuf.FieldMask field_mask = 6;
+}
+
+message UpdateSequenceResponse {}
+
+message DeleteSequenceRequest {
+  string id = 1;
+}
+
+message DeleteSequenceResponse {}
+
+message ListSequencesRequest {
+  string organization_id = 1;
+  string page_token = 2;
+  uint32 page_size = 3;
+}
+
+message ListSequencesResponse {
+  repeated Sequence sequences = 1;
+  string next_page_token = 2;
 }
