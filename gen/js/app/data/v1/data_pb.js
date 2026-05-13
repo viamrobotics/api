@@ -19452,8 +19452,8 @@ proto.viam.app.data.v1.SequenceResourceFilter.prototype.toObject = function(opt_
  */
 proto.viam.app.data.v1.SequenceResourceFilter.toObject = function(includeInstance, msg) {
   var f, obj = {
-    resourceName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    methodName: jspb.Message.getFieldWithDefault(msg, 2, "")
+    resourceName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    methodName: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -19490,11 +19490,11 @@ proto.viam.app.data.v1.SequenceResourceFilter.deserializeBinaryFromReader = func
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setResourceName(value);
       break;
-    case 2:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setMethodName(value);
       break;
@@ -19530,14 +19530,14 @@ proto.viam.app.data.v1.SequenceResourceFilter.serializeBinaryToWriter = function
   f = message.getResourceName();
   if (f.length > 0) {
     writer.writeString(
-      1,
+      2,
       f
     );
   }
   f = message.getMethodName();
   if (f.length > 0) {
     writer.writeString(
-      2,
+      3,
       f
     );
   }
@@ -19545,28 +19545,10 @@ proto.viam.app.data.v1.SequenceResourceFilter.serializeBinaryToWriter = function
 
 
 /**
- * optional string resource_name = 1;
+ * optional string resource_name = 2;
  * @return {string}
  */
 proto.viam.app.data.v1.SequenceResourceFilter.prototype.getResourceName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.data.v1.SequenceResourceFilter} returns this
- */
-proto.viam.app.data.v1.SequenceResourceFilter.prototype.setResourceName = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string method_name = 2;
- * @return {string}
- */
-proto.viam.app.data.v1.SequenceResourceFilter.prototype.getMethodName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -19575,8 +19557,26 @@ proto.viam.app.data.v1.SequenceResourceFilter.prototype.getMethodName = function
  * @param {string} value
  * @return {!proto.viam.app.data.v1.SequenceResourceFilter} returns this
  */
-proto.viam.app.data.v1.SequenceResourceFilter.prototype.setMethodName = function(value) {
+proto.viam.app.data.v1.SequenceResourceFilter.prototype.setResourceName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string method_name = 3;
+ * @return {string}
+ */
+proto.viam.app.data.v1.SequenceResourceFilter.prototype.getMethodName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.SequenceResourceFilter} returns this
+ */
+proto.viam.app.data.v1.SequenceResourceFilter.prototype.setMethodName = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -19620,7 +19620,7 @@ proto.viam.app.data.v1.Sequence.prototype.toObject = function(opt_includeInstanc
 proto.viam.app.data.v1.Sequence.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    partId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    partId: jspb.Message.getFieldWithDefault(msg, 9, ""),
     sequenceTagsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
     createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
@@ -19668,7 +19668,7 @@ proto.viam.app.data.v1.Sequence.deserializeBinaryFromReader = function(msg, read
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
-    case 2:
+    case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setPartId(value);
       break;
@@ -19740,7 +19740,7 @@ proto.viam.app.data.v1.Sequence.serializeBinaryToWriter = function(message, writ
   f = message.getPartId();
   if (f.length > 0) {
     writer.writeString(
-      2,
+      9,
       f
     );
   }
@@ -19813,11 +19813,11 @@ proto.viam.app.data.v1.Sequence.prototype.setId = function(value) {
 
 
 /**
- * optional string part_id = 2;
+ * optional string part_id = 9;
  * @return {string}
  */
 proto.viam.app.data.v1.Sequence.prototype.getPartId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
@@ -19826,7 +19826,7 @@ proto.viam.app.data.v1.Sequence.prototype.getPartId = function() {
  * @return {!proto.viam.app.data.v1.Sequence} returns this
  */
 proto.viam.app.data.v1.Sequence.prototype.setPartId = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -20092,12 +20092,12 @@ proto.viam.app.data.v1.CreateSequenceRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.data.v1.CreateSequenceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     resourcesList: jspb.Message.toObjectList(msg.getResourcesList(),
     proto.viam.app.data.v1.SequenceResourceFilter.toObject, includeInstance),
     sequenceTagsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
     startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    partId: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -20134,10 +20134,6 @@ proto.viam.app.data.v1.CreateSequenceRequest.deserializeBinaryFromReader = funct
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPartId(value);
-      break;
     case 2:
       var value = new proto.viam.app.data.v1.SequenceResourceFilter;
       reader.readMessage(value,proto.viam.app.data.v1.SequenceResourceFilter.deserializeBinaryFromReader);
@@ -20156,6 +20152,10 @@ proto.viam.app.data.v1.CreateSequenceRequest.deserializeBinaryFromReader = funct
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setEndTime(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPartId(value);
       break;
     default:
       reader.skipField();
@@ -20186,13 +20186,6 @@ proto.viam.app.data.v1.CreateSequenceRequest.prototype.serializeBinary = functio
  */
 proto.viam.app.data.v1.CreateSequenceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPartId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getResourcesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
@@ -20224,24 +20217,13 @@ proto.viam.app.data.v1.CreateSequenceRequest.serializeBinaryToWriter = function(
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
-};
-
-
-/**
- * optional string part_id = 1;
- * @return {string}
- */
-proto.viam.app.data.v1.CreateSequenceRequest.prototype.getPartId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.data.v1.CreateSequenceRequest} returns this
- */
-proto.viam.app.data.v1.CreateSequenceRequest.prototype.setPartId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+  f = message.getPartId();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
 };
 
 
@@ -20391,6 +20373,24 @@ proto.viam.app.data.v1.CreateSequenceRequest.prototype.clearEndTime = function()
  */
 proto.viam.app.data.v1.CreateSequenceRequest.prototype.hasEndTime = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional string part_id = 6;
+ * @return {string}
+ */
+proto.viam.app.data.v1.CreateSequenceRequest.prototype.getPartId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.data.v1.CreateSequenceRequest} returns this
+ */
+proto.viam.app.data.v1.CreateSequenceRequest.prototype.setPartId = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 

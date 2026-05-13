@@ -801,14 +801,17 @@ message CreateBinaryDataSignedURLResponse {
 
 // SequenceResourceFilter filters binary and/or tabular data by source identifiers.
 message SequenceResourceFilter {
-  string resource_name = 1;
-  string method_name = 2;
+  string resource_name = 2;
+  string method_name = 3;
+
+  reserved 1;
+  reserved "part_id";
 }
 
 message Sequence {
   // Metadata associated with the sequence.
   string id = 1;
-  string part_id = 2;
+  string part_id = 9;
   repeated string sequence_tags = 3;
   google.protobuf.Timestamp created_at = 4;
   google.protobuf.Timestamp updated_at = 5;
@@ -819,14 +822,20 @@ message Sequence {
 
   // Resources whose data is associated with this sequence.
   repeated SequenceResourceFilter resources = 8;
+
+  reserved 2;
+  reserved "organization_id";
 }
 
 message CreateSequenceRequest {
-  string part_id = 1;
   repeated SequenceResourceFilter resources = 2;
   repeated string sequence_tags = 3;
   google.protobuf.Timestamp start_time = 4;
   google.protobuf.Timestamp end_time = 5;
+  string part_id = 6;
+
+  reserved 1;
+  reserved "organization_id";
 }
 
 message CreateSequenceResponse {
