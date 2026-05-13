@@ -51,8 +51,12 @@ message PlayRequest {
 message PlayStreamRequest {
   oneof payload {
     PlayStreamInit init = 1; // sent on first message
-    bytes audio_chunk = 2;
+    PlayStreamChunk audio_chunk = 2;
   }
+}
+
+message PlayStreamChunk {
+  bytes audio_data = 1;
 }
 
 message PlayStreamInit {
