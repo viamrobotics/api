@@ -828,11 +828,11 @@ message Sequence {
 }
 
 message CreateSequenceRequest {
+  string part_id = 6;
   repeated SequenceResourceFilter resources = 2;
   repeated string sequence_tags = 3;
   google.protobuf.Timestamp start_time = 4;
   google.protobuf.Timestamp end_time = 5;
-  string part_id = 6;
 
   reserved 1;
   reserved "organization_id";

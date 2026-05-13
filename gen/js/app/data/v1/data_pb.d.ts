@@ -2511,6 +2511,9 @@ export namespace Sequence {
 }
 
 export class CreateSequenceRequest extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
   clearResourcesList(): void;
   getResourcesList(): Array<SequenceResourceFilter>;
   setResourcesList(value: Array<SequenceResourceFilter>): void;
@@ -2531,9 +2534,6 @@ export class CreateSequenceRequest extends jspb.Message {
   getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  getPartId(): string;
-  setPartId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateSequenceRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateSequenceRequest): CreateSequenceRequest.AsObject;
@@ -2546,11 +2546,11 @@ export class CreateSequenceRequest extends jspb.Message {
 
 export namespace CreateSequenceRequest {
   export type AsObject = {
+    partId: string,
     resourcesList: Array<SequenceResourceFilter.AsObject>,
     sequenceTagsList: Array<string>,
     startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    partId: string,
   }
 }
 
