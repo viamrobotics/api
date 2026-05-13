@@ -2427,9 +2427,6 @@ export namespace CreateBinaryDataSignedURLResponse {
 }
 
 export class SequenceResourceFilter extends jspb.Message {
-  getPartId(): string;
-  setPartId(value: string): void;
-
   getResourceName(): string;
   setResourceName(value: string): void;
 
@@ -2448,7 +2445,6 @@ export class SequenceResourceFilter extends jspb.Message {
 
 export namespace SequenceResourceFilter {
   export type AsObject = {
-    partId: string,
     resourceName: string,
     methodName: string,
   }
@@ -2458,8 +2454,8 @@ export class Sequence extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
+  getPartId(): string;
+  setPartId(value: string): void;
 
   clearSequenceTagsList(): void;
   getSequenceTagsList(): Array<string>;
@@ -2504,7 +2500,7 @@ export class Sequence extends jspb.Message {
 export namespace Sequence {
   export type AsObject = {
     id: string,
-    organizationId: string,
+    partId: string,
     sequenceTagsList: Array<string>,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
@@ -2515,8 +2511,8 @@ export namespace Sequence {
 }
 
 export class CreateSequenceRequest extends jspb.Message {
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
+  getPartId(): string;
+  setPartId(value: string): void;
 
   clearResourcesList(): void;
   getResourcesList(): Array<SequenceResourceFilter>;
@@ -2550,7 +2546,7 @@ export class CreateSequenceRequest extends jspb.Message {
 
 export namespace CreateSequenceRequest {
   export type AsObject = {
-    organizationId: string,
+    partId: string,
     resourcesList: Array<SequenceResourceFilter.AsObject>,
     sequenceTagsList: Array<string>,
     startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
