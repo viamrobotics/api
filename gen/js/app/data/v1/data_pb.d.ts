@@ -2487,6 +2487,11 @@ export class Sequence extends jspb.Message {
   setResourcesList(value: Array<SequenceResourceFilter>): void;
   addResources(value?: SequenceResourceFilter, index?: number): SequenceResourceFilter;
 
+  clearDatasetIdsList(): void;
+  getDatasetIdsList(): Array<string>;
+  setDatasetIdsList(value: Array<string>): void;
+  addDatasetIds(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Sequence.AsObject;
   static toObject(includeInstance: boolean, msg: Sequence): Sequence.AsObject;
@@ -2507,6 +2512,7 @@ export namespace Sequence {
     startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     resourcesList: Array<SequenceResourceFilter.AsObject>,
+    datasetIdsList: Array<string>,
   }
 }
 
