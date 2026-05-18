@@ -20,6 +20,15 @@ AudioOutService.Play = {
   responseType: component_audioout_v1_audioout_pb.PlayResponse
 };
 
+AudioOutService.PlayStream = {
+  methodName: "PlayStream",
+  service: AudioOutService,
+  requestStream: true,
+  responseStream: false,
+  requestType: component_audioout_v1_audioout_pb.PlayStreamRequest,
+  responseType: component_audioout_v1_audioout_pb.PlayStreamResponse
+};
+
 AudioOutService.GetProperties = {
   methodName: "GetProperties",
   service: AudioOutService,
@@ -89,6 +98,47 @@ AudioOutServiceClient.prototype.play = function play(requestMessage, metadata, c
   return {
     cancel: function () {
       callback = null;
+      client.close();
+    }
+  };
+};
+
+AudioOutServiceClient.prototype.playStream = function playStream(metadata) {
+  var listeners = {
+    end: [],
+    status: []
+  };
+  var client = grpc.client(AudioOutService.PlayStream, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      if (!client.started) {
+        client.start(metadata);
+      }
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
       client.close();
     }
   };

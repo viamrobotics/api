@@ -93,6 +93,191 @@ func (x *PlayRequest) GetExtra() *structpb.Struct {
 	return nil
 }
 
+type PlayStreamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Types that are assignable to Payload:
+	//
+	//	*PlayStreamRequest_Init
+	//	*PlayStreamRequest_AudioChunk
+	Payload isPlayStreamRequest_Payload `protobuf_oneof:"payload"`
+}
+
+func (x *PlayStreamRequest) Reset() {
+	*x = PlayStreamRequest{}
+	mi := &file_component_audioout_v1_audioout_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayStreamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayStreamRequest) ProtoMessage() {}
+
+func (x *PlayStreamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_component_audioout_v1_audioout_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayStreamRequest.ProtoReflect.Descriptor instead.
+func (*PlayStreamRequest) Descriptor() ([]byte, []int) {
+	return file_component_audioout_v1_audioout_proto_rawDescGZIP(), []int{1}
+}
+
+func (m *PlayStreamRequest) GetPayload() isPlayStreamRequest_Payload {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+func (x *PlayStreamRequest) GetInit() *PlayStreamInit {
+	if x, ok := x.GetPayload().(*PlayStreamRequest_Init); ok {
+		return x.Init
+	}
+	return nil
+}
+
+func (x *PlayStreamRequest) GetAudioChunk() *PlayStreamChunk {
+	if x, ok := x.GetPayload().(*PlayStreamRequest_AudioChunk); ok {
+		return x.AudioChunk
+	}
+	return nil
+}
+
+type isPlayStreamRequest_Payload interface {
+	isPlayStreamRequest_Payload()
+}
+
+type PlayStreamRequest_Init struct {
+	Init *PlayStreamInit `protobuf:"bytes,1,opt,name=init,proto3,oneof"` // sent on first message
+}
+
+type PlayStreamRequest_AudioChunk struct {
+	AudioChunk *PlayStreamChunk `protobuf:"bytes,2,opt,name=audio_chunk,json=audioChunk,proto3,oneof"`
+}
+
+func (*PlayStreamRequest_Init) isPlayStreamRequest_Payload() {}
+
+func (*PlayStreamRequest_AudioChunk) isPlayStreamRequest_Payload() {}
+
+type PlayStreamChunk struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AudioData []byte `protobuf:"bytes,1,opt,name=audio_data,json=audioData,proto3" json:"audio_data,omitempty"`
+}
+
+func (x *PlayStreamChunk) Reset() {
+	*x = PlayStreamChunk{}
+	mi := &file_component_audioout_v1_audioout_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayStreamChunk) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayStreamChunk) ProtoMessage() {}
+
+func (x *PlayStreamChunk) ProtoReflect() protoreflect.Message {
+	mi := &file_component_audioout_v1_audioout_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayStreamChunk.ProtoReflect.Descriptor instead.
+func (*PlayStreamChunk) Descriptor() ([]byte, []int) {
+	return file_component_audioout_v1_audioout_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *PlayStreamChunk) GetAudioData() []byte {
+	if x != nil {
+		return x.AudioData
+	}
+	return nil
+}
+
+type PlayStreamInit struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name      string           `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	AudioInfo *v1.AudioInfo    `protobuf:"bytes,2,opt,name=audio_info,json=audioInfo,proto3" json:"audio_info,omitempty"`
+	Extra     *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
+}
+
+func (x *PlayStreamInit) Reset() {
+	*x = PlayStreamInit{}
+	mi := &file_component_audioout_v1_audioout_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayStreamInit) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayStreamInit) ProtoMessage() {}
+
+func (x *PlayStreamInit) ProtoReflect() protoreflect.Message {
+	mi := &file_component_audioout_v1_audioout_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayStreamInit.ProtoReflect.Descriptor instead.
+func (*PlayStreamInit) Descriptor() ([]byte, []int) {
+	return file_component_audioout_v1_audioout_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *PlayStreamInit) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *PlayStreamInit) GetAudioInfo() *v1.AudioInfo {
+	if x != nil {
+		return x.AudioInfo
+	}
+	return nil
+}
+
+func (x *PlayStreamInit) GetExtra() *structpb.Struct {
+	if x != nil {
+		return x.Extra
+	}
+	return nil
+}
+
 type PlayResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -101,7 +286,7 @@ type PlayResponse struct {
 
 func (x *PlayResponse) Reset() {
 	*x = PlayResponse{}
-	mi := &file_component_audioout_v1_audioout_proto_msgTypes[1]
+	mi := &file_component_audioout_v1_audioout_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -113,7 +298,7 @@ func (x *PlayResponse) String() string {
 func (*PlayResponse) ProtoMessage() {}
 
 func (x *PlayResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_component_audioout_v1_audioout_proto_msgTypes[1]
+	mi := &file_component_audioout_v1_audioout_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -126,7 +311,43 @@ func (x *PlayResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PlayResponse.ProtoReflect.Descriptor instead.
 func (*PlayResponse) Descriptor() ([]byte, []int) {
-	return file_component_audioout_v1_audioout_proto_rawDescGZIP(), []int{1}
+	return file_component_audioout_v1_audioout_proto_rawDescGZIP(), []int{4}
+}
+
+type PlayStreamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *PlayStreamResponse) Reset() {
+	*x = PlayStreamResponse{}
+	mi := &file_component_audioout_v1_audioout_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayStreamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayStreamResponse) ProtoMessage() {}
+
+func (x *PlayStreamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_component_audioout_v1_audioout_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayStreamResponse.ProtoReflect.Descriptor instead.
+func (*PlayStreamResponse) Descriptor() ([]byte, []int) {
+	return file_component_audioout_v1_audioout_proto_rawDescGZIP(), []int{5}
 }
 
 var File_component_audioout_v1_audioout_proto protoreflect.FileDescriptor
@@ -152,18 +373,53 @@ var file_component_audioout_v1_audioout_proto_rawDesc = []byte{
 	0x6e, 0x66, 0x6f, 0x12, 0x2d, 0x0a, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x18, 0x63, 0x20, 0x01,
 	0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x05, 0x65, 0x78, 0x74,
-	0x72, 0x61, 0x22, 0x0e, 0x0a, 0x0c, 0x50, 0x6c, 0x61, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x32, 0xee, 0x05, 0x0a, 0x0f, 0x41, 0x75, 0x64, 0x69, 0x6f, 0x4f, 0x75, 0x74, 0x53,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x8e, 0x01, 0x0a, 0x04, 0x50, 0x6c, 0x61, 0x79, 0x12,
-	0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74,
+	0x72, 0x61, 0x22, 0xb0, 0x01, 0x0a, 0x11, 0x50, 0x6c, 0x61, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x40, 0x0a, 0x04, 0x69, 0x6e, 0x69, 0x74,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f,
+	0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x6f, 0x75, 0x74,
+	0x2e, 0x76, 0x31, 0x2e, 0x50, 0x6c, 0x61, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x49, 0x6e,
+	0x69, 0x74, 0x48, 0x00, 0x52, 0x04, 0x69, 0x6e, 0x69, 0x74, 0x12, 0x4e, 0x0a, 0x0b, 0x61, 0x75,
+	0x64, 0x69, 0x6f, 0x5f, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x2b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74,
 	0x2e, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x6f, 0x75, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x6c, 0x61,
-	0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
-	0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x6f,
-	0x75, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x6c, 0x61, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x33, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2d, 0x22, 0x2b, 0x2f, 0x76, 0x69, 0x61,
-	0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65,
-	0x6e, 0x74, 0x2f, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x6f, 0x75, 0x74, 0x2f, 0x7b, 0x6e, 0x61, 0x6d,
-	0x65, 0x7d, 0x2f, 0x70, 0x6c, 0x61, 0x79, 0x12, 0x97, 0x01, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x50,
+	0x79, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x68, 0x75, 0x6e, 0x6b, 0x48, 0x00, 0x52, 0x0a,
+	0x61, 0x75, 0x64, 0x69, 0x6f, 0x43, 0x68, 0x75, 0x6e, 0x6b, 0x42, 0x09, 0x0a, 0x07, 0x70, 0x61,
+	0x79, 0x6c, 0x6f, 0x61, 0x64, 0x22, 0x30, 0x0a, 0x0f, 0x50, 0x6c, 0x61, 0x79, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x43, 0x68, 0x75, 0x6e, 0x6b, 0x12, 0x1d, 0x0a, 0x0a, 0x61, 0x75, 0x64, 0x69,
+	0x6f, 0x5f, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x09, 0x61, 0x75,
+	0x64, 0x69, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x22, 0x8d, 0x01, 0x0a, 0x0e, 0x50, 0x6c, 0x61, 0x79,
+	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x49, 0x6e, 0x69, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x38,
+	0x0a, 0x0a, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
+	0x2e, 0x76, 0x31, 0x2e, 0x41, 0x75, 0x64, 0x69, 0x6f, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x09, 0x61,
+	0x75, 0x64, 0x69, 0x6f, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x2d, 0x0a, 0x05, 0x65, 0x78, 0x74, 0x72,
+	0x61, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74,
+	0x52, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x22, 0x0e, 0x0a, 0x0c, 0x50, 0x6c, 0x61, 0x79, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x50, 0x6c, 0x61, 0x79, 0x53,
+	0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x93, 0x07,
+	0x0a, 0x0f, 0x41, 0x75, 0x64, 0x69, 0x6f, 0x4f, 0x75, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x12, 0x8e, 0x01, 0x0a, 0x04, 0x50, 0x6c, 0x61, 0x79, 0x12, 0x27, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x75, 0x64, 0x69,
+	0x6f, 0x6f, 0x75, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x6c, 0x61, 0x79, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f,
+	0x6e, 0x65, 0x6e, 0x74, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x6f, 0x75, 0x74, 0x2e, 0x76, 0x31,
+	0x2e, 0x50, 0x6c, 0x61, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x33, 0x82,
+	0xd3, 0xe4, 0x93, 0x02, 0x2d, 0x22, 0x2b, 0x2f, 0x76, 0x69, 0x61, 0x6d, 0x2f, 0x61, 0x70, 0x69,
+	0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x2f, 0x61, 0x75,
+	0x64, 0x69, 0x6f, 0x6f, 0x75, 0x74, 0x2f, 0x7b, 0x6e, 0x61, 0x6d, 0x65, 0x7d, 0x2f, 0x70, 0x6c,
+	0x61, 0x79, 0x12, 0xa2, 0x01, 0x0a, 0x0a, 0x50, 0x6c, 0x61, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x12, 0x2d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65,
+	0x6e, 0x74, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x6f, 0x75, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50,
+	0x6c, 0x61, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x2e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e,
+	0x74, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x6f, 0x75, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x6c,
+	0x61, 0x79, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x33, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2d, 0x22, 0x2b, 0x2f, 0x76, 0x69, 0x61, 0x6d, 0x2f,
+	0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74,
+	0x2f, 0x61, 0x75, 0x64, 0x69, 0x6f, 0x6f, 0x75, 0x74, 0x2f, 0x70, 0x6c, 0x61, 0x79, 0x5f, 0x73,
+	0x74, 0x72, 0x65, 0x61, 0x6d, 0x28, 0x01, 0x12, 0x97, 0x01, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x50,
 	0x72, 0x6f, 0x70, 0x65, 0x72, 0x74, 0x69, 0x65, 0x73, 0x12, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d,
 	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72,
 	0x6f, 0x70, 0x65, 0x72, 0x74, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
@@ -220,39 +476,49 @@ func file_component_audioout_v1_audioout_proto_rawDescGZIP() []byte {
 	return file_component_audioout_v1_audioout_proto_rawDescData
 }
 
-var file_component_audioout_v1_audioout_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_component_audioout_v1_audioout_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_component_audioout_v1_audioout_proto_goTypes = []any{
 	(*PlayRequest)(nil),              // 0: viam.component.audioout.v1.PlayRequest
-	(*PlayResponse)(nil),             // 1: viam.component.audioout.v1.PlayResponse
-	(*v1.AudioInfo)(nil),             // 2: viam.common.v1.AudioInfo
-	(*structpb.Struct)(nil),          // 3: google.protobuf.Struct
-	(*v1.GetPropertiesRequest)(nil),  // 4: viam.common.v1.GetPropertiesRequest
-	(*v1.DoCommandRequest)(nil),      // 5: viam.common.v1.DoCommandRequest
-	(*v1.GetStatusRequest)(nil),      // 6: viam.common.v1.GetStatusRequest
-	(*v1.GetGeometriesRequest)(nil),  // 7: viam.common.v1.GetGeometriesRequest
-	(*v1.GetPropertiesResponse)(nil), // 8: viam.common.v1.GetPropertiesResponse
-	(*v1.DoCommandResponse)(nil),     // 9: viam.common.v1.DoCommandResponse
-	(*v1.GetStatusResponse)(nil),     // 10: viam.common.v1.GetStatusResponse
-	(*v1.GetGeometriesResponse)(nil), // 11: viam.common.v1.GetGeometriesResponse
+	(*PlayStreamRequest)(nil),        // 1: viam.component.audioout.v1.PlayStreamRequest
+	(*PlayStreamChunk)(nil),          // 2: viam.component.audioout.v1.PlayStreamChunk
+	(*PlayStreamInit)(nil),           // 3: viam.component.audioout.v1.PlayStreamInit
+	(*PlayResponse)(nil),             // 4: viam.component.audioout.v1.PlayResponse
+	(*PlayStreamResponse)(nil),       // 5: viam.component.audioout.v1.PlayStreamResponse
+	(*v1.AudioInfo)(nil),             // 6: viam.common.v1.AudioInfo
+	(*structpb.Struct)(nil),          // 7: google.protobuf.Struct
+	(*v1.GetPropertiesRequest)(nil),  // 8: viam.common.v1.GetPropertiesRequest
+	(*v1.DoCommandRequest)(nil),      // 9: viam.common.v1.DoCommandRequest
+	(*v1.GetStatusRequest)(nil),      // 10: viam.common.v1.GetStatusRequest
+	(*v1.GetGeometriesRequest)(nil),  // 11: viam.common.v1.GetGeometriesRequest
+	(*v1.GetPropertiesResponse)(nil), // 12: viam.common.v1.GetPropertiesResponse
+	(*v1.DoCommandResponse)(nil),     // 13: viam.common.v1.DoCommandResponse
+	(*v1.GetStatusResponse)(nil),     // 14: viam.common.v1.GetStatusResponse
+	(*v1.GetGeometriesResponse)(nil), // 15: viam.common.v1.GetGeometriesResponse
 }
 var file_component_audioout_v1_audioout_proto_depIdxs = []int32{
-	2,  // 0: viam.component.audioout.v1.PlayRequest.audio_info:type_name -> viam.common.v1.AudioInfo
-	3,  // 1: viam.component.audioout.v1.PlayRequest.extra:type_name -> google.protobuf.Struct
-	0,  // 2: viam.component.audioout.v1.AudioOutService.Play:input_type -> viam.component.audioout.v1.PlayRequest
-	4,  // 3: viam.component.audioout.v1.AudioOutService.GetProperties:input_type -> viam.common.v1.GetPropertiesRequest
-	5,  // 4: viam.component.audioout.v1.AudioOutService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
-	6,  // 5: viam.component.audioout.v1.AudioOutService.GetStatus:input_type -> viam.common.v1.GetStatusRequest
-	7,  // 6: viam.component.audioout.v1.AudioOutService.GetGeometries:input_type -> viam.common.v1.GetGeometriesRequest
-	1,  // 7: viam.component.audioout.v1.AudioOutService.Play:output_type -> viam.component.audioout.v1.PlayResponse
-	8,  // 8: viam.component.audioout.v1.AudioOutService.GetProperties:output_type -> viam.common.v1.GetPropertiesResponse
-	9,  // 9: viam.component.audioout.v1.AudioOutService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
-	10, // 10: viam.component.audioout.v1.AudioOutService.GetStatus:output_type -> viam.common.v1.GetStatusResponse
-	11, // 11: viam.component.audioout.v1.AudioOutService.GetGeometries:output_type -> viam.common.v1.GetGeometriesResponse
-	7,  // [7:12] is the sub-list for method output_type
-	2,  // [2:7] is the sub-list for method input_type
-	2,  // [2:2] is the sub-list for extension type_name
-	2,  // [2:2] is the sub-list for extension extendee
-	0,  // [0:2] is the sub-list for field type_name
+	6,  // 0: viam.component.audioout.v1.PlayRequest.audio_info:type_name -> viam.common.v1.AudioInfo
+	7,  // 1: viam.component.audioout.v1.PlayRequest.extra:type_name -> google.protobuf.Struct
+	3,  // 2: viam.component.audioout.v1.PlayStreamRequest.init:type_name -> viam.component.audioout.v1.PlayStreamInit
+	2,  // 3: viam.component.audioout.v1.PlayStreamRequest.audio_chunk:type_name -> viam.component.audioout.v1.PlayStreamChunk
+	6,  // 4: viam.component.audioout.v1.PlayStreamInit.audio_info:type_name -> viam.common.v1.AudioInfo
+	7,  // 5: viam.component.audioout.v1.PlayStreamInit.extra:type_name -> google.protobuf.Struct
+	0,  // 6: viam.component.audioout.v1.AudioOutService.Play:input_type -> viam.component.audioout.v1.PlayRequest
+	1,  // 7: viam.component.audioout.v1.AudioOutService.PlayStream:input_type -> viam.component.audioout.v1.PlayStreamRequest
+	8,  // 8: viam.component.audioout.v1.AudioOutService.GetProperties:input_type -> viam.common.v1.GetPropertiesRequest
+	9,  // 9: viam.component.audioout.v1.AudioOutService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
+	10, // 10: viam.component.audioout.v1.AudioOutService.GetStatus:input_type -> viam.common.v1.GetStatusRequest
+	11, // 11: viam.component.audioout.v1.AudioOutService.GetGeometries:input_type -> viam.common.v1.GetGeometriesRequest
+	4,  // 12: viam.component.audioout.v1.AudioOutService.Play:output_type -> viam.component.audioout.v1.PlayResponse
+	5,  // 13: viam.component.audioout.v1.AudioOutService.PlayStream:output_type -> viam.component.audioout.v1.PlayStreamResponse
+	12, // 14: viam.component.audioout.v1.AudioOutService.GetProperties:output_type -> viam.common.v1.GetPropertiesResponse
+	13, // 15: viam.component.audioout.v1.AudioOutService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
+	14, // 16: viam.component.audioout.v1.AudioOutService.GetStatus:output_type -> viam.common.v1.GetStatusResponse
+	15, // 17: viam.component.audioout.v1.AudioOutService.GetGeometries:output_type -> viam.common.v1.GetGeometriesResponse
+	12, // [12:18] is the sub-list for method output_type
+	6,  // [6:12] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_component_audioout_v1_audioout_proto_init() }
@@ -260,13 +526,17 @@ func file_component_audioout_v1_audioout_proto_init() {
 	if File_component_audioout_v1_audioout_proto != nil {
 		return
 	}
+	file_component_audioout_v1_audioout_proto_msgTypes[1].OneofWrappers = []any{
+		(*PlayStreamRequest_Init)(nil),
+		(*PlayStreamRequest_AudioChunk)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_component_audioout_v1_audioout_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
