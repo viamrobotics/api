@@ -409,6 +409,11 @@ export class MoveOptions extends jspb.Message {
   setMaxAccDegsPerSec2JointsList(value: Array<number>): void;
   addMaxAccDegsPerSec2Joints(value: number, index?: number): number;
 
+  hasMaxTcpSpeed(): boolean;
+  clearMaxTcpSpeed(): void;
+  getMaxTcpSpeed(): number;
+  setMaxTcpSpeed(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MoveOptions.AsObject;
   static toObject(includeInstance: boolean, msg: MoveOptions): MoveOptions.AsObject;
@@ -425,6 +430,7 @@ export namespace MoveOptions {
     maxAccDegsPerSec2: number,
     maxVelDegsPerSecJointsList: Array<number>,
     maxAccDegsPerSec2JointsList: Array<number>,
+    maxTcpSpeed: number,
   }
 }
 

@@ -4,7 +4,6 @@ go 1.24.0
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.2
-	github.com/srikrsna/protoc-gen-gotag v0.6.2
 	go.opentelemetry.io/proto/otlp v1.9.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20260120221211-b8f7ae30c516
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260120221211-b8f7ae30c516
