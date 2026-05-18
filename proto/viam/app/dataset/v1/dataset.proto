@@ -27,18 +27,36 @@ service DatasetService {
   rpc MergeDatasets(MergeDatasetsRequest) returns (MergeDatasetsResponse);
 }
 
+// DatasetType describes the kind of membership a dataset stores.
+// buf:lint:ignore ENUM_ZERO_VALUE_SUFFIX
+enum DatasetType {
+  // DATASET_TYPE_BINARY_DATA is a dataset whose members are individual binary data objects (frames).
+  // This is the default for datasets created without an explicit type, including all pre-existing
+  // datasets.
+  DATASET_TYPE_BINARY_DATA = 0;
+  // DATASET_TYPE_SEQUENCE_DATA is a dataset whose members are sequences. Binary-data writes
+  // (AddBinaryDataToDatasetByIDs, AddBinaryDataToDatasetByFilter) are rejected against datasets
+  // of this type; sequences are added/removed via AddSequencesToDataset / RemoveSequencesFromDataset.
+  DATASET_TYPE_SEQUENCE_DATA = 1;
+}
+
 // Dataset stores the metadata of a dataset.
 message Dataset {
   string id = 1;
   string name = 2;
   string organization_id = 3;
   google.protobuf.Timestamp time_created = 4;
+  // type is the membership kind of this dataset. Immutable after creation; defaults to
+  // DATASET_TYPE_BINARY_DATA when unset (including for pre-existing datasets).
+  DatasetType type = 5;
 }
 
 // CreateDatasetRequest defines the name and organization ID of a dataset.
 message CreateDatasetRequest {
   string name = 1;
   string organization_id = 2;
+  // type is the membership kind for the new dataset. Defaults to DATASET_TYPE_BINARY_DATA when unset.
+  optional DatasetType type = 3;
 }
 
 // CreateDatasetResponse returns the dataset ID of the created dataset.
