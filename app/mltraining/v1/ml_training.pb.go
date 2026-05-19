@@ -7,7 +7,7 @@
 package v1
 
 import (
-	_ "go.viam.com/api/tagger/v1"
+	_ "github.com/srikrsna/protoc-gen-gotag/tagger"
 	status "google.golang.org/genproto/googleapis/rpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
