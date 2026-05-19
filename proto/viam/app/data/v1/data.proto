@@ -75,6 +75,9 @@ service DataService {
     option deprecated = true;
   }
 
+  // BoundingBoxCountByFilter returns the count of bounding boxes from data based on the given filter.
+  rpc BoundingBoxCountByFilter(BoundingBoxCountByFilterRequest) returns (BoundingBoxCountByFilterResponse);
+
   // UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
   rpc UpdateBoundingBox(UpdateBoundingBoxRequest) returns (UpdateBoundingBoxResponse);
 
@@ -630,6 +633,16 @@ message BoundingBoxLabelsByFilterRequest {
 message BoundingBoxLabelsByFilterResponse {
   option deprecated = true;
   repeated string labels = 1;
+}
+
+// BoundingBoxCountByFilterRequest requests the count of bounding boxes from files matching the given filter.
+message BoundingBoxCountByFilterRequest {
+  Filter filter = 1;
+}
+
+// BoundingBoxCountByFilterResponse returns the count of bounding boxes from files matching the given filter.
+message BoundingBoxCountByFilterResponse {
+  uint64 count = 1;
 }
 
 // ConfigureDatabaseUserRequest accepts a Viam organization ID and a password for the database user
