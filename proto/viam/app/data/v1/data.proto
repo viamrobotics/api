@@ -92,6 +92,12 @@ service DataService {
   // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
   rpc RemoveBinaryDataFromDatasetByIDs(RemoveBinaryDataFromDatasetByIDsRequest) returns (RemoveBinaryDataFromDatasetByIDsResponse);
 
+  // AddSequencesToDataset adds the sequences with the given IDs to the dataset.
+  rpc AddSequencesToDataset(AddSequencesToDatasetRequest) returns (AddSequencesToDatasetResponse);
+
+  // RemoveSequencesFromDataset removes the sequences with the given IDs from the dataset.
+  rpc RemoveSequencesFromDataset(RemoveSequencesFromDatasetRequest) returns (RemoveSequencesFromDatasetResponse);
+
   // CreateIndex starts a custom index build
   rpc CreateIndex(CreateIndexRequest) returns (CreateIndexResponse);
 
@@ -673,6 +679,22 @@ message RemoveBinaryDataFromDatasetByIDsRequest {
 }
 
 message RemoveBinaryDataFromDatasetByIDsResponse {}
+
+// AddSequencesToDatasetRequest adds the sequences with the given IDs to the dataset with dataset_id.
+message AddSequencesToDatasetRequest {
+  string dataset_id = 1;
+  repeated string sequence_ids = 2;
+}
+
+message AddSequencesToDatasetResponse {}
+
+// RemoveSequencesFromDatasetRequest removes the sequences with the given IDs from the dataset with dataset_id.
+message RemoveSequencesFromDatasetRequest {
+  string dataset_id = 1;
+  repeated string sequence_ids = 2;
+}
+
+message RemoveSequencesFromDatasetResponse {}
 
 // IndexableCollection specifies the types of collections available for custom indexes
 enum IndexableCollection {
