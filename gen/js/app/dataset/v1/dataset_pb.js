@@ -20,6 +20,7 @@ goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.viam.app.dataset.v1.CreateDatasetRequest', null, global);
 goog.exportSymbol('proto.viam.app.dataset.v1.CreateDatasetResponse', null, global);
 goog.exportSymbol('proto.viam.app.dataset.v1.Dataset', null, global);
+goog.exportSymbol('proto.viam.app.dataset.v1.DatasetType', null, global);
 goog.exportSymbol('proto.viam.app.dataset.v1.DeleteDatasetRequest', null, global);
 goog.exportSymbol('proto.viam.app.dataset.v1.DeleteDatasetResponse', null, global);
 goog.exportSymbol('proto.viam.app.dataset.v1.ListDatasetsByIDsRequest', null, global);
@@ -338,7 +339,8 @@ proto.viam.app.dataset.v1.Dataset.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     organizationId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    timeCreated: (f = msg.getTimeCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    timeCreated: (f = msg.getTimeCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    type: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -391,6 +393,10 @@ proto.viam.app.dataset.v1.Dataset.deserializeBinaryFromReader = function(msg, re
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimeCreated(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.viam.app.dataset.v1.DatasetType} */ (reader.readEnum());
+      msg.setType(value);
       break;
     default:
       reader.skipField();
@@ -448,6 +454,13 @@ proto.viam.app.dataset.v1.Dataset.serializeBinaryToWriter = function(message, wr
       4,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      5,
+      f
     );
   }
 };
@@ -544,6 +557,24 @@ proto.viam.app.dataset.v1.Dataset.prototype.hasTimeCreated = function() {
 };
 
 
+/**
+ * optional DatasetType type = 5;
+ * @return {!proto.viam.app.dataset.v1.DatasetType}
+ */
+proto.viam.app.dataset.v1.Dataset.prototype.getType = function() {
+  return /** @type {!proto.viam.app.dataset.v1.DatasetType} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.dataset.v1.DatasetType} value
+ * @return {!proto.viam.app.dataset.v1.Dataset} returns this
+ */
+proto.viam.app.dataset.v1.Dataset.prototype.setType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 5, value);
+};
+
+
 
 
 
@@ -577,7 +608,8 @@ proto.viam.app.dataset.v1.CreateDatasetRequest.prototype.toObject = function(opt
 proto.viam.app.dataset.v1.CreateDatasetRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
+    organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -622,6 +654,10 @@ proto.viam.app.dataset.v1.CreateDatasetRequest.deserializeBinaryFromReader = fun
       var value = /** @type {string} */ (reader.readString());
       msg.setOrganizationId(value);
       break;
+    case 3:
+      var value = /** @type {!proto.viam.app.dataset.v1.DatasetType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -665,6 +701,13 @@ proto.viam.app.dataset.v1.CreateDatasetRequest.serializeBinaryToWriter = functio
       f
     );
   }
+  f = /** @type {!proto.viam.app.dataset.v1.DatasetType} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -701,6 +744,42 @@ proto.viam.app.dataset.v1.CreateDatasetRequest.prototype.getOrganizationId = fun
  */
 proto.viam.app.dataset.v1.CreateDatasetRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional DatasetType type = 3;
+ * @return {!proto.viam.app.dataset.v1.DatasetType}
+ */
+proto.viam.app.dataset.v1.CreateDatasetRequest.prototype.getType = function() {
+  return /** @type {!proto.viam.app.dataset.v1.DatasetType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.dataset.v1.DatasetType} value
+ * @return {!proto.viam.app.dataset.v1.CreateDatasetRequest} returns this
+ */
+proto.viam.app.dataset.v1.CreateDatasetRequest.prototype.setType = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.dataset.v1.CreateDatasetRequest} returns this
+ */
+proto.viam.app.dataset.v1.CreateDatasetRequest.prototype.clearType = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.dataset.v1.CreateDatasetRequest.prototype.hasType = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -2277,5 +2356,13 @@ proto.viam.app.dataset.v1.MergeDatasetsResponse.prototype.setDatasetId = functio
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.dataset.v1.DatasetType = {
+  DATASET_TYPE_BINARY_DATA: 0,
+  DATASET_TYPE_SEQUENCE_DATA: 1
+};
 
 goog.object.extend(exports, proto.viam.app.dataset.v1);
