@@ -93,10 +93,15 @@ message StartReloadBuildRequest {
     packages.v1.CreatePackageRequest package = 1;
     ReloadBuildInfo build_info = 2;
   }
+  // optional target builder. defaults to 'default'.
+  // use 'viam-cloudbuild-test' to target the new Viam build service (org must be whitelisted).
+  optional string builder = 3;
 }
 
 message StartReloadBuildResponse {
   string build_id = 1;
+  // present when the requested builder was unavailable for this org and the default builder was used instead.
+  optional string builder_fallback_message = 2;
 }
 
 message StartPackageBuildRequest {
