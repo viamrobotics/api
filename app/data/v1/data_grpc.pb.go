@@ -63,6 +63,8 @@ type DataServiceClient interface {
 	// Deprecated: Do not use.
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(ctx context.Context, in *BoundingBoxLabelsByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxLabelsByFilterResponse, error)
+	// BoundingBoxCountByFilter returns the count of bounding boxes from data based on the given filter.
+	BoundingBoxCountByFilter(ctx context.Context, in *BoundingBoxCountByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxCountByFilterResponse, error)
 	// UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
 	UpdateBoundingBox(ctx context.Context, in *UpdateBoundingBoxRequest, opts ...grpc.CallOption) (*UpdateBoundingBoxResponse, error)
 	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
@@ -303,6 +305,15 @@ func (c *dataServiceClient) BoundingBoxLabelsByFilter(ctx context.Context, in *B
 	return out, nil
 }
 
+func (c *dataServiceClient) BoundingBoxCountByFilter(ctx context.Context, in *BoundingBoxCountByFilterRequest, opts ...grpc.CallOption) (*BoundingBoxCountByFilterResponse, error) {
+	out := new(BoundingBoxCountByFilterResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/BoundingBoxCountByFilter", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataServiceClient) UpdateBoundingBox(ctx context.Context, in *UpdateBoundingBoxRequest, opts ...grpc.CallOption) (*UpdateBoundingBoxResponse, error) {
 	out := new(UpdateBoundingBoxResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/UpdateBoundingBox", in, out, opts...)
@@ -519,6 +530,8 @@ type DataServiceServer interface {
 	// Deprecated: Do not use.
 	// BoundingBoxLabelsByFilter gets all string labels for bounding boxes from data based on given filter.
 	BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error)
+	// BoundingBoxCountByFilter returns the count of bounding boxes from data based on the given filter.
+	BoundingBoxCountByFilter(context.Context, *BoundingBoxCountByFilterRequest) (*BoundingBoxCountByFilterResponse, error)
 	// UpdateBoundingBox updates the bounding box associated with a given binary ID and bounding box ID.
 	UpdateBoundingBox(context.Context, *UpdateBoundingBoxRequest) (*UpdateBoundingBoxResponse, error)
 	// GetDatabaseConnection gets a connection to access a MongoDB Atlas Data Federation instance. It
@@ -619,6 +632,9 @@ func (UnimplementedDataServiceServer) RemoveBoundingBoxFromImageByID(context.Con
 }
 func (UnimplementedDataServiceServer) BoundingBoxLabelsByFilter(context.Context, *BoundingBoxLabelsByFilterRequest) (*BoundingBoxLabelsByFilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BoundingBoxLabelsByFilter not implemented")
+}
+func (UnimplementedDataServiceServer) BoundingBoxCountByFilter(context.Context, *BoundingBoxCountByFilterRequest) (*BoundingBoxCountByFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BoundingBoxCountByFilter not implemented")
 }
 func (UnimplementedDataServiceServer) UpdateBoundingBox(context.Context, *UpdateBoundingBoxRequest) (*UpdateBoundingBoxResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBoundingBox not implemented")
@@ -1013,6 +1029,24 @@ func _DataService_BoundingBoxLabelsByFilter_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataServiceServer).BoundingBoxLabelsByFilter(ctx, req.(*BoundingBoxLabelsByFilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataService_BoundingBoxCountByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BoundingBoxCountByFilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).BoundingBoxCountByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/BoundingBoxCountByFilter",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).BoundingBoxCountByFilter(ctx, req.(*BoundingBoxCountByFilterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1433,6 +1467,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BoundingBoxLabelsByFilter",
 			Handler:    _DataService_BoundingBoxLabelsByFilter_Handler,
+		},
+		{
+			MethodName: "BoundingBoxCountByFilter",
+			Handler:    _DataService_BoundingBoxCountByFilter_Handler,
 		},
 		{
 			MethodName: "UpdateBoundingBox",
