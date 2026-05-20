@@ -20248,7 +20248,7 @@ proto.viam.app.data.v1.SequenceResourceFilter.prototype.setMethodName = function
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.data.v1.Sequence.repeatedFields_ = [3,8];
+proto.viam.app.data.v1.Sequence.repeatedFields_ = [3,8,10];
 
 
 
@@ -20289,7 +20289,8 @@ proto.viam.app.data.v1.Sequence.toObject = function(includeInstance, msg) {
     startTime: (f = msg.getStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     resourcesList: jspb.Message.toObjectList(msg.getResourcesList(),
-    proto.viam.app.data.v1.SequenceResourceFilter.toObject, includeInstance)
+    proto.viam.app.data.v1.SequenceResourceFilter.toObject, includeInstance),
+    datasetIdsList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -20362,6 +20363,10 @@ proto.viam.app.data.v1.Sequence.deserializeBinaryFromReader = function(msg, read
       var value = new proto.viam.app.data.v1.SequenceResourceFilter;
       reader.readMessage(value,proto.viam.app.data.v1.SequenceResourceFilter.deserializeBinaryFromReader);
       msg.addResources(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addDatasetIds(value);
       break;
     default:
       reader.skipField();
@@ -20451,6 +20456,13 @@ proto.viam.app.data.v1.Sequence.serializeBinaryToWriter = function(message, writ
       8,
       f,
       proto.viam.app.data.v1.SequenceResourceFilter.serializeBinaryToWriter
+    );
+  }
+  f = message.getDatasetIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      10,
+      f
     );
   }
 };
@@ -20712,6 +20724,43 @@ proto.viam.app.data.v1.Sequence.prototype.addResources = function(opt_value, opt
  */
 proto.viam.app.data.v1.Sequence.prototype.clearResourcesList = function() {
   return this.setResourcesList([]);
+};
+
+
+/**
+ * repeated string dataset_ids = 10;
+ * @return {!Array<string>}
+ */
+proto.viam.app.data.v1.Sequence.prototype.getDatasetIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 10));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.data.v1.Sequence} returns this
+ */
+proto.viam.app.data.v1.Sequence.prototype.setDatasetIdsList = function(value) {
+  return jspb.Message.setField(this, 10, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.data.v1.Sequence} returns this
+ */
+proto.viam.app.data.v1.Sequence.prototype.addDatasetIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 10, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.data.v1.Sequence} returns this
+ */
+proto.viam.app.data.v1.Sequence.prototype.clearDatasetIdsList = function() {
+  return this.setDatasetIdsList([]);
 };
 
 
