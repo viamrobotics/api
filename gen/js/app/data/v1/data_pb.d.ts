@@ -2862,6 +2862,60 @@ export namespace ListSequencesResponse {
   }
 }
 
+export class SequencesByDatasetIDRequest extends jspb.Message {
+  getDatasetId(): string;
+  setDatasetId(value: string): void;
+
+  getPageToken(): string;
+  setPageToken(value: string): void;
+
+  getPageSize(): number;
+  setPageSize(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SequencesByDatasetIDRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SequencesByDatasetIDRequest): SequencesByDatasetIDRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SequencesByDatasetIDRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SequencesByDatasetIDRequest;
+  static deserializeBinaryFromReader(message: SequencesByDatasetIDRequest, reader: jspb.BinaryReader): SequencesByDatasetIDRequest;
+}
+
+export namespace SequencesByDatasetIDRequest {
+  export type AsObject = {
+    datasetId: string,
+    pageToken: string,
+    pageSize: number,
+  }
+}
+
+export class SequencesByDatasetIDResponse extends jspb.Message {
+  clearSequencesList(): void;
+  getSequencesList(): Array<Sequence>;
+  setSequencesList(value: Array<Sequence>): void;
+  addSequences(value?: Sequence, index?: number): Sequence;
+
+  getNextPageToken(): string;
+  setNextPageToken(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SequencesByDatasetIDResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SequencesByDatasetIDResponse): SequencesByDatasetIDResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SequencesByDatasetIDResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SequencesByDatasetIDResponse;
+  static deserializeBinaryFromReader(message: SequencesByDatasetIDResponse, reader: jspb.BinaryReader): SequencesByDatasetIDResponse;
+}
+
+export namespace SequencesByDatasetIDResponse {
+  export type AsObject = {
+    sequencesList: Array<Sequence.AsObject>,
+    nextPageToken: string,
+  }
+}
+
 export interface OrderMap {
   ORDER_UNSPECIFIED: 0;
   ORDER_DESCENDING: 1;

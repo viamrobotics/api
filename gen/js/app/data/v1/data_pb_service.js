@@ -361,6 +361,15 @@ DataService.ListSequences = {
   responseType: app_data_v1_data_pb.ListSequencesResponse
 };
 
+DataService.SequencesByDatasetID = {
+  methodName: "SequencesByDatasetID",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.SequencesByDatasetIDRequest,
+  responseType: app_data_v1_data_pb.SequencesByDatasetIDResponse
+};
+
 exports.DataService = DataService;
 
 function DataServiceClient(serviceHost, options) {
@@ -1559,6 +1568,37 @@ DataServiceClient.prototype.listSequences = function listSequences(requestMessag
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.ListSequences, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.sequencesByDatasetID = function sequencesByDatasetID(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.SequencesByDatasetID, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

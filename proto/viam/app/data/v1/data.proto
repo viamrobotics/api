@@ -139,6 +139,9 @@ service DataService {
 
   // ListSequences lists sequences for a given organization.
   rpc ListSequences(ListSequencesRequest) returns (ListSequencesResponse);
+
+  // SequencesByDatasetID lists sequences that belong to the given dataset.
+  rpc SequencesByDatasetID(SequencesByDatasetIDRequest) returns (SequencesByDatasetIDResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -903,6 +906,17 @@ message ListSequencesRequest {
 }
 
 message ListSequencesResponse {
+  repeated Sequence sequences = 1;
+  string next_page_token = 2;
+}
+
+message SequencesByDatasetIDRequest {
+  string dataset_id = 1;
+  string page_token = 2;
+  uint32 page_size = 3;
+}
+
+message SequencesByDatasetIDResponse {
   repeated Sequence sequences = 1;
   string next_page_token = 2;
 }

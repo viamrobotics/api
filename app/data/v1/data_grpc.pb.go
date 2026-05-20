@@ -107,6 +107,8 @@ type DataServiceClient interface {
 	DeleteSequence(ctx context.Context, in *DeleteSequenceRequest, opts ...grpc.CallOption) (*DeleteSequenceResponse, error)
 	// ListSequences lists sequences for a given organization.
 	ListSequences(ctx context.Context, in *ListSequencesRequest, opts ...grpc.CallOption) (*ListSequencesResponse, error)
+	// SequencesByDatasetID lists sequences that belong to the given dataset.
+	SequencesByDatasetID(ctx context.Context, in *SequencesByDatasetIDRequest, opts ...grpc.CallOption) (*SequencesByDatasetIDResponse, error)
 }
 
 type dataServiceClient struct {
@@ -496,6 +498,15 @@ func (c *dataServiceClient) ListSequences(ctx context.Context, in *ListSequences
 	return out, nil
 }
 
+func (c *dataServiceClient) SequencesByDatasetID(ctx context.Context, in *SequencesByDatasetIDRequest, opts ...grpc.CallOption) (*SequencesByDatasetIDResponse, error) {
+	out := new(SequencesByDatasetIDResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/SequencesByDatasetID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -585,6 +596,8 @@ type DataServiceServer interface {
 	DeleteSequence(context.Context, *DeleteSequenceRequest) (*DeleteSequenceResponse, error)
 	// ListSequences lists sequences for a given organization.
 	ListSequences(context.Context, *ListSequencesRequest) (*ListSequencesResponse, error)
+	// SequencesByDatasetID lists sequences that belong to the given dataset.
+	SequencesByDatasetID(context.Context, *SequencesByDatasetIDRequest) (*SequencesByDatasetIDResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -708,6 +721,9 @@ func (UnimplementedDataServiceServer) DeleteSequence(context.Context, *DeleteSeq
 }
 func (UnimplementedDataServiceServer) ListSequences(context.Context, *ListSequencesRequest) (*ListSequencesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSequences not implemented")
+}
+func (UnimplementedDataServiceServer) SequencesByDatasetID(context.Context, *SequencesByDatasetIDRequest) (*SequencesByDatasetIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SequencesByDatasetID not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -1427,6 +1443,24 @@ func _DataService_ListSequences_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_SequencesByDatasetID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SequencesByDatasetIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).SequencesByDatasetID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/SequencesByDatasetID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).SequencesByDatasetID(ctx, req.(*SequencesByDatasetIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1585,6 +1619,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListSequences",
 			Handler:    _DataService_ListSequences_Handler,
+		},
+		{
+			MethodName: "SequencesByDatasetID",
+			Handler:    _DataService_SequencesByDatasetID_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
