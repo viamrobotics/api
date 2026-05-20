@@ -823,6 +823,10 @@ message Sequence {
   // Resources whose data is associated with this sequence.
   repeated SequenceResourceFilter resources = 8;
 
+  // Datasets this sequence is a member of. Membership is added/removed via
+  // AddSequencesToDataset / RemoveSequencesFromDataset.
+  repeated string dataset_ids = 10;
+
   reserved 2;
   reserved "organization_id";
 }
