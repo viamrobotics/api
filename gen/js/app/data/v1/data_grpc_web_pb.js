@@ -2459,5 +2459,66 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.listSequences =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.SequencesByDatasetIDRequest,
+ *   !proto.viam.app.data.v1.SequencesByDatasetIDResponse>}
+ */
+const methodDescriptor_DataService_SequencesByDatasetID = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/SequencesByDatasetID',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.SequencesByDatasetIDRequest,
+  proto.viam.app.data.v1.SequencesByDatasetIDResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.SequencesByDatasetIDRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.SequencesByDatasetIDResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.SequencesByDatasetIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.SequencesByDatasetIDResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.SequencesByDatasetIDResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.sequencesByDatasetID =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/SequencesByDatasetID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_SequencesByDatasetID,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.SequencesByDatasetIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.SequencesByDatasetIDResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.sequencesByDatasetID =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/SequencesByDatasetID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_SequencesByDatasetID);
+};
+
+
 module.exports = proto.viam.app.data.v1;
 

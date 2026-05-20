@@ -355,6 +355,15 @@ type DataServiceListSequences = {
   readonly responseType: typeof app_data_v1_data_pb.ListSequencesResponse;
 };
 
+type DataServiceSequencesByDatasetID = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.SequencesByDatasetIDRequest;
+  readonly responseType: typeof app_data_v1_data_pb.SequencesByDatasetIDResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -396,6 +405,7 @@ export class DataService {
   static readonly UpdateSequence: DataServiceUpdateSequence;
   static readonly DeleteSequence: DataServiceDeleteSequence;
   static readonly ListSequences: DataServiceListSequences;
+  static readonly SequencesByDatasetID: DataServiceSequencesByDatasetID;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -772,6 +782,15 @@ export class DataServiceClient {
   listSequences(
     requestMessage: app_data_v1_data_pb.ListSequencesRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListSequencesResponse|null) => void
+  ): UnaryResponse;
+  sequencesByDatasetID(
+    requestMessage: app_data_v1_data_pb.SequencesByDatasetIDRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.SequencesByDatasetIDResponse|null) => void
+  ): UnaryResponse;
+  sequencesByDatasetID(
+    requestMessage: app_data_v1_data_pb.SequencesByDatasetIDRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.SequencesByDatasetIDResponse|null) => void
   ): UnaryResponse;
 }
 
