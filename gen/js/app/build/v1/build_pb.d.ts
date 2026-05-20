@@ -166,6 +166,11 @@ export class StartReloadBuildRequest extends jspb.Message {
   getBuildInfo(): ReloadBuildInfo | undefined;
   setBuildInfo(value?: ReloadBuildInfo): void;
 
+  hasBuilder(): boolean;
+  clearBuilder(): void;
+  getBuilder(): string;
+  setBuilder(value: string): void;
+
   getCloudBuildCase(): StartReloadBuildRequest.CloudBuildCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartReloadBuildRequest.AsObject;
@@ -181,6 +186,7 @@ export namespace StartReloadBuildRequest {
   export type AsObject = {
     pb_package?: app_packages_v1_packages_pb.CreatePackageRequest.AsObject,
     buildInfo?: ReloadBuildInfo.AsObject,
+    builder: string,
   }
 
   export enum CloudBuildCase {
@@ -193,6 +199,11 @@ export namespace StartReloadBuildRequest {
 export class StartReloadBuildResponse extends jspb.Message {
   getBuildId(): string;
   setBuildId(value: string): void;
+
+  hasBuilderFallbackMessage(): boolean;
+  clearBuilderFallbackMessage(): void;
+  getBuilderFallbackMessage(): string;
+  setBuilderFallbackMessage(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartReloadBuildResponse.AsObject;
@@ -207,6 +218,7 @@ export class StartReloadBuildResponse extends jspb.Message {
 export namespace StartReloadBuildResponse {
   export type AsObject = {
     buildId: string,
+    builderFallbackMessage: string,
   }
 }
 
