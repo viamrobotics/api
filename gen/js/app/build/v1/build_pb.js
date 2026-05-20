@@ -1776,7 +1776,8 @@ proto.viam.app.build.v1.StartReloadBuildRequest.prototype.toObject = function(op
 proto.viam.app.build.v1.StartReloadBuildRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     pb_package: (f = msg.getPackage()) && app_packages_v1_packages_pb.CreatePackageRequest.toObject(includeInstance, f),
-    buildInfo: (f = msg.getBuildInfo()) && proto.viam.app.build.v1.ReloadBuildInfo.toObject(includeInstance, f)
+    buildInfo: (f = msg.getBuildInfo()) && proto.viam.app.build.v1.ReloadBuildInfo.toObject(includeInstance, f),
+    builder: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1823,6 +1824,10 @@ proto.viam.app.build.v1.StartReloadBuildRequest.deserializeBinaryFromReader = fu
       reader.readMessage(value,proto.viam.app.build.v1.ReloadBuildInfo.deserializeBinaryFromReader);
       msg.setBuildInfo(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBuilder(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1866,6 +1871,13 @@ proto.viam.app.build.v1.StartReloadBuildRequest.serializeBinaryToWriter = functi
       2,
       f,
       proto.viam.app.build.v1.ReloadBuildInfo.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeString(
+      3,
+      f
     );
   }
 };
@@ -1945,6 +1957,42 @@ proto.viam.app.build.v1.StartReloadBuildRequest.prototype.hasBuildInfo = functio
 };
 
 
+/**
+ * optional string builder = 3;
+ * @return {string}
+ */
+proto.viam.app.build.v1.StartReloadBuildRequest.prototype.getBuilder = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.build.v1.StartReloadBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartReloadBuildRequest.prototype.setBuilder = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.build.v1.StartReloadBuildRequest} returns this
+ */
+proto.viam.app.build.v1.StartReloadBuildRequest.prototype.clearBuilder = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.build.v1.StartReloadBuildRequest.prototype.hasBuilder = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
 
 
 
@@ -1977,7 +2025,8 @@ proto.viam.app.build.v1.StartReloadBuildResponse.prototype.toObject = function(o
  */
 proto.viam.app.build.v1.StartReloadBuildResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    buildId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    buildId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    builderFallbackMessage: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2018,6 +2067,10 @@ proto.viam.app.build.v1.StartReloadBuildResponse.deserializeBinaryFromReader = f
       var value = /** @type {string} */ (reader.readString());
       msg.setBuildId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBuilderFallbackMessage(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2054,6 +2107,13 @@ proto.viam.app.build.v1.StartReloadBuildResponse.serializeBinaryToWriter = funct
       f
     );
   }
+  f = /** @type {string} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -2072,6 +2132,42 @@ proto.viam.app.build.v1.StartReloadBuildResponse.prototype.getBuildId = function
  */
 proto.viam.app.build.v1.StartReloadBuildResponse.prototype.setBuildId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string builder_fallback_message = 2;
+ * @return {string}
+ */
+proto.viam.app.build.v1.StartReloadBuildResponse.prototype.getBuilderFallbackMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.build.v1.StartReloadBuildResponse} returns this
+ */
+proto.viam.app.build.v1.StartReloadBuildResponse.prototype.setBuilderFallbackMessage = function(value) {
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.build.v1.StartReloadBuildResponse} returns this
+ */
+proto.viam.app.build.v1.StartReloadBuildResponse.prototype.clearBuilderFallbackMessage = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.build.v1.StartReloadBuildResponse.prototype.hasBuilderFallbackMessage = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
