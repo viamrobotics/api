@@ -4165,6 +4165,186 @@ func (*RemoveBinaryDataFromDatasetByIDsResponse) Descriptor() ([]byte, []int) {
 	return file_app_data_v1_data_proto_rawDescGZIP(), []int{59}
 }
 
+// AddSequencesToDatasetRequest adds the sequences with the given IDs to the dataset with dataset_id.
+type AddSequencesToDatasetRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DatasetId   string   `protobuf:"bytes,1,opt,name=dataset_id,json=datasetId,proto3" json:"dataset_id,omitempty"`
+	SequenceIds []string `protobuf:"bytes,2,rep,name=sequence_ids,json=sequenceIds,proto3" json:"sequence_ids,omitempty"`
+}
+
+func (x *AddSequencesToDatasetRequest) Reset() {
+	*x = AddSequencesToDatasetRequest{}
+	mi := &file_app_data_v1_data_proto_msgTypes[60]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddSequencesToDatasetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddSequencesToDatasetRequest) ProtoMessage() {}
+
+func (x *AddSequencesToDatasetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[60]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddSequencesToDatasetRequest.ProtoReflect.Descriptor instead.
+func (*AddSequencesToDatasetRequest) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{60}
+}
+
+func (x *AddSequencesToDatasetRequest) GetDatasetId() string {
+	if x != nil {
+		return x.DatasetId
+	}
+	return ""
+}
+
+func (x *AddSequencesToDatasetRequest) GetSequenceIds() []string {
+	if x != nil {
+		return x.SequenceIds
+	}
+	return nil
+}
+
+type AddSequencesToDatasetResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *AddSequencesToDatasetResponse) Reset() {
+	*x = AddSequencesToDatasetResponse{}
+	mi := &file_app_data_v1_data_proto_msgTypes[61]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddSequencesToDatasetResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddSequencesToDatasetResponse) ProtoMessage() {}
+
+func (x *AddSequencesToDatasetResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[61]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddSequencesToDatasetResponse.ProtoReflect.Descriptor instead.
+func (*AddSequencesToDatasetResponse) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{61}
+}
+
+// RemoveSequencesFromDatasetRequest removes the sequences with the given IDs from the dataset with dataset_id.
+type RemoveSequencesFromDatasetRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DatasetId   string   `protobuf:"bytes,1,opt,name=dataset_id,json=datasetId,proto3" json:"dataset_id,omitempty"`
+	SequenceIds []string `protobuf:"bytes,2,rep,name=sequence_ids,json=sequenceIds,proto3" json:"sequence_ids,omitempty"`
+}
+
+func (x *RemoveSequencesFromDatasetRequest) Reset() {
+	*x = RemoveSequencesFromDatasetRequest{}
+	mi := &file_app_data_v1_data_proto_msgTypes[62]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveSequencesFromDatasetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveSequencesFromDatasetRequest) ProtoMessage() {}
+
+func (x *RemoveSequencesFromDatasetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[62]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveSequencesFromDatasetRequest.ProtoReflect.Descriptor instead.
+func (*RemoveSequencesFromDatasetRequest) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{62}
+}
+
+func (x *RemoveSequencesFromDatasetRequest) GetDatasetId() string {
+	if x != nil {
+		return x.DatasetId
+	}
+	return ""
+}
+
+func (x *RemoveSequencesFromDatasetRequest) GetSequenceIds() []string {
+	if x != nil {
+		return x.SequenceIds
+	}
+	return nil
+}
+
+type RemoveSequencesFromDatasetResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *RemoveSequencesFromDatasetResponse) Reset() {
+	*x = RemoveSequencesFromDatasetResponse{}
+	mi := &file_app_data_v1_data_proto_msgTypes[63]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveSequencesFromDatasetResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveSequencesFromDatasetResponse) ProtoMessage() {}
+
+func (x *RemoveSequencesFromDatasetResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_data_v1_data_proto_msgTypes[63]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveSequencesFromDatasetResponse.ProtoReflect.Descriptor instead.
+func (*RemoveSequencesFromDatasetResponse) Descriptor() ([]byte, []int) {
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{63}
+}
+
 // CreateIndexRequest starts a custom index build
 type CreateIndexRequest struct {
 	state         protoimpl.MessageState
@@ -4180,7 +4360,7 @@ type CreateIndexRequest struct {
 
 func (x *CreateIndexRequest) Reset() {
 	*x = CreateIndexRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[60]
+	mi := &file_app_data_v1_data_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4192,7 +4372,7 @@ func (x *CreateIndexRequest) String() string {
 func (*CreateIndexRequest) ProtoMessage() {}
 
 func (x *CreateIndexRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[60]
+	mi := &file_app_data_v1_data_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4205,7 +4385,7 @@ func (x *CreateIndexRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateIndexRequest.ProtoReflect.Descriptor instead.
 func (*CreateIndexRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{60}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *CreateIndexRequest) GetOrganizationId() string {
@@ -4244,7 +4424,7 @@ type CreateIndexResponse struct {
 
 func (x *CreateIndexResponse) Reset() {
 	*x = CreateIndexResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[61]
+	mi := &file_app_data_v1_data_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4256,7 +4436,7 @@ func (x *CreateIndexResponse) String() string {
 func (*CreateIndexResponse) ProtoMessage() {}
 
 func (x *CreateIndexResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[61]
+	mi := &file_app_data_v1_data_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4269,7 +4449,7 @@ func (x *CreateIndexResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateIndexResponse.ProtoReflect.Descriptor instead.
 func (*CreateIndexResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{61}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{65}
 }
 
 // DeleteIndexRequest drops the specified custom index from a collection
@@ -4286,7 +4466,7 @@ type DeleteIndexRequest struct {
 
 func (x *DeleteIndexRequest) Reset() {
 	*x = DeleteIndexRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[62]
+	mi := &file_app_data_v1_data_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4298,7 +4478,7 @@ func (x *DeleteIndexRequest) String() string {
 func (*DeleteIndexRequest) ProtoMessage() {}
 
 func (x *DeleteIndexRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[62]
+	mi := &file_app_data_v1_data_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4311,7 +4491,7 @@ func (x *DeleteIndexRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteIndexRequest.ProtoReflect.Descriptor instead.
 func (*DeleteIndexRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{62}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *DeleteIndexRequest) GetOrganizationId() string {
@@ -4350,7 +4530,7 @@ type DeleteIndexResponse struct {
 
 func (x *DeleteIndexResponse) Reset() {
 	*x = DeleteIndexResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[63]
+	mi := &file_app_data_v1_data_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4362,7 +4542,7 @@ func (x *DeleteIndexResponse) String() string {
 func (*DeleteIndexResponse) ProtoMessage() {}
 
 func (x *DeleteIndexResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[63]
+	mi := &file_app_data_v1_data_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4375,7 +4555,7 @@ func (x *DeleteIndexResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteIndexResponse.ProtoReflect.Descriptor instead.
 func (*DeleteIndexResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{63}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{67}
 }
 
 // ListIndexesRequest returns all the indexes for a given collection
@@ -4391,7 +4571,7 @@ type ListIndexesRequest struct {
 
 func (x *ListIndexesRequest) Reset() {
 	*x = ListIndexesRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[64]
+	mi := &file_app_data_v1_data_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4403,7 +4583,7 @@ func (x *ListIndexesRequest) String() string {
 func (*ListIndexesRequest) ProtoMessage() {}
 
 func (x *ListIndexesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[64]
+	mi := &file_app_data_v1_data_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4416,7 +4596,7 @@ func (x *ListIndexesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListIndexesRequest.ProtoReflect.Descriptor instead.
 func (*ListIndexesRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{64}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *ListIndexesRequest) GetOrganizationId() string {
@@ -4450,7 +4630,7 @@ type ListIndexesResponse struct {
 
 func (x *ListIndexesResponse) Reset() {
 	*x = ListIndexesResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[65]
+	mi := &file_app_data_v1_data_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4462,7 +4642,7 @@ func (x *ListIndexesResponse) String() string {
 func (*ListIndexesResponse) ProtoMessage() {}
 
 func (x *ListIndexesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[65]
+	mi := &file_app_data_v1_data_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4475,7 +4655,7 @@ func (x *ListIndexesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListIndexesResponse.ProtoReflect.Descriptor instead.
 func (*ListIndexesResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{65}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *ListIndexesResponse) GetIndexes() []*Index {
@@ -4500,7 +4680,7 @@ type Index struct {
 
 func (x *Index) Reset() {
 	*x = Index{}
-	mi := &file_app_data_v1_data_proto_msgTypes[66]
+	mi := &file_app_data_v1_data_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4512,7 +4692,7 @@ func (x *Index) String() string {
 func (*Index) ProtoMessage() {}
 
 func (x *Index) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[66]
+	mi := &file_app_data_v1_data_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4525,7 +4705,7 @@ func (x *Index) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Index.ProtoReflect.Descriptor instead.
 func (*Index) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{66}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *Index) GetCollectionType() IndexableCollection {
@@ -4576,7 +4756,7 @@ type CreateSavedQueryRequest struct {
 
 func (x *CreateSavedQueryRequest) Reset() {
 	*x = CreateSavedQueryRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[67]
+	mi := &file_app_data_v1_data_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4588,7 +4768,7 @@ func (x *CreateSavedQueryRequest) String() string {
 func (*CreateSavedQueryRequest) ProtoMessage() {}
 
 func (x *CreateSavedQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[67]
+	mi := &file_app_data_v1_data_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4601,7 +4781,7 @@ func (x *CreateSavedQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSavedQueryRequest.ProtoReflect.Descriptor instead.
 func (*CreateSavedQueryRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{67}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *CreateSavedQueryRequest) GetOrganizationId() string {
@@ -4635,7 +4815,7 @@ type CreateSavedQueryResponse struct {
 
 func (x *CreateSavedQueryResponse) Reset() {
 	*x = CreateSavedQueryResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[68]
+	mi := &file_app_data_v1_data_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4647,7 +4827,7 @@ func (x *CreateSavedQueryResponse) String() string {
 func (*CreateSavedQueryResponse) ProtoMessage() {}
 
 func (x *CreateSavedQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[68]
+	mi := &file_app_data_v1_data_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4660,7 +4840,7 @@ func (x *CreateSavedQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSavedQueryResponse.ProtoReflect.Descriptor instead.
 func (*CreateSavedQueryResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{68}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *CreateSavedQueryResponse) GetId() string {
@@ -4685,7 +4865,7 @@ type Query struct {
 
 func (x *Query) Reset() {
 	*x = Query{}
-	mi := &file_app_data_v1_data_proto_msgTypes[69]
+	mi := &file_app_data_v1_data_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4697,7 +4877,7 @@ func (x *Query) String() string {
 func (*Query) ProtoMessage() {}
 
 func (x *Query) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[69]
+	mi := &file_app_data_v1_data_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4710,7 +4890,7 @@ func (x *Query) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Query.ProtoReflect.Descriptor instead.
 func (*Query) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{69}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *Query) GetId() string {
@@ -4766,7 +4946,7 @@ type DeleteSavedQueryRequest struct {
 
 func (x *DeleteSavedQueryRequest) Reset() {
 	*x = DeleteSavedQueryRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[70]
+	mi := &file_app_data_v1_data_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4778,7 +4958,7 @@ func (x *DeleteSavedQueryRequest) String() string {
 func (*DeleteSavedQueryRequest) ProtoMessage() {}
 
 func (x *DeleteSavedQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[70]
+	mi := &file_app_data_v1_data_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4791,7 +4971,7 @@ func (x *DeleteSavedQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSavedQueryRequest.ProtoReflect.Descriptor instead.
 func (*DeleteSavedQueryRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{70}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *DeleteSavedQueryRequest) GetId() string {
@@ -4809,7 +4989,7 @@ type DeleteSavedQueryResponse struct {
 
 func (x *DeleteSavedQueryResponse) Reset() {
 	*x = DeleteSavedQueryResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[71]
+	mi := &file_app_data_v1_data_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4821,7 +5001,7 @@ func (x *DeleteSavedQueryResponse) String() string {
 func (*DeleteSavedQueryResponse) ProtoMessage() {}
 
 func (x *DeleteSavedQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[71]
+	mi := &file_app_data_v1_data_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4834,7 +5014,7 @@ func (x *DeleteSavedQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSavedQueryResponse.ProtoReflect.Descriptor instead.
 func (*DeleteSavedQueryResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{71}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{75}
 }
 
 // GetSavedQuery retrieves a saved query by id.
@@ -4848,7 +5028,7 @@ type GetSavedQueryRequest struct {
 
 func (x *GetSavedQueryRequest) Reset() {
 	*x = GetSavedQueryRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[72]
+	mi := &file_app_data_v1_data_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4860,7 +5040,7 @@ func (x *GetSavedQueryRequest) String() string {
 func (*GetSavedQueryRequest) ProtoMessage() {}
 
 func (x *GetSavedQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[72]
+	mi := &file_app_data_v1_data_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4873,7 +5053,7 @@ func (x *GetSavedQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSavedQueryRequest.ProtoReflect.Descriptor instead.
 func (*GetSavedQueryRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{72}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *GetSavedQueryRequest) GetId() string {
@@ -4893,7 +5073,7 @@ type GetSavedQueryResponse struct {
 
 func (x *GetSavedQueryResponse) Reset() {
 	*x = GetSavedQueryResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[73]
+	mi := &file_app_data_v1_data_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4905,7 +5085,7 @@ func (x *GetSavedQueryResponse) String() string {
 func (*GetSavedQueryResponse) ProtoMessage() {}
 
 func (x *GetSavedQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[73]
+	mi := &file_app_data_v1_data_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4918,7 +5098,7 @@ func (x *GetSavedQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSavedQueryResponse.ProtoReflect.Descriptor instead.
 func (*GetSavedQueryResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{73}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *GetSavedQueryResponse) GetSavedQuery() *Query {
@@ -4941,7 +5121,7 @@ type UpdateSavedQueryRequest struct {
 
 func (x *UpdateSavedQueryRequest) Reset() {
 	*x = UpdateSavedQueryRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[74]
+	mi := &file_app_data_v1_data_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4953,7 +5133,7 @@ func (x *UpdateSavedQueryRequest) String() string {
 func (*UpdateSavedQueryRequest) ProtoMessage() {}
 
 func (x *UpdateSavedQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[74]
+	mi := &file_app_data_v1_data_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4966,7 +5146,7 @@ func (x *UpdateSavedQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSavedQueryRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSavedQueryRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{74}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *UpdateSavedQueryRequest) GetId() string {
@@ -4998,7 +5178,7 @@ type UpdateSavedQueryResponse struct {
 
 func (x *UpdateSavedQueryResponse) Reset() {
 	*x = UpdateSavedQueryResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[75]
+	mi := &file_app_data_v1_data_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5010,7 +5190,7 @@ func (x *UpdateSavedQueryResponse) String() string {
 func (*UpdateSavedQueryResponse) ProtoMessage() {}
 
 func (x *UpdateSavedQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[75]
+	mi := &file_app_data_v1_data_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5023,7 +5203,7 @@ func (x *UpdateSavedQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSavedQueryResponse.ProtoReflect.Descriptor instead.
 func (*UpdateSavedQueryResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{75}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{79}
 }
 
 // ListSavedQueries lists saved queries for a given organization.
@@ -5038,7 +5218,7 @@ type ListSavedQueriesRequest struct {
 
 func (x *ListSavedQueriesRequest) Reset() {
 	*x = ListSavedQueriesRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[76]
+	mi := &file_app_data_v1_data_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5050,7 +5230,7 @@ func (x *ListSavedQueriesRequest) String() string {
 func (*ListSavedQueriesRequest) ProtoMessage() {}
 
 func (x *ListSavedQueriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[76]
+	mi := &file_app_data_v1_data_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5063,7 +5243,7 @@ func (x *ListSavedQueriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSavedQueriesRequest.ProtoReflect.Descriptor instead.
 func (*ListSavedQueriesRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{76}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *ListSavedQueriesRequest) GetOrganizationId() string {
@@ -5090,7 +5270,7 @@ type ListSavedQueriesResponse struct {
 
 func (x *ListSavedQueriesResponse) Reset() {
 	*x = ListSavedQueriesResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[77]
+	mi := &file_app_data_v1_data_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5102,7 +5282,7 @@ func (x *ListSavedQueriesResponse) String() string {
 func (*ListSavedQueriesResponse) ProtoMessage() {}
 
 func (x *ListSavedQueriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[77]
+	mi := &file_app_data_v1_data_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5115,7 +5295,7 @@ func (x *ListSavedQueriesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSavedQueriesResponse.ProtoReflect.Descriptor instead.
 func (*ListSavedQueriesResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{77}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *ListSavedQueriesResponse) GetQueries() []*Query {
@@ -5139,7 +5319,7 @@ type CreateBinaryDataSignedURLRequest struct {
 
 func (x *CreateBinaryDataSignedURLRequest) Reset() {
 	*x = CreateBinaryDataSignedURLRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[78]
+	mi := &file_app_data_v1_data_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5151,7 +5331,7 @@ func (x *CreateBinaryDataSignedURLRequest) String() string {
 func (*CreateBinaryDataSignedURLRequest) ProtoMessage() {}
 
 func (x *CreateBinaryDataSignedURLRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[78]
+	mi := &file_app_data_v1_data_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5164,7 +5344,7 @@ func (x *CreateBinaryDataSignedURLRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBinaryDataSignedURLRequest.ProtoReflect.Descriptor instead.
 func (*CreateBinaryDataSignedURLRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{78}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *CreateBinaryDataSignedURLRequest) GetBinaryDataId() string {
@@ -5194,7 +5374,7 @@ type CreateBinaryDataSignedURLResponse struct {
 
 func (x *CreateBinaryDataSignedURLResponse) Reset() {
 	*x = CreateBinaryDataSignedURLResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[79]
+	mi := &file_app_data_v1_data_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5206,7 +5386,7 @@ func (x *CreateBinaryDataSignedURLResponse) String() string {
 func (*CreateBinaryDataSignedURLResponse) ProtoMessage() {}
 
 func (x *CreateBinaryDataSignedURLResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[79]
+	mi := &file_app_data_v1_data_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5219,7 +5399,7 @@ func (x *CreateBinaryDataSignedURLResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CreateBinaryDataSignedURLResponse.ProtoReflect.Descriptor instead.
 func (*CreateBinaryDataSignedURLResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{79}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *CreateBinaryDataSignedURLResponse) GetSignedUrl() string {
@@ -5248,7 +5428,7 @@ type SequenceResourceFilter struct {
 
 func (x *SequenceResourceFilter) Reset() {
 	*x = SequenceResourceFilter{}
-	mi := &file_app_data_v1_data_proto_msgTypes[80]
+	mi := &file_app_data_v1_data_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5260,7 +5440,7 @@ func (x *SequenceResourceFilter) String() string {
 func (*SequenceResourceFilter) ProtoMessage() {}
 
 func (x *SequenceResourceFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[80]
+	mi := &file_app_data_v1_data_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5273,7 +5453,7 @@ func (x *SequenceResourceFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SequenceResourceFilter.ProtoReflect.Descriptor instead.
 func (*SequenceResourceFilter) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{80}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *SequenceResourceFilter) GetResourceName() string {
@@ -5313,7 +5493,7 @@ type Sequence struct {
 
 func (x *Sequence) Reset() {
 	*x = Sequence{}
-	mi := &file_app_data_v1_data_proto_msgTypes[81]
+	mi := &file_app_data_v1_data_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5325,7 +5505,7 @@ func (x *Sequence) String() string {
 func (*Sequence) ProtoMessage() {}
 
 func (x *Sequence) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[81]
+	mi := &file_app_data_v1_data_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5338,7 +5518,7 @@ func (x *Sequence) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Sequence.ProtoReflect.Descriptor instead.
 func (*Sequence) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{81}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *Sequence) GetId() string {
@@ -5418,7 +5598,7 @@ type CreateSequenceRequest struct {
 
 func (x *CreateSequenceRequest) Reset() {
 	*x = CreateSequenceRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[82]
+	mi := &file_app_data_v1_data_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5430,7 +5610,7 @@ func (x *CreateSequenceRequest) String() string {
 func (*CreateSequenceRequest) ProtoMessage() {}
 
 func (x *CreateSequenceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[82]
+	mi := &file_app_data_v1_data_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5443,7 +5623,7 @@ func (x *CreateSequenceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSequenceRequest.ProtoReflect.Descriptor instead.
 func (*CreateSequenceRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{82}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *CreateSequenceRequest) GetPartId() string {
@@ -5491,7 +5671,7 @@ type CreateSequenceResponse struct {
 
 func (x *CreateSequenceResponse) Reset() {
 	*x = CreateSequenceResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[83]
+	mi := &file_app_data_v1_data_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5503,7 +5683,7 @@ func (x *CreateSequenceResponse) String() string {
 func (*CreateSequenceResponse) ProtoMessage() {}
 
 func (x *CreateSequenceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[83]
+	mi := &file_app_data_v1_data_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5516,7 +5696,7 @@ func (x *CreateSequenceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSequenceResponse.ProtoReflect.Descriptor instead.
 func (*CreateSequenceResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{83}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *CreateSequenceResponse) GetId() string {
@@ -5536,7 +5716,7 @@ type GetSequenceRequest struct {
 
 func (x *GetSequenceRequest) Reset() {
 	*x = GetSequenceRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[84]
+	mi := &file_app_data_v1_data_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5548,7 +5728,7 @@ func (x *GetSequenceRequest) String() string {
 func (*GetSequenceRequest) ProtoMessage() {}
 
 func (x *GetSequenceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[84]
+	mi := &file_app_data_v1_data_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5561,7 +5741,7 @@ func (x *GetSequenceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSequenceRequest.ProtoReflect.Descriptor instead.
 func (*GetSequenceRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{84}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *GetSequenceRequest) GetId() string {
@@ -5581,7 +5761,7 @@ type GetSequenceResponse struct {
 
 func (x *GetSequenceResponse) Reset() {
 	*x = GetSequenceResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[85]
+	mi := &file_app_data_v1_data_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5593,7 +5773,7 @@ func (x *GetSequenceResponse) String() string {
 func (*GetSequenceResponse) ProtoMessage() {}
 
 func (x *GetSequenceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[85]
+	mi := &file_app_data_v1_data_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5606,7 +5786,7 @@ func (x *GetSequenceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSequenceResponse.ProtoReflect.Descriptor instead.
 func (*GetSequenceResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{85}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *GetSequenceResponse) GetSequence() *Sequence {
@@ -5634,7 +5814,7 @@ type UpdateSequenceRequest struct {
 
 func (x *UpdateSequenceRequest) Reset() {
 	*x = UpdateSequenceRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[86]
+	mi := &file_app_data_v1_data_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5646,7 +5826,7 @@ func (x *UpdateSequenceRequest) String() string {
 func (*UpdateSequenceRequest) ProtoMessage() {}
 
 func (x *UpdateSequenceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[86]
+	mi := &file_app_data_v1_data_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5659,7 +5839,7 @@ func (x *UpdateSequenceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSequenceRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSequenceRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{86}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *UpdateSequenceRequest) GetId() string {
@@ -5712,7 +5892,7 @@ type UpdateSequenceResponse struct {
 
 func (x *UpdateSequenceResponse) Reset() {
 	*x = UpdateSequenceResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[87]
+	mi := &file_app_data_v1_data_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5724,7 +5904,7 @@ func (x *UpdateSequenceResponse) String() string {
 func (*UpdateSequenceResponse) ProtoMessage() {}
 
 func (x *UpdateSequenceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[87]
+	mi := &file_app_data_v1_data_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5737,7 +5917,7 @@ func (x *UpdateSequenceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSequenceResponse.ProtoReflect.Descriptor instead.
 func (*UpdateSequenceResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{87}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{91}
 }
 
 type DeleteSequenceRequest struct {
@@ -5750,7 +5930,7 @@ type DeleteSequenceRequest struct {
 
 func (x *DeleteSequenceRequest) Reset() {
 	*x = DeleteSequenceRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[88]
+	mi := &file_app_data_v1_data_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5762,7 +5942,7 @@ func (x *DeleteSequenceRequest) String() string {
 func (*DeleteSequenceRequest) ProtoMessage() {}
 
 func (x *DeleteSequenceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[88]
+	mi := &file_app_data_v1_data_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5775,7 +5955,7 @@ func (x *DeleteSequenceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSequenceRequest.ProtoReflect.Descriptor instead.
 func (*DeleteSequenceRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{88}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *DeleteSequenceRequest) GetId() string {
@@ -5793,7 +5973,7 @@ type DeleteSequenceResponse struct {
 
 func (x *DeleteSequenceResponse) Reset() {
 	*x = DeleteSequenceResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[89]
+	mi := &file_app_data_v1_data_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5805,7 +5985,7 @@ func (x *DeleteSequenceResponse) String() string {
 func (*DeleteSequenceResponse) ProtoMessage() {}
 
 func (x *DeleteSequenceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[89]
+	mi := &file_app_data_v1_data_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5818,7 +5998,7 @@ func (x *DeleteSequenceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteSequenceResponse.ProtoReflect.Descriptor instead.
 func (*DeleteSequenceResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{89}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{93}
 }
 
 type ListSequencesRequest struct {
@@ -5833,7 +6013,7 @@ type ListSequencesRequest struct {
 
 func (x *ListSequencesRequest) Reset() {
 	*x = ListSequencesRequest{}
-	mi := &file_app_data_v1_data_proto_msgTypes[90]
+	mi := &file_app_data_v1_data_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5845,7 +6025,7 @@ func (x *ListSequencesRequest) String() string {
 func (*ListSequencesRequest) ProtoMessage() {}
 
 func (x *ListSequencesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[90]
+	mi := &file_app_data_v1_data_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5858,7 +6038,7 @@ func (x *ListSequencesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSequencesRequest.ProtoReflect.Descriptor instead.
 func (*ListSequencesRequest) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{90}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *ListSequencesRequest) GetOrganizationId() string {
@@ -5893,7 +6073,7 @@ type ListSequencesResponse struct {
 
 func (x *ListSequencesResponse) Reset() {
 	*x = ListSequencesResponse{}
-	mi := &file_app_data_v1_data_proto_msgTypes[91]
+	mi := &file_app_data_v1_data_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5905,7 +6085,7 @@ func (x *ListSequencesResponse) String() string {
 func (*ListSequencesResponse) ProtoMessage() {}
 
 func (x *ListSequencesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_data_v1_data_proto_msgTypes[91]
+	mi := &file_app_data_v1_data_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5918,7 +6098,7 @@ func (x *ListSequencesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSequencesResponse.ProtoReflect.Descriptor instead.
 func (*ListSequencesResponse) Descriptor() ([]byte, []int) {
-	return file_app_data_v1_data_proto_rawDescGZIP(), []int{91}
+	return file_app_data_v1_data_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *ListSequencesResponse) GetSequences() []*Sequence {
@@ -6591,6 +6771,23 @@ var file_app_data_v1_data_proto_rawDesc = []byte{
 	0x65, 0x74, 0x49, 0x64, 0x22, 0x2a, 0x0a, 0x28, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x42, 0x69,
 	0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x46, 0x72, 0x6f, 0x6d, 0x44, 0x61, 0x74, 0x61,
 	0x73, 0x65, 0x74, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x60, 0x0a, 0x1c, 0x41, 0x64, 0x64, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73,
+	0x54, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x1d, 0x0a, 0x0a, 0x64, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x64, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x49, 0x64, 0x12,
+	0x21, 0x0a, 0x0c, 0x73, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x73, 0x18,
+	0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x73, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x49,
+	0x64, 0x73, 0x22, 0x1f, 0x0a, 0x1d, 0x41, 0x64, 0x64, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63,
+	0x65, 0x73, 0x54, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x65, 0x0a, 0x21, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x53, 0x65, 0x71,
+	0x75, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65,
+	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x64, 0x61, 0x74, 0x61,
+	0x73, 0x65, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x64, 0x61,
+	0x74, 0x61, 0x73, 0x65, 0x74, 0x49, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x73, 0x65, 0x71, 0x75, 0x65,
+	0x6e, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x73,
+	0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x49, 0x64, 0x73, 0x22, 0x24, 0x0a, 0x22, 0x52, 0x65,
+	0x6d, 0x6f, 0x76, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x46, 0x72, 0x6f,
+	0x6d, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x22, 0xe8, 0x01, 0x0a, 0x12, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x6e, 0x64, 0x65, 0x78,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x0f, 0x6f, 0x72, 0x67, 0x61, 0x6e,
 	0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
@@ -6876,7 +7073,7 @@ var file_app_data_v1_data_proto_rawDesc = []byte{
 	0x00, 0x12, 0x16, 0x0a, 0x12, 0x49, 0x4e, 0x44, 0x45, 0x58, 0x5f, 0x43, 0x52, 0x45, 0x41, 0x54,
 	0x4f, 0x52, 0x5f, 0x56, 0x49, 0x41, 0x4d, 0x10, 0x01, 0x12, 0x1a, 0x0a, 0x16, 0x49, 0x4e, 0x44,
 	0x45, 0x58, 0x5f, 0x43, 0x52, 0x45, 0x41, 0x54, 0x4f, 0x52, 0x5f, 0x43, 0x55, 0x53, 0x54, 0x4f,
-	0x4d, 0x45, 0x52, 0x10, 0x02, 0x32, 0x80, 0x22, 0x0a, 0x0b, 0x44, 0x61, 0x74, 0x61, 0x53, 0x65,
+	0x4d, 0x45, 0x52, 0x10, 0x02, 0x32, 0x84, 0x24, 0x0a, 0x0b, 0x44, 0x61, 0x74, 0x61, 0x53, 0x65,
 	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x77, 0x0a, 0x13, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72,
 	0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x2c, 0x2e, 0x76,
 	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e,
@@ -7059,98 +7256,115 @@ var file_app_data_v1_data_proto_rawDesc = []byte{
 	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65,
 	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x46, 0x72, 0x6f, 0x6d, 0x44, 0x61,
 	0x74, 0x61, 0x73, 0x65, 0x74, 0x42, 0x79, 0x49, 0x44, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x5a, 0x0a, 0x0b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x6e, 0x64, 0x65,
-	0x78, 0x12, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
-	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x6e, 0x64, 0x65, 0x78,
+	0x73, 0x65, 0x12, 0x78, 0x0a, 0x15, 0x41, 0x64, 0x64, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63,
+	0x65, 0x73, 0x54, 0x6f, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x12, 0x2e, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41,
+	0x64, 0x64, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x54, 0x6f, 0x44, 0x61, 0x74,
+	0x61, 0x73, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x41,
+	0x64, 0x64, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x54, 0x6f, 0x44, 0x61, 0x74,
+	0x61, 0x73, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x87, 0x01, 0x0a,
+	0x1a, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73,
+	0x46, 0x72, 0x6f, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x12, 0x33, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x52,
+	0x65, 0x6d, 0x6f, 0x76, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x46, 0x72,
+	0x6f, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x34, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
+	0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e,
+	0x63, 0x65, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x44, 0x61, 0x74, 0x61, 0x73, 0x65, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x0b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x49, 0x6e, 0x64, 0x65, 0x78, 0x12, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
+	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49,
+	0x6e, 0x64, 0x65, 0x78, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x5a, 0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x65,
+	0x73, 0x12, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
+	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x65, 0x73,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
-	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74,
-	0x65, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a,
-	0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x65, 0x73, 0x12, 0x24, 0x2e,
+	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x49,
+	0x6e, 0x64, 0x65, 0x78, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a,
+	0x0a, 0x0b, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x12, 0x24, 0x2e,
 	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
-	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64,
-	0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x6e, 0x64, 0x65, 0x78,
-	0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x0b, 0x44, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x12, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d,
-	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x25, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e,
-	0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x69, 0x0a, 0x10, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x29, 0x2e, 0x76, 0x69, 0x61,
-	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72,
-	0x65, 0x61, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53,
-	0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x69, 0x0a, 0x10, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65, 0x64,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x29, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
-	0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x2a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
-	0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x60, 0x0a, 0x0d,
-	0x47, 0x65, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x26, 0x2e,
-	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
-	0x2e, 0x47, 0x65, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x61, 0x76, 0x65,
-	0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x69,
-	0x0a, 0x10, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65,
-	0x72, 0x79, 0x12, 0x29, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61,
-	0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65,
-	0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e,
-	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
-	0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x69, 0x0a, 0x10, 0x4c, 0x69, 0x73,
-	0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x69, 0x65, 0x73, 0x12, 0x29, 0x2e,
-	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
-	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x69, 0x65,
-	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
-	0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74,
-	0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x84, 0x01, 0x0a, 0x19, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42,
-	0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x55,
-	0x52, 0x4c, 0x12, 0x32, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61,
-	0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61,
-	0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x64, 0x55, 0x52, 0x4c, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x33, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x49, 0x6e, 0x64,
+	0x65, 0x78, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x69, 0x0a, 0x10, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x29,
+	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76,
+	0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65,
+	0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x69, 0x0a, 0x10, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
+	0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x29, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
+	0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x61,
+	0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x60, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x12, 0x26, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
+	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65,
+	0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74,
+	0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x69, 0x0a, 0x10, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65,
+	0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x29, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x2a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
+	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x61, 0x76, 0x65, 0x64,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x69, 0x0a,
+	0x10, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x69, 0x65,
+	0x73, 0x12, 0x29, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
+	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75,
+	0x65, 0x72, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x51, 0x75, 0x65, 0x72, 0x69, 0x65, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x84, 0x01, 0x0a, 0x19, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x53, 0x69, 0x67,
+	0x6e, 0x65, 0x64, 0x55, 0x52, 0x4c, 0x12, 0x32, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
 	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
 	0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x64,
-	0x55, 0x52, 0x4c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x63, 0x0a, 0x0e, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x12, 0x27, 0x2e,
-	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31,
-	0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
-	0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x55, 0x52, 0x4c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x33, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x42, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x44, 0x61, 0x74, 0x61, 0x53, 0x69,
+	0x67, 0x6e, 0x65, 0x64, 0x55, 0x52, 0x4c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x63, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63,
+	0x65, 0x12, 0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74,
+	0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x53, 0x65, 0x71, 0x75, 0x65,
+	0x6e, 0x63, 0x65, 0x12, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64,
+	0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e,
+	0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74,
 	0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x5a, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x12,
-	0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e,
-	0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x65, 0x71, 0x75,
-	0x65, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x63, 0x0a, 0x0e,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x12, 0x27,
-	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76,
-	0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
-	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x63, 0x0a, 0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65,
-	0x6e, 0x63, 0x65, 0x12, 0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64,
-	0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x71,
-	0x75, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x60, 0x0a, 0x0d, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x65,
-	0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x12, 0x26, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
-	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53,
-	0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e,
-	0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x6f, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f,
-	0x64, 0x61, 0x74, 0x61, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x63, 0x0a, 0x0e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e,
+	0x63, 0x65, 0x12, 0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61,
+	0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75,
+	0x65, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x63, 0x0a, 0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53,
+	0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x12, 0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
+	0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61,
+	0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e,
+	0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x60, 0x0a, 0x0d, 0x4c, 0x69,
+	0x73, 0x74, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x12, 0x26, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x53, 0x65, 0x71, 0x75, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x64,
+	0x61, 0x74, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x65, 0x71, 0x75, 0x65,
+	0x6e, 0x63, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1d, 0x5a, 0x1b,
+	0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f,
+	0x61, 0x70, 0x70, 0x2f, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -7166,7 +7380,7 @@ func file_app_data_v1_data_proto_rawDescGZIP() []byte {
 }
 
 var file_app_data_v1_data_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_app_data_v1_data_proto_msgTypes = make([]protoimpl.MessageInfo, 93)
+var file_app_data_v1_data_proto_msgTypes = make([]protoimpl.MessageInfo, 97)
 var file_app_data_v1_data_proto_goTypes = []any{
 	(Order)(0),                                       // 0: viam.app.data.v1.Order
 	(TagsFilterType)(0),                              // 1: viam.app.data.v1.TagsFilterType
@@ -7233,43 +7447,47 @@ var file_app_data_v1_data_proto_goTypes = []any{
 	(*AddBinaryDataToDatasetByIDsResponse)(nil),      // 62: viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse
 	(*RemoveBinaryDataFromDatasetByIDsRequest)(nil),  // 63: viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest
 	(*RemoveBinaryDataFromDatasetByIDsResponse)(nil), // 64: viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse
-	(*CreateIndexRequest)(nil),                       // 65: viam.app.data.v1.CreateIndexRequest
-	(*CreateIndexResponse)(nil),                      // 66: viam.app.data.v1.CreateIndexResponse
-	(*DeleteIndexRequest)(nil),                       // 67: viam.app.data.v1.DeleteIndexRequest
-	(*DeleteIndexResponse)(nil),                      // 68: viam.app.data.v1.DeleteIndexResponse
-	(*ListIndexesRequest)(nil),                       // 69: viam.app.data.v1.ListIndexesRequest
-	(*ListIndexesResponse)(nil),                      // 70: viam.app.data.v1.ListIndexesResponse
-	(*Index)(nil),                                    // 71: viam.app.data.v1.Index
-	(*CreateSavedQueryRequest)(nil),                  // 72: viam.app.data.v1.CreateSavedQueryRequest
-	(*CreateSavedQueryResponse)(nil),                 // 73: viam.app.data.v1.CreateSavedQueryResponse
-	(*Query)(nil),                                    // 74: viam.app.data.v1.Query
-	(*DeleteSavedQueryRequest)(nil),                  // 75: viam.app.data.v1.DeleteSavedQueryRequest
-	(*DeleteSavedQueryResponse)(nil),                 // 76: viam.app.data.v1.DeleteSavedQueryResponse
-	(*GetSavedQueryRequest)(nil),                     // 77: viam.app.data.v1.GetSavedQueryRequest
-	(*GetSavedQueryResponse)(nil),                    // 78: viam.app.data.v1.GetSavedQueryResponse
-	(*UpdateSavedQueryRequest)(nil),                  // 79: viam.app.data.v1.UpdateSavedQueryRequest
-	(*UpdateSavedQueryResponse)(nil),                 // 80: viam.app.data.v1.UpdateSavedQueryResponse
-	(*ListSavedQueriesRequest)(nil),                  // 81: viam.app.data.v1.ListSavedQueriesRequest
-	(*ListSavedQueriesResponse)(nil),                 // 82: viam.app.data.v1.ListSavedQueriesResponse
-	(*CreateBinaryDataSignedURLRequest)(nil),         // 83: viam.app.data.v1.CreateBinaryDataSignedURLRequest
-	(*CreateBinaryDataSignedURLResponse)(nil),        // 84: viam.app.data.v1.CreateBinaryDataSignedURLResponse
-	(*SequenceResourceFilter)(nil),                   // 85: viam.app.data.v1.SequenceResourceFilter
-	(*Sequence)(nil),                                 // 86: viam.app.data.v1.Sequence
-	(*CreateSequenceRequest)(nil),                    // 87: viam.app.data.v1.CreateSequenceRequest
-	(*CreateSequenceResponse)(nil),                   // 88: viam.app.data.v1.CreateSequenceResponse
-	(*GetSequenceRequest)(nil),                       // 89: viam.app.data.v1.GetSequenceRequest
-	(*GetSequenceResponse)(nil),                      // 90: viam.app.data.v1.GetSequenceResponse
-	(*UpdateSequenceRequest)(nil),                    // 91: viam.app.data.v1.UpdateSequenceRequest
-	(*UpdateSequenceResponse)(nil),                   // 92: viam.app.data.v1.UpdateSequenceResponse
-	(*DeleteSequenceRequest)(nil),                    // 93: viam.app.data.v1.DeleteSequenceRequest
-	(*DeleteSequenceResponse)(nil),                   // 94: viam.app.data.v1.DeleteSequenceResponse
-	(*ListSequencesRequest)(nil),                     // 95: viam.app.data.v1.ListSequencesRequest
-	(*ListSequencesResponse)(nil),                    // 96: viam.app.data.v1.ListSequencesResponse
-	nil,                                              // 97: viam.app.data.v1.CaptureMetadata.MethodParametersEntry
-	(*timestamppb.Timestamp)(nil),                    // 98: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),                          // 99: google.protobuf.Struct
-	(*fieldmaskpb.FieldMask)(nil),                    // 100: google.protobuf.FieldMask
-	(*anypb.Any)(nil),                                // 101: google.protobuf.Any
+	(*AddSequencesToDatasetRequest)(nil),             // 65: viam.app.data.v1.AddSequencesToDatasetRequest
+	(*AddSequencesToDatasetResponse)(nil),            // 66: viam.app.data.v1.AddSequencesToDatasetResponse
+	(*RemoveSequencesFromDatasetRequest)(nil),        // 67: viam.app.data.v1.RemoveSequencesFromDatasetRequest
+	(*RemoveSequencesFromDatasetResponse)(nil),       // 68: viam.app.data.v1.RemoveSequencesFromDatasetResponse
+	(*CreateIndexRequest)(nil),                       // 69: viam.app.data.v1.CreateIndexRequest
+	(*CreateIndexResponse)(nil),                      // 70: viam.app.data.v1.CreateIndexResponse
+	(*DeleteIndexRequest)(nil),                       // 71: viam.app.data.v1.DeleteIndexRequest
+	(*DeleteIndexResponse)(nil),                      // 72: viam.app.data.v1.DeleteIndexResponse
+	(*ListIndexesRequest)(nil),                       // 73: viam.app.data.v1.ListIndexesRequest
+	(*ListIndexesResponse)(nil),                      // 74: viam.app.data.v1.ListIndexesResponse
+	(*Index)(nil),                                    // 75: viam.app.data.v1.Index
+	(*CreateSavedQueryRequest)(nil),                  // 76: viam.app.data.v1.CreateSavedQueryRequest
+	(*CreateSavedQueryResponse)(nil),                 // 77: viam.app.data.v1.CreateSavedQueryResponse
+	(*Query)(nil),                                    // 78: viam.app.data.v1.Query
+	(*DeleteSavedQueryRequest)(nil),                  // 79: viam.app.data.v1.DeleteSavedQueryRequest
+	(*DeleteSavedQueryResponse)(nil),                 // 80: viam.app.data.v1.DeleteSavedQueryResponse
+	(*GetSavedQueryRequest)(nil),                     // 81: viam.app.data.v1.GetSavedQueryRequest
+	(*GetSavedQueryResponse)(nil),                    // 82: viam.app.data.v1.GetSavedQueryResponse
+	(*UpdateSavedQueryRequest)(nil),                  // 83: viam.app.data.v1.UpdateSavedQueryRequest
+	(*UpdateSavedQueryResponse)(nil),                 // 84: viam.app.data.v1.UpdateSavedQueryResponse
+	(*ListSavedQueriesRequest)(nil),                  // 85: viam.app.data.v1.ListSavedQueriesRequest
+	(*ListSavedQueriesResponse)(nil),                 // 86: viam.app.data.v1.ListSavedQueriesResponse
+	(*CreateBinaryDataSignedURLRequest)(nil),         // 87: viam.app.data.v1.CreateBinaryDataSignedURLRequest
+	(*CreateBinaryDataSignedURLResponse)(nil),        // 88: viam.app.data.v1.CreateBinaryDataSignedURLResponse
+	(*SequenceResourceFilter)(nil),                   // 89: viam.app.data.v1.SequenceResourceFilter
+	(*Sequence)(nil),                                 // 90: viam.app.data.v1.Sequence
+	(*CreateSequenceRequest)(nil),                    // 91: viam.app.data.v1.CreateSequenceRequest
+	(*CreateSequenceResponse)(nil),                   // 92: viam.app.data.v1.CreateSequenceResponse
+	(*GetSequenceRequest)(nil),                       // 93: viam.app.data.v1.GetSequenceRequest
+	(*GetSequenceResponse)(nil),                      // 94: viam.app.data.v1.GetSequenceResponse
+	(*UpdateSequenceRequest)(nil),                    // 95: viam.app.data.v1.UpdateSequenceRequest
+	(*UpdateSequenceResponse)(nil),                   // 96: viam.app.data.v1.UpdateSequenceResponse
+	(*DeleteSequenceRequest)(nil),                    // 97: viam.app.data.v1.DeleteSequenceRequest
+	(*DeleteSequenceResponse)(nil),                   // 98: viam.app.data.v1.DeleteSequenceResponse
+	(*ListSequencesRequest)(nil),                     // 99: viam.app.data.v1.ListSequencesRequest
+	(*ListSequencesResponse)(nil),                    // 100: viam.app.data.v1.ListSequencesResponse
+	nil,                                              // 101: viam.app.data.v1.CaptureMetadata.MethodParametersEntry
+	(*timestamppb.Timestamp)(nil),                    // 102: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),                          // 103: google.protobuf.Struct
+	(*fieldmaskpb.FieldMask)(nil),                    // 104: google.protobuf.FieldMask
+	(*anypb.Any)(nil),                                // 105: google.protobuf.Any
 }
 var file_app_data_v1_data_proto_depIdxs = []int32{
 	6,   // 0: viam.app.data.v1.DataRequest.filter:type_name -> viam.app.data.v1.Filter
@@ -7277,26 +7495,26 @@ var file_app_data_v1_data_proto_depIdxs = []int32{
 	9,   // 2: viam.app.data.v1.Filter.interval:type_name -> viam.app.data.v1.CaptureInterval
 	7,   // 3: viam.app.data.v1.Filter.tags_filter:type_name -> viam.app.data.v1.TagsFilter
 	1,   // 4: viam.app.data.v1.TagsFilter.type:type_name -> viam.app.data.v1.TagsFilterType
-	97,  // 5: viam.app.data.v1.CaptureMetadata.method_parameters:type_name -> viam.app.data.v1.CaptureMetadata.MethodParametersEntry
-	98,  // 6: viam.app.data.v1.CaptureInterval.start:type_name -> google.protobuf.Timestamp
-	98,  // 7: viam.app.data.v1.CaptureInterval.end:type_name -> google.protobuf.Timestamp
+	101, // 5: viam.app.data.v1.CaptureMetadata.method_parameters:type_name -> viam.app.data.v1.CaptureMetadata.MethodParametersEntry
+	102, // 6: viam.app.data.v1.CaptureInterval.start:type_name -> google.protobuf.Timestamp
+	102, // 7: viam.app.data.v1.CaptureInterval.end:type_name -> google.protobuf.Timestamp
 	5,   // 8: viam.app.data.v1.TabularDataByFilterRequest.data_request:type_name -> viam.app.data.v1.DataRequest
 	8,   // 9: viam.app.data.v1.TabularDataByFilterResponse.metadata:type_name -> viam.app.data.v1.CaptureMetadata
 	12,  // 10: viam.app.data.v1.TabularDataByFilterResponse.data:type_name -> viam.app.data.v1.TabularData
-	99,  // 11: viam.app.data.v1.TabularData.data:type_name -> google.protobuf.Struct
-	98,  // 12: viam.app.data.v1.TabularData.time_requested:type_name -> google.protobuf.Timestamp
-	98,  // 13: viam.app.data.v1.TabularData.time_received:type_name -> google.protobuf.Timestamp
+	103, // 11: viam.app.data.v1.TabularData.data:type_name -> google.protobuf.Struct
+	102, // 12: viam.app.data.v1.TabularData.time_requested:type_name -> google.protobuf.Timestamp
+	102, // 13: viam.app.data.v1.TabularData.time_received:type_name -> google.protobuf.Timestamp
 	2,   // 14: viam.app.data.v1.TabularDataSource.type:type_name -> viam.app.data.v1.TabularDataSourceType
 	15,  // 15: viam.app.data.v1.TabularDataByMQLRequest.data_source:type_name -> viam.app.data.v1.TabularDataSource
 	9,   // 16: viam.app.data.v1.ExportTabularDataRequest.interval:type_name -> viam.app.data.v1.CaptureInterval
-	99,  // 17: viam.app.data.v1.ExportTabularDataRequest.additional_parameters:type_name -> google.protobuf.Struct
-	98,  // 18: viam.app.data.v1.ExportTabularDataResponse.time_captured:type_name -> google.protobuf.Timestamp
-	99,  // 19: viam.app.data.v1.ExportTabularDataResponse.method_parameters:type_name -> google.protobuf.Struct
-	99,  // 20: viam.app.data.v1.ExportTabularDataResponse.payload:type_name -> google.protobuf.Struct
-	99,  // 21: viam.app.data.v1.GetLatestTabularDataRequest.additional_parameters:type_name -> google.protobuf.Struct
-	98,  // 22: viam.app.data.v1.GetLatestTabularDataResponse.time_captured:type_name -> google.protobuf.Timestamp
-	98,  // 23: viam.app.data.v1.GetLatestTabularDataResponse.time_synced:type_name -> google.protobuf.Timestamp
-	99,  // 24: viam.app.data.v1.GetLatestTabularDataResponse.payload:type_name -> google.protobuf.Struct
+	103, // 17: viam.app.data.v1.ExportTabularDataRequest.additional_parameters:type_name -> google.protobuf.Struct
+	102, // 18: viam.app.data.v1.ExportTabularDataResponse.time_captured:type_name -> google.protobuf.Timestamp
+	103, // 19: viam.app.data.v1.ExportTabularDataResponse.method_parameters:type_name -> google.protobuf.Struct
+	103, // 20: viam.app.data.v1.ExportTabularDataResponse.payload:type_name -> google.protobuf.Struct
+	103, // 21: viam.app.data.v1.GetLatestTabularDataRequest.additional_parameters:type_name -> google.protobuf.Struct
+	102, // 22: viam.app.data.v1.GetLatestTabularDataResponse.time_captured:type_name -> google.protobuf.Timestamp
+	102, // 23: viam.app.data.v1.GetLatestTabularDataResponse.time_synced:type_name -> google.protobuf.Timestamp
+	103, // 24: viam.app.data.v1.GetLatestTabularDataResponse.payload:type_name -> google.protobuf.Struct
 	31,  // 25: viam.app.data.v1.BinaryData.metadata:type_name -> viam.app.data.v1.BinaryMetadata
 	5,   // 26: viam.app.data.v1.BinaryDataByFilterRequest.data_request:type_name -> viam.app.data.v1.DataRequest
 	22,  // 27: viam.app.data.v1.BinaryDataByFilterResponse.data:type_name -> viam.app.data.v1.BinaryData
@@ -7305,8 +7523,8 @@ var file_app_data_v1_data_proto_depIdxs = []int32{
 	28,  // 30: viam.app.data.v1.Annotations.bboxes:type_name -> viam.app.data.v1.BoundingBox
 	29,  // 31: viam.app.data.v1.Annotations.classifications:type_name -> viam.app.data.v1.Classification
 	8,   // 32: viam.app.data.v1.BinaryMetadata.capture_metadata:type_name -> viam.app.data.v1.CaptureMetadata
-	98,  // 33: viam.app.data.v1.BinaryMetadata.time_requested:type_name -> google.protobuf.Timestamp
-	98,  // 34: viam.app.data.v1.BinaryMetadata.time_received:type_name -> google.protobuf.Timestamp
+	102, // 33: viam.app.data.v1.BinaryMetadata.time_requested:type_name -> google.protobuf.Timestamp
+	102, // 34: viam.app.data.v1.BinaryMetadata.time_received:type_name -> google.protobuf.Timestamp
 	30,  // 35: viam.app.data.v1.BinaryMetadata.annotations:type_name -> viam.app.data.v1.Annotations
 	7,   // 36: viam.app.data.v1.DeleteTabularFilter.tags_filter:type_name -> viam.app.data.v1.TagsFilter
 	32,  // 37: viam.app.data.v1.DeleteTabularDataRequest.filter:type_name -> viam.app.data.v1.DeleteTabularFilter
@@ -7326,29 +7544,29 @@ var file_app_data_v1_data_proto_depIdxs = []int32{
 	3,   // 51: viam.app.data.v1.CreateIndexRequest.collection_type:type_name -> viam.app.data.v1.IndexableCollection
 	3,   // 52: viam.app.data.v1.DeleteIndexRequest.collection_type:type_name -> viam.app.data.v1.IndexableCollection
 	3,   // 53: viam.app.data.v1.ListIndexesRequest.collection_type:type_name -> viam.app.data.v1.IndexableCollection
-	71,  // 54: viam.app.data.v1.ListIndexesResponse.indexes:type_name -> viam.app.data.v1.Index
+	75,  // 54: viam.app.data.v1.ListIndexesResponse.indexes:type_name -> viam.app.data.v1.Index
 	3,   // 55: viam.app.data.v1.Index.collection_type:type_name -> viam.app.data.v1.IndexableCollection
 	4,   // 56: viam.app.data.v1.Index.created_by:type_name -> viam.app.data.v1.IndexCreator
-	98,  // 57: viam.app.data.v1.Query.created_on:type_name -> google.protobuf.Timestamp
-	98,  // 58: viam.app.data.v1.Query.updated_at:type_name -> google.protobuf.Timestamp
-	74,  // 59: viam.app.data.v1.GetSavedQueryResponse.saved_query:type_name -> viam.app.data.v1.Query
-	74,  // 60: viam.app.data.v1.ListSavedQueriesResponse.queries:type_name -> viam.app.data.v1.Query
-	98,  // 61: viam.app.data.v1.CreateBinaryDataSignedURLResponse.expires_at:type_name -> google.protobuf.Timestamp
-	98,  // 62: viam.app.data.v1.Sequence.created_at:type_name -> google.protobuf.Timestamp
-	98,  // 63: viam.app.data.v1.Sequence.updated_at:type_name -> google.protobuf.Timestamp
-	98,  // 64: viam.app.data.v1.Sequence.start_time:type_name -> google.protobuf.Timestamp
-	98,  // 65: viam.app.data.v1.Sequence.end_time:type_name -> google.protobuf.Timestamp
-	85,  // 66: viam.app.data.v1.Sequence.resources:type_name -> viam.app.data.v1.SequenceResourceFilter
-	85,  // 67: viam.app.data.v1.CreateSequenceRequest.resources:type_name -> viam.app.data.v1.SequenceResourceFilter
-	98,  // 68: viam.app.data.v1.CreateSequenceRequest.start_time:type_name -> google.protobuf.Timestamp
-	98,  // 69: viam.app.data.v1.CreateSequenceRequest.end_time:type_name -> google.protobuf.Timestamp
-	86,  // 70: viam.app.data.v1.GetSequenceResponse.sequence:type_name -> viam.app.data.v1.Sequence
-	85,  // 71: viam.app.data.v1.UpdateSequenceRequest.resources:type_name -> viam.app.data.v1.SequenceResourceFilter
-	98,  // 72: viam.app.data.v1.UpdateSequenceRequest.start_time:type_name -> google.protobuf.Timestamp
-	98,  // 73: viam.app.data.v1.UpdateSequenceRequest.end_time:type_name -> google.protobuf.Timestamp
-	100, // 74: viam.app.data.v1.UpdateSequenceRequest.field_mask:type_name -> google.protobuf.FieldMask
-	86,  // 75: viam.app.data.v1.ListSequencesResponse.sequences:type_name -> viam.app.data.v1.Sequence
-	101, // 76: viam.app.data.v1.CaptureMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
+	102, // 57: viam.app.data.v1.Query.created_on:type_name -> google.protobuf.Timestamp
+	102, // 58: viam.app.data.v1.Query.updated_at:type_name -> google.protobuf.Timestamp
+	78,  // 59: viam.app.data.v1.GetSavedQueryResponse.saved_query:type_name -> viam.app.data.v1.Query
+	78,  // 60: viam.app.data.v1.ListSavedQueriesResponse.queries:type_name -> viam.app.data.v1.Query
+	102, // 61: viam.app.data.v1.CreateBinaryDataSignedURLResponse.expires_at:type_name -> google.protobuf.Timestamp
+	102, // 62: viam.app.data.v1.Sequence.created_at:type_name -> google.protobuf.Timestamp
+	102, // 63: viam.app.data.v1.Sequence.updated_at:type_name -> google.protobuf.Timestamp
+	102, // 64: viam.app.data.v1.Sequence.start_time:type_name -> google.protobuf.Timestamp
+	102, // 65: viam.app.data.v1.Sequence.end_time:type_name -> google.protobuf.Timestamp
+	89,  // 66: viam.app.data.v1.Sequence.resources:type_name -> viam.app.data.v1.SequenceResourceFilter
+	89,  // 67: viam.app.data.v1.CreateSequenceRequest.resources:type_name -> viam.app.data.v1.SequenceResourceFilter
+	102, // 68: viam.app.data.v1.CreateSequenceRequest.start_time:type_name -> google.protobuf.Timestamp
+	102, // 69: viam.app.data.v1.CreateSequenceRequest.end_time:type_name -> google.protobuf.Timestamp
+	90,  // 70: viam.app.data.v1.GetSequenceResponse.sequence:type_name -> viam.app.data.v1.Sequence
+	89,  // 71: viam.app.data.v1.UpdateSequenceRequest.resources:type_name -> viam.app.data.v1.SequenceResourceFilter
+	102, // 72: viam.app.data.v1.UpdateSequenceRequest.start_time:type_name -> google.protobuf.Timestamp
+	102, // 73: viam.app.data.v1.UpdateSequenceRequest.end_time:type_name -> google.protobuf.Timestamp
+	104, // 74: viam.app.data.v1.UpdateSequenceRequest.field_mask:type_name -> google.protobuf.FieldMask
+	90,  // 75: viam.app.data.v1.ListSequencesResponse.sequences:type_name -> viam.app.data.v1.Sequence
+	105, // 76: viam.app.data.v1.CaptureMetadata.MethodParametersEntry.value:type_name -> google.protobuf.Any
 	10,  // 77: viam.app.data.v1.DataService.TabularDataByFilter:input_type -> viam.app.data.v1.TabularDataByFilterRequest
 	13,  // 78: viam.app.data.v1.DataService.TabularDataBySQL:input_type -> viam.app.data.v1.TabularDataBySQLRequest
 	16,  // 79: viam.app.data.v1.DataService.TabularDataByMQL:input_type -> viam.app.data.v1.TabularDataByMQLRequest
@@ -7372,59 +7590,63 @@ var file_app_data_v1_data_proto_depIdxs = []int32{
 	57,  // 97: viam.app.data.v1.DataService.ConfigureDatabaseUser:input_type -> viam.app.data.v1.ConfigureDatabaseUserRequest
 	61,  // 98: viam.app.data.v1.DataService.AddBinaryDataToDatasetByIDs:input_type -> viam.app.data.v1.AddBinaryDataToDatasetByIDsRequest
 	63,  // 99: viam.app.data.v1.DataService.RemoveBinaryDataFromDatasetByIDs:input_type -> viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsRequest
-	65,  // 100: viam.app.data.v1.DataService.CreateIndex:input_type -> viam.app.data.v1.CreateIndexRequest
-	69,  // 101: viam.app.data.v1.DataService.ListIndexes:input_type -> viam.app.data.v1.ListIndexesRequest
-	67,  // 102: viam.app.data.v1.DataService.DeleteIndex:input_type -> viam.app.data.v1.DeleteIndexRequest
-	72,  // 103: viam.app.data.v1.DataService.CreateSavedQuery:input_type -> viam.app.data.v1.CreateSavedQueryRequest
-	79,  // 104: viam.app.data.v1.DataService.UpdateSavedQuery:input_type -> viam.app.data.v1.UpdateSavedQueryRequest
-	77,  // 105: viam.app.data.v1.DataService.GetSavedQuery:input_type -> viam.app.data.v1.GetSavedQueryRequest
-	75,  // 106: viam.app.data.v1.DataService.DeleteSavedQuery:input_type -> viam.app.data.v1.DeleteSavedQueryRequest
-	81,  // 107: viam.app.data.v1.DataService.ListSavedQueries:input_type -> viam.app.data.v1.ListSavedQueriesRequest
-	83,  // 108: viam.app.data.v1.DataService.CreateBinaryDataSignedURL:input_type -> viam.app.data.v1.CreateBinaryDataSignedURLRequest
-	87,  // 109: viam.app.data.v1.DataService.CreateSequence:input_type -> viam.app.data.v1.CreateSequenceRequest
-	89,  // 110: viam.app.data.v1.DataService.GetSequence:input_type -> viam.app.data.v1.GetSequenceRequest
-	91,  // 111: viam.app.data.v1.DataService.UpdateSequence:input_type -> viam.app.data.v1.UpdateSequenceRequest
-	93,  // 112: viam.app.data.v1.DataService.DeleteSequence:input_type -> viam.app.data.v1.DeleteSequenceRequest
-	95,  // 113: viam.app.data.v1.DataService.ListSequences:input_type -> viam.app.data.v1.ListSequencesRequest
-	11,  // 114: viam.app.data.v1.DataService.TabularDataByFilter:output_type -> viam.app.data.v1.TabularDataByFilterResponse
-	14,  // 115: viam.app.data.v1.DataService.TabularDataBySQL:output_type -> viam.app.data.v1.TabularDataBySQLResponse
-	17,  // 116: viam.app.data.v1.DataService.TabularDataByMQL:output_type -> viam.app.data.v1.TabularDataByMQLResponse
-	19,  // 117: viam.app.data.v1.DataService.ExportTabularData:output_type -> viam.app.data.v1.ExportTabularDataResponse
-	21,  // 118: viam.app.data.v1.DataService.GetLatestTabularData:output_type -> viam.app.data.v1.GetLatestTabularDataResponse
-	24,  // 119: viam.app.data.v1.DataService.BinaryDataByFilter:output_type -> viam.app.data.v1.BinaryDataByFilterResponse
-	27,  // 120: viam.app.data.v1.DataService.BinaryDataByIDs:output_type -> viam.app.data.v1.BinaryDataByIDsResponse
-	34,  // 121: viam.app.data.v1.DataService.DeleteTabularData:output_type -> viam.app.data.v1.DeleteTabularDataResponse
-	36,  // 122: viam.app.data.v1.DataService.DeleteBinaryDataByFilter:output_type -> viam.app.data.v1.DeleteBinaryDataByFilterResponse
-	38,  // 123: viam.app.data.v1.DataService.DeleteBinaryDataByIDs:output_type -> viam.app.data.v1.DeleteBinaryDataByIDsResponse
-	40,  // 124: viam.app.data.v1.DataService.AddTagsToBinaryDataByIDs:output_type -> viam.app.data.v1.AddTagsToBinaryDataByIDsResponse
-	42,  // 125: viam.app.data.v1.DataService.AddTagsToBinaryDataByFilter:output_type -> viam.app.data.v1.AddTagsToBinaryDataByFilterResponse
-	44,  // 126: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByIDs:output_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse
-	46,  // 127: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByFilter:output_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse
-	48,  // 128: viam.app.data.v1.DataService.TagsByFilter:output_type -> viam.app.data.v1.TagsByFilterResponse
-	50,  // 129: viam.app.data.v1.DataService.AddBoundingBoxToImageByID:output_type -> viam.app.data.v1.AddBoundingBoxToImageByIDResponse
-	52,  // 130: viam.app.data.v1.DataService.RemoveBoundingBoxFromImageByID:output_type -> viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse
-	56,  // 131: viam.app.data.v1.DataService.BoundingBoxLabelsByFilter:output_type -> viam.app.data.v1.BoundingBoxLabelsByFilterResponse
-	54,  // 132: viam.app.data.v1.DataService.UpdateBoundingBox:output_type -> viam.app.data.v1.UpdateBoundingBoxResponse
-	60,  // 133: viam.app.data.v1.DataService.GetDatabaseConnection:output_type -> viam.app.data.v1.GetDatabaseConnectionResponse
-	58,  // 134: viam.app.data.v1.DataService.ConfigureDatabaseUser:output_type -> viam.app.data.v1.ConfigureDatabaseUserResponse
-	62,  // 135: viam.app.data.v1.DataService.AddBinaryDataToDatasetByIDs:output_type -> viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse
-	64,  // 136: viam.app.data.v1.DataService.RemoveBinaryDataFromDatasetByIDs:output_type -> viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse
-	66,  // 137: viam.app.data.v1.DataService.CreateIndex:output_type -> viam.app.data.v1.CreateIndexResponse
-	70,  // 138: viam.app.data.v1.DataService.ListIndexes:output_type -> viam.app.data.v1.ListIndexesResponse
-	68,  // 139: viam.app.data.v1.DataService.DeleteIndex:output_type -> viam.app.data.v1.DeleteIndexResponse
-	73,  // 140: viam.app.data.v1.DataService.CreateSavedQuery:output_type -> viam.app.data.v1.CreateSavedQueryResponse
-	80,  // 141: viam.app.data.v1.DataService.UpdateSavedQuery:output_type -> viam.app.data.v1.UpdateSavedQueryResponse
-	78,  // 142: viam.app.data.v1.DataService.GetSavedQuery:output_type -> viam.app.data.v1.GetSavedQueryResponse
-	76,  // 143: viam.app.data.v1.DataService.DeleteSavedQuery:output_type -> viam.app.data.v1.DeleteSavedQueryResponse
-	82,  // 144: viam.app.data.v1.DataService.ListSavedQueries:output_type -> viam.app.data.v1.ListSavedQueriesResponse
-	84,  // 145: viam.app.data.v1.DataService.CreateBinaryDataSignedURL:output_type -> viam.app.data.v1.CreateBinaryDataSignedURLResponse
-	88,  // 146: viam.app.data.v1.DataService.CreateSequence:output_type -> viam.app.data.v1.CreateSequenceResponse
-	90,  // 147: viam.app.data.v1.DataService.GetSequence:output_type -> viam.app.data.v1.GetSequenceResponse
-	92,  // 148: viam.app.data.v1.DataService.UpdateSequence:output_type -> viam.app.data.v1.UpdateSequenceResponse
-	94,  // 149: viam.app.data.v1.DataService.DeleteSequence:output_type -> viam.app.data.v1.DeleteSequenceResponse
-	96,  // 150: viam.app.data.v1.DataService.ListSequences:output_type -> viam.app.data.v1.ListSequencesResponse
-	114, // [114:151] is the sub-list for method output_type
-	77,  // [77:114] is the sub-list for method input_type
+	65,  // 100: viam.app.data.v1.DataService.AddSequencesToDataset:input_type -> viam.app.data.v1.AddSequencesToDatasetRequest
+	67,  // 101: viam.app.data.v1.DataService.RemoveSequencesFromDataset:input_type -> viam.app.data.v1.RemoveSequencesFromDatasetRequest
+	69,  // 102: viam.app.data.v1.DataService.CreateIndex:input_type -> viam.app.data.v1.CreateIndexRequest
+	73,  // 103: viam.app.data.v1.DataService.ListIndexes:input_type -> viam.app.data.v1.ListIndexesRequest
+	71,  // 104: viam.app.data.v1.DataService.DeleteIndex:input_type -> viam.app.data.v1.DeleteIndexRequest
+	76,  // 105: viam.app.data.v1.DataService.CreateSavedQuery:input_type -> viam.app.data.v1.CreateSavedQueryRequest
+	83,  // 106: viam.app.data.v1.DataService.UpdateSavedQuery:input_type -> viam.app.data.v1.UpdateSavedQueryRequest
+	81,  // 107: viam.app.data.v1.DataService.GetSavedQuery:input_type -> viam.app.data.v1.GetSavedQueryRequest
+	79,  // 108: viam.app.data.v1.DataService.DeleteSavedQuery:input_type -> viam.app.data.v1.DeleteSavedQueryRequest
+	85,  // 109: viam.app.data.v1.DataService.ListSavedQueries:input_type -> viam.app.data.v1.ListSavedQueriesRequest
+	87,  // 110: viam.app.data.v1.DataService.CreateBinaryDataSignedURL:input_type -> viam.app.data.v1.CreateBinaryDataSignedURLRequest
+	91,  // 111: viam.app.data.v1.DataService.CreateSequence:input_type -> viam.app.data.v1.CreateSequenceRequest
+	93,  // 112: viam.app.data.v1.DataService.GetSequence:input_type -> viam.app.data.v1.GetSequenceRequest
+	95,  // 113: viam.app.data.v1.DataService.UpdateSequence:input_type -> viam.app.data.v1.UpdateSequenceRequest
+	97,  // 114: viam.app.data.v1.DataService.DeleteSequence:input_type -> viam.app.data.v1.DeleteSequenceRequest
+	99,  // 115: viam.app.data.v1.DataService.ListSequences:input_type -> viam.app.data.v1.ListSequencesRequest
+	11,  // 116: viam.app.data.v1.DataService.TabularDataByFilter:output_type -> viam.app.data.v1.TabularDataByFilterResponse
+	14,  // 117: viam.app.data.v1.DataService.TabularDataBySQL:output_type -> viam.app.data.v1.TabularDataBySQLResponse
+	17,  // 118: viam.app.data.v1.DataService.TabularDataByMQL:output_type -> viam.app.data.v1.TabularDataByMQLResponse
+	19,  // 119: viam.app.data.v1.DataService.ExportTabularData:output_type -> viam.app.data.v1.ExportTabularDataResponse
+	21,  // 120: viam.app.data.v1.DataService.GetLatestTabularData:output_type -> viam.app.data.v1.GetLatestTabularDataResponse
+	24,  // 121: viam.app.data.v1.DataService.BinaryDataByFilter:output_type -> viam.app.data.v1.BinaryDataByFilterResponse
+	27,  // 122: viam.app.data.v1.DataService.BinaryDataByIDs:output_type -> viam.app.data.v1.BinaryDataByIDsResponse
+	34,  // 123: viam.app.data.v1.DataService.DeleteTabularData:output_type -> viam.app.data.v1.DeleteTabularDataResponse
+	36,  // 124: viam.app.data.v1.DataService.DeleteBinaryDataByFilter:output_type -> viam.app.data.v1.DeleteBinaryDataByFilterResponse
+	38,  // 125: viam.app.data.v1.DataService.DeleteBinaryDataByIDs:output_type -> viam.app.data.v1.DeleteBinaryDataByIDsResponse
+	40,  // 126: viam.app.data.v1.DataService.AddTagsToBinaryDataByIDs:output_type -> viam.app.data.v1.AddTagsToBinaryDataByIDsResponse
+	42,  // 127: viam.app.data.v1.DataService.AddTagsToBinaryDataByFilter:output_type -> viam.app.data.v1.AddTagsToBinaryDataByFilterResponse
+	44,  // 128: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByIDs:output_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByIDsResponse
+	46,  // 129: viam.app.data.v1.DataService.RemoveTagsFromBinaryDataByFilter:output_type -> viam.app.data.v1.RemoveTagsFromBinaryDataByFilterResponse
+	48,  // 130: viam.app.data.v1.DataService.TagsByFilter:output_type -> viam.app.data.v1.TagsByFilterResponse
+	50,  // 131: viam.app.data.v1.DataService.AddBoundingBoxToImageByID:output_type -> viam.app.data.v1.AddBoundingBoxToImageByIDResponse
+	52,  // 132: viam.app.data.v1.DataService.RemoveBoundingBoxFromImageByID:output_type -> viam.app.data.v1.RemoveBoundingBoxFromImageByIDResponse
+	56,  // 133: viam.app.data.v1.DataService.BoundingBoxLabelsByFilter:output_type -> viam.app.data.v1.BoundingBoxLabelsByFilterResponse
+	54,  // 134: viam.app.data.v1.DataService.UpdateBoundingBox:output_type -> viam.app.data.v1.UpdateBoundingBoxResponse
+	60,  // 135: viam.app.data.v1.DataService.GetDatabaseConnection:output_type -> viam.app.data.v1.GetDatabaseConnectionResponse
+	58,  // 136: viam.app.data.v1.DataService.ConfigureDatabaseUser:output_type -> viam.app.data.v1.ConfigureDatabaseUserResponse
+	62,  // 137: viam.app.data.v1.DataService.AddBinaryDataToDatasetByIDs:output_type -> viam.app.data.v1.AddBinaryDataToDatasetByIDsResponse
+	64,  // 138: viam.app.data.v1.DataService.RemoveBinaryDataFromDatasetByIDs:output_type -> viam.app.data.v1.RemoveBinaryDataFromDatasetByIDsResponse
+	66,  // 139: viam.app.data.v1.DataService.AddSequencesToDataset:output_type -> viam.app.data.v1.AddSequencesToDatasetResponse
+	68,  // 140: viam.app.data.v1.DataService.RemoveSequencesFromDataset:output_type -> viam.app.data.v1.RemoveSequencesFromDatasetResponse
+	70,  // 141: viam.app.data.v1.DataService.CreateIndex:output_type -> viam.app.data.v1.CreateIndexResponse
+	74,  // 142: viam.app.data.v1.DataService.ListIndexes:output_type -> viam.app.data.v1.ListIndexesResponse
+	72,  // 143: viam.app.data.v1.DataService.DeleteIndex:output_type -> viam.app.data.v1.DeleteIndexResponse
+	77,  // 144: viam.app.data.v1.DataService.CreateSavedQuery:output_type -> viam.app.data.v1.CreateSavedQueryResponse
+	84,  // 145: viam.app.data.v1.DataService.UpdateSavedQuery:output_type -> viam.app.data.v1.UpdateSavedQueryResponse
+	82,  // 146: viam.app.data.v1.DataService.GetSavedQuery:output_type -> viam.app.data.v1.GetSavedQueryResponse
+	80,  // 147: viam.app.data.v1.DataService.DeleteSavedQuery:output_type -> viam.app.data.v1.DeleteSavedQueryResponse
+	86,  // 148: viam.app.data.v1.DataService.ListSavedQueries:output_type -> viam.app.data.v1.ListSavedQueriesResponse
+	88,  // 149: viam.app.data.v1.DataService.CreateBinaryDataSignedURL:output_type -> viam.app.data.v1.CreateBinaryDataSignedURLResponse
+	92,  // 150: viam.app.data.v1.DataService.CreateSequence:output_type -> viam.app.data.v1.CreateSequenceResponse
+	94,  // 151: viam.app.data.v1.DataService.GetSequence:output_type -> viam.app.data.v1.GetSequenceResponse
+	96,  // 152: viam.app.data.v1.DataService.UpdateSequence:output_type -> viam.app.data.v1.UpdateSequenceResponse
+	98,  // 153: viam.app.data.v1.DataService.DeleteSequence:output_type -> viam.app.data.v1.DeleteSequenceResponse
+	100, // 154: viam.app.data.v1.DataService.ListSequences:output_type -> viam.app.data.v1.ListSequencesResponse
+	116, // [116:155] is the sub-list for method output_type
+	77,  // [77:116] is the sub-list for method input_type
 	77,  // [77:77] is the sub-list for extension type_name
 	77,  // [77:77] is the sub-list for extension extendee
 	0,   // [0:77] is the sub-list for field type_name
@@ -7444,18 +7666,18 @@ func file_app_data_v1_data_proto_init() {
 	file_app_data_v1_data_proto_msgTypes[28].OneofWrappers = []any{}
 	file_app_data_v1_data_proto_msgTypes[44].OneofWrappers = []any{}
 	file_app_data_v1_data_proto_msgTypes[48].OneofWrappers = []any{}
-	file_app_data_v1_data_proto_msgTypes[60].OneofWrappers = []any{}
-	file_app_data_v1_data_proto_msgTypes[62].OneofWrappers = []any{}
 	file_app_data_v1_data_proto_msgTypes[64].OneofWrappers = []any{}
 	file_app_data_v1_data_proto_msgTypes[66].OneofWrappers = []any{}
-	file_app_data_v1_data_proto_msgTypes[78].OneofWrappers = []any{}
+	file_app_data_v1_data_proto_msgTypes[68].OneofWrappers = []any{}
+	file_app_data_v1_data_proto_msgTypes[70].OneofWrappers = []any{}
+	file_app_data_v1_data_proto_msgTypes[82].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_data_v1_data_proto_rawDesc,
 			NumEnums:      5,
-			NumMessages:   93,
+			NumMessages:   97,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

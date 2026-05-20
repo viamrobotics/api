@@ -1904,6 +1904,90 @@ export namespace RemoveBinaryDataFromDatasetByIDsResponse {
   }
 }
 
+export class AddSequencesToDatasetRequest extends jspb.Message {
+  getDatasetId(): string;
+  setDatasetId(value: string): void;
+
+  clearSequenceIdsList(): void;
+  getSequenceIdsList(): Array<string>;
+  setSequenceIdsList(value: Array<string>): void;
+  addSequenceIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddSequencesToDatasetRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddSequencesToDatasetRequest): AddSequencesToDatasetRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddSequencesToDatasetRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddSequencesToDatasetRequest;
+  static deserializeBinaryFromReader(message: AddSequencesToDatasetRequest, reader: jspb.BinaryReader): AddSequencesToDatasetRequest;
+}
+
+export namespace AddSequencesToDatasetRequest {
+  export type AsObject = {
+    datasetId: string,
+    sequenceIdsList: Array<string>,
+  }
+}
+
+export class AddSequencesToDatasetResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddSequencesToDatasetResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddSequencesToDatasetResponse): AddSequencesToDatasetResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddSequencesToDatasetResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddSequencesToDatasetResponse;
+  static deserializeBinaryFromReader(message: AddSequencesToDatasetResponse, reader: jspb.BinaryReader): AddSequencesToDatasetResponse;
+}
+
+export namespace AddSequencesToDatasetResponse {
+  export type AsObject = {
+  }
+}
+
+export class RemoveSequencesFromDatasetRequest extends jspb.Message {
+  getDatasetId(): string;
+  setDatasetId(value: string): void;
+
+  clearSequenceIdsList(): void;
+  getSequenceIdsList(): Array<string>;
+  setSequenceIdsList(value: Array<string>): void;
+  addSequenceIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveSequencesFromDatasetRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveSequencesFromDatasetRequest): RemoveSequencesFromDatasetRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveSequencesFromDatasetRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveSequencesFromDatasetRequest;
+  static deserializeBinaryFromReader(message: RemoveSequencesFromDatasetRequest, reader: jspb.BinaryReader): RemoveSequencesFromDatasetRequest;
+}
+
+export namespace RemoveSequencesFromDatasetRequest {
+  export type AsObject = {
+    datasetId: string,
+    sequenceIdsList: Array<string>,
+  }
+}
+
+export class RemoveSequencesFromDatasetResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveSequencesFromDatasetResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveSequencesFromDatasetResponse): RemoveSequencesFromDatasetResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveSequencesFromDatasetResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveSequencesFromDatasetResponse;
+  static deserializeBinaryFromReader(message: RemoveSequencesFromDatasetResponse, reader: jspb.BinaryReader): RemoveSequencesFromDatasetResponse;
+}
+
+export namespace RemoveSequencesFromDatasetResponse {
+  export type AsObject = {
+  }
+}
+
 export class CreateIndexRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
