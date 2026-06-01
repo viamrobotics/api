@@ -289,6 +289,8 @@ service AppService {
 
   rpc DeprecateRegistryItem(DeprecateRegistryItemRequest) returns (DeprecateRegistryItemResponse);
 
+  rpc UndeprecateRegistryItem(UndeprecateRegistryItemRequest) returns (UndeprecateRegistryItemResponse);
+
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
@@ -301,7 +303,11 @@ service AppService {
 
   rpc DeprecateModule(DeprecateModuleRequest) returns (DeprecateModuleResponse);
 
+  rpc UndeprecateModule(UndeprecateModuleRequest) returns (UndeprecateModuleResponse);
+
   rpc DeprecateModuleVersion(DeprecateModuleVersionRequest) returns (DeprecateModuleVersionResponse);
+
+  rpc UndeprecateModuleVersion(UndeprecateModuleVersionRequest) returns (UndeprecateModuleVersionResponse);
 
   rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
 
@@ -1622,6 +1628,12 @@ message DeprecateRegistryItemRequest {
 
 message DeprecateRegistryItemResponse {}
 
+message UndeprecateRegistryItemRequest {
+  string item_id = 1;
+}
+
+message UndeprecateRegistryItemResponse {}
+
 // Modules
 message CreateModuleRequest {
   // The organization to create the module under
@@ -1850,13 +1862,26 @@ message DeprecateModuleRequest {
 
 message DeprecateModuleResponse {}
 
+message UndeprecateModuleRequest {
+  string module_id = 1;
+}
+
+message UndeprecateModuleResponse {}
+
 message DeprecateModuleVersionRequest {
   string module_id = 1;
   string version = 2;
-  optional string message = 3;
+  optional string message = 4;
 }
 
 message DeprecateModuleVersionResponse {}
+
+message UndeprecateModuleVersionRequest {
+  string module_id = 1;
+  string version = 2;
+}
+
+message UndeprecateModuleVersionResponse {}
 
 message GetUserIDByEmailRequest {
   string email = 1;
