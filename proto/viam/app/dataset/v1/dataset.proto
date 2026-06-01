@@ -48,11 +48,13 @@ enum DatasetType {
 
 // SequenceDatasetExportStatus is the lifecycle state of an export job.
 enum SequenceDatasetExportStatus {
-  SEQUENCE_DATASET_EXPORT_STATUS_RUNNING = 0;
+  SEQUENCE_DATASET_EXPORT_STATUS_UNSPECIFIED = 0;
+  // PENDING — accepted, not yet picked up.
+  SEQUENCE_DATASET_EXPORT_STATUS_RUNNING = 1;
   // COMPLETED — Parquet file is uploaded; download_url is set.
-  SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED = 1;
+  SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED = 2;
   // FAILED — terminal; error_message describes the cause.
-  SEQUENCE_DATASET_EXPORT_STATUS_FAILED = 2;
+  SEQUENCE_DATASET_EXPORT_STATUS_FAILED = 3;
 }
 
 // Dataset stores the metadata of a dataset.
