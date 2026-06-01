@@ -877,6 +877,24 @@ type AppServiceTransferRegistryItem = {
   readonly responseType: typeof app_v1_app_pb.TransferRegistryItemResponse;
 };
 
+type AppServiceDeprecateRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeprecateRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.DeprecateRegistryItemResponse;
+};
+
+type AppServiceUndeprecateRegistryItem = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UndeprecateRegistryItemRequest;
+  readonly responseType: typeof app_v1_app_pb.UndeprecateRegistryItemResponse;
+};
+
 type AppServiceCreateModule = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -920,6 +938,42 @@ type AppServiceListModules = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.ListModulesRequest;
   readonly responseType: typeof app_v1_app_pb.ListModulesResponse;
+};
+
+type AppServiceDeprecateModule = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeprecateModuleRequest;
+  readonly responseType: typeof app_v1_app_pb.DeprecateModuleResponse;
+};
+
+type AppServiceUndeprecateModule = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UndeprecateModuleRequest;
+  readonly responseType: typeof app_v1_app_pb.UndeprecateModuleResponse;
+};
+
+type AppServiceDeprecateModuleVersion = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.DeprecateModuleVersionRequest;
+  readonly responseType: typeof app_v1_app_pb.DeprecateModuleVersionResponse;
+};
+
+type AppServiceUndeprecateModuleVersion = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.UndeprecateModuleVersionRequest;
+  readonly responseType: typeof app_v1_app_pb.UndeprecateModuleVersionResponse;
 };
 
 type AppServiceCreateKey = {
@@ -1147,11 +1201,17 @@ export class AppService {
   static readonly DeleteRegistryItem: AppServiceDeleteRegistryItem;
   static readonly RenameRegistryItem: AppServiceRenameRegistryItem;
   static readonly TransferRegistryItem: AppServiceTransferRegistryItem;
+  static readonly DeprecateRegistryItem: AppServiceDeprecateRegistryItem;
+  static readonly UndeprecateRegistryItem: AppServiceUndeprecateRegistryItem;
   static readonly CreateModule: AppServiceCreateModule;
   static readonly UpdateModule: AppServiceUpdateModule;
   static readonly UploadModuleFile: AppServiceUploadModuleFile;
   static readonly GetModule: AppServiceGetModule;
   static readonly ListModules: AppServiceListModules;
+  static readonly DeprecateModule: AppServiceDeprecateModule;
+  static readonly UndeprecateModule: AppServiceUndeprecateModule;
+  static readonly DeprecateModuleVersion: AppServiceDeprecateModuleVersion;
+  static readonly UndeprecateModuleVersion: AppServiceUndeprecateModuleVersion;
   static readonly CreateKey: AppServiceCreateKey;
   static readonly DeleteKey: AppServiceDeleteKey;
   static readonly ListKeys: AppServiceListKeys;
@@ -2065,6 +2125,24 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.TransferRegistryItemRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.TransferRegistryItemResponse|null) => void
   ): UnaryResponse;
+  deprecateRegistryItem(
+    requestMessage: app_v1_app_pb.DeprecateRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  deprecateRegistryItem(
+    requestMessage: app_v1_app_pb.DeprecateRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  undeprecateRegistryItem(
+    requestMessage: app_v1_app_pb.UndeprecateRegistryItemRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateRegistryItemResponse|null) => void
+  ): UnaryResponse;
+  undeprecateRegistryItem(
+    requestMessage: app_v1_app_pb.UndeprecateRegistryItemRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateRegistryItemResponse|null) => void
+  ): UnaryResponse;
   createModule(
     requestMessage: app_v1_app_pb.CreateModuleRequest,
     metadata: grpc.Metadata,
@@ -2101,6 +2179,42 @@ export class AppServiceClient {
   listModules(
     requestMessage: app_v1_app_pb.ListModulesRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListModulesResponse|null) => void
+  ): UnaryResponse;
+  deprecateModule(
+    requestMessage: app_v1_app_pb.DeprecateModuleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateModuleResponse|null) => void
+  ): UnaryResponse;
+  deprecateModule(
+    requestMessage: app_v1_app_pb.DeprecateModuleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateModuleResponse|null) => void
+  ): UnaryResponse;
+  undeprecateModule(
+    requestMessage: app_v1_app_pb.UndeprecateModuleRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateModuleResponse|null) => void
+  ): UnaryResponse;
+  undeprecateModule(
+    requestMessage: app_v1_app_pb.UndeprecateModuleRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateModuleResponse|null) => void
+  ): UnaryResponse;
+  deprecateModuleVersion(
+    requestMessage: app_v1_app_pb.DeprecateModuleVersionRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateModuleVersionResponse|null) => void
+  ): UnaryResponse;
+  deprecateModuleVersion(
+    requestMessage: app_v1_app_pb.DeprecateModuleVersionRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateModuleVersionResponse|null) => void
+  ): UnaryResponse;
+  undeprecateModuleVersion(
+    requestMessage: app_v1_app_pb.UndeprecateModuleVersionRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateModuleVersionResponse|null) => void
+  ): UnaryResponse;
+  undeprecateModuleVersion(
+    requestMessage: app_v1_app_pb.UndeprecateModuleVersionRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateModuleVersionResponse|null) => void
   ): UnaryResponse;
   createKey(
     requestMessage: app_v1_app_pb.CreateKeyRequest,

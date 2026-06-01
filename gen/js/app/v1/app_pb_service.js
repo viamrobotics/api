@@ -883,6 +883,24 @@ AppService.TransferRegistryItem = {
   responseType: app_v1_app_pb.TransferRegistryItemResponse
 };
 
+AppService.DeprecateRegistryItem = {
+  methodName: "DeprecateRegistryItem",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeprecateRegistryItemRequest,
+  responseType: app_v1_app_pb.DeprecateRegistryItemResponse
+};
+
+AppService.UndeprecateRegistryItem = {
+  methodName: "UndeprecateRegistryItem",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UndeprecateRegistryItemRequest,
+  responseType: app_v1_app_pb.UndeprecateRegistryItemResponse
+};
+
 AppService.CreateModule = {
   methodName: "CreateModule",
   service: AppService,
@@ -926,6 +944,42 @@ AppService.ListModules = {
   responseStream: false,
   requestType: app_v1_app_pb.ListModulesRequest,
   responseType: app_v1_app_pb.ListModulesResponse
+};
+
+AppService.DeprecateModule = {
+  methodName: "DeprecateModule",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeprecateModuleRequest,
+  responseType: app_v1_app_pb.DeprecateModuleResponse
+};
+
+AppService.UndeprecateModule = {
+  methodName: "UndeprecateModule",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UndeprecateModuleRequest,
+  responseType: app_v1_app_pb.UndeprecateModuleResponse
+};
+
+AppService.DeprecateModuleVersion = {
+  methodName: "DeprecateModuleVersion",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeprecateModuleVersionRequest,
+  responseType: app_v1_app_pb.DeprecateModuleVersionResponse
+};
+
+AppService.UndeprecateModuleVersion = {
+  methodName: "UndeprecateModuleVersion",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UndeprecateModuleVersionRequest,
+  responseType: app_v1_app_pb.UndeprecateModuleVersionResponse
 };
 
 AppService.CreateKey = {
@@ -4076,6 +4130,68 @@ AppServiceClient.prototype.transferRegistryItem = function transferRegistryItem(
   };
 };
 
+AppServiceClient.prototype.deprecateRegistryItem = function deprecateRegistryItem(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeprecateRegistryItem, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.undeprecateRegistryItem = function undeprecateRegistryItem(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UndeprecateRegistryItem, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 AppServiceClient.prototype.createModule = function createModule(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -4215,6 +4331,130 @@ AppServiceClient.prototype.listModules = function listModules(requestMessage, me
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListModules, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deprecateModule = function deprecateModule(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeprecateModule, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.undeprecateModule = function undeprecateModule(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UndeprecateModule, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deprecateModuleVersion = function deprecateModuleVersion(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeprecateModuleVersion, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.undeprecateModuleVersion = function undeprecateModuleVersion(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UndeprecateModuleVersion, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
