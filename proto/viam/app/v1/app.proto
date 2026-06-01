@@ -1524,7 +1524,7 @@ message RegistryItem {
   // When the item was last updated, either through an update or upload.
   google.protobuf.Timestamp updated_at = 16;
 
-  // Whether the item is deprecated 
+  // Whether the item is deprecated
   optional DeprecatedStatus deprecated_status = 17;
 }
 
