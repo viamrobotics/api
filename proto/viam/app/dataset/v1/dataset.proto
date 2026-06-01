@@ -25,6 +25,12 @@ service DatasetService {
 
   // MergeDatasets merges multiple datasets into a new dataset.
   rpc MergeDatasets(MergeDatasetsRequest) returns (MergeDatasetsResponse);
+
+  // StartSequenceDatasetExport kicks off an async export of all data for a sequence dataset.
+  rpc StartSequenceDatasetExport(StartSequenceDatasetExportRequest) returns (StartSequenceDatasetExportResponse);
+
+  // GetSequenceDatasetExport returns the current status of an export job.
+  rpc GetSequenceDatasetExport(GetSequenceDatasetExportRequest) returns (GetSequenceDatasetExportResponse);
 }
 
 // DatasetType describes the kind of membership a dataset stores.
@@ -38,6 +44,17 @@ enum DatasetType {
   // (AddBinaryDataToDatasetByIDs, AddBinaryDataToDatasetByFilter) are rejected against datasets
   // of this type; sequences are added/removed via AddSequencesToDataset / RemoveSequencesFromDataset.
   DATASET_TYPE_SEQUENCE_DATA = 1;
+}
+
+// SequenceDatasetExportStatus is the lifecycle state of an export job.
+enum SequenceDatasetExportStatus {
+  SEQUENCE_DATASET_EXPORT_STATUS_UNSPECIFIED = 0;
+  // PENDING — accepted, not yet picked up.
+  SEQUENCE_DATASET_EXPORT_STATUS_RUNNING = 1;
+  // COMPLETED — Parquet file is uploaded; download_url is set.
+  SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED = 2;
+  // FAILED — terminal; error_message describes the cause.
+  SEQUENCE_DATASET_EXPORT_STATUS_FAILED = 3;
 }
 
 // Dataset stores the metadata of a dataset.
@@ -109,4 +126,36 @@ message MergeDatasetsRequest {
 // MergeDatasetsResponse returns the dataset ID of the newly created merged dataset.
 message MergeDatasetsResponse {
   string dataset_id = 1;
+}
+
+// StartSequenceDatasetExportRequest specifies the sequence dataset to export.
+message StartSequenceDatasetExportRequest {
+  string dataset_id = 1;
+}
+
+// StartSequenceDatasetExportResponse returns the job_id to poll with
+message StartSequenceDatasetExportResponse {
+  string job_id = 1;
+}
+
+// GetSequenceDatasetExportRequest looks up an export job by its job_id.
+message GetSequenceDatasetExportRequest {
+  string job_id = 1;
+}
+
+// GetSequenceDatasetExportResponse reports the current status of an export
+// job. download_url and expires_at are set only when status is COMPLETED;
+// error_message is set only when status is FAILED.
+message GetSequenceDatasetExportResponse {
+  string job_id = 1;
+  SequenceDatasetExportStatus status = 2;
+  // Short-lived (e.g. 1h) signed URL for direct download from backing
+  // storage. Empty unless status is COMPLETED.
+  string download_url = 3;
+  // When download_url stops working. Empty unless status is COMPLETED.
+  google.protobuf.Timestamp expires_at = 4;
+  // Human-readable cause; empty unless status is FAILED.
+  string error_message = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp completed_at = 7;
 }
