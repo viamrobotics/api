@@ -6003,6 +6003,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.transferRegistryItem =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeprecateRegistryItemRequest,
+ *   !proto.viam.app.v1.DeprecateRegistryItemResponse>}
+ */
+const methodDescriptor_AppService_DeprecateRegistryItem = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeprecateRegistryItem',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeprecateRegistryItemRequest,
+  proto.viam.app.v1.DeprecateRegistryItemResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeprecateRegistryItemRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeprecateRegistryItemResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeprecateRegistryItemRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeprecateRegistryItemResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeprecateRegistryItemResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deprecateRegistryItem =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeprecateRegistryItem',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeprecateRegistryItem,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeprecateRegistryItemRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeprecateRegistryItemResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deprecateRegistryItem =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeprecateRegistryItem',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeprecateRegistryItem);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.CreateModuleRequest,
  *   !proto.viam.app.v1.CreateModuleResponse>}
  */
@@ -6241,6 +6302,128 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.listModules =
       request,
       metadata || {},
       methodDescriptor_AppService_ListModules);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeprecateModuleRequest,
+ *   !proto.viam.app.v1.DeprecateModuleResponse>}
+ */
+const methodDescriptor_AppService_DeprecateModule = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeprecateModule',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeprecateModuleRequest,
+  proto.viam.app.v1.DeprecateModuleResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeprecateModuleRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeprecateModuleResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeprecateModuleRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeprecateModuleResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeprecateModuleResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deprecateModule =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeprecateModule',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeprecateModule,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeprecateModuleRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeprecateModuleResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deprecateModule =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeprecateModule',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeprecateModule);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.DeprecateModuleVersionRequest,
+ *   !proto.viam.app.v1.DeprecateModuleVersionResponse>}
+ */
+const methodDescriptor_AppService_DeprecateModuleVersion = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/DeprecateModuleVersion',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.DeprecateModuleVersionRequest,
+  proto.viam.app.v1.DeprecateModuleVersionResponse,
+  /**
+   * @param {!proto.viam.app.v1.DeprecateModuleVersionRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.DeprecateModuleVersionResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.DeprecateModuleVersionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.DeprecateModuleVersionResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.DeprecateModuleVersionResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.deprecateModuleVersion =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeprecateModuleVersion',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeprecateModuleVersion,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.DeprecateModuleVersionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.DeprecateModuleVersionResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.deprecateModuleVersion =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/DeprecateModuleVersion',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_DeprecateModuleVersion);
 };
 
 
