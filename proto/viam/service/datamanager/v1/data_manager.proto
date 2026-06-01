@@ -22,6 +22,11 @@ service DataManagerService {
     option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/do_command"};
   }
 
+  // GetStatus returns the status of the resource
+  rpc GetStatus(common.v1.GetStatusRequest) returns (common.v1.GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/datamanager/{name}/get_status"};
+  }
+
   // UploadBinaryDataToDatasets uploads binary data to specified datasets.
   rpc UploadBinaryDataToDatasets(UploadBinaryDataToDatasetsRequest) returns (UploadBinaryDataToDatasetsResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/datamanager/{name}/upload_binary_data_to_datasets"};

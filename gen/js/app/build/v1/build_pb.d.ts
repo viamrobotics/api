@@ -35,6 +35,16 @@ export class StartBuildRequest extends jspb.Message {
   getWorkdir(): string;
   setWorkdir(value: string): void;
 
+  hasDistro(): boolean;
+  clearDistro(): void;
+  getDistro(): string;
+  setDistro(value: string): void;
+
+  hasBuilder(): boolean;
+  clearBuilder(): void;
+  getBuilder(): string;
+  setBuilder(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartBuildRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StartBuildRequest): StartBuildRequest.AsObject;
@@ -54,12 +64,19 @@ export namespace StartBuildRequest {
     moduleVersion: string,
     token: string,
     workdir: string,
+    distro: string,
+    builder: string,
   }
 }
 
 export class StartBuildResponse extends jspb.Message {
   getBuildId(): string;
   setBuildId(value: string): void;
+
+  hasBuilderFallbackMessage(): boolean;
+  clearBuilderFallbackMessage(): void;
+  getBuilderFallbackMessage(): string;
+  setBuilderFallbackMessage(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartBuildResponse.AsObject;
@@ -74,6 +91,7 @@ export class StartBuildResponse extends jspb.Message {
 export namespace StartBuildResponse {
   export type AsObject = {
     buildId: string,
+    builderFallbackMessage: string,
   }
 }
 
@@ -113,6 +131,11 @@ export class ReloadBuildInfo extends jspb.Message {
   getModuleId(): string;
   setModuleId(value: string): void;
 
+  hasDistro(): boolean;
+  clearDistro(): void;
+  getDistro(): string;
+  setDistro(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ReloadBuildInfo.AsObject;
   static toObject(includeInstance: boolean, msg: ReloadBuildInfo): ReloadBuildInfo.AsObject;
@@ -128,6 +151,7 @@ export namespace ReloadBuildInfo {
     platform: string,
     workdir: string,
     moduleId: string,
+    distro: string,
   }
 }
 
@@ -141,6 +165,11 @@ export class StartReloadBuildRequest extends jspb.Message {
   clearBuildInfo(): void;
   getBuildInfo(): ReloadBuildInfo | undefined;
   setBuildInfo(value?: ReloadBuildInfo): void;
+
+  hasBuilder(): boolean;
+  clearBuilder(): void;
+  getBuilder(): string;
+  setBuilder(value: string): void;
 
   getCloudBuildCase(): StartReloadBuildRequest.CloudBuildCase;
   serializeBinary(): Uint8Array;
@@ -157,6 +186,7 @@ export namespace StartReloadBuildRequest {
   export type AsObject = {
     pb_package?: app_packages_v1_packages_pb.CreatePackageRequest.AsObject,
     buildInfo?: ReloadBuildInfo.AsObject,
+    builder: string,
   }
 
   export enum CloudBuildCase {
@@ -170,6 +200,11 @@ export class StartReloadBuildResponse extends jspb.Message {
   getBuildId(): string;
   setBuildId(value: string): void;
 
+  hasBuilderFallbackMessage(): boolean;
+  clearBuilderFallbackMessage(): void;
+  getBuilderFallbackMessage(): string;
+  setBuilderFallbackMessage(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartReloadBuildResponse.AsObject;
   static toObject(includeInstance: boolean, msg: StartReloadBuildResponse): StartReloadBuildResponse.AsObject;
@@ -181,6 +216,67 @@ export class StartReloadBuildResponse extends jspb.Message {
 }
 
 export namespace StartReloadBuildResponse {
+  export type AsObject = {
+    buildId: string,
+    builderFallbackMessage: string,
+  }
+}
+
+export class StartPackageBuildRequest extends jspb.Message {
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  getPackageVersion(): string;
+  setPackageVersion(value: string): void;
+
+  getModuleVersion(): string;
+  setModuleVersion(value: string): void;
+
+  clearPlatformsList(): void;
+  getPlatformsList(): Array<string>;
+  setPlatformsList(value: Array<string>): void;
+  addPlatforms(value: string, index?: number): string;
+
+  hasDistro(): boolean;
+  clearDistro(): void;
+  getDistro(): string;
+  setDistro(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartPackageBuildRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StartPackageBuildRequest): StartPackageBuildRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartPackageBuildRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartPackageBuildRequest;
+  static deserializeBinaryFromReader(message: StartPackageBuildRequest, reader: jspb.BinaryReader): StartPackageBuildRequest;
+}
+
+export namespace StartPackageBuildRequest {
+  export type AsObject = {
+    moduleId: string,
+    packageVersion: string,
+    moduleVersion: string,
+    platformsList: Array<string>,
+    distro: string,
+  }
+}
+
+export class StartPackageBuildResponse extends jspb.Message {
+  getBuildId(): string;
+  setBuildId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartPackageBuildResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StartPackageBuildResponse): StartPackageBuildResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartPackageBuildResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartPackageBuildResponse;
+  static deserializeBinaryFromReader(message: StartPackageBuildResponse, reader: jspb.BinaryReader): StartPackageBuildResponse;
+}
+
+export namespace StartPackageBuildResponse {
   export type AsObject = {
     buildId: string,
   }

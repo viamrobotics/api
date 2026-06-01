@@ -27,6 +27,8 @@ type ButtonServiceClient interface {
 	Push(ctx context.Context, in *PushRequest, opts ...grpc.CallOption) (*PushResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 }
 
 type buttonServiceClient struct {
@@ -55,6 +57,15 @@ func (c *buttonServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReq
 	return out, nil
 }
 
+func (c *buttonServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.button.v1.ButtonService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ButtonServiceServer is the server API for ButtonService service.
 // All implementations must embed UnimplementedButtonServiceServer
 // for forward compatibility
@@ -63,6 +74,8 @@ type ButtonServiceServer interface {
 	Push(context.Context, *PushRequest) (*PushResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	mustEmbedUnimplementedButtonServiceServer()
 }
 
@@ -75,6 +88,9 @@ func (UnimplementedButtonServiceServer) Push(context.Context, *PushRequest) (*Pu
 }
 func (UnimplementedButtonServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedButtonServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedButtonServiceServer) mustEmbedUnimplementedButtonServiceServer() {}
 
@@ -125,6 +141,24 @@ func _ButtonService_DoCommand_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ButtonService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ButtonServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.button.v1.ButtonService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ButtonServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ButtonService_ServiceDesc is the grpc.ServiceDesc for ButtonService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -139,6 +173,10 @@ var ButtonService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _ButtonService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _ButtonService_GetStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

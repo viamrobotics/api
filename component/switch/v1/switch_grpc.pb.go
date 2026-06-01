@@ -31,6 +31,8 @@ type SwitchServiceClient interface {
 	GetNumberOfPositions(ctx context.Context, in *GetNumberOfPositionsRequest, opts ...grpc.CallOption) (*GetNumberOfPositionsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 }
 
 type switchServiceClient struct {
@@ -77,6 +79,15 @@ func (c *switchServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReq
 	return out, nil
 }
 
+func (c *switchServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.switch.v1.SwitchService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SwitchServiceServer is the server API for SwitchService service.
 // All implementations must embed UnimplementedSwitchServiceServer
 // for forward compatibility
@@ -89,6 +100,8 @@ type SwitchServiceServer interface {
 	GetNumberOfPositions(context.Context, *GetNumberOfPositionsRequest) (*GetNumberOfPositionsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	mustEmbedUnimplementedSwitchServiceServer()
 }
 
@@ -107,6 +120,9 @@ func (UnimplementedSwitchServiceServer) GetNumberOfPositions(context.Context, *G
 }
 func (UnimplementedSwitchServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedSwitchServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedSwitchServiceServer) mustEmbedUnimplementedSwitchServiceServer() {}
 
@@ -193,6 +209,24 @@ func _SwitchService_DoCommand_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SwitchService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SwitchServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.switch.v1.SwitchService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SwitchServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SwitchService_ServiceDesc is the grpc.ServiceDesc for SwitchService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -215,6 +249,10 @@ var SwitchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _SwitchService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _SwitchService_GetStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

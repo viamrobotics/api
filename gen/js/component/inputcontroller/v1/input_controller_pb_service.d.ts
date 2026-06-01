@@ -50,6 +50,15 @@ type InputControllerServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type InputControllerServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof InputControllerService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type InputControllerServiceGetGeometries = {
   readonly methodName: string;
   readonly service: typeof InputControllerService;
@@ -66,6 +75,7 @@ export class InputControllerService {
   static readonly StreamEvents: InputControllerServiceStreamEvents;
   static readonly TriggerEvent: InputControllerServiceTriggerEvent;
   static readonly DoCommand: InputControllerServiceDoCommand;
+  static readonly GetStatus: InputControllerServiceGetStatus;
   static readonly GetGeometries: InputControllerServiceGetGeometries;
 }
 
@@ -137,6 +147,15 @@ export class InputControllerServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,

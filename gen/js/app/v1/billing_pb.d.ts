@@ -29,6 +29,14 @@ export class InvoiceSummary extends jspb.Message {
   getPaidDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setPaidDate(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getLastPaymentFailureReason(): string;
+  setLastPaymentFailureReason(value: string): void;
+
+  hasLastPaymentFailureAt(): boolean;
+  clearLastPaymentFailureAt(): void;
+  getLastPaymentFailureAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastPaymentFailureAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InvoiceSummary.AsObject;
   static toObject(includeInstance: boolean, msg: InvoiceSummary): InvoiceSummary.AsObject;
@@ -47,6 +55,8 @@ export namespace InvoiceSummary {
     status: string,
     dueDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     paidDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    lastPaymentFailureReason: string,
+    lastPaymentFailureAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -598,6 +608,150 @@ export namespace UpdateOrganizationBillingTierResponse {
   }
 }
 
+export class GetLocationBillingOrganizationRequest extends jspb.Message {
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLocationBillingOrganizationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLocationBillingOrganizationRequest): GetLocationBillingOrganizationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetLocationBillingOrganizationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLocationBillingOrganizationRequest;
+  static deserializeBinaryFromReader(message: GetLocationBillingOrganizationRequest, reader: jspb.BinaryReader): GetLocationBillingOrganizationRequest;
+}
+
+export namespace GetLocationBillingOrganizationRequest {
+  export type AsObject = {
+    locationId: string,
+  }
+}
+
+export class GetLocationBillingOrganizationResponse extends jspb.Message {
+  getBillingOrganizationId(): string;
+  setBillingOrganizationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetLocationBillingOrganizationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetLocationBillingOrganizationResponse): GetLocationBillingOrganizationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetLocationBillingOrganizationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetLocationBillingOrganizationResponse;
+  static deserializeBinaryFromReader(message: GetLocationBillingOrganizationResponse, reader: jspb.BinaryReader): GetLocationBillingOrganizationResponse;
+}
+
+export namespace GetLocationBillingOrganizationResponse {
+  export type AsObject = {
+    billingOrganizationId: string,
+  }
+}
+
+export class UpdateLocationBillingOrganizationRequest extends jspb.Message {
+  getLocationId(): string;
+  setLocationId(value: string): void;
+
+  getBillingOrganizationId(): string;
+  setBillingOrganizationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateLocationBillingOrganizationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateLocationBillingOrganizationRequest): UpdateLocationBillingOrganizationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateLocationBillingOrganizationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateLocationBillingOrganizationRequest;
+  static deserializeBinaryFromReader(message: UpdateLocationBillingOrganizationRequest, reader: jspb.BinaryReader): UpdateLocationBillingOrganizationRequest;
+}
+
+export namespace UpdateLocationBillingOrganizationRequest {
+  export type AsObject = {
+    locationId: string,
+    billingOrganizationId: string,
+  }
+}
+
+export class UpdateLocationBillingOrganizationResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateLocationBillingOrganizationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateLocationBillingOrganizationResponse): UpdateLocationBillingOrganizationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateLocationBillingOrganizationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateLocationBillingOrganizationResponse;
+  static deserializeBinaryFromReader(message: UpdateLocationBillingOrganizationResponse, reader: jspb.BinaryReader): UpdateLocationBillingOrganizationResponse;
+}
+
+export namespace UpdateLocationBillingOrganizationResponse {
+  export type AsObject = {
+  }
+}
+
+export class ChargeOrganizationRequest extends jspb.Message {
+  getOrgIdToCharge(): string;
+  setOrgIdToCharge(value: string): void;
+
+  hasDescription(): boolean;
+  clearDescription(): void;
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  getSubtotal(): number;
+  setSubtotal(value: number): void;
+
+  getTax(): number;
+  setTax(value: number): void;
+
+  hasOrgIdForBranding(): boolean;
+  clearOrgIdForBranding(): void;
+  getOrgIdForBranding(): string;
+  setOrgIdForBranding(value: string): void;
+
+  getDisableConfirmationEmail(): boolean;
+  setDisableConfirmationEmail(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChargeOrganizationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ChargeOrganizationRequest): ChargeOrganizationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChargeOrganizationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChargeOrganizationRequest;
+  static deserializeBinaryFromReader(message: ChargeOrganizationRequest, reader: jspb.BinaryReader): ChargeOrganizationRequest;
+}
+
+export namespace ChargeOrganizationRequest {
+  export type AsObject = {
+    orgIdToCharge: string,
+    description: string,
+    subtotal: number,
+    tax: number,
+    orgIdForBranding: string,
+    disableConfirmationEmail: boolean,
+  }
+}
+
+export class ChargeOrganizationResponse extends jspb.Message {
+  getInvoiceId(): string;
+  setInvoiceId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChargeOrganizationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ChargeOrganizationResponse): ChargeOrganizationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChargeOrganizationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChargeOrganizationResponse;
+  static deserializeBinaryFromReader(message: ChargeOrganizationResponse, reader: jspb.BinaryReader): ChargeOrganizationResponse;
+}
+
+export namespace ChargeOrganizationResponse {
+  export type AsObject = {
+    invoiceId: string,
+  }
+}
+
 export class CreateInvoiceAndChargeImmediatelyRequest extends jspb.Message {
   getOrgIdToCharge(): string;
   setOrgIdToCharge(value: string): void;
@@ -692,6 +846,8 @@ export interface UsageCostTypeMap {
   USAGE_COST_TYPE_TABULAR_DATA_DATABASE_CLOUD_STORAGE: 22;
   USAGE_COST_TYPE_TABULAR_DATA_DATABASE_COMPUTE: 23;
   USAGE_COST_TYPE_BINARY_DATA_CROSS_REGION_EGRESS: 24;
+  USAGE_COST_TYPE_PIPELINE_SINK_CLOUD_STORAGE: 25;
+  USAGE_COST_TYPE_PIPELINE_SINK_COMPUTE: 26;
 }
 
 export const UsageCostType: UsageCostTypeMap;

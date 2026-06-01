@@ -226,6 +226,15 @@ RobotService.TransformPCD = {
   responseType: robot_v1_robot_pb.TransformPCDResponse
 };
 
+RobotService.SendTraces = {
+  methodName: "SendTraces",
+  service: RobotService,
+  requestStream: false,
+  responseStream: false,
+  requestType: robot_v1_robot_pb.SendTracesRequest,
+  responseType: robot_v1_robot_pb.SendTracesResponse
+};
+
 exports.RobotService = RobotService;
 
 function RobotServiceClient(serviceHost, options) {
@@ -973,6 +982,37 @@ RobotServiceClient.prototype.transformPCD = function transformPCD(requestMessage
     callback = arguments[1];
   }
   var client = grpc.unary(RobotService.TransformPCD, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+RobotServiceClient.prototype.sendTraces = function sendTraces(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(RobotService.SendTraces, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

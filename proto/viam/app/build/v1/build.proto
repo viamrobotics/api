@@ -36,6 +36,9 @@ service BuildService {
   rpc UnlinkOrg(UnlinkOrgRequest) returns (UnlinkOrgResponse);
   // upload the local dev environment and build a module for hot reloading
   rpc StartReloadBuild(stream StartReloadBuildRequest) returns (StartReloadBuildResponse);
+
+  // Start a build where the source code is hosted by Viam
+  rpc StartPackageBuild(StartPackageBuildRequest) returns (StartPackageBuildResponse);
 }
 
 message StartBuildRequest {
@@ -54,10 +57,18 @@ message StartBuildRequest {
   optional string token = 6;
   // optional working directory. defaults to repo root.
   optional string workdir = 7;
+  // optional distro for linux platforms.
+  // must be bookworm for cpp module builds.
+  optional string distro = 8;
+  // optional target builder. defaults to 'default'.
+  // use 'viam-cloudbuild-test' to target the new Viam build service (org must be whitelisted).
+  optional string builder = 9;
 }
 
 message StartBuildResponse {
   string build_id = 1;
+  // present when the requested builder was unavailable for this org and the default builder was used instead.
+  optional string builder_fallback_message = 2;
 }
 
 message GetLogsRequest {
@@ -72,6 +83,9 @@ message ReloadBuildInfo {
   optional string workdir = 2;
   // org ID for the module
   string module_id = 3;
+  // optional distro for linux platforms.
+  // must be bookworm for cpp module builds.
+  optional string distro = 4;
 }
 
 message StartReloadBuildRequest {
@@ -79,9 +93,32 @@ message StartReloadBuildRequest {
     packages.v1.CreatePackageRequest package = 1;
     ReloadBuildInfo build_info = 2;
   }
+  // optional target builder. defaults to 'default'.
+  // use 'viam-cloudbuild-test' to target the new Viam build service (org must be whitelisted).
+  optional string builder = 3;
 }
 
 message StartReloadBuildResponse {
+  string build_id = 1;
+  // present when the requested builder was unavailable for this org and the default builder was used instead.
+  optional string builder_fallback_message = 2;
+}
+
+message StartPackageBuildRequest {
+  // module_id to build for
+  string module_id = 1;
+  // the version of source code to build for
+  string package_version = 2;
+  // version of the module to publish to the registry. must be valid semver2.0 string (ex: 1.2.3-rc0)
+  string module_version = 3;
+  // specify the platforms to build for (ex: linux/arm64)
+  repeated string platforms = 4;
+  // optional distro for linux platforms.
+  // must be bookworm for cpp module builds.
+  optional string distro = 5;
+}
+
+message StartPackageBuildResponse {
   string build_id = 1;
 }
 

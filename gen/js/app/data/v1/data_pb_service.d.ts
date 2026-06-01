@@ -211,6 +211,24 @@ type DataServiceRemoveBinaryDataFromDatasetByIDs = {
   readonly responseType: typeof app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse;
 };
 
+type DataServiceAddSequencesToDataset = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.AddSequencesToDatasetRequest;
+  readonly responseType: typeof app_data_v1_data_pb.AddSequencesToDatasetResponse;
+};
+
+type DataServiceRemoveSequencesFromDataset = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.RemoveSequencesFromDatasetRequest;
+  readonly responseType: typeof app_data_v1_data_pb.RemoveSequencesFromDatasetResponse;
+};
+
 type DataServiceCreateIndex = {
   readonly methodName: string;
   readonly service: typeof DataService;
@@ -283,6 +301,69 @@ type DataServiceListSavedQueries = {
   readonly responseType: typeof app_data_v1_data_pb.ListSavedQueriesResponse;
 };
 
+type DataServiceCreateBinaryDataSignedURL = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.CreateBinaryDataSignedURLRequest;
+  readonly responseType: typeof app_data_v1_data_pb.CreateBinaryDataSignedURLResponse;
+};
+
+type DataServiceCreateSequence = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.CreateSequenceRequest;
+  readonly responseType: typeof app_data_v1_data_pb.CreateSequenceResponse;
+};
+
+type DataServiceGetSequence = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.GetSequenceRequest;
+  readonly responseType: typeof app_data_v1_data_pb.GetSequenceResponse;
+};
+
+type DataServiceUpdateSequence = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.UpdateSequenceRequest;
+  readonly responseType: typeof app_data_v1_data_pb.UpdateSequenceResponse;
+};
+
+type DataServiceDeleteSequence = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.DeleteSequenceRequest;
+  readonly responseType: typeof app_data_v1_data_pb.DeleteSequenceResponse;
+};
+
+type DataServiceListSequences = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.ListSequencesRequest;
+  readonly responseType: typeof app_data_v1_data_pb.ListSequencesResponse;
+};
+
+type DataServiceSequencesByDatasetID = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.SequencesByDatasetIDRequest;
+  readonly responseType: typeof app_data_v1_data_pb.SequencesByDatasetIDResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -308,6 +389,8 @@ export class DataService {
   static readonly ConfigureDatabaseUser: DataServiceConfigureDatabaseUser;
   static readonly AddBinaryDataToDatasetByIDs: DataServiceAddBinaryDataToDatasetByIDs;
   static readonly RemoveBinaryDataFromDatasetByIDs: DataServiceRemoveBinaryDataFromDatasetByIDs;
+  static readonly AddSequencesToDataset: DataServiceAddSequencesToDataset;
+  static readonly RemoveSequencesFromDataset: DataServiceRemoveSequencesFromDataset;
   static readonly CreateIndex: DataServiceCreateIndex;
   static readonly ListIndexes: DataServiceListIndexes;
   static readonly DeleteIndex: DataServiceDeleteIndex;
@@ -316,6 +399,13 @@ export class DataService {
   static readonly GetSavedQuery: DataServiceGetSavedQuery;
   static readonly DeleteSavedQuery: DataServiceDeleteSavedQuery;
   static readonly ListSavedQueries: DataServiceListSavedQueries;
+  static readonly CreateBinaryDataSignedURL: DataServiceCreateBinaryDataSignedURL;
+  static readonly CreateSequence: DataServiceCreateSequence;
+  static readonly GetSequence: DataServiceGetSequence;
+  static readonly UpdateSequence: DataServiceUpdateSequence;
+  static readonly DeleteSequence: DataServiceDeleteSequence;
+  static readonly ListSequences: DataServiceListSequences;
+  static readonly SequencesByDatasetID: DataServiceSequencesByDatasetID;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -549,6 +639,24 @@ export class DataServiceClient {
     requestMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse|null) => void
   ): UnaryResponse;
+  addSequencesToDataset(
+    requestMessage: app_data_v1_data_pb.AddSequencesToDatasetRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddSequencesToDatasetResponse|null) => void
+  ): UnaryResponse;
+  addSequencesToDataset(
+    requestMessage: app_data_v1_data_pb.AddSequencesToDatasetRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.AddSequencesToDatasetResponse|null) => void
+  ): UnaryResponse;
+  removeSequencesFromDataset(
+    requestMessage: app_data_v1_data_pb.RemoveSequencesFromDatasetRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveSequencesFromDatasetResponse|null) => void
+  ): UnaryResponse;
+  removeSequencesFromDataset(
+    requestMessage: app_data_v1_data_pb.RemoveSequencesFromDatasetRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.RemoveSequencesFromDatasetResponse|null) => void
+  ): UnaryResponse;
   createIndex(
     requestMessage: app_data_v1_data_pb.CreateIndexRequest,
     metadata: grpc.Metadata,
@@ -620,6 +728,69 @@ export class DataServiceClient {
   listSavedQueries(
     requestMessage: app_data_v1_data_pb.ListSavedQueriesRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListSavedQueriesResponse|null) => void
+  ): UnaryResponse;
+  createBinaryDataSignedURL(
+    requestMessage: app_data_v1_data_pb.CreateBinaryDataSignedURLRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateBinaryDataSignedURLResponse|null) => void
+  ): UnaryResponse;
+  createBinaryDataSignedURL(
+    requestMessage: app_data_v1_data_pb.CreateBinaryDataSignedURLRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateBinaryDataSignedURLResponse|null) => void
+  ): UnaryResponse;
+  createSequence(
+    requestMessage: app_data_v1_data_pb.CreateSequenceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateSequenceResponse|null) => void
+  ): UnaryResponse;
+  createSequence(
+    requestMessage: app_data_v1_data_pb.CreateSequenceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.CreateSequenceResponse|null) => void
+  ): UnaryResponse;
+  getSequence(
+    requestMessage: app_data_v1_data_pb.GetSequenceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetSequenceResponse|null) => void
+  ): UnaryResponse;
+  getSequence(
+    requestMessage: app_data_v1_data_pb.GetSequenceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetSequenceResponse|null) => void
+  ): UnaryResponse;
+  updateSequence(
+    requestMessage: app_data_v1_data_pb.UpdateSequenceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.UpdateSequenceResponse|null) => void
+  ): UnaryResponse;
+  updateSequence(
+    requestMessage: app_data_v1_data_pb.UpdateSequenceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.UpdateSequenceResponse|null) => void
+  ): UnaryResponse;
+  deleteSequence(
+    requestMessage: app_data_v1_data_pb.DeleteSequenceRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteSequenceResponse|null) => void
+  ): UnaryResponse;
+  deleteSequence(
+    requestMessage: app_data_v1_data_pb.DeleteSequenceRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.DeleteSequenceResponse|null) => void
+  ): UnaryResponse;
+  listSequences(
+    requestMessage: app_data_v1_data_pb.ListSequencesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListSequencesResponse|null) => void
+  ): UnaryResponse;
+  listSequences(
+    requestMessage: app_data_v1_data_pb.ListSequencesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.ListSequencesResponse|null) => void
+  ): UnaryResponse;
+  sequencesByDatasetID(
+    requestMessage: app_data_v1_data_pb.SequencesByDatasetIDRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.SequencesByDatasetIDResponse|null) => void
+  ): UnaryResponse;
+  sequencesByDatasetID(
+    requestMessage: app_data_v1_data_pb.SequencesByDatasetIDRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.SequencesByDatasetIDResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -25,10 +25,17 @@ const _ = grpc.SupportPackageIsVersion7
 type AudioOutServiceClient interface {
 	// Play plays audio from the audioout component.
 	Play(ctx context.Context, in *PlayRequest, opts ...grpc.CallOption) (*PlayResponse, error)
+	// PlayStream streams audio chunks to the audioout component for playback.
+	// The first message on the stream must be a PlayStreamInit containing the
+	// component name and AudioInfo describing the audio format; subsequent
+	// messages must be PlayStreamChunk payloads.
+	PlayStream(ctx context.Context, opts ...grpc.CallOption) (AudioOutService_PlayStreamClient, error)
 	// GetProperties returns the properties of the audioout.
 	GetProperties(ctx context.Context, in *v1.GetPropertiesRequest, opts ...grpc.CallOption) (*v1.GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
@@ -50,6 +57,40 @@ func (c *audioOutServiceClient) Play(ctx context.Context, in *PlayRequest, opts 
 	return out, nil
 }
 
+func (c *audioOutServiceClient) PlayStream(ctx context.Context, opts ...grpc.CallOption) (AudioOutService_PlayStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AudioOutService_ServiceDesc.Streams[0], "/viam.component.audioout.v1.AudioOutService/PlayStream", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &audioOutServicePlayStreamClient{stream}
+	return x, nil
+}
+
+type AudioOutService_PlayStreamClient interface {
+	Send(*PlayStreamRequest) error
+	CloseAndRecv() (*PlayStreamResponse, error)
+	grpc.ClientStream
+}
+
+type audioOutServicePlayStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *audioOutServicePlayStreamClient) Send(m *PlayStreamRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *audioOutServicePlayStreamClient) CloseAndRecv() (*PlayStreamResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(PlayStreamResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *audioOutServiceClient) GetProperties(ctx context.Context, in *v1.GetPropertiesRequest, opts ...grpc.CallOption) (*v1.GetPropertiesResponse, error) {
 	out := new(v1.GetPropertiesResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.audioout.v1.AudioOutService/GetProperties", in, out, opts...)
@@ -62,6 +103,15 @@ func (c *audioOutServiceClient) GetProperties(ctx context.Context, in *v1.GetPro
 func (c *audioOutServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.audioout.v1.AudioOutService/DoCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *audioOutServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.audioout.v1.AudioOutService/GetStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,10 +133,17 @@ func (c *audioOutServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeo
 type AudioOutServiceServer interface {
 	// Play plays audio from the audioout component.
 	Play(context.Context, *PlayRequest) (*PlayResponse, error)
+	// PlayStream streams audio chunks to the audioout component for playback.
+	// The first message on the stream must be a PlayStreamInit containing the
+	// component name and AudioInfo describing the audio format; subsequent
+	// messages must be PlayStreamChunk payloads.
+	PlayStream(AudioOutService_PlayStreamServer) error
 	// GetProperties returns the properties of the audioout.
 	GetProperties(context.Context, *v1.GetPropertiesRequest) (*v1.GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedAudioOutServiceServer()
@@ -99,11 +156,17 @@ type UnimplementedAudioOutServiceServer struct {
 func (UnimplementedAudioOutServiceServer) Play(context.Context, *PlayRequest) (*PlayResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Play not implemented")
 }
+func (UnimplementedAudioOutServiceServer) PlayStream(AudioOutService_PlayStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method PlayStream not implemented")
+}
 func (UnimplementedAudioOutServiceServer) GetProperties(context.Context, *v1.GetPropertiesRequest) (*v1.GetPropertiesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProperties not implemented")
 }
 func (UnimplementedAudioOutServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedAudioOutServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedAudioOutServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
@@ -139,6 +202,32 @@ func _AudioOutService_Play_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AudioOutService_PlayStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(AudioOutServiceServer).PlayStream(&audioOutServicePlayStreamServer{stream})
+}
+
+type AudioOutService_PlayStreamServer interface {
+	SendAndClose(*PlayStreamResponse) error
+	Recv() (*PlayStreamRequest, error)
+	grpc.ServerStream
+}
+
+type audioOutServicePlayStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *audioOutServicePlayStreamServer) SendAndClose(m *PlayStreamResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *audioOutServicePlayStreamServer) Recv() (*PlayStreamRequest, error) {
+	m := new(PlayStreamRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func _AudioOutService_GetProperties_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.GetPropertiesRequest)
 	if err := dec(in); err != nil {
@@ -171,6 +260,24 @@ func _AudioOutService_DoCommand_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AudioOutServiceServer).DoCommand(ctx, req.(*v1.DoCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AudioOutService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AudioOutServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.audioout.v1.AudioOutService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AudioOutServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -213,10 +320,20 @@ var AudioOutService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AudioOutService_DoCommand_Handler,
 		},
 		{
+			MethodName: "GetStatus",
+			Handler:    _AudioOutService_GetStatus_Handler,
+		},
+		{
 			MethodName: "GetGeometries",
 			Handler:    _AudioOutService_GetGeometries_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "PlayStream",
+			Handler:       _AudioOutService_PlayStream_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "component/audioout/v1/audioout.proto",
 }

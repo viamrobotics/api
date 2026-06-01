@@ -217,6 +217,24 @@ DataService.RemoveBinaryDataFromDatasetByIDs = {
   responseType: app_data_v1_data_pb.RemoveBinaryDataFromDatasetByIDsResponse
 };
 
+DataService.AddSequencesToDataset = {
+  methodName: "AddSequencesToDataset",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.AddSequencesToDatasetRequest,
+  responseType: app_data_v1_data_pb.AddSequencesToDatasetResponse
+};
+
+DataService.RemoveSequencesFromDataset = {
+  methodName: "RemoveSequencesFromDataset",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.RemoveSequencesFromDatasetRequest,
+  responseType: app_data_v1_data_pb.RemoveSequencesFromDatasetResponse
+};
+
 DataService.CreateIndex = {
   methodName: "CreateIndex",
   service: DataService,
@@ -287,6 +305,69 @@ DataService.ListSavedQueries = {
   responseStream: false,
   requestType: app_data_v1_data_pb.ListSavedQueriesRequest,
   responseType: app_data_v1_data_pb.ListSavedQueriesResponse
+};
+
+DataService.CreateBinaryDataSignedURL = {
+  methodName: "CreateBinaryDataSignedURL",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.CreateBinaryDataSignedURLRequest,
+  responseType: app_data_v1_data_pb.CreateBinaryDataSignedURLResponse
+};
+
+DataService.CreateSequence = {
+  methodName: "CreateSequence",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.CreateSequenceRequest,
+  responseType: app_data_v1_data_pb.CreateSequenceResponse
+};
+
+DataService.GetSequence = {
+  methodName: "GetSequence",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.GetSequenceRequest,
+  responseType: app_data_v1_data_pb.GetSequenceResponse
+};
+
+DataService.UpdateSequence = {
+  methodName: "UpdateSequence",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.UpdateSequenceRequest,
+  responseType: app_data_v1_data_pb.UpdateSequenceResponse
+};
+
+DataService.DeleteSequence = {
+  methodName: "DeleteSequence",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.DeleteSequenceRequest,
+  responseType: app_data_v1_data_pb.DeleteSequenceResponse
+};
+
+DataService.ListSequences = {
+  methodName: "ListSequences",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.ListSequencesRequest,
+  responseType: app_data_v1_data_pb.ListSequencesResponse
+};
+
+DataService.SequencesByDatasetID = {
+  methodName: "SequencesByDatasetID",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.SequencesByDatasetIDRequest,
+  responseType: app_data_v1_data_pb.SequencesByDatasetIDResponse
 };
 
 exports.DataService = DataService;
@@ -1017,6 +1098,68 @@ DataServiceClient.prototype.removeBinaryDataFromDatasetByIDs = function removeBi
   };
 };
 
+DataServiceClient.prototype.addSequencesToDataset = function addSequencesToDataset(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.AddSequencesToDataset, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.removeSequencesFromDataset = function removeSequencesFromDataset(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.RemoveSequencesFromDataset, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
 DataServiceClient.prototype.createIndex = function createIndex(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
@@ -1239,6 +1382,223 @@ DataServiceClient.prototype.listSavedQueries = function listSavedQueries(request
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.ListSavedQueries, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.createBinaryDataSignedURL = function createBinaryDataSignedURL(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.CreateBinaryDataSignedURL, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.createSequence = function createSequence(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.CreateSequence, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.getSequence = function getSequence(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.GetSequence, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.updateSequence = function updateSequence(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.UpdateSequence, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.deleteSequence = function deleteSequence(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.DeleteSequence, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.listSequences = function listSequences(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.ListSequences, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.sequencesByDatasetID = function sequencesByDatasetID(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.SequencesByDatasetID, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

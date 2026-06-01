@@ -29,6 +29,8 @@ var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/durat
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
+
+var opentelemetry_proto_trace_v1_trace_pb = require('../../opentelemetry/proto/trace/v1/trace_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.robot = {};
@@ -1481,6 +1483,67 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.transformPCD =
       request,
       metadata || {},
       methodDescriptor_RobotService_TransformPCD);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.SendTracesRequest,
+ *   !proto.viam.robot.v1.SendTracesResponse>}
+ */
+const methodDescriptor_RobotService_SendTraces = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/SendTraces',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.SendTracesRequest,
+  proto.viam.robot.v1.SendTracesResponse,
+  /**
+   * @param {!proto.viam.robot.v1.SendTracesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.SendTracesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.SendTracesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.SendTracesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.SendTracesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.sendTraces =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/SendTraces',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_SendTraces,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.SendTracesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.SendTracesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.sendTraces =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/SendTraces',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_SendTraces);
 };
 
 

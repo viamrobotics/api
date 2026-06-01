@@ -22,6 +22,8 @@ grpc.web = require('grpc-web');
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js')
 
+var google_protobuf_field_mask_pb = require('google-protobuf/google/protobuf/field_mask_pb.js')
+
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
@@ -1484,6 +1486,128 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeBinaryDataFromDa
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.AddSequencesToDatasetRequest,
+ *   !proto.viam.app.data.v1.AddSequencesToDatasetResponse>}
+ */
+const methodDescriptor_DataService_AddSequencesToDataset = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/AddSequencesToDataset',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.AddSequencesToDatasetRequest,
+  proto.viam.app.data.v1.AddSequencesToDatasetResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.AddSequencesToDatasetRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.AddSequencesToDatasetResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.AddSequencesToDatasetRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.AddSequencesToDatasetResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.AddSequencesToDatasetResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.addSequencesToDataset =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/AddSequencesToDataset',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_AddSequencesToDataset,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.AddSequencesToDatasetRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.AddSequencesToDatasetResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.addSequencesToDataset =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/AddSequencesToDataset',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_AddSequencesToDataset);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.RemoveSequencesFromDatasetRequest,
+ *   !proto.viam.app.data.v1.RemoveSequencesFromDatasetResponse>}
+ */
+const methodDescriptor_DataService_RemoveSequencesFromDataset = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/RemoveSequencesFromDataset',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.RemoveSequencesFromDatasetRequest,
+  proto.viam.app.data.v1.RemoveSequencesFromDatasetResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.RemoveSequencesFromDatasetRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.RemoveSequencesFromDatasetResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.RemoveSequencesFromDatasetRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.RemoveSequencesFromDatasetResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.RemoveSequencesFromDatasetResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.removeSequencesFromDataset =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/RemoveSequencesFromDataset',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_RemoveSequencesFromDataset,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.RemoveSequencesFromDatasetRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.RemoveSequencesFromDatasetResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.removeSequencesFromDataset =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/RemoveSequencesFromDataset',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_RemoveSequencesFromDataset);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.data.v1.CreateIndexRequest,
  *   !proto.viam.app.data.v1.CreateIndexResponse>}
  */
@@ -1966,6 +2090,433 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.listSavedQueries =
       request,
       metadata || {},
       methodDescriptor_DataService_ListSavedQueries);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.CreateBinaryDataSignedURLRequest,
+ *   !proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse>}
+ */
+const methodDescriptor_DataService_CreateBinaryDataSignedURL = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/CreateBinaryDataSignedURL',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.CreateBinaryDataSignedURLRequest,
+  proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.CreateBinaryDataSignedURLRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateBinaryDataSignedURLRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.createBinaryDataSignedURL =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateBinaryDataSignedURL',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateBinaryDataSignedURL,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateBinaryDataSignedURLRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.CreateBinaryDataSignedURLResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.createBinaryDataSignedURL =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateBinaryDataSignedURL',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateBinaryDataSignedURL);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.CreateSequenceRequest,
+ *   !proto.viam.app.data.v1.CreateSequenceResponse>}
+ */
+const methodDescriptor_DataService_CreateSequence = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/CreateSequence',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.CreateSequenceRequest,
+  proto.viam.app.data.v1.CreateSequenceResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.CreateSequenceRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.CreateSequenceResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateSequenceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.CreateSequenceResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.CreateSequenceResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.createSequence =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateSequence',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateSequence,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.CreateSequenceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.CreateSequenceResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.createSequence =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/CreateSequence',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_CreateSequence);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.GetSequenceRequest,
+ *   !proto.viam.app.data.v1.GetSequenceResponse>}
+ */
+const methodDescriptor_DataService_GetSequence = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/GetSequence',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.GetSequenceRequest,
+  proto.viam.app.data.v1.GetSequenceResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.GetSequenceRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.GetSequenceResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetSequenceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.GetSequenceResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.GetSequenceResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.getSequence =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetSequence',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetSequence,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetSequenceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.GetSequenceResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.getSequence =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetSequence',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetSequence);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.UpdateSequenceRequest,
+ *   !proto.viam.app.data.v1.UpdateSequenceResponse>}
+ */
+const methodDescriptor_DataService_UpdateSequence = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/UpdateSequence',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.UpdateSequenceRequest,
+  proto.viam.app.data.v1.UpdateSequenceResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.UpdateSequenceRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.UpdateSequenceResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateSequenceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.UpdateSequenceResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.UpdateSequenceResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.updateSequence =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateSequence',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateSequence,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.UpdateSequenceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.UpdateSequenceResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.updateSequence =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/UpdateSequence',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_UpdateSequence);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.DeleteSequenceRequest,
+ *   !proto.viam.app.data.v1.DeleteSequenceResponse>}
+ */
+const methodDescriptor_DataService_DeleteSequence = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/DeleteSequence',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.DeleteSequenceRequest,
+  proto.viam.app.data.v1.DeleteSequenceResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.DeleteSequenceRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.DeleteSequenceResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteSequenceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.DeleteSequenceResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.DeleteSequenceResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.deleteSequence =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteSequence',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteSequence,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.DeleteSequenceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.DeleteSequenceResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.deleteSequence =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/DeleteSequence',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_DeleteSequence);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.ListSequencesRequest,
+ *   !proto.viam.app.data.v1.ListSequencesResponse>}
+ */
+const methodDescriptor_DataService_ListSequences = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/ListSequences',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.ListSequencesRequest,
+  proto.viam.app.data.v1.ListSequencesResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.ListSequencesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.ListSequencesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListSequencesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.ListSequencesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.ListSequencesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.listSequences =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListSequences',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListSequences,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.ListSequencesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.ListSequencesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.listSequences =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/ListSequences',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_ListSequences);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.SequencesByDatasetIDRequest,
+ *   !proto.viam.app.data.v1.SequencesByDatasetIDResponse>}
+ */
+const methodDescriptor_DataService_SequencesByDatasetID = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/SequencesByDatasetID',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.SequencesByDatasetIDRequest,
+  proto.viam.app.data.v1.SequencesByDatasetIDResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.SequencesByDatasetIDRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.SequencesByDatasetIDResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.SequencesByDatasetIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.SequencesByDatasetIDResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.SequencesByDatasetIDResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.sequencesByDatasetID =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/SequencesByDatasetID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_SequencesByDatasetID,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.SequencesByDatasetIDRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.SequencesByDatasetIDResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.sequencesByDatasetID =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/SequencesByDatasetID',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_SequencesByDatasetID);
 };
 
 

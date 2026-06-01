@@ -36,6 +36,8 @@ type NavigationServiceClient interface {
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 }
 
 type navigationServiceClient struct {
@@ -136,6 +138,15 @@ func (c *navigationServiceClient) DoCommand(ctx context.Context, in *v1.DoComman
 	return out, nil
 }
 
+func (c *navigationServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NavigationServiceServer is the server API for NavigationService service.
 // All implementations must embed UnimplementedNavigationServiceServer
 // for forward compatibility
@@ -153,6 +164,8 @@ type NavigationServiceServer interface {
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	mustEmbedUnimplementedNavigationServiceServer()
 }
 
@@ -189,6 +202,9 @@ func (UnimplementedNavigationServiceServer) GetProperties(context.Context, *GetP
 }
 func (UnimplementedNavigationServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedNavigationServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedNavigationServiceServer) mustEmbedUnimplementedNavigationServiceServer() {}
 
@@ -383,6 +399,24 @@ func _NavigationService_DoCommand_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NavigationService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NavigationService_ServiceDesc is the grpc.ServiceDesc for NavigationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -429,6 +463,10 @@ var NavigationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _NavigationService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _NavigationService_GetStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

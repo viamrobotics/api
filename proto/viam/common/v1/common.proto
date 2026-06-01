@@ -53,10 +53,21 @@ message Orientation {
   double theta = 4;
 }
 
+message PoseCloud {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+  double o_x = 4;
+  double o_y = 5;
+  double o_z = 6;
+  double theta = 7;
+}
+
 // PoseInFrame contains a pose and the reference frame in which it was observed
 message PoseInFrame {
   string reference_frame = 1;
   Pose pose = 2;
+  optional PoseCloud goal_cloud = 3;
 }
 
 message Vector3 {
@@ -195,6 +206,16 @@ message DoCommandResponse {
   google.protobuf.Struct result = 1;
 }
 
+// GetStatusRequest represents a generic GetStatus input
+message GetStatusRequest {
+  string name = 1;
+}
+
+// GetStatusResponse represents a generic GetStatus output
+message GetStatusResponse {
+  google.protobuf.Struct result = 1;
+}
+
 message GetKinematicsRequest {
   // The component name
   string name = 1;
@@ -214,6 +235,8 @@ message GetKinematicsResponse {
   KinematicsFileFormat format = 1;
   // The byte contents of the file
   bytes kinematics_data = 2;
+  // Map of URDF mesh file paths to mesh data
+  map<string, Mesh> meshes_by_urdf_filepath = 3;
 }
 
 message GetGeometriesRequest {
@@ -238,6 +261,11 @@ message Get3DModelsRequest {
 message Get3DModelsResponse {
   // the 3D models associated with the component
   map<string, Mesh> models = 1;
+}
+
+message GetWorldPoseResponse {
+  // Pose of the component in the world reference frame
+  Pose pose = 1;
 }
 
 message GetReadingsRequest {

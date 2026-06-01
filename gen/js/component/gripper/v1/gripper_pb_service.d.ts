@@ -50,6 +50,24 @@ type GripperServiceIsHoldingSomething = {
   readonly responseType: typeof component_gripper_v1_gripper_pb.IsHoldingSomethingResponse;
 };
 
+type GripperServiceGetCurrentInputs = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_gripper_v1_gripper_pb.GetCurrentInputsRequest;
+  readonly responseType: typeof component_gripper_v1_gripper_pb.GetCurrentInputsResponse;
+};
+
+type GripperServiceGoToInputs = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_gripper_v1_gripper_pb.GoToInputsRequest;
+  readonly responseType: typeof component_gripper_v1_gripper_pb.GoToInputsResponse;
+};
+
 type GripperServiceDoCommand = {
   readonly methodName: string;
   readonly service: typeof GripperService;
@@ -57,6 +75,15 @@ type GripperServiceDoCommand = {
   readonly responseStream: false;
   readonly requestType: typeof common_v1_common_pb.DoCommandRequest;
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
+};
+
+type GripperServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
 };
 
 type GripperServiceGetGeometries = {
@@ -84,7 +111,10 @@ export class GripperService {
   static readonly Stop: GripperServiceStop;
   static readonly IsMoving: GripperServiceIsMoving;
   static readonly IsHoldingSomething: GripperServiceIsHoldingSomething;
+  static readonly GetCurrentInputs: GripperServiceGetCurrentInputs;
+  static readonly GoToInputs: GripperServiceGoToInputs;
   static readonly DoCommand: GripperServiceDoCommand;
+  static readonly GetStatus: GripperServiceGetStatus;
   static readonly GetGeometries: GripperServiceGetGeometries;
   static readonly GetKinematics: GripperServiceGetKinematics;
 }
@@ -166,6 +196,24 @@ export class GripperServiceClient {
     requestMessage: component_gripper_v1_gripper_pb.IsHoldingSomethingRequest,
     callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.IsHoldingSomethingResponse|null) => void
   ): UnaryResponse;
+  getCurrentInputs(
+    requestMessage: component_gripper_v1_gripper_pb.GetCurrentInputsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.GetCurrentInputsResponse|null) => void
+  ): UnaryResponse;
+  getCurrentInputs(
+    requestMessage: component_gripper_v1_gripper_pb.GetCurrentInputsRequest,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.GetCurrentInputsResponse|null) => void
+  ): UnaryResponse;
+  goToInputs(
+    requestMessage: component_gripper_v1_gripper_pb.GoToInputsRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.GoToInputsResponse|null) => void
+  ): UnaryResponse;
+  goToInputs(
+    requestMessage: component_gripper_v1_gripper_pb.GoToInputsRequest,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.GoToInputsResponse|null) => void
+  ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     metadata: grpc.Metadata,
@@ -174,6 +222,15 @@ export class GripperServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,

@@ -21,6 +21,16 @@ export class DeviceAgentConfigRequest extends jspb.Message {
   getVersionInfo(): VersionInfo | undefined;
   setVersionInfo(value?: VersionInfo): void;
 
+  hasAgentUptime(): boolean;
+  clearAgentUptime(): void;
+  getAgentUptime(): google_protobuf_duration_pb.Duration | undefined;
+  setAgentUptime(value?: google_protobuf_duration_pb.Duration): void;
+
+  hasViamServerUptime(): boolean;
+  clearViamServerUptime(): void;
+  getViamServerUptime(): google_protobuf_duration_pb.Duration | undefined;
+  setViamServerUptime(value?: google_protobuf_duration_pb.Duration): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeviceAgentConfigRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeviceAgentConfigRequest): DeviceAgentConfigRequest.AsObject;
@@ -37,6 +47,8 @@ export namespace DeviceAgentConfigRequest {
     hostInfo?: HostInfo.AsObject,
     subsystemVersionsMap: Array<[string, string]>,
     versionInfo?: VersionInfo.AsObject,
+    agentUptime?: google_protobuf_duration_pb.Duration.AsObject,
+    viamServerUptime?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 

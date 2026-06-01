@@ -99,6 +99,8 @@ service AppService {
   rpc DeleteOAuthApp(DeleteOAuthAppRequest) returns (DeleteOAuthAppResponse);
   rpc ListOAuthApps(ListOAuthAppsRequest) returns (ListOAuthAppsResponse);
 
+  rpc CreateOAuthAppUser(CreateOAuthAppUserRequest) returns (CreateOAuthAppUserResponse);
+
   // Location
 
   // Create a location
@@ -310,6 +312,32 @@ service AppService {
   rpc GetAppContent(GetAppContentRequest) returns (GetAppContentResponse);
 
   rpc GetAppBranding(GetAppBrandingRequest) returns (GetAppBrandingResponse);
+
+  // Upload a device push token for the user.
+  rpc UploadDevicePushToken(UploadDevicePushTokenRequest) returns (UploadDevicePushTokenResponse);
+
+  // Delete a device push token for the user.
+  rpc DeleteDevicePushToken(DeleteDevicePushTokenRequest) returns (DeleteDevicePushTokenResponse);
+
+  // Gets all device push tokens for the user for the given app ID.
+  rpc GetDevicePushTokens(GetDevicePushTokensRequest) returns (GetDevicePushTokensResponse);
+
+  // Set the Firebase config JSON for a specific app id.
+  rpc SetFirebaseConfig(SetFirebaseConfigRequest) returns (SetFirebaseConfigResponse);
+
+  // Read the app ID for an organization.
+  // This returns only the app_id configured for the org, not the Firebase config JSON.
+  rpc GetFirebaseConfig(GetFirebaseConfigRequest) returns (GetFirebaseConfigResponse);
+
+  // Deletes a Firebase config JSON for a specific app id.
+  rpc DeleteFirebaseConfig(DeleteFirebaseConfigRequest) returns (DeleteFirebaseConfigResponse);
+}
+
+enum OnlineState {
+  ONLINE_STATE_UNSPECIFIED = 0;
+  ONLINE_STATE_ONLINE = 1;
+  ONLINE_STATE_OFFLINE = 2;
+  ONLINE_STATE_AWAITING_SETUP = 3;
 }
 
 message Robot {
@@ -318,6 +346,8 @@ message Robot {
   string location = 3 [(tagger.v1.tags) = "bson:\"location\" json:\"location\""];
   google.protobuf.Timestamp last_access = 4 [(tagger.v1.tags) = "bson:\"last_access\" json:\"last_access\""];
   google.protobuf.Timestamp created_on = 5 [(tagger.v1.tags) = "bson:\"created_on\""];
+  OnlineState online_state = 6 [(tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
+  int64 seconds_since_online = 7 [(tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
 }
 
 message RobotPart {
@@ -342,6 +372,10 @@ message RobotPart {
   repeated SharedSecret secrets = 14 [(tagger.v1.tags) = "bson:\"secrets\""];
   // latest timestamp when a robot part was updated
   google.protobuf.Timestamp last_updated = 15 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
+  OnlineState online_state = 16 [(tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
+  int64 seconds_since_online = 17 [(tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
+  // robot_config_json is the raw JSON string of the robot config, preserving user-defined key order.
+  optional string robot_config_json = 18 [(tagger.v1.tags) = "bson:\"config_json,omitempty\" json:\"config_json,omitempty\""];
 }
 
 message RobotPartHistoryEntry {
@@ -377,6 +411,7 @@ message Organization {
   // associated with this org will be stored in this region.
   string default_region = 5;
   optional string cid = 6;
+  optional FragmentImportList default_fragments = 7;
 }
 
 message OrganizationMember {
@@ -423,6 +458,10 @@ message GetOrganizationNamespaceAvailabilityResponse {
   bool available = 1;
 }
 
+message FragmentImportList {
+  repeated FragmentImport fragments = 1;
+}
+
 message UpdateOrganizationRequest {
   string organization_id = 1;
   optional string name = 2;
@@ -430,6 +469,7 @@ message UpdateOrganizationRequest {
   // The new GCS region to associate the org with.
   optional string region = 4;
   optional string cid = 5;
+  optional FragmentImportList default_fragments = 6;
 }
 
 message UpdateOrganizationResponse {
@@ -843,6 +883,7 @@ message GetRobotPartLogsRequest {
   optional google.protobuf.Timestamp end = 7;
   optional int64 limit = 8;
   optional string source = 9;
+  optional bool user_facing_only = 10;
 }
 
 message GetRobotPartLogsResponse {
@@ -862,10 +903,15 @@ message TailRobotPartLogsResponse {
 
 message GetRobotPartHistoryRequest {
   string id = 1;
+  optional string page_token = 2;
+  optional int64 page_limit = 3;
+  optional google.protobuf.Timestamp start = 4;
+  optional google.protobuf.Timestamp end = 5;
 }
 
 message GetRobotPartHistoryResponse {
   repeated RobotPartHistoryEntry history = 1;
+  string next_page_token = 2;
 }
 
 message UpdateRobotPartRequest {
@@ -873,6 +919,9 @@ message UpdateRobotPartRequest {
   string name = 2;
   google.protobuf.Struct robot_config = 3;
   optional google.protobuf.Timestamp last_known_update = 4;
+  // robot_config_json is the raw JSON string of the robot config, preserving user-defined key order.
+  // When set, this takes precedence over robot_config for storage purposes.
+  optional string robot_config_json = 5;
 }
 
 message UpdateRobotPartResponse {
@@ -992,6 +1041,13 @@ message FragmentUsage {
   int32 machines = 3;
   int32 machines_in_current_org = 4;
   optional string version = 5; // revision or tag
+}
+
+message FragmentImport {
+  string fragment_id = 1;
+  string version = 2; // revision or tag
+  optional string prefix = 3; // namespace prefix
+  map<string, string> variables = 4; // key-value pairs for fragment variables
 }
 
 message ResolvedFragment {
@@ -1187,6 +1243,9 @@ message PartSummary {
   string part_id = 1;
   string part_name = 2;
   bool is_main_part = 11;
+  OnlineState online_state = 12;
+  int64 seconds_since_online = 13;
+  optional google.protobuf.Timestamp last_access = 14;
   optional google.protobuf.Timestamp last_online = 3;
   optional ViamServerVersion viam_server_version = 4;
   optional ViamAgentVersion viam_agent_version = 5;
@@ -1360,13 +1419,23 @@ message ModuleMetadata {
   optional string markdown_description = 5;
   // A list of applications associated with the module
   repeated App apps = 6;
+  // Determines the type of module, either a registry module or an inline module.
+  optional ModuleSourceType source_type = 7;
+  // Specifies the language that the module is written in.
+  optional ModuleLanguage language = 8;
+}
+
+message MLModelVersion {
+  string version = 1;
+  google.protobuf.Timestamp created_on = 2;
 }
 
 message MLModelMetadata {
   // A list of package versions for a ML model
-  repeated string versions = 1;
+  repeated string versions = 1 [deprecated = true];
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
+  repeated MLModelVersion detailed_versions = 4;
 }
 
 message MLTrainingVersion {
@@ -1382,6 +1451,21 @@ message MLTrainingMetadata {
   bool draft = 4;
 
   reserved 1;
+}
+
+enum ModuleSourceType {
+  MODULE_SOURCE_TYPE_UNSPECIFIED = 0;
+  // Module source code is stored externally, such as in github.
+  MODULE_SOURCE_TYPE_EXTERNAL = 1;
+  // Module source code is versioned and managed within Viam.
+  MODULE_SOURCE_TYPE_VIAM_HOSTED = 2;
+}
+
+enum ModuleLanguage {
+  MODULE_LANGUAGE_UNSPECIFIED = 0;
+  MODULE_LANGUAGE_GOLANG = 1;
+  MODULE_LANGUAGE_PYTHON = 2;
+  MODULE_LANGUAGE_CPP = 3;
 }
 
 message RegistryItem {
@@ -1482,6 +1566,8 @@ message ListRegistryItemsRequest {
   // One or more public namespaces to return results for.
   repeated string public_namespaces = 8;
   optional bool include_markdown_documentation = 9;
+  repeated ModuleSourceType module_source_types = 10;
+  repeated ModuleLanguage module_languages = 11;
 }
 
 message ListRegistryItemsResponse {
@@ -1557,6 +1643,10 @@ message UpdateModuleRequest {
   optional string markdown_description = 9;
 }
 
+message AllowedOrgIDs {
+  repeated string ids = 1;
+}
+
 message App {
   // The name of the application
   string name = 1;
@@ -1570,6 +1660,8 @@ message App {
   optional string logo_path = 5;
   // Optional: structured customizations for the app (e.g., machine picker headings)
   AppCustomizations customizations = 6;
+  // Optional: list of org IDs that are allowed to use this app; if empty, all orgs are allowed
+  optional AllowedOrgIDs allowed_org_ids = 7;
 }
 
 message UpdateModuleResponse {
@@ -1584,6 +1676,10 @@ message UpdateModuleMetadata {
   string entrypoint = 2;
   // A list of applications associated with the module
   repeated App apps = 3;
+  // Determines where the source code of module is managed, either externally or hosted by viam.
+  optional ModuleSourceType source_type = 4;
+  // The language the module is written in
+  optional ModuleLanguage language = 5;
 }
 
 message UpdateMLModelMetadata {
@@ -1833,6 +1929,7 @@ message GetAppContentResponse {
   string blob_path = 1;
   string entrypoint = 2;
   AppType app_type = 3;
+  bool public = 4;
 }
 
 message OrganizationSetLogoRequest {
@@ -1899,6 +1996,22 @@ message ListOAuthAppsResponse {
   repeated string client_ids = 1;
 }
 
+message CreateOAuthAppUserRequest {
+  string org_id = 1;
+  string application_id = 2;
+  string email = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string password = 6;
+}
+
+message CreateOAuthAppUserResponse {
+  string auth_token = 1;
+  string registration_id = 2;
+  string user_id = 3;
+  string refresh_token = 4;
+}
+
 enum ClientAuthentication {
   CLIENT_AUTHENTICATION_UNSPECIFIED = 0;
   CLIENT_AUTHENTICATION_REQUIRED = 1;
@@ -1936,6 +2049,7 @@ message OAuthConfig {
   repeated string redirect_uris = 5;
   string logout_uri = 6;
   repeated EnabledGrant enabled_grants = 7;
+  string invite_redirect_uri = 8;
 }
 
 // Branding and customization for app machine picker
@@ -1952,6 +2066,7 @@ message GetAppBrandingResponse {
   optional string logo_path = 1;
   map<string, TextOverrides> text_customizations = 2;
   repeated string fragment_ids = 3;
+  repeated string allowed_org_ids = 4;
 }
 
 message AppCustomizations {
@@ -1962,3 +2077,49 @@ message MachinePickerCustomizations {
   optional string heading = 1;
   optional string subheading = 2;
 }
+
+message UploadDevicePushTokenRequest {
+  string app_id = 1;
+  string device_token = 2;
+  string device_uuid = 3;
+}
+
+message UploadDevicePushTokenResponse {}
+
+message DeleteDevicePushTokenRequest {
+  string app_id = 1;
+  string device_uuid = 2;
+}
+
+message DeleteDevicePushTokenResponse {}
+
+message GetDevicePushTokensRequest {
+  string app_id = 1;
+}
+
+message GetDevicePushTokensResponse {
+  repeated string device_tokens = 1;
+}
+
+message SetFirebaseConfigRequest {
+  string org_id = 1;
+  string app_id = 2;
+  string config_json = 3;
+}
+
+message SetFirebaseConfigResponse {}
+
+message GetFirebaseConfigRequest {
+  string org_id = 1;
+}
+
+message GetFirebaseConfigResponse {
+  string app_id = 1;
+}
+
+message DeleteFirebaseConfigRequest {
+  string org_id = 1;
+  string app_id = 2;
+}
+
+message DeleteFirebaseConfigResponse {}

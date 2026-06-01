@@ -23,6 +23,15 @@ type DataManagerServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type DataManagerServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof DataManagerService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type DataManagerServiceUploadBinaryDataToDatasets = {
   readonly methodName: string;
   readonly service: typeof DataManagerService;
@@ -36,6 +45,7 @@ export class DataManagerService {
   static readonly serviceName: string;
   static readonly Sync: DataManagerServiceSync;
   static readonly DoCommand: DataManagerServiceDoCommand;
+  static readonly GetStatus: DataManagerServiceGetStatus;
   static readonly UploadBinaryDataToDatasets: DataManagerServiceUploadBinaryDataToDatasets;
 }
 
@@ -88,6 +98,15 @@ export class DataManagerServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   uploadBinaryDataToDatasets(
     requestMessage: service_datamanager_v1_data_manager_pb.UploadBinaryDataToDatasetsRequest,

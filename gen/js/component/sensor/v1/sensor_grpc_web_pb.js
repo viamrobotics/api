@@ -206,6 +206,67 @@ proto.viam.component.sensor.v1.SensorServicePromiseClient.prototype.doCommand =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.common.v1.GetStatusRequest,
+ *   !proto.viam.common.v1.GetStatusResponse>}
+ */
+const methodDescriptor_SensorService_GetStatus = new grpc.web.MethodDescriptor(
+  '/viam.component.sensor.v1.SensorService/GetStatus',
+  grpc.web.MethodType.UNARY,
+  common_v1_common_pb.GetStatusRequest,
+  common_v1_common_pb.GetStatusResponse,
+  /**
+   * @param {!proto.viam.common.v1.GetStatusRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  common_v1_common_pb.GetStatusResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.common.v1.GetStatusRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.common.v1.GetStatusResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.common.v1.GetStatusResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.sensor.v1.SensorServiceClient.prototype.getStatus =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.sensor.v1.SensorService/GetStatus',
+      request,
+      metadata || {},
+      methodDescriptor_SensorService_GetStatus,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.common.v1.GetStatusRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.common.v1.GetStatusResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.sensor.v1.SensorServicePromiseClient.prototype.getStatus =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.sensor.v1.SensorService/GetStatus',
+      request,
+      metadata || {},
+      methodDescriptor_SensorService_GetStatus);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.common.v1.GetGeometriesRequest,
  *   !proto.viam.common.v1.GetGeometriesResponse>}
  */

@@ -29,6 +29,8 @@ type AudioInServiceClient interface {
 	GetProperties(ctx context.Context, in *v1.GetPropertiesRequest, opts ...grpc.CallOption) (*v1.GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
@@ -91,6 +93,15 @@ func (c *audioInServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRe
 	return out, nil
 }
 
+func (c *audioInServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.audioin.v1.AudioInService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *audioInServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
 	out := new(v1.GetGeometriesResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.audioin.v1.AudioInService/GetGeometries", in, out, opts...)
@@ -110,6 +121,8 @@ type AudioInServiceServer interface {
 	GetProperties(context.Context, *v1.GetPropertiesRequest) (*v1.GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedAudioInServiceServer()
@@ -127,6 +140,9 @@ func (UnimplementedAudioInServiceServer) GetProperties(context.Context, *v1.GetP
 }
 func (UnimplementedAudioInServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedAudioInServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedAudioInServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
@@ -201,6 +217,24 @@ func _AudioInService_DoCommand_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AudioInService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AudioInServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.audioin.v1.AudioInService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AudioInServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AudioInService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.GetGeometriesRequest)
 	if err := dec(in); err != nil {
@@ -233,6 +267,10 @@ var AudioInService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _AudioInService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _AudioInService_GetStatus_Handler,
 		},
 		{
 			MethodName: "GetGeometries",

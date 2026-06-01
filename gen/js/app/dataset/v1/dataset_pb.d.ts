@@ -19,6 +19,9 @@ export class Dataset extends jspb.Message {
   getTimeCreated(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTimeCreated(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getType(): DatasetTypeMap[keyof DatasetTypeMap];
+  setType(value: DatasetTypeMap[keyof DatasetTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Dataset.AsObject;
   static toObject(includeInstance: boolean, msg: Dataset): Dataset.AsObject;
@@ -35,6 +38,7 @@ export namespace Dataset {
     name: string,
     organizationId: string,
     timeCreated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    type: DatasetTypeMap[keyof DatasetTypeMap],
   }
 }
 
@@ -44,6 +48,11 @@ export class CreateDatasetRequest extends jspb.Message {
 
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
+
+  hasType(): boolean;
+  clearType(): void;
+  getType(): DatasetTypeMap[keyof DatasetTypeMap];
+  setType(value: DatasetTypeMap[keyof DatasetTypeMap]): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateDatasetRequest.AsObject;
@@ -59,6 +68,7 @@ export namespace CreateDatasetRequest {
   export type AsObject = {
     name: string,
     organizationId: string,
+    type: DatasetTypeMap[keyof DatasetTypeMap],
   }
 }
 
@@ -293,4 +303,11 @@ export namespace MergeDatasetsResponse {
     datasetId: string,
   }
 }
+
+export interface DatasetTypeMap {
+  DATASET_TYPE_BINARY_DATA: 0;
+  DATASET_TYPE_SEQUENCE_DATA: 1;
+}
+
+export const DatasetType: DatasetTypeMap;
 

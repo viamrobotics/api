@@ -67,6 +67,33 @@ type BillingServiceUpdateOrganizationBillingTier = {
   readonly responseType: typeof app_v1_billing_pb.UpdateOrganizationBillingTierResponse;
 };
 
+type BillingServiceGetLocationBillingOrganization = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.GetLocationBillingOrganizationRequest;
+  readonly responseType: typeof app_v1_billing_pb.GetLocationBillingOrganizationResponse;
+};
+
+type BillingServiceUpdateLocationBillingOrganization = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.UpdateLocationBillingOrganizationRequest;
+  readonly responseType: typeof app_v1_billing_pb.UpdateLocationBillingOrganizationResponse;
+};
+
+type BillingServiceChargeOrganization = {
+  readonly methodName: string;
+  readonly service: typeof BillingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_billing_pb.ChargeOrganizationRequest;
+  readonly responseType: typeof app_v1_billing_pb.ChargeOrganizationResponse;
+};
+
 type BillingServiceCreateInvoiceAndChargeImmediately = {
   readonly methodName: string;
   readonly service: typeof BillingService;
@@ -85,6 +112,9 @@ export class BillingService {
   static readonly SendPaymentRequiredEmail: BillingServiceSendPaymentRequiredEmail;
   static readonly GetAvailableBillingTiers: BillingServiceGetAvailableBillingTiers;
   static readonly UpdateOrganizationBillingTier: BillingServiceUpdateOrganizationBillingTier;
+  static readonly GetLocationBillingOrganization: BillingServiceGetLocationBillingOrganization;
+  static readonly UpdateLocationBillingOrganization: BillingServiceUpdateLocationBillingOrganization;
+  static readonly ChargeOrganization: BillingServiceChargeOrganization;
   static readonly CreateInvoiceAndChargeImmediately: BillingServiceCreateInvoiceAndChargeImmediately;
 }
 
@@ -174,6 +204,33 @@ export class BillingServiceClient {
   updateOrganizationBillingTier(
     requestMessage: app_v1_billing_pb.UpdateOrganizationBillingTierRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.UpdateOrganizationBillingTierResponse|null) => void
+  ): UnaryResponse;
+  getLocationBillingOrganization(
+    requestMessage: app_v1_billing_pb.GetLocationBillingOrganizationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetLocationBillingOrganizationResponse|null) => void
+  ): UnaryResponse;
+  getLocationBillingOrganization(
+    requestMessage: app_v1_billing_pb.GetLocationBillingOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.GetLocationBillingOrganizationResponse|null) => void
+  ): UnaryResponse;
+  updateLocationBillingOrganization(
+    requestMessage: app_v1_billing_pb.UpdateLocationBillingOrganizationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.UpdateLocationBillingOrganizationResponse|null) => void
+  ): UnaryResponse;
+  updateLocationBillingOrganization(
+    requestMessage: app_v1_billing_pb.UpdateLocationBillingOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.UpdateLocationBillingOrganizationResponse|null) => void
+  ): UnaryResponse;
+  chargeOrganization(
+    requestMessage: app_v1_billing_pb.ChargeOrganizationRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.ChargeOrganizationResponse|null) => void
+  ): UnaryResponse;
+  chargeOrganization(
+    requestMessage: app_v1_billing_pb.ChargeOrganizationRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_billing_pb.ChargeOrganizationResponse|null) => void
   ): UnaryResponse;
   createInvoiceAndChargeImmediately(
     requestMessage: app_v1_billing_pb.CreateInvoiceAndChargeImmediatelyRequest,

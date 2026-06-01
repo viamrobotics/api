@@ -52,6 +52,8 @@ type MotionServiceClient interface {
 	GetPlan(ctx context.Context, in *GetPlanRequest, opts ...grpc.CallOption) (*GetPlanResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 }
 
 type motionServiceClient struct {
@@ -135,6 +137,15 @@ func (c *motionServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReq
 	return out, nil
 }
 
+func (c *motionServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MotionServiceServer is the server API for MotionService service.
 // All implementations must embed UnimplementedMotionServiceServer
 // for forward compatibility
@@ -168,6 +179,8 @@ type MotionServiceServer interface {
 	GetPlan(context.Context, *GetPlanRequest) (*GetPlanResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	mustEmbedUnimplementedMotionServiceServer()
 }
 
@@ -198,6 +211,9 @@ func (UnimplementedMotionServiceServer) GetPlan(context.Context, *GetPlanRequest
 }
 func (UnimplementedMotionServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedMotionServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedMotionServiceServer) mustEmbedUnimplementedMotionServiceServer() {}
 
@@ -356,6 +372,24 @@ func _MotionService_DoCommand_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MotionService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MotionServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.motion.v1.MotionService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MotionServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MotionService_ServiceDesc is the grpc.ServiceDesc for MotionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -394,6 +428,10 @@ var MotionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _MotionService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _MotionService_GetStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

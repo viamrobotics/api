@@ -114,6 +114,50 @@ export namespace Orientation {
   }
 }
 
+export class PoseCloud extends jspb.Message {
+  getX(): number;
+  setX(value: number): void;
+
+  getY(): number;
+  setY(value: number): void;
+
+  getZ(): number;
+  setZ(value: number): void;
+
+  getOX(): number;
+  setOX(value: number): void;
+
+  getOY(): number;
+  setOY(value: number): void;
+
+  getOZ(): number;
+  setOZ(value: number): void;
+
+  getTheta(): number;
+  setTheta(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PoseCloud.AsObject;
+  static toObject(includeInstance: boolean, msg: PoseCloud): PoseCloud.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PoseCloud, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PoseCloud;
+  static deserializeBinaryFromReader(message: PoseCloud, reader: jspb.BinaryReader): PoseCloud;
+}
+
+export namespace PoseCloud {
+  export type AsObject = {
+    x: number,
+    y: number,
+    z: number,
+    oX: number,
+    oY: number,
+    oZ: number,
+    theta: number,
+  }
+}
+
 export class PoseInFrame extends jspb.Message {
   getReferenceFrame(): string;
   setReferenceFrame(value: string): void;
@@ -122,6 +166,11 @@ export class PoseInFrame extends jspb.Message {
   clearPose(): void;
   getPose(): Pose | undefined;
   setPose(value?: Pose): void;
+
+  hasGoalCloud(): boolean;
+  clearGoalCloud(): void;
+  getGoalCloud(): PoseCloud | undefined;
+  setGoalCloud(value?: PoseCloud): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PoseInFrame.AsObject;
@@ -137,6 +186,7 @@ export namespace PoseInFrame {
   export type AsObject = {
     referenceFrame: string,
     pose?: Pose.AsObject,
+    goalCloud?: PoseCloud.AsObject,
   }
 }
 
@@ -616,6 +666,48 @@ export namespace DoCommandResponse {
   }
 }
 
+export class GetStatusRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetStatusRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetStatusRequest): GetStatusRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetStatusRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetStatusRequest;
+  static deserializeBinaryFromReader(message: GetStatusRequest, reader: jspb.BinaryReader): GetStatusRequest;
+}
+
+export namespace GetStatusRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class GetStatusResponse extends jspb.Message {
+  hasResult(): boolean;
+  clearResult(): void;
+  getResult(): google_protobuf_struct_pb.Struct | undefined;
+  setResult(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetStatusResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetStatusResponse): GetStatusResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetStatusResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetStatusResponse;
+  static deserializeBinaryFromReader(message: GetStatusResponse, reader: jspb.BinaryReader): GetStatusResponse;
+}
+
+export namespace GetStatusResponse {
+  export type AsObject = {
+    result?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
 export class GetKinematicsRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
@@ -651,6 +743,8 @@ export class GetKinematicsResponse extends jspb.Message {
   getKinematicsData_asB64(): string;
   setKinematicsData(value: Uint8Array | string): void;
 
+  getMeshesByUrdfFilepathMap(): jspb.Map<string, Mesh>;
+  clearMeshesByUrdfFilepathMap(): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetKinematicsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetKinematicsResponse): GetKinematicsResponse.AsObject;
@@ -665,6 +759,7 @@ export namespace GetKinematicsResponse {
   export type AsObject = {
     format: KinematicsFileFormatMap[keyof KinematicsFileFormatMap],
     kinematicsData: Uint8Array | string,
+    meshesByUrdfFilepathMap: Array<[string, Mesh.AsObject]>,
   }
 }
 
@@ -758,6 +853,28 @@ export class Get3DModelsResponse extends jspb.Message {
 export namespace Get3DModelsResponse {
   export type AsObject = {
     modelsMap: Array<[string, Mesh.AsObject]>,
+  }
+}
+
+export class GetWorldPoseResponse extends jspb.Message {
+  hasPose(): boolean;
+  clearPose(): void;
+  getPose(): Pose | undefined;
+  setPose(value?: Pose): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetWorldPoseResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetWorldPoseResponse): GetWorldPoseResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetWorldPoseResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetWorldPoseResponse;
+  static deserializeBinaryFromReader(message: GetWorldPoseResponse, reader: jspb.BinaryReader): GetWorldPoseResponse;
+}
+
+export namespace GetWorldPoseResponse {
+  export type AsObject = {
+    pose?: Pose.AsObject,
   }
 }
 

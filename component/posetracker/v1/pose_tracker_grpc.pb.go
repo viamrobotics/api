@@ -27,6 +27,8 @@ type PoseTrackerServiceClient interface {
 	GetPoses(ctx context.Context, in *GetPosesRequest, opts ...grpc.CallOption) (*GetPosesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 }
@@ -57,6 +59,15 @@ func (c *poseTrackerServiceClient) DoCommand(ctx context.Context, in *v1.DoComma
 	return out, nil
 }
 
+func (c *poseTrackerServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.posetracker.v1.PoseTrackerService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *poseTrackerServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error) {
 	out := new(v1.GetGeometriesResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.posetracker.v1.PoseTrackerService/GetGeometries", in, out, opts...)
@@ -74,6 +85,8 @@ type PoseTrackerServiceServer interface {
 	GetPoses(context.Context, *GetPosesRequest) (*GetPosesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	// GetGeometries returns the geometries of the component in their current configuration
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	mustEmbedUnimplementedPoseTrackerServiceServer()
@@ -88,6 +101,9 @@ func (UnimplementedPoseTrackerServiceServer) GetPoses(context.Context, *GetPoses
 }
 func (UnimplementedPoseTrackerServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedPoseTrackerServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedPoseTrackerServiceServer) GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGeometries not implemented")
@@ -141,6 +157,24 @@ func _PoseTrackerService_DoCommand_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PoseTrackerService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PoseTrackerServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.posetracker.v1.PoseTrackerService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PoseTrackerServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PoseTrackerService_GetGeometries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.GetGeometriesRequest)
 	if err := dec(in); err != nil {
@@ -173,6 +207,10 @@ var PoseTrackerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _PoseTrackerService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _PoseTrackerService_GetStatus_Handler,
 		},
 		{
 			MethodName: "GetGeometries",

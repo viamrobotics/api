@@ -32,6 +32,8 @@ type SensorsServiceClient interface {
 	// Deprecated: Do not use.
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 }
 
 type sensorsServiceClient struct {
@@ -72,6 +74,15 @@ func (c *sensorsServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRe
 	return out, nil
 }
 
+func (c *sensorsServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.sensors.v1.SensorsService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SensorsServiceServer is the server API for SensorsService service.
 // All implementations must embed UnimplementedSensorsServiceServer
 // for forward compatibility
@@ -85,6 +96,8 @@ type SensorsServiceServer interface {
 	// Deprecated: Do not use.
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	mustEmbedUnimplementedSensorsServiceServer()
 }
 
@@ -100,6 +113,9 @@ func (UnimplementedSensorsServiceServer) GetReadings(context.Context, *GetReadin
 }
 func (UnimplementedSensorsServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedSensorsServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedSensorsServiceServer) mustEmbedUnimplementedSensorsServiceServer() {}
 
@@ -168,6 +184,24 @@ func _SensorsService_DoCommand_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SensorsService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SensorsServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.sensors.v1.SensorsService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SensorsServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SensorsService_ServiceDesc is the grpc.ServiceDesc for SensorsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -186,6 +220,10 @@ var SensorsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _SensorsService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _SensorsService_GetStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

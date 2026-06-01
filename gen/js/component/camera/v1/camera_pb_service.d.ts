@@ -3,17 +3,7 @@
 
 import * as component_camera_v1_camera_pb from "../../../component/camera/v1/camera_pb";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
-import * as google_api_httpbody_pb from "../../../google/api/httpbody_pb";
 import {grpc} from "@improbable-eng/grpc-web";
-
-type CameraServiceGetImage = {
-  readonly methodName: string;
-  readonly service: typeof CameraService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof component_camera_v1_camera_pb.GetImageRequest;
-  readonly responseType: typeof component_camera_v1_camera_pb.GetImageResponse;
-};
 
 type CameraServiceGetImages = {
   readonly methodName: string;
@@ -22,15 +12,6 @@ type CameraServiceGetImages = {
   readonly responseStream: false;
   readonly requestType: typeof component_camera_v1_camera_pb.GetImagesRequest;
   readonly responseType: typeof component_camera_v1_camera_pb.GetImagesResponse;
-};
-
-type CameraServiceRenderFrame = {
-  readonly methodName: string;
-  readonly service: typeof CameraService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof component_camera_v1_camera_pb.RenderFrameRequest;
-  readonly responseType: typeof google_api_httpbody_pb.HttpBody;
 };
 
 type CameraServiceGetPointCloud = {
@@ -60,6 +41,15 @@ type CameraServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type CameraServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof CameraService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type CameraServiceGetGeometries = {
   readonly methodName: string;
   readonly service: typeof CameraService;
@@ -71,12 +61,11 @@ type CameraServiceGetGeometries = {
 
 export class CameraService {
   static readonly serviceName: string;
-  static readonly GetImage: CameraServiceGetImage;
   static readonly GetImages: CameraServiceGetImages;
-  static readonly RenderFrame: CameraServiceRenderFrame;
   static readonly GetPointCloud: CameraServiceGetPointCloud;
   static readonly GetProperties: CameraServiceGetProperties;
   static readonly DoCommand: CameraServiceDoCommand;
+  static readonly GetStatus: CameraServiceGetStatus;
   static readonly GetGeometries: CameraServiceGetGeometries;
 }
 
@@ -112,15 +101,6 @@ export class CameraServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  getImage(
-    requestMessage: component_camera_v1_camera_pb.GetImageRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: component_camera_v1_camera_pb.GetImageResponse|null) => void
-  ): UnaryResponse;
-  getImage(
-    requestMessage: component_camera_v1_camera_pb.GetImageRequest,
-    callback: (error: ServiceError|null, responseMessage: component_camera_v1_camera_pb.GetImageResponse|null) => void
-  ): UnaryResponse;
   getImages(
     requestMessage: component_camera_v1_camera_pb.GetImagesRequest,
     metadata: grpc.Metadata,
@@ -129,15 +109,6 @@ export class CameraServiceClient {
   getImages(
     requestMessage: component_camera_v1_camera_pb.GetImagesRequest,
     callback: (error: ServiceError|null, responseMessage: component_camera_v1_camera_pb.GetImagesResponse|null) => void
-  ): UnaryResponse;
-  renderFrame(
-    requestMessage: component_camera_v1_camera_pb.RenderFrameRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: google_api_httpbody_pb.HttpBody|null) => void
-  ): UnaryResponse;
-  renderFrame(
-    requestMessage: component_camera_v1_camera_pb.RenderFrameRequest,
-    callback: (error: ServiceError|null, responseMessage: google_api_httpbody_pb.HttpBody|null) => void
   ): UnaryResponse;
   getPointCloud(
     requestMessage: component_camera_v1_camera_pb.GetPointCloudRequest,
@@ -165,6 +136,15 @@ export class CameraServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,

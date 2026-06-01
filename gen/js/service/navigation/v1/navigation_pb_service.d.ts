@@ -95,6 +95,15 @@ type NavigationServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type NavigationServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof NavigationService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 export class NavigationService {
   static readonly serviceName: string;
   static readonly GetMode: NavigationServiceGetMode;
@@ -107,6 +116,7 @@ export class NavigationService {
   static readonly GetPaths: NavigationServiceGetPaths;
   static readonly GetProperties: NavigationServiceGetProperties;
   static readonly DoCommand: NavigationServiceDoCommand;
+  static readonly GetStatus: NavigationServiceGetStatus;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -230,6 +240,15 @@ export class NavigationServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
 }
 

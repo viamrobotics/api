@@ -2,6 +2,7 @@
 // file: service/mlmodel/v1/mlmodel.proto
 
 var service_mlmodel_v1_mlmodel_pb = require("../../../service/mlmodel/v1/mlmodel_pb");
+var common_v1_common_pb = require("../../../common/v1/common_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var MLModelService = (function () {
@@ -26,6 +27,15 @@ MLModelService.Metadata = {
   responseStream: false,
   requestType: service_mlmodel_v1_mlmodel_pb.MetadataRequest,
   responseType: service_mlmodel_v1_mlmodel_pb.MetadataResponse
+};
+
+MLModelService.GetStatus = {
+  methodName: "GetStatus",
+  service: MLModelService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.GetStatusRequest,
+  responseType: common_v1_common_pb.GetStatusResponse
 };
 
 exports.MLModelService = MLModelService;
@@ -71,6 +81,37 @@ MLModelServiceClient.prototype.metadata = function metadata(requestMessage, meta
     callback = arguments[1];
   }
   var client = grpc.unary(MLModelService.Metadata, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MLModelServiceClient.prototype.getStatus = function getStatus(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MLModelService.GetStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

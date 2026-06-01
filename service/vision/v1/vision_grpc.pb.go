@@ -40,6 +40,8 @@ type VisionServiceClient interface {
 	CaptureAllFromCamera(ctx context.Context, in *CaptureAllFromCameraRequest, opts ...grpc.CallOption) (*CaptureAllFromCameraResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 }
 
 type visionServiceClient struct {
@@ -122,6 +124,15 @@ func (c *visionServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReq
 	return out, nil
 }
 
+func (c *visionServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.vision.v1.VisionService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // VisionServiceServer is the server API for VisionService service.
 // All implementations must embed UnimplementedVisionServiceServer
 // for forward compatibility
@@ -143,6 +154,8 @@ type VisionServiceServer interface {
 	CaptureAllFromCamera(context.Context, *CaptureAllFromCameraRequest) (*CaptureAllFromCameraResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	mustEmbedUnimplementedVisionServiceServer()
 }
 
@@ -173,6 +186,9 @@ func (UnimplementedVisionServiceServer) CaptureAllFromCamera(context.Context, *C
 }
 func (UnimplementedVisionServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedVisionServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedVisionServiceServer) mustEmbedUnimplementedVisionServiceServer() {}
 
@@ -331,6 +347,24 @@ func _VisionService_DoCommand_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _VisionService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VisionServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.vision.v1.VisionService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VisionServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // VisionService_ServiceDesc is the grpc.ServiceDesc for VisionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -369,6 +403,10 @@ var VisionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _VisionService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _VisionService_GetStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

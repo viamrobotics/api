@@ -1229,7 +1229,8 @@ proto.google.rpc.context.AttributeContext.Request.toObject = function(includeIns
     size: jspb.Message.getFieldWithDefault(msg, 10, 0),
     protocol: jspb.Message.getFieldWithDefault(msg, 11, ""),
     reason: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    auth: (f = msg.getAuth()) && proto.google.rpc.context.AttributeContext.Auth.toObject(includeInstance, f)
+    auth: (f = msg.getAuth()) && proto.google.rpc.context.AttributeContext.Auth.toObject(includeInstance, f),
+    origin: jspb.Message.getFieldWithDefault(msg, 14, "")
   };
 
   if (includeInstance) {
@@ -1317,6 +1318,10 @@ proto.google.rpc.context.AttributeContext.Request.deserializeBinaryFromReader = 
       var value = new proto.google.rpc.context.AttributeContext.Auth;
       reader.readMessage(value,proto.google.rpc.context.AttributeContext.Auth.deserializeBinaryFromReader);
       msg.setAuth(value);
+      break;
+    case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrigin(value);
       break;
     default:
       reader.skipField();
@@ -1428,6 +1433,13 @@ proto.google.rpc.context.AttributeContext.Request.serializeBinaryToWriter = func
       13,
       f,
       proto.google.rpc.context.AttributeContext.Auth.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrigin();
+  if (f.length > 0) {
+    writer.writeString(
+      14,
+      f
     );
   }
 };
@@ -1688,6 +1700,24 @@ proto.google.rpc.context.AttributeContext.Request.prototype.clearAuth = function
  */
 proto.google.rpc.context.AttributeContext.Request.prototype.hasAuth = function() {
   return jspb.Message.getField(this, 13) != null;
+};
+
+
+/**
+ * optional string origin = 14;
+ * @return {string}
+ */
+proto.google.rpc.context.AttributeContext.Request.prototype.getOrigin = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.google.rpc.context.AttributeContext.Request} returns this
+ */
+proto.google.rpc.context.AttributeContext.Request.prototype.setOrigin = function(value) {
+  return jspb.Message.setProto3StringField(this, 14, value);
 };
 
 

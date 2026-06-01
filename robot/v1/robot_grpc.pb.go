@@ -70,6 +70,7 @@ type RobotServiceClient interface {
 	TransformPose(ctx context.Context, in *TransformPoseRequest, opts ...grpc.CallOption) (*TransformPoseResponse, error)
 	// TransformPose returns a point cloud in one referenceframe in a desired referenceframe.
 	TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error)
+	SendTraces(ctx context.Context, in *SendTracesRequest, opts ...grpc.CallOption) (*SendTracesResponse, error)
 }
 
 type robotServiceClient struct {
@@ -343,6 +344,15 @@ func (c *robotServiceClient) TransformPCD(ctx context.Context, in *TransformPCDR
 	return out, nil
 }
 
+func (c *robotServiceClient) SendTraces(ctx context.Context, in *SendTracesRequest, opts ...grpc.CallOption) (*SendTracesResponse, error) {
+	out := new(SendTracesResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/SendTraces", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -395,6 +405,7 @@ type RobotServiceServer interface {
 	TransformPose(context.Context, *TransformPoseRequest) (*TransformPoseResponse, error)
 	// TransformPose returns a point cloud in one referenceframe in a desired referenceframe.
 	TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error)
+	SendTraces(context.Context, *SendTracesRequest) (*SendTracesResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -473,6 +484,9 @@ func (UnimplementedRobotServiceServer) TransformPose(context.Context, *Transform
 }
 func (UnimplementedRobotServiceServer) TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TransformPCD not implemented")
+}
+func (UnimplementedRobotServiceServer) SendTraces(context.Context, *SendTracesRequest) (*SendTracesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendTraces not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -930,6 +944,24 @@ func _RobotService_TransformPCD_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_SendTraces_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendTracesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).SendTraces(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/SendTraces",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).SendTraces(ctx, req.(*SendTracesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1024,6 +1056,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TransformPCD",
 			Handler:    _RobotService_TransformPCD_Handler,
+		},
+		{
+			MethodName: "SendTraces",
+			Handler:    _RobotService_SendTraces_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -41,12 +41,22 @@ type WorldStateStoreServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type WorldStateStoreServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof WorldStateStoreService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 export class WorldStateStoreService {
   static readonly serviceName: string;
   static readonly ListUUIDs: WorldStateStoreServiceListUUIDs;
   static readonly GetTransform: WorldStateStoreServiceGetTransform;
   static readonly StreamTransformChanges: WorldStateStoreServiceStreamTransformChanges;
   static readonly DoCommand: WorldStateStoreServiceDoCommand;
+  static readonly GetStatus: WorldStateStoreServiceGetStatus;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -108,6 +118,15 @@ export class WorldStateStoreServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -2562,7 +2562,8 @@ proto.google.api.expr.v1alpha1.Decl.FunctionDecl.prototype.toObject = function(o
 proto.google.api.expr.v1alpha1.Decl.FunctionDecl.toObject = function(includeInstance, msg) {
   var f, obj = {
     overloadsList: jspb.Message.toObjectList(msg.getOverloadsList(),
-    proto.google.api.expr.v1alpha1.Decl.FunctionDecl.Overload.toObject, includeInstance)
+    proto.google.api.expr.v1alpha1.Decl.FunctionDecl.Overload.toObject, includeInstance),
+    doc: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2604,6 +2605,10 @@ proto.google.api.expr.v1alpha1.Decl.FunctionDecl.deserializeBinaryFromReader = f
       reader.readMessage(value,proto.google.api.expr.v1alpha1.Decl.FunctionDecl.Overload.deserializeBinaryFromReader);
       msg.addOverloads(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDoc(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2639,6 +2644,13 @@ proto.google.api.expr.v1alpha1.Decl.FunctionDecl.serializeBinaryToWriter = funct
       1,
       f,
       proto.google.api.expr.v1alpha1.Decl.FunctionDecl.Overload.serializeBinaryToWriter
+    );
+  }
+  f = message.getDoc();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
     );
   }
 };
@@ -3029,6 +3041,24 @@ proto.google.api.expr.v1alpha1.Decl.FunctionDecl.prototype.addOverloads = functi
  */
 proto.google.api.expr.v1alpha1.Decl.FunctionDecl.prototype.clearOverloadsList = function() {
   return this.setOverloadsList([]);
+};
+
+
+/**
+ * optional string doc = 2;
+ * @return {string}
+ */
+proto.google.api.expr.v1alpha1.Decl.FunctionDecl.prototype.getDoc = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.google.api.expr.v1alpha1.Decl.FunctionDecl} returns this
+ */
+proto.google.api.expr.v1alpha1.Decl.FunctionDecl.prototype.setDoc = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

@@ -50,6 +50,15 @@ type ServoServiceDoCommand = {
   readonly responseType: typeof common_v1_common_pb.DoCommandResponse;
 };
 
+type ServoServiceGetStatus = {
+  readonly methodName: string;
+  readonly service: typeof ServoService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof common_v1_common_pb.GetStatusRequest;
+  readonly responseType: typeof common_v1_common_pb.GetStatusResponse;
+};
+
 type ServoServiceGetGeometries = {
   readonly methodName: string;
   readonly service: typeof ServoService;
@@ -66,6 +75,7 @@ export class ServoService {
   static readonly Stop: ServoServiceStop;
   static readonly IsMoving: ServoServiceIsMoving;
   static readonly DoCommand: ServoServiceDoCommand;
+  static readonly GetStatus: ServoServiceGetStatus;
   static readonly GetGeometries: ServoServiceGetGeometries;
 }
 
@@ -145,6 +155,15 @@ export class ServoServiceClient {
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.DoCommandResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
+  ): UnaryResponse;
+  getStatus(
+    requestMessage: common_v1_common_pb.GetStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.GetStatusResponse|null) => void
   ): UnaryResponse;
   getGeometries(
     requestMessage: common_v1_common_pb.GetGeometriesRequest,

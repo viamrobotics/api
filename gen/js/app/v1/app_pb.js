@@ -32,6 +32,7 @@ goog.exportSymbol('proto.viam.app.v1.APIKeyWithAuthorizations', null, global);
 goog.exportSymbol('proto.viam.app.v1.AddRoleRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.AddRoleResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.AdditionalFragment', null, global);
+goog.exportSymbol('proto.viam.app.v1.AllowedOrgIDs', null, global);
 goog.exportSymbol('proto.viam.app.v1.App', null, global);
 goog.exportSymbol('proto.viam.app.v1.AppCustomizations', null, global);
 goog.exportSymbol('proto.viam.app.v1.AppType', null, global);
@@ -60,6 +61,8 @@ goog.exportSymbol('proto.viam.app.v1.CreateModuleRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.CreateModuleResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.CreateOAuthAppRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.CreateOAuthAppResponse', null, global);
+goog.exportSymbol('proto.viam.app.v1.CreateOAuthAppUserRequest', null, global);
+goog.exportSymbol('proto.viam.app.v1.CreateOAuthAppUserResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.CreateOrganizationInviteRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.CreateOrganizationInviteResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.CreateOrganizationRequest', null, global);
@@ -68,6 +71,10 @@ goog.exportSymbol('proto.viam.app.v1.CreateRegistryItemRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.CreateRegistryItemResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.CreateRobotPartSecretRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.CreateRobotPartSecretResponse', null, global);
+goog.exportSymbol('proto.viam.app.v1.DeleteDevicePushTokenRequest', null, global);
+goog.exportSymbol('proto.viam.app.v1.DeleteDevicePushTokenResponse', null, global);
+goog.exportSymbol('proto.viam.app.v1.DeleteFirebaseConfigRequest', null, global);
+goog.exportSymbol('proto.viam.app.v1.DeleteFirebaseConfigResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.DeleteFragmentRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.DeleteFragmentResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.DeleteFragmentTagRequest', null, global);
@@ -107,6 +114,8 @@ goog.exportSymbol('proto.viam.app.v1.Fragment', null, global);
 goog.exportSymbol('proto.viam.app.v1.FragmentError', null, global);
 goog.exportSymbol('proto.viam.app.v1.FragmentErrorType', null, global);
 goog.exportSymbol('proto.viam.app.v1.FragmentHistoryEntry', null, global);
+goog.exportSymbol('proto.viam.app.v1.FragmentImport', null, global);
+goog.exportSymbol('proto.viam.app.v1.FragmentImportList', null, global);
 goog.exportSymbol('proto.viam.app.v1.FragmentRevision', null, global);
 goog.exportSymbol('proto.viam.app.v1.FragmentSummary', null, global);
 goog.exportSymbol('proto.viam.app.v1.FragmentTag', null, global);
@@ -118,6 +127,10 @@ goog.exportSymbol('proto.viam.app.v1.GetAppContentRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.GetAppContentResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.GetBillingServiceConfigRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.GetBillingServiceConfigResponse', null, global);
+goog.exportSymbol('proto.viam.app.v1.GetDevicePushTokensRequest', null, global);
+goog.exportSymbol('proto.viam.app.v1.GetDevicePushTokensResponse', null, global);
+goog.exportSymbol('proto.viam.app.v1.GetFirebaseConfigRequest', null, global);
+goog.exportSymbol('proto.viam.app.v1.GetFirebaseConfigResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.GetFragmentHistoryRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.GetFragmentHistoryResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.GetFragmentRequest', null, global);
@@ -201,6 +214,7 @@ goog.exportSymbol('proto.viam.app.v1.LocationAuthResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.LocationOrganization', null, global);
 goog.exportSymbol('proto.viam.app.v1.LocationSummary', null, global);
 goog.exportSymbol('proto.viam.app.v1.MLModelMetadata', null, global);
+goog.exportSymbol('proto.viam.app.v1.MLModelVersion', null, global);
 goog.exportSymbol('proto.viam.app.v1.MLTrainingMetadata', null, global);
 goog.exportSymbol('proto.viam.app.v1.MLTrainingVersion', null, global);
 goog.exportSymbol('proto.viam.app.v1.MachinePickerCustomizations', null, global);
@@ -212,13 +226,16 @@ goog.exportSymbol('proto.viam.app.v1.MarkPartForRestartResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.Model', null, global);
 goog.exportSymbol('proto.viam.app.v1.Module', null, global);
 goog.exportSymbol('proto.viam.app.v1.ModuleFileInfo', null, global);
+goog.exportSymbol('proto.viam.app.v1.ModuleLanguage', null, global);
 goog.exportSymbol('proto.viam.app.v1.ModuleMetadata', null, global);
+goog.exportSymbol('proto.viam.app.v1.ModuleSourceType', null, global);
 goog.exportSymbol('proto.viam.app.v1.ModuleVersion', null, global);
 goog.exportSymbol('proto.viam.app.v1.NewRobotPartRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.NewRobotPartResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.NewRobotRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.NewRobotResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.OAuthConfig', null, global);
+goog.exportSymbol('proto.viam.app.v1.OnlineState', null, global);
 goog.exportSymbol('proto.viam.app.v1.OrgDetails', null, global);
 goog.exportSymbol('proto.viam.app.v1.Organization', null, global);
 goog.exportSymbol('proto.viam.app.v1.OrganizationGetLogoRequest', null, global);
@@ -256,6 +273,8 @@ goog.exportSymbol('proto.viam.app.v1.RotateKeyResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.RoverRentalRobot', null, global);
 goog.exportSymbol('proto.viam.app.v1.SearchOrganizationsRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.SearchOrganizationsResponse', null, global);
+goog.exportSymbol('proto.viam.app.v1.SetFirebaseConfigRequest', null, global);
+goog.exportSymbol('proto.viam.app.v1.SetFirebaseConfigResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.SetFragmentTagRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.SetFragmentTagResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.ShareLocationRequest', null, global);
@@ -305,6 +324,8 @@ goog.exportSymbol('proto.viam.app.v1.UpdateRobotPartRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.UpdateRobotPartResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.UpdateRobotRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.UpdateRobotResponse', null, global);
+goog.exportSymbol('proto.viam.app.v1.UploadDevicePushTokenRequest', null, global);
+goog.exportSymbol('proto.viam.app.v1.UploadDevicePushTokenResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.UploadModuleFileRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.UploadModuleFileRequest.ModuleFileCase', null, global);
 goog.exportSymbol('proto.viam.app.v1.UploadModuleFileResponse', null, global);
@@ -629,6 +650,27 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse.displayName = 'proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.FragmentImportList = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.FragmentImportList.repeatedFields_, null);
+};
+goog.inherits(proto.viam.app.v1.FragmentImportList, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.FragmentImportList.displayName = 'proto.viam.app.v1.FragmentImportList';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -2803,6 +2845,27 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.viam.app.v1.FragmentImport = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.FragmentImport, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.FragmentImport.displayName = 'proto.viam.app.v1.FragmentImport';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.viam.app.v1.ResolvedFragment = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -4273,6 +4336,27 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.viam.app.v1.MLModelVersion = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.MLModelVersion, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.MLModelVersion.displayName = 'proto.viam.app.v1.MLModelVersion';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.viam.app.v1.MLModelMetadata = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.MLModelMetadata.repeatedFields_, null);
 };
@@ -4703,6 +4787,27 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.viam.app.v1.UpdateModuleRequest.displayName = 'proto.viam.app.v1.UpdateModuleRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.AllowedOrgIDs = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.AllowedOrgIDs.repeatedFields_, null);
+};
+goog.inherits(proto.viam.app.v1.AllowedOrgIDs, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.AllowedOrgIDs.displayName = 'proto.viam.app.v1.AllowedOrgIDs';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -5911,6 +6016,48 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.viam.app.v1.CreateOAuthAppUserRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.CreateOAuthAppUserRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.CreateOAuthAppUserRequest.displayName = 'proto.viam.app.v1.CreateOAuthAppUserRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.CreateOAuthAppUserResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.CreateOAuthAppUserResponse.displayName = 'proto.viam.app.v1.CreateOAuthAppUserResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.viam.app.v1.OAuthConfig = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.OAuthConfig.repeatedFields_, null);
 };
@@ -6027,6 +6174,258 @@ if (goog.DEBUG && !COMPILED) {
    */
   proto.viam.app.v1.MachinePickerCustomizations.displayName = 'proto.viam.app.v1.MachinePickerCustomizations';
 }
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.UploadDevicePushTokenRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.UploadDevicePushTokenRequest.displayName = 'proto.viam.app.v1.UploadDevicePushTokenRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.UploadDevicePushTokenResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.UploadDevicePushTokenResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.UploadDevicePushTokenResponse.displayName = 'proto.viam.app.v1.UploadDevicePushTokenResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.DeleteDevicePushTokenRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.DeleteDevicePushTokenRequest.displayName = 'proto.viam.app.v1.DeleteDevicePushTokenRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.DeleteDevicePushTokenResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.DeleteDevicePushTokenResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.DeleteDevicePushTokenResponse.displayName = 'proto.viam.app.v1.DeleteDevicePushTokenResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.GetDevicePushTokensRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.GetDevicePushTokensRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.GetDevicePushTokensRequest.displayName = 'proto.viam.app.v1.GetDevicePushTokensRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.GetDevicePushTokensResponse.repeatedFields_, null);
+};
+goog.inherits(proto.viam.app.v1.GetDevicePushTokensResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.GetDevicePushTokensResponse.displayName = 'proto.viam.app.v1.GetDevicePushTokensResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.SetFirebaseConfigRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.SetFirebaseConfigRequest.displayName = 'proto.viam.app.v1.SetFirebaseConfigRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.SetFirebaseConfigResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.SetFirebaseConfigResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.SetFirebaseConfigResponse.displayName = 'proto.viam.app.v1.SetFirebaseConfigResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.GetFirebaseConfigRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.GetFirebaseConfigRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.GetFirebaseConfigRequest.displayName = 'proto.viam.app.v1.GetFirebaseConfigRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.GetFirebaseConfigResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.GetFirebaseConfigResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.GetFirebaseConfigResponse.displayName = 'proto.viam.app.v1.GetFirebaseConfigResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.DeleteFirebaseConfigRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.DeleteFirebaseConfigRequest.displayName = 'proto.viam.app.v1.DeleteFirebaseConfigRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.viam.app.v1.DeleteFirebaseConfigResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.viam.app.v1.DeleteFirebaseConfigResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.viam.app.v1.DeleteFirebaseConfigResponse.displayName = 'proto.viam.app.v1.DeleteFirebaseConfigResponse';
+}
 
 
 
@@ -6063,7 +6462,9 @@ proto.viam.app.v1.Robot.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     location: jspb.Message.getFieldWithDefault(msg, 3, ""),
     lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    onlineState: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    secondsSinceOnline: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -6121,6 +6522,14 @@ proto.viam.app.v1.Robot.deserializeBinaryFromReader = function(msg, reader) {
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreatedOn(value);
+      break;
+    case 6:
+      var value = /** @type {!proto.viam.app.v1.OnlineState} */ (reader.readEnum());
+      msg.setOnlineState(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSecondsSinceOnline(value);
       break;
     default:
       reader.skipField();
@@ -6186,6 +6595,20 @@ proto.viam.app.v1.Robot.serializeBinaryToWriter = function(message, writer) {
       5,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getOnlineState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      6,
+      f
+    );
+  }
+  f = message.getSecondsSinceOnline();
+  if (f !== 0) {
+    writer.writeInt64(
+      7,
+      f
     );
   }
 };
@@ -6319,6 +6742,42 @@ proto.viam.app.v1.Robot.prototype.hasCreatedOn = function() {
 };
 
 
+/**
+ * optional OnlineState online_state = 6;
+ * @return {!proto.viam.app.v1.OnlineState}
+ */
+proto.viam.app.v1.Robot.prototype.getOnlineState = function() {
+  return /** @type {!proto.viam.app.v1.OnlineState} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.OnlineState} value
+ * @return {!proto.viam.app.v1.Robot} returns this
+ */
+proto.viam.app.v1.Robot.prototype.setOnlineState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 6, value);
+};
+
+
+/**
+ * optional int64 seconds_since_online = 7;
+ * @return {number}
+ */
+proto.viam.app.v1.Robot.prototype.getSecondsSinceOnline = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.Robot} returns this
+ */
+proto.viam.app.v1.Robot.prototype.setSecondsSinceOnline = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -6373,7 +6832,10 @@ proto.viam.app.v1.RobotPart.toObject = function(includeInstance, msg) {
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     secretsList: jspb.Message.toObjectList(msg.getSecretsList(),
     proto.viam.app.v1.SharedSecret.toObject, includeInstance),
-    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    onlineState: jspb.Message.getFieldWithDefault(msg, 16, 0),
+    secondsSinceOnline: jspb.Message.getFieldWithDefault(msg, 17, 0),
+    robotConfigJson: jspb.Message.getFieldWithDefault(msg, 18, "")
   };
 
   if (includeInstance) {
@@ -6475,6 +6937,18 @@ proto.viam.app.v1.RobotPart.deserializeBinaryFromReader = function(msg, reader) 
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastUpdated(value);
+      break;
+    case 16:
+      var value = /** @type {!proto.viam.app.v1.OnlineState} */ (reader.readEnum());
+      msg.setOnlineState(value);
+      break;
+    case 17:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSecondsSinceOnline(value);
+      break;
+    case 18:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRobotConfigJson(value);
       break;
     default:
       reader.skipField();
@@ -6614,6 +7088,27 @@ proto.viam.app.v1.RobotPart.serializeBinaryToWriter = function(message, writer) 
       15,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getOnlineState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      16,
+      f
+    );
+  }
+  f = message.getSecondsSinceOnline();
+  if (f !== 0) {
+    writer.writeInt64(
+      17,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 18));
+  if (f != null) {
+    writer.writeString(
+      18,
+      f
     );
   }
 };
@@ -7001,6 +7496,78 @@ proto.viam.app.v1.RobotPart.prototype.clearLastUpdated = function() {
  */
 proto.viam.app.v1.RobotPart.prototype.hasLastUpdated = function() {
   return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional OnlineState online_state = 16;
+ * @return {!proto.viam.app.v1.OnlineState}
+ */
+proto.viam.app.v1.RobotPart.prototype.getOnlineState = function() {
+  return /** @type {!proto.viam.app.v1.OnlineState} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.OnlineState} value
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.setOnlineState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 16, value);
+};
+
+
+/**
+ * optional int64 seconds_since_online = 17;
+ * @return {number}
+ */
+proto.viam.app.v1.RobotPart.prototype.getSecondsSinceOnline = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 17, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.setSecondsSinceOnline = function(value) {
+  return jspb.Message.setProto3IntField(this, 17, value);
+};
+
+
+/**
+ * optional string robot_config_json = 18;
+ * @return {string}
+ */
+proto.viam.app.v1.RobotPart.prototype.getRobotConfigJson = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 18, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.setRobotConfigJson = function(value) {
+  return jspb.Message.setField(this, 18, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.RobotPart} returns this
+ */
+proto.viam.app.v1.RobotPart.prototype.clearRobotConfigJson = function() {
+  return jspb.Message.setField(this, 18, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RobotPart.prototype.hasRobotConfigJson = function() {
+  return jspb.Message.getField(this, 18) != null;
 };
 
 
@@ -7645,7 +8212,8 @@ proto.viam.app.v1.Organization.toObject = function(includeInstance, msg) {
     createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     publicNamespace: jspb.Message.getFieldWithDefault(msg, 4, ""),
     defaultRegion: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    cid: jspb.Message.getFieldWithDefault(msg, 6, "")
+    cid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    defaultFragments: (f = msg.getDefaultFragments()) && proto.viam.app.v1.FragmentImportList.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7706,6 +8274,11 @@ proto.viam.app.v1.Organization.deserializeBinaryFromReader = function(msg, reade
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setCid(value);
+      break;
+    case 7:
+      var value = new proto.viam.app.v1.FragmentImportList;
+      reader.readMessage(value,proto.viam.app.v1.FragmentImportList.deserializeBinaryFromReader);
+      msg.setDefaultFragments(value);
       break;
     default:
       reader.skipField();
@@ -7777,6 +8350,14 @@ proto.viam.app.v1.Organization.serializeBinaryToWriter = function(message, write
     writer.writeString(
       6,
       f
+    );
+  }
+  f = message.getDefaultFragments();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      proto.viam.app.v1.FragmentImportList.serializeBinaryToWriter
     );
   }
 };
@@ -7924,6 +8505,43 @@ proto.viam.app.v1.Organization.prototype.clearCid = function() {
  */
 proto.viam.app.v1.Organization.prototype.hasCid = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional FragmentImportList default_fragments = 7;
+ * @return {?proto.viam.app.v1.FragmentImportList}
+ */
+proto.viam.app.v1.Organization.prototype.getDefaultFragments = function() {
+  return /** @type{?proto.viam.app.v1.FragmentImportList} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.FragmentImportList, 7));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.FragmentImportList|undefined} value
+ * @return {!proto.viam.app.v1.Organization} returns this
+*/
+proto.viam.app.v1.Organization.prototype.setDefaultFragments = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.Organization} returns this
+ */
+proto.viam.app.v1.Organization.prototype.clearDefaultFragments = function() {
+  return this.setDefaultFragments(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Organization.prototype.hasDefaultFragments = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -9550,6 +10168,166 @@ proto.viam.app.v1.GetOrganizationNamespaceAvailabilityResponse.prototype.setAvai
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.FragmentImportList.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.FragmentImportList.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.FragmentImportList.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.FragmentImportList} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.FragmentImportList.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    fragmentsList: jspb.Message.toObjectList(msg.getFragmentsList(),
+    proto.viam.app.v1.FragmentImport.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.FragmentImportList}
+ */
+proto.viam.app.v1.FragmentImportList.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.FragmentImportList;
+  return proto.viam.app.v1.FragmentImportList.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.FragmentImportList} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.FragmentImportList}
+ */
+proto.viam.app.v1.FragmentImportList.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.viam.app.v1.FragmentImport;
+      reader.readMessage(value,proto.viam.app.v1.FragmentImport.deserializeBinaryFromReader);
+      msg.addFragments(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.FragmentImportList.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.FragmentImportList.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.FragmentImportList} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.FragmentImportList.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getFragmentsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.viam.app.v1.FragmentImport.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated FragmentImport fragments = 1;
+ * @return {!Array<!proto.viam.app.v1.FragmentImport>}
+ */
+proto.viam.app.v1.FragmentImportList.prototype.getFragmentsList = function() {
+  return /** @type{!Array<!proto.viam.app.v1.FragmentImport>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.FragmentImport, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.FragmentImport>} value
+ * @return {!proto.viam.app.v1.FragmentImportList} returns this
+*/
+proto.viam.app.v1.FragmentImportList.prototype.setFragmentsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.FragmentImport=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.FragmentImport}
+ */
+proto.viam.app.v1.FragmentImportList.prototype.addFragments = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.viam.app.v1.FragmentImport, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.FragmentImportList} returns this
+ */
+proto.viam.app.v1.FragmentImportList.prototype.clearFragmentsList = function() {
+  return this.setFragmentsList([]);
+};
+
+
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -9585,7 +10363,8 @@ proto.viam.app.v1.UpdateOrganizationRequest.toObject = function(includeInstance,
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     publicNamespace: jspb.Message.getFieldWithDefault(msg, 3, ""),
     region: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    cid: jspb.Message.getFieldWithDefault(msg, 5, "")
+    cid: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    defaultFragments: (f = msg.getDefaultFragments()) && proto.viam.app.v1.FragmentImportList.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9641,6 +10420,11 @@ proto.viam.app.v1.UpdateOrganizationRequest.deserializeBinaryFromReader = functi
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setCid(value);
+      break;
+    case 6:
+      var value = new proto.viam.app.v1.FragmentImportList;
+      reader.readMessage(value,proto.viam.app.v1.FragmentImportList.deserializeBinaryFromReader);
+      msg.setDefaultFragments(value);
       break;
     default:
       reader.skipField();
@@ -9704,6 +10488,14 @@ proto.viam.app.v1.UpdateOrganizationRequest.serializeBinaryToWriter = function(m
     writer.writeString(
       5,
       f
+    );
+  }
+  f = message.getDefaultFragments();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      proto.viam.app.v1.FragmentImportList.serializeBinaryToWriter
     );
   }
 };
@@ -9868,6 +10660,43 @@ proto.viam.app.v1.UpdateOrganizationRequest.prototype.clearCid = function() {
  */
 proto.viam.app.v1.UpdateOrganizationRequest.prototype.hasCid = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional FragmentImportList default_fragments = 6;
+ * @return {?proto.viam.app.v1.FragmentImportList}
+ */
+proto.viam.app.v1.UpdateOrganizationRequest.prototype.getDefaultFragments = function() {
+  return /** @type{?proto.viam.app.v1.FragmentImportList} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.FragmentImportList, 6));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.FragmentImportList|undefined} value
+ * @return {!proto.viam.app.v1.UpdateOrganizationRequest} returns this
+*/
+proto.viam.app.v1.UpdateOrganizationRequest.prototype.setDefaultFragments = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateOrganizationRequest} returns this
+ */
+proto.viam.app.v1.UpdateOrganizationRequest.prototype.clearDefaultFragments = function() {
+  return this.setDefaultFragments(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateOrganizationRequest.prototype.hasDefaultFragments = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -22147,7 +22976,8 @@ proto.viam.app.v1.GetRobotPartLogsRequest.toObject = function(includeInstance, m
     start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     limit: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    source: jspb.Message.getFieldWithDefault(msg, 9, "")
+    source: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    userFacingOnly: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -22221,6 +23051,10 @@ proto.viam.app.v1.GetRobotPartLogsRequest.deserializeBinaryFromReader = function
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setSource(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUserFacingOnly(value);
       break;
     default:
       reader.skipField();
@@ -22313,6 +23147,13 @@ proto.viam.app.v1.GetRobotPartLogsRequest.serializeBinaryToWriter = function(mes
   if (f != null) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeBool(
+      10,
       f
     );
   }
@@ -22607,6 +23448,42 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearSource = function() {
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasSource = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional bool user_facing_only = 10;
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getUserFacingOnly = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setUserFacingOnly = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearUserFacingOnly = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasUserFacingOnly = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
@@ -23200,7 +24077,11 @@ proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.toObject = function(opt_i
  */
 proto.viam.app.v1.GetRobotPartHistoryRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    pageLimit: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    start: (f = msg.getStart()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -23241,6 +24122,24 @@ proto.viam.app.v1.GetRobotPartHistoryRequest.deserializeBinaryFromReader = funct
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPageToken(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPageLimit(value);
+      break;
+    case 4:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setStart(value);
+      break;
+    case 5:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setEnd(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -23277,6 +24176,36 @@ proto.viam.app.v1.GetRobotPartHistoryRequest.serializeBinaryToWriter = function(
       f
     );
   }
+  f = /** @type {string} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeInt64(
+      3,
+      f
+    );
+  }
+  f = message.getStart();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getEnd();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -23295,6 +24224,152 @@ proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.getId = function() {
  */
 proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string page_token = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.getPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.setPageToken = function(value) {
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.clearPageToken = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.hasPageToken = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional int64 page_limit = 3;
+ * @return {number}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.getPageLimit = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.setPageLimit = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.clearPageLimit = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.hasPageLimit = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp start = 4;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.getStart = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+*/
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.setStart = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.clearStart = function() {
+  return this.setStart(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.hasStart = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp end = 5;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.getEnd = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+*/
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.setEnd = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.clearEnd = function() {
+  return this.setEnd(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartHistoryRequest.prototype.hasEnd = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -23338,7 +24413,8 @@ proto.viam.app.v1.GetRobotPartHistoryResponse.prototype.toObject = function(opt_
 proto.viam.app.v1.GetRobotPartHistoryResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     historyList: jspb.Message.toObjectList(msg.getHistoryList(),
-    proto.viam.app.v1.RobotPartHistoryEntry.toObject, includeInstance)
+    proto.viam.app.v1.RobotPartHistoryEntry.toObject, includeInstance),
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -23380,6 +24456,10 @@ proto.viam.app.v1.GetRobotPartHistoryResponse.deserializeBinaryFromReader = func
       reader.readMessage(value,proto.viam.app.v1.RobotPartHistoryEntry.deserializeBinaryFromReader);
       msg.addHistory(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNextPageToken(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -23415,6 +24495,13 @@ proto.viam.app.v1.GetRobotPartHistoryResponse.serializeBinaryToWriter = function
       1,
       f,
       proto.viam.app.v1.RobotPartHistoryEntry.serializeBinaryToWriter
+    );
+  }
+  f = message.getNextPageToken();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
     );
   }
 };
@@ -23458,6 +24545,24 @@ proto.viam.app.v1.GetRobotPartHistoryResponse.prototype.clearHistoryList = funct
 };
 
 
+/**
+ * optional string next_page_token = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.GetRobotPartHistoryResponse.prototype.getNextPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetRobotPartHistoryResponse} returns this
+ */
+proto.viam.app.v1.GetRobotPartHistoryResponse.prototype.setNextPageToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
 
 
 
@@ -23493,7 +24598,8 @@ proto.viam.app.v1.UpdateRobotPartRequest.toObject = function(includeInstance, ms
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     robotConfig: (f = msg.getRobotConfig()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    lastKnownUpdate: (f = msg.getLastKnownUpdate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    lastKnownUpdate: (f = msg.getLastKnownUpdate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    robotConfigJson: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -23547,6 +24653,10 @@ proto.viam.app.v1.UpdateRobotPartRequest.deserializeBinaryFromReader = function(
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastKnownUpdate(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRobotConfigJson(value);
       break;
     default:
       reader.skipField();
@@ -23605,6 +24715,13 @@ proto.viam.app.v1.UpdateRobotPartRequest.serializeBinaryToWriter = function(mess
       4,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeString(
+      5,
+      f
     );
   }
 };
@@ -23717,6 +24834,42 @@ proto.viam.app.v1.UpdateRobotPartRequest.prototype.clearLastKnownUpdate = functi
  */
 proto.viam.app.v1.UpdateRobotPartRequest.prototype.hasLastKnownUpdate = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional string robot_config_json = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateRobotPartRequest.prototype.getRobotConfigJson = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateRobotPartRequest} returns this
+ */
+proto.viam.app.v1.UpdateRobotPartRequest.prototype.setRobotConfigJson = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateRobotPartRequest} returns this
+ */
+proto.viam.app.v1.UpdateRobotPartRequest.prototype.clearRobotConfigJson = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateRobotPartRequest.prototype.hasRobotConfigJson = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -27200,6 +28353,247 @@ proto.viam.app.v1.FragmentUsage.prototype.clearVersion = function() {
 proto.viam.app.v1.FragmentUsage.prototype.hasVersion = function() {
   return jspb.Message.getField(this, 5) != null;
 };
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.FragmentImport.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.FragmentImport.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.FragmentImport} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.FragmentImport.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    version: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    prefix: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    variablesMap: (f = msg.getVariablesMap()) ? f.toObject(includeInstance, undefined) : []
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.FragmentImport}
+ */
+proto.viam.app.v1.FragmentImport.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.FragmentImport;
+  return proto.viam.app.v1.FragmentImport.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.FragmentImport} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.FragmentImport}
+ */
+proto.viam.app.v1.FragmentImport.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFragmentId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVersion(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPrefix(value);
+      break;
+    case 4:
+      var value = msg.getVariablesMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.FragmentImport.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.FragmentImport.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.FragmentImport} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.FragmentImport.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getFragmentId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getVersion();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getVariablesMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+};
+
+
+/**
+ * optional string fragment_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.FragmentImport.prototype.getFragmentId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.FragmentImport} returns this
+ */
+proto.viam.app.v1.FragmentImport.prototype.setFragmentId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string version = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.FragmentImport.prototype.getVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.FragmentImport} returns this
+ */
+proto.viam.app.v1.FragmentImport.prototype.setVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string prefix = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.FragmentImport.prototype.getPrefix = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.FragmentImport} returns this
+ */
+proto.viam.app.v1.FragmentImport.prototype.setPrefix = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.FragmentImport} returns this
+ */
+proto.viam.app.v1.FragmentImport.prototype.clearPrefix = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.FragmentImport.prototype.hasPrefix = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * map<string, string> variables = 4;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.viam.app.v1.FragmentImport.prototype.getVariablesMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 4, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.viam.app.v1.FragmentImport} returns this
+ */
+proto.viam.app.v1.FragmentImport.prototype.clearVariablesMap = function() {
+  this.getVariablesMap().clear();
+  return this;};
 
 
 
@@ -33940,6 +35334,9 @@ proto.viam.app.v1.PartSummary.toObject = function(includeInstance, msg) {
     partId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     partName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     isMainPart: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    onlineState: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    secondsSinceOnline: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    lastAccess: (f = msg.getLastAccess()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     lastOnline: (f = msg.getLastOnline()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     viamServerVersion: (f = msg.getViamServerVersion()) && proto.viam.app.v1.ViamServerVersion.toObject(includeInstance, f),
     viamAgentVersion: (f = msg.getViamAgentVersion()) && proto.viam.app.v1.ViamAgentVersion.toObject(includeInstance, f),
@@ -33996,6 +35393,19 @@ proto.viam.app.v1.PartSummary.deserializeBinaryFromReader = function(msg, reader
     case 11:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsMainPart(value);
+      break;
+    case 12:
+      var value = /** @type {!proto.viam.app.v1.OnlineState} */ (reader.readEnum());
+      msg.setOnlineState(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSecondsSinceOnline(value);
+      break;
+    case 14:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastAccess(value);
       break;
     case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -34081,6 +35491,28 @@ proto.viam.app.v1.PartSummary.serializeBinaryToWriter = function(message, writer
     writer.writeBool(
       11,
       f
+    );
+  }
+  f = message.getOnlineState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      12,
+      f
+    );
+  }
+  f = message.getSecondsSinceOnline();
+  if (f !== 0) {
+    writer.writeInt64(
+      13,
+      f
+    );
+  }
+  f = message.getLastAccess();
+  if (f != null) {
+    writer.writeMessage(
+      14,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
   f = message.getLastOnline();
@@ -34197,6 +35629,79 @@ proto.viam.app.v1.PartSummary.prototype.getIsMainPart = function() {
  */
 proto.viam.app.v1.PartSummary.prototype.setIsMainPart = function(value) {
   return jspb.Message.setProto3BooleanField(this, 11, value);
+};
+
+
+/**
+ * optional OnlineState online_state = 12;
+ * @return {!proto.viam.app.v1.OnlineState}
+ */
+proto.viam.app.v1.PartSummary.prototype.getOnlineState = function() {
+  return /** @type {!proto.viam.app.v1.OnlineState} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.OnlineState} value
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+ */
+proto.viam.app.v1.PartSummary.prototype.setOnlineState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 12, value);
+};
+
+
+/**
+ * optional int64 seconds_since_online = 13;
+ * @return {number}
+ */
+proto.viam.app.v1.PartSummary.prototype.getSecondsSinceOnline = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+ */
+proto.viam.app.v1.PartSummary.prototype.setSecondsSinceOnline = function(value) {
+  return jspb.Message.setProto3IntField(this, 13, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_access = 14;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.PartSummary.prototype.getLastAccess = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 14));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+*/
+proto.viam.app.v1.PartSummary.prototype.setLastAccess = function(value) {
+  return jspb.Message.setWrapperField(this, 14, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.PartSummary} returns this
+ */
+proto.viam.app.v1.PartSummary.prototype.clearLastAccess = function() {
+  return this.setLastAccess(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.PartSummary.prototype.hasLastAccess = function() {
+  return jspb.Message.getField(this, 14) != null;
 };
 
 
@@ -39870,7 +41375,9 @@ proto.viam.app.v1.ModuleMetadata.toObject = function(includeInstance, msg) {
     firstRun: jspb.Message.getFieldWithDefault(msg, 4, ""),
     markdownDescription: jspb.Message.getFieldWithDefault(msg, 5, ""),
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
-    proto.viam.app.v1.App.toObject, includeInstance)
+    proto.viam.app.v1.App.toObject, includeInstance),
+    sourceType: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    language: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -39933,6 +41440,14 @@ proto.viam.app.v1.ModuleMetadata.deserializeBinaryFromReader = function(msg, rea
       var value = new proto.viam.app.v1.App;
       reader.readMessage(value,proto.viam.app.v1.App.deserializeBinaryFromReader);
       msg.addApps(value);
+      break;
+    case 7:
+      var value = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (reader.readEnum());
+      msg.setSourceType(value);
+      break;
+    case 8:
+      var value = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (reader.readEnum());
+      msg.setLanguage(value);
       break;
     default:
       reader.skipField();
@@ -40006,6 +41521,20 @@ proto.viam.app.v1.ModuleMetadata.serializeBinaryToWriter = function(message, wri
       6,
       f,
       proto.viam.app.v1.App.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getField(message, 7));
+  if (f != null) {
+    writer.writeEnum(
+      7,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getField(message, 8));
+  if (f != null) {
+    writer.writeEnum(
+      8,
+      f
     );
   }
 };
@@ -40215,13 +41744,266 @@ proto.viam.app.v1.ModuleMetadata.prototype.clearAppsList = function() {
 };
 
 
+/**
+ * optional ModuleSourceType source_type = 7;
+ * @return {!proto.viam.app.v1.ModuleSourceType}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.getSourceType = function() {
+  return /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleSourceType} value
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.setSourceType = function(value) {
+  return jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.clearSourceType = function() {
+  return jspb.Message.setField(this, 7, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.hasSourceType = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional ModuleLanguage language = 8;
+ * @return {!proto.viam.app.v1.ModuleLanguage}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.getLanguage = function() {
+  return /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleLanguage} value
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.setLanguage = function(value) {
+  return jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ModuleMetadata} returns this
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.clearLanguage = function() {
+  return jspb.Message.setField(this, 8, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleMetadata.prototype.hasLanguage = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.MLModelVersion.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.MLModelVersion.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.MLModelVersion} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.MLModelVersion.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    version: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.MLModelVersion}
+ */
+proto.viam.app.v1.MLModelVersion.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.MLModelVersion;
+  return proto.viam.app.v1.MLModelVersion.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.MLModelVersion} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.MLModelVersion}
+ */
+proto.viam.app.v1.MLModelVersion.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVersion(value);
+      break;
+    case 2:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedOn(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.MLModelVersion.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.MLModelVersion.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.MLModelVersion} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.MLModelVersion.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVersion();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCreatedOn();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string version = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.MLModelVersion.prototype.getVersion = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.MLModelVersion} returns this
+ */
+proto.viam.app.v1.MLModelVersion.prototype.setVersion = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_on = 2;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.viam.app.v1.MLModelVersion.prototype.getCreatedOn = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.viam.app.v1.MLModelVersion} returns this
+*/
+proto.viam.app.v1.MLModelVersion.prototype.setCreatedOn = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.MLModelVersion} returns this
+ */
+proto.viam.app.v1.MLModelVersion.prototype.clearCreatedOn = function() {
+  return this.setCreatedOn(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.MLModelVersion.prototype.hasCreatedOn = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
 
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.MLModelMetadata.repeatedFields_ = [1];
+proto.viam.app.v1.MLModelMetadata.repeatedFields_ = [1,4];
 
 
 
@@ -40256,7 +42038,9 @@ proto.viam.app.v1.MLModelMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
     versionsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
     modelType: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    detailedVersionsList: jspb.Message.toObjectList(msg.getDetailedVersionsList(),
+    proto.viam.app.v1.MLModelVersion.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -40304,6 +42088,11 @@ proto.viam.app.v1.MLModelMetadata.deserializeBinaryFromReader = function(msg, re
     case 3:
       var value = /** @type {!proto.viam.app.mltraining.v1.ModelFramework} */ (reader.readEnum());
       msg.setModelFramework(value);
+      break;
+    case 4:
+      var value = new proto.viam.app.v1.MLModelVersion;
+      reader.readMessage(value,proto.viam.app.v1.MLModelVersion.deserializeBinaryFromReader);
+      msg.addDetailedVersions(value);
       break;
     default:
       reader.skipField();
@@ -40353,6 +42142,14 @@ proto.viam.app.v1.MLModelMetadata.serializeBinaryToWriter = function(message, wr
     writer.writeEnum(
       3,
       f
+    );
+  }
+  f = message.getDetailedVersionsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.viam.app.v1.MLModelVersion.serializeBinaryToWriter
     );
   }
 };
@@ -40428,6 +42225,44 @@ proto.viam.app.v1.MLModelMetadata.prototype.getModelFramework = function() {
  */
 proto.viam.app.v1.MLModelMetadata.prototype.setModelFramework = function(value) {
   return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * repeated MLModelVersion detailed_versions = 4;
+ * @return {!Array<!proto.viam.app.v1.MLModelVersion>}
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.getDetailedVersionsList = function() {
+  return /** @type{!Array<!proto.viam.app.v1.MLModelVersion>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.MLModelVersion, 4));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.MLModelVersion>} value
+ * @return {!proto.viam.app.v1.MLModelMetadata} returns this
+*/
+proto.viam.app.v1.MLModelMetadata.prototype.setDetailedVersionsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.MLModelVersion=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.MLModelVersion}
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.addDetailedVersions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.viam.app.v1.MLModelVersion, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.MLModelMetadata} returns this
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.clearDetailedVersionsList = function() {
+  return this.setDetailedVersionsList([]);
 };
 
 
@@ -42827,7 +44662,7 @@ proto.viam.app.v1.UpdateRegistryItemResponse.serializeBinaryToWriter = function(
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.ListRegistryItemsRequest.repeatedFields_ = [2,3,4,5,8];
+proto.viam.app.v1.ListRegistryItemsRequest.repeatedFields_ = [2,3,4,5,8,10,11];
 
 
 
@@ -42868,7 +44703,9 @@ proto.viam.app.v1.ListRegistryItemsRequest.toObject = function(includeInstance, 
     searchTerm: jspb.Message.getFieldWithDefault(msg, 6, ""),
     pageToken: jspb.Message.getFieldWithDefault(msg, 7, ""),
     publicNamespacesList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
-    includeMarkdownDocumentation: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
+    includeMarkdownDocumentation: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    moduleSourceTypesList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
+    moduleLanguagesList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -42946,6 +44783,18 @@ proto.viam.app.v1.ListRegistryItemsRequest.deserializeBinaryFromReader = functio
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIncludeMarkdownDocumentation(value);
+      break;
+    case 10:
+      var values = /** @type {!Array<!proto.viam.app.v1.ModuleSourceType>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addModuleSourceTypes(values[i]);
+      }
+      break;
+    case 11:
+      var values = /** @type {!Array<!proto.viam.app.v1.ModuleLanguage>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addModuleLanguages(values[i]);
+      }
       break;
     default:
       reader.skipField();
@@ -43036,6 +44885,20 @@ proto.viam.app.v1.ListRegistryItemsRequest.serializeBinaryToWriter = function(me
   if (f != null) {
     writer.writeBool(
       9,
+      f
+    );
+  }
+  f = message.getModuleSourceTypesList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      10,
+      f
+    );
+  }
+  f = message.getModuleLanguagesList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      11,
       f
     );
   }
@@ -43368,6 +45231,80 @@ proto.viam.app.v1.ListRegistryItemsRequest.prototype.clearIncludeMarkdownDocumen
  */
 proto.viam.app.v1.ListRegistryItemsRequest.prototype.hasIncludeMarkdownDocumentation = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * repeated ModuleSourceType module_source_types = 10;
+ * @return {!Array<!proto.viam.app.v1.ModuleSourceType>}
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.getModuleSourceTypesList = function() {
+  return /** @type {!Array<!proto.viam.app.v1.ModuleSourceType>} */ (jspb.Message.getRepeatedField(this, 10));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.ModuleSourceType>} value
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.setModuleSourceTypesList = function(value) {
+  return jspb.Message.setField(this, 10, value || []);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleSourceType} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.addModuleSourceTypes = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 10, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.clearModuleSourceTypesList = function() {
+  return this.setModuleSourceTypesList([]);
+};
+
+
+/**
+ * repeated ModuleLanguage module_languages = 11;
+ * @return {!Array<!proto.viam.app.v1.ModuleLanguage>}
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.getModuleLanguagesList = function() {
+  return /** @type {!Array<!proto.viam.app.v1.ModuleLanguage>} */ (jspb.Message.getRepeatedField(this, 11));
+};
+
+
+/**
+ * @param {!Array<!proto.viam.app.v1.ModuleLanguage>} value
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.setModuleLanguagesList = function(value) {
+  return jspb.Message.setField(this, 11, value || []);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleLanguage} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.addModuleLanguages = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 11, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.clearModuleLanguagesList = function() {
+  return this.setModuleLanguagesList([]);
 };
 
 
@@ -45119,6 +47056,162 @@ proto.viam.app.v1.UpdateModuleRequest.prototype.hasMarkdownDescription = functio
  * @private {!Array<number>}
  * @const
  */
+proto.viam.app.v1.AllowedOrgIDs.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.AllowedOrgIDs.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.AllowedOrgIDs.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.AllowedOrgIDs} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.AllowedOrgIDs.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    idsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.AllowedOrgIDs}
+ */
+proto.viam.app.v1.AllowedOrgIDs.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.AllowedOrgIDs;
+  return proto.viam.app.v1.AllowedOrgIDs.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.AllowedOrgIDs} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.AllowedOrgIDs}
+ */
+proto.viam.app.v1.AllowedOrgIDs.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addIds(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.AllowedOrgIDs.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.AllowedOrgIDs.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.AllowedOrgIDs} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.AllowedOrgIDs.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated string ids = 1;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.AllowedOrgIDs.prototype.getIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.AllowedOrgIDs} returns this
+ */
+proto.viam.app.v1.AllowedOrgIDs.prototype.setIdsList = function(value) {
+  return jspb.Message.setField(this, 1, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.AllowedOrgIDs} returns this
+ */
+proto.viam.app.v1.AllowedOrgIDs.prototype.addIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.AllowedOrgIDs} returns this
+ */
+proto.viam.app.v1.AllowedOrgIDs.prototype.clearIdsList = function() {
+  return this.setIdsList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
 proto.viam.app.v1.App.repeatedFields_ = [4];
 
 
@@ -45157,7 +47250,8 @@ proto.viam.app.v1.App.toObject = function(includeInstance, msg) {
     entrypoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
     fragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     logoPath: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    customizations: (f = msg.getCustomizations()) && proto.viam.app.v1.AppCustomizations.toObject(includeInstance, f)
+    customizations: (f = msg.getCustomizations()) && proto.viam.app.v1.AppCustomizations.toObject(includeInstance, f),
+    allowedOrgIds: (f = msg.getAllowedOrgIds()) && proto.viam.app.v1.AllowedOrgIDs.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -45218,6 +47312,11 @@ proto.viam.app.v1.App.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.viam.app.v1.AppCustomizations;
       reader.readMessage(value,proto.viam.app.v1.AppCustomizations.deserializeBinaryFromReader);
       msg.setCustomizations(value);
+      break;
+    case 7:
+      var value = new proto.viam.app.v1.AllowedOrgIDs;
+      reader.readMessage(value,proto.viam.app.v1.AllowedOrgIDs.deserializeBinaryFromReader);
+      msg.setAllowedOrgIds(value);
       break;
     default:
       reader.skipField();
@@ -45289,6 +47388,14 @@ proto.viam.app.v1.App.serializeBinaryToWriter = function(message, writer) {
       6,
       f,
       proto.viam.app.v1.AppCustomizations.serializeBinaryToWriter
+    );
+  }
+  f = message.getAllowedOrgIds();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      proto.viam.app.v1.AllowedOrgIDs.serializeBinaryToWriter
     );
   }
 };
@@ -45455,6 +47562,43 @@ proto.viam.app.v1.App.prototype.clearCustomizations = function() {
  */
 proto.viam.app.v1.App.prototype.hasCustomizations = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional AllowedOrgIDs allowed_org_ids = 7;
+ * @return {?proto.viam.app.v1.AllowedOrgIDs}
+ */
+proto.viam.app.v1.App.prototype.getAllowedOrgIds = function() {
+  return /** @type{?proto.viam.app.v1.AllowedOrgIDs} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.AllowedOrgIDs, 7));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.AllowedOrgIDs|undefined} value
+ * @return {!proto.viam.app.v1.App} returns this
+*/
+proto.viam.app.v1.App.prototype.setAllowedOrgIds = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.App} returns this
+ */
+proto.viam.app.v1.App.prototype.clearAllowedOrgIds = function() {
+  return this.setAllowedOrgIds(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.App.prototype.hasAllowedOrgIds = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -45631,7 +47775,9 @@ proto.viam.app.v1.UpdateModuleMetadata.toObject = function(includeInstance, msg)
     proto.viam.app.v1.Model.toObject, includeInstance),
     entrypoint: jspb.Message.getFieldWithDefault(msg, 2, ""),
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
-    proto.viam.app.v1.App.toObject, includeInstance)
+    proto.viam.app.v1.App.toObject, includeInstance),
+    sourceType: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    language: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -45681,6 +47827,14 @@ proto.viam.app.v1.UpdateModuleMetadata.deserializeBinaryFromReader = function(ms
       var value = new proto.viam.app.v1.App;
       reader.readMessage(value,proto.viam.app.v1.App.deserializeBinaryFromReader);
       msg.addApps(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (reader.readEnum());
+      msg.setSourceType(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (reader.readEnum());
+      msg.setLanguage(value);
       break;
     default:
       reader.skipField();
@@ -45732,6 +47886,20 @@ proto.viam.app.v1.UpdateModuleMetadata.serializeBinaryToWriter = function(messag
       3,
       f,
       proto.viam.app.v1.App.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeEnum(
+      5,
+      f
     );
   }
 };
@@ -45828,6 +47996,78 @@ proto.viam.app.v1.UpdateModuleMetadata.prototype.addApps = function(opt_value, o
  */
 proto.viam.app.v1.UpdateModuleMetadata.prototype.clearAppsList = function() {
   return this.setAppsList([]);
+};
+
+
+/**
+ * optional ModuleSourceType source_type = 4;
+ * @return {!proto.viam.app.v1.ModuleSourceType}
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.getSourceType = function() {
+  return /** @type {!proto.viam.app.v1.ModuleSourceType} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleSourceType} value
+ * @return {!proto.viam.app.v1.UpdateModuleMetadata} returns this
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.setSourceType = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateModuleMetadata} returns this
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.clearSourceType = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.hasSourceType = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional ModuleLanguage language = 5;
+ * @return {!proto.viam.app.v1.ModuleLanguage}
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.getLanguage = function() {
+  return /** @type {!proto.viam.app.v1.ModuleLanguage} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ModuleLanguage} value
+ * @return {!proto.viam.app.v1.UpdateModuleMetadata} returns this
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.setLanguage = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.UpdateModuleMetadata} returns this
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.clearLanguage = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UpdateModuleMetadata.prototype.hasLanguage = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -52800,7 +55040,8 @@ proto.viam.app.v1.GetAppContentResponse.toObject = function(includeInstance, msg
   var f, obj = {
     blobPath: jspb.Message.getFieldWithDefault(msg, 1, ""),
     entrypoint: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    appType: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    appType: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -52849,6 +55090,10 @@ proto.viam.app.v1.GetAppContentResponse.deserializeBinaryFromReader = function(m
       var value = /** @type {!proto.viam.app.v1.AppType} */ (reader.readEnum());
       msg.setAppType(value);
       break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setPublic(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -52896,6 +55141,13 @@ proto.viam.app.v1.GetAppContentResponse.serializeBinaryToWriter = function(messa
   if (f !== 0.0) {
     writer.writeEnum(
       3,
+      f
+    );
+  }
+  f = message.getPublic();
+  if (f) {
+    writer.writeBool(
+      4,
       f
     );
   }
@@ -52953,6 +55205,24 @@ proto.viam.app.v1.GetAppContentResponse.prototype.getAppType = function() {
  */
 proto.viam.app.v1.GetAppContentResponse.prototype.setAppType = function(value) {
   return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional bool public = 4;
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetAppContentResponse.prototype.getPublic = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.GetAppContentResponse} returns this
+ */
+proto.viam.app.v1.GetAppContentResponse.prototype.setPublic = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -55595,6 +57865,506 @@ proto.viam.app.v1.ListOAuthAppsResponse.prototype.clearClientIdsList = function(
 
 
 
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.CreateOAuthAppUserRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.CreateOAuthAppUserRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    applicationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    email: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    firstName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    lastName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    password: jspb.Message.getFieldWithDefault(msg, 6, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserRequest}
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.CreateOAuthAppUserRequest;
+  return proto.viam.app.v1.CreateOAuthAppUserRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.CreateOAuthAppUserRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserRequest}
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrgId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setApplicationId(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEmail(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFirstName(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLastName(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPassword(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.CreateOAuthAppUserRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.CreateOAuthAppUserRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrgId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getApplicationId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getEmail();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getFirstName();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getLastName();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getPassword();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string org_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.getOrgId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserRequest} returns this
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.setOrgId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string application_id = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.getApplicationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserRequest} returns this
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.setApplicationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string email = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.getEmail = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserRequest} returns this
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.setEmail = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string first_name = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.getFirstName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserRequest} returns this
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.setFirstName = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string last_name = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.getLastName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserRequest} returns this
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.setLastName = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string password = 6;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.getPassword = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserRequest} returns this
+ */
+proto.viam.app.v1.CreateOAuthAppUserRequest.prototype.setPassword = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.CreateOAuthAppUserResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.CreateOAuthAppUserResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    authToken: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    registrationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    userId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    refreshToken: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserResponse}
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.CreateOAuthAppUserResponse;
+  return proto.viam.app.v1.CreateOAuthAppUserResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.CreateOAuthAppUserResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserResponse}
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAuthToken(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRegistrationId(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUserId(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRefreshToken(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.CreateOAuthAppUserResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.CreateOAuthAppUserResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAuthToken();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getRegistrationId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getUserId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getRefreshToken();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string auth_token = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.prototype.getAuthToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserResponse} returns this
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.prototype.setAuthToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string registration_id = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.prototype.getRegistrationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserResponse} returns this
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.prototype.setRegistrationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string user_id = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.prototype.getUserId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserResponse} returns this
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.prototype.setUserId = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string refresh_token = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.prototype.getRefreshToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.CreateOAuthAppUserResponse} returns this
+ */
+proto.viam.app.v1.CreateOAuthAppUserResponse.prototype.setRefreshToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
@@ -55639,7 +58409,8 @@ proto.viam.app.v1.OAuthConfig.toObject = function(includeInstance, msg) {
     originUrisList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     redirectUrisList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
     logoutUri: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    enabledGrantsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
+    enabledGrantsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+    inviteRedirectUri: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -55705,6 +58476,10 @@ proto.viam.app.v1.OAuthConfig.deserializeBinaryFromReader = function(msg, reader
       for (var i = 0; i < values.length; i++) {
         msg.addEnabledGrants(values[i]);
       }
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInviteRedirectUri(value);
       break;
     default:
       reader.skipField();
@@ -55781,6 +58556,13 @@ proto.viam.app.v1.OAuthConfig.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writePackedEnum(
       7,
+      f
+    );
+  }
+  f = message.getInviteRedirectUri();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -55967,6 +58749,24 @@ proto.viam.app.v1.OAuthConfig.prototype.addEnabledGrants = function(value, opt_i
  */
 proto.viam.app.v1.OAuthConfig.prototype.clearEnabledGrantsList = function() {
   return this.setEnabledGrantsList([]);
+};
+
+
+/**
+ * optional string invite_redirect_uri = 8;
+ * @return {string}
+ */
+proto.viam.app.v1.OAuthConfig.prototype.getInviteRedirectUri = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.OAuthConfig} returns this
+ */
+proto.viam.app.v1.OAuthConfig.prototype.setInviteRedirectUri = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -56269,7 +59069,7 @@ proto.viam.app.v1.TextOverrides.prototype.clearFieldsMap = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.GetAppBrandingResponse.repeatedFields_ = [3];
+proto.viam.app.v1.GetAppBrandingResponse.repeatedFields_ = [3,4];
 
 
 
@@ -56304,7 +59104,8 @@ proto.viam.app.v1.GetAppBrandingResponse.toObject = function(includeInstance, ms
   var f, obj = {
     logoPath: jspb.Message.getFieldWithDefault(msg, 1, ""),
     textCustomizationsMap: (f = msg.getTextCustomizationsMap()) ? f.toObject(includeInstance, proto.viam.app.v1.TextOverrides.toObject) : [],
-    fragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+    fragmentIdsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    allowedOrgIdsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -56355,6 +59156,10 @@ proto.viam.app.v1.GetAppBrandingResponse.deserializeBinaryFromReader = function(
       var value = /** @type {string} */ (reader.readString());
       msg.addFragmentIds(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addAllowedOrgIds(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -56399,6 +59204,13 @@ proto.viam.app.v1.GetAppBrandingResponse.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writeRepeatedString(
       3,
+      f
+    );
+  }
+  f = message.getAllowedOrgIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
       f
     );
   }
@@ -56497,6 +59309,43 @@ proto.viam.app.v1.GetAppBrandingResponse.prototype.addFragmentIds = function(val
  */
 proto.viam.app.v1.GetAppBrandingResponse.prototype.clearFragmentIdsList = function() {
   return this.setFragmentIdsList([]);
+};
+
+
+/**
+ * repeated string allowed_org_ids = 4;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.getAllowedOrgIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.GetAppBrandingResponse} returns this
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.setAllowedOrgIdsList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.GetAppBrandingResponse} returns this
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.addAllowedOrgIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.GetAppBrandingResponse} returns this
+ */
+proto.viam.app.v1.GetAppBrandingResponse.prototype.clearAllowedOrgIdsList = function() {
+  return this.setAllowedOrgIdsList([]);
 };
 
 
@@ -56847,6 +59696,1666 @@ proto.viam.app.v1.MachinePickerCustomizations.prototype.hasSubheading = function
 };
 
 
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.UploadDevicePushTokenRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.UploadDevicePushTokenRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    appId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    deviceToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    deviceUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.UploadDevicePushTokenRequest}
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.UploadDevicePushTokenRequest;
+  return proto.viam.app.v1.UploadDevicePushTokenRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.UploadDevicePushTokenRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.UploadDevicePushTokenRequest}
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAppId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeviceToken(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeviceUuid(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.UploadDevicePushTokenRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.UploadDevicePushTokenRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAppId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getDeviceToken();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getDeviceUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string app_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.prototype.getAppId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UploadDevicePushTokenRequest} returns this
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.prototype.setAppId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string device_token = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.prototype.getDeviceToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UploadDevicePushTokenRequest} returns this
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.prototype.setDeviceToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string device_uuid = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.prototype.getDeviceUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UploadDevicePushTokenRequest} returns this
+ */
+proto.viam.app.v1.UploadDevicePushTokenRequest.prototype.setDeviceUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.UploadDevicePushTokenResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.UploadDevicePushTokenResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.UploadDevicePushTokenResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.UploadDevicePushTokenResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.UploadDevicePushTokenResponse}
+ */
+proto.viam.app.v1.UploadDevicePushTokenResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.UploadDevicePushTokenResponse;
+  return proto.viam.app.v1.UploadDevicePushTokenResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.UploadDevicePushTokenResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.UploadDevicePushTokenResponse}
+ */
+proto.viam.app.v1.UploadDevicePushTokenResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.UploadDevicePushTokenResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.UploadDevicePushTokenResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.UploadDevicePushTokenResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.UploadDevicePushTokenResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.DeleteDevicePushTokenRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.DeleteDevicePushTokenRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    appId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    deviceUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.DeleteDevicePushTokenRequest}
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.DeleteDevicePushTokenRequest;
+  return proto.viam.app.v1.DeleteDevicePushTokenRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.DeleteDevicePushTokenRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.DeleteDevicePushTokenRequest}
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAppId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeviceUuid(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.DeleteDevicePushTokenRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.DeleteDevicePushTokenRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAppId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getDeviceUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string app_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest.prototype.getAppId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.DeleteDevicePushTokenRequest} returns this
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest.prototype.setAppId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string device_uuid = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest.prototype.getDeviceUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.DeleteDevicePushTokenRequest} returns this
+ */
+proto.viam.app.v1.DeleteDevicePushTokenRequest.prototype.setDeviceUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.DeleteDevicePushTokenResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.DeleteDevicePushTokenResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.DeleteDevicePushTokenResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.DeleteDevicePushTokenResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.DeleteDevicePushTokenResponse}
+ */
+proto.viam.app.v1.DeleteDevicePushTokenResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.DeleteDevicePushTokenResponse;
+  return proto.viam.app.v1.DeleteDevicePushTokenResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.DeleteDevicePushTokenResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.DeleteDevicePushTokenResponse}
+ */
+proto.viam.app.v1.DeleteDevicePushTokenResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.DeleteDevicePushTokenResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.DeleteDevicePushTokenResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.DeleteDevicePushTokenResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.DeleteDevicePushTokenResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.GetDevicePushTokensRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.GetDevicePushTokensRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.GetDevicePushTokensRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.GetDevicePushTokensRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    appId: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.GetDevicePushTokensRequest}
+ */
+proto.viam.app.v1.GetDevicePushTokensRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.GetDevicePushTokensRequest;
+  return proto.viam.app.v1.GetDevicePushTokensRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.GetDevicePushTokensRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.GetDevicePushTokensRequest}
+ */
+proto.viam.app.v1.GetDevicePushTokensRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAppId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.GetDevicePushTokensRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.GetDevicePushTokensRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.GetDevicePushTokensRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.GetDevicePushTokensRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAppId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string app_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.GetDevicePushTokensRequest.prototype.getAppId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetDevicePushTokensRequest} returns this
+ */
+proto.viam.app.v1.GetDevicePushTokensRequest.prototype.setAppId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.GetDevicePushTokensResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.GetDevicePushTokensResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    deviceTokensList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.GetDevicePushTokensResponse}
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.GetDevicePushTokensResponse;
+  return proto.viam.app.v1.GetDevicePushTokensResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.GetDevicePushTokensResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.GetDevicePushTokensResponse}
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addDeviceTokens(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.GetDevicePushTokensResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.GetDevicePushTokensResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getDeviceTokensList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated string device_tokens = 1;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.prototype.getDeviceTokensList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.GetDevicePushTokensResponse} returns this
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.prototype.setDeviceTokensList = function(value) {
+  return jspb.Message.setField(this, 1, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.GetDevicePushTokensResponse} returns this
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.prototype.addDeviceTokens = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.GetDevicePushTokensResponse} returns this
+ */
+proto.viam.app.v1.GetDevicePushTokensResponse.prototype.clearDeviceTokensList = function() {
+  return this.setDeviceTokensList([]);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.SetFirebaseConfigRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.SetFirebaseConfigRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    appId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    configJson: jspb.Message.getFieldWithDefault(msg, 3, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.SetFirebaseConfigRequest}
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.SetFirebaseConfigRequest;
+  return proto.viam.app.v1.SetFirebaseConfigRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.SetFirebaseConfigRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.SetFirebaseConfigRequest}
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrgId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAppId(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConfigJson(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.SetFirebaseConfigRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.SetFirebaseConfigRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrgId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getAppId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getConfigJson();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string org_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.prototype.getOrgId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.SetFirebaseConfigRequest} returns this
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.prototype.setOrgId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string app_id = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.prototype.getAppId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.SetFirebaseConfigRequest} returns this
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.prototype.setAppId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string config_json = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.prototype.getConfigJson = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.SetFirebaseConfigRequest} returns this
+ */
+proto.viam.app.v1.SetFirebaseConfigRequest.prototype.setConfigJson = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.SetFirebaseConfigResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.SetFirebaseConfigResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.SetFirebaseConfigResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.SetFirebaseConfigResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.SetFirebaseConfigResponse}
+ */
+proto.viam.app.v1.SetFirebaseConfigResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.SetFirebaseConfigResponse;
+  return proto.viam.app.v1.SetFirebaseConfigResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.SetFirebaseConfigResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.SetFirebaseConfigResponse}
+ */
+proto.viam.app.v1.SetFirebaseConfigResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.SetFirebaseConfigResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.SetFirebaseConfigResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.SetFirebaseConfigResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.SetFirebaseConfigResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.GetFirebaseConfigRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.GetFirebaseConfigRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.GetFirebaseConfigRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.GetFirebaseConfigRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    orgId: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.GetFirebaseConfigRequest}
+ */
+proto.viam.app.v1.GetFirebaseConfigRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.GetFirebaseConfigRequest;
+  return proto.viam.app.v1.GetFirebaseConfigRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.GetFirebaseConfigRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.GetFirebaseConfigRequest}
+ */
+proto.viam.app.v1.GetFirebaseConfigRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrgId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.GetFirebaseConfigRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.GetFirebaseConfigRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.GetFirebaseConfigRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.GetFirebaseConfigRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrgId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string org_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.GetFirebaseConfigRequest.prototype.getOrgId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetFirebaseConfigRequest} returns this
+ */
+proto.viam.app.v1.GetFirebaseConfigRequest.prototype.setOrgId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.GetFirebaseConfigResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.GetFirebaseConfigResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.GetFirebaseConfigResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.GetFirebaseConfigResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    appId: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.GetFirebaseConfigResponse}
+ */
+proto.viam.app.v1.GetFirebaseConfigResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.GetFirebaseConfigResponse;
+  return proto.viam.app.v1.GetFirebaseConfigResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.GetFirebaseConfigResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.GetFirebaseConfigResponse}
+ */
+proto.viam.app.v1.GetFirebaseConfigResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAppId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.GetFirebaseConfigResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.GetFirebaseConfigResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.GetFirebaseConfigResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.GetFirebaseConfigResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAppId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string app_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.GetFirebaseConfigResponse.prototype.getAppId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetFirebaseConfigResponse} returns this
+ */
+proto.viam.app.v1.GetFirebaseConfigResponse.prototype.setAppId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.DeleteFirebaseConfigRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.DeleteFirebaseConfigRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    orgId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    appId: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.DeleteFirebaseConfigRequest}
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.DeleteFirebaseConfigRequest;
+  return proto.viam.app.v1.DeleteFirebaseConfigRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.DeleteFirebaseConfigRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.DeleteFirebaseConfigRequest}
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrgId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAppId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.DeleteFirebaseConfigRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.DeleteFirebaseConfigRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrgId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getAppId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string org_id = 1;
+ * @return {string}
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest.prototype.getOrgId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.DeleteFirebaseConfigRequest} returns this
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest.prototype.setOrgId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string app_id = 2;
+ * @return {string}
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest.prototype.getAppId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.DeleteFirebaseConfigRequest} returns this
+ */
+proto.viam.app.v1.DeleteFirebaseConfigRequest.prototype.setAppId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.viam.app.v1.DeleteFirebaseConfigResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.viam.app.v1.DeleteFirebaseConfigResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.viam.app.v1.DeleteFirebaseConfigResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.DeleteFirebaseConfigResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.viam.app.v1.DeleteFirebaseConfigResponse}
+ */
+proto.viam.app.v1.DeleteFirebaseConfigResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.viam.app.v1.DeleteFirebaseConfigResponse;
+  return proto.viam.app.v1.DeleteFirebaseConfigResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.viam.app.v1.DeleteFirebaseConfigResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.viam.app.v1.DeleteFirebaseConfigResponse}
+ */
+proto.viam.app.v1.DeleteFirebaseConfigResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.viam.app.v1.DeleteFirebaseConfigResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.viam.app.v1.DeleteFirebaseConfigResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.viam.app.v1.DeleteFirebaseConfigResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.viam.app.v1.DeleteFirebaseConfigResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.v1.OnlineState = {
+  ONLINE_STATE_UNSPECIFIED: 0,
+  ONLINE_STATE_ONLINE: 1,
+  ONLINE_STATE_OFFLINE: 2,
+  ONLINE_STATE_AWAITING_SETUP: 3
+};
+
 /**
  * @enum {number}
  */
@@ -56877,6 +61386,25 @@ proto.viam.app.v1.FragmentErrorType = {
   FRAGMENT_ERROR_TYPE_NESTING_LIMIT_EXCEEDED: 2,
   FRAGMENT_ERROR_TYPE_CHILD_ID_INVALID: 3,
   FRAGMENT_ERROR_TYPE_CYCLE_DETECTED: 4
+};
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.v1.ModuleSourceType = {
+  MODULE_SOURCE_TYPE_UNSPECIFIED: 0,
+  MODULE_SOURCE_TYPE_EXTERNAL: 1,
+  MODULE_SOURCE_TYPE_VIAM_HOSTED: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.v1.ModuleLanguage = {
+  MODULE_LANGUAGE_UNSPECIFIED: 0,
+  MODULE_LANGUAGE_GOLANG: 1,
+  MODULE_LANGUAGE_PYTHON: 2,
+  MODULE_LANGUAGE_CPP: 3
 };
 
 /**

@@ -316,6 +316,15 @@ AppService.ListOAuthApps = {
   responseType: app_v1_app_pb.ListOAuthAppsResponse
 };
 
+AppService.CreateOAuthAppUser = {
+  methodName: "CreateOAuthAppUser",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.CreateOAuthAppUserRequest,
+  responseType: app_v1_app_pb.CreateOAuthAppUserResponse
+};
+
 AppService.CreateLocation = {
   methodName: "CreateLocation",
   service: AppService,
@@ -989,6 +998,60 @@ AppService.GetAppBranding = {
   responseStream: false,
   requestType: app_v1_app_pb.GetAppBrandingRequest,
   responseType: app_v1_app_pb.GetAppBrandingResponse
+};
+
+AppService.UploadDevicePushToken = {
+  methodName: "UploadDevicePushToken",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.UploadDevicePushTokenRequest,
+  responseType: app_v1_app_pb.UploadDevicePushTokenResponse
+};
+
+AppService.DeleteDevicePushToken = {
+  methodName: "DeleteDevicePushToken",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteDevicePushTokenRequest,
+  responseType: app_v1_app_pb.DeleteDevicePushTokenResponse
+};
+
+AppService.GetDevicePushTokens = {
+  methodName: "GetDevicePushTokens",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetDevicePushTokensRequest,
+  responseType: app_v1_app_pb.GetDevicePushTokensResponse
+};
+
+AppService.SetFirebaseConfig = {
+  methodName: "SetFirebaseConfig",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.SetFirebaseConfigRequest,
+  responseType: app_v1_app_pb.SetFirebaseConfigResponse
+};
+
+AppService.GetFirebaseConfig = {
+  methodName: "GetFirebaseConfig",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.GetFirebaseConfigRequest,
+  responseType: app_v1_app_pb.GetFirebaseConfigResponse
+};
+
+AppService.DeleteFirebaseConfig = {
+  methodName: "DeleteFirebaseConfig",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.DeleteFirebaseConfigRequest,
+  responseType: app_v1_app_pb.DeleteFirebaseConfigResponse
 };
 
 exports.AppService = AppService;
@@ -2026,6 +2089,37 @@ AppServiceClient.prototype.listOAuthApps = function listOAuthApps(requestMessage
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.ListOAuthApps, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.createOAuthAppUser = function createOAuthAppUser(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.CreateOAuthAppUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -4369,6 +4463,192 @@ AppServiceClient.prototype.getAppBranding = function getAppBranding(requestMessa
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.GetAppBranding, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.uploadDevicePushToken = function uploadDevicePushToken(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.UploadDevicePushToken, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteDevicePushToken = function deleteDevicePushToken(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteDevicePushToken, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getDevicePushTokens = function getDevicePushTokens(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetDevicePushTokens, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.setFirebaseConfig = function setFirebaseConfig(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.SetFirebaseConfig, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.getFirebaseConfig = function getFirebaseConfig(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.GetFirebaseConfig, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.deleteFirebaseConfig = function deleteFirebaseConfig(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.DeleteFirebaseConfig, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

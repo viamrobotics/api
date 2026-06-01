@@ -52,7 +52,8 @@ message HandlerMap {
 }
 
 message ReadyRequest {
-  string parent_address = 1;
+  string parent_address = 1 [deprecated = true];
+  string raw_parent_address = 3;
   string webrtc_offer = 2;
 }
 

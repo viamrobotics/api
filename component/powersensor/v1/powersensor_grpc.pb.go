@@ -33,6 +33,8 @@ type PowerSensorServiceClient interface {
 	GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 }
 
 type powerSensorServiceClient struct {
@@ -88,6 +90,15 @@ func (c *powerSensorServiceClient) DoCommand(ctx context.Context, in *v1.DoComma
 	return out, nil
 }
 
+func (c *powerSensorServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.powersensor.v1.PowerSensorService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PowerSensorServiceServer is the server API for PowerSensorService service.
 // All implementations must embed UnimplementedPowerSensorServiceServer
 // for forward compatibility
@@ -102,6 +113,8 @@ type PowerSensorServiceServer interface {
 	GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	mustEmbedUnimplementedPowerSensorServiceServer()
 }
 
@@ -123,6 +136,9 @@ func (UnimplementedPowerSensorServiceServer) GetReadings(context.Context, *v1.Ge
 }
 func (UnimplementedPowerSensorServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedPowerSensorServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedPowerSensorServiceServer) mustEmbedUnimplementedPowerSensorServiceServer() {}
 
@@ -227,6 +243,24 @@ func _PowerSensorService_DoCommand_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PowerSensorService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PowerSensorServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.powersensor.v1.PowerSensorService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PowerSensorServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PowerSensorService_ServiceDesc is the grpc.ServiceDesc for PowerSensorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -253,6 +287,10 @@ var PowerSensorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _PowerSensorService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _PowerSensorService_GetStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

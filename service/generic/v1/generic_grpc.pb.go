@@ -25,6 +25,8 @@ const _ = grpc.SupportPackageIsVersion7
 type GenericServiceClient interface {
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 }
 
 type genericServiceClient struct {
@@ -44,12 +46,23 @@ func (c *genericServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRe
 	return out, nil
 }
 
+func (c *genericServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.generic.v1.GenericService/GetStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GenericServiceServer is the server API for GenericService service.
 // All implementations must embed UnimplementedGenericServiceServer
 // for forward compatibility
 type GenericServiceServer interface {
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	mustEmbedUnimplementedGenericServiceServer()
 }
 
@@ -59,6 +72,9 @@ type UnimplementedGenericServiceServer struct {
 
 func (UnimplementedGenericServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
+}
+func (UnimplementedGenericServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedGenericServiceServer) mustEmbedUnimplementedGenericServiceServer() {}
 
@@ -91,6 +107,24 @@ func _GenericService_DoCommand_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GenericService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GenericServiceServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.generic.v1.GenericService/GetStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GenericServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GenericService_ServiceDesc is the grpc.ServiceDesc for GenericService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -101,6 +135,10 @@ var GenericService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DoCommand",
 			Handler:    _GenericService_DoCommand_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _GenericService_GetStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -29,6 +29,15 @@ DataManagerService.DoCommand = {
   responseType: common_v1_common_pb.DoCommandResponse
 };
 
+DataManagerService.GetStatus = {
+  methodName: "GetStatus",
+  service: DataManagerService,
+  requestStream: false,
+  responseStream: false,
+  requestType: common_v1_common_pb.GetStatusRequest,
+  responseType: common_v1_common_pb.GetStatusResponse
+};
+
 DataManagerService.UploadBinaryDataToDatasets = {
   methodName: "UploadBinaryDataToDatasets",
   service: DataManagerService,
@@ -81,6 +90,37 @@ DataManagerServiceClient.prototype.doCommand = function doCommand(requestMessage
     callback = arguments[1];
   }
   var client = grpc.unary(DataManagerService.DoCommand, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataManagerServiceClient.prototype.getStatus = function getStatus(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataManagerService.GetStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

@@ -47,6 +47,15 @@ service GantryService {
     option (google.api.http) = {post: "/viam/api/v1/component/gantry/{name}/do_command"};
   }
 
+  // GetStatus returns the status of the resource
+  rpc GetStatus(common.v1.GetStatusRequest) returns (common.v1.GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/gantry/{name}/get_status"};
+  }
+
+  rpc GetKinematics(common.v1.GetKinematicsRequest) returns (common.v1.GetKinematicsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/gantry/{name}/kinematics"};
+  }
+
   // GetGeometries returns the geometries of the component in their current configuration
   rpc GetGeometries(common.v1.GetGeometriesRequest) returns (common.v1.GetGeometriesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/gantry/{name}/geometries"};

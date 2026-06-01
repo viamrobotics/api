@@ -7,6 +7,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
+import "opentelemetry/proto/trace/v1/trace.proto";
 
 option go_package = "go.viam.com/api/robot/v1";
 option java_package = "com.viam.robot.v1";
@@ -132,7 +133,17 @@ service RobotService {
   rpc TransformPCD(TransformPCDRequest) returns (TransformPCDResponse) {
     option (google.api.http) = {get: "/viam/api/v1/frame_system/transform_pcd"};
   }
+
+  rpc SendTraces(SendTracesRequest) returns (SendTracesResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/traces"};
+  }
 }
+
+message SendTracesRequest {
+  repeated opentelemetry.proto.trace.v1.ResourceSpans resource_spans = 1;
+}
+
+message SendTracesResponse {}
 
 message TunnelRequest {
   uint32 destination_port = 1;
@@ -341,12 +352,13 @@ message LogResponse {}
 message GetCloudMetadataRequest {}
 
 message GetCloudMetadataResponse {
-  // Deprecated: use machine_part_id field.
-  string robot_part_id = 1 [deprecated = true];
   string primary_org_id = 2;
   string location_id = 3;
   string machine_id = 4;
   string machine_part_id = 5;
+
+  reserved 1;
+  reserved "robot_part_id";
 }
 
 message RestartModuleRequest {
