@@ -1415,6 +1415,8 @@ message ModuleVersion {
   optional string markdown_description = 6;
   // A list of applications associated with the module
   repeated App apps = 7;
+  // When set, marks this specific version as deprecated
+  optional DeprecatedStatus deprecated_status = 8;
 }
 
 message ModuleMetadata {

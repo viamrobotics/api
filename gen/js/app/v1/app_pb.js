@@ -41240,7 +41240,8 @@ proto.viam.app.v1.ModuleVersion.toObject = function(includeInstance, msg) {
     firstRun: jspb.Message.getFieldWithDefault(msg, 5, ""),
     markdownDescription: jspb.Message.getFieldWithDefault(msg, 6, ""),
     appsList: jspb.Message.toObjectList(msg.getAppsList(),
-    proto.viam.app.v1.App.toObject, includeInstance)
+    proto.viam.app.v1.App.toObject, includeInstance),
+    deprecatedStatus: (f = msg.getDeprecatedStatus()) && proto.viam.app.v1.DeprecatedStatus.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -41307,6 +41308,11 @@ proto.viam.app.v1.ModuleVersion.deserializeBinaryFromReader = function(msg, read
       var value = new proto.viam.app.v1.App;
       reader.readMessage(value,proto.viam.app.v1.App.deserializeBinaryFromReader);
       msg.addApps(value);
+      break;
+    case 8:
+      var value = new proto.viam.app.v1.DeprecatedStatus;
+      reader.readMessage(value,proto.viam.app.v1.DeprecatedStatus.deserializeBinaryFromReader);
+      msg.setDeprecatedStatus(value);
       break;
     default:
       reader.skipField();
@@ -41387,6 +41393,14 @@ proto.viam.app.v1.ModuleVersion.serializeBinaryToWriter = function(message, writ
       7,
       f,
       proto.viam.app.v1.App.serializeBinaryToWriter
+    );
+  }
+  f = message.getDeprecatedStatus();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      proto.viam.app.v1.DeprecatedStatus.serializeBinaryToWriter
     );
   }
 };
@@ -41611,6 +41625,43 @@ proto.viam.app.v1.ModuleVersion.prototype.addApps = function(opt_value, opt_inde
  */
 proto.viam.app.v1.ModuleVersion.prototype.clearAppsList = function() {
   return this.setAppsList([]);
+};
+
+
+/**
+ * optional DeprecatedStatus deprecated_status = 8;
+ * @return {?proto.viam.app.v1.DeprecatedStatus}
+ */
+proto.viam.app.v1.ModuleVersion.prototype.getDeprecatedStatus = function() {
+  return /** @type{?proto.viam.app.v1.DeprecatedStatus} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.DeprecatedStatus, 8));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.DeprecatedStatus|undefined} value
+ * @return {!proto.viam.app.v1.ModuleVersion} returns this
+*/
+proto.viam.app.v1.ModuleVersion.prototype.setDeprecatedStatus = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.ModuleVersion} returns this
+ */
+proto.viam.app.v1.ModuleVersion.prototype.clearDeprecatedStatus = function() {
+  return this.setDeprecatedStatus(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleVersion.prototype.hasDeprecatedStatus = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

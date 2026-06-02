@@ -4974,6 +4974,11 @@ export class ModuleVersion extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasDeprecatedStatus(): boolean;
+  clearDeprecatedStatus(): void;
+  getDeprecatedStatus(): DeprecatedStatus | undefined;
+  setDeprecatedStatus(value?: DeprecatedStatus): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleVersion.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleVersion): ModuleVersion.AsObject;
@@ -4993,6 +4998,7 @@ export namespace ModuleVersion {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    deprecatedStatus?: DeprecatedStatus.AsObject,
   }
 }
 
