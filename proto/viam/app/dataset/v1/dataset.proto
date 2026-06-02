@@ -20,6 +20,9 @@ service DatasetService {
   // ListDatasetsByOrganizationID lists all of the datasets for an organization.
   rpc ListDatasetsByOrganizationID(ListDatasetsByOrganizationIDRequest) returns (ListDatasetsByOrganizationIDResponse);
 
+  // FilterDatasetsByType lists all the datasets of the specified type in an organization
+  rpc FilterDatasetsByType(FilterDatasetsByTypeRequest) returns (FilterDatasetsByTypeResponse);
+
   // ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
   rpc ListDatasetsByIDs(ListDatasetsByIDsRequest) returns (ListDatasetsByIDsResponse);
 
@@ -103,6 +106,17 @@ message ListDatasetsByOrganizationIDRequest {
 
 // ListDatasetsByOrganizationIDResponse returns all the dataset metadata for the organization.
 message ListDatasetsByOrganizationIDResponse {
+  repeated Dataset datasets = 1;
+}
+
+// FilterDatasetsByTypeRequest requests the datasets of a specific type for an organization
+message FilterDatasetsByTypeRequest {
+  string organization_id = 1;
+  DatasetType type = 2;
+}
+
+// FilterDatasetsByTypeResponse returns the datasets of a specific type for an organization
+message FilterDatasetsByTypeResponse {
   repeated Dataset datasets = 1;
 }
 
