@@ -1526,7 +1526,8 @@ proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.prototype.toObject
  */
 proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -1567,6 +1568,10 @@ proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.deserializeBinaryF
       var value = /** @type {string} */ (reader.readString());
       msg.setOrganizationId(value);
       break;
+    case 2:
+      var value = /** @type {!proto.viam.app.dataset.v1.DatasetType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1603,6 +1608,13 @@ proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.serializeBinaryToW
       f
     );
   }
+  f = /** @type {!proto.viam.app.dataset.v1.DatasetType} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1621,6 +1633,42 @@ proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.prototype.getOrgan
  */
 proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional DatasetType type = 2;
+ * @return {!proto.viam.app.dataset.v1.DatasetType}
+ */
+proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.prototype.getType = function() {
+  return /** @type {!proto.viam.app.dataset.v1.DatasetType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.dataset.v1.DatasetType} value
+ * @return {!proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest} returns this
+ */
+proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.prototype.setType = function(value) {
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest} returns this
+ */
+proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.prototype.clearType = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.dataset.v1.ListDatasetsByOrganizationIDRequest.prototype.hasType = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
