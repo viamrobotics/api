@@ -17,7 +17,7 @@ service DatasetService {
   // RenameDataset modifies the name of an existing dataset.
   rpc RenameDataset(RenameDatasetRequest) returns (RenameDatasetResponse);
 
-  // ListDatasetsByOrganizationID lists all of the datasets for an organization.
+  // ListDatasetsByOrganizationID lists all of the datasets for an organization, optionally filtering by DatasetType.
   rpc ListDatasetsByOrganizationID(ListDatasetsByOrganizationIDRequest) returns (ListDatasetsByOrganizationIDResponse);
 
   // ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
@@ -96,9 +96,13 @@ message RenameDatasetRequest {
 
 message RenameDatasetResponse {}
 
-// ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization.
+// ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization,
+// optionally filtering on DatasetType
 message ListDatasetsByOrganizationIDRequest {
   string organization_id = 1;
+  // Optional DataseType to filter on.
+  // If unset, will return all types.
+  optional DatasetType type = 2;
 }
 
 // ListDatasetsByOrganizationIDResponse returns all the dataset metadata for the organization.

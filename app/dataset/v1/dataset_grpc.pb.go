@@ -28,7 +28,7 @@ type DatasetServiceClient interface {
 	DeleteDataset(ctx context.Context, in *DeleteDatasetRequest, opts ...grpc.CallOption) (*DeleteDatasetResponse, error)
 	// RenameDataset modifies the name of an existing dataset.
 	RenameDataset(ctx context.Context, in *RenameDatasetRequest, opts ...grpc.CallOption) (*RenameDatasetResponse, error)
-	// ListDatasetsByOrganizationID lists all of the datasets for an organization.
+	// ListDatasetsByOrganizationID lists all of the datasets for an organization, optionally filtering by DatasetType.
 	ListDatasetsByOrganizationID(ctx context.Context, in *ListDatasetsByOrganizationIDRequest, opts ...grpc.CallOption) (*ListDatasetsByOrganizationIDResponse, error)
 	// ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
 	ListDatasetsByIDs(ctx context.Context, in *ListDatasetsByIDsRequest, opts ...grpc.CallOption) (*ListDatasetsByIDsResponse, error)
@@ -130,7 +130,7 @@ type DatasetServiceServer interface {
 	DeleteDataset(context.Context, *DeleteDatasetRequest) (*DeleteDatasetResponse, error)
 	// RenameDataset modifies the name of an existing dataset.
 	RenameDataset(context.Context, *RenameDatasetRequest) (*RenameDatasetResponse, error)
-	// ListDatasetsByOrganizationID lists all of the datasets for an organization.
+	// ListDatasetsByOrganizationID lists all of the datasets for an organization, optionally filtering by DatasetType.
 	ListDatasetsByOrganizationID(context.Context, *ListDatasetsByOrganizationIDRequest) (*ListDatasetsByOrganizationIDResponse, error)
 	// ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
 	ListDatasetsByIDs(context.Context, *ListDatasetsByIDsRequest) (*ListDatasetsByIDsResponse, error)

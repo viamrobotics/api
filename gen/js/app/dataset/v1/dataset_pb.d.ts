@@ -172,6 +172,11 @@ export class ListDatasetsByOrganizationIDRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
+  hasType(): boolean;
+  clearType(): void;
+  getType(): DatasetTypeMap[keyof DatasetTypeMap];
+  setType(value: DatasetTypeMap[keyof DatasetTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListDatasetsByOrganizationIDRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListDatasetsByOrganizationIDRequest): ListDatasetsByOrganizationIDRequest.AsObject;
@@ -185,6 +190,7 @@ export class ListDatasetsByOrganizationIDRequest extends jspb.Message {
 export namespace ListDatasetsByOrganizationIDRequest {
   export type AsObject = {
     organizationId: string,
+    type: DatasetTypeMap[keyof DatasetTypeMap],
   }
 }
 
