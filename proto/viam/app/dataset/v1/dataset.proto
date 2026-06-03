@@ -17,11 +17,8 @@ service DatasetService {
   // RenameDataset modifies the name of an existing dataset.
   rpc RenameDataset(RenameDatasetRequest) returns (RenameDatasetResponse);
 
-  // ListDatasetsByOrganizationID lists all of the datasets for an organization.
+  // ListDatasetsByOrganizationID lists all of the datasets for an organization, optionally filtering by DatasetType.
   rpc ListDatasetsByOrganizationID(ListDatasetsByOrganizationIDRequest) returns (ListDatasetsByOrganizationIDResponse);
-
-  // FilterDatasetsByType lists all the datasets of the specified type in an organization
-  rpc FilterDatasetsByType(FilterDatasetsByTypeRequest) returns (FilterDatasetsByTypeResponse);
 
   // ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
   rpc ListDatasetsByIDs(ListDatasetsByIDsRequest) returns (ListDatasetsByIDsResponse);
@@ -99,24 +96,17 @@ message RenameDatasetRequest {
 
 message RenameDatasetResponse {}
 
-// ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization.
+// ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization,
+// optionally filtering on DatasetType
 message ListDatasetsByOrganizationIDRequest {
   string organization_id = 1;
+  // Optional DataseType to filter on.
+  // If unset, will return all types.
+  optional DatasetType type = 2;
 }
 
 // ListDatasetsByOrganizationIDResponse returns all the dataset metadata for the organization.
 message ListDatasetsByOrganizationIDResponse {
-  repeated Dataset datasets = 1;
-}
-
-// FilterDatasetsByTypeRequest requests the datasets of a specific type for an organization
-message FilterDatasetsByTypeRequest {
-  string organization_id = 1;
-  DatasetType type = 2;
-}
-
-// FilterDatasetsByTypeResponse returns the datasets of a specific type for an organization
-message FilterDatasetsByTypeResponse {
   repeated Dataset datasets = 1;
 }
 
