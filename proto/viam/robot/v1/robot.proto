@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package viam.robot.v1;
 
+import "app/datasync/v1/data_sync.proto";
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/duration.proto";
@@ -137,6 +138,12 @@ service RobotService {
   rpc SendTraces(SendTracesRequest) returns (SendTracesResponse) {
     option (google.api.http) = {post: "/viam/api/v1/traces"};
   }
+
+  // UploadDataFromPath uploads a file or directory from the robot to the cloud
+  // via the configured data manager service.
+  rpc UploadDataFromPath(UploadDataFromPathRequest) returns (UploadDataFromPathResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/upload_data_from_path"};
+  }
 }
 
 message SendTracesRequest {
@@ -148,6 +155,20 @@ message SendTracesResponse {}
 message TunnelRequest {
   uint32 destination_port = 1;
   bytes data = 2;
+}
+
+message UploadDataFromPathRequest {
+  string path = 1;
+  optional app.datasync.v1.UploadMetadata upload_metadata = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message UploadDataFromPathResponse {
+  uint64 files_uploaded = 1;
+  uint64 files_failed = 2;
+  uint64 bytes_uploaded = 3;
+  uint64 bytes_total = 4;
+  repeated string ids = 5;
 }
 
 message TunnelResponse {
