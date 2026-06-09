@@ -172,6 +172,11 @@ export class ListDatasetsByOrganizationIDRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
 
+  hasType(): boolean;
+  clearType(): void;
+  getType(): DatasetTypeMap[keyof DatasetTypeMap];
+  setType(value: DatasetTypeMap[keyof DatasetTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListDatasetsByOrganizationIDRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListDatasetsByOrganizationIDRequest): ListDatasetsByOrganizationIDRequest.AsObject;
@@ -185,6 +190,7 @@ export class ListDatasetsByOrganizationIDRequest extends jspb.Message {
 export namespace ListDatasetsByOrganizationIDRequest {
   export type AsObject = {
     organizationId: string,
+    type: DatasetTypeMap[keyof DatasetTypeMap],
   }
 }
 
@@ -304,10 +310,129 @@ export namespace MergeDatasetsResponse {
   }
 }
 
+export class StartSequenceDatasetExportRequest extends jspb.Message {
+  getDatasetId(): string;
+  setDatasetId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartSequenceDatasetExportRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StartSequenceDatasetExportRequest): StartSequenceDatasetExportRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartSequenceDatasetExportRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartSequenceDatasetExportRequest;
+  static deserializeBinaryFromReader(message: StartSequenceDatasetExportRequest, reader: jspb.BinaryReader): StartSequenceDatasetExportRequest;
+}
+
+export namespace StartSequenceDatasetExportRequest {
+  export type AsObject = {
+    datasetId: string,
+  }
+}
+
+export class StartSequenceDatasetExportResponse extends jspb.Message {
+  getJobId(): string;
+  setJobId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartSequenceDatasetExportResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StartSequenceDatasetExportResponse): StartSequenceDatasetExportResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartSequenceDatasetExportResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartSequenceDatasetExportResponse;
+  static deserializeBinaryFromReader(message: StartSequenceDatasetExportResponse, reader: jspb.BinaryReader): StartSequenceDatasetExportResponse;
+}
+
+export namespace StartSequenceDatasetExportResponse {
+  export type AsObject = {
+    jobId: string,
+  }
+}
+
+export class GetSequenceDatasetExportRequest extends jspb.Message {
+  getJobId(): string;
+  setJobId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSequenceDatasetExportRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSequenceDatasetExportRequest): GetSequenceDatasetExportRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSequenceDatasetExportRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSequenceDatasetExportRequest;
+  static deserializeBinaryFromReader(message: GetSequenceDatasetExportRequest, reader: jspb.BinaryReader): GetSequenceDatasetExportRequest;
+}
+
+export namespace GetSequenceDatasetExportRequest {
+  export type AsObject = {
+    jobId: string,
+  }
+}
+
+export class GetSequenceDatasetExportResponse extends jspb.Message {
+  getJobId(): string;
+  setJobId(value: string): void;
+
+  getStatus(): SequenceDatasetExportStatusMap[keyof SequenceDatasetExportStatusMap];
+  setStatus(value: SequenceDatasetExportStatusMap[keyof SequenceDatasetExportStatusMap]): void;
+
+  getDownloadUrl(): string;
+  setDownloadUrl(value: string): void;
+
+  hasExpiresAt(): boolean;
+  clearExpiresAt(): void;
+  getExpiresAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setExpiresAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getErrorMessage(): string;
+  setErrorMessage(value: string): void;
+
+  hasCreatedAt(): boolean;
+  clearCreatedAt(): void;
+  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasCompletedAt(): boolean;
+  clearCompletedAt(): void;
+  getCompletedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCompletedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSequenceDatasetExportResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSequenceDatasetExportResponse): GetSequenceDatasetExportResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSequenceDatasetExportResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSequenceDatasetExportResponse;
+  static deserializeBinaryFromReader(message: GetSequenceDatasetExportResponse, reader: jspb.BinaryReader): GetSequenceDatasetExportResponse;
+}
+
+export namespace GetSequenceDatasetExportResponse {
+  export type AsObject = {
+    jobId: string,
+    status: SequenceDatasetExportStatusMap[keyof SequenceDatasetExportStatusMap],
+    downloadUrl: string,
+    expiresAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    errorMessage: string,
+    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    completedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
 export interface DatasetTypeMap {
   DATASET_TYPE_BINARY_DATA: 0;
   DATASET_TYPE_SEQUENCE_DATA: 1;
 }
 
 export const DatasetType: DatasetTypeMap;
+
+export interface SequenceDatasetExportStatusMap {
+  SEQUENCE_DATASET_EXPORT_STATUS_UNSPECIFIED: 0;
+  SEQUENCE_DATASET_EXPORT_STATUS_RUNNING: 1;
+  SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED: 2;
+  SEQUENCE_DATASET_EXPORT_STATUS_FAILED: 3;
+}
+
+export const SequenceDatasetExportStatus: SequenceDatasetExportStatusMap;
 
