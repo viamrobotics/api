@@ -152,11 +152,6 @@ message SendTracesRequest {
 
 message SendTracesResponse {}
 
-message TunnelRequest {
-  uint32 destination_port = 1;
-  bytes data = 2;
-}
-
 message UploadDataFromPathRequest {
   string path = 1;
   optional app.datasync.v1.UploadMetadata upload_metadata = 2;
@@ -169,6 +164,11 @@ message UploadDataFromPathResponse {
   uint64 bytes_uploaded = 3;
   uint64 bytes_total = 4;
   repeated string ids = 5;
+}
+
+message TunnelRequest {
+  uint32 destination_port = 1;
+  bytes data = 2;
 }
 
 message TunnelResponse {
