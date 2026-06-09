@@ -278,9 +278,12 @@ type UploadDataFromPathRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Path           string              `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	// File or folder path on the robot to upload.
+	Path string `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	// Optional metadata to apply to uploaded files.
 	UploadMetadata *v11.UploadMetadata `protobuf:"bytes,2,opt,name=upload_metadata,json=uploadMetadata,proto3,oneof" json:"upload_metadata,omitempty"`
-	Extra          *structpb.Struct    `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
+	// Additional arguments to the method.
+	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
 }
 
 func (x *UploadDataFromPathRequest) Reset() {
@@ -339,11 +342,16 @@ type UploadDataFromPathResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	FilesUploaded uint64   `protobuf:"varint,1,opt,name=files_uploaded,json=filesUploaded,proto3" json:"files_uploaded,omitempty"`
-	FilesFailed   uint64   `protobuf:"varint,2,opt,name=files_failed,json=filesFailed,proto3" json:"files_failed,omitempty"`
-	BytesUploaded uint64   `protobuf:"varint,3,opt,name=bytes_uploaded,json=bytesUploaded,proto3" json:"bytes_uploaded,omitempty"`
-	BytesTotal    uint64   `protobuf:"varint,4,opt,name=bytes_total,json=bytesTotal,proto3" json:"bytes_total,omitempty"`
-	Ids           []string `protobuf:"bytes,5,rep,name=ids,proto3" json:"ids,omitempty"`
+	// Total number of files successfully uploaded.
+	FilesUploaded uint64 `protobuf:"varint,1,opt,name=files_uploaded,json=filesUploaded,proto3" json:"files_uploaded,omitempty"`
+	// Total number of files that failed to upload.
+	FilesFailed uint64 `protobuf:"varint,2,opt,name=files_failed,json=filesFailed,proto3" json:"files_failed,omitempty"`
+	// Total bytes successfully uploaded.
+	BytesUploaded uint64 `protobuf:"varint,3,opt,name=bytes_uploaded,json=bytesUploaded,proto3" json:"bytes_uploaded,omitempty"`
+	// Total bytes discovered in the directory.
+	BytesTotal uint64 `protobuf:"varint,4,opt,name=bytes_total,json=bytesTotal,proto3" json:"bytes_total,omitempty"`
+	// Successfully uploaded binary data ids.
+	Ids []string `protobuf:"bytes,5,rep,name=ids,proto3" json:"ids,omitempty"`
 }
 
 func (x *UploadDataFromPathResponse) Reset() {

@@ -162,7 +162,7 @@ message UploadDataFromPathRequest {
 }
 
 message UploadDataFromPathResponse {
-   // Total number of files successfully uploaded.
+  // Total number of files successfully uploaded.
   uint64 files_uploaded = 1;
   // Total number of files that failed to upload.
   uint64 files_failed = 2;
