@@ -153,16 +153,24 @@ message SendTracesRequest {
 message SendTracesResponse {}
 
 message UploadDataFromPathRequest {
+  // File or folder path on the robot to upload.
   string path = 1;
+  // Optional metadata to apply to uploaded files.
   optional app.datasync.v1.UploadMetadata upload_metadata = 2;
+  // Additional arguments to the method.
   google.protobuf.Struct extra = 99;
 }
 
 message UploadDataFromPathResponse {
+   // Total number of files successfully uploaded.
   uint64 files_uploaded = 1;
+  // Total number of files that failed to upload.
   uint64 files_failed = 2;
+  // Total bytes successfully uploaded.
   uint64 bytes_uploaded = 3;
+  // Total bytes discovered in the directory.
   uint64 bytes_total = 4;
+  // Successfully uploaded binary data ids.
   repeated string ids = 5;
 }
 
