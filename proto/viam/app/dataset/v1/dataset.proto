@@ -140,11 +140,13 @@ message StartSequenceDatasetExportRequest {
 // StartSequenceDatasetExportResponse returns the job_id to poll with
 message StartSequenceDatasetExportResponse {
   string job_id = 1;
+  string organization_id = 2;
 }
 
 // GetSequenceDatasetExportRequest looks up an export job by its job_id.
 message GetSequenceDatasetExportRequest {
   string job_id = 1;
+  string organization_id = 2;
 }
 
 // GetSequenceDatasetExportResponse reports the current status of an export
