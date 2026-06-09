@@ -2656,7 +2656,8 @@ proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse.prototype.toObject 
  */
 proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    jobId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    jobId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2697,6 +2698,10 @@ proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse.deserializeBinaryFr
       var value = /** @type {string} */ (reader.readString());
       msg.setJobId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2733,6 +2738,13 @@ proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse.serializeBinaryToWr
       f
     );
   }
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -2751,6 +2763,24 @@ proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse.prototype.getJobId 
  */
 proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse.prototype.setJobId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string organization_id = 2;
+ * @return {string}
+ */
+proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse} returns this
+ */
+proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -2786,7 +2816,8 @@ proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest.prototype.toObject = f
  */
 proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    jobId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    jobId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2827,6 +2858,10 @@ proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest.deserializeBinaryFromR
       var value = /** @type {string} */ (reader.readString());
       msg.setJobId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2863,6 +2898,13 @@ proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest.serializeBinaryToWrite
       f
     );
   }
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -2881,6 +2923,24 @@ proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest.prototype.getJobId = f
  */
 proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest.prototype.setJobId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string organization_id = 2;
+ * @return {string}
+ */
+proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest} returns this
+ */
+proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

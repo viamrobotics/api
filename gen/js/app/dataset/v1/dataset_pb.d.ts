@@ -334,6 +334,9 @@ export class StartSequenceDatasetExportResponse extends jspb.Message {
   getJobId(): string;
   setJobId(value: string): void;
 
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartSequenceDatasetExportResponse.AsObject;
   static toObject(includeInstance: boolean, msg: StartSequenceDatasetExportResponse): StartSequenceDatasetExportResponse.AsObject;
@@ -347,12 +350,16 @@ export class StartSequenceDatasetExportResponse extends jspb.Message {
 export namespace StartSequenceDatasetExportResponse {
   export type AsObject = {
     jobId: string,
+    organizationId: string,
   }
 }
 
 export class GetSequenceDatasetExportRequest extends jspb.Message {
   getJobId(): string;
   setJobId(value: string): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSequenceDatasetExportRequest.AsObject;
@@ -367,6 +374,7 @@ export class GetSequenceDatasetExportRequest extends jspb.Message {
 export namespace GetSequenceDatasetExportRequest {
   export type AsObject = {
     jobId: string,
+    organizationId: string,
   }
 }
 
