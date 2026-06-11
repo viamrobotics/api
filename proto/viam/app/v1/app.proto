@@ -1047,7 +1047,9 @@ message FragmentImport {
   string fragment_id = 1;
   string version = 2; // revision or tag
   optional string prefix = 3; // namespace prefix
-  map<string, string> variables = 4; // key-value pairs for fragment variables
+  // Deprecated: use typed_variables
+  map<string, string> variables = 4 [deprecated = true]; // key-value pairs for fragment variables
+  optional google.protobuf.Struct typed_variables = 5;
 }
 
 message ResolvedFragment {
