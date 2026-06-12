@@ -301,13 +301,9 @@ service AppService {
 
   rpc ListModules(ListModulesRequest) returns (ListModulesResponse);
 
-  rpc DeprecateModule(DeprecateModuleRequest) returns (DeprecateModuleResponse);
+  rpc DeprecateRegistryItemVersion(DeprecateRegistryItemVersionRequest) returns (DeprecateRegistryItemVersionResponse);
 
-  rpc UndeprecateModule(UndeprecateModuleRequest) returns (UndeprecateModuleResponse);
-
-  rpc DeprecateModuleVersion(DeprecateModuleVersionRequest) returns (DeprecateModuleVersionResponse);
-
-  rpc UndeprecateModuleVersion(UndeprecateModuleVersionRequest) returns (UndeprecateModuleVersionResponse);
+  rpc UndeprecateRegistryItemVersion(UndeprecateRegistryItemVersionRequest) returns (UndeprecateRegistryItemVersionResponse);
 
   rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
 
@@ -1487,8 +1483,8 @@ enum ModuleLanguage {
 message DeprecatedStatus {
   // time of deprecation
   google.protobuf.Timestamp deprecated_at = 1;
-  // optional msg explaining reason for deprecation
-  optional string message = 2;
+  // msg explaining reason for deprecation
+  string message = 2;
 }
 
 message RegistryItem {
@@ -1625,7 +1621,7 @@ message TransferRegistryItemResponse {}
 
 message DeprecateRegistryItemRequest {
   string item_id = 1;
-  optional string message = 2;
+  string message = 2;
 }
 
 message DeprecateRegistryItemResponse {}
@@ -1857,33 +1853,24 @@ message ListModulesResponse {
   repeated Module modules = 1;
 }
 
-message DeprecateModuleRequest {
-  string module_id = 1;
-  optional string message = 2;
-}
-
-message DeprecateModuleResponse {}
-
-message UndeprecateModuleRequest {
-  string module_id = 1;
-}
-
-message UndeprecateModuleResponse {}
-
-message DeprecateModuleVersionRequest {
-  string module_id = 1;
+// Deprecates a specific version of a registry item.
+message DeprecateRegistryItemVersionRequest {
+  // The id of the registry item
+  string item_id = 1;
+  // The semver string of the version to deprecate.
   string version = 2;
-  optional string message = 4;
+  // msg explaining reason for deprecation
+  string message = 3;
 }
 
-message DeprecateModuleVersionResponse {}
+message DeprecateRegistryItemVersionResponse {}
 
-message UndeprecateModuleVersionRequest {
-  string module_id = 1;
+message UndeprecateRegistryItemVersionRequest {
+  string item_id = 1;
   string version = 2;
 }
 
-message UndeprecateModuleVersionResponse {}
+message UndeprecateRegistryItemVersionResponse {}
 
 message GetUserIDByEmailRequest {
   string email = 1;

@@ -940,40 +940,22 @@ type AppServiceListModules = {
   readonly responseType: typeof app_v1_app_pb.ListModulesResponse;
 };
 
-type AppServiceDeprecateModule = {
+type AppServiceDeprecateRegistryItemVersion = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.DeprecateModuleRequest;
-  readonly responseType: typeof app_v1_app_pb.DeprecateModuleResponse;
+  readonly requestType: typeof app_v1_app_pb.DeprecateRegistryItemVersionRequest;
+  readonly responseType: typeof app_v1_app_pb.DeprecateRegistryItemVersionResponse;
 };
 
-type AppServiceUndeprecateModule = {
+type AppServiceUndeprecateRegistryItemVersion = {
   readonly methodName: string;
   readonly service: typeof AppService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.UndeprecateModuleRequest;
-  readonly responseType: typeof app_v1_app_pb.UndeprecateModuleResponse;
-};
-
-type AppServiceDeprecateModuleVersion = {
-  readonly methodName: string;
-  readonly service: typeof AppService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.DeprecateModuleVersionRequest;
-  readonly responseType: typeof app_v1_app_pb.DeprecateModuleVersionResponse;
-};
-
-type AppServiceUndeprecateModuleVersion = {
-  readonly methodName: string;
-  readonly service: typeof AppService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof app_v1_app_pb.UndeprecateModuleVersionRequest;
-  readonly responseType: typeof app_v1_app_pb.UndeprecateModuleVersionResponse;
+  readonly requestType: typeof app_v1_app_pb.UndeprecateRegistryItemVersionRequest;
+  readonly responseType: typeof app_v1_app_pb.UndeprecateRegistryItemVersionResponse;
 };
 
 type AppServiceCreateKey = {
@@ -1208,10 +1190,8 @@ export class AppService {
   static readonly UploadModuleFile: AppServiceUploadModuleFile;
   static readonly GetModule: AppServiceGetModule;
   static readonly ListModules: AppServiceListModules;
-  static readonly DeprecateModule: AppServiceDeprecateModule;
-  static readonly UndeprecateModule: AppServiceUndeprecateModule;
-  static readonly DeprecateModuleVersion: AppServiceDeprecateModuleVersion;
-  static readonly UndeprecateModuleVersion: AppServiceUndeprecateModuleVersion;
+  static readonly DeprecateRegistryItemVersion: AppServiceDeprecateRegistryItemVersion;
+  static readonly UndeprecateRegistryItemVersion: AppServiceUndeprecateRegistryItemVersion;
   static readonly CreateKey: AppServiceCreateKey;
   static readonly DeleteKey: AppServiceDeleteKey;
   static readonly ListKeys: AppServiceListKeys;
@@ -2180,41 +2160,23 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.ListModulesRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListModulesResponse|null) => void
   ): UnaryResponse;
-  deprecateModule(
-    requestMessage: app_v1_app_pb.DeprecateModuleRequest,
+  deprecateRegistryItemVersion(
+    requestMessage: app_v1_app_pb.DeprecateRegistryItemVersionRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateModuleResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateRegistryItemVersionResponse|null) => void
   ): UnaryResponse;
-  deprecateModule(
-    requestMessage: app_v1_app_pb.DeprecateModuleRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateModuleResponse|null) => void
+  deprecateRegistryItemVersion(
+    requestMessage: app_v1_app_pb.DeprecateRegistryItemVersionRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateRegistryItemVersionResponse|null) => void
   ): UnaryResponse;
-  undeprecateModule(
-    requestMessage: app_v1_app_pb.UndeprecateModuleRequest,
+  undeprecateRegistryItemVersion(
+    requestMessage: app_v1_app_pb.UndeprecateRegistryItemVersionRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateModuleResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateRegistryItemVersionResponse|null) => void
   ): UnaryResponse;
-  undeprecateModule(
-    requestMessage: app_v1_app_pb.UndeprecateModuleRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateModuleResponse|null) => void
-  ): UnaryResponse;
-  deprecateModuleVersion(
-    requestMessage: app_v1_app_pb.DeprecateModuleVersionRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateModuleVersionResponse|null) => void
-  ): UnaryResponse;
-  deprecateModuleVersion(
-    requestMessage: app_v1_app_pb.DeprecateModuleVersionRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeprecateModuleVersionResponse|null) => void
-  ): UnaryResponse;
-  undeprecateModuleVersion(
-    requestMessage: app_v1_app_pb.UndeprecateModuleVersionRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateModuleVersionResponse|null) => void
-  ): UnaryResponse;
-  undeprecateModuleVersion(
-    requestMessage: app_v1_app_pb.UndeprecateModuleVersionRequest,
-    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateModuleVersionResponse|null) => void
+  undeprecateRegistryItemVersion(
+    requestMessage: app_v1_app_pb.UndeprecateRegistryItemVersionRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UndeprecateRegistryItemVersionResponse|null) => void
   ): UnaryResponse;
   createKey(
     requestMessage: app_v1_app_pb.CreateKeyRequest,

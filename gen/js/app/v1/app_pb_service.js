@@ -946,40 +946,22 @@ AppService.ListModules = {
   responseType: app_v1_app_pb.ListModulesResponse
 };
 
-AppService.DeprecateModule = {
-  methodName: "DeprecateModule",
+AppService.DeprecateRegistryItemVersion = {
+  methodName: "DeprecateRegistryItemVersion",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.DeprecateModuleRequest,
-  responseType: app_v1_app_pb.DeprecateModuleResponse
+  requestType: app_v1_app_pb.DeprecateRegistryItemVersionRequest,
+  responseType: app_v1_app_pb.DeprecateRegistryItemVersionResponse
 };
 
-AppService.UndeprecateModule = {
-  methodName: "UndeprecateModule",
+AppService.UndeprecateRegistryItemVersion = {
+  methodName: "UndeprecateRegistryItemVersion",
   service: AppService,
   requestStream: false,
   responseStream: false,
-  requestType: app_v1_app_pb.UndeprecateModuleRequest,
-  responseType: app_v1_app_pb.UndeprecateModuleResponse
-};
-
-AppService.DeprecateModuleVersion = {
-  methodName: "DeprecateModuleVersion",
-  service: AppService,
-  requestStream: false,
-  responseStream: false,
-  requestType: app_v1_app_pb.DeprecateModuleVersionRequest,
-  responseType: app_v1_app_pb.DeprecateModuleVersionResponse
-};
-
-AppService.UndeprecateModuleVersion = {
-  methodName: "UndeprecateModuleVersion",
-  service: AppService,
-  requestStream: false,
-  responseStream: false,
-  requestType: app_v1_app_pb.UndeprecateModuleVersionRequest,
-  responseType: app_v1_app_pb.UndeprecateModuleVersionResponse
+  requestType: app_v1_app_pb.UndeprecateRegistryItemVersionRequest,
+  responseType: app_v1_app_pb.UndeprecateRegistryItemVersionResponse
 };
 
 AppService.CreateKey = {
@@ -4357,11 +4339,11 @@ AppServiceClient.prototype.listModules = function listModules(requestMessage, me
   };
 };
 
-AppServiceClient.prototype.deprecateModule = function deprecateModule(requestMessage, metadata, callback) {
+AppServiceClient.prototype.deprecateRegistryItemVersion = function deprecateRegistryItemVersion(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.DeprecateModule, {
+  var client = grpc.unary(AppService.DeprecateRegistryItemVersion, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -4388,73 +4370,11 @@ AppServiceClient.prototype.deprecateModule = function deprecateModule(requestMes
   };
 };
 
-AppServiceClient.prototype.undeprecateModule = function undeprecateModule(requestMessage, metadata, callback) {
+AppServiceClient.prototype.undeprecateRegistryItemVersion = function undeprecateRegistryItemVersion(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppService.UndeprecateModule, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-AppServiceClient.prototype.deprecateModuleVersion = function deprecateModuleVersion(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(AppService.DeprecateModuleVersion, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-AppServiceClient.prototype.undeprecateModuleVersion = function undeprecateModuleVersion(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(AppService.UndeprecateModuleVersion, {
+  var client = grpc.unary(AppService.UndeprecateRegistryItemVersion, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
