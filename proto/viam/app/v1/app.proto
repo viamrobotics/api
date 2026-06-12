@@ -1049,7 +1049,7 @@ message FragmentImport {
   optional string prefix = 3; // namespace prefix
   // Deprecated: use typed_variables
   map<string, string> variables = 4 [deprecated = true]; // key-value pairs for fragment variables
-  optional google.protobuf.Struct typed_variables = 5;
+  optional google.protobuf.Struct fragment_variables = 5;
 }
 
 message ResolvedFragment {
