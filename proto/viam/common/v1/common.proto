@@ -193,6 +193,8 @@ message ResponseMetadata {
   // Note: If correlating between other resources, be sure that the means
   // of measuring the capture are similar enough such that comparison can be made between them.
   optional google.protobuf.Timestamp captured_at = 1;
+  // attributes is a map of additional attributes to the response.
+  optional google.protobuf.Struct attributes = 2;
 }
 
 // DoCommandRequest represents a generic DoCommand input
