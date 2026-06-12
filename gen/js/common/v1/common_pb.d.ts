@@ -602,6 +602,11 @@ export class ResponseMetadata extends jspb.Message {
   getCapturedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCapturedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasAttributes(): boolean;
+  clearAttributes(): void;
+  getAttributes(): google_protobuf_struct_pb.Struct | undefined;
+  setAttributes(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResponseMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: ResponseMetadata): ResponseMetadata.AsObject;
@@ -615,6 +620,7 @@ export class ResponseMetadata extends jspb.Message {
 export namespace ResponseMetadata {
   export type AsObject = {
     capturedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    attributes?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

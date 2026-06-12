@@ -5042,7 +5042,8 @@ proto.viam.common.v1.ResponseMetadata.prototype.toObject = function(opt_includeI
  */
 proto.viam.common.v1.ResponseMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    capturedAt: (f = msg.getCapturedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    capturedAt: (f = msg.getCapturedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5084,6 +5085,11 @@ proto.viam.common.v1.ResponseMetadata.deserializeBinaryFromReader = function(msg
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCapturedAt(value);
       break;
+    case 2:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setAttributes(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5119,6 +5125,14 @@ proto.viam.common.v1.ResponseMetadata.serializeBinaryToWriter = function(message
       1,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getAttributes();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
 };
@@ -5158,6 +5172,43 @@ proto.viam.common.v1.ResponseMetadata.prototype.clearCapturedAt = function() {
  */
 proto.viam.common.v1.ResponseMetadata.prototype.hasCapturedAt = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct attributes = 2;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.common.v1.ResponseMetadata.prototype.getAttributes = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.common.v1.ResponseMetadata} returns this
+*/
+proto.viam.common.v1.ResponseMetadata.prototype.setAttributes = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.common.v1.ResponseMetadata} returns this
+ */
+proto.viam.common.v1.ResponseMetadata.prototype.clearAttributes = function() {
+  return this.setAttributes(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.common.v1.ResponseMetadata.prototype.hasAttributes = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
