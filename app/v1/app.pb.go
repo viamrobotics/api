@@ -14128,7 +14128,7 @@ type DeprecateRegistryItemVersionRequest struct {
 	ItemId string `protobuf:"bytes,1,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
 	// The semver string of the version to deprecate.
 	Version string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
-	// Reason for deprecation; empty when none was provided.
+	// msg explaining reason for deprecation
 	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
 }
 
