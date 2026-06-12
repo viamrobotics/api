@@ -28588,7 +28588,8 @@ proto.viam.app.v1.FragmentImport.toObject = function(includeInstance, msg) {
     fragmentId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     version: jspb.Message.getFieldWithDefault(msg, 2, ""),
     prefix: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    variablesMap: (f = msg.getVariablesMap()) ? f.toObject(includeInstance, undefined) : []
+    variablesMap: (f = msg.getVariablesMap()) ? f.toObject(includeInstance, undefined) : [],
+    fragmentVariables: (f = msg.getFragmentVariables()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -28643,6 +28644,11 @@ proto.viam.app.v1.FragmentImport.deserializeBinaryFromReader = function(msg, rea
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
          });
       break;
+    case 5:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setFragmentVariables(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -28696,6 +28702,14 @@ proto.viam.app.v1.FragmentImport.serializeBinaryToWriter = function(message, wri
   f = message.getVariablesMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getFragmentVariables();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
   }
 };
 
@@ -28792,6 +28806,43 @@ proto.viam.app.v1.FragmentImport.prototype.getVariablesMap = function(opt_noLazy
 proto.viam.app.v1.FragmentImport.prototype.clearVariablesMap = function() {
   this.getVariablesMap().clear();
   return this;};
+
+
+/**
+ * optional google.protobuf.Struct fragment_variables = 5;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.viam.app.v1.FragmentImport.prototype.getFragmentVariables = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Struct|undefined} value
+ * @return {!proto.viam.app.v1.FragmentImport} returns this
+*/
+proto.viam.app.v1.FragmentImport.prototype.setFragmentVariables = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.FragmentImport} returns this
+ */
+proto.viam.app.v1.FragmentImport.prototype.clearFragmentVariables = function() {
+  return this.setFragmentVariables(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.FragmentImport.prototype.hasFragmentVariables = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
 
 
 

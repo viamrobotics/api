@@ -3171,6 +3171,11 @@ export class FragmentImport extends jspb.Message {
 
   getVariablesMap(): jspb.Map<string, string>;
   clearVariablesMap(): void;
+  hasFragmentVariables(): boolean;
+  clearFragmentVariables(): void;
+  getFragmentVariables(): google_protobuf_struct_pb.Struct | undefined;
+  setFragmentVariables(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FragmentImport.AsObject;
   static toObject(includeInstance: boolean, msg: FragmentImport): FragmentImport.AsObject;
@@ -3187,6 +3192,7 @@ export namespace FragmentImport {
     version: string,
     prefix: string,
     variablesMap: Array<[string, string]>,
+    fragmentVariables?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
