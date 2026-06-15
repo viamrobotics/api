@@ -20,6 +20,8 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
+var app_datasync_v1_data_sync_pb = require('../../app/datasync/v1/data_sync_pb.js')
+
 var common_v1_common_pb = require('../../common/v1/common_pb.js')
 
 var google_api_annotations_pb = require('../../google/api/annotations_pb.js')
@@ -1544,6 +1546,67 @@ proto.viam.robot.v1.RobotServicePromiseClient.prototype.sendTraces =
       request,
       metadata || {},
       methodDescriptor_RobotService_SendTraces);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.robot.v1.UploadDataFromPathRequest,
+ *   !proto.viam.robot.v1.UploadDataFromPathResponse>}
+ */
+const methodDescriptor_RobotService_UploadDataFromPath = new grpc.web.MethodDescriptor(
+  '/viam.robot.v1.RobotService/UploadDataFromPath',
+  grpc.web.MethodType.UNARY,
+  proto.viam.robot.v1.UploadDataFromPathRequest,
+  proto.viam.robot.v1.UploadDataFromPathResponse,
+  /**
+   * @param {!proto.viam.robot.v1.UploadDataFromPathRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.robot.v1.UploadDataFromPathResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.robot.v1.UploadDataFromPathRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.robot.v1.UploadDataFromPathResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.robot.v1.UploadDataFromPathResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.robot.v1.RobotServiceClient.prototype.uploadDataFromPath =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/UploadDataFromPath',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_UploadDataFromPath,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.UploadDataFromPathRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.robot.v1.UploadDataFromPathResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.robot.v1.RobotServicePromiseClient.prototype.uploadDataFromPath =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.robot.v1.RobotService/UploadDataFromPath',
+      request,
+      metadata || {},
+      methodDescriptor_RobotService_UploadDataFromPath);
 };
 
 
