@@ -481,7 +481,7 @@ message ModuleStatus {
   // this will increment if the module is in a restart loop (state transitioning between pending and starting repeatedly)
   // Resets to zero when the module enters the ready state or is reconfigured.
   // Useful for detecting modules stuck in a restart loop (like a python module with a syntax error)
-  int32 consecutive_failures = 5;
+  uint32 consecutive_failures = 5;
 }
 
 message ConfigStatus {
