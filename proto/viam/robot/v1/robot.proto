@@ -473,7 +473,8 @@ message ModuleStatus {
   // updated on every state transition
   google.protobuf.Timestamp last_updated = 3;
 
-  // if the module is unhealthy, this will contain the error associated with the most recent bad exit. in other states this field will be empty
+  // when a module transitions to unhealthy, this field is populated with the error that caused the transition.
+  // the error persists until the module reenters the Ready state
   // this will let the UI / sdk surface the error to aid debugging
   string error = 4;
 
