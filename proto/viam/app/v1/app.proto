@@ -1497,6 +1497,7 @@ message RegistryItemBilling {
   // The recurring monthly cost of the item, broken down by billable resource.
   RegistryItemCostByResource cost_per_month = 1;
 }
+
 // RegistryItemCostByResource holds the cost of a registry item broken down by billable resource.
 // Only the per_machine resource is currently supported.
 message RegistryItemCostByResource {
@@ -1550,7 +1551,7 @@ message RegistryItem {
 
   // Usage cost information used by billing jobs to bill for monthly usage of the item.
   // This is unset when no cost has been configured for the item.
-  RegistryItemBilling billing = 17;
+  RegistryItemBilling billing = 19;
 }
 
 message GetRegistryItemRequest {
