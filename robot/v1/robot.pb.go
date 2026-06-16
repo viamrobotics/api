@@ -3040,8 +3040,8 @@ type ModuleStatus struct {
 	State      ModuleStatus_State `protobuf:"varint,2,opt,name=state,proto3,enum=viam.robot.v1.ModuleStatus_State" json:"state,omitempty"`
 	// updated on every state transition
 	LastUpdated *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
-	// if the module is unhealthy, this will contain the error associated with the most recent bad exit. in other states this field will be empty
-	// this will let the UI / sdk surface the error to aid debugging
+	// when a module transitions to unhealthy, this field is populated with the error that caused the transition.
+	// the error persists until the module reenters the Ready state, guaranteed to be nil in the Ready state
 	Error string `protobuf:"bytes,4,opt,name=error,proto3" json:"error,omitempty"`
 	// number of times this module has entered the unhealthy state since the last time this module was in the ready state
 	// this will increment if the module is in a restart loop (state transitioning between pending and starting repeatedly)
