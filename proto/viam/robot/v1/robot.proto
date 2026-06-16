@@ -474,8 +474,7 @@ message ModuleStatus {
   google.protobuf.Timestamp last_updated = 3;
 
   // when a module transitions to unhealthy, this field is populated with the error that caused the transition.
-  // the error persists until the module reenters the Ready state
-  // this will let the UI / sdk surface the error to aid debugging
+  // the error persists until the module reenters the Ready state, guaranteed to be nil in the Ready state
   string error = 4;
 
   // number of times this module has entered the unhealthy state since the last time this module was in the ready state
