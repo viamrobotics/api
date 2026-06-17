@@ -5560,6 +5560,8 @@ export class ListRegistryItemsRequest extends jspb.Message {
   setModuleLanguagesList(value: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>): void;
   addModuleLanguages(value: ModuleLanguageMap[keyof ModuleLanguageMap], index?: number): ModuleLanguageMap[keyof ModuleLanguageMap];
 
+  hasShowOwnedDeprecated(): boolean;
+  clearShowOwnedDeprecated(): void;
   getShowOwnedDeprecated(): boolean;
   setShowOwnedDeprecated(value: boolean): void;
 

@@ -1593,7 +1593,7 @@ message ListRegistryItemsRequest {
   repeated ModuleSourceType module_source_types = 10;
   repeated ModuleLanguage module_languages = 11;
   // for "show deprecated" toggle button, showing owned deprecated items
-  bool show_owned_deprecated = 12;
+  optional bool show_owned_deprecated = 12;
 }
 
 message ListRegistryItemsResponse {
