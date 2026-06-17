@@ -5560,6 +5560,9 @@ export class ListRegistryItemsRequest extends jspb.Message {
   setModuleLanguagesList(value: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>): void;
   addModuleLanguages(value: ModuleLanguageMap[keyof ModuleLanguageMap], index?: number): ModuleLanguageMap[keyof ModuleLanguageMap];
 
+  getShowOwnedDeprecated(): boolean;
+  setShowOwnedDeprecated(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListRegistryItemsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListRegistryItemsRequest): ListRegistryItemsRequest.AsObject;
@@ -5583,6 +5586,7 @@ export namespace ListRegistryItemsRequest {
     includeMarkdownDocumentation: boolean,
     moduleSourceTypesList: Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>,
     moduleLanguagesList: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>,
+    showOwnedDeprecated: boolean,
   }
 }
 
