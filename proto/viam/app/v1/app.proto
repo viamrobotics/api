@@ -1592,7 +1592,6 @@ message ListRegistryItemsRequest {
   optional bool include_markdown_documentation = 9;
   repeated ModuleSourceType module_source_types = 10;
   repeated ModuleLanguage module_languages = 11;
-  // for "show deprecated" toggle button, showing owned deprecated items
   optional bool show_owned_deprecated = 12;
 }
 

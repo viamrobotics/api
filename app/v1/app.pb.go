@@ -12090,8 +12090,7 @@ type ListRegistryItemsRequest struct {
 	IncludeMarkdownDocumentation *bool              `protobuf:"varint,9,opt,name=include_markdown_documentation,json=includeMarkdownDocumentation,proto3,oneof" json:"include_markdown_documentation,omitempty"`
 	ModuleSourceTypes            []ModuleSourceType `protobuf:"varint,10,rep,packed,name=module_source_types,json=moduleSourceTypes,proto3,enum=viam.app.v1.ModuleSourceType" json:"module_source_types,omitempty"`
 	ModuleLanguages              []ModuleLanguage   `protobuf:"varint,11,rep,packed,name=module_languages,json=moduleLanguages,proto3,enum=viam.app.v1.ModuleLanguage" json:"module_languages,omitempty"`
-	// for "show deprecated" toggle button, showing owned deprecated items
-	ShowOwnedDeprecated *bool `protobuf:"varint,12,opt,name=show_owned_deprecated,json=showOwnedDeprecated,proto3,oneof" json:"show_owned_deprecated,omitempty"`
+	ShowOwnedDeprecated          *bool              `protobuf:"varint,12,opt,name=show_owned_deprecated,json=showOwnedDeprecated,proto3,oneof" json:"show_owned_deprecated,omitempty"`
 }
 
 func (x *ListRegistryItemsRequest) Reset() {
