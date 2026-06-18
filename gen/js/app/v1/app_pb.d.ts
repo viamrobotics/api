@@ -5229,6 +5229,7 @@ export class RegistryItemBilling extends jspb.Message {
   getCostPerYear(): RegistryItemCostByResource | undefined;
   setCostPerYear(value?: RegistryItemCostByResource): void;
 
+  getFrequencyCase(): RegistryItemBilling.FrequencyCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegistryItemBilling.AsObject;
   static toObject(includeInstance: boolean, msg: RegistryItemBilling): RegistryItemBilling.AsObject;
@@ -5243,6 +5244,12 @@ export namespace RegistryItemBilling {
   export type AsObject = {
     costPerMonth?: RegistryItemCostByResource.AsObject,
     costPerYear?: RegistryItemCostByResource.AsObject,
+  }
+
+  export enum FrequencyCase {
+    FREQUENCY_NOT_SET = 0,
+    COST_PER_MONTH = 1,
+    COST_PER_YEAR = 2,
   }
 }
 

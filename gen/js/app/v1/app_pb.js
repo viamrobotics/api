@@ -261,6 +261,7 @@ goog.exportSymbol('proto.viam.app.v1.ReadOAuthAppResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.RegistryItem', null, global);
 goog.exportSymbol('proto.viam.app.v1.RegistryItem.MetadataCase', null, global);
 goog.exportSymbol('proto.viam.app.v1.RegistryItemBilling', null, global);
+goog.exportSymbol('proto.viam.app.v1.RegistryItemBilling.FrequencyCase', null, global);
 goog.exportSymbol('proto.viam.app.v1.RegistryItemCostByResource', null, global);
 goog.exportSymbol('proto.viam.app.v1.RegistryItemStatus', null, global);
 goog.exportSymbol('proto.viam.app.v1.RemoveRoleRequest', null, global);
@@ -4453,7 +4454,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.RegistryItemBilling = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.viam.app.v1.RegistryItemBilling.oneofGroups_);
 };
 goog.inherits(proto.viam.app.v1.RegistryItemBilling, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -43223,6 +43224,32 @@ proto.viam.app.v1.DeprecatedStatus.prototype.setMessage = function(value) {
 
 
 
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.viam.app.v1.RegistryItemBilling.oneofGroups_ = [[1,2]];
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.v1.RegistryItemBilling.FrequencyCase = {
+  FREQUENCY_NOT_SET: 0,
+  COST_PER_MONTH: 1,
+  COST_PER_YEAR: 2
+};
+
+/**
+ * @return {proto.viam.app.v1.RegistryItemBilling.FrequencyCase}
+ */
+proto.viam.app.v1.RegistryItemBilling.prototype.getFrequencyCase = function() {
+  return /** @type {proto.viam.app.v1.RegistryItemBilling.FrequencyCase} */(jspb.Message.computeOneofCase(this, proto.viam.app.v1.RegistryItemBilling.oneofGroups_[0]));
+};
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -43365,7 +43392,7 @@ proto.viam.app.v1.RegistryItemBilling.prototype.getCostPerMonth = function() {
  * @return {!proto.viam.app.v1.RegistryItemBilling} returns this
 */
 proto.viam.app.v1.RegistryItemBilling.prototype.setCostPerMonth = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+  return jspb.Message.setOneofWrapperField(this, 1, proto.viam.app.v1.RegistryItemBilling.oneofGroups_[0], value);
 };
 
 
@@ -43402,7 +43429,7 @@ proto.viam.app.v1.RegistryItemBilling.prototype.getCostPerYear = function() {
  * @return {!proto.viam.app.v1.RegistryItemBilling} returns this
 */
 proto.viam.app.v1.RegistryItemBilling.prototype.setCostPerYear = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setOneofWrapperField(this, 2, proto.viam.app.v1.RegistryItemBilling.oneofGroups_[0], value);
 };
 
 
