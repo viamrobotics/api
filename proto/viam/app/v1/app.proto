@@ -287,6 +287,10 @@ service AppService {
 
   rpc TransferRegistryItem(TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
 
+  rpc DeprecateRegistryItem(DeprecateRegistryItemRequest) returns (DeprecateRegistryItemResponse);
+
+  rpc UndeprecateRegistryItem(UndeprecateRegistryItemRequest) returns (UndeprecateRegistryItemResponse);
+
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
@@ -296,6 +300,10 @@ service AppService {
   rpc GetModule(GetModuleRequest) returns (GetModuleResponse);
 
   rpc ListModules(ListModulesRequest) returns (ListModulesResponse);
+
+  rpc DeprecateRegistryItemVersion(DeprecateRegistryItemVersionRequest) returns (DeprecateRegistryItemVersionResponse);
+
+  rpc UndeprecateRegistryItemVersion(UndeprecateRegistryItemVersionRequest) returns (UndeprecateRegistryItemVersionResponse);
 
   rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
 
@@ -1047,7 +1055,9 @@ message FragmentImport {
   string fragment_id = 1;
   string version = 2; // revision or tag
   optional string prefix = 3; // namespace prefix
-  map<string, string> variables = 4; // key-value pairs for fragment variables
+  // Deprecated: use fragment_variables
+  map<string, string> variables = 4 [deprecated = true]; // key-value pairs for fragment variables
+  optional google.protobuf.Struct fragment_variables = 5;
 }
 
 message ResolvedFragment {
@@ -1403,6 +1413,8 @@ message ModuleVersion {
   optional string markdown_description = 6;
   // A list of applications associated with the module
   repeated App apps = 7;
+  // When set, marks this specific version as deprecated
+  optional DeprecatedStatus deprecated_status = 8;
 }
 
 message ModuleMetadata {
@@ -1468,6 +1480,15 @@ enum ModuleLanguage {
   MODULE_LANGUAGE_CPP = 3;
 }
 
+// note: current project will only support deprecation of modules;
+// Training Script and ML Model aren't supported yet.
+message DeprecatedStatus {
+  // time of deprecation
+  google.protobuf.Timestamp deprecated_at = 1;
+  // msg explaining reason for deprecation
+  string message = 2;
+}
+
 message RegistryItem {
   // The id of the item, containing either:
   // namespace:item_name when a namespace exists on the org.
@@ -1508,6 +1529,9 @@ message RegistryItem {
   google.protobuf.Timestamp created_at = 15;
   // When the item was last updated, either through an update or upload.
   google.protobuf.Timestamp updated_at = 16;
+
+  // Whether the item is deprecated
+  optional DeprecatedStatus deprecated_status = 17;
 }
 
 message GetRegistryItemRequest {
@@ -1568,6 +1592,7 @@ message ListRegistryItemsRequest {
   optional bool include_markdown_documentation = 9;
   repeated ModuleSourceType module_source_types = 10;
   repeated ModuleLanguage module_languages = 11;
+  optional bool show_owned_deprecated = 12;
 }
 
 message ListRegistryItemsResponse {
@@ -1596,6 +1621,19 @@ message TransferRegistryItemRequest {
 }
 
 message TransferRegistryItemResponse {}
+
+message DeprecateRegistryItemRequest {
+  string item_id = 1;
+  string message = 2;
+}
+
+message DeprecateRegistryItemResponse {}
+
+message UndeprecateRegistryItemRequest {
+  string item_id = 1;
+}
+
+message UndeprecateRegistryItemResponse {}
 
 // Modules
 message CreateModuleRequest {
@@ -1777,6 +1815,8 @@ message Module {
   optional string markdown_description = 14;
   // A list of applications associated with the module
   repeated App apps = 15;
+  // Deprecated status of an individual module
+  optional DeprecatedStatus deprecated_status = 16;
 }
 
 message VersionHistory {
@@ -1794,6 +1834,8 @@ message VersionHistory {
   optional string markdown_description = 6;
   // A list of applications associated with the module
   repeated App apps = 7;
+  // Deprecated status of an individual module version
+  optional DeprecatedStatus deprecated_status = 8;
 }
 
 message Uploads {
@@ -1813,6 +1855,25 @@ message ListModulesResponse {
   // A listed of modules. When authenticated, this API will return modules that are private for this org. Public modules are always returned.
   repeated Module modules = 1;
 }
+
+// Deprecates a specific version of a registry item.
+message DeprecateRegistryItemVersionRequest {
+  // The id of the registry item
+  string item_id = 1;
+  // The semver string of the version to deprecate.
+  string version = 2;
+  // msg explaining reason for deprecation
+  string message = 3;
+}
+
+message DeprecateRegistryItemVersionResponse {}
+
+message UndeprecateRegistryItemVersionRequest {
+  string item_id = 1;
+  string version = 2;
+}
+
+message UndeprecateRegistryItemVersionResponse {}
 
 message GetUserIDByEmailRequest {
   string email = 1;

@@ -1237,6 +1237,11 @@ export class GetMachineStatusResponse extends jspb.Message {
   setJobStatusesList(value: Array<JobStatus>): void;
   addJobStatuses(value?: JobStatus, index?: number): JobStatus;
 
+  clearModulesList(): void;
+  getModulesList(): Array<ModuleStatus>;
+  setModulesList(value: Array<ModuleStatus>): void;
+  addModules(value?: ModuleStatus, index?: number): ModuleStatus;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMachineStatusResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetMachineStatusResponse): GetMachineStatusResponse.AsObject;
@@ -1253,6 +1258,7 @@ export namespace GetMachineStatusResponse {
     config?: ConfigStatus.AsObject,
     state: GetMachineStatusResponse.StateMap[keyof GetMachineStatusResponse.StateMap],
     jobStatusesList: Array<JobStatus.AsObject>,
+    modulesList: Array<ModuleStatus.AsObject>,
   }
 
   export interface StateMap {
@@ -1348,6 +1354,55 @@ export namespace ResourceStatus {
     STATE_READY: 3;
     STATE_REMOVING: 4;
     STATE_UNHEALTHY: 5;
+  }
+
+  export const State: StateMap;
+}
+
+export class ModuleStatus extends jspb.Message {
+  getModuleName(): string;
+  setModuleName(value: string): void;
+
+  getState(): ModuleStatus.StateMap[keyof ModuleStatus.StateMap];
+  setState(value: ModuleStatus.StateMap[keyof ModuleStatus.StateMap]): void;
+
+  hasLastUpdated(): boolean;
+  clearLastUpdated(): void;
+  getLastUpdated(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastUpdated(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getError(): string;
+  setError(value: string): void;
+
+  getConsecutiveFailures(): number;
+  setConsecutiveFailures(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleStatus): ModuleStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleStatus;
+  static deserializeBinaryFromReader(message: ModuleStatus, reader: jspb.BinaryReader): ModuleStatus;
+}
+
+export namespace ModuleStatus {
+  export type AsObject = {
+    moduleName: string,
+    state: ModuleStatus.StateMap[keyof ModuleStatus.StateMap],
+    lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    error: string,
+    consecutiveFailures: number,
+  }
+
+  export interface StateMap {
+    STATE_UNSPECIFIED: 0;
+    STATE_PENDING: 1;
+    STATE_STARTING: 2;
+    STATE_READY: 3;
+    STATE_UNHEALTHY: 4;
+    STATE_CLOSING: 5;
   }
 
   export const State: StateMap;
