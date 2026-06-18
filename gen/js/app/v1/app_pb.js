@@ -43254,7 +43254,8 @@ proto.viam.app.v1.RegistryItemBilling.prototype.toObject = function(opt_includeI
  */
 proto.viam.app.v1.RegistryItemBilling.toObject = function(includeInstance, msg) {
   var f, obj = {
-    costPerMonth: (f = msg.getCostPerMonth()) && proto.viam.app.v1.RegistryItemCostByResource.toObject(includeInstance, f)
+    costPerMonth: (f = msg.getCostPerMonth()) && proto.viam.app.v1.RegistryItemCostByResource.toObject(includeInstance, f),
+    costPerYear: (f = msg.getCostPerYear()) && proto.viam.app.v1.RegistryItemCostByResource.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -43296,6 +43297,11 @@ proto.viam.app.v1.RegistryItemBilling.deserializeBinaryFromReader = function(msg
       reader.readMessage(value,proto.viam.app.v1.RegistryItemCostByResource.deserializeBinaryFromReader);
       msg.setCostPerMonth(value);
       break;
+    case 2:
+      var value = new proto.viam.app.v1.RegistryItemCostByResource;
+      reader.readMessage(value,proto.viam.app.v1.RegistryItemCostByResource.deserializeBinaryFromReader);
+      msg.setCostPerYear(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -43329,6 +43335,14 @@ proto.viam.app.v1.RegistryItemBilling.serializeBinaryToWriter = function(message
   if (f != null) {
     writer.writeMessage(
       1,
+      f,
+      proto.viam.app.v1.RegistryItemCostByResource.serializeBinaryToWriter
+    );
+  }
+  f = message.getCostPerYear();
+  if (f != null) {
+    writer.writeMessage(
+      2,
       f,
       proto.viam.app.v1.RegistryItemCostByResource.serializeBinaryToWriter
     );
@@ -43370,6 +43384,43 @@ proto.viam.app.v1.RegistryItemBilling.prototype.clearCostPerMonth = function() {
  */
 proto.viam.app.v1.RegistryItemBilling.prototype.hasCostPerMonth = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional RegistryItemCostByResource cost_per_year = 2;
+ * @return {?proto.viam.app.v1.RegistryItemCostByResource}
+ */
+proto.viam.app.v1.RegistryItemBilling.prototype.getCostPerYear = function() {
+  return /** @type{?proto.viam.app.v1.RegistryItemCostByResource} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.RegistryItemCostByResource, 2));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.RegistryItemCostByResource|undefined} value
+ * @return {!proto.viam.app.v1.RegistryItemBilling} returns this
+*/
+proto.viam.app.v1.RegistryItemBilling.prototype.setCostPerYear = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.RegistryItemBilling} returns this
+ */
+proto.viam.app.v1.RegistryItemBilling.prototype.clearCostPerYear = function() {
+  return this.setCostPerYear(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.RegistryItemBilling.prototype.hasCostPerYear = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
