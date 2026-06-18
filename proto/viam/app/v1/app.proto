@@ -1496,6 +1496,8 @@ message DeprecatedStatus {
 message RegistryItemBilling {
   // The recurring monthly cost of the item, broken down by billable resource.
   RegistryItemCostByResource cost_per_month = 1;
+  // The recurring yearly cost of the item, broken down by billable resource.
+  RegistryItemCostByResource cost_per_year = 2;
 }
 
 // RegistryItemCostByResource holds the cost of a registry item broken down by billable resource.
