@@ -45237,7 +45237,8 @@ proto.viam.app.v1.ListRegistryItemsRequest.toObject = function(includeInstance, 
     publicNamespacesList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
     includeMarkdownDocumentation: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
     moduleSourceTypesList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f,
-    moduleLanguagesList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f
+    moduleLanguagesList: (f = jspb.Message.getRepeatedField(msg, 11)) == null ? undefined : f,
+    showOwnedDeprecated: jspb.Message.getBooleanFieldWithDefault(msg, 12, false)
   };
 
   if (includeInstance) {
@@ -45327,6 +45328,10 @@ proto.viam.app.v1.ListRegistryItemsRequest.deserializeBinaryFromReader = functio
       for (var i = 0; i < values.length; i++) {
         msg.addModuleLanguages(values[i]);
       }
+      break;
+    case 12:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setShowOwnedDeprecated(value);
       break;
     default:
       reader.skipField();
@@ -45431,6 +45436,13 @@ proto.viam.app.v1.ListRegistryItemsRequest.serializeBinaryToWriter = function(me
   if (f.length > 0) {
     writer.writePackedEnum(
       11,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 12));
+  if (f != null) {
+    writer.writeBool(
+      12,
       f
     );
   }
@@ -45837,6 +45849,42 @@ proto.viam.app.v1.ListRegistryItemsRequest.prototype.addModuleLanguages = functi
  */
 proto.viam.app.v1.ListRegistryItemsRequest.prototype.clearModuleLanguagesList = function() {
   return this.setModuleLanguagesList([]);
+};
+
+
+/**
+ * optional bool show_owned_deprecated = 12;
+ * @return {boolean}
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.getShowOwnedDeprecated = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 12, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.setShowOwnedDeprecated = function(value) {
+  return jspb.Message.setField(this, 12, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.ListRegistryItemsRequest} returns this
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.clearShowOwnedDeprecated = function() {
+  return jspb.Message.setField(this, 12, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.ListRegistryItemsRequest.prototype.hasShowOwnedDeprecated = function() {
+  return jspb.Message.getField(this, 12) != null;
 };
 
 

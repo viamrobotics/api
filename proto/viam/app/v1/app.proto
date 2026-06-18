@@ -1592,6 +1592,7 @@ message ListRegistryItemsRequest {
   optional bool include_markdown_documentation = 9;
   repeated ModuleSourceType module_source_types = 10;
   repeated ModuleLanguage module_languages = 11;
+  optional bool show_owned_deprecated = 12;
 }
 
 message ListRegistryItemsResponse {
