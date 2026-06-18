@@ -1494,16 +1494,18 @@ message DeprecatedStatus {
 // way. For now only cost_per_month.per_machine is supported; the additional fields that fragment
 // billing supports (cost_per_year, tier_name, in_arrears, etc.) are intentionally omitted.
 message RegistryItemBilling {
-  // The recurring monthly cost of the item, broken down by billable resource.
-  RegistryItemCostByResource cost_per_month = 1;
-  // The recurring yearly cost of the item, broken down by billable resource.
-  RegistryItemCostByResource cost_per_year = 2;
+  oneof frequency {
+    // The recurring monthly cost of the item, broken down by billable resource.
+    RegistryItemCostByResource cost_per_month = 1;
+    // The recurring yearly cost of the item, broken down by billable resource.
+    RegistryItemCostByResource cost_per_year = 2;
+  }
 }
 
 // RegistryItemCostByResource holds the cost of a registry item broken down by billable resource.
 // Only the per_machine resource is currently supported.
 message RegistryItemCostByResource {
-  // The cost charged per machine using the item.
+  // The cost charged per machine using the item, in USD.
   double per_machine = 1;
 }
 
