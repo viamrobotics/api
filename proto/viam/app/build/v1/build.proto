@@ -119,18 +119,16 @@ message SourceUploadBuildInfo {
   optional string distro = 4;
 }
 
-
 message StartSourceUploadBuildRequest {
   oneof cloud_build {
     packages.v1.CreatePackageRequest package = 1;
     SourceUploadBuildInfo build_info = 2;
   }
   string module_version = 3;
-  
+
   // optional target builder. defaults to 'default'.
   // use 'viam-cloudbuild-test' to target the new Viam build service (org must be whitelisted).
   optional string builder = 4;
-  
 }
 
 message StartSourceUploadBuildResponse {
