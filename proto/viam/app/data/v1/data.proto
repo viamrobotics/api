@@ -142,6 +142,10 @@ service DataService {
 
   // SequencesByDatasetID lists sequences that belong to the given dataset.
   rpc SequencesByDatasetID(SequencesByDatasetIDRequest) returns (SequencesByDatasetIDResponse);
+
+  // GetSequenceBinaryData returns paginated binary data records matching the
+  // sequence's time range and binary resources.
+  rpc GetSequenceBinaryData(GetSequenceBinaryDataRequest) returns (GetSequenceBinaryDataResponse);
 }
 
 // Order specifies the order in which data is returned.
@@ -918,5 +922,16 @@ message SequencesByDatasetIDRequest {
 
 message SequencesByDatasetIDResponse {
   repeated Sequence sequences = 1;
+  string next_page_token = 2;
+}
+
+message GetSequenceBinaryDataRequest {
+  string sequence_id = 1;
+  string page_token = 2;
+  uint32 page_size = 3;
+}
+
+message GetSequenceBinaryDataResponse {
+  repeated BinaryData data = 1;
   string next_page_token = 2;
 }
