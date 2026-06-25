@@ -1555,7 +1555,7 @@ message RegistryItem {
 
   // Usage cost information used by billing jobs to bill for monthly usage of the item.
   // This is unset when no cost has been configured for the item.
-  RegistryItemBilling billing = 19;
+  optional RegistryItemBilling billing = 19;
 }
 
 message GetRegistryItemRequest {
