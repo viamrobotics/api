@@ -37,6 +37,9 @@ service BuildService {
   // upload the local dev environment and build a module for hot reloading
   rpc StartReloadBuild(stream StartReloadBuildRequest) returns (StartReloadBuildResponse);
 
+  // upload the local dev environment and build a module to publish to the registry
+  rpc StartSourceUploadBuild(stream StartSourceUploadBuildRequest) returns (StartSourceUploadBuildResponse);
+
   // Start a build where the source code is hosted by Viam
   rpc StartPackageBuild(StartPackageBuildRequest) returns (StartPackageBuildResponse);
 }
@@ -99,6 +102,36 @@ message StartReloadBuildRequest {
 }
 
 message StartReloadBuildResponse {
+  string build_id = 1;
+  // present when the requested builder was unavailable for this org and the default builder was used instead.
+  optional string builder_fallback_message = 2;
+}
+
+message SourceUploadBuildInfo {
+  // platforms to build the module for
+  repeated string platforms = 1;
+  // optional working directory. defaults to repo root.
+  optional string workdir = 2;
+  // org id/namespace and module name
+  string module_id = 3;
+  // optional distro for linux platforms.
+  // must be bookworm for cpp module builds.
+  optional string distro = 4;
+}
+
+message StartSourceUploadBuildRequest {
+  oneof cloud_build {
+    packages.v1.CreatePackageRequest package = 1;
+    SourceUploadBuildInfo build_info = 2;
+  }
+  string module_version = 3;
+
+  // optional target builder. defaults to 'default'.
+  // use 'viam-cloudbuild-test' to target the new Viam build service (org must be whitelisted).
+  optional string builder = 4;
+}
+
+message StartSourceUploadBuildResponse {
   string build_id = 1;
   // present when the requested builder was unavailable for this org and the default builder was used instead.
   optional string builder_fallback_message = 2;
