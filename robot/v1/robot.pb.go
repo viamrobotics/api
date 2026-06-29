@@ -2958,6 +2958,9 @@ type GetMachineStatusResponse struct {
 	State       GetMachineStatusResponse_State `protobuf:"varint,3,opt,name=state,proto3,enum=viam.robot.v1.GetMachineStatusResponse_State" json:"state,omitempty"`
 	JobStatuses []*JobStatus                   `protobuf:"bytes,4,rep,name=job_statuses,json=jobStatuses,proto3" json:"job_statuses,omitempty"`
 	Modules     []*ModuleStatus                `protobuf:"bytes,5,rep,name=modules,proto3" json:"modules,omitempty"`
+	// Packages reports the current lifecycle state of all packages the machine is aware of.
+	// NOTE: pending buf regeneration; field is not encoded in the proto wire format yet.
+	Packages []*PackageStatus `json:"packages,omitempty"`
 }
 
 func (x *GetMachineStatusResponse) Reset() {
@@ -3021,6 +3024,13 @@ func (x *GetMachineStatusResponse) GetJobStatuses() []*JobStatus {
 func (x *GetMachineStatusResponse) GetModules() []*ModuleStatus {
 	if x != nil {
 		return x.Modules
+	}
+	return nil
+}
+
+func (x *GetMachineStatusResponse) GetPackages() []*PackageStatus {
+	if x != nil {
+		return x.Packages
 	}
 	return nil
 }
