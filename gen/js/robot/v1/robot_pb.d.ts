@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as app_datasync_v1_data_sync_pb from "../../app/datasync/v1/data_sync_pb";
+import * as app_packages_v1_packages_pb from "../../app/packages/v1/packages_pb";
 import * as common_v1_common_pb from "../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../google/api/annotations_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
@@ -1313,6 +1314,11 @@ export class GetMachineStatusResponse extends jspb.Message {
   setModulesList(value: Array<ModuleStatus>): void;
   addModules(value?: ModuleStatus, index?: number): ModuleStatus;
 
+  clearPackagesList(): void;
+  getPackagesList(): Array<PackageStatus>;
+  setPackagesList(value: Array<PackageStatus>): void;
+  addPackages(value?: PackageStatus, index?: number): PackageStatus;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMachineStatusResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetMachineStatusResponse): GetMachineStatusResponse.AsObject;
@@ -1330,6 +1336,7 @@ export namespace GetMachineStatusResponse {
     state: GetMachineStatusResponse.StateMap[keyof GetMachineStatusResponse.StateMap],
     jobStatusesList: Array<JobStatus.AsObject>,
     modulesList: Array<ModuleStatus.AsObject>,
+    packagesList: Array<PackageStatus.AsObject>,
   }
 
   export interface StateMap {
@@ -1474,6 +1481,59 @@ export namespace ModuleStatus {
     STATE_READY: 3;
     STATE_UNHEALTHY: 4;
     STATE_CLOSING: 5;
+  }
+
+  export const State: StateMap;
+}
+
+export class PackageStatus extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getType(): app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap];
+  setType(value: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap]): void;
+
+  getState(): PackageStatus.StateMap[keyof PackageStatus.StateMap];
+  setState(value: PackageStatus.StateMap[keyof PackageStatus.StateMap]): void;
+
+  getError(): string;
+  setError(value: string): void;
+
+  hasLastUpdated(): boolean;
+  clearLastUpdated(): void;
+  getLastUpdated(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastUpdated(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PackageStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: PackageStatus): PackageStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PackageStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PackageStatus;
+  static deserializeBinaryFromReader(message: PackageStatus, reader: jspb.BinaryReader): PackageStatus;
+}
+
+export namespace PackageStatus {
+  export type AsObject = {
+    name: string,
+    type: app_packages_v1_packages_pb.PackageTypeMap[keyof app_packages_v1_packages_pb.PackageTypeMap],
+    state: PackageStatus.StateMap[keyof PackageStatus.StateMap],
+    error: string,
+    lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    version: string,
+  }
+
+  export interface StateMap {
+    STATE_UNSPECIFIED: 0;
+    STATE_DOWNLOADING: 1;
+    STATE_LOADING: 2;
+    STATE_FIRST_RUN: 3;
+    STATE_DOWNLOADED: 4;
+    STATE_FAILED: 5;
   }
 
   export const State: StateMap;
