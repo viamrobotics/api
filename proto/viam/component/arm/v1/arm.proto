@@ -4,6 +4,7 @@ package viam.component.arm.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 
 option go_package = "go.viam.com/api/component/arm/v1";
@@ -41,6 +42,10 @@ service ArmService {
   rpc MoveThroughJointPositions(MoveThroughJointPositionsRequest) returns (MoveThroughJointPositionsResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {post: "/viam/api/v1/component/arm/{name}/move_through_joint_positions"};
+  }
+
+  rpc MoveThroughJointPositionsStreamed(stream MoveThroughJointPositionsStreamedRequest) returns (stream MoveThroughJointPositionsStreamedResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
   }
 
   // Stop stops a robot's arm
@@ -98,6 +103,18 @@ message JointPositions {
   repeated double values = 1;
 }
 
+message JointVelocities {
+  // A list of joint velocities. Rotational values are in degrees per second, translational values in mm per second.
+  // There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm.
+  repeated double values = 1;
+}
+
+message JointAccelerations {
+  // A list of joint accelerations. Rotational values are in degrees per second squared, translational values in mm per second squared.
+  // There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm.
+  repeated double values = 1;
+}
+
 message GetJointPositionsRequest {
   // Name of an arm
   string name = 1;
@@ -148,6 +165,57 @@ message MoveThroughJointPositionsRequest {
 }
 
 message MoveThroughJointPositionsResponse {}
+
+// One waypoint in a streamed joint-space trajectory.
+message TrajectoryPoint {
+  // Time from the start of the motion at which this waypoint should be reached. Must be zero
+  // for the first point of the stream and strictly increasing thereafter.
+  google.protobuf.Duration time = 1;
+
+  // Joint positions at this waypoint.
+  JointPositions positions = 2;
+
+  // Optional target kinematic constraints at this waypoint.
+  optional KinematicConstraints constraints = 3;
+
+  message KinematicConstraints {
+    // Target joint velocities at this waypoint.
+    JointVelocities velocities = 1;
+
+    // Optional target joint accelerations at this waypoint.
+    optional JointAccelerations accelerations = 2;
+  }
+}
+
+message MoveThroughJointPositionsStreamedRequest {
+  // Name of the arm to control.
+  string name = 1;
+
+  oneof message {
+    // Stream initiation. Sent exactly once and must be the first message on the stream.
+    Init init = 2;
+
+    // A batch of trajectory points to append to the running motion. Sent N times after init.
+    TrajectoryBatch batch = 3;
+  }
+
+  message Init {
+    // Additional sticky arguments to the method.
+    google.protobuf.Struct extra = 99;
+  }
+
+  message TrajectoryBatch {
+    // Trajectory points to append to the motion, in order. Append-only; points cannot be
+    // replaced or revoked.
+    repeated TrajectoryPoint points = 1;
+  }
+}
+
+// Returned after each accepted TrajectoryBatch.
+message MoveThroughJointPositionsStreamedResponse {
+  // Additional reply data
+  google.protobuf.Struct extra = 99;
+}
 
 message StopRequest {
   // Name of an arm
