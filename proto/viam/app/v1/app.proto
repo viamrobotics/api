@@ -1504,6 +1504,26 @@ message DeprecatedStatus {
   string message = 2;
 }
 
+// RegistryItemBilling stores usage cost information for a registry item. Its shape mirrors the
+// billing block used by fragments so that billing jobs can consume registry item costs the same
+// way. For now only cost_per_month.per_machine is supported; the additional fields that fragment
+// billing supports (cost_per_year, tier_name, in_arrears, etc.) are intentionally omitted.
+message RegistryItemBilling {
+  oneof frequency {
+    // The recurring monthly cost of the item, broken down by billable resource.
+    RegistryItemCostByResource cost_per_month = 1;
+    // The recurring yearly cost of the item, broken down by billable resource.
+    RegistryItemCostByResource cost_per_year = 2;
+  }
+}
+
+// RegistryItemCostByResource holds the cost of a registry item broken down by billable resource.
+// Only the per_machine resource is currently supported.
+message RegistryItemCostByResource {
+  // The cost charged per machine using the item, in USD.
+  double per_machine = 1;
+}
+
 message RegistryItem {
   // The id of the item, containing either:
   // namespace:item_name when a namespace exists on the org.
@@ -1547,6 +1567,10 @@ message RegistryItem {
 
   // Whether the item is deprecated
   optional DeprecatedStatus deprecated_status = 17;
+
+  // Usage cost information used by billing jobs to bill for monthly usage of the item.
+  // This is unset when no cost has been configured for the item.
+  optional RegistryItemBilling billing = 19;
 }
 
 message GetRegistryItemRequest {
@@ -1583,6 +1607,10 @@ message UpdateRegistryItemRequest {
   }
 
   optional string markdown_description = 9;
+
+  // The usage cost information to store on the item. When unset, the existing billing
+  // configuration is left unchanged.
+  optional RegistryItemBilling billing = 10;
 }
 
 message UpdateRegistryItemResponse {}

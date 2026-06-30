@@ -44,6 +44,8 @@ type BuildServiceClient interface {
 	UnlinkOrg(ctx context.Context, in *UnlinkOrgRequest, opts ...grpc.CallOption) (*UnlinkOrgResponse, error)
 	// upload the local dev environment and build a module for hot reloading
 	StartReloadBuild(ctx context.Context, opts ...grpc.CallOption) (BuildService_StartReloadBuildClient, error)
+	// upload the local dev environment and build a module to publish to the registry
+	StartSourceUploadBuild(ctx context.Context, opts ...grpc.CallOption) (BuildService_StartSourceUploadBuildClient, error)
 	// Start a build where the source code is hosted by Viam
 	StartPackageBuild(ctx context.Context, in *StartPackageBuildRequest, opts ...grpc.CallOption) (*StartPackageBuildResponse, error)
 }
@@ -203,6 +205,40 @@ func (x *buildServiceStartReloadBuildClient) CloseAndRecv() (*StartReloadBuildRe
 	return m, nil
 }
 
+func (c *buildServiceClient) StartSourceUploadBuild(ctx context.Context, opts ...grpc.CallOption) (BuildService_StartSourceUploadBuildClient, error) {
+	stream, err := c.cc.NewStream(ctx, &BuildService_ServiceDesc.Streams[2], "/viam.app.build.v1.BuildService/StartSourceUploadBuild", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &buildServiceStartSourceUploadBuildClient{stream}
+	return x, nil
+}
+
+type BuildService_StartSourceUploadBuildClient interface {
+	Send(*StartSourceUploadBuildRequest) error
+	CloseAndRecv() (*StartSourceUploadBuildResponse, error)
+	grpc.ClientStream
+}
+
+type buildServiceStartSourceUploadBuildClient struct {
+	grpc.ClientStream
+}
+
+func (x *buildServiceStartSourceUploadBuildClient) Send(m *StartSourceUploadBuildRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *buildServiceStartSourceUploadBuildClient) CloseAndRecv() (*StartSourceUploadBuildResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(StartSourceUploadBuildResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *buildServiceClient) StartPackageBuild(ctx context.Context, in *StartPackageBuildRequest, opts ...grpc.CallOption) (*StartPackageBuildResponse, error) {
 	out := new(StartPackageBuildResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.build.v1.BuildService/StartPackageBuild", in, out, opts...)
@@ -238,6 +274,8 @@ type BuildServiceServer interface {
 	UnlinkOrg(context.Context, *UnlinkOrgRequest) (*UnlinkOrgResponse, error)
 	// upload the local dev environment and build a module for hot reloading
 	StartReloadBuild(BuildService_StartReloadBuildServer) error
+	// upload the local dev environment and build a module to publish to the registry
+	StartSourceUploadBuild(BuildService_StartSourceUploadBuildServer) error
 	// Start a build where the source code is hosted by Viam
 	StartPackageBuild(context.Context, *StartPackageBuildRequest) (*StartPackageBuildResponse, error)
 	mustEmbedUnimplementedBuildServiceServer()
@@ -279,6 +317,9 @@ func (UnimplementedBuildServiceServer) UnlinkOrg(context.Context, *UnlinkOrgRequ
 }
 func (UnimplementedBuildServiceServer) StartReloadBuild(BuildService_StartReloadBuildServer) error {
 	return status.Errorf(codes.Unimplemented, "method StartReloadBuild not implemented")
+}
+func (UnimplementedBuildServiceServer) StartSourceUploadBuild(BuildService_StartSourceUploadBuildServer) error {
+	return status.Errorf(codes.Unimplemented, "method StartSourceUploadBuild not implemented")
 }
 func (UnimplementedBuildServiceServer) StartPackageBuild(context.Context, *StartPackageBuildRequest) (*StartPackageBuildResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartPackageBuild not implemented")
@@ -505,6 +546,32 @@ func (x *buildServiceStartReloadBuildServer) Recv() (*StartReloadBuildRequest, e
 	return m, nil
 }
 
+func _BuildService_StartSourceUploadBuild_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(BuildServiceServer).StartSourceUploadBuild(&buildServiceStartSourceUploadBuildServer{stream})
+}
+
+type BuildService_StartSourceUploadBuildServer interface {
+	SendAndClose(*StartSourceUploadBuildResponse) error
+	Recv() (*StartSourceUploadBuildRequest, error)
+	grpc.ServerStream
+}
+
+type buildServiceStartSourceUploadBuildServer struct {
+	grpc.ServerStream
+}
+
+func (x *buildServiceStartSourceUploadBuildServer) SendAndClose(m *StartSourceUploadBuildResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *buildServiceStartSourceUploadBuildServer) Recv() (*StartSourceUploadBuildRequest, error) {
+	m := new(StartSourceUploadBuildRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func _BuildService_StartPackageBuild_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StartPackageBuildRequest)
 	if err := dec(in); err != nil {
@@ -580,6 +647,11 @@ var BuildService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "StartReloadBuild",
 			Handler:       _BuildService_StartReloadBuild_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "StartSourceUploadBuild",
+			Handler:       _BuildService_StartSourceUploadBuild_Handler,
 			ClientStreams: true,
 		},
 	},

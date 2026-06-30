@@ -2,6 +2,7 @@
 // file: robot/v1/robot.proto
 
 import * as jspb from "google-protobuf";
+import * as app_datasync_v1_data_sync_pb from "../../app/datasync/v1/data_sync_pb";
 import * as common_v1_common_pb from "../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../google/api/annotations_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
@@ -44,6 +45,76 @@ export class SendTracesResponse extends jspb.Message {
 
 export namespace SendTracesResponse {
   export type AsObject = {
+  }
+}
+
+export class UploadDataFromPathRequest extends jspb.Message {
+  getPath(): string;
+  setPath(value: string): void;
+
+  hasUploadMetadata(): boolean;
+  clearUploadMetadata(): void;
+  getUploadMetadata(): app_datasync_v1_data_sync_pb.UploadMetadata | undefined;
+  setUploadMetadata(value?: app_datasync_v1_data_sync_pb.UploadMetadata): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UploadDataFromPathRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UploadDataFromPathRequest): UploadDataFromPathRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UploadDataFromPathRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UploadDataFromPathRequest;
+  static deserializeBinaryFromReader(message: UploadDataFromPathRequest, reader: jspb.BinaryReader): UploadDataFromPathRequest;
+}
+
+export namespace UploadDataFromPathRequest {
+  export type AsObject = {
+    path: string,
+    uploadMetadata?: app_datasync_v1_data_sync_pb.UploadMetadata.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class UploadDataFromPathResponse extends jspb.Message {
+  getFilesUploaded(): number;
+  setFilesUploaded(value: number): void;
+
+  getFilesFailed(): number;
+  setFilesFailed(value: number): void;
+
+  getBytesUploaded(): number;
+  setBytesUploaded(value: number): void;
+
+  getBytesTotal(): number;
+  setBytesTotal(value: number): void;
+
+  clearIdsList(): void;
+  getIdsList(): Array<string>;
+  setIdsList(value: Array<string>): void;
+  addIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UploadDataFromPathResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UploadDataFromPathResponse): UploadDataFromPathResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UploadDataFromPathResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UploadDataFromPathResponse;
+  static deserializeBinaryFromReader(message: UploadDataFromPathResponse, reader: jspb.BinaryReader): UploadDataFromPathResponse;
+}
+
+export namespace UploadDataFromPathResponse {
+  export type AsObject = {
+    filesUploaded: number,
+    filesFailed: number,
+    bytesUploaded: number,
+    bytesTotal: number,
+    idsList: Array<string>,
   }
 }
 

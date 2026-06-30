@@ -5252,6 +5252,61 @@ export namespace DeprecatedStatus {
   }
 }
 
+export class RegistryItemBilling extends jspb.Message {
+  hasCostPerMonth(): boolean;
+  clearCostPerMonth(): void;
+  getCostPerMonth(): RegistryItemCostByResource | undefined;
+  setCostPerMonth(value?: RegistryItemCostByResource): void;
+
+  hasCostPerYear(): boolean;
+  clearCostPerYear(): void;
+  getCostPerYear(): RegistryItemCostByResource | undefined;
+  setCostPerYear(value?: RegistryItemCostByResource): void;
+
+  getFrequencyCase(): RegistryItemBilling.FrequencyCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegistryItemBilling.AsObject;
+  static toObject(includeInstance: boolean, msg: RegistryItemBilling): RegistryItemBilling.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegistryItemBilling, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegistryItemBilling;
+  static deserializeBinaryFromReader(message: RegistryItemBilling, reader: jspb.BinaryReader): RegistryItemBilling;
+}
+
+export namespace RegistryItemBilling {
+  export type AsObject = {
+    costPerMonth?: RegistryItemCostByResource.AsObject,
+    costPerYear?: RegistryItemCostByResource.AsObject,
+  }
+
+  export enum FrequencyCase {
+    FREQUENCY_NOT_SET = 0,
+    COST_PER_MONTH = 1,
+    COST_PER_YEAR = 2,
+  }
+}
+
+export class RegistryItemCostByResource extends jspb.Message {
+  getPerMachine(): number;
+  setPerMachine(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegistryItemCostByResource.AsObject;
+  static toObject(includeInstance: boolean, msg: RegistryItemCostByResource): RegistryItemCostByResource.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegistryItemCostByResource, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegistryItemCostByResource;
+  static deserializeBinaryFromReader(message: RegistryItemCostByResource, reader: jspb.BinaryReader): RegistryItemCostByResource;
+}
+
+export namespace RegistryItemCostByResource {
+  export type AsObject = {
+    perMachine: number,
+  }
+}
+
 export class RegistryItem extends jspb.Message {
   getItemId(): string;
   setItemId(value: string): void;
@@ -5319,6 +5374,11 @@ export class RegistryItem extends jspb.Message {
   getDeprecatedStatus(): DeprecatedStatus | undefined;
   setDeprecatedStatus(value?: DeprecatedStatus): void;
 
+  hasBilling(): boolean;
+  clearBilling(): void;
+  getBilling(): RegistryItemBilling | undefined;
+  setBilling(value?: RegistryItemBilling): void;
+
   getMetadataCase(): RegistryItem.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegistryItem.AsObject;
@@ -5350,6 +5410,7 @@ export namespace RegistryItem {
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     deprecatedStatus?: DeprecatedStatus.AsObject,
+    billing?: RegistryItemBilling.AsObject,
   }
 
   export enum MetadataCase {
@@ -5490,6 +5551,11 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
+  hasBilling(): boolean;
+  clearBilling(): void;
+  getBilling(): RegistryItemBilling | undefined;
+  setBilling(value?: RegistryItemBilling): void;
+
   getMetadataCase(): UpdateRegistryItemRequest.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
@@ -5512,6 +5578,7 @@ export namespace UpdateRegistryItemRequest {
     updateMlModelMetadata?: UpdateMLModelMetadata.AsObject,
     updateMlTrainingMetadata?: UpdateMLTrainingMetadata.AsObject,
     markdownDescription: string,
+    billing?: RegistryItemBilling.AsObject,
   }
 
   export enum MetadataCase {
