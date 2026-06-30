@@ -188,18 +188,18 @@ message TrajectoryPoint {
 }
 
 message MoveThroughJointPositionsStreamedRequest {
+  // Name of the arm to control.
+  string name = 1;
+
   oneof message {
     // Stream initiation. Sent exactly once and must be the first message on the stream.
-    Init init = 1;
+    Init init = 2;
 
     // A batch of trajectory points to append to the running motion. Sent N times after init.
-    TrajectoryBatch batch = 2;
+    TrajectoryBatch batch = 3;
   }
 
   message Init {
-    // Name of the arm to control.
-    string name = 1;
-
     // Additional sticky arguments to the method.
     google.protobuf.Struct extra = 99;
   }
