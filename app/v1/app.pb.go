@@ -1268,6 +1268,7 @@ func (*ListOrganizationsRequest) Descriptor() ([]byte, []int) {
 	return file_app_v1_app_proto_rawDescGZIP(), []int{4}
 }
 
+// An empty list means that all methods are allowed.
 type AllowedLoginMethods struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
