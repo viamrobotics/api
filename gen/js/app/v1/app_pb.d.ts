@@ -245,6 +245,28 @@ export namespace ListOrganizationsRequest {
   }
 }
 
+export class AllowedLoginMethods extends jspb.Message {
+  clearMethodsList(): void;
+  getMethodsList(): Array<LoginMethodMap[keyof LoginMethodMap]>;
+  setMethodsList(value: Array<LoginMethodMap[keyof LoginMethodMap]>): void;
+  addMethods(value: LoginMethodMap[keyof LoginMethodMap], index?: number): LoginMethodMap[keyof LoginMethodMap];
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AllowedLoginMethods.AsObject;
+  static toObject(includeInstance: boolean, msg: AllowedLoginMethods): AllowedLoginMethods.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AllowedLoginMethods, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AllowedLoginMethods;
+  static deserializeBinaryFromReader(message: AllowedLoginMethods, reader: jspb.BinaryReader): AllowedLoginMethods;
+}
+
+export namespace AllowedLoginMethods {
+  export type AsObject = {
+    methodsList: Array<LoginMethodMap[keyof LoginMethodMap]>,
+  }
+}
+
 export class Organization extends jspb.Message {
   getId(): string;
   setId(value: string): void;
@@ -273,6 +295,11 @@ export class Organization extends jspb.Message {
   getDefaultFragments(): FragmentImportList | undefined;
   setDefaultFragments(value?: FragmentImportList): void;
 
+  hasAllowedLoginMethods(): boolean;
+  clearAllowedLoginMethods(): void;
+  getAllowedLoginMethods(): AllowedLoginMethods | undefined;
+  setAllowedLoginMethods(value?: AllowedLoginMethods): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -292,6 +319,7 @@ export namespace Organization {
     defaultRegion: string,
     cid: string,
     defaultFragments?: FragmentImportList.AsObject,
+    allowedLoginMethods?: AllowedLoginMethods.AsObject,
   }
 }
 
@@ -576,6 +604,11 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getDefaultFragments(): FragmentImportList | undefined;
   setDefaultFragments(value?: FragmentImportList): void;
 
+  hasAllowedLoginMethods(): boolean;
+  clearAllowedLoginMethods(): void;
+  getAllowedLoginMethods(): AllowedLoginMethods | undefined;
+  setAllowedLoginMethods(value?: AllowedLoginMethods): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateOrganizationRequest): UpdateOrganizationRequest.AsObject;
@@ -594,6 +627,7 @@ export namespace UpdateOrganizationRequest {
     region: string,
     cid: string,
     defaultFragments?: FragmentImportList.AsObject,
+    allowedLoginMethods?: AllowedLoginMethods.AsObject,
   }
 }
 
@@ -5224,6 +5258,61 @@ export namespace DeprecatedStatus {
   }
 }
 
+export class RegistryItemBilling extends jspb.Message {
+  hasCostPerMonth(): boolean;
+  clearCostPerMonth(): void;
+  getCostPerMonth(): RegistryItemCostByResource | undefined;
+  setCostPerMonth(value?: RegistryItemCostByResource): void;
+
+  hasCostPerYear(): boolean;
+  clearCostPerYear(): void;
+  getCostPerYear(): RegistryItemCostByResource | undefined;
+  setCostPerYear(value?: RegistryItemCostByResource): void;
+
+  getFrequencyCase(): RegistryItemBilling.FrequencyCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegistryItemBilling.AsObject;
+  static toObject(includeInstance: boolean, msg: RegistryItemBilling): RegistryItemBilling.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegistryItemBilling, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegistryItemBilling;
+  static deserializeBinaryFromReader(message: RegistryItemBilling, reader: jspb.BinaryReader): RegistryItemBilling;
+}
+
+export namespace RegistryItemBilling {
+  export type AsObject = {
+    costPerMonth?: RegistryItemCostByResource.AsObject,
+    costPerYear?: RegistryItemCostByResource.AsObject,
+  }
+
+  export enum FrequencyCase {
+    FREQUENCY_NOT_SET = 0,
+    COST_PER_MONTH = 1,
+    COST_PER_YEAR = 2,
+  }
+}
+
+export class RegistryItemCostByResource extends jspb.Message {
+  getPerMachine(): number;
+  setPerMachine(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegistryItemCostByResource.AsObject;
+  static toObject(includeInstance: boolean, msg: RegistryItemCostByResource): RegistryItemCostByResource.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegistryItemCostByResource, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegistryItemCostByResource;
+  static deserializeBinaryFromReader(message: RegistryItemCostByResource, reader: jspb.BinaryReader): RegistryItemCostByResource;
+}
+
+export namespace RegistryItemCostByResource {
+  export type AsObject = {
+    perMachine: number,
+  }
+}
+
 export class RegistryItem extends jspb.Message {
   getItemId(): string;
   setItemId(value: string): void;
@@ -5291,6 +5380,11 @@ export class RegistryItem extends jspb.Message {
   getDeprecatedStatus(): DeprecatedStatus | undefined;
   setDeprecatedStatus(value?: DeprecatedStatus): void;
 
+  hasBilling(): boolean;
+  clearBilling(): void;
+  getBilling(): RegistryItemBilling | undefined;
+  setBilling(value?: RegistryItemBilling): void;
+
   getMetadataCase(): RegistryItem.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegistryItem.AsObject;
@@ -5322,6 +5416,7 @@ export namespace RegistryItem {
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     deprecatedStatus?: DeprecatedStatus.AsObject,
+    billing?: RegistryItemBilling.AsObject,
   }
 
   export enum MetadataCase {
@@ -5462,6 +5557,11 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
+  hasBilling(): boolean;
+  clearBilling(): void;
+  getBilling(): RegistryItemBilling | undefined;
+  setBilling(value?: RegistryItemBilling): void;
+
   getMetadataCase(): UpdateRegistryItemRequest.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
@@ -5484,6 +5584,7 @@ export namespace UpdateRegistryItemRequest {
     updateMlModelMetadata?: UpdateMLModelMetadata.AsObject,
     updateMlTrainingMetadata?: UpdateMLTrainingMetadata.AsObject,
     markdownDescription: string,
+    billing?: RegistryItemBilling.AsObject,
   }
 
   export enum MetadataCase {
@@ -8097,6 +8198,16 @@ export interface AuthenticationTypeMap {
 }
 
 export const AuthenticationType: AuthenticationTypeMap;
+
+export interface LoginMethodMap {
+  LOGIN_METHOD_UNSPECIFIED: 0;
+  LOGIN_METHOD_PASSWORD: 1;
+  LOGIN_METHOD_GOOGLE: 2;
+  LOGIN_METHOD_GITHUB: 3;
+  LOGIN_METHOD_APPLE: 4;
+}
+
+export const LoginMethod: LoginMethodMap;
 
 export interface FragmentVisibilityMap {
   FRAGMENT_VISIBILITY_UNSPECIFIED: 0;
