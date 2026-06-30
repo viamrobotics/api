@@ -2999,6 +2999,11 @@ export class Fragment extends jspb.Message {
   getRevision(): string;
   setRevision(value: string): void;
 
+  hasPublicNamespace(): boolean;
+  clearPublicNamespace(): void;
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
   static toObject(includeInstance: boolean, msg: Fragment): Fragment.AsObject;
@@ -3024,6 +3029,7 @@ export namespace Fragment {
     visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     revision: string,
+    publicNamespace: string,
   }
 }
 

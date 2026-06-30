@@ -27209,7 +27209,8 @@ proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
     onlyUsedByOwner: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
     visibility: jspb.Message.getFieldWithDefault(msg, 12, 0),
     lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    revision: jspb.Message.getFieldWithDefault(msg, 14, "")
+    revision: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    publicNamespace: jspb.Message.getFieldWithDefault(msg, 15, "")
   };
 
   if (includeInstance) {
@@ -27300,6 +27301,10 @@ proto.viam.app.v1.Fragment.deserializeBinaryFromReader = function(msg, reader) {
     case 14:
       var value = /** @type {string} */ (reader.readString());
       msg.setRevision(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPublicNamespace(value);
       break;
     default:
       reader.skipField();
@@ -27421,6 +27426,13 @@ proto.viam.app.v1.Fragment.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       14,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 15));
+  if (f != null) {
+    writer.writeString(
+      15,
       f
     );
   }
@@ -27715,6 +27727,42 @@ proto.viam.app.v1.Fragment.prototype.getRevision = function() {
  */
 proto.viam.app.v1.Fragment.prototype.setRevision = function(value) {
   return jspb.Message.setProto3StringField(this, 14, value);
+};
+
+
+/**
+ * optional string public_namespace = 15;
+ * @return {string}
+ */
+proto.viam.app.v1.Fragment.prototype.getPublicNamespace = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.Fragment} returns this
+ */
+proto.viam.app.v1.Fragment.prototype.setPublicNamespace = function(value) {
+  return jspb.Message.setField(this, 15, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.Fragment} returns this
+ */
+proto.viam.app.v1.Fragment.prototype.clearPublicNamespace = function() {
+  return jspb.Message.setField(this, 15, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.Fragment.prototype.hasPublicNamespace = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 
