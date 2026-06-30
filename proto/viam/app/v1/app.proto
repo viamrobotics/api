@@ -410,6 +410,20 @@ enum AuthenticationType {
 
 message ListOrganizationsRequest {}
 
+// LoginMethod is an interactive login mechanism an organization may allow.
+enum LoginMethod {
+  LOGIN_METHOD_UNSPECIFIED = 0;
+  LOGIN_METHOD_PASSWORD = 1;
+  LOGIN_METHOD_GOOGLE = 2;
+  LOGIN_METHOD_GITHUB = 3;
+  LOGIN_METHOD_APPLE = 4;
+}
+
+// An empty list means that all methods are allowed.
+message AllowedLoginMethods {
+  repeated LoginMethod methods = 1;
+}
+
 message Organization {
   string id = 1;
   string name = 2;
@@ -420,6 +434,7 @@ message Organization {
   string default_region = 5;
   optional string cid = 6;
   optional FragmentImportList default_fragments = 7;
+  optional AllowedLoginMethods allowed_login_methods = 8;
 }
 
 message OrganizationMember {
@@ -478,6 +493,7 @@ message UpdateOrganizationRequest {
   optional string region = 4;
   optional string cid = 5;
   optional FragmentImportList default_fragments = 6;
+  optional AllowedLoginMethods allowed_login_methods = 7;
 }
 
 message UpdateOrganizationResponse {

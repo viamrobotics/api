@@ -245,6 +245,28 @@ export namespace ListOrganizationsRequest {
   }
 }
 
+export class AllowedLoginMethods extends jspb.Message {
+  clearMethodsList(): void;
+  getMethodsList(): Array<LoginMethodMap[keyof LoginMethodMap]>;
+  setMethodsList(value: Array<LoginMethodMap[keyof LoginMethodMap]>): void;
+  addMethods(value: LoginMethodMap[keyof LoginMethodMap], index?: number): LoginMethodMap[keyof LoginMethodMap];
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AllowedLoginMethods.AsObject;
+  static toObject(includeInstance: boolean, msg: AllowedLoginMethods): AllowedLoginMethods.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AllowedLoginMethods, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AllowedLoginMethods;
+  static deserializeBinaryFromReader(message: AllowedLoginMethods, reader: jspb.BinaryReader): AllowedLoginMethods;
+}
+
+export namespace AllowedLoginMethods {
+  export type AsObject = {
+    methodsList: Array<LoginMethodMap[keyof LoginMethodMap]>,
+  }
+}
+
 export class Organization extends jspb.Message {
   getId(): string;
   setId(value: string): void;
@@ -273,6 +295,11 @@ export class Organization extends jspb.Message {
   getDefaultFragments(): FragmentImportList | undefined;
   setDefaultFragments(value?: FragmentImportList): void;
 
+  hasAllowedLoginMethods(): boolean;
+  clearAllowedLoginMethods(): void;
+  getAllowedLoginMethods(): AllowedLoginMethods | undefined;
+  setAllowedLoginMethods(value?: AllowedLoginMethods): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -292,6 +319,7 @@ export namespace Organization {
     defaultRegion: string,
     cid: string,
     defaultFragments?: FragmentImportList.AsObject,
+    allowedLoginMethods?: AllowedLoginMethods.AsObject,
   }
 }
 
@@ -576,6 +604,11 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getDefaultFragments(): FragmentImportList | undefined;
   setDefaultFragments(value?: FragmentImportList): void;
 
+  hasAllowedLoginMethods(): boolean;
+  clearAllowedLoginMethods(): void;
+  getAllowedLoginMethods(): AllowedLoginMethods | undefined;
+  setAllowedLoginMethods(value?: AllowedLoginMethods): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateOrganizationRequest): UpdateOrganizationRequest.AsObject;
@@ -594,6 +627,7 @@ export namespace UpdateOrganizationRequest {
     region: string,
     cid: string,
     defaultFragments?: FragmentImportList.AsObject,
+    allowedLoginMethods?: AllowedLoginMethods.AsObject,
   }
 }
 
@@ -8158,6 +8192,16 @@ export interface AuthenticationTypeMap {
 }
 
 export const AuthenticationType: AuthenticationTypeMap;
+
+export interface LoginMethodMap {
+  LOGIN_METHOD_UNSPECIFIED: 0;
+  LOGIN_METHOD_PASSWORD: 1;
+  LOGIN_METHOD_GOOGLE: 2;
+  LOGIN_METHOD_GITHUB: 3;
+  LOGIN_METHOD_APPLE: 4;
+}
+
+export const LoginMethod: LoginMethodMap;
 
 export interface FragmentVisibilityMap {
   FRAGMENT_VISIBILITY_UNSPECIFIED: 0;
