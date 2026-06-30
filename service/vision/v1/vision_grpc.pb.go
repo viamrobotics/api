@@ -23,19 +23,25 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type VisionServiceClient interface {
-	// GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
+	// GetDetectionsFromCamera will return a list of detections in the next image
+	// given a camera and a detector
 	GetDetectionsFromCamera(ctx context.Context, in *GetDetectionsFromCameraRequest, opts ...grpc.CallOption) (*GetDetectionsFromCameraResponse, error)
-	// GetDetections will return a list of detections in the next image given the image bytes and a detector
+	// GetDetections will return a list of detections in the next image given the
+	// image bytes and a detector
 	GetDetections(ctx context.Context, in *GetDetectionsRequest, opts ...grpc.CallOption) (*GetDetectionsResponse, error)
-	// GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
+	// GetClassificationsFromCamera will return a list of classifications in the
+	// next image given a camera and a classifier
 	GetClassificationsFromCamera(ctx context.Context, in *GetClassificationsFromCameraRequest, opts ...grpc.CallOption) (*GetClassificationsFromCameraResponse, error)
-	// GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
+	// GetClassifications will return a list of classifications in the next image
+	// given the image bytes and a classifier
 	GetClassifications(ctx context.Context, in *GetClassificationsRequest, opts ...grpc.CallOption) (*GetClassificationsResponse, error)
-	// GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
-	// as well as the 3-vector center of each of the found objects.
-	// A specific MIME type can be requested but may not necessarily be the same one returned.
+	// GetObjectPointClouds returns all the found objects in a pointcloud from a
+	// camera of the underlying robot, as well as the 3-vector center of each of
+	// the found objects. A specific MIME type can be requested but may not
+	// necessarily be the same one returned.
 	GetObjectPointClouds(ctx context.Context, in *GetObjectPointCloudsRequest, opts ...grpc.CallOption) (*GetObjectPointCloudsResponse, error)
-	// GetProperties will return the properties as booleans given the name of the vision service
+	// GetProperties will return the properties as booleans given the name of the
+	// vision service
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	CaptureAllFromCamera(ctx context.Context, in *CaptureAllFromCameraRequest, opts ...grpc.CallOption) (*CaptureAllFromCameraResponse, error)
 	// DoCommand sends/receives arbitrary commands
@@ -137,19 +143,25 @@ func (c *visionServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusReq
 // All implementations must embed UnimplementedVisionServiceServer
 // for forward compatibility
 type VisionServiceServer interface {
-	// GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
+	// GetDetectionsFromCamera will return a list of detections in the next image
+	// given a camera and a detector
 	GetDetectionsFromCamera(context.Context, *GetDetectionsFromCameraRequest) (*GetDetectionsFromCameraResponse, error)
-	// GetDetections will return a list of detections in the next image given the image bytes and a detector
+	// GetDetections will return a list of detections in the next image given the
+	// image bytes and a detector
 	GetDetections(context.Context, *GetDetectionsRequest) (*GetDetectionsResponse, error)
-	// GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
+	// GetClassificationsFromCamera will return a list of classifications in the
+	// next image given a camera and a classifier
 	GetClassificationsFromCamera(context.Context, *GetClassificationsFromCameraRequest) (*GetClassificationsFromCameraResponse, error)
-	// GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
+	// GetClassifications will return a list of classifications in the next image
+	// given the image bytes and a classifier
 	GetClassifications(context.Context, *GetClassificationsRequest) (*GetClassificationsResponse, error)
-	// GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
-	// as well as the 3-vector center of each of the found objects.
-	// A specific MIME type can be requested but may not necessarily be the same one returned.
+	// GetObjectPointClouds returns all the found objects in a pointcloud from a
+	// camera of the underlying robot, as well as the 3-vector center of each of
+	// the found objects. A specific MIME type can be requested but may not
+	// necessarily be the same one returned.
 	GetObjectPointClouds(context.Context, *GetObjectPointCloudsRequest) (*GetObjectPointCloudsResponse, error)
-	// GetProperties will return the properties as booleans given the name of the vision service
+	// GetProperties will return the properties as booleans given the name of the
+	// vision service
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	CaptureAllFromCamera(context.Context, *CaptureAllFromCameraRequest) (*CaptureAllFromCameraResponse, error)
 	// DoCommand sends/receives arbitrary commands

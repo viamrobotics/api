@@ -3171,6 +3171,11 @@ export class FragmentImport extends jspb.Message {
 
   getVariablesMap(): jspb.Map<string, string>;
   clearVariablesMap(): void;
+  hasFragmentVariables(): boolean;
+  clearFragmentVariables(): void;
+  getFragmentVariables(): google_protobuf_struct_pb.Struct | undefined;
+  setFragmentVariables(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FragmentImport.AsObject;
   static toObject(includeInstance: boolean, msg: FragmentImport): FragmentImport.AsObject;
@@ -3187,6 +3192,7 @@ export namespace FragmentImport {
     version: string,
     prefix: string,
     variablesMap: Array<[string, string]>,
+    fragmentVariables?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -4974,6 +4980,11 @@ export class ModuleVersion extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasDeprecatedStatus(): boolean;
+  clearDeprecatedStatus(): void;
+  getDeprecatedStatus(): DeprecatedStatus | undefined;
+  setDeprecatedStatus(value?: DeprecatedStatus): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleVersion.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleVersion): ModuleVersion.AsObject;
@@ -4993,6 +5004,7 @@ export namespace ModuleVersion {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    deprecatedStatus?: DeprecatedStatus.AsObject,
   }
 }
 
@@ -5180,6 +5192,87 @@ export namespace MLTrainingMetadata {
   }
 }
 
+export class DeprecatedStatus extends jspb.Message {
+  hasDeprecatedAt(): boolean;
+  clearDeprecatedAt(): void;
+  getDeprecatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setDeprecatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeprecatedStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: DeprecatedStatus): DeprecatedStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeprecatedStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeprecatedStatus;
+  static deserializeBinaryFromReader(message: DeprecatedStatus, reader: jspb.BinaryReader): DeprecatedStatus;
+}
+
+export namespace DeprecatedStatus {
+  export type AsObject = {
+    deprecatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    message: string,
+  }
+}
+
+export class RegistryItemBilling extends jspb.Message {
+  hasCostPerMonth(): boolean;
+  clearCostPerMonth(): void;
+  getCostPerMonth(): RegistryItemCostByResource | undefined;
+  setCostPerMonth(value?: RegistryItemCostByResource): void;
+
+  hasCostPerYear(): boolean;
+  clearCostPerYear(): void;
+  getCostPerYear(): RegistryItemCostByResource | undefined;
+  setCostPerYear(value?: RegistryItemCostByResource): void;
+
+  getFrequencyCase(): RegistryItemBilling.FrequencyCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegistryItemBilling.AsObject;
+  static toObject(includeInstance: boolean, msg: RegistryItemBilling): RegistryItemBilling.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegistryItemBilling, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegistryItemBilling;
+  static deserializeBinaryFromReader(message: RegistryItemBilling, reader: jspb.BinaryReader): RegistryItemBilling;
+}
+
+export namespace RegistryItemBilling {
+  export type AsObject = {
+    costPerMonth?: RegistryItemCostByResource.AsObject,
+    costPerYear?: RegistryItemCostByResource.AsObject,
+  }
+
+  export enum FrequencyCase {
+    FREQUENCY_NOT_SET = 0,
+    COST_PER_MONTH = 1,
+    COST_PER_YEAR = 2,
+  }
+}
+
+export class RegistryItemCostByResource extends jspb.Message {
+  getPerMachine(): number;
+  setPerMachine(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegistryItemCostByResource.AsObject;
+  static toObject(includeInstance: boolean, msg: RegistryItemCostByResource): RegistryItemCostByResource.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegistryItemCostByResource, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegistryItemCostByResource;
+  static deserializeBinaryFromReader(message: RegistryItemCostByResource, reader: jspb.BinaryReader): RegistryItemCostByResource;
+}
+
+export namespace RegistryItemCostByResource {
+  export type AsObject = {
+    perMachine: number,
+  }
+}
+
 export class RegistryItem extends jspb.Message {
   getItemId(): string;
   setItemId(value: string): void;
@@ -5242,6 +5335,16 @@ export class RegistryItem extends jspb.Message {
   getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasDeprecatedStatus(): boolean;
+  clearDeprecatedStatus(): void;
+  getDeprecatedStatus(): DeprecatedStatus | undefined;
+  setDeprecatedStatus(value?: DeprecatedStatus): void;
+
+  hasBilling(): boolean;
+  clearBilling(): void;
+  getBilling(): RegistryItemBilling | undefined;
+  setBilling(value?: RegistryItemBilling): void;
+
   getMetadataCase(): RegistryItem.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegistryItem.AsObject;
@@ -5272,6 +5375,8 @@ export namespace RegistryItem {
     mlTrainingMetadata?: MLTrainingMetadata.AsObject,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    deprecatedStatus?: DeprecatedStatus.AsObject,
+    billing?: RegistryItemBilling.AsObject,
   }
 
   export enum MetadataCase {
@@ -5412,6 +5517,11 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
+  hasBilling(): boolean;
+  clearBilling(): void;
+  getBilling(): RegistryItemBilling | undefined;
+  setBilling(value?: RegistryItemBilling): void;
+
   getMetadataCase(): UpdateRegistryItemRequest.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
@@ -5434,6 +5544,7 @@ export namespace UpdateRegistryItemRequest {
     updateMlModelMetadata?: UpdateMLModelMetadata.AsObject,
     updateMlTrainingMetadata?: UpdateMLTrainingMetadata.AsObject,
     markdownDescription: string,
+    billing?: RegistryItemBilling.AsObject,
   }
 
   export enum MetadataCase {
@@ -5516,6 +5627,11 @@ export class ListRegistryItemsRequest extends jspb.Message {
   setModuleLanguagesList(value: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>): void;
   addModuleLanguages(value: ModuleLanguageMap[keyof ModuleLanguageMap], index?: number): ModuleLanguageMap[keyof ModuleLanguageMap];
 
+  hasShowOwnedDeprecated(): boolean;
+  clearShowOwnedDeprecated(): void;
+  getShowOwnedDeprecated(): boolean;
+  setShowOwnedDeprecated(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListRegistryItemsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListRegistryItemsRequest): ListRegistryItemsRequest.AsObject;
@@ -5539,6 +5655,7 @@ export namespace ListRegistryItemsRequest {
     includeMarkdownDocumentation: boolean,
     moduleSourceTypesList: Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>,
     moduleLanguagesList: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>,
+    showOwnedDeprecated: boolean,
   }
 }
 
@@ -5682,6 +5799,82 @@ export class TransferRegistryItemResponse extends jspb.Message {
 }
 
 export namespace TransferRegistryItemResponse {
+  export type AsObject = {
+  }
+}
+
+export class DeprecateRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeprecateRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeprecateRegistryItemRequest): DeprecateRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeprecateRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeprecateRegistryItemRequest;
+  static deserializeBinaryFromReader(message: DeprecateRegistryItemRequest, reader: jspb.BinaryReader): DeprecateRegistryItemRequest;
+}
+
+export namespace DeprecateRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+    message: string,
+  }
+}
+
+export class DeprecateRegistryItemResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeprecateRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeprecateRegistryItemResponse): DeprecateRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeprecateRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeprecateRegistryItemResponse;
+  static deserializeBinaryFromReader(message: DeprecateRegistryItemResponse, reader: jspb.BinaryReader): DeprecateRegistryItemResponse;
+}
+
+export namespace DeprecateRegistryItemResponse {
+  export type AsObject = {
+  }
+}
+
+export class UndeprecateRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UndeprecateRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UndeprecateRegistryItemRequest): UndeprecateRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UndeprecateRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UndeprecateRegistryItemRequest;
+  static deserializeBinaryFromReader(message: UndeprecateRegistryItemRequest, reader: jspb.BinaryReader): UndeprecateRegistryItemRequest;
+}
+
+export namespace UndeprecateRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+  }
+}
+
+export class UndeprecateRegistryItemResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UndeprecateRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UndeprecateRegistryItemResponse): UndeprecateRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UndeprecateRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UndeprecateRegistryItemResponse;
+  static deserializeBinaryFromReader(message: UndeprecateRegistryItemResponse, reader: jspb.BinaryReader): UndeprecateRegistryItemResponse;
+}
+
+export namespace UndeprecateRegistryItemResponse {
   export type AsObject = {
   }
 }
@@ -6221,6 +6414,11 @@ export class Module extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasDeprecatedStatus(): boolean;
+  clearDeprecatedStatus(): void;
+  getDeprecatedStatus(): DeprecatedStatus | undefined;
+  setDeprecatedStatus(value?: DeprecatedStatus): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Module.AsObject;
   static toObject(includeInstance: boolean, msg: Module): Module.AsObject;
@@ -6248,6 +6446,7 @@ export namespace Module {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    deprecatedStatus?: DeprecatedStatus.AsObject,
   }
 }
 
@@ -6283,6 +6482,11 @@ export class VersionHistory extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasDeprecatedStatus(): boolean;
+  clearDeprecatedStatus(): void;
+  getDeprecatedStatus(): DeprecatedStatus | undefined;
+  setDeprecatedStatus(value?: DeprecatedStatus): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): VersionHistory.AsObject;
   static toObject(includeInstance: boolean, msg: VersionHistory): VersionHistory.AsObject;
@@ -6302,6 +6506,7 @@ export namespace VersionHistory {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    deprecatedStatus?: DeprecatedStatus.AsObject,
   }
 }
 
@@ -6378,6 +6583,90 @@ export class ListModulesResponse extends jspb.Message {
 export namespace ListModulesResponse {
   export type AsObject = {
     modulesList: Array<Module.AsObject>,
+  }
+}
+
+export class DeprecateRegistryItemVersionRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeprecateRegistryItemVersionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeprecateRegistryItemVersionRequest): DeprecateRegistryItemVersionRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeprecateRegistryItemVersionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeprecateRegistryItemVersionRequest;
+  static deserializeBinaryFromReader(message: DeprecateRegistryItemVersionRequest, reader: jspb.BinaryReader): DeprecateRegistryItemVersionRequest;
+}
+
+export namespace DeprecateRegistryItemVersionRequest {
+  export type AsObject = {
+    itemId: string,
+    version: string,
+    message: string,
+  }
+}
+
+export class DeprecateRegistryItemVersionResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeprecateRegistryItemVersionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeprecateRegistryItemVersionResponse): DeprecateRegistryItemVersionResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeprecateRegistryItemVersionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeprecateRegistryItemVersionResponse;
+  static deserializeBinaryFromReader(message: DeprecateRegistryItemVersionResponse, reader: jspb.BinaryReader): DeprecateRegistryItemVersionResponse;
+}
+
+export namespace DeprecateRegistryItemVersionResponse {
+  export type AsObject = {
+  }
+}
+
+export class UndeprecateRegistryItemVersionRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UndeprecateRegistryItemVersionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UndeprecateRegistryItemVersionRequest): UndeprecateRegistryItemVersionRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UndeprecateRegistryItemVersionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UndeprecateRegistryItemVersionRequest;
+  static deserializeBinaryFromReader(message: UndeprecateRegistryItemVersionRequest, reader: jspb.BinaryReader): UndeprecateRegistryItemVersionRequest;
+}
+
+export namespace UndeprecateRegistryItemVersionRequest {
+  export type AsObject = {
+    itemId: string,
+    version: string,
+  }
+}
+
+export class UndeprecateRegistryItemVersionResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UndeprecateRegistryItemVersionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UndeprecateRegistryItemVersionResponse): UndeprecateRegistryItemVersionResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UndeprecateRegistryItemVersionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UndeprecateRegistryItemVersionResponse;
+  static deserializeBinaryFromReader(message: UndeprecateRegistryItemVersionResponse, reader: jspb.BinaryReader): UndeprecateRegistryItemVersionResponse;
+}
+
+export namespace UndeprecateRegistryItemVersionResponse {
+  export type AsObject = {
   }
 }
 

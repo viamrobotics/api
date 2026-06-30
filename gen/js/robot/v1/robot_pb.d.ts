@@ -2,6 +2,7 @@
 // file: robot/v1/robot.proto
 
 import * as jspb from "google-protobuf";
+import * as app_datasync_v1_data_sync_pb from "../../app/datasync/v1/data_sync_pb";
 import * as common_v1_common_pb from "../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../google/api/annotations_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
@@ -44,6 +45,76 @@ export class SendTracesResponse extends jspb.Message {
 
 export namespace SendTracesResponse {
   export type AsObject = {
+  }
+}
+
+export class UploadDataFromPathRequest extends jspb.Message {
+  getPath(): string;
+  setPath(value: string): void;
+
+  hasUploadMetadata(): boolean;
+  clearUploadMetadata(): void;
+  getUploadMetadata(): app_datasync_v1_data_sync_pb.UploadMetadata | undefined;
+  setUploadMetadata(value?: app_datasync_v1_data_sync_pb.UploadMetadata): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UploadDataFromPathRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UploadDataFromPathRequest): UploadDataFromPathRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UploadDataFromPathRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UploadDataFromPathRequest;
+  static deserializeBinaryFromReader(message: UploadDataFromPathRequest, reader: jspb.BinaryReader): UploadDataFromPathRequest;
+}
+
+export namespace UploadDataFromPathRequest {
+  export type AsObject = {
+    path: string,
+    uploadMetadata?: app_datasync_v1_data_sync_pb.UploadMetadata.AsObject,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class UploadDataFromPathResponse extends jspb.Message {
+  getFilesUploaded(): number;
+  setFilesUploaded(value: number): void;
+
+  getFilesFailed(): number;
+  setFilesFailed(value: number): void;
+
+  getBytesUploaded(): number;
+  setBytesUploaded(value: number): void;
+
+  getBytesTotal(): number;
+  setBytesTotal(value: number): void;
+
+  clearIdsList(): void;
+  getIdsList(): Array<string>;
+  setIdsList(value: Array<string>): void;
+  addIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UploadDataFromPathResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UploadDataFromPathResponse): UploadDataFromPathResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UploadDataFromPathResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UploadDataFromPathResponse;
+  static deserializeBinaryFromReader(message: UploadDataFromPathResponse, reader: jspb.BinaryReader): UploadDataFromPathResponse;
+}
+
+export namespace UploadDataFromPathResponse {
+  export type AsObject = {
+    filesUploaded: number,
+    filesFailed: number,
+    bytesUploaded: number,
+    bytesTotal: number,
+    idsList: Array<string>,
   }
 }
 
@@ -1237,6 +1308,11 @@ export class GetMachineStatusResponse extends jspb.Message {
   setJobStatusesList(value: Array<JobStatus>): void;
   addJobStatuses(value?: JobStatus, index?: number): JobStatus;
 
+  clearModulesList(): void;
+  getModulesList(): Array<ModuleStatus>;
+  setModulesList(value: Array<ModuleStatus>): void;
+  addModules(value?: ModuleStatus, index?: number): ModuleStatus;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMachineStatusResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetMachineStatusResponse): GetMachineStatusResponse.AsObject;
@@ -1253,6 +1329,7 @@ export namespace GetMachineStatusResponse {
     config?: ConfigStatus.AsObject,
     state: GetMachineStatusResponse.StateMap[keyof GetMachineStatusResponse.StateMap],
     jobStatusesList: Array<JobStatus.AsObject>,
+    modulesList: Array<ModuleStatus.AsObject>,
   }
 
   export interface StateMap {
@@ -1348,6 +1425,55 @@ export namespace ResourceStatus {
     STATE_READY: 3;
     STATE_REMOVING: 4;
     STATE_UNHEALTHY: 5;
+  }
+
+  export const State: StateMap;
+}
+
+export class ModuleStatus extends jspb.Message {
+  getModuleName(): string;
+  setModuleName(value: string): void;
+
+  getState(): ModuleStatus.StateMap[keyof ModuleStatus.StateMap];
+  setState(value: ModuleStatus.StateMap[keyof ModuleStatus.StateMap]): void;
+
+  hasLastUpdated(): boolean;
+  clearLastUpdated(): void;
+  getLastUpdated(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastUpdated(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getError(): string;
+  setError(value: string): void;
+
+  getConsecutiveFailures(): number;
+  setConsecutiveFailures(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleStatus): ModuleStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleStatus;
+  static deserializeBinaryFromReader(message: ModuleStatus, reader: jspb.BinaryReader): ModuleStatus;
+}
+
+export namespace ModuleStatus {
+  export type AsObject = {
+    moduleName: string,
+    state: ModuleStatus.StateMap[keyof ModuleStatus.StateMap],
+    lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    error: string,
+    consecutiveFailures: number,
+  }
+
+  export interface StateMap {
+    STATE_UNSPECIFIED: 0;
+    STATE_PENDING: 1;
+    STATE_STARTING: 2;
+    STATE_READY: 3;
+    STATE_UNHEALTHY: 4;
+    STATE_CLOSING: 5;
   }
 
   export const State: StateMap;
