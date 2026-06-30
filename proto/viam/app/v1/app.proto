@@ -419,6 +419,7 @@ enum LoginMethod {
   LOGIN_METHOD_APPLE = 4;
 }
 
+// An empty list means that all methods are allowed.
 message AllowedLoginMethods {
   repeated LoginMethod methods = 1;
 }
