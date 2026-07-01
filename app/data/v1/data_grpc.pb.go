@@ -109,6 +109,9 @@ type DataServiceClient interface {
 	ListSequences(ctx context.Context, in *ListSequencesRequest, opts ...grpc.CallOption) (*ListSequencesResponse, error)
 	// SequencesByDatasetID lists sequences that belong to the given dataset.
 	SequencesByDatasetID(ctx context.Context, in *SequencesByDatasetIDRequest, opts ...grpc.CallOption) (*SequencesByDatasetIDResponse, error)
+	// GetSequenceBinaryData returns paginated binary data records matching the
+	// sequence's time range and binary resources.
+	GetSequenceBinaryData(ctx context.Context, in *GetSequenceBinaryDataRequest, opts ...grpc.CallOption) (*GetSequenceBinaryDataResponse, error)
 }
 
 type dataServiceClient struct {
@@ -507,6 +510,15 @@ func (c *dataServiceClient) SequencesByDatasetID(ctx context.Context, in *Sequen
 	return out, nil
 }
 
+func (c *dataServiceClient) GetSequenceBinaryData(ctx context.Context, in *GetSequenceBinaryDataRequest, opts ...grpc.CallOption) (*GetSequenceBinaryDataResponse, error) {
+	out := new(GetSequenceBinaryDataResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.data.v1.DataService/GetSequenceBinaryData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataServiceServer is the server API for DataService service.
 // All implementations must embed UnimplementedDataServiceServer
 // for forward compatibility
@@ -598,6 +610,9 @@ type DataServiceServer interface {
 	ListSequences(context.Context, *ListSequencesRequest) (*ListSequencesResponse, error)
 	// SequencesByDatasetID lists sequences that belong to the given dataset.
 	SequencesByDatasetID(context.Context, *SequencesByDatasetIDRequest) (*SequencesByDatasetIDResponse, error)
+	// GetSequenceBinaryData returns paginated binary data records matching the
+	// sequence's time range and binary resources.
+	GetSequenceBinaryData(context.Context, *GetSequenceBinaryDataRequest) (*GetSequenceBinaryDataResponse, error)
 	mustEmbedUnimplementedDataServiceServer()
 }
 
@@ -724,6 +739,9 @@ func (UnimplementedDataServiceServer) ListSequences(context.Context, *ListSequen
 }
 func (UnimplementedDataServiceServer) SequencesByDatasetID(context.Context, *SequencesByDatasetIDRequest) (*SequencesByDatasetIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SequencesByDatasetID not implemented")
+}
+func (UnimplementedDataServiceServer) GetSequenceBinaryData(context.Context, *GetSequenceBinaryDataRequest) (*GetSequenceBinaryDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSequenceBinaryData not implemented")
 }
 func (UnimplementedDataServiceServer) mustEmbedUnimplementedDataServiceServer() {}
 
@@ -1461,6 +1479,24 @@ func _DataService_SequencesByDatasetID_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataService_GetSequenceBinaryData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSequenceBinaryDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataServiceServer).GetSequenceBinaryData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.data.v1.DataService/GetSequenceBinaryData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataServiceServer).GetSequenceBinaryData(ctx, req.(*GetSequenceBinaryDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataService_ServiceDesc is the grpc.ServiceDesc for DataService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1623,6 +1659,10 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SequencesByDatasetID",
 			Handler:    _DataService_SequencesByDatasetID_Handler,
+		},
+		{
+			MethodName: "GetSequenceBinaryData",
+			Handler:    _DataService_GetSequenceBinaryData_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
