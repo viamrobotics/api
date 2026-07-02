@@ -4,6 +4,7 @@
 import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
+import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
 export class GetEndPositionRequest extends jspb.Message {
@@ -71,6 +72,50 @@ export class JointPositions extends jspb.Message {
 }
 
 export namespace JointPositions {
+  export type AsObject = {
+    valuesList: Array<number>,
+  }
+}
+
+export class JointVelocities extends jspb.Message {
+  clearValuesList(): void;
+  getValuesList(): Array<number>;
+  setValuesList(value: Array<number>): void;
+  addValues(value: number, index?: number): number;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): JointVelocities.AsObject;
+  static toObject(includeInstance: boolean, msg: JointVelocities): JointVelocities.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: JointVelocities, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): JointVelocities;
+  static deserializeBinaryFromReader(message: JointVelocities, reader: jspb.BinaryReader): JointVelocities;
+}
+
+export namespace JointVelocities {
+  export type AsObject = {
+    valuesList: Array<number>,
+  }
+}
+
+export class JointAccelerations extends jspb.Message {
+  clearValuesList(): void;
+  getValuesList(): Array<number>;
+  setValuesList(value: Array<number>): void;
+  addValues(value: number, index?: number): number;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): JointAccelerations.AsObject;
+  static toObject(includeInstance: boolean, msg: JointAccelerations): JointAccelerations.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: JointAccelerations, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): JointAccelerations;
+  static deserializeBinaryFromReader(message: JointAccelerations, reader: jspb.BinaryReader): JointAccelerations;
+}
+
+export namespace JointAccelerations {
   export type AsObject = {
     valuesList: Array<number>,
   }
@@ -271,6 +316,173 @@ export class MoveThroughJointPositionsResponse extends jspb.Message {
 
 export namespace MoveThroughJointPositionsResponse {
   export type AsObject = {
+  }
+}
+
+export class TrajectoryPoint extends jspb.Message {
+  hasTime(): boolean;
+  clearTime(): void;
+  getTime(): google_protobuf_duration_pb.Duration | undefined;
+  setTime(value?: google_protobuf_duration_pb.Duration): void;
+
+  hasPositions(): boolean;
+  clearPositions(): void;
+  getPositions(): JointPositions | undefined;
+  setPositions(value?: JointPositions): void;
+
+  hasConstraints(): boolean;
+  clearConstraints(): void;
+  getConstraints(): TrajectoryPoint.KinematicConstraints | undefined;
+  setConstraints(value?: TrajectoryPoint.KinematicConstraints): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TrajectoryPoint.AsObject;
+  static toObject(includeInstance: boolean, msg: TrajectoryPoint): TrajectoryPoint.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TrajectoryPoint, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TrajectoryPoint;
+  static deserializeBinaryFromReader(message: TrajectoryPoint, reader: jspb.BinaryReader): TrajectoryPoint;
+}
+
+export namespace TrajectoryPoint {
+  export type AsObject = {
+    time?: google_protobuf_duration_pb.Duration.AsObject,
+    positions?: JointPositions.AsObject,
+    constraints?: TrajectoryPoint.KinematicConstraints.AsObject,
+  }
+
+  export class KinematicConstraints extends jspb.Message {
+    hasVelocities(): boolean;
+    clearVelocities(): void;
+    getVelocities(): JointVelocities | undefined;
+    setVelocities(value?: JointVelocities): void;
+
+    hasAccelerations(): boolean;
+    clearAccelerations(): void;
+    getAccelerations(): JointAccelerations | undefined;
+    setAccelerations(value?: JointAccelerations): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): KinematicConstraints.AsObject;
+    static toObject(includeInstance: boolean, msg: KinematicConstraints): KinematicConstraints.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: KinematicConstraints, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): KinematicConstraints;
+    static deserializeBinaryFromReader(message: KinematicConstraints, reader: jspb.BinaryReader): KinematicConstraints;
+  }
+
+  export namespace KinematicConstraints {
+    export type AsObject = {
+      velocities?: JointVelocities.AsObject,
+      accelerations?: JointAccelerations.AsObject,
+    }
+  }
+}
+
+export class MoveThroughJointPositionsStreamedRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasInit(): boolean;
+  clearInit(): void;
+  getInit(): MoveThroughJointPositionsStreamedRequest.Init | undefined;
+  setInit(value?: MoveThroughJointPositionsStreamedRequest.Init): void;
+
+  hasBatch(): boolean;
+  clearBatch(): void;
+  getBatch(): MoveThroughJointPositionsStreamedRequest.TrajectoryBatch | undefined;
+  setBatch(value?: MoveThroughJointPositionsStreamedRequest.TrajectoryBatch): void;
+
+  getMessageCase(): MoveThroughJointPositionsStreamedRequest.MessageCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveThroughJointPositionsStreamedRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveThroughJointPositionsStreamedRequest): MoveThroughJointPositionsStreamedRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveThroughJointPositionsStreamedRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveThroughJointPositionsStreamedRequest;
+  static deserializeBinaryFromReader(message: MoveThroughJointPositionsStreamedRequest, reader: jspb.BinaryReader): MoveThroughJointPositionsStreamedRequest;
+}
+
+export namespace MoveThroughJointPositionsStreamedRequest {
+  export type AsObject = {
+    name: string,
+    init?: MoveThroughJointPositionsStreamedRequest.Init.AsObject,
+    batch?: MoveThroughJointPositionsStreamedRequest.TrajectoryBatch.AsObject,
+  }
+
+  export class Init extends jspb.Message {
+    hasExtra(): boolean;
+    clearExtra(): void;
+    getExtra(): google_protobuf_struct_pb.Struct | undefined;
+    setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Init.AsObject;
+    static toObject(includeInstance: boolean, msg: Init): Init.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Init, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Init;
+    static deserializeBinaryFromReader(message: Init, reader: jspb.BinaryReader): Init;
+  }
+
+  export namespace Init {
+    export type AsObject = {
+      extra?: google_protobuf_struct_pb.Struct.AsObject,
+    }
+  }
+
+  export class TrajectoryBatch extends jspb.Message {
+    clearPointsList(): void;
+    getPointsList(): Array<TrajectoryPoint>;
+    setPointsList(value: Array<TrajectoryPoint>): void;
+    addPoints(value?: TrajectoryPoint, index?: number): TrajectoryPoint;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): TrajectoryBatch.AsObject;
+    static toObject(includeInstance: boolean, msg: TrajectoryBatch): TrajectoryBatch.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: TrajectoryBatch, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TrajectoryBatch;
+    static deserializeBinaryFromReader(message: TrajectoryBatch, reader: jspb.BinaryReader): TrajectoryBatch;
+  }
+
+  export namespace TrajectoryBatch {
+    export type AsObject = {
+      pointsList: Array<TrajectoryPoint.AsObject>,
+    }
+  }
+
+  export enum MessageCase {
+    MESSAGE_NOT_SET = 0,
+    INIT = 2,
+    BATCH = 3,
+  }
+}
+
+export class MoveThroughJointPositionsStreamedResponse extends jspb.Message {
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MoveThroughJointPositionsStreamedResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: MoveThroughJointPositionsStreamedResponse): MoveThroughJointPositionsStreamedResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MoveThroughJointPositionsStreamedResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MoveThroughJointPositionsStreamedResponse;
+  static deserializeBinaryFromReader(message: MoveThroughJointPositionsStreamedResponse, reader: jspb.BinaryReader): MoveThroughJointPositionsStreamedResponse;
+}
+
+export namespace MoveThroughJointPositionsStreamedResponse {
+  export type AsObject = {
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 

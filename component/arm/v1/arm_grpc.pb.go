@@ -37,6 +37,7 @@ type ArmServiceClient interface {
 	// obeying the specified velocity and acceleration limits.
 	// This will block until done or a new operation cancels this one
 	MoveThroughJointPositions(ctx context.Context, in *MoveThroughJointPositionsRequest, opts ...grpc.CallOption) (*MoveThroughJointPositionsResponse, error)
+	MoveThroughJointPositionsStreamed(ctx context.Context, opts ...grpc.CallOption) (ArmService_MoveThroughJointPositionsStreamedClient, error)
 	// Stop stops a robot's arm
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
@@ -104,6 +105,37 @@ func (c *armServiceClient) MoveThroughJointPositions(ctx context.Context, in *Mo
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *armServiceClient) MoveThroughJointPositionsStreamed(ctx context.Context, opts ...grpc.CallOption) (ArmService_MoveThroughJointPositionsStreamedClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ArmService_ServiceDesc.Streams[0], "/viam.component.arm.v1.ArmService/MoveThroughJointPositionsStreamed", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &armServiceMoveThroughJointPositionsStreamedClient{stream}
+	return x, nil
+}
+
+type ArmService_MoveThroughJointPositionsStreamedClient interface {
+	Send(*MoveThroughJointPositionsStreamedRequest) error
+	Recv() (*MoveThroughJointPositionsStreamedResponse, error)
+	grpc.ClientStream
+}
+
+type armServiceMoveThroughJointPositionsStreamedClient struct {
+	grpc.ClientStream
+}
+
+func (x *armServiceMoveThroughJointPositionsStreamedClient) Send(m *MoveThroughJointPositionsStreamedRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *armServiceMoveThroughJointPositionsStreamedClient) Recv() (*MoveThroughJointPositionsStreamedResponse, error) {
+	m := new(MoveThroughJointPositionsStreamedResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *armServiceClient) Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error) {
@@ -187,6 +219,7 @@ type ArmServiceServer interface {
 	// obeying the specified velocity and acceleration limits.
 	// This will block until done or a new operation cancels this one
 	MoveThroughJointPositions(context.Context, *MoveThroughJointPositionsRequest) (*MoveThroughJointPositionsResponse, error)
+	MoveThroughJointPositionsStreamed(ArmService_MoveThroughJointPositionsStreamedServer) error
 	// Stop stops a robot's arm
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
 	// IsMoving reports if a component is in motion
@@ -222,6 +255,9 @@ func (UnimplementedArmServiceServer) MoveToJointPositions(context.Context, *Move
 }
 func (UnimplementedArmServiceServer) MoveThroughJointPositions(context.Context, *MoveThroughJointPositionsRequest) (*MoveThroughJointPositionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MoveThroughJointPositions not implemented")
+}
+func (UnimplementedArmServiceServer) MoveThroughJointPositionsStreamed(ArmService_MoveThroughJointPositionsStreamedServer) error {
+	return status.Errorf(codes.Unimplemented, "method MoveThroughJointPositionsStreamed not implemented")
 }
 func (UnimplementedArmServiceServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stop not implemented")
@@ -345,6 +381,32 @@ func _ArmService_MoveThroughJointPositions_Handler(srv interface{}, ctx context.
 		return srv.(ArmServiceServer).MoveThroughJointPositions(ctx, req.(*MoveThroughJointPositionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _ArmService_MoveThroughJointPositionsStreamed_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ArmServiceServer).MoveThroughJointPositionsStreamed(&armServiceMoveThroughJointPositionsStreamedServer{stream})
+}
+
+type ArmService_MoveThroughJointPositionsStreamedServer interface {
+	Send(*MoveThroughJointPositionsStreamedResponse) error
+	Recv() (*MoveThroughJointPositionsStreamedRequest, error)
+	grpc.ServerStream
+}
+
+type armServiceMoveThroughJointPositionsStreamedServer struct {
+	grpc.ServerStream
+}
+
+func (x *armServiceMoveThroughJointPositionsStreamedServer) Send(m *MoveThroughJointPositionsStreamedResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *armServiceMoveThroughJointPositionsStreamedServer) Recv() (*MoveThroughJointPositionsStreamedRequest, error) {
+	m := new(MoveThroughJointPositionsStreamedRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func _ArmService_Stop_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -529,6 +591,13 @@ var ArmService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArmService_Get3DModels_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "MoveThroughJointPositionsStreamed",
+			Handler:       _ArmService_MoveThroughJointPositionsStreamed_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "component/arm/v1/arm.proto",
 }
