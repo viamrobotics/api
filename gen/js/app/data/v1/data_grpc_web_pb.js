@@ -2520,5 +2520,66 @@ proto.viam.app.data.v1.DataServicePromiseClient.prototype.sequencesByDatasetID =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.data.v1.GetSequenceBinaryDataRequest,
+ *   !proto.viam.app.data.v1.GetSequenceBinaryDataResponse>}
+ */
+const methodDescriptor_DataService_GetSequenceBinaryData = new grpc.web.MethodDescriptor(
+  '/viam.app.data.v1.DataService/GetSequenceBinaryData',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.data.v1.GetSequenceBinaryDataRequest,
+  proto.viam.app.data.v1.GetSequenceBinaryDataResponse,
+  /**
+   * @param {!proto.viam.app.data.v1.GetSequenceBinaryDataRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.data.v1.GetSequenceBinaryDataResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetSequenceBinaryDataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.data.v1.GetSequenceBinaryDataResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.data.v1.GetSequenceBinaryDataResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.data.v1.DataServiceClient.prototype.getSequenceBinaryData =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetSequenceBinaryData',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetSequenceBinaryData,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.GetSequenceBinaryDataRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.data.v1.GetSequenceBinaryDataResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.data.v1.DataServicePromiseClient.prototype.getSequenceBinaryData =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.data.v1.DataService/GetSequenceBinaryData',
+      request,
+      metadata || {},
+      methodDescriptor_DataService_GetSequenceBinaryData);
+};
+
+
 module.exports = proto.viam.app.data.v1;
 
