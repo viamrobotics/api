@@ -2790,7 +2790,8 @@ proto.viam.app.packages.v1.PackageType = {
   PACKAGE_TYPE_ML_MODEL: 2,
   PACKAGE_TYPE_MODULE: 3,
   PACKAGE_TYPE_SLAM_MAP: 4,
-  PACKAGE_TYPE_ML_TRAINING: 5
+  PACKAGE_TYPE_ML_TRAINING: 5,
+  PACKAGE_TYPE_FRAGMENT: 6
 };
 
 goog.object.extend(exports, proto.viam.app.packages.v1);

@@ -1482,6 +1482,15 @@ message MLTrainingMetadata {
   reserved 1;
 }
 
+// FragmentMetadata carries catalog-display information for a fragment registry item.
+// The fragment configuration itself is not part of the registry item.
+message FragmentMetadata {
+  // The latest revision of the fragment
+  string revision = 1;
+  // Named version tags (e.g. "stable") pointing at revisions of the fragment
+  repeated string tags = 2;
+}
+
 enum ModuleSourceType {
   MODULE_SOURCE_TYPE_UNSPECIFIED = 0;
   // Module source code is stored externally, such as in github.
@@ -1560,6 +1569,7 @@ message RegistryItem {
     ModuleMetadata module_metadata = 11;
     MLModelMetadata ml_model_metadata = 12;
     MLTrainingMetadata ml_training_metadata = 18;
+    FragmentMetadata fragment_metadata = 20;
   }
 
   // When the item was created

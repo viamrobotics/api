@@ -5232,6 +5232,32 @@ export namespace MLTrainingMetadata {
   }
 }
 
+export class FragmentMetadata extends jspb.Message {
+  getRevision(): string;
+  setRevision(value: string): void;
+
+  clearTagsList(): void;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): void;
+  addTags(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FragmentMetadata.AsObject;
+  static toObject(includeInstance: boolean, msg: FragmentMetadata): FragmentMetadata.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FragmentMetadata, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FragmentMetadata;
+  static deserializeBinaryFromReader(message: FragmentMetadata, reader: jspb.BinaryReader): FragmentMetadata;
+}
+
+export namespace FragmentMetadata {
+  export type AsObject = {
+    revision: string,
+    tagsList: Array<string>,
+  }
+}
+
 export class DeprecatedStatus extends jspb.Message {
   hasDeprecatedAt(): boolean;
   clearDeprecatedAt(): void;
@@ -5365,6 +5391,11 @@ export class RegistryItem extends jspb.Message {
   getMlTrainingMetadata(): MLTrainingMetadata | undefined;
   setMlTrainingMetadata(value?: MLTrainingMetadata): void;
 
+  hasFragmentMetadata(): boolean;
+  clearFragmentMetadata(): void;
+  getFragmentMetadata(): FragmentMetadata | undefined;
+  setFragmentMetadata(value?: FragmentMetadata): void;
+
   hasCreatedAt(): boolean;
   clearCreatedAt(): void;
   getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -5413,6 +5444,7 @@ export namespace RegistryItem {
     moduleMetadata?: ModuleMetadata.AsObject,
     mlModelMetadata?: MLModelMetadata.AsObject,
     mlTrainingMetadata?: MLTrainingMetadata.AsObject,
+    fragmentMetadata?: FragmentMetadata.AsObject,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     deprecatedStatus?: DeprecatedStatus.AsObject,
@@ -5424,6 +5456,7 @@ export namespace RegistryItem {
     MODULE_METADATA = 11,
     ML_MODEL_METADATA = 12,
     ML_TRAINING_METADATA = 18,
+    FRAGMENT_METADATA = 20,
   }
 }
 
