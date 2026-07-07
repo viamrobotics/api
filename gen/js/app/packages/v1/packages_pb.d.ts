@@ -157,6 +157,11 @@ export class DeletePackageRequest extends jspb.Message {
   getType(): PackageTypeMap[keyof PackageTypeMap];
   setType(value: PackageTypeMap[keyof PackageTypeMap]): void;
 
+  clearTypesList(): void;
+  getTypesList(): Array<PackageTypeMap[keyof PackageTypeMap]>;
+  setTypesList(value: Array<PackageTypeMap[keyof PackageTypeMap]>): void;
+  addTypes(value: PackageTypeMap[keyof PackageTypeMap], index?: number): PackageTypeMap[keyof PackageTypeMap];
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeletePackageRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DeletePackageRequest): DeletePackageRequest.AsObject;
@@ -172,6 +177,7 @@ export namespace DeletePackageRequest {
     id: string,
     version: string,
     type: PackageTypeMap[keyof PackageTypeMap],
+    typesList: Array<PackageTypeMap[keyof PackageTypeMap]>,
   }
 }
 
