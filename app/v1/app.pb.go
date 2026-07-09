@@ -11086,8 +11086,7 @@ type ModuleVersion struct {
 	Apps []*App `protobuf:"bytes,7,rep,name=apps,proto3" json:"apps,omitempty"`
 	// When set, marks this specific version as deprecated
 	DeprecatedStatus *DeprecatedStatus `protobuf:"bytes,8,opt,name=deprecated_status,json=deprecatedStatus,proto3,oneof" json:"deprecated_status,omitempty"`
-	// The minimum version of viam-server required to run this version of the module,
-	// stamped at publish time (e.g. "0.62.0")
+	// The minimum version of viam-server required to run this version of the module.
 	MinViamServerVersion *string `protobuf:"bytes,9,opt,name=min_viam_server_version,json=minViamServerVersion,proto3,oneof" json:"min_viam_server_version,omitempty"`
 }
 
@@ -11206,8 +11205,7 @@ type ModuleMetadata struct {
 	SourceType *ModuleSourceType `protobuf:"varint,7,opt,name=source_type,json=sourceType,proto3,enum=viam.app.v1.ModuleSourceType,oneof" json:"source_type,omitempty"`
 	// Specifies the language that the module is written in.
 	Language *ModuleLanguage `protobuf:"varint,8,opt,name=language,proto3,enum=viam.app.v1.ModuleLanguage,oneof" json:"language,omitempty"`
-	// The minimum version of viam-server required to run the module; applies to
-	// versions published after this is set (e.g. "0.62.0")
+	// The minimum version of viam-server required to run the module.
 	MinViamServerVersion *string `protobuf:"bytes,9,opt,name=min_viam_server_version,json=minViamServerVersion,proto3,oneof" json:"min_viam_server_version,omitempty"`
 }
 
@@ -13425,8 +13423,7 @@ type UpdateModuleMetadata struct {
 	SourceType *ModuleSourceType `protobuf:"varint,4,opt,name=source_type,json=sourceType,proto3,enum=viam.app.v1.ModuleSourceType,oneof" json:"source_type,omitempty"`
 	// The language the module is written in
 	Language *ModuleLanguage `protobuf:"varint,5,opt,name=language,proto3,enum=viam.app.v1.ModuleLanguage,oneof" json:"language,omitempty"`
-	// The minimum version of viam-server required to run the module; applies to
-	// versions published after this is set (e.g. "0.62.0")
+	// The minimum version of viam-server required to run the module.
 	MinViamServerVersion *string `protobuf:"bytes,6,opt,name=min_viam_server_version,json=minViamServerVersion,proto3,oneof" json:"min_viam_server_version,omitempty"`
 }
 
