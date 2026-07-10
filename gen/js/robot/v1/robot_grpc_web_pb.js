@@ -22,8 +22,6 @@ grpc.web = require('grpc-web');
 
 var app_datasync_v1_data_sync_pb = require('../../app/datasync/v1/data_sync_pb.js')
 
-var app_packages_v1_packages_pb = require('../../app/packages/v1/packages_pb.js')
-
 var common_v1_common_pb = require('../../common/v1/common_pb.js')
 
 var google_api_annotations_pb = require('../../google/api/annotations_pb.js')
