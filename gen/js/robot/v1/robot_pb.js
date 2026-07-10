@@ -11858,7 +11858,7 @@ proto.viam.robot.v1.PackageStatus.State = {
   STATE_DOWNLOADING: 1,
   STATE_LOADING: 2,
   STATE_FIRST_RUN: 3,
-  STATE_DOWNLOADED: 4,
+  STATE_READY: 4,
   STATE_FAILED: 5
 };
 

@@ -530,7 +530,7 @@ message PackageStatus {
     STATE_FIRST_RUN = 3;
 
     // package is fully installed and available for use
-    STATE_DOWNLOADED = 4;
+    STATE_READY = 4;
 
     // package failed to download, extract, or complete first run
     STATE_FAILED = 5;
