@@ -1507,6 +1507,12 @@ export class PackageStatus extends jspb.Message {
   getVersion(): string;
   setVersion(value: string): void;
 
+  getBytesDownloaded(): number;
+  setBytesDownloaded(value: number): void;
+
+  getTotalBytes(): number;
+  setTotalBytes(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageStatus.AsObject;
   static toObject(includeInstance: boolean, msg: PackageStatus): PackageStatus.AsObject;
@@ -1525,6 +1531,8 @@ export namespace PackageStatus {
     error: string,
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     version: string,
+    bytesDownloaded: number,
+    totalBytes: number,
   }
 
   export interface StateMap {

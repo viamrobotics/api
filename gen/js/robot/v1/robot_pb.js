@@ -11689,7 +11689,9 @@ proto.viam.robot.v1.PackageStatus.toObject = function(includeInstance, msg) {
     state: jspb.Message.getFieldWithDefault(msg, 3, 0),
     error: jspb.Message.getFieldWithDefault(msg, 4, ""),
     lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    version: jspb.Message.getFieldWithDefault(msg, 6, "")
+    version: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    bytesDownloaded: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    totalBytes: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -11750,6 +11752,14 @@ proto.viam.robot.v1.PackageStatus.deserializeBinaryFromReader = function(msg, re
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setVersion(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setBytesDownloaded(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTotalBytes(value);
       break;
     default:
       reader.skipField();
@@ -11820,6 +11830,20 @@ proto.viam.robot.v1.PackageStatus.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getBytesDownloaded();
+  if (f !== 0) {
+    writer.writeInt64(
+      7,
+      f
+    );
+  }
+  f = message.getTotalBytes();
+  if (f !== 0) {
+    writer.writeInt64(
+      8,
       f
     );
   }
@@ -11962,6 +11986,42 @@ proto.viam.robot.v1.PackageStatus.prototype.getVersion = function() {
  */
 proto.viam.robot.v1.PackageStatus.prototype.setVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional int64 bytes_downloaded = 7;
+ * @return {number}
+ */
+proto.viam.robot.v1.PackageStatus.prototype.getBytesDownloaded = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.robot.v1.PackageStatus} returns this
+ */
+proto.viam.robot.v1.PackageStatus.prototype.setBytesDownloaded = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional int64 total_bytes = 8;
+ * @return {number}
+ */
+proto.viam.robot.v1.PackageStatus.prototype.getTotalBytes = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.robot.v1.PackageStatus} returns this
+ */
+proto.viam.robot.v1.PackageStatus.prototype.setTotalBytes = function(value) {
+  return jspb.Message.setProto3IntField(this, 8, value);
 };
 
 

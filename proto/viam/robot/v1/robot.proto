@@ -553,6 +553,13 @@ message PackageStatus {
 
   // the version string from PackageConfig
   string version = 6;
+
+  // number of bytes of the package tarball downloaded so far. Only populated
+  // while state == STATE_DOWNLOADING; equals total_bytes once the download completes.
+  int64 bytes_downloaded = 7;
+
+  // total size of the package tarball in bytes. Zero if the size is unknown.
+  int64 total_bytes = 8;
 }
 
 message ConfigStatus {
