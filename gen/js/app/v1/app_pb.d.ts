@@ -5025,11 +5025,6 @@ export class ModuleVersion extends jspb.Message {
   getDeprecatedStatus(): DeprecatedStatus | undefined;
   setDeprecatedStatus(value?: DeprecatedStatus): void;
 
-  hasMinViamServerVersion(): boolean;
-  clearMinViamServerVersion(): void;
-  getMinViamServerVersion(): string;
-  setMinViamServerVersion(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleVersion.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleVersion): ModuleVersion.AsObject;
@@ -5050,7 +5045,6 @@ export namespace ModuleVersion {
     markdownDescription: string,
     appsList: Array<App.AsObject>,
     deprecatedStatus?: DeprecatedStatus.AsObject,
-    minViamServerVersion: string,
   }
 }
 
@@ -5093,11 +5087,6 @@ export class ModuleMetadata extends jspb.Message {
   getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
   setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
 
-  hasMinViamServerVersion(): boolean;
-  clearMinViamServerVersion(): void;
-  getMinViamServerVersion(): string;
-  setMinViamServerVersion(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleMetadata): ModuleMetadata.AsObject;
@@ -5118,7 +5107,6 @@ export namespace ModuleMetadata {
     appsList: Array<App.AsObject>,
     sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
     language: ModuleLanguageMap[keyof ModuleLanguageMap],
-    minViamServerVersion: string,
   }
 }
 
@@ -6157,11 +6145,6 @@ export class UpdateModuleMetadata extends jspb.Message {
   getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
   setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
 
-  hasMinViamServerVersion(): boolean;
-  clearMinViamServerVersion(): void;
-  getMinViamServerVersion(): string;
-  setMinViamServerVersion(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleMetadata): UpdateModuleMetadata.AsObject;
@@ -6179,7 +6162,6 @@ export namespace UpdateModuleMetadata {
     appsList: Array<App.AsObject>,
     sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
     language: ModuleLanguageMap[keyof ModuleLanguageMap],
-    minViamServerVersion: string,
   }
 }
 
