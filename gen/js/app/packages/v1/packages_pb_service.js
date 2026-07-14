@@ -28,6 +28,15 @@ PackageService.DeletePackage = {
   responseType: app_packages_v1_packages_pb.DeletePackageResponse
 };
 
+PackageService.DeleteRegistryItemVersion = {
+  methodName: "DeleteRegistryItemVersion",
+  service: PackageService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_packages_v1_packages_pb.DeleteRegistryItemVersionRequest,
+  responseType: app_packages_v1_packages_pb.DeleteRegistryItemVersionResponse
+};
+
 PackageService.GetPackage = {
   methodName: "GetPackage",
   service: PackageService,
@@ -99,6 +108,37 @@ PackageServiceClient.prototype.deletePackage = function deletePackage(requestMes
     callback = arguments[1];
   }
   var client = grpc.unary(PackageService.DeletePackage, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+PackageServiceClient.prototype.deleteRegistryItemVersion = function deleteRegistryItemVersion(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(PackageService.DeleteRegistryItemVersion, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

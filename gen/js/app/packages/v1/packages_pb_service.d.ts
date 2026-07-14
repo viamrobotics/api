@@ -22,6 +22,15 @@ type PackageServiceDeletePackage = {
   readonly responseType: typeof app_packages_v1_packages_pb.DeletePackageResponse;
 };
 
+type PackageServiceDeleteRegistryItemVersion = {
+  readonly methodName: string;
+  readonly service: typeof PackageService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_packages_v1_packages_pb.DeleteRegistryItemVersionRequest;
+  readonly responseType: typeof app_packages_v1_packages_pb.DeleteRegistryItemVersionResponse;
+};
+
 type PackageServiceGetPackage = {
   readonly methodName: string;
   readonly service: typeof PackageService;
@@ -44,6 +53,7 @@ export class PackageService {
   static readonly serviceName: string;
   static readonly CreatePackage: PackageServiceCreatePackage;
   static readonly DeletePackage: PackageServiceDeletePackage;
+  static readonly DeleteRegistryItemVersion: PackageServiceDeleteRegistryItemVersion;
   static readonly GetPackage: PackageServiceGetPackage;
   static readonly ListPackages: PackageServiceListPackages;
 }
@@ -89,6 +99,15 @@ export class PackageServiceClient {
   deletePackage(
     requestMessage: app_packages_v1_packages_pb.DeletePackageRequest,
     callback: (error: ServiceError|null, responseMessage: app_packages_v1_packages_pb.DeletePackageResponse|null) => void
+  ): UnaryResponse;
+  deleteRegistryItemVersion(
+    requestMessage: app_packages_v1_packages_pb.DeleteRegistryItemVersionRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_packages_v1_packages_pb.DeleteRegistryItemVersionResponse|null) => void
+  ): UnaryResponse;
+  deleteRegistryItemVersion(
+    requestMessage: app_packages_v1_packages_pb.DeleteRegistryItemVersionRequest,
+    callback: (error: ServiceError|null, responseMessage: app_packages_v1_packages_pb.DeleteRegistryItemVersionResponse|null) => void
   ): UnaryResponse;
   getPackage(
     requestMessage: app_packages_v1_packages_pb.GetPackageRequest,

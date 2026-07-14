@@ -197,6 +197,52 @@ export namespace DeletePackageResponse {
   }
 }
 
+export class DeleteRegistryItemVersionRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  clearPlatformsList(): void;
+  getPlatformsList(): Array<string>;
+  setPlatformsList(value: Array<string>): void;
+  addPlatforms(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteRegistryItemVersionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteRegistryItemVersionRequest): DeleteRegistryItemVersionRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteRegistryItemVersionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteRegistryItemVersionRequest;
+  static deserializeBinaryFromReader(message: DeleteRegistryItemVersionRequest, reader: jspb.BinaryReader): DeleteRegistryItemVersionRequest;
+}
+
+export namespace DeleteRegistryItemVersionRequest {
+  export type AsObject = {
+    id: string,
+    version: string,
+    platformsList: Array<string>,
+  }
+}
+
+export class DeleteRegistryItemVersionResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteRegistryItemVersionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteRegistryItemVersionResponse): DeleteRegistryItemVersionResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteRegistryItemVersionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteRegistryItemVersionResponse;
+  static deserializeBinaryFromReader(message: DeleteRegistryItemVersionResponse, reader: jspb.BinaryReader): DeleteRegistryItemVersionResponse;
+}
+
+export namespace DeleteRegistryItemVersionResponse {
+  export type AsObject = {
+  }
+}
+
 export class Package extends jspb.Message {
   hasInfo(): boolean;
   clearInfo(): void;

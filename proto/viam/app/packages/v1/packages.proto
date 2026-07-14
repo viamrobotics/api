@@ -14,9 +14,15 @@ service PackageService {
     option (google.api.http) = {post: "/packages/v1/create"};
   }
 
-  // DeletePackage removes the given package versions
+  // DeletePackage removes the given package version
   rpc DeletePackage(DeletePackageRequest) returns (DeletePackageResponse) {
     option (google.api.http) = {delete: "/packages/v1/delete"};
+  }
+
+  // DeleteRegistryItemVersion removes one or more platform-specific builds of a registry item
+  // (e.g. module) version, without requiring the caller to reconstruct package version strings.
+  rpc DeleteRegistryItemVersion(DeleteRegistryItemVersionRequest) returns (DeleteRegistryItemVersionResponse) {
+    option (google.api.http) = {delete: "/packages/v1/delete_registry_item_version"};
   }
 
   // GetPackage returns the metadata for a requested package version. It also returns a URL
@@ -76,12 +82,21 @@ message CreatePackageResponse {
 message DeletePackageRequest {
   string id = 1;
   string version = 2;
-  PackageType type = 3; // Deprecated: use types instead
-  // Supports deleting multiple package types at once, replaces the deprecated singular type field above.
-  repeated PackageType types = 4;
+  PackageType type = 3;
+  repeated PackageType types = 4; // deprecated, added by mistake
 }
 
 message DeletePackageResponse {}
+
+message DeleteRegistryItemVersionRequest {
+  string id = 1;
+  string version = 2;
+  // Platform-specific builds to delete for this version (e.g. "linux/amd64"). If empty, all
+  // platform builds for this version are deleted.
+  repeated string platforms = 3;
+}
+
+message DeleteRegistryItemVersionResponse {}
 
 message Package {
   PackageInfo info = 1;

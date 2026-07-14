@@ -147,6 +147,67 @@ proto.viam.app.packages.v1.PackageServicePromiseClient.prototype.deletePackage =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.packages.v1.DeleteRegistryItemVersionRequest,
+ *   !proto.viam.app.packages.v1.DeleteRegistryItemVersionResponse>}
+ */
+const methodDescriptor_PackageService_DeleteRegistryItemVersion = new grpc.web.MethodDescriptor(
+  '/viam.app.packages.v1.PackageService/DeleteRegistryItemVersion',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.packages.v1.DeleteRegistryItemVersionRequest,
+  proto.viam.app.packages.v1.DeleteRegistryItemVersionResponse,
+  /**
+   * @param {!proto.viam.app.packages.v1.DeleteRegistryItemVersionRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.packages.v1.DeleteRegistryItemVersionResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.packages.v1.DeleteRegistryItemVersionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.packages.v1.DeleteRegistryItemVersionResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.packages.v1.DeleteRegistryItemVersionResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.packages.v1.PackageServiceClient.prototype.deleteRegistryItemVersion =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.packages.v1.PackageService/DeleteRegistryItemVersion',
+      request,
+      metadata || {},
+      methodDescriptor_PackageService_DeleteRegistryItemVersion,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.packages.v1.DeleteRegistryItemVersionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.packages.v1.DeleteRegistryItemVersionResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.packages.v1.PackageServicePromiseClient.prototype.deleteRegistryItemVersion =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.packages.v1.PackageService/DeleteRegistryItemVersion',
+      request,
+      metadata || {},
+      methodDescriptor_PackageService_DeleteRegistryItemVersion);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.packages.v1.GetPackageRequest,
  *   !proto.viam.app.packages.v1.GetPackageResponse>}
  */

@@ -24,8 +24,11 @@ const _ = grpc.SupportPackageIsVersion7
 type PackageServiceClient interface {
 	// CreatePackage uploads a package to the cloud
 	CreatePackage(ctx context.Context, opts ...grpc.CallOption) (PackageService_CreatePackageClient, error)
-	// DeletePackage removes the given package versions
+	// DeletePackage removes the given package version
 	DeletePackage(ctx context.Context, in *DeletePackageRequest, opts ...grpc.CallOption) (*DeletePackageResponse, error)
+	// DeleteRegistryItemVersion removes one or more platform-specific builds of a registry item
+	// (e.g. module) version, without requiring the caller to reconstruct package version strings.
+	DeleteRegistryItemVersion(ctx context.Context, in *DeleteRegistryItemVersionRequest, opts ...grpc.CallOption) (*DeleteRegistryItemVersionResponse, error)
 	// GetPackage returns the metadata for a requested package version. It also returns a URL
 	// for downloading the package if one is requested.
 	GetPackage(ctx context.Context, in *GetPackageRequest, opts ...grpc.CallOption) (*GetPackageResponse, error)
@@ -86,6 +89,15 @@ func (c *packageServiceClient) DeletePackage(ctx context.Context, in *DeletePack
 	return out, nil
 }
 
+func (c *packageServiceClient) DeleteRegistryItemVersion(ctx context.Context, in *DeleteRegistryItemVersionRequest, opts ...grpc.CallOption) (*DeleteRegistryItemVersionResponse, error) {
+	out := new(DeleteRegistryItemVersionResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.packages.v1.PackageService/DeleteRegistryItemVersion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *packageServiceClient) GetPackage(ctx context.Context, in *GetPackageRequest, opts ...grpc.CallOption) (*GetPackageResponse, error) {
 	out := new(GetPackageResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.packages.v1.PackageService/GetPackage", in, out, opts...)
@@ -110,8 +122,11 @@ func (c *packageServiceClient) ListPackages(ctx context.Context, in *ListPackage
 type PackageServiceServer interface {
 	// CreatePackage uploads a package to the cloud
 	CreatePackage(PackageService_CreatePackageServer) error
-	// DeletePackage removes the given package versions
+	// DeletePackage removes the given package version
 	DeletePackage(context.Context, *DeletePackageRequest) (*DeletePackageResponse, error)
+	// DeleteRegistryItemVersion removes one or more platform-specific builds of a registry item
+	// (e.g. module) version, without requiring the caller to reconstruct package version strings.
+	DeleteRegistryItemVersion(context.Context, *DeleteRegistryItemVersionRequest) (*DeleteRegistryItemVersionResponse, error)
 	// GetPackage returns the metadata for a requested package version. It also returns a URL
 	// for downloading the package if one is requested.
 	GetPackage(context.Context, *GetPackageRequest) (*GetPackageResponse, error)
@@ -131,6 +146,9 @@ func (UnimplementedPackageServiceServer) CreatePackage(PackageService_CreatePack
 }
 func (UnimplementedPackageServiceServer) DeletePackage(context.Context, *DeletePackageRequest) (*DeletePackageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePackage not implemented")
+}
+func (UnimplementedPackageServiceServer) DeleteRegistryItemVersion(context.Context, *DeleteRegistryItemVersionRequest) (*DeleteRegistryItemVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRegistryItemVersion not implemented")
 }
 func (UnimplementedPackageServiceServer) GetPackage(context.Context, *GetPackageRequest) (*GetPackageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPackage not implemented")
@@ -195,6 +213,24 @@ func _PackageService_DeletePackage_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PackageService_DeleteRegistryItemVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRegistryItemVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageServiceServer).DeleteRegistryItemVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.packages.v1.PackageService/DeleteRegistryItemVersion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageServiceServer).DeleteRegistryItemVersion(ctx, req.(*DeleteRegistryItemVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PackageService_GetPackage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPackageRequest)
 	if err := dec(in); err != nil {
@@ -241,6 +277,10 @@ var PackageService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeletePackage",
 			Handler:    _PackageService_DeletePackage_Handler,
+		},
+		{
+			MethodName: "DeleteRegistryItemVersion",
+			Handler:    _PackageService_DeleteRegistryItemVersion_Handler,
 		},
 		{
 			MethodName: "GetPackage",
