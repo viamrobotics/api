@@ -76,7 +76,9 @@ message CreatePackageResponse {
 message DeletePackageRequest {
   string id = 1;
   string version = 2;
-  PackageType type = 3;
+  PackageType type = 3; // Deprecated: use types instead
+  // Supports deleting multiple package types at once, replaces the deprecated singular type field above.
+  repeated PackageType types = 4;
 }
 
 message DeletePackageResponse {}
