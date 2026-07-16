@@ -169,7 +169,8 @@ message MoveThroughJointPositionsResponse {}
 // One waypoint in a streamed joint-space trajectory.
 message TrajectoryPoint {
   // Time from the start of the motion at which this waypoint should be reached. Must be zero
-  // for the first point of the stream and strictly increasing thereafter.
+  // for the first point of the stream and strictly increasing thereafter. Server implementations
+  // should validate these constraints.
   google.protobuf.Duration time = 1;
 
   // Joint positions at this waypoint.
@@ -179,7 +180,8 @@ message TrajectoryPoint {
   optional KinematicConstraints constraints = 3;
 
   message KinematicConstraints {
-    // Target joint velocities at this waypoint.
+    // Target joint velocities at this waypoint. If provided, the first point of the stream (the t=0 sample)
+    // must have zero velocity. Server implementations should validate this constraint.
     JointVelocities velocities = 1;
 
     // Optional target joint accelerations at this waypoint.
