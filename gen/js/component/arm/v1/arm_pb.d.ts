@@ -465,11 +465,12 @@ export namespace MoveThroughJointPositionsStreamedRequest {
 }
 
 export class MoveThroughJointPositionsStreamedResponse extends jspb.Message {
-  hasExtra(): boolean;
-  clearExtra(): void;
-  getExtra(): google_protobuf_struct_pb.Struct | undefined;
-  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+  hasAck(): boolean;
+  clearAck(): void;
+  getAck(): MoveThroughJointPositionsStreamedResponse.BatchAck | undefined;
+  setAck(value?: MoveThroughJointPositionsStreamedResponse.BatchAck): void;
 
+  getMessageCase(): MoveThroughJointPositionsStreamedResponse.MessageCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MoveThroughJointPositionsStreamedResponse.AsObject;
   static toObject(includeInstance: boolean, msg: MoveThroughJointPositionsStreamedResponse): MoveThroughJointPositionsStreamedResponse.AsObject;
@@ -482,7 +483,34 @@ export class MoveThroughJointPositionsStreamedResponse extends jspb.Message {
 
 export namespace MoveThroughJointPositionsStreamedResponse {
   export type AsObject = {
-    extra?: google_protobuf_struct_pb.Struct.AsObject,
+    ack?: MoveThroughJointPositionsStreamedResponse.BatchAck.AsObject,
+  }
+
+  export class BatchAck extends jspb.Message {
+    hasExtra(): boolean;
+    clearExtra(): void;
+    getExtra(): google_protobuf_struct_pb.Struct | undefined;
+    setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): BatchAck.AsObject;
+    static toObject(includeInstance: boolean, msg: BatchAck): BatchAck.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: BatchAck, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): BatchAck;
+    static deserializeBinaryFromReader(message: BatchAck, reader: jspb.BinaryReader): BatchAck;
+  }
+
+  export namespace BatchAck {
+    export type AsObject = {
+      extra?: google_protobuf_struct_pb.Struct.AsObject,
+    }
+  }
+
+  export enum MessageCase {
+    MESSAGE_NOT_SET = 0,
+    ACK = 1,
   }
 }
 
