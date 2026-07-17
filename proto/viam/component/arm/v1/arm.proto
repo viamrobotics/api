@@ -215,7 +215,7 @@ message MoveThroughJointPositionsStreamedRequest {
 
 // Streamed back to the client while an arm is performing a streaming move.
 message MoveThroughJointPositionsStreamedResponse {
-  // This single-arm `oneof` exists to future proof clients. We
+  // This single-member `oneof` exists to future proof clients. We
   // anticipate that arm implementations may in the future elect to
   // return a wider variety of status updates during streaming, beyond
   // simply ack'ing batches. Using a `oneof` here ensures that the
@@ -235,7 +235,7 @@ message MoveThroughJointPositionsStreamedResponse {
   // for arm implementors is to ack each batch that has been
   // successfully issued/enqueued to the arm.
   message BatchAck {
-    // Additional sticky arguments to the method.
+    // Additional reply data
     google.protobuf.Struct extra = 99;
   }
 }
