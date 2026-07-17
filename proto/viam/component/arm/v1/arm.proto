@@ -213,10 +213,31 @@ message MoveThroughJointPositionsStreamedRequest {
   }
 }
 
-// Returned after each accepted TrajectoryBatch.
+// Streamed back to the client while an arm is performing a streaming move.
 message MoveThroughJointPositionsStreamedResponse {
-  // Additional reply data
-  google.protobuf.Struct extra = 99;
+  // This single-arm `oneof` exists to future proof clients. We
+  // anticipate that arm implementations may in the future elect to
+  // return a wider variety of status updates during streaming, beyond
+  // simply ack'ing batches. Using a `oneof` here ensures that the
+  // addition of new update messages does not break existing clients.
+  oneof message {
+    BatchAck ack = 1;
+  }
+
+  // BatchAck is returned by arm implementations to ack a
+  // `TrajectoryBatch`. Due to the lack of actionable payload in
+  // `BatchAck`, Arm implementations are not currently obligated to
+  // ack every batch, or even any batch. It is currently unspecified
+  // whether ack'ing a batch indicates its acceptance, issue to the
+  // arm, or completion. These very relaxed requirements may become
+  // tighter if and when `BatchAck` messages begin carrying meaningful
+  // payloads back to the client. For now, the recommended practice
+  // for arm implementors is to ack each batch that has been
+  // successfully issued/enqueued to the arm.
+  message BatchAck {
+    // Additional sticky arguments to the method.
+    google.protobuf.Struct extra = 99;
+  }
 }
 
 message StopRequest {
