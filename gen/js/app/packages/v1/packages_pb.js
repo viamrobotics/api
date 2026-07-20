@@ -129,7 +129,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.packages.v1.DeletePackageRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.packages.v1.DeletePackageRequest.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.viam.app.packages.v1.DeletePackageRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1262,13 +1262,6 @@ proto.viam.app.packages.v1.CreatePackageResponse.prototype.setVersion = function
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.viam.app.packages.v1.DeletePackageRequest.repeatedFields_ = [4];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1302,8 +1295,7 @@ proto.viam.app.packages.v1.DeletePackageRequest.toObject = function(includeInsta
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     version: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    typesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
+    type: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -1352,12 +1344,6 @@ proto.viam.app.packages.v1.DeletePackageRequest.deserializeBinaryFromReader = fu
       var value = /** @type {!proto.viam.app.packages.v1.PackageType} */ (reader.readEnum());
       msg.setType(value);
       break;
-    case 4:
-      var values = /** @type {!Array<!proto.viam.app.packages.v1.PackageType>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
-      for (var i = 0; i < values.length; i++) {
-        msg.addTypes(values[i]);
-      }
-      break;
     default:
       reader.skipField();
       break;
@@ -1405,13 +1391,6 @@ proto.viam.app.packages.v1.DeletePackageRequest.serializeBinaryToWriter = functi
   if (f !== 0.0) {
     writer.writeEnum(
       3,
-      f
-    );
-  }
-  f = message.getTypesList();
-  if (f.length > 0) {
-    writer.writePackedEnum(
-      4,
       f
     );
   }
@@ -1469,43 +1448,6 @@ proto.viam.app.packages.v1.DeletePackageRequest.prototype.getType = function() {
  */
 proto.viam.app.packages.v1.DeletePackageRequest.prototype.setType = function(value) {
   return jspb.Message.setProto3EnumField(this, 3, value);
-};
-
-
-/**
- * repeated PackageType types = 4;
- * @return {!Array<!proto.viam.app.packages.v1.PackageType>}
- */
-proto.viam.app.packages.v1.DeletePackageRequest.prototype.getTypesList = function() {
-  return /** @type {!Array<!proto.viam.app.packages.v1.PackageType>} */ (jspb.Message.getRepeatedField(this, 4));
-};
-
-
-/**
- * @param {!Array<!proto.viam.app.packages.v1.PackageType>} value
- * @return {!proto.viam.app.packages.v1.DeletePackageRequest} returns this
- */
-proto.viam.app.packages.v1.DeletePackageRequest.prototype.setTypesList = function(value) {
-  return jspb.Message.setField(this, 4, value || []);
-};
-
-
-/**
- * @param {!proto.viam.app.packages.v1.PackageType} value
- * @param {number=} opt_index
- * @return {!proto.viam.app.packages.v1.DeletePackageRequest} returns this
- */
-proto.viam.app.packages.v1.DeletePackageRequest.prototype.addTypes = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.viam.app.packages.v1.DeletePackageRequest} returns this
- */
-proto.viam.app.packages.v1.DeletePackageRequest.prototype.clearTypesList = function() {
-  return this.setTypesList([]);
 };
 
 
