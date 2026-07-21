@@ -44,6 +44,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           # note: check out fork because we will need it when we push below
           repository: ${{ github.event.pull_request.head.repo.full_name }}
+          # Fork PRs only reach pull_request_target runs behind the 'safe to test' label (see pr-labeler.yml).
+          allow-unsafe-pr-checkout: true
 
       - name: Set environment variables for previous commit
         run: |
