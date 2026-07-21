@@ -11,16 +11,45 @@ on:
     types: [opened, synchronize, reopened, unlabeled, labeled]
 
 jobs:
+  authorize:
+    # The 'safe to test' label alone is not a safe gate: the label check below reads the
+    # event payload, which still lists the label on a push made after a maintainer applied
+    # it (pr-labeler.yml strips it too late for that run). Re-checking the sender's org
+    # membership at run time closes the gap: a push from a non-member never runs.
+    name: Check Sender Membership
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    outputs:
+      is-member: ${{ steps.membership.outputs.result }}
+    steps:
+    - name: Check org membership
+      id: membership
+      # actions/github-script@v9.0.0
+      uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+      with:
+        script: |
+          const sender = context.payload.sender.login;
+          try {
+            // checkMembershipForUser returns 204 for members and throws a 404 for non-members.
+            const resp = await github.rest.orgs.checkMembershipForUser({org: "viamrobotics", username: sender});
+            return resp.status === 204;
+          } catch (err) {
+            core.info(`${sender} is not a viamrobotics org member: ${err}`);
+            return false;
+          }
+
   test:
     name: Test For Lint and Breaking Changes
-    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
+    needs: authorize
+    if: needs.authorize.outputs.is-member == 'true' && contains(github.event.pull_request.labels.*.name, 'safe to test')
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.sha }}
-        # Fork PRs only reach pull_request_target runs behind the 'safe to test' label (see pr-labeler.yml).
+        # Fork PRs only run behind the 'safe to test' label (pr-labeler.yml) plus the
+        # authorize job's run-time sender check above.
         allow-unsafe-pr-checkout: true
     - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac
       with:

@@ -30,10 +30,37 @@ jobs:
         GH_REPO: ${{ github.repository }}
       run: gh pr edit ${{ github.event.pull_request.number }} --remove-label protos-compiled
 
+  authorize:
+    # The label gate below alone is not safe: the label check reads the event payload,
+    # which still lists 'safe to test' on a push made after a maintainer applied it
+    # (pr-labeler.yml strips it too late for that run). Re-checking the sender's org
+    # membership at run time closes the gap: a push from a non-member never runs.
+    name: Check Sender Membership
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    outputs:
+      is-member: ${{ steps.membership.outputs.result }}
+    steps:
+      - name: Check org membership
+        id: membership
+        # actions/github-script@v9.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+        with:
+          script: |
+            const sender = context.payload.sender.login;
+            try {
+              // checkMembershipForUser returns 204 for members and throws a 404 for non-members.
+              const resp = await github.rest.orgs.checkMembershipForUser({org: "viamrobotics", username: sender});
+              return resp.status === 204;
+            } catch (err) {
+              core.info(`${sender} is not a viamrobotics org member: ${err}`);
+              return false;
+            }
+
   compile-protos:
     # run after unlabel so that ordering of remove-label, add-label is consistent
-    needs: unlabel
-    if: contains(github.event.pull_request.labels.*.name, 'safe to test') && contains(github.event.pull_request.labels.*.name, 'ready-for-protos')
+    needs: [unlabel, authorize]
+    if: needs.authorize.outputs.is-member == 'true' && contains(github.event.pull_request.labels.*.name, 'safe to test') && contains(github.event.pull_request.labels.*.name, 'ready-for-protos')
     runs-on: ubuntu-latest
     env:
       CI_COMMIT_MESSAGE_PREFIX: Built new protos from
@@ -44,7 +71,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           # note: check out fork because we will need it when we push below
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-          # Fork PRs only reach pull_request_target runs behind the 'safe to test' label (see pr-labeler.yml).
+          # Fork PRs only run behind the 'safe to test' label (pr-labeler.yml) plus the
+          # authorize job's run-time sender check above.
           allow-unsafe-pr-checkout: true
 
       - name: Set environment variables for previous commit
