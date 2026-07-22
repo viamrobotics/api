@@ -370,15 +370,40 @@ export namespace GetSequenceDatasetExportRequest {
   }
 }
 
+export class SequenceDatasetExportFile extends jspb.Message {
+  getKind(): SequenceDatasetExportFileKindMap[keyof SequenceDatasetExportFileKindMap];
+  setKind(value: SequenceDatasetExportFileKindMap[keyof SequenceDatasetExportFileKindMap]): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getDownloadUrl(): string;
+  setDownloadUrl(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SequenceDatasetExportFile.AsObject;
+  static toObject(includeInstance: boolean, msg: SequenceDatasetExportFile): SequenceDatasetExportFile.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SequenceDatasetExportFile, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SequenceDatasetExportFile;
+  static deserializeBinaryFromReader(message: SequenceDatasetExportFile, reader: jspb.BinaryReader): SequenceDatasetExportFile;
+}
+
+export namespace SequenceDatasetExportFile {
+  export type AsObject = {
+    kind: SequenceDatasetExportFileKindMap[keyof SequenceDatasetExportFileKindMap],
+    name: string,
+    downloadUrl: string,
+  }
+}
+
 export class GetSequenceDatasetExportResponse extends jspb.Message {
   getJobId(): string;
   setJobId(value: string): void;
 
   getStatus(): SequenceDatasetExportStatusMap[keyof SequenceDatasetExportStatusMap];
   setStatus(value: SequenceDatasetExportStatusMap[keyof SequenceDatasetExportStatusMap]): void;
-
-  getDownloadUrl(): string;
-  setDownloadUrl(value: string): void;
 
   hasExpiresAt(): boolean;
   clearExpiresAt(): void;
@@ -398,6 +423,11 @@ export class GetSequenceDatasetExportResponse extends jspb.Message {
   getCompletedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCompletedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  clearFilesList(): void;
+  getFilesList(): Array<SequenceDatasetExportFile>;
+  setFilesList(value: Array<SequenceDatasetExportFile>): void;
+  addFiles(value?: SequenceDatasetExportFile, index?: number): SequenceDatasetExportFile;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSequenceDatasetExportResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetSequenceDatasetExportResponse): GetSequenceDatasetExportResponse.AsObject;
@@ -412,11 +442,11 @@ export namespace GetSequenceDatasetExportResponse {
   export type AsObject = {
     jobId: string,
     status: SequenceDatasetExportStatusMap[keyof SequenceDatasetExportStatusMap],
-    downloadUrl: string,
     expiresAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     errorMessage: string,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     completedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    filesList: Array<SequenceDatasetExportFile.AsObject>,
   }
 }
 
@@ -435,4 +465,13 @@ export interface SequenceDatasetExportStatusMap {
 }
 
 export const SequenceDatasetExportStatus: SequenceDatasetExportStatusMap;
+
+export interface SequenceDatasetExportFileKindMap {
+  SEQUENCE_DATASET_EXPORT_FILE_KIND_UNSPECIFIED: 0;
+  SEQUENCE_DATASET_EXPORT_FILE_KIND_SEQUENCES: 1;
+  SEQUENCE_DATASET_EXPORT_FILE_KIND_TABULAR_DATA: 2;
+  SEQUENCE_DATASET_EXPORT_FILE_KIND_BINARY_DATA: 3;
+}
+
+export const SequenceDatasetExportFileKind: SequenceDatasetExportFileKindMap;
 

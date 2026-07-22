@@ -51,7 +51,7 @@ enum SequenceDatasetExportStatus {
   SEQUENCE_DATASET_EXPORT_STATUS_UNSPECIFIED = 0;
   // PENDING — accepted, not yet picked up.
   SEQUENCE_DATASET_EXPORT_STATUS_RUNNING = 1;
-  // COMPLETED — Parquet file is uploaded; download_url is set.
+  // COMPLETED — parquet files are uploaded; files is set.
   SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED = 2;
   // FAILED — terminal; error_message describes the cause.
   SEQUENCE_DATASET_EXPORT_STATUS_FAILED = 3;
@@ -147,19 +147,43 @@ message GetSequenceDatasetExportRequest {
   string job_id = 1;
 }
 
+// SequenceDatasetExportFileKind identifies which of the parquet files an
+// exported file is, so clients can select one without matching on file name.
+enum SequenceDatasetExportFileKind {
+  SEQUENCE_DATASET_EXPORT_FILE_KIND_UNSPECIFIED = 0;
+  // One row per sequence: sequence_id, tags, start_at, end_at.
+  SEQUENCE_DATASET_EXPORT_FILE_KIND_SEQUENCES = 1;
+  // Tabular readings for every sequence in the dataset.
+  SEQUENCE_DATASET_EXPORT_FILE_KIND_TABULAR_DATA = 2;
+  // One row per (sequence, binary record) pair. Metadata and paths only.
+  SEQUENCE_DATASET_EXPORT_FILE_KIND_BINARY_DATA = 3;
+}
+
+// SequenceDatasetExportFile is one parquet file produced by an export job.
+message SequenceDatasetExportFile {
+  SequenceDatasetExportFileKind kind = 1;
+  // Suggested file name, e.g. "sequences.parquet".
+  string name = 2;
+  // Short-lived signed URL for direct download from backing storage.
+  string download_url = 3;
+}
+
 // GetSequenceDatasetExportResponse reports the current status of an export
-// job. download_url and expires_at are set only when status is COMPLETED;
+// job. files and expires_at are set only when status is COMPLETED;
 // error_message is set only when status is FAILED.
 message GetSequenceDatasetExportResponse {
   string job_id = 1;
   SequenceDatasetExportStatus status = 2;
-  // Short-lived (e.g. 1h) signed URL for direct download from backing
-  // storage. Empty unless status is COMPLETED.
-  string download_url = 3;
-  // When download_url stops working. Empty unless status is COMPLETED.
+  // When the URLs in files stop working. Empty unless status is COMPLETED.
   google.protobuf.Timestamp expires_at = 4;
   // Human-readable cause; empty unless status is FAILED.
   string error_message = 5;
   google.protobuf.Timestamp created_at = 6;
   google.protobuf.Timestamp completed_at = 7;
+  // The parquet files produced by this export, each with its own signed URL.
+  // All URLs share the expires_at deadline. Empty unless status is COMPLETED.
+  repeated SequenceDatasetExportFile files = 8;
+
+  reserved 3;
+  reserved "download_url";
 }
