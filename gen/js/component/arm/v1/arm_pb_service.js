@@ -56,6 +56,15 @@ ArmService.MoveThroughJointPositions = {
   responseType: component_arm_v1_arm_pb.MoveThroughJointPositionsResponse
 };
 
+ArmService.MoveThroughJointPositionsStreamed = {
+  methodName: "MoveThroughJointPositionsStreamed",
+  service: ArmService,
+  requestStream: true,
+  responseStream: true,
+  requestType: component_arm_v1_arm_pb.MoveThroughJointPositionsStreamedRequest,
+  responseType: component_arm_v1_arm_pb.MoveThroughJointPositionsStreamedResponse
+};
+
 ArmService.Stop = {
   methodName: "Stop",
   service: ArmService,
@@ -276,6 +285,51 @@ ArmServiceClient.prototype.moveThroughJointPositions = function moveThroughJoint
   return {
     cancel: function () {
       callback = null;
+      client.close();
+    }
+  };
+};
+
+ArmServiceClient.prototype.moveThroughJointPositionsStreamed = function moveThroughJointPositionsStreamed(metadata) {
+  var listeners = {
+    data: [],
+    end: [],
+    status: []
+  };
+  var client = grpc.client(ArmService.MoveThroughJointPositionsStreamed, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  client.onMessage(function (message) {
+    listeners.data.forEach(function (handler) {
+      handler(message);
+    })
+  });
+  client.start(metadata);
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
       client.close();
     }
   };

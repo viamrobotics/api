@@ -50,6 +50,15 @@ type ArmServiceMoveThroughJointPositions = {
   readonly responseType: typeof component_arm_v1_arm_pb.MoveThroughJointPositionsResponse;
 };
 
+type ArmServiceMoveThroughJointPositionsStreamed = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: true;
+  readonly responseStream: true;
+  readonly requestType: typeof component_arm_v1_arm_pb.MoveThroughJointPositionsStreamedRequest;
+  readonly responseType: typeof component_arm_v1_arm_pb.MoveThroughJointPositionsStreamedResponse;
+};
+
 type ArmServiceStop = {
   readonly methodName: string;
   readonly service: typeof ArmService;
@@ -120,6 +129,7 @@ export class ArmService {
   static readonly GetJointPositions: ArmServiceGetJointPositions;
   static readonly MoveToJointPositions: ArmServiceMoveToJointPositions;
   static readonly MoveThroughJointPositions: ArmServiceMoveThroughJointPositions;
+  static readonly MoveThroughJointPositionsStreamed: ArmServiceMoveThroughJointPositionsStreamed;
   static readonly Stop: ArmServiceStop;
   static readonly IsMoving: ArmServiceIsMoving;
   static readonly DoCommand: ArmServiceDoCommand;
@@ -206,6 +216,7 @@ export class ArmServiceClient {
     requestMessage: component_arm_v1_arm_pb.MoveThroughJointPositionsRequest,
     callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.MoveThroughJointPositionsResponse|null) => void
   ): UnaryResponse;
+  moveThroughJointPositionsStreamed(metadata?: grpc.Metadata): BidirectionalStream<component_arm_v1_arm_pb.MoveThroughJointPositionsStreamedRequest, component_arm_v1_arm_pb.MoveThroughJointPositionsStreamedResponse>;
   stop(
     requestMessage: component_arm_v1_arm_pb.StopRequest,
     metadata: grpc.Metadata,
