@@ -923,6 +923,7 @@ message SequencesByDatasetIDRequest {
 message SequencesByDatasetIDResponse {
   repeated Sequence sequences = 1;
   string next_page_token = 2;
+  uint64 count = 3;
 }
 
 message GetSequenceBinaryDataRequest {
