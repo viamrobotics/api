@@ -370,6 +370,15 @@ DataService.SequencesByDatasetID = {
   responseType: app_data_v1_data_pb.SequencesByDatasetIDResponse
 };
 
+DataService.GetSequenceBinaryData = {
+  methodName: "GetSequenceBinaryData",
+  service: DataService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_data_v1_data_pb.GetSequenceBinaryDataRequest,
+  responseType: app_data_v1_data_pb.GetSequenceBinaryDataResponse
+};
+
 exports.DataService = DataService;
 
 function DataServiceClient(serviceHost, options) {
@@ -1599,6 +1608,37 @@ DataServiceClient.prototype.sequencesByDatasetID = function sequencesByDatasetID
     callback = arguments[1];
   }
   var client = grpc.unary(DataService.SequencesByDatasetID, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DataServiceClient.prototype.getSequenceBinaryData = function getSequenceBinaryData(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DataService.GetSequenceBinaryData, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

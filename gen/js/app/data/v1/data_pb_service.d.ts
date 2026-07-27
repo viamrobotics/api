@@ -364,6 +364,15 @@ type DataServiceSequencesByDatasetID = {
   readonly responseType: typeof app_data_v1_data_pb.SequencesByDatasetIDResponse;
 };
 
+type DataServiceGetSequenceBinaryData = {
+  readonly methodName: string;
+  readonly service: typeof DataService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_data_v1_data_pb.GetSequenceBinaryDataRequest;
+  readonly responseType: typeof app_data_v1_data_pb.GetSequenceBinaryDataResponse;
+};
+
 export class DataService {
   static readonly serviceName: string;
   static readonly TabularDataByFilter: DataServiceTabularDataByFilter;
@@ -406,6 +415,7 @@ export class DataService {
   static readonly DeleteSequence: DataServiceDeleteSequence;
   static readonly ListSequences: DataServiceListSequences;
   static readonly SequencesByDatasetID: DataServiceSequencesByDatasetID;
+  static readonly GetSequenceBinaryData: DataServiceGetSequenceBinaryData;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -791,6 +801,15 @@ export class DataServiceClient {
   sequencesByDatasetID(
     requestMessage: app_data_v1_data_pb.SequencesByDatasetIDRequest,
     callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.SequencesByDatasetIDResponse|null) => void
+  ): UnaryResponse;
+  getSequenceBinaryData(
+    requestMessage: app_data_v1_data_pb.GetSequenceBinaryDataRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetSequenceBinaryDataResponse|null) => void
+  ): UnaryResponse;
+  getSequenceBinaryData(
+    requestMessage: app_data_v1_data_pb.GetSequenceBinaryDataRequest,
+    callback: (error: ServiceError|null, responseMessage: app_data_v1_data_pb.GetSequenceBinaryDataResponse|null) => void
   ): UnaryResponse;
 }
 

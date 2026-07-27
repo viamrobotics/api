@@ -1432,6 +1432,8 @@ message ModuleVersion {
   repeated App apps = 7;
   // When set, marks this specific version as deprecated
   optional DeprecatedStatus deprecated_status = 8;
+  // The minimum version of viam-server required to run this version of the module.
+  optional string min_viam_server_version = 9;
 }
 
 message ModuleMetadata {
@@ -1452,6 +1454,8 @@ message ModuleMetadata {
   optional ModuleSourceType source_type = 7;
   // Specifies the language that the module is written in.
   optional ModuleLanguage language = 8;
+  // The minimum version of viam-server required to run the module.
+  optional string min_viam_server_version = 9;
 }
 
 message MLModelVersion {
@@ -1763,6 +1767,8 @@ message UpdateModuleMetadata {
   optional ModuleSourceType source_type = 4;
   // The language the module is written in
   optional ModuleLanguage language = 5;
+  // The minimum version of viam-server required to run the module.
+  optional string min_viam_server_version = 6;
 }
 
 message UpdateMLModelMetadata {

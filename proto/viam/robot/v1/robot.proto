@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.robot.v1;
 
 import "app/datasync/v1/data_sync.proto";
+import "app/packages/v1/packages.proto";
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/duration.proto";
@@ -421,6 +422,7 @@ message GetMachineStatusResponse {
   State state = 3;
   repeated JobStatus job_statuses = 4;
   repeated ModuleStatus modules = 5;
+  repeated PackageStatus packages = 6;
 }
 
 message JobStatus {
@@ -511,6 +513,53 @@ message ModuleStatus {
   // Resets to zero when the module enters the ready state or is reconfigured.
   // Useful for detecting modules stuck in a restart loop (like a python module with a syntax error)
   uint32 consecutive_failures = 5;
+}
+
+message PackageStatus {
+  enum State {
+    // state is unknown or has not been set yet
+    STATE_UNSPECIFIED = 0;
+
+    // package tarball is actively being fetched from the cloud
+    STATE_DOWNLOADING = 1;
+
+    // tarball has been downloaded and is being extracted/verified
+    STATE_LOADING = 2;
+
+    // first_run.sh script is executing (module packages only)
+    STATE_FIRST_RUN = 3;
+
+    // package is fully installed and available for use
+    STATE_READY = 4;
+
+    // package failed to download, extract, or complete first run
+    STATE_FAILED = 5;
+  }
+
+  // the package name as declared in the robot config (PackageConfig.Name)
+  string name = 1;
+
+  // the package type (module, ml_model, slam_map, etc.)
+  viam.app.packages.v1.PackageType type = 2;
+
+  // current lifecycle state
+  State state = 3;
+
+  // human-readable error detail when state == STATE_FAILED
+  string error = 4;
+
+  // when this status was last updated
+  google.protobuf.Timestamp last_updated = 5;
+
+  // the version string from PackageConfig
+  string version = 6;
+
+  // number of bytes of the package tarball downloaded so far. Only populated
+  // while state == STATE_DOWNLOADING; equals total_bytes once the download completes.
+  uint64 bytes_downloaded = 7;
+
+  // total size of the package tarball in bytes. Zero if the size is unknown.
+  uint64 total_bytes = 8;
 }
 
 message ConfigStatus {
