@@ -2872,6 +2872,9 @@ export class SequencesByDatasetIDRequest extends jspb.Message {
   getPageSize(): number;
   setPageSize(value: number): void;
 
+  getCountOnly(): boolean;
+  setCountOnly(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SequencesByDatasetIDRequest.AsObject;
   static toObject(includeInstance: boolean, msg: SequencesByDatasetIDRequest): SequencesByDatasetIDRequest.AsObject;
@@ -2887,6 +2890,7 @@ export namespace SequencesByDatasetIDRequest {
     datasetId: string,
     pageToken: string,
     pageSize: number,
+    countOnly: boolean,
   }
 }
 
@@ -2898,6 +2902,9 @@ export class SequencesByDatasetIDResponse extends jspb.Message {
 
   getNextPageToken(): string;
   setNextPageToken(value: string): void;
+
+  getCount(): number;
+  setCount(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SequencesByDatasetIDResponse.AsObject;
@@ -2913,6 +2920,7 @@ export namespace SequencesByDatasetIDResponse {
   export type AsObject = {
     sequencesList: Array<Sequence.AsObject>,
     nextPageToken: string,
+    count: number,
   }
 }
 
