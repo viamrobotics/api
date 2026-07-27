@@ -1,6 +1,6 @@
 module go.viam.com/api
 
-go 1.24.0
+go 1.25.0
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.2
@@ -13,7 +13,7 @@ require (
 )
 
 require (
-	golang.org/x/net v0.49.0 // indirect
-	golang.org/x/sys v0.40.0 // indirect
-	golang.org/x/text v0.33.0 // indirect
+	golang.org/x/net v0.55.0 // indirect
+	golang.org/x/sys v0.45.0 // indirect
+	golang.org/x/text v0.37.0 // indirect
 )
