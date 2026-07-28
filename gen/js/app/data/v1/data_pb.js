@@ -22742,7 +22742,8 @@ proto.viam.app.data.v1.SequencesByDatasetIDRequest.toObject = function(includeIn
   var f, obj = {
     datasetId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    countOnly: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -22791,6 +22792,10 @@ proto.viam.app.data.v1.SequencesByDatasetIDRequest.deserializeBinaryFromReader =
       var value = /** @type {number} */ (reader.readUint32());
       msg.setPageSize(value);
       break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCountOnly(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -22838,6 +22843,13 @@ proto.viam.app.data.v1.SequencesByDatasetIDRequest.serializeBinaryToWriter = fun
   if (f !== 0) {
     writer.writeUint32(
       3,
+      f
+    );
+  }
+  f = message.getCountOnly();
+  if (f) {
+    writer.writeBool(
+      4,
       f
     );
   }
@@ -22898,6 +22910,24 @@ proto.viam.app.data.v1.SequencesByDatasetIDRequest.prototype.setPageSize = funct
 };
 
 
+/**
+ * optional bool count_only = 4;
+ * @return {boolean}
+ */
+proto.viam.app.data.v1.SequencesByDatasetIDRequest.prototype.getCountOnly = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.data.v1.SequencesByDatasetIDRequest} returns this
+ */
+proto.viam.app.data.v1.SequencesByDatasetIDRequest.prototype.setCountOnly = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -22939,7 +22969,8 @@ proto.viam.app.data.v1.SequencesByDatasetIDResponse.toObject = function(includeI
   var f, obj = {
     sequencesList: jspb.Message.toObjectList(msg.getSequencesList(),
     proto.viam.app.data.v1.Sequence.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    count: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -22985,6 +23016,10 @@ proto.viam.app.data.v1.SequencesByDatasetIDResponse.deserializeBinaryFromReader 
       var value = /** @type {string} */ (reader.readString());
       msg.setNextPageToken(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setCount(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -23026,6 +23061,13 @@ proto.viam.app.data.v1.SequencesByDatasetIDResponse.serializeBinaryToWriter = fu
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getCount();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
       f
     );
   }
@@ -23085,6 +23127,24 @@ proto.viam.app.data.v1.SequencesByDatasetIDResponse.prototype.getNextPageToken =
  */
 proto.viam.app.data.v1.SequencesByDatasetIDResponse.prototype.setNextPageToken = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional uint64 count = 3;
+ * @return {number}
+ */
+proto.viam.app.data.v1.SequencesByDatasetIDResponse.prototype.getCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.app.data.v1.SequencesByDatasetIDResponse} returns this
+ */
+proto.viam.app.data.v1.SequencesByDatasetIDResponse.prototype.setCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
