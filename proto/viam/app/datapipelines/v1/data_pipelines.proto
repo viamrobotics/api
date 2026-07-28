@@ -180,6 +180,10 @@ message DataPipelineRun {
 
   // The error message if the run failed.
   string error_message = 7;
+
+  // The data source type the run executed against. Runs that predate this field
+  // report the pipeline's configured data source type.
+  viam.app.data.v1.TabularDataSourceType data_source_type = 8;
 }
 
 enum DataPipelineRunStatus {
