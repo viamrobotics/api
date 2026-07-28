@@ -3365,7 +3365,8 @@ proto.viam.app.datapipelines.v1.DataPipelineRun.toObject = function(includeInsta
     dataStartTime: (f = msg.getDataStartTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     dataEndTime: (f = msg.getDataEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     status: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    errorMessage: jspb.Message.getFieldWithDefault(msg, 7, "")
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    dataSourceType: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -3433,6 +3434,10 @@ proto.viam.app.datapipelines.v1.DataPipelineRun.deserializeBinaryFromReader = fu
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setErrorMessage(value);
+      break;
+    case 8:
+      var value = /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (reader.readEnum());
+      msg.setDataSourceType(value);
       break;
     default:
       reader.skipField();
@@ -3513,6 +3518,13 @@ proto.viam.app.datapipelines.v1.DataPipelineRun.serializeBinaryToWriter = functi
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getDataSourceType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      8,
       f
     );
   }
@@ -3718,6 +3730,24 @@ proto.viam.app.datapipelines.v1.DataPipelineRun.prototype.getErrorMessage = func
  */
 proto.viam.app.datapipelines.v1.DataPipelineRun.prototype.setErrorMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional viam.app.data.v1.TabularDataSourceType data_source_type = 8;
+ * @return {!proto.viam.app.data.v1.TabularDataSourceType}
+ */
+proto.viam.app.datapipelines.v1.DataPipelineRun.prototype.getDataSourceType = function() {
+  return /** @type {!proto.viam.app.data.v1.TabularDataSourceType} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.data.v1.TabularDataSourceType} value
+ * @return {!proto.viam.app.datapipelines.v1.DataPipelineRun} returns this
+ */
+proto.viam.app.datapipelines.v1.DataPipelineRun.prototype.setDataSourceType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 8, value);
 };
 
 
