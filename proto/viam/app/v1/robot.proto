@@ -191,24 +191,35 @@ message AuthConfig {
   repeated Role roles = 4;
 }
 
-// A Role describes the permissions an authenticated user has on this
-// machine. A user with no associated Role is unrestricted.
+// A Role describes the permissions a set of authenticated users
+// have on this machine.
 message Role {
-  // user is the ID of the user this role applies to: an API key ID or a
-  // FusionAuth UUID.
-  string user = 1;
+  // users are the Users this Role applies to. A User can only be
+  // listed in a single Role for a set of Roles.
+  repeated User users = 1;
   repeated Permission permissions = 2;
 }
 
-// A Permission grants a user the ability to invoke a set of methods on
-// resources with a given name.
+// A User describes a single user that a Role applies to.
+message User {
+  // type is the type of user. Can be "api-key-id", "email", or "default".
+  string type = 1;
+  // id is the API Key ID if type is "api-key-id", the e-mail address if
+  // type is "email", and empty if type is "default".
+  string id = 2;
+}
+
+// A Permission grants a set of users the ability to invoke a set of
+// methods on a set of resources.
 message Permission {
-  // resource is the name of the resource this permission applies to.
-  string resource = 1;
-  // methods is a list of fully qualified gRPC methods the user may invoke
-  // on resources of this name, e.g.
-  // "/viam.component.camera.v1.CameraService/GetImages".
-  repeated string methods = 2;
+  // resources are the names of the resources this permission applies to,
+  // e.g. ["cam1", "cam2", "cam3"].
+  repeated string resources = 1;
+  // allowed_methods is a list of fully qualified gRPC methods the user
+  // may invoke on the listed resources, e.g.
+  // ["/viam.component.camera.v1.CameraService/GetImages",
+  // "/viam.component.camera.v1.CameraService/GetProperties"].
+  repeated string allowed_methods = 2;
 }
 
 message JWKSFile {
