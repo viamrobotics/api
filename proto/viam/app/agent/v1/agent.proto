@@ -10,6 +10,21 @@ option go_package = "go.viam.com/api/app/agent/v1";
 service AgentDeviceService {
   // DeviceAgentConfig is for retrieving config by the on-device agent.
   rpc DeviceAgentConfig(DeviceAgentConfigRequest) returns (DeviceAgentConfigResponse);
+  // GetSubsystemVersionStatus reports whether a published version of a subsystem has been
+  // deprecated.
+  rpc GetSubsystemVersionStatus(GetSubsystemVersionStatusRequest) returns (GetSubsystemVersionStatusResponse);
+}
+
+message GetSubsystemVersionStatusRequest {
+  // One of: "viam-server", "viam-agent".
+  string subsystem = 1;
+  // A leading "v" is tolerated.
+  string version = 2;
+}
+
+message GetSubsystemVersionStatusResponse {
+  // Deprecation is version-wide: true if the version is deprecated on any platform.
+  bool deprecated = 1;
 }
 
 // Device side
