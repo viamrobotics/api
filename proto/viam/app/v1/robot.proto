@@ -188,19 +188,21 @@ message AuthConfig {
   repeated AuthHandlerConfig handlers = 1;
   repeated string tls_auth_entities = 2;
   optional ExternalAuthConfig external_auth_config = 3;
-  repeated Role roles = 4;
+  // user_permissions represents the map of Users to Permissions for
+  // this machine.
+  repeated UserPermission user_permissions = 4;
 }
 
-// A Role describes the permissions a set of authenticated users
-// have on this machine.
-message Role {
-  // users are the Users this Role applies to. A User can only be
-  // listed in a single Role for a set of Roles.
-  repeated User users = 1;
+// A UserPermission describes a User and the permissions granted to
+// that user.
+message UserPermission {
+  // user is the User this UserPermission applies to. A User can only be
+  // listed in a single UserPermission for a set of UserPermissions.
+  User user = 1;
   repeated Permission permissions = 2;
 }
 
-// A User describes a single user that a Role applies to.
+// A User describes a single user that a UserPermission applies to.
 message User {
   // type is the type of user. Can be "api-key-id", "email", or "default".
   string type = 1;
@@ -209,8 +211,8 @@ message User {
   string id = 2;
 }
 
-// A Permission grants a set of users the ability to invoke a set of
-// methods on a set of resources.
+// A Permission grants a User the ability to invoke a set of methods
+// on a set of resources.
 message Permission {
   // resources are the names of the resources this permission applies to,
   // e.g. ["cam1", "cam2", "cam3"].
