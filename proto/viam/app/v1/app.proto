@@ -895,6 +895,16 @@ message GetRobotPartByNameAndLocationResponse {
   RobotPart part = 1;
 }
 
+// LogOrder is the order in which logs are returned, by time.
+enum LogOrder {
+  // LOG_ORDER_UNSPECIFIED is treated as LOG_ORDER_DESCENDING.
+  LOG_ORDER_UNSPECIFIED = 0;
+  // oldest logs first
+  LOG_ORDER_ASCENDING = 1;
+  // newest logs first
+  LOG_ORDER_DESCENDING = 2;
+}
+
 message GetRobotPartLogsRequest {
   string id = 1;
   // TODO(https://viam.atlassian.net/browse/APP-3877): Remove this field
@@ -908,6 +918,15 @@ message GetRobotPartLogsRequest {
   optional int64 limit = 8;
   optional string source = 9;
   optional bool user_facing_only = 10;
+  // logs are returned newest first when the order field is empty
+  optional LogOrder order = 11;
+  // range is a duration string (e.g. "10m", "10h", "10d") that is resolved
+  // against whichever of start and end is present:
+  //   end only:     [end - range, end]
+  //   start only:   [start, start + range]
+  //   neither:      [now - range, now]
+  // Specifying range together with both start and end is an error.
+  optional string range = 12;
 }
 
 message GetRobotPartLogsResponse {
