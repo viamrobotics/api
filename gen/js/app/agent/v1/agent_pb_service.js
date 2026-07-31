@@ -19,6 +19,15 @@ AgentDeviceService.DeviceAgentConfig = {
   responseType: app_agent_v1_agent_pb.DeviceAgentConfigResponse
 };
 
+AgentDeviceService.GetSubsystemVersionStatus = {
+  methodName: "GetSubsystemVersionStatus",
+  service: AgentDeviceService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_agent_v1_agent_pb.GetSubsystemVersionStatusRequest,
+  responseType: app_agent_v1_agent_pb.GetSubsystemVersionStatusResponse
+};
+
 exports.AgentDeviceService = AgentDeviceService;
 
 function AgentDeviceServiceClient(serviceHost, options) {
@@ -31,6 +40,37 @@ AgentDeviceServiceClient.prototype.deviceAgentConfig = function deviceAgentConfi
     callback = arguments[1];
   }
   var client = grpc.unary(AgentDeviceService.DeviceAgentConfig, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AgentDeviceServiceClient.prototype.getSubsystemVersionStatus = function getSubsystemVersionStatus(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AgentDeviceService.GetSubsystemVersionStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

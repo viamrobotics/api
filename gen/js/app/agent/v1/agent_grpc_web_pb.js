@@ -142,5 +142,66 @@ proto.viam.app.agent.v1.AgentDeviceServicePromiseClient.prototype.deviceAgentCon
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.agent.v1.GetSubsystemVersionStatusRequest,
+ *   !proto.viam.app.agent.v1.GetSubsystemVersionStatusResponse>}
+ */
+const methodDescriptor_AgentDeviceService_GetSubsystemVersionStatus = new grpc.web.MethodDescriptor(
+  '/viam.app.agent.v1.AgentDeviceService/GetSubsystemVersionStatus',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.agent.v1.GetSubsystemVersionStatusRequest,
+  proto.viam.app.agent.v1.GetSubsystemVersionStatusResponse,
+  /**
+   * @param {!proto.viam.app.agent.v1.GetSubsystemVersionStatusRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.agent.v1.GetSubsystemVersionStatusResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.agent.v1.GetSubsystemVersionStatusRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.agent.v1.GetSubsystemVersionStatusResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.agent.v1.GetSubsystemVersionStatusResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.agent.v1.AgentDeviceServiceClient.prototype.getSubsystemVersionStatus =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.agent.v1.AgentDeviceService/GetSubsystemVersionStatus',
+      request,
+      metadata || {},
+      methodDescriptor_AgentDeviceService_GetSubsystemVersionStatus,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.agent.v1.GetSubsystemVersionStatusRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.agent.v1.GetSubsystemVersionStatusResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.agent.v1.AgentDeviceServicePromiseClient.prototype.getSubsystemVersionStatus =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.agent.v1.AgentDeviceService/GetSubsystemVersionStatus',
+      request,
+      metadata || {},
+      methodDescriptor_AgentDeviceService_GetSubsystemVersionStatus);
+};
+
+
 module.exports = proto.viam.app.agent.v1;
 

@@ -5,6 +5,50 @@ import * as jspb from "google-protobuf";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 
+export class GetSubsystemVersionStatusRequest extends jspb.Message {
+  getSubsystem(): string;
+  setSubsystem(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSubsystemVersionStatusRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSubsystemVersionStatusRequest): GetSubsystemVersionStatusRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSubsystemVersionStatusRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSubsystemVersionStatusRequest;
+  static deserializeBinaryFromReader(message: GetSubsystemVersionStatusRequest, reader: jspb.BinaryReader): GetSubsystemVersionStatusRequest;
+}
+
+export namespace GetSubsystemVersionStatusRequest {
+  export type AsObject = {
+    subsystem: string,
+    version: string,
+  }
+}
+
+export class GetSubsystemVersionStatusResponse extends jspb.Message {
+  getDeprecated(): boolean;
+  setDeprecated(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSubsystemVersionStatusResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSubsystemVersionStatusResponse): GetSubsystemVersionStatusResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSubsystemVersionStatusResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSubsystemVersionStatusResponse;
+  static deserializeBinaryFromReader(message: GetSubsystemVersionStatusResponse, reader: jspb.BinaryReader): GetSubsystemVersionStatusResponse;
+}
+
+export namespace GetSubsystemVersionStatusResponse {
+  export type AsObject = {
+    deprecated: boolean,
+  }
+}
+
 export class DeviceAgentConfigRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;

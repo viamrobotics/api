@@ -13,9 +13,19 @@ type AgentDeviceServiceDeviceAgentConfig = {
   readonly responseType: typeof app_agent_v1_agent_pb.DeviceAgentConfigResponse;
 };
 
+type AgentDeviceServiceGetSubsystemVersionStatus = {
+  readonly methodName: string;
+  readonly service: typeof AgentDeviceService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_agent_v1_agent_pb.GetSubsystemVersionStatusRequest;
+  readonly responseType: typeof app_agent_v1_agent_pb.GetSubsystemVersionStatusResponse;
+};
+
 export class AgentDeviceService {
   static readonly serviceName: string;
   static readonly DeviceAgentConfig: AgentDeviceServiceDeviceAgentConfig;
+  static readonly GetSubsystemVersionStatus: AgentDeviceServiceGetSubsystemVersionStatus;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -58,6 +68,15 @@ export class AgentDeviceServiceClient {
   deviceAgentConfig(
     requestMessage: app_agent_v1_agent_pb.DeviceAgentConfigRequest,
     callback: (error: ServiceError|null, responseMessage: app_agent_v1_agent_pb.DeviceAgentConfigResponse|null) => void
+  ): UnaryResponse;
+  getSubsystemVersionStatus(
+    requestMessage: app_agent_v1_agent_pb.GetSubsystemVersionStatusRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_agent_v1_agent_pb.GetSubsystemVersionStatusResponse|null) => void
+  ): UnaryResponse;
+  getSubsystemVersionStatus(
+    requestMessage: app_agent_v1_agent_pb.GetSubsystemVersionStatusRequest,
+    callback: (error: ServiceError|null, responseMessage: app_agent_v1_agent_pb.GetSubsystemVersionStatusResponse|null) => void
   ): UnaryResponse;
 }
 

@@ -24,6 +24,9 @@ const _ = grpc.SupportPackageIsVersion7
 type AgentDeviceServiceClient interface {
 	// DeviceAgentConfig is for retrieving config by the on-device agent.
 	DeviceAgentConfig(ctx context.Context, in *DeviceAgentConfigRequest, opts ...grpc.CallOption) (*DeviceAgentConfigResponse, error)
+	// GetSubsystemVersionStatus reports whether a published version of a subsystem has been
+	// deprecated.
+	GetSubsystemVersionStatus(ctx context.Context, in *GetSubsystemVersionStatusRequest, opts ...grpc.CallOption) (*GetSubsystemVersionStatusResponse, error)
 }
 
 type agentDeviceServiceClient struct {
@@ -43,12 +46,24 @@ func (c *agentDeviceServiceClient) DeviceAgentConfig(ctx context.Context, in *De
 	return out, nil
 }
 
+func (c *agentDeviceServiceClient) GetSubsystemVersionStatus(ctx context.Context, in *GetSubsystemVersionStatusRequest, opts ...grpc.CallOption) (*GetSubsystemVersionStatusResponse, error) {
+	out := new(GetSubsystemVersionStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.agent.v1.AgentDeviceService/GetSubsystemVersionStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AgentDeviceServiceServer is the server API for AgentDeviceService service.
 // All implementations must embed UnimplementedAgentDeviceServiceServer
 // for forward compatibility
 type AgentDeviceServiceServer interface {
 	// DeviceAgentConfig is for retrieving config by the on-device agent.
 	DeviceAgentConfig(context.Context, *DeviceAgentConfigRequest) (*DeviceAgentConfigResponse, error)
+	// GetSubsystemVersionStatus reports whether a published version of a subsystem has been
+	// deprecated.
+	GetSubsystemVersionStatus(context.Context, *GetSubsystemVersionStatusRequest) (*GetSubsystemVersionStatusResponse, error)
 	mustEmbedUnimplementedAgentDeviceServiceServer()
 }
 
@@ -58,6 +73,9 @@ type UnimplementedAgentDeviceServiceServer struct {
 
 func (UnimplementedAgentDeviceServiceServer) DeviceAgentConfig(context.Context, *DeviceAgentConfigRequest) (*DeviceAgentConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeviceAgentConfig not implemented")
+}
+func (UnimplementedAgentDeviceServiceServer) GetSubsystemVersionStatus(context.Context, *GetSubsystemVersionStatusRequest) (*GetSubsystemVersionStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubsystemVersionStatus not implemented")
 }
 func (UnimplementedAgentDeviceServiceServer) mustEmbedUnimplementedAgentDeviceServiceServer() {}
 
@@ -90,6 +108,24 @@ func _AgentDeviceService_DeviceAgentConfig_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AgentDeviceService_GetSubsystemVersionStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSubsystemVersionStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgentDeviceServiceServer).GetSubsystemVersionStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.agent.v1.AgentDeviceService/GetSubsystemVersionStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgentDeviceServiceServer).GetSubsystemVersionStatus(ctx, req.(*GetSubsystemVersionStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AgentDeviceService_ServiceDesc is the grpc.ServiceDesc for AgentDeviceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -100,6 +136,10 @@ var AgentDeviceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeviceAgentConfig",
 			Handler:    _AgentDeviceService_DeviceAgentConfig_Handler,
+		},
+		{
+			MethodName: "GetSubsystemVersionStatus",
+			Handler:    _AgentDeviceService_GetSubsystemVersionStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
