@@ -219,6 +219,7 @@ goog.exportSymbol('proto.viam.app.v1.LocationAuthRequest', null, global);
 goog.exportSymbol('proto.viam.app.v1.LocationAuthResponse', null, global);
 goog.exportSymbol('proto.viam.app.v1.LocationOrganization', null, global);
 goog.exportSymbol('proto.viam.app.v1.LocationSummary', null, global);
+goog.exportSymbol('proto.viam.app.v1.LogOrder', null, global);
 goog.exportSymbol('proto.viam.app.v1.LoginMethod', null, global);
 goog.exportSymbol('proto.viam.app.v1.MLModelMetadata', null, global);
 goog.exportSymbol('proto.viam.app.v1.MLModelVersion', null, global);
@@ -23503,7 +23504,9 @@ proto.viam.app.v1.GetRobotPartLogsRequest.toObject = function(includeInstance, m
     end: (f = msg.getEnd()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     limit: jspb.Message.getFieldWithDefault(msg, 8, 0),
     source: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    userFacingOnly: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
+    userFacingOnly: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+    order: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    range: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -23581,6 +23584,14 @@ proto.viam.app.v1.GetRobotPartLogsRequest.deserializeBinaryFromReader = function
     case 10:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setUserFacingOnly(value);
+      break;
+    case 11:
+      var value = /** @type {!proto.viam.app.v1.LogOrder} */ (reader.readEnum());
+      msg.setOrder(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRange(value);
       break;
     default:
       reader.skipField();
@@ -23680,6 +23691,20 @@ proto.viam.app.v1.GetRobotPartLogsRequest.serializeBinaryToWriter = function(mes
   if (f != null) {
     writer.writeBool(
       10,
+      f
+    );
+  }
+  f = /** @type {!proto.viam.app.v1.LogOrder} */ (jspb.Message.getField(message, 11));
+  if (f != null) {
+    writer.writeEnum(
+      11,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 12));
+  if (f != null) {
+    writer.writeString(
+      12,
       f
     );
   }
@@ -24010,6 +24035,78 @@ proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearUserFacingOnly = functi
  */
 proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasUserFacingOnly = function() {
   return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional LogOrder order = 11;
+ * @return {!proto.viam.app.v1.LogOrder}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getOrder = function() {
+  return /** @type {!proto.viam.app.v1.LogOrder} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.LogOrder} value
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setOrder = function(value) {
+  return jspb.Message.setField(this, 11, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearOrder = function() {
+  return jspb.Message.setField(this, 11, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasOrder = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional string range = 12;
+ * @return {string}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.getRange = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.setRange = function(value) {
+  return jspb.Message.setField(this, 12, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.app.v1.GetRobotPartLogsRequest} returns this
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.clearRange = function() {
+  return jspb.Message.setField(this, 12, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.GetRobotPartLogsRequest.prototype.hasRange = function() {
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
@@ -64082,6 +64179,15 @@ proto.viam.app.v1.LoginMethod = {
   LOGIN_METHOD_GOOGLE: 2,
   LOGIN_METHOD_GITHUB: 3,
   LOGIN_METHOD_APPLE: 4
+};
+
+/**
+ * @enum {number}
+ */
+proto.viam.app.v1.LogOrder = {
+  LOG_ORDER_UNSPECIFIED: 0,
+  LOG_ORDER_ASCENDING: 1,
+  LOG_ORDER_DESCENDING: 2
 };
 
 /**
