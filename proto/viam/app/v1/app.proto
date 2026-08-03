@@ -920,8 +920,8 @@ message GetRobotPartLogsRequest {
   optional bool user_facing_only = 10;
   // logs are returned newest first when the order field is empty
   optional LogOrder order = 11;
-  // range is a duration string (e.g. "10m", "10h", "10d") that is resolved
-  // against whichever of start and end is present:
+  // range is a duration string in minutes, hours, or days (e.g. "10m", "10h", "10d")
+  // that is resolved against whichever of start and end is present:
   //   end only:     [end - range, end]
   //   start only:   [start, start + range]
   //   neither:      [now - range, now]
