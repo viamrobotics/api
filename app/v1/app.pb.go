@@ -5928,8 +5928,8 @@ type GetRobotPartLogsRequest struct {
 	UserFacingOnly *bool                  `protobuf:"varint,10,opt,name=user_facing_only,json=userFacingOnly,proto3,oneof" json:"user_facing_only,omitempty"`
 	// logs are returned newest first when the order field is empty
 	Order *LogOrder `protobuf:"varint,11,opt,name=order,proto3,enum=viam.app.v1.LogOrder,oneof" json:"order,omitempty"`
-	// range is a duration string (e.g. "10m", "10h", "10d") that is resolved
-	// against whichever of start and end is present:
+	// range is a duration string in minutes, hours, or days (e.g. "10m", "10h", "10d")
+	// that is resolved against whichever of start and end is present:
 	//
 	//	end only:     [end - range, end]
 	//	start only:   [start, start + range]
