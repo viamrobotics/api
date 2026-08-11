@@ -3138,6 +3138,7 @@ proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse.toObject = function(i
   var f, obj = {
     jobId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     status: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    downloadUrl: jspb.Message.getFieldWithDefault(msg, 3, ""),
     expiresAt: (f = msg.getExpiresAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     errorMessage: jspb.Message.getFieldWithDefault(msg, 5, ""),
     createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
@@ -3187,6 +3188,10 @@ proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse.deserializeBinaryFrom
     case 2:
       var value = /** @type {!proto.viam.app.dataset.v1.SequenceDatasetExportStatus} */ (reader.readEnum());
       msg.setStatus(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDownloadUrl(value);
       break;
     case 4:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -3252,6 +3257,13 @@ proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse.serializeBinaryToWrit
   if (f !== 0.0) {
     writer.writeEnum(
       2,
+      f
+    );
+  }
+  f = message.getDownloadUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -3330,6 +3342,24 @@ proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse.prototype.getStatus =
  */
 proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse.prototype.setStatus = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional string download_url = 3;
+ * @return {string}
+ */
+proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse.prototype.getDownloadUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse} returns this
+ */
+proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse.prototype.setDownloadUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

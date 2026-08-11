@@ -169,11 +169,16 @@ message SequenceDatasetExportFile {
 }
 
 // GetSequenceDatasetExportResponse reports the current status of an export
-// job. files and expires_at are set only when status is COMPLETED;
-// error_message is set only when status is FAILED.
+// job. files, download_url and expires_at are set only when status is
+// COMPLETED; error_message is set only when status is FAILED.
 message GetSequenceDatasetExportResponse {
   string job_id = 1;
   SequenceDatasetExportStatus status = 2;
+  // Signed URL for a zip of all the parquet files.
+  //
+  // Deprecated: use files. Retained so clients built before files existed keep
+  // working during the transition; it will be removed once they have migrated.
+  string download_url = 3 [deprecated = true];
   // When the URLs in files stop working. Empty unless status is COMPLETED.
   google.protobuf.Timestamp expires_at = 4;
   // Human-readable cause; empty unless status is FAILED.
@@ -183,7 +188,4 @@ message GetSequenceDatasetExportResponse {
   // The parquet files produced by this export, each with its own signed URL.
   // All URLs share the expires_at deadline. Empty unless status is COMPLETED.
   repeated SequenceDatasetExportFile files = 8;
-
-  reserved 3;
-  reserved "download_url";
 }

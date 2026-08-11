@@ -405,6 +405,9 @@ export class GetSequenceDatasetExportResponse extends jspb.Message {
   getStatus(): SequenceDatasetExportStatusMap[keyof SequenceDatasetExportStatusMap];
   setStatus(value: SequenceDatasetExportStatusMap[keyof SequenceDatasetExportStatusMap]): void;
 
+  getDownloadUrl(): string;
+  setDownloadUrl(value: string): void;
+
   hasExpiresAt(): boolean;
   clearExpiresAt(): void;
   getExpiresAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -442,6 +445,7 @@ export namespace GetSequenceDatasetExportResponse {
   export type AsObject = {
     jobId: string,
     status: SequenceDatasetExportStatusMap[keyof SequenceDatasetExportStatusMap],
+    downloadUrl: string,
     expiresAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     errorMessage: string,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
