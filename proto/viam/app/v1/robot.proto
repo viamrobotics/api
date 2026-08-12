@@ -202,7 +202,7 @@ message UserPermission {
   repeated Permission permissions = 2;
 }
 
-// A User describes a single user that a UserPermission applies to.
+// A User describes a single user that a set of Permissions applies to.
 message User {
   // type is the type of user. Can be "api-key-id", "email", or "default".
   string type = 1;
@@ -211,8 +211,7 @@ message User {
   string id = 2;
 }
 
-// A Permission grants a User the ability to invoke a set of methods
-// on a set of resources.
+// A Permission describes a User's ability to invoke methods on resources.
 message Permission {
   // resources are the names of the resources this permission applies to,
   // e.g. ["cam1", "cam2", "cam3"].
