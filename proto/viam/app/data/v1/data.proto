@@ -832,6 +832,9 @@ message CreateBinaryDataSignedURLResponse {
 message SequenceResourceFilter {
   string resource_name = 2;
   string method_name = 3;
+  // Populated on read. Optional on create/update: when provided it is validated
+  // against captured data the same way an omitted value is resolved.
+  string resource_subtype = 4;
 
   reserved 1;
   reserved "part_id";
