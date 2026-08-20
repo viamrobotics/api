@@ -204,10 +204,10 @@ message UserPermission {
 
 // A User describes a single user that a set of Permissions applies to.
 message User {
-  // type is the type of user. Can be "api-key-id", "email", or "default".
+  // type is the type of user. Can be "api-key-id", "app-user-id", or "default".
   string type = 1;
-  // id is the API Key ID if type is "api-key-id", the e-mail address if
-  // type is "email", and empty if type is "default".
+  // id is the API Key ID if type is "api-key-id", the Viam app user ID if
+  // type is "app-user-id", and empty if type is "default".
   string id = 2;
 }
 
