@@ -202,12 +202,24 @@ message UserPermission {
   repeated Permission permissions = 2;
 }
 
+// UserType enumerates how a User is identified for permissioning.
+enum UserType {
+  USER_TYPE_UNSPECIFIED = 0;
+  // USER_TYPE_API_KEY_ID identifies a user by their API Key ID.
+  USER_TYPE_API_KEY_ID = 1;
+  // USER_TYPE_APP_USER_ID identifies a user by their Viam app user ID.
+  USER_TYPE_APP_USER_ID = 2;
+  // USER_TYPE_DEFAULT is the fallback applied to any authenticated caller that has
+  // no specific entry; id is empty for the default user.
+  USER_TYPE_DEFAULT = 3;
+}
+
 // A User describes a single user that a set of Permissions applies to.
 message User {
-  // type is the type of user. Can be "api-key-id", "app-user-id", or "default".
-  string type = 1;
-  // id is the API Key ID if type is "api-key-id", the Viam app user ID if
-  // type is "app-user-id", and empty if type is "default".
+  // type is how this user is identified.
+  UserType type = 1;
+  // id is the API Key ID if type is USER_TYPE_API_KEY_ID, the Viam app user ID if
+  // type is USER_TYPE_APP_USER_ID, and empty if type is USER_TYPE_DEFAULT.
   string id = 2;
 }
 
