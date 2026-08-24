@@ -664,6 +664,11 @@ export class AuthConfig extends jspb.Message {
   getExternalAuthConfig(): ExternalAuthConfig | undefined;
   setExternalAuthConfig(value?: ExternalAuthConfig): void;
 
+  clearUserPermissionsList(): void;
+  getUserPermissionsList(): Array<UserPermission>;
+  setUserPermissionsList(value: Array<UserPermission>): void;
+  addUserPermissions(value?: UserPermission, index?: number): UserPermission;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AuthConfig.AsObject;
   static toObject(includeInstance: boolean, msg: AuthConfig): AuthConfig.AsObject;
@@ -679,6 +684,87 @@ export namespace AuthConfig {
     handlersList: Array<AuthHandlerConfig.AsObject>,
     tlsAuthEntitiesList: Array<string>,
     externalAuthConfig?: ExternalAuthConfig.AsObject,
+    userPermissionsList: Array<UserPermission.AsObject>,
+  }
+}
+
+export class UserPermission extends jspb.Message {
+  hasUser(): boolean;
+  clearUser(): void;
+  getUser(): User | undefined;
+  setUser(value?: User): void;
+
+  clearPermissionsList(): void;
+  getPermissionsList(): Array<Permission>;
+  setPermissionsList(value: Array<Permission>): void;
+  addPermissions(value?: Permission, index?: number): Permission;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserPermission.AsObject;
+  static toObject(includeInstance: boolean, msg: UserPermission): UserPermission.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UserPermission, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserPermission;
+  static deserializeBinaryFromReader(message: UserPermission, reader: jspb.BinaryReader): UserPermission;
+}
+
+export namespace UserPermission {
+  export type AsObject = {
+    user?: User.AsObject,
+    permissionsList: Array<Permission.AsObject>,
+  }
+}
+
+export class User extends jspb.Message {
+  getType(): string;
+  setType(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): User.AsObject;
+  static toObject(includeInstance: boolean, msg: User): User.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: User, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): User;
+  static deserializeBinaryFromReader(message: User, reader: jspb.BinaryReader): User;
+}
+
+export namespace User {
+  export type AsObject = {
+    type: string,
+    id: string,
+  }
+}
+
+export class Permission extends jspb.Message {
+  clearResourcesList(): void;
+  getResourcesList(): Array<string>;
+  setResourcesList(value: Array<string>): void;
+  addResources(value: string, index?: number): string;
+
+  clearAllowedMethodsList(): void;
+  getAllowedMethodsList(): Array<string>;
+  setAllowedMethodsList(value: Array<string>): void;
+  addAllowedMethods(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Permission.AsObject;
+  static toObject(includeInstance: boolean, msg: Permission): Permission.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Permission, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Permission;
+  static deserializeBinaryFromReader(message: Permission, reader: jspb.BinaryReader): Permission;
+}
+
+export namespace Permission {
+  export type AsObject = {
+    resourcesList: Array<string>,
+    allowedMethodsList: Array<string>,
   }
 }
 
