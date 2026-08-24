@@ -184,8 +184,8 @@ message ListSupportedContainersResponse {
 }
 
 enum Role {
-  VIAM_CONTAINER = 0;
-  CUSTOM_CONTAINER = 1;
+  ROLE_VIAM_CONTAINER = 1;
+  ROLE_CUSTOM_CONTAINER = 2;
 }
 
 message Container {
