@@ -183,6 +183,11 @@ message ListSupportedContainersResponse {
   // }
 }
 
+enum Role {
+  VIAM_CONTAINER = 0;
+  CUSTOM_CONTAINER = 1;
+}
+
 message Container {
   string key = 1;                      // org-registered keys are "name:version"
   string uri = 2;                     
