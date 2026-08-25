@@ -195,9 +195,8 @@ message Container {
   string framework = 3;                // unset for org-registered
   string description = 4;              // will serve as display name
   google.protobuf.Timestamp eol = 5;   // unset for org-registered
-  // 6 to 8 are new fields, 7 is set only for org-registered containers:
   string organization_id = 6;
-  google.protobuf.Timestamp created_on = 7;
+  google.protobuf.Timestamp created_on = 7; // unset for Viam containers
   Role role = 8; // indicates whether container is custom or built-in
 }
 
