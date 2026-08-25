@@ -918,11 +918,13 @@ message SequencesByDatasetIDRequest {
   string dataset_id = 1;
   string page_token = 2;
   uint32 page_size = 3;
+  bool count_only = 4;
 }
 
 message SequencesByDatasetIDResponse {
   repeated Sequence sequences = 1;
   string next_page_token = 2;
+  uint64 count = 3;
 }
 
 message GetSequenceBinaryDataRequest {

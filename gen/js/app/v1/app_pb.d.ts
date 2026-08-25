@@ -2476,6 +2476,16 @@ export class GetRobotPartLogsRequest extends jspb.Message {
   getUserFacingOnly(): boolean;
   setUserFacingOnly(value: boolean): void;
 
+  hasOrder(): boolean;
+  clearOrder(): void;
+  getOrder(): LogOrderMap[keyof LogOrderMap];
+  setOrder(value: LogOrderMap[keyof LogOrderMap]): void;
+
+  hasRange(): boolean;
+  clearRange(): void;
+  getRange(): string;
+  setRange(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartLogsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartLogsRequest): GetRobotPartLogsRequest.AsObject;
@@ -2498,6 +2508,8 @@ export namespace GetRobotPartLogsRequest {
     limit: number,
     source: string,
     userFacingOnly: boolean,
+    order: LogOrderMap[keyof LogOrderMap],
+    range: string,
   }
 }
 
@@ -8226,6 +8238,14 @@ export interface LoginMethodMap {
 }
 
 export const LoginMethod: LoginMethodMap;
+
+export interface LogOrderMap {
+  LOG_ORDER_UNSPECIFIED: 0;
+  LOG_ORDER_ASCENDING: 1;
+  LOG_ORDER_DESCENDING: 2;
+}
+
+export const LogOrder: LogOrderMap;
 
 export interface FragmentVisibilityMap {
   FRAGMENT_VISIBILITY_UNSPECIFIED: 0;
