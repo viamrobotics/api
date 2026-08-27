@@ -650,13 +650,17 @@ type Cylinder struct {
 	// Total height, cap to cap.
 	HeightMm float64 `protobuf:"fixed64,2,opt,name=height_mm,json=heightMm,proto3" json:"height_mm,omitempty"`
 	// When true the flat end caps are omitted, producing an open tube: a
-	// cylindrical surface with no interior volume, which collides only when
-	// something crosses its wall. Models open containers a robot reaches into.
+	// cylindrical surface, which models open containers a robot reaches into.
 	//
-	// Phrased negatively so the proto3 default (false) is the solid cylinder.
-	// That is the common case, and it is the conservative one: treating an open
-	// tube as solid over-approximates, whereas treating a solid as open would let
-	// a caller plan a path straight through it.
+	// Phrased negatively so the proto3 default (false) is the solid cylinder,
+	// which is the overwhelmingly common case and matches what a cylinder means
+	// in URDF and SDF. A consumer that ignores this field reads every cylinder as
+	// solid.
+	//
+	// This is a defaulting convention, not a safety guarantee: whether solid or
+	// open is the conservative reading depends on the consumer's collision
+	// semantics, so producers should set the field rather than rely on the
+	// default carrying meaning.
 	Uncapped bool `protobuf:"varint,3,opt,name=uncapped,proto3" json:"uncapped,omitempty"`
 }
 
