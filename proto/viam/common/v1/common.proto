@@ -85,6 +85,28 @@ message Capsule {
   double length_mm = 2;
 }
 
+// Cylinder is a finite right circular cylinder. Its central axis is the local
+// frame's Z axis and its pose is at its center. Unlike a capsule, a cylinder has
+// flat end caps and may be arbitrarily flat (no length >= 2*radius constraint).
+message Cylinder {
+  double radius_mm = 1;
+  // Total height, cap to cap.
+  double height_mm = 2;
+  // When true the flat end caps are omitted, producing an open tube: a
+  // cylindrical surface, which models open containers a robot reaches into.
+  //
+  // Phrased negatively so the proto3 default (false) is the solid cylinder,
+  // which is the overwhelmingly common case and matches what a cylinder means
+  // in URDF and SDF. A consumer that ignores this field reads every cylinder as
+  // solid.
+  //
+  // This is a defaulting convention, not a safety guarantee: whether solid or
+  // open is the conservative reading depends on the consumer's collision
+  // semantics, so producers should set the field rather than rely on the
+  // default carrying meaning.
+  bool uncapped = 3;
+}
+
 // RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
 // These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
 message RectangularPrism {
@@ -113,6 +135,7 @@ message Geometry {
     Capsule capsule = 5;
     Mesh mesh = 6;
     PointCloud pointcloud = 7;
+    Cylinder cylinder = 8;
   }
   // Label of the geometry. If none supplied, will be an empty string.
   string label = 4;
