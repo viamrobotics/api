@@ -92,6 +92,15 @@ message Cylinder {
   double radius_mm = 1;
   // Total height, cap to cap.
   double height_mm = 2;
+  // When true the flat end caps are omitted, producing an open tube: a
+  // cylindrical surface with no interior volume, which collides only when
+  // something crosses its wall. Models open containers a robot reaches into.
+  //
+  // Phrased negatively so the proto3 default (false) is the solid cylinder.
+  // That is the common case, and it is the conservative one: treating an open
+  // tube as solid over-approximates, whereas treating a solid as open would let
+  // a caller plan a path straight through it.
+  bool uncapped = 3;
 }
 
 // RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
