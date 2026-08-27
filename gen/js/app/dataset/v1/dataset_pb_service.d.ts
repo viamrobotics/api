@@ -58,6 +58,24 @@ type DatasetServiceMergeDatasets = {
   readonly responseType: typeof app_dataset_v1_dataset_pb.MergeDatasetsResponse;
 };
 
+type DatasetServiceStartSequenceDatasetExport = {
+  readonly methodName: string;
+  readonly service: typeof DatasetService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_dataset_v1_dataset_pb.StartSequenceDatasetExportRequest;
+  readonly responseType: typeof app_dataset_v1_dataset_pb.StartSequenceDatasetExportResponse;
+};
+
+type DatasetServiceGetSequenceDatasetExport = {
+  readonly methodName: string;
+  readonly service: typeof DatasetService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_dataset_v1_dataset_pb.GetSequenceDatasetExportRequest;
+  readonly responseType: typeof app_dataset_v1_dataset_pb.GetSequenceDatasetExportResponse;
+};
+
 export class DatasetService {
   static readonly serviceName: string;
   static readonly CreateDataset: DatasetServiceCreateDataset;
@@ -66,6 +84,8 @@ export class DatasetService {
   static readonly ListDatasetsByOrganizationID: DatasetServiceListDatasetsByOrganizationID;
   static readonly ListDatasetsByIDs: DatasetServiceListDatasetsByIDs;
   static readonly MergeDatasets: DatasetServiceMergeDatasets;
+  static readonly StartSequenceDatasetExport: DatasetServiceStartSequenceDatasetExport;
+  static readonly GetSequenceDatasetExport: DatasetServiceGetSequenceDatasetExport;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -153,6 +173,24 @@ export class DatasetServiceClient {
   mergeDatasets(
     requestMessage: app_dataset_v1_dataset_pb.MergeDatasetsRequest,
     callback: (error: ServiceError|null, responseMessage: app_dataset_v1_dataset_pb.MergeDatasetsResponse|null) => void
+  ): UnaryResponse;
+  startSequenceDatasetExport(
+    requestMessage: app_dataset_v1_dataset_pb.StartSequenceDatasetExportRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_dataset_v1_dataset_pb.StartSequenceDatasetExportResponse|null) => void
+  ): UnaryResponse;
+  startSequenceDatasetExport(
+    requestMessage: app_dataset_v1_dataset_pb.StartSequenceDatasetExportRequest,
+    callback: (error: ServiceError|null, responseMessage: app_dataset_v1_dataset_pb.StartSequenceDatasetExportResponse|null) => void
+  ): UnaryResponse;
+  getSequenceDatasetExport(
+    requestMessage: app_dataset_v1_dataset_pb.GetSequenceDatasetExportRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_dataset_v1_dataset_pb.GetSequenceDatasetExportResponse|null) => void
+  ): UnaryResponse;
+  getSequenceDatasetExport(
+    requestMessage: app_dataset_v1_dataset_pb.GetSequenceDatasetExportRequest,
+    callback: (error: ServiceError|null, responseMessage: app_dataset_v1_dataset_pb.GetSequenceDatasetExportResponse|null) => void
   ): UnaryResponse;
 }
 

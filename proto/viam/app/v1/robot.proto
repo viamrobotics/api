@@ -188,6 +188,39 @@ message AuthConfig {
   repeated AuthHandlerConfig handlers = 1;
   repeated string tls_auth_entities = 2;
   optional ExternalAuthConfig external_auth_config = 3;
+  // user_permissions represents the map of Users to Permissions for
+  // this machine.
+  repeated UserPermission user_permissions = 4;
+}
+
+// A UserPermission describes a User and the permissions granted to
+// that user.
+message UserPermission {
+  // user is the User this UserPermission applies to. A User can only be
+  // listed in a single UserPermission for a set of UserPermissions.
+  User user = 1;
+  repeated Permission permissions = 2;
+}
+
+// A User describes a single user that a set of Permissions applies to.
+message User {
+  // type is the type of user. Can be "api-key-id", "app-user-id", or "default".
+  string type = 1;
+  // id is the API Key ID if type is "api-key-id", the Viam app user ID if
+  // type is "app-user-id", and empty if type is "default".
+  string id = 2;
+}
+
+// A Permission describes a User's ability to invoke methods on resources.
+message Permission {
+  // resources are the names of the resources this permission applies to,
+  // e.g. ["cam1", "cam2", "cam3"].
+  repeated string resources = 1;
+  // allowed_methods is a list of fully qualified gRPC methods the user
+  // may invoke on the listed resources, e.g.
+  // ["/viam.component.camera.v1.CameraService/GetImages",
+  // "/viam.component.camera.v1.CameraService/GetProperties"].
+  repeated string allowed_methods = 2;
 }
 
 message JWKSFile {

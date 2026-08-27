@@ -445,5 +445,127 @@ proto.viam.app.dataset.v1.DatasetServicePromiseClient.prototype.mergeDatasets =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.dataset.v1.StartSequenceDatasetExportRequest,
+ *   !proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse>}
+ */
+const methodDescriptor_DatasetService_StartSequenceDatasetExport = new grpc.web.MethodDescriptor(
+  '/viam.app.dataset.v1.DatasetService/StartSequenceDatasetExport',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.dataset.v1.StartSequenceDatasetExportRequest,
+  proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse,
+  /**
+   * @param {!proto.viam.app.dataset.v1.StartSequenceDatasetExportRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.dataset.v1.StartSequenceDatasetExportRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.dataset.v1.DatasetServiceClient.prototype.startSequenceDatasetExport =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.dataset.v1.DatasetService/StartSequenceDatasetExport',
+      request,
+      metadata || {},
+      methodDescriptor_DatasetService_StartSequenceDatasetExport,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.dataset.v1.StartSequenceDatasetExportRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.dataset.v1.StartSequenceDatasetExportResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.dataset.v1.DatasetServicePromiseClient.prototype.startSequenceDatasetExport =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.dataset.v1.DatasetService/StartSequenceDatasetExport',
+      request,
+      metadata || {},
+      methodDescriptor_DatasetService_StartSequenceDatasetExport);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest,
+ *   !proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse>}
+ */
+const methodDescriptor_DatasetService_GetSequenceDatasetExport = new grpc.web.MethodDescriptor(
+  '/viam.app.dataset.v1.DatasetService/GetSequenceDatasetExport',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest,
+  proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse,
+  /**
+   * @param {!proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.dataset.v1.DatasetServiceClient.prototype.getSequenceDatasetExport =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.dataset.v1.DatasetService/GetSequenceDatasetExport',
+      request,
+      metadata || {},
+      methodDescriptor_DatasetService_GetSequenceDatasetExport,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.dataset.v1.GetSequenceDatasetExportRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.dataset.v1.GetSequenceDatasetExportResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.dataset.v1.DatasetServicePromiseClient.prototype.getSequenceDatasetExport =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.dataset.v1.DatasetService/GetSequenceDatasetExport',
+      request,
+      metadata || {},
+      methodDescriptor_DatasetService_GetSequenceDatasetExport);
+};
+
+
 module.exports = proto.viam.app.dataset.v1;
 

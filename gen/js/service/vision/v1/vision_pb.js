@@ -4196,7 +4196,8 @@ proto.viam.service.vision.v1.GetPropertiesResponse.toObject = function(includeIn
   var f, obj = {
     classificationsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
     detectionsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    objectPointCloudsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    objectPointCloudsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    defaultCamera: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -4245,6 +4246,10 @@ proto.viam.service.vision.v1.GetPropertiesResponse.deserializeBinaryFromReader =
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setObjectPointCloudsSupported(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDefaultCamera(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4292,6 +4297,13 @@ proto.viam.service.vision.v1.GetPropertiesResponse.serializeBinaryToWriter = fun
   if (f) {
     writer.writeBool(
       3,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -4349,6 +4361,42 @@ proto.viam.service.vision.v1.GetPropertiesResponse.prototype.getObjectPointCloud
  */
 proto.viam.service.vision.v1.GetPropertiesResponse.prototype.setObjectPointCloudsSupported = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * optional string default_camera = 4;
+ * @return {string}
+ */
+proto.viam.service.vision.v1.GetPropertiesResponse.prototype.getDefaultCamera = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.service.vision.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.service.vision.v1.GetPropertiesResponse.prototype.setDefaultCamera = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.service.vision.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.service.vision.v1.GetPropertiesResponse.prototype.clearDefaultCamera = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.vision.v1.GetPropertiesResponse.prototype.hasDefaultCamera = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 

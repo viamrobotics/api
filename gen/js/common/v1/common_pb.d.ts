@@ -856,6 +856,28 @@ export namespace Get3DModelsResponse {
   }
 }
 
+export class GetWorldPoseResponse extends jspb.Message {
+  hasPose(): boolean;
+  clearPose(): void;
+  getPose(): Pose | undefined;
+  setPose(value?: Pose): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetWorldPoseResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetWorldPoseResponse): GetWorldPoseResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetWorldPoseResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetWorldPoseResponse;
+  static deserializeBinaryFromReader(message: GetWorldPoseResponse, reader: jspb.BinaryReader): GetWorldPoseResponse;
+}
+
+export namespace GetWorldPoseResponse {
+  export type AsObject = {
+    pose?: Pose.AsObject,
+  }
+}
+
 export class GetReadingsRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;

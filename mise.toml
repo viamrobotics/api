@@ -12,7 +12,7 @@ lockfile = false
 experimental = true
 # (Josh) asdf plugins are just shell scripts that can impose dependencies on
 # arbitrary cli tools and are just generally worse than all the other backend
-# options. If we really need to we can reenable asdf but for now it's disabled
+# options. If we really need to we can re-enable asdf but for now it's disabled
 # to ensure it is not selected by any future `buf use` invocations.
 disable_backends = ["asdf"]
 
@@ -29,7 +29,7 @@ go = "1.23"
 # This one can be installed as a binary but it produces very slightly different output.
 # Switch to that when upgrading.
 "go:google.golang.org/grpc/cmd/protoc-gen-go-grpc" = "1.2.0"
-golangci-lint = "1.61"
+golangci-lint = "v1.61.0"
 node = "22"
 "npm:ts-protoc-gen" = "0.15.0"
 protobuf = "3.20.2"
@@ -40,39 +40,43 @@ protoc-gen-go = "1.35.1"
 
 [tasks.clean]
 description = "Remove all untracked files"
-run = 'git clean -fdx'
+run = "git clean -fdx"
 
 [tasks.buf]
 description = "Compile protos for all platforms"
-depends = ['buf-go', 'buf-web']
+depends = ["buf-go", "buf-web"]
 
 [tasks.buf-go]
 description = "Compile protos for Go"
 sources = ["proto/**/*.proto"]
-outputs = ['**/*.pb.go', '**/*.pb.gw.go']
-depends = ['lint-buf']
-wait_for = ['clean']
+outputs = ["**/*.pb.go", "**/*.pb.gw.go"]
+depends = ["lint-buf"]
+wait_for = ["clean"]
 run = [
-  'buf generate --template ./proto/viam/buf.gen.yaml',
-  'buf generate --template ./proto/viam/buf.gen.tagger.yaml',
+  "buf generate --template ./proto/viam/buf.gen.yaml",
+  "buf generate --template ./proto/viam/buf.gen.tagger.yaml",
 ]
 
 [tasks.buf-web]
 description = "Compile protos for web (js/ts)"
 sources = ["proto/**/*.proto"]
-outputs = ['gen/js/**/*.js', 'gen/js/**/*.ts']
-depends = ['lint-buf']
-wait_for = ['clean']
+outputs = ["gen/js/**/*.js", "gen/js/**/*.ts"]
+depends = ["lint-buf"]
+wait_for = ["clean"]
 quiet = true
 run = """
   # Buf has very weird behavior where any protoc-gen-<whatever> in your path
   # will take precedence over the protoc builtin compilers. This causes issues
   # for users with protoc-gen-js installed via the system package manager for
-  # other projects. We work around the issue here by constructing a new PATH
-  # that only contains binaries managed by mise. This can be removed when we
-  # update from our very old protoc's builtin js compiler to a protoc-gen-js
-  # managed by mise.
-  PATH="$(mise bin-paths --raw | paste -sd: -)"
+  # other projects. We work around the issue here by putting the binaries
+  # managed by mise first on PATH so they take precedence. We still keep the
+  # standard system directories (/usr/bin, /bin) on PATH because the npm-backed
+  # protoc-gen-ts shim needs coreutils like `dirname` to locate itself; without
+  # them buf-web fails with "dirname: not found" and a bogus MODULE_NOT_FOUND.
+  # A stray protoc-gen-js is very unlikely to live in /usr/bin on a runner, so
+  # this keeps the original protection. This can be removed when we update from
+  # our very old protoc's builtin js compiler to a protoc-gen-js managed by mise.
+  PATH="$(mise bin-paths --raw | paste -sd: -):/usr/bin:/bin"
   # Set this so the user can see the commands being run in a similar way to
   # how tasks defined in an array are displayed.
   set -x
@@ -82,17 +86,17 @@ run = """
 
 [tasks.lint]
 description = "Run all linters"
-depends = ['lint-buf', 'lint-go']
+depends = ["lint-buf", "lint-go"]
 
 [tasks.lint-buf]
 description = "Lint + format protos"
-wait_for = ['clean']
-run = ['buf lint', 'buf format -w']
+wait_for = ["clean"]
+run = ["buf lint", "buf format -w"]
 
 [tasks.lint-go]
 description = "Lint Go files"
-wait_for = ['clean']
-depends = ['lint-buf']
+wait_for = ["clean"]
+depends = ["lint-buf"]
 run = """
   {% raw %}
   #!/usr/bin/env bash

@@ -71,6 +71,9 @@ type RobotServiceClient interface {
 	// TransformPose returns a point cloud in one referenceframe in a desired referenceframe.
 	TransformPCD(ctx context.Context, in *TransformPCDRequest, opts ...grpc.CallOption) (*TransformPCDResponse, error)
 	SendTraces(ctx context.Context, in *SendTracesRequest, opts ...grpc.CallOption) (*SendTracesResponse, error)
+	// UploadDataFromPath uploads a file or directory from the robot to the cloud
+	// via the configured data manager service.
+	UploadDataFromPath(ctx context.Context, in *UploadDataFromPathRequest, opts ...grpc.CallOption) (*UploadDataFromPathResponse, error)
 }
 
 type robotServiceClient struct {
@@ -353,6 +356,15 @@ func (c *robotServiceClient) SendTraces(ctx context.Context, in *SendTracesReque
 	return out, nil
 }
 
+func (c *robotServiceClient) UploadDataFromPath(ctx context.Context, in *UploadDataFromPathRequest, opts ...grpc.CallOption) (*UploadDataFromPathResponse, error) {
+	out := new(UploadDataFromPathResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/UploadDataFromPath", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RobotServiceServer is the server API for RobotService service.
 // All implementations must embed UnimplementedRobotServiceServer
 // for forward compatibility
@@ -406,6 +418,9 @@ type RobotServiceServer interface {
 	// TransformPose returns a point cloud in one referenceframe in a desired referenceframe.
 	TransformPCD(context.Context, *TransformPCDRequest) (*TransformPCDResponse, error)
 	SendTraces(context.Context, *SendTracesRequest) (*SendTracesResponse, error)
+	// UploadDataFromPath uploads a file or directory from the robot to the cloud
+	// via the configured data manager service.
+	UploadDataFromPath(context.Context, *UploadDataFromPathRequest) (*UploadDataFromPathResponse, error)
 	mustEmbedUnimplementedRobotServiceServer()
 }
 
@@ -487,6 +502,9 @@ func (UnimplementedRobotServiceServer) TransformPCD(context.Context, *TransformP
 }
 func (UnimplementedRobotServiceServer) SendTraces(context.Context, *SendTracesRequest) (*SendTracesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendTraces not implemented")
+}
+func (UnimplementedRobotServiceServer) UploadDataFromPath(context.Context, *UploadDataFromPathRequest) (*UploadDataFromPathResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadDataFromPath not implemented")
 }
 func (UnimplementedRobotServiceServer) mustEmbedUnimplementedRobotServiceServer() {}
 
@@ -962,6 +980,24 @@ func _RobotService_SendTraces_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_UploadDataFromPath_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadDataFromPathRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).UploadDataFromPath(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/UploadDataFromPath",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).UploadDataFromPath(ctx, req.(*UploadDataFromPathRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RobotService_ServiceDesc is the grpc.ServiceDesc for RobotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1060,6 +1096,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendTraces",
 			Handler:    _RobotService_SendTraces_Handler,
+		},
+		{
+			MethodName: "UploadDataFromPath",
+			Handler:    _RobotService_UploadDataFromPath_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

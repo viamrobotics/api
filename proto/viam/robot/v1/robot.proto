@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package viam.robot.v1;
 
+import "app/datasync/v1/data_sync.proto";
+import "app/packages/v1/packages.proto";
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/duration.proto";
@@ -137,6 +139,12 @@ service RobotService {
   rpc SendTraces(SendTracesRequest) returns (SendTracesResponse) {
     option (google.api.http) = {post: "/viam/api/v1/traces"};
   }
+
+  // UploadDataFromPath uploads a file or directory from the robot to the cloud
+  // via the configured data manager service.
+  rpc UploadDataFromPath(UploadDataFromPathRequest) returns (UploadDataFromPathResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/upload_data_from_path"};
+  }
 }
 
 message SendTracesRequest {
@@ -144,6 +152,28 @@ message SendTracesRequest {
 }
 
 message SendTracesResponse {}
+
+message UploadDataFromPathRequest {
+  // File or folder path on the robot to upload.
+  string path = 1;
+  // Optional metadata to apply to uploaded files.
+  optional app.datasync.v1.UploadMetadata upload_metadata = 2;
+  // Additional arguments to the method.
+  google.protobuf.Struct extra = 99;
+}
+
+message UploadDataFromPathResponse {
+  // Total number of files successfully uploaded.
+  uint64 files_uploaded = 1;
+  // Total number of files that failed to upload.
+  uint64 files_failed = 2;
+  // Total bytes successfully uploaded.
+  uint64 bytes_uploaded = 3;
+  // Total bytes discovered in the directory.
+  uint64 bytes_total = 4;
+  // Successfully uploaded binary data ids.
+  repeated string ids = 5;
+}
 
 message TunnelRequest {
   uint32 destination_port = 1;
@@ -391,6 +421,8 @@ message GetMachineStatusResponse {
   ConfigStatus config = 2;
   State state = 3;
   repeated JobStatus job_statuses = 4;
+  repeated ModuleStatus modules = 5;
+  repeated PackageStatus packages = 6;
 }
 
 message JobStatus {
@@ -433,6 +465,101 @@ message ResourceStatus {
 
   // infomation about resource orgID, locationID and partID
   optional GetCloudMetadataResponse cloud_metadata = 6;
+}
+
+message ModuleStatus {
+  enum State {
+    // state is unknown or has not been set yet
+    STATE_UNSPECIFIED = 0;
+
+    // module is configured but viam-server has not yet attempted to start it
+    // (because e.g. a required package is still downloading)
+    // transitions -> state_starting after pre-setup completes
+    STATE_PENDING = 1;
+
+    // module process has been spawned and viam-server is waiting for it
+    // to send a Ready response and register its models
+    // transitions -> state_ready on success
+    STATE_STARTING = 2;
+
+    // module has sent a Ready response, registered its models, and is running
+    // transitions -> state_unhealthy on bad exit
+    STATE_READY = 3;
+
+    // module failed to start, exited unexpectedly,
+    // or is being restarted after a crash. any failure in any other state goes to this state
+    STATE_UNHEALTHY = 4;
+
+    // module process is shutting down, either because the module is being
+    // removed from the machine or because it is restarting during a reconfigure.
+    // on removal the module's status stops being tracked once shutdown completes;
+    // on restart it transitions -> state_starting
+    STATE_CLOSING = 5;
+  }
+
+  string module_name = 1;
+
+  State state = 2;
+
+  // updated on every state transition
+  google.protobuf.Timestamp last_updated = 3;
+
+  // when a module transitions to unhealthy, this field is populated with the error that caused the transition.
+  // the error persists until the module reenters the Ready state, guaranteed to be nil in the Ready state
+  string error = 4;
+
+  // number of times this module has entered the unhealthy state since the last time this module was in the ready state
+  // this will increment if the module is in a restart loop (state transitioning between pending and starting repeatedly)
+  // Resets to zero when the module enters the ready state or is reconfigured.
+  // Useful for detecting modules stuck in a restart loop (like a python module with a syntax error)
+  uint32 consecutive_failures = 5;
+}
+
+message PackageStatus {
+  enum State {
+    // state is unknown or has not been set yet
+    STATE_UNSPECIFIED = 0;
+
+    // package tarball is actively being fetched from the cloud
+    STATE_DOWNLOADING = 1;
+
+    // tarball has been downloaded and is being extracted/verified
+    STATE_LOADING = 2;
+
+    // first_run.sh script is executing (module packages only)
+    STATE_FIRST_RUN = 3;
+
+    // package is fully installed and available for use
+    STATE_READY = 4;
+
+    // package failed to download, extract, or complete first run
+    STATE_FAILED = 5;
+  }
+
+  // the package name as declared in the robot config (PackageConfig.Name)
+  string name = 1;
+
+  // the package type (module, ml_model, slam_map, etc.)
+  viam.app.packages.v1.PackageType type = 2;
+
+  // current lifecycle state
+  State state = 3;
+
+  // human-readable error detail when state == STATE_FAILED
+  string error = 4;
+
+  // when this status was last updated
+  google.protobuf.Timestamp last_updated = 5;
+
+  // the version string from PackageConfig
+  string version = 6;
+
+  // number of bytes of the package tarball downloaded so far. Only populated
+  // while state == STATE_DOWNLOADING; equals total_bytes once the download completes.
+  uint64 bytes_downloaded = 7;
+
+  // total size of the package tarball in bytes. Zero if the size is unknown.
+  uint64 total_bytes = 8;
 }
 
 message ConfigStatus {

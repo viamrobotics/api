@@ -40,6 +40,11 @@ export class StartBuildRequest extends jspb.Message {
   getDistro(): string;
   setDistro(value: string): void;
 
+  hasBuilder(): boolean;
+  clearBuilder(): void;
+  getBuilder(): string;
+  setBuilder(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartBuildRequest.AsObject;
   static toObject(includeInstance: boolean, msg: StartBuildRequest): StartBuildRequest.AsObject;
@@ -60,12 +65,18 @@ export namespace StartBuildRequest {
     token: string,
     workdir: string,
     distro: string,
+    builder: string,
   }
 }
 
 export class StartBuildResponse extends jspb.Message {
   getBuildId(): string;
   setBuildId(value: string): void;
+
+  hasBuilderFallbackMessage(): boolean;
+  clearBuilderFallbackMessage(): void;
+  getBuilderFallbackMessage(): string;
+  setBuilderFallbackMessage(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartBuildResponse.AsObject;
@@ -80,6 +91,7 @@ export class StartBuildResponse extends jspb.Message {
 export namespace StartBuildResponse {
   export type AsObject = {
     buildId: string,
+    builderFallbackMessage: string,
   }
 }
 
@@ -154,6 +166,11 @@ export class StartReloadBuildRequest extends jspb.Message {
   getBuildInfo(): ReloadBuildInfo | undefined;
   setBuildInfo(value?: ReloadBuildInfo): void;
 
+  hasBuilder(): boolean;
+  clearBuilder(): void;
+  getBuilder(): string;
+  setBuilder(value: string): void;
+
   getCloudBuildCase(): StartReloadBuildRequest.CloudBuildCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartReloadBuildRequest.AsObject;
@@ -169,6 +186,7 @@ export namespace StartReloadBuildRequest {
   export type AsObject = {
     pb_package?: app_packages_v1_packages_pb.CreatePackageRequest.AsObject,
     buildInfo?: ReloadBuildInfo.AsObject,
+    builder: string,
   }
 
   export enum CloudBuildCase {
@@ -181,6 +199,11 @@ export namespace StartReloadBuildRequest {
 export class StartReloadBuildResponse extends jspb.Message {
   getBuildId(): string;
   setBuildId(value: string): void;
+
+  hasBuilderFallbackMessage(): boolean;
+  clearBuilderFallbackMessage(): void;
+  getBuilderFallbackMessage(): string;
+  setBuilderFallbackMessage(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartReloadBuildResponse.AsObject;
@@ -195,6 +218,116 @@ export class StartReloadBuildResponse extends jspb.Message {
 export namespace StartReloadBuildResponse {
   export type AsObject = {
     buildId: string,
+    builderFallbackMessage: string,
+  }
+}
+
+export class SourceUploadBuildInfo extends jspb.Message {
+  clearPlatformsList(): void;
+  getPlatformsList(): Array<string>;
+  setPlatformsList(value: Array<string>): void;
+  addPlatforms(value: string, index?: number): string;
+
+  hasWorkdir(): boolean;
+  clearWorkdir(): void;
+  getWorkdir(): string;
+  setWorkdir(value: string): void;
+
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  hasDistro(): boolean;
+  clearDistro(): void;
+  getDistro(): string;
+  setDistro(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SourceUploadBuildInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: SourceUploadBuildInfo): SourceUploadBuildInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SourceUploadBuildInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SourceUploadBuildInfo;
+  static deserializeBinaryFromReader(message: SourceUploadBuildInfo, reader: jspb.BinaryReader): SourceUploadBuildInfo;
+}
+
+export namespace SourceUploadBuildInfo {
+  export type AsObject = {
+    platformsList: Array<string>,
+    workdir: string,
+    moduleId: string,
+    distro: string,
+  }
+}
+
+export class StartSourceUploadBuildRequest extends jspb.Message {
+  hasPackage(): boolean;
+  clearPackage(): void;
+  getPackage(): app_packages_v1_packages_pb.CreatePackageRequest | undefined;
+  setPackage(value?: app_packages_v1_packages_pb.CreatePackageRequest): void;
+
+  hasBuildInfo(): boolean;
+  clearBuildInfo(): void;
+  getBuildInfo(): SourceUploadBuildInfo | undefined;
+  setBuildInfo(value?: SourceUploadBuildInfo): void;
+
+  getModuleVersion(): string;
+  setModuleVersion(value: string): void;
+
+  hasBuilder(): boolean;
+  clearBuilder(): void;
+  getBuilder(): string;
+  setBuilder(value: string): void;
+
+  getCloudBuildCase(): StartSourceUploadBuildRequest.CloudBuildCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartSourceUploadBuildRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: StartSourceUploadBuildRequest): StartSourceUploadBuildRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartSourceUploadBuildRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartSourceUploadBuildRequest;
+  static deserializeBinaryFromReader(message: StartSourceUploadBuildRequest, reader: jspb.BinaryReader): StartSourceUploadBuildRequest;
+}
+
+export namespace StartSourceUploadBuildRequest {
+  export type AsObject = {
+    pb_package?: app_packages_v1_packages_pb.CreatePackageRequest.AsObject,
+    buildInfo?: SourceUploadBuildInfo.AsObject,
+    moduleVersion: string,
+    builder: string,
+  }
+
+  export enum CloudBuildCase {
+    CLOUD_BUILD_NOT_SET = 0,
+    PACKAGE = 1,
+    BUILD_INFO = 2,
+  }
+}
+
+export class StartSourceUploadBuildResponse extends jspb.Message {
+  getBuildId(): string;
+  setBuildId(value: string): void;
+
+  hasBuilderFallbackMessage(): boolean;
+  clearBuilderFallbackMessage(): void;
+  getBuilderFallbackMessage(): string;
+  setBuilderFallbackMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StartSourceUploadBuildResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: StartSourceUploadBuildResponse): StartSourceUploadBuildResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StartSourceUploadBuildResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StartSourceUploadBuildResponse;
+  static deserializeBinaryFromReader(message: StartSourceUploadBuildResponse, reader: jspb.BinaryReader): StartSourceUploadBuildResponse;
+}
+
+export namespace StartSourceUploadBuildResponse {
+  export type AsObject = {
+    buildId: string,
+    builderFallbackMessage: string,
   }
 }
 

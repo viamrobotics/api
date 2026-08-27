@@ -229,6 +229,15 @@ type RobotServiceSendTraces = {
   readonly responseType: typeof robot_v1_robot_pb.SendTracesResponse;
 };
 
+type RobotServiceUploadDataFromPath = {
+  readonly methodName: string;
+  readonly service: typeof RobotService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof robot_v1_robot_pb.UploadDataFromPathRequest;
+  readonly responseType: typeof robot_v1_robot_pb.UploadDataFromPathResponse;
+};
+
 export class RobotService {
   static readonly serviceName: string;
   static readonly GetOperations: RobotServiceGetOperations;
@@ -256,6 +265,7 @@ export class RobotService {
   static readonly TransformPose: RobotServiceTransformPose;
   static readonly TransformPCD: RobotServiceTransformPCD;
   static readonly SendTraces: RobotServiceSendTraces;
+  static readonly UploadDataFromPath: RobotServiceUploadDataFromPath;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -498,6 +508,15 @@ export class RobotServiceClient {
   sendTraces(
     requestMessage: robot_v1_robot_pb.SendTracesRequest,
     callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.SendTracesResponse|null) => void
+  ): UnaryResponse;
+  uploadDataFromPath(
+    requestMessage: robot_v1_robot_pb.UploadDataFromPathRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.UploadDataFromPathResponse|null) => void
+  ): UnaryResponse;
+  uploadDataFromPath(
+    requestMessage: robot_v1_robot_pb.UploadDataFromPathRequest,
+    callback: (error: ServiceError|null, responseMessage: robot_v1_robot_pb.UploadDataFromPathResponse|null) => void
   ): UnaryResponse;
 }
 

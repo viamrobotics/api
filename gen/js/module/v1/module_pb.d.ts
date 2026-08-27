@@ -183,6 +183,9 @@ export class ReadyRequest extends jspb.Message {
   getParentAddress(): string;
   setParentAddress(value: string): void;
 
+  getRawParentAddress(): string;
+  setRawParentAddress(value: string): void;
+
   getWebrtcOffer(): string;
   setWebrtcOffer(value: string): void;
 
@@ -199,6 +202,7 @@ export class ReadyRequest extends jspb.Message {
 export namespace ReadyRequest {
   export type AsObject = {
     parentAddress: string,
+    rawParentAddress: string,
     webrtcOffer: string,
   }
 }

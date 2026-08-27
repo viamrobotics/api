@@ -99,6 +99,8 @@ service AppService {
   rpc DeleteOAuthApp(DeleteOAuthAppRequest) returns (DeleteOAuthAppResponse);
   rpc ListOAuthApps(ListOAuthAppsRequest) returns (ListOAuthAppsResponse);
 
+  rpc CreateOAuthAppUser(CreateOAuthAppUserRequest) returns (CreateOAuthAppUserResponse);
+
   // Location
 
   // Create a location
@@ -285,6 +287,10 @@ service AppService {
 
   rpc TransferRegistryItem(TransferRegistryItemRequest) returns (TransferRegistryItemResponse);
 
+  rpc DeprecateRegistryItem(DeprecateRegistryItemRequest) returns (DeprecateRegistryItemResponse);
+
+  rpc UndeprecateRegistryItem(UndeprecateRegistryItemRequest) returns (UndeprecateRegistryItemResponse);
+
   rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
 
   rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
@@ -294,6 +300,10 @@ service AppService {
   rpc GetModule(GetModuleRequest) returns (GetModuleResponse);
 
   rpc ListModules(ListModulesRequest) returns (ListModulesResponse);
+
+  rpc DeprecateRegistryItemVersion(DeprecateRegistryItemVersionRequest) returns (DeprecateRegistryItemVersionResponse);
+
+  rpc UndeprecateRegistryItemVersion(UndeprecateRegistryItemVersionRequest) returns (UndeprecateRegistryItemVersionResponse);
 
   rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse);
 
@@ -400,6 +410,20 @@ enum AuthenticationType {
 
 message ListOrganizationsRequest {}
 
+// LoginMethod is an interactive login mechanism an organization may allow.
+enum LoginMethod {
+  LOGIN_METHOD_UNSPECIFIED = 0;
+  LOGIN_METHOD_PASSWORD = 1;
+  LOGIN_METHOD_GOOGLE = 2;
+  LOGIN_METHOD_GITHUB = 3;
+  LOGIN_METHOD_APPLE = 4;
+}
+
+// An empty list means that all methods are allowed.
+message AllowedLoginMethods {
+  repeated LoginMethod methods = 1;
+}
+
 message Organization {
   string id = 1;
   string name = 2;
@@ -410,6 +434,7 @@ message Organization {
   string default_region = 5;
   optional string cid = 6;
   optional FragmentImportList default_fragments = 7;
+  optional AllowedLoginMethods allowed_login_methods = 8;
 }
 
 message OrganizationMember {
@@ -468,6 +493,7 @@ message UpdateOrganizationRequest {
   optional string region = 4;
   optional string cid = 5;
   optional FragmentImportList default_fragments = 6;
+  optional AllowedLoginMethods allowed_login_methods = 7;
 }
 
 message UpdateOrganizationResponse {
@@ -869,6 +895,16 @@ message GetRobotPartByNameAndLocationResponse {
   RobotPart part = 1;
 }
 
+// LogOrder is the order in which logs are returned, by time.
+enum LogOrder {
+  // LOG_ORDER_UNSPECIFIED is treated as LOG_ORDER_DESCENDING.
+  LOG_ORDER_UNSPECIFIED = 0;
+  // oldest logs first
+  LOG_ORDER_ASCENDING = 1;
+  // newest logs first
+  LOG_ORDER_DESCENDING = 2;
+}
+
 message GetRobotPartLogsRequest {
   string id = 1;
   // TODO(https://viam.atlassian.net/browse/APP-3877): Remove this field
@@ -882,6 +918,15 @@ message GetRobotPartLogsRequest {
   optional int64 limit = 8;
   optional string source = 9;
   optional bool user_facing_only = 10;
+  // logs are returned newest first when the order field is empty
+  optional LogOrder order = 11;
+  // range is a duration string in minutes, hours, or days (e.g. "10m", "10h", "10d")
+  // that is resolved against whichever of start and end is present:
+  //   end only:     [end - range, end]
+  //   start only:   [start, start + range]
+  //   neither:      [now - range, now]
+  // Specifying range together with both start and end is an error.
+  optional string range = 12;
 }
 
 message GetRobotPartLogsResponse {
@@ -901,10 +946,15 @@ message TailRobotPartLogsResponse {
 
 message GetRobotPartHistoryRequest {
   string id = 1;
+  optional string page_token = 2;
+  optional int64 page_limit = 3;
+  optional google.protobuf.Timestamp start = 4;
+  optional google.protobuf.Timestamp end = 5;
 }
 
 message GetRobotPartHistoryResponse {
   repeated RobotPartHistoryEntry history = 1;
+  string next_page_token = 2;
 }
 
 message UpdateRobotPartRequest {
@@ -985,6 +1035,7 @@ message Fragment {
   // latest timestamp when fragment was updated
   google.protobuf.Timestamp last_updated = 13 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
   string revision = 14;
+  optional string public_namespace = 15;
 }
 
 message FragmentHistoryEntry {
@@ -1040,7 +1091,9 @@ message FragmentImport {
   string fragment_id = 1;
   string version = 2; // revision or tag
   optional string prefix = 3; // namespace prefix
-  map<string, string> variables = 4; // key-value pairs for fragment variables
+  // Deprecated: use fragment_variables
+  map<string, string> variables = 4 [deprecated = true]; // key-value pairs for fragment variables
+  optional google.protobuf.Struct fragment_variables = 5;
 }
 
 message ResolvedFragment {
@@ -1396,6 +1449,10 @@ message ModuleVersion {
   optional string markdown_description = 6;
   // A list of applications associated with the module
   repeated App apps = 7;
+  // When set, marks this specific version as deprecated
+  optional DeprecatedStatus deprecated_status = 8;
+  // The minimum version of viam-server required to run this version of the module.
+  optional string min_viam_server_version = 9;
 }
 
 message ModuleMetadata {
@@ -1416,6 +1473,8 @@ message ModuleMetadata {
   optional ModuleSourceType source_type = 7;
   // Specifies the language that the module is written in.
   optional ModuleLanguage language = 8;
+  // The minimum version of viam-server required to run the module.
+  optional string min_viam_server_version = 9;
 }
 
 message MLModelVersion {
@@ -1461,6 +1520,35 @@ enum ModuleLanguage {
   MODULE_LANGUAGE_CPP = 3;
 }
 
+// note: current project will only support deprecation of modules;
+// Training Script and ML Model aren't supported yet.
+message DeprecatedStatus {
+  // time of deprecation
+  google.protobuf.Timestamp deprecated_at = 1;
+  // msg explaining reason for deprecation
+  string message = 2;
+}
+
+// RegistryItemBilling stores usage cost information for a registry item. Its shape mirrors the
+// billing block used by fragments so that billing jobs can consume registry item costs the same
+// way. For now only cost_per_month.per_machine is supported; the additional fields that fragment
+// billing supports (cost_per_year, tier_name, in_arrears, etc.) are intentionally omitted.
+message RegistryItemBilling {
+  oneof frequency {
+    // The recurring monthly cost of the item, broken down by billable resource.
+    RegistryItemCostByResource cost_per_month = 1;
+    // The recurring yearly cost of the item, broken down by billable resource.
+    RegistryItemCostByResource cost_per_year = 2;
+  }
+}
+
+// RegistryItemCostByResource holds the cost of a registry item broken down by billable resource.
+// Only the per_machine resource is currently supported.
+message RegistryItemCostByResource {
+  // The cost charged per machine using the item, in USD.
+  double per_machine = 1;
+}
+
 message RegistryItem {
   // The id of the item, containing either:
   // namespace:item_name when a namespace exists on the org.
@@ -1501,6 +1589,13 @@ message RegistryItem {
   google.protobuf.Timestamp created_at = 15;
   // When the item was last updated, either through an update or upload.
   google.protobuf.Timestamp updated_at = 16;
+
+  // Whether the item is deprecated
+  optional DeprecatedStatus deprecated_status = 17;
+
+  // Usage cost information used by billing jobs to bill for monthly usage of the item.
+  // This is unset when no cost has been configured for the item.
+  optional RegistryItemBilling billing = 19;
 }
 
 message GetRegistryItemRequest {
@@ -1537,6 +1632,10 @@ message UpdateRegistryItemRequest {
   }
 
   optional string markdown_description = 9;
+
+  // The usage cost information to store on the item. When unset, the existing billing
+  // configuration is left unchanged.
+  optional RegistryItemBilling billing = 10;
 }
 
 message UpdateRegistryItemResponse {}
@@ -1561,6 +1660,7 @@ message ListRegistryItemsRequest {
   optional bool include_markdown_documentation = 9;
   repeated ModuleSourceType module_source_types = 10;
   repeated ModuleLanguage module_languages = 11;
+  optional bool show_owned_deprecated = 12;
 }
 
 message ListRegistryItemsResponse {
@@ -1589,6 +1689,19 @@ message TransferRegistryItemRequest {
 }
 
 message TransferRegistryItemResponse {}
+
+message DeprecateRegistryItemRequest {
+  string item_id = 1;
+  string message = 2;
+}
+
+message DeprecateRegistryItemResponse {}
+
+message UndeprecateRegistryItemRequest {
+  string item_id = 1;
+}
+
+message UndeprecateRegistryItemResponse {}
 
 // Modules
 message CreateModuleRequest {
@@ -1636,6 +1749,10 @@ message UpdateModuleRequest {
   optional string markdown_description = 9;
 }
 
+message AllowedOrgIDs {
+  repeated string ids = 1;
+}
+
 message App {
   // The name of the application
   string name = 1;
@@ -1649,6 +1766,8 @@ message App {
   optional string logo_path = 5;
   // Optional: structured customizations for the app (e.g., machine picker headings)
   AppCustomizations customizations = 6;
+  // Optional: list of org IDs that are allowed to use this app; if empty, all orgs are allowed
+  optional AllowedOrgIDs allowed_org_ids = 7;
 }
 
 message UpdateModuleResponse {
@@ -1667,6 +1786,8 @@ message UpdateModuleMetadata {
   optional ModuleSourceType source_type = 4;
   // The language the module is written in
   optional ModuleLanguage language = 5;
+  // The minimum version of viam-server required to run the module.
+  optional string min_viam_server_version = 6;
 }
 
 message UpdateMLModelMetadata {
@@ -1764,6 +1885,8 @@ message Module {
   optional string markdown_description = 14;
   // A list of applications associated with the module
   repeated App apps = 15;
+  // Deprecated status of an individual module
+  optional DeprecatedStatus deprecated_status = 16;
 }
 
 message VersionHistory {
@@ -1781,6 +1904,8 @@ message VersionHistory {
   optional string markdown_description = 6;
   // A list of applications associated with the module
   repeated App apps = 7;
+  // Deprecated status of an individual module version
+  optional DeprecatedStatus deprecated_status = 8;
 }
 
 message Uploads {
@@ -1800,6 +1925,25 @@ message ListModulesResponse {
   // A listed of modules. When authenticated, this API will return modules that are private for this org. Public modules are always returned.
   repeated Module modules = 1;
 }
+
+// Deprecates a specific version of a registry item.
+message DeprecateRegistryItemVersionRequest {
+  // The id of the registry item
+  string item_id = 1;
+  // The semver string of the version to deprecate.
+  string version = 2;
+  // msg explaining reason for deprecation
+  string message = 3;
+}
+
+message DeprecateRegistryItemVersionResponse {}
+
+message UndeprecateRegistryItemVersionRequest {
+  string item_id = 1;
+  string version = 2;
+}
+
+message UndeprecateRegistryItemVersionResponse {}
 
 message GetUserIDByEmailRequest {
   string email = 1;
@@ -1983,6 +2127,22 @@ message ListOAuthAppsResponse {
   repeated string client_ids = 1;
 }
 
+message CreateOAuthAppUserRequest {
+  string org_id = 1;
+  string application_id = 2;
+  string email = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string password = 6;
+}
+
+message CreateOAuthAppUserResponse {
+  string auth_token = 1;
+  string registration_id = 2;
+  string user_id = 3;
+  string refresh_token = 4;
+}
+
 enum ClientAuthentication {
   CLIENT_AUTHENTICATION_UNSPECIFIED = 0;
   CLIENT_AUTHENTICATION_REQUIRED = 1;
@@ -2037,6 +2197,7 @@ message GetAppBrandingResponse {
   optional string logo_path = 1;
   map<string, TextOverrides> text_customizations = 2;
   repeated string fragment_ids = 3;
+  repeated string allowed_org_ids = 4;
 }
 
 message AppCustomizations {

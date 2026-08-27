@@ -245,6 +245,28 @@ export namespace ListOrganizationsRequest {
   }
 }
 
+export class AllowedLoginMethods extends jspb.Message {
+  clearMethodsList(): void;
+  getMethodsList(): Array<LoginMethodMap[keyof LoginMethodMap]>;
+  setMethodsList(value: Array<LoginMethodMap[keyof LoginMethodMap]>): void;
+  addMethods(value: LoginMethodMap[keyof LoginMethodMap], index?: number): LoginMethodMap[keyof LoginMethodMap];
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AllowedLoginMethods.AsObject;
+  static toObject(includeInstance: boolean, msg: AllowedLoginMethods): AllowedLoginMethods.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AllowedLoginMethods, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AllowedLoginMethods;
+  static deserializeBinaryFromReader(message: AllowedLoginMethods, reader: jspb.BinaryReader): AllowedLoginMethods;
+}
+
+export namespace AllowedLoginMethods {
+  export type AsObject = {
+    methodsList: Array<LoginMethodMap[keyof LoginMethodMap]>,
+  }
+}
+
 export class Organization extends jspb.Message {
   getId(): string;
   setId(value: string): void;
@@ -273,6 +295,11 @@ export class Organization extends jspb.Message {
   getDefaultFragments(): FragmentImportList | undefined;
   setDefaultFragments(value?: FragmentImportList): void;
 
+  hasAllowedLoginMethods(): boolean;
+  clearAllowedLoginMethods(): void;
+  getAllowedLoginMethods(): AllowedLoginMethods | undefined;
+  setAllowedLoginMethods(value?: AllowedLoginMethods): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Organization.AsObject;
   static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
@@ -292,6 +319,7 @@ export namespace Organization {
     defaultRegion: string,
     cid: string,
     defaultFragments?: FragmentImportList.AsObject,
+    allowedLoginMethods?: AllowedLoginMethods.AsObject,
   }
 }
 
@@ -576,6 +604,11 @@ export class UpdateOrganizationRequest extends jspb.Message {
   getDefaultFragments(): FragmentImportList | undefined;
   setDefaultFragments(value?: FragmentImportList): void;
 
+  hasAllowedLoginMethods(): boolean;
+  clearAllowedLoginMethods(): void;
+  getAllowedLoginMethods(): AllowedLoginMethods | undefined;
+  setAllowedLoginMethods(value?: AllowedLoginMethods): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateOrganizationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateOrganizationRequest): UpdateOrganizationRequest.AsObject;
@@ -594,6 +627,7 @@ export namespace UpdateOrganizationRequest {
     region: string,
     cid: string,
     defaultFragments?: FragmentImportList.AsObject,
+    allowedLoginMethods?: AllowedLoginMethods.AsObject,
   }
 }
 
@@ -2442,6 +2476,16 @@ export class GetRobotPartLogsRequest extends jspb.Message {
   getUserFacingOnly(): boolean;
   setUserFacingOnly(value: boolean): void;
 
+  hasOrder(): boolean;
+  clearOrder(): void;
+  getOrder(): LogOrderMap[keyof LogOrderMap];
+  setOrder(value: LogOrderMap[keyof LogOrderMap]): void;
+
+  hasRange(): boolean;
+  clearRange(): void;
+  getRange(): string;
+  setRange(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartLogsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartLogsRequest): GetRobotPartLogsRequest.AsObject;
@@ -2464,6 +2508,8 @@ export namespace GetRobotPartLogsRequest {
     limit: number,
     source: string,
     userFacingOnly: boolean,
+    order: LogOrderMap[keyof LogOrderMap],
+    range: string,
   }
 }
 
@@ -2549,6 +2595,26 @@ export class GetRobotPartHistoryRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  hasPageToken(): boolean;
+  clearPageToken(): void;
+  getPageToken(): string;
+  setPageToken(value: string): void;
+
+  hasPageLimit(): boolean;
+  clearPageLimit(): void;
+  getPageLimit(): number;
+  setPageLimit(value: number): void;
+
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStart(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasEnd(): boolean;
+  clearEnd(): void;
+  getEnd(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEnd(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartHistoryRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetRobotPartHistoryRequest): GetRobotPartHistoryRequest.AsObject;
@@ -2562,6 +2628,10 @@ export class GetRobotPartHistoryRequest extends jspb.Message {
 export namespace GetRobotPartHistoryRequest {
   export type AsObject = {
     id: string,
+    pageToken: string,
+    pageLimit: number,
+    start?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    end?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -2570,6 +2640,9 @@ export class GetRobotPartHistoryResponse extends jspb.Message {
   getHistoryList(): Array<RobotPartHistoryEntry>;
   setHistoryList(value: Array<RobotPartHistoryEntry>): void;
   addHistory(value?: RobotPartHistoryEntry, index?: number): RobotPartHistoryEntry;
+
+  getNextPageToken(): string;
+  setNextPageToken(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetRobotPartHistoryResponse.AsObject;
@@ -2584,6 +2657,7 @@ export class GetRobotPartHistoryResponse extends jspb.Message {
 export namespace GetRobotPartHistoryResponse {
   export type AsObject = {
     historyList: Array<RobotPartHistoryEntry.AsObject>,
+    nextPageToken: string,
   }
 }
 
@@ -2937,6 +3011,11 @@ export class Fragment extends jspb.Message {
   getRevision(): string;
   setRevision(value: string): void;
 
+  hasPublicNamespace(): boolean;
+  clearPublicNamespace(): void;
+  getPublicNamespace(): string;
+  setPublicNamespace(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
   static toObject(includeInstance: boolean, msg: Fragment): Fragment.AsObject;
@@ -2962,6 +3041,7 @@ export namespace Fragment {
     visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     revision: string,
+    publicNamespace: string,
   }
 }
 
@@ -3143,6 +3223,11 @@ export class FragmentImport extends jspb.Message {
 
   getVariablesMap(): jspb.Map<string, string>;
   clearVariablesMap(): void;
+  hasFragmentVariables(): boolean;
+  clearFragmentVariables(): void;
+  getFragmentVariables(): google_protobuf_struct_pb.Struct | undefined;
+  setFragmentVariables(value?: google_protobuf_struct_pb.Struct): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FragmentImport.AsObject;
   static toObject(includeInstance: boolean, msg: FragmentImport): FragmentImport.AsObject;
@@ -3159,6 +3244,7 @@ export namespace FragmentImport {
     version: string,
     prefix: string,
     variablesMap: Array<[string, string]>,
+    fragmentVariables?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
 
@@ -4946,6 +5032,16 @@ export class ModuleVersion extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasDeprecatedStatus(): boolean;
+  clearDeprecatedStatus(): void;
+  getDeprecatedStatus(): DeprecatedStatus | undefined;
+  setDeprecatedStatus(value?: DeprecatedStatus): void;
+
+  hasMinViamServerVersion(): boolean;
+  clearMinViamServerVersion(): void;
+  getMinViamServerVersion(): string;
+  setMinViamServerVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleVersion.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleVersion): ModuleVersion.AsObject;
@@ -4965,6 +5061,8 @@ export namespace ModuleVersion {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    deprecatedStatus?: DeprecatedStatus.AsObject,
+    minViamServerVersion: string,
   }
 }
 
@@ -5007,6 +5105,11 @@ export class ModuleMetadata extends jspb.Message {
   getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
   setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
 
+  hasMinViamServerVersion(): boolean;
+  clearMinViamServerVersion(): void;
+  getMinViamServerVersion(): string;
+  setMinViamServerVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleMetadata): ModuleMetadata.AsObject;
@@ -5027,6 +5130,7 @@ export namespace ModuleMetadata {
     appsList: Array<App.AsObject>,
     sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
     language: ModuleLanguageMap[keyof ModuleLanguageMap],
+    minViamServerVersion: string,
   }
 }
 
@@ -5152,6 +5256,87 @@ export namespace MLTrainingMetadata {
   }
 }
 
+export class DeprecatedStatus extends jspb.Message {
+  hasDeprecatedAt(): boolean;
+  clearDeprecatedAt(): void;
+  getDeprecatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setDeprecatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeprecatedStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: DeprecatedStatus): DeprecatedStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeprecatedStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeprecatedStatus;
+  static deserializeBinaryFromReader(message: DeprecatedStatus, reader: jspb.BinaryReader): DeprecatedStatus;
+}
+
+export namespace DeprecatedStatus {
+  export type AsObject = {
+    deprecatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    message: string,
+  }
+}
+
+export class RegistryItemBilling extends jspb.Message {
+  hasCostPerMonth(): boolean;
+  clearCostPerMonth(): void;
+  getCostPerMonth(): RegistryItemCostByResource | undefined;
+  setCostPerMonth(value?: RegistryItemCostByResource): void;
+
+  hasCostPerYear(): boolean;
+  clearCostPerYear(): void;
+  getCostPerYear(): RegistryItemCostByResource | undefined;
+  setCostPerYear(value?: RegistryItemCostByResource): void;
+
+  getFrequencyCase(): RegistryItemBilling.FrequencyCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegistryItemBilling.AsObject;
+  static toObject(includeInstance: boolean, msg: RegistryItemBilling): RegistryItemBilling.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegistryItemBilling, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegistryItemBilling;
+  static deserializeBinaryFromReader(message: RegistryItemBilling, reader: jspb.BinaryReader): RegistryItemBilling;
+}
+
+export namespace RegistryItemBilling {
+  export type AsObject = {
+    costPerMonth?: RegistryItemCostByResource.AsObject,
+    costPerYear?: RegistryItemCostByResource.AsObject,
+  }
+
+  export enum FrequencyCase {
+    FREQUENCY_NOT_SET = 0,
+    COST_PER_MONTH = 1,
+    COST_PER_YEAR = 2,
+  }
+}
+
+export class RegistryItemCostByResource extends jspb.Message {
+  getPerMachine(): number;
+  setPerMachine(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegistryItemCostByResource.AsObject;
+  static toObject(includeInstance: boolean, msg: RegistryItemCostByResource): RegistryItemCostByResource.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegistryItemCostByResource, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegistryItemCostByResource;
+  static deserializeBinaryFromReader(message: RegistryItemCostByResource, reader: jspb.BinaryReader): RegistryItemCostByResource;
+}
+
+export namespace RegistryItemCostByResource {
+  export type AsObject = {
+    perMachine: number,
+  }
+}
+
 export class RegistryItem extends jspb.Message {
   getItemId(): string;
   setItemId(value: string): void;
@@ -5214,6 +5399,16 @@ export class RegistryItem extends jspb.Message {
   getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasDeprecatedStatus(): boolean;
+  clearDeprecatedStatus(): void;
+  getDeprecatedStatus(): DeprecatedStatus | undefined;
+  setDeprecatedStatus(value?: DeprecatedStatus): void;
+
+  hasBilling(): boolean;
+  clearBilling(): void;
+  getBilling(): RegistryItemBilling | undefined;
+  setBilling(value?: RegistryItemBilling): void;
+
   getMetadataCase(): RegistryItem.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegistryItem.AsObject;
@@ -5244,6 +5439,8 @@ export namespace RegistryItem {
     mlTrainingMetadata?: MLTrainingMetadata.AsObject,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    deprecatedStatus?: DeprecatedStatus.AsObject,
+    billing?: RegistryItemBilling.AsObject,
   }
 
   export enum MetadataCase {
@@ -5384,6 +5581,11 @@ export class UpdateRegistryItemRequest extends jspb.Message {
   getMarkdownDescription(): string;
   setMarkdownDescription(value: string): void;
 
+  hasBilling(): boolean;
+  clearBilling(): void;
+  getBilling(): RegistryItemBilling | undefined;
+  setBilling(value?: RegistryItemBilling): void;
+
   getMetadataCase(): UpdateRegistryItemRequest.MetadataCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateRegistryItemRequest.AsObject;
@@ -5406,6 +5608,7 @@ export namespace UpdateRegistryItemRequest {
     updateMlModelMetadata?: UpdateMLModelMetadata.AsObject,
     updateMlTrainingMetadata?: UpdateMLTrainingMetadata.AsObject,
     markdownDescription: string,
+    billing?: RegistryItemBilling.AsObject,
   }
 
   export enum MetadataCase {
@@ -5488,6 +5691,11 @@ export class ListRegistryItemsRequest extends jspb.Message {
   setModuleLanguagesList(value: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>): void;
   addModuleLanguages(value: ModuleLanguageMap[keyof ModuleLanguageMap], index?: number): ModuleLanguageMap[keyof ModuleLanguageMap];
 
+  hasShowOwnedDeprecated(): boolean;
+  clearShowOwnedDeprecated(): void;
+  getShowOwnedDeprecated(): boolean;
+  setShowOwnedDeprecated(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListRegistryItemsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListRegistryItemsRequest): ListRegistryItemsRequest.AsObject;
@@ -5511,6 +5719,7 @@ export namespace ListRegistryItemsRequest {
     includeMarkdownDocumentation: boolean,
     moduleSourceTypesList: Array<ModuleSourceTypeMap[keyof ModuleSourceTypeMap]>,
     moduleLanguagesList: Array<ModuleLanguageMap[keyof ModuleLanguageMap]>,
+    showOwnedDeprecated: boolean,
   }
 }
 
@@ -5658,6 +5867,82 @@ export namespace TransferRegistryItemResponse {
   }
 }
 
+export class DeprecateRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeprecateRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeprecateRegistryItemRequest): DeprecateRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeprecateRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeprecateRegistryItemRequest;
+  static deserializeBinaryFromReader(message: DeprecateRegistryItemRequest, reader: jspb.BinaryReader): DeprecateRegistryItemRequest;
+}
+
+export namespace DeprecateRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+    message: string,
+  }
+}
+
+export class DeprecateRegistryItemResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeprecateRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeprecateRegistryItemResponse): DeprecateRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeprecateRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeprecateRegistryItemResponse;
+  static deserializeBinaryFromReader(message: DeprecateRegistryItemResponse, reader: jspb.BinaryReader): DeprecateRegistryItemResponse;
+}
+
+export namespace DeprecateRegistryItemResponse {
+  export type AsObject = {
+  }
+}
+
+export class UndeprecateRegistryItemRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UndeprecateRegistryItemRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UndeprecateRegistryItemRequest): UndeprecateRegistryItemRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UndeprecateRegistryItemRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UndeprecateRegistryItemRequest;
+  static deserializeBinaryFromReader(message: UndeprecateRegistryItemRequest, reader: jspb.BinaryReader): UndeprecateRegistryItemRequest;
+}
+
+export namespace UndeprecateRegistryItemRequest {
+  export type AsObject = {
+    itemId: string,
+  }
+}
+
+export class UndeprecateRegistryItemResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UndeprecateRegistryItemResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UndeprecateRegistryItemResponse): UndeprecateRegistryItemResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UndeprecateRegistryItemResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UndeprecateRegistryItemResponse;
+  static deserializeBinaryFromReader(message: UndeprecateRegistryItemResponse, reader: jspb.BinaryReader): UndeprecateRegistryItemResponse;
+}
+
+export namespace UndeprecateRegistryItemResponse {
+  export type AsObject = {
+  }
+}
+
 export class CreateModuleRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -5766,6 +6051,28 @@ export namespace UpdateModuleRequest {
   }
 }
 
+export class AllowedOrgIDs extends jspb.Message {
+  clearIdsList(): void;
+  getIdsList(): Array<string>;
+  setIdsList(value: Array<string>): void;
+  addIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AllowedOrgIDs.AsObject;
+  static toObject(includeInstance: boolean, msg: AllowedOrgIDs): AllowedOrgIDs.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AllowedOrgIDs, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AllowedOrgIDs;
+  static deserializeBinaryFromReader(message: AllowedOrgIDs, reader: jspb.BinaryReader): AllowedOrgIDs;
+}
+
+export namespace AllowedOrgIDs {
+  export type AsObject = {
+    idsList: Array<string>,
+  }
+}
+
 export class App extends jspb.Message {
   getName(): string;
   setName(value: string): void;
@@ -5791,6 +6098,11 @@ export class App extends jspb.Message {
   getCustomizations(): AppCustomizations | undefined;
   setCustomizations(value?: AppCustomizations): void;
 
+  hasAllowedOrgIds(): boolean;
+  clearAllowedOrgIds(): void;
+  getAllowedOrgIds(): AllowedOrgIDs | undefined;
+  setAllowedOrgIds(value?: AllowedOrgIDs): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): App.AsObject;
   static toObject(includeInstance: boolean, msg: App): App.AsObject;
@@ -5809,6 +6121,7 @@ export namespace App {
     fragmentIdsList: Array<string>,
     logoPath: string,
     customizations?: AppCustomizations.AsObject,
+    allowedOrgIds?: AllowedOrgIDs.AsObject,
   }
 }
 
@@ -5856,6 +6169,11 @@ export class UpdateModuleMetadata extends jspb.Message {
   getLanguage(): ModuleLanguageMap[keyof ModuleLanguageMap];
   setLanguage(value: ModuleLanguageMap[keyof ModuleLanguageMap]): void;
 
+  hasMinViamServerVersion(): boolean;
+  clearMinViamServerVersion(): void;
+  getMinViamServerVersion(): string;
+  setMinViamServerVersion(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateModuleMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateModuleMetadata): UpdateModuleMetadata.AsObject;
@@ -5873,6 +6191,7 @@ export namespace UpdateModuleMetadata {
     appsList: Array<App.AsObject>,
     sourceType: ModuleSourceTypeMap[keyof ModuleSourceTypeMap],
     language: ModuleLanguageMap[keyof ModuleLanguageMap],
+    minViamServerVersion: string,
   }
 }
 
@@ -6165,6 +6484,11 @@ export class Module extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasDeprecatedStatus(): boolean;
+  clearDeprecatedStatus(): void;
+  getDeprecatedStatus(): DeprecatedStatus | undefined;
+  setDeprecatedStatus(value?: DeprecatedStatus): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Module.AsObject;
   static toObject(includeInstance: boolean, msg: Module): Module.AsObject;
@@ -6192,6 +6516,7 @@ export namespace Module {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    deprecatedStatus?: DeprecatedStatus.AsObject,
   }
 }
 
@@ -6227,6 +6552,11 @@ export class VersionHistory extends jspb.Message {
   setAppsList(value: Array<App>): void;
   addApps(value?: App, index?: number): App;
 
+  hasDeprecatedStatus(): boolean;
+  clearDeprecatedStatus(): void;
+  getDeprecatedStatus(): DeprecatedStatus | undefined;
+  setDeprecatedStatus(value?: DeprecatedStatus): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): VersionHistory.AsObject;
   static toObject(includeInstance: boolean, msg: VersionHistory): VersionHistory.AsObject;
@@ -6246,6 +6576,7 @@ export namespace VersionHistory {
     firstRun: string,
     markdownDescription: string,
     appsList: Array<App.AsObject>,
+    deprecatedStatus?: DeprecatedStatus.AsObject,
   }
 }
 
@@ -6322,6 +6653,90 @@ export class ListModulesResponse extends jspb.Message {
 export namespace ListModulesResponse {
   export type AsObject = {
     modulesList: Array<Module.AsObject>,
+  }
+}
+
+export class DeprecateRegistryItemVersionRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  getMessage(): string;
+  setMessage(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeprecateRegistryItemVersionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeprecateRegistryItemVersionRequest): DeprecateRegistryItemVersionRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeprecateRegistryItemVersionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeprecateRegistryItemVersionRequest;
+  static deserializeBinaryFromReader(message: DeprecateRegistryItemVersionRequest, reader: jspb.BinaryReader): DeprecateRegistryItemVersionRequest;
+}
+
+export namespace DeprecateRegistryItemVersionRequest {
+  export type AsObject = {
+    itemId: string,
+    version: string,
+    message: string,
+  }
+}
+
+export class DeprecateRegistryItemVersionResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeprecateRegistryItemVersionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeprecateRegistryItemVersionResponse): DeprecateRegistryItemVersionResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeprecateRegistryItemVersionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeprecateRegistryItemVersionResponse;
+  static deserializeBinaryFromReader(message: DeprecateRegistryItemVersionResponse, reader: jspb.BinaryReader): DeprecateRegistryItemVersionResponse;
+}
+
+export namespace DeprecateRegistryItemVersionResponse {
+  export type AsObject = {
+  }
+}
+
+export class UndeprecateRegistryItemVersionRequest extends jspb.Message {
+  getItemId(): string;
+  setItemId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UndeprecateRegistryItemVersionRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UndeprecateRegistryItemVersionRequest): UndeprecateRegistryItemVersionRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UndeprecateRegistryItemVersionRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UndeprecateRegistryItemVersionRequest;
+  static deserializeBinaryFromReader(message: UndeprecateRegistryItemVersionRequest, reader: jspb.BinaryReader): UndeprecateRegistryItemVersionRequest;
+}
+
+export namespace UndeprecateRegistryItemVersionRequest {
+  export type AsObject = {
+    itemId: string,
+    version: string,
+  }
+}
+
+export class UndeprecateRegistryItemVersionResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UndeprecateRegistryItemVersionResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UndeprecateRegistryItemVersionResponse): UndeprecateRegistryItemVersionResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UndeprecateRegistryItemVersionResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UndeprecateRegistryItemVersionResponse;
+  static deserializeBinaryFromReader(message: UndeprecateRegistryItemVersionResponse, reader: jspb.BinaryReader): UndeprecateRegistryItemVersionResponse;
+}
+
+export namespace UndeprecateRegistryItemVersionResponse {
+  export type AsObject = {
   }
 }
 
@@ -7289,6 +7704,78 @@ export namespace ListOAuthAppsResponse {
   }
 }
 
+export class CreateOAuthAppUserRequest extends jspb.Message {
+  getOrgId(): string;
+  setOrgId(value: string): void;
+
+  getApplicationId(): string;
+  setApplicationId(value: string): void;
+
+  getEmail(): string;
+  setEmail(value: string): void;
+
+  getFirstName(): string;
+  setFirstName(value: string): void;
+
+  getLastName(): string;
+  setLastName(value: string): void;
+
+  getPassword(): string;
+  setPassword(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateOAuthAppUserRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateOAuthAppUserRequest): CreateOAuthAppUserRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateOAuthAppUserRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateOAuthAppUserRequest;
+  static deserializeBinaryFromReader(message: CreateOAuthAppUserRequest, reader: jspb.BinaryReader): CreateOAuthAppUserRequest;
+}
+
+export namespace CreateOAuthAppUserRequest {
+  export type AsObject = {
+    orgId: string,
+    applicationId: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    password: string,
+  }
+}
+
+export class CreateOAuthAppUserResponse extends jspb.Message {
+  getAuthToken(): string;
+  setAuthToken(value: string): void;
+
+  getRegistrationId(): string;
+  setRegistrationId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getRefreshToken(): string;
+  setRefreshToken(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateOAuthAppUserResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateOAuthAppUserResponse): CreateOAuthAppUserResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateOAuthAppUserResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateOAuthAppUserResponse;
+  static deserializeBinaryFromReader(message: CreateOAuthAppUserResponse, reader: jspb.BinaryReader): CreateOAuthAppUserResponse;
+}
+
+export namespace CreateOAuthAppUserResponse {
+  export type AsObject = {
+    authToken: string,
+    registrationId: string,
+    userId: string,
+    refreshToken: string,
+  }
+}
+
 export class OAuthConfig extends jspb.Message {
   getClientAuthentication(): ClientAuthenticationMap[keyof ClientAuthenticationMap];
   setClientAuthentication(value: ClientAuthenticationMap[keyof ClientAuthenticationMap]): void;
@@ -7399,6 +7886,11 @@ export class GetAppBrandingResponse extends jspb.Message {
   setFragmentIdsList(value: Array<string>): void;
   addFragmentIds(value: string, index?: number): string;
 
+  clearAllowedOrgIdsList(): void;
+  getAllowedOrgIdsList(): Array<string>;
+  setAllowedOrgIdsList(value: Array<string>): void;
+  addAllowedOrgIds(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAppBrandingResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetAppBrandingResponse): GetAppBrandingResponse.AsObject;
@@ -7414,6 +7906,7 @@ export namespace GetAppBrandingResponse {
     logoPath: string,
     textCustomizationsMap: Array<[string, TextOverrides.AsObject]>,
     fragmentIdsList: Array<string>,
+    allowedOrgIdsList: Array<string>,
   }
 }
 
@@ -7735,6 +8228,24 @@ export interface AuthenticationTypeMap {
 }
 
 export const AuthenticationType: AuthenticationTypeMap;
+
+export interface LoginMethodMap {
+  LOGIN_METHOD_UNSPECIFIED: 0;
+  LOGIN_METHOD_PASSWORD: 1;
+  LOGIN_METHOD_GOOGLE: 2;
+  LOGIN_METHOD_GITHUB: 3;
+  LOGIN_METHOD_APPLE: 4;
+}
+
+export const LoginMethod: LoginMethodMap;
+
+export interface LogOrderMap {
+  LOG_ORDER_UNSPECIFIED: 0;
+  LOG_ORDER_ASCENDING: 1;
+  LOG_ORDER_DESCENDING: 2;
+}
+
+export const LogOrder: LogOrderMap;
 
 export interface FragmentVisibilityMap {
   FRAGMENT_VISIBILITY_UNSPECIFIED: 0;

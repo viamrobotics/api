@@ -14,6 +14,15 @@ type AudioOutServicePlay = {
   readonly responseType: typeof component_audioout_v1_audioout_pb.PlayResponse;
 };
 
+type AudioOutServicePlayStream = {
+  readonly methodName: string;
+  readonly service: typeof AudioOutService;
+  readonly requestStream: true;
+  readonly responseStream: false;
+  readonly requestType: typeof component_audioout_v1_audioout_pb.PlayStreamRequest;
+  readonly responseType: typeof component_audioout_v1_audioout_pb.PlayStreamResponse;
+};
+
 type AudioOutServiceGetProperties = {
   readonly methodName: string;
   readonly service: typeof AudioOutService;
@@ -53,6 +62,7 @@ type AudioOutServiceGetGeometries = {
 export class AudioOutService {
   static readonly serviceName: string;
   static readonly Play: AudioOutServicePlay;
+  static readonly PlayStream: AudioOutServicePlayStream;
   static readonly GetProperties: AudioOutServiceGetProperties;
   static readonly DoCommand: AudioOutServiceDoCommand;
   static readonly GetStatus: AudioOutServiceGetStatus;
@@ -100,6 +110,7 @@ export class AudioOutServiceClient {
     requestMessage: component_audioout_v1_audioout_pb.PlayRequest,
     callback: (error: ServiceError|null, responseMessage: component_audioout_v1_audioout_pb.PlayResponse|null) => void
   ): UnaryResponse;
+  playStream(metadata?: grpc.Metadata): RequestStream<component_audioout_v1_audioout_pb.PlayStreamRequest>;
   getProperties(
     requestMessage: common_v1_common_pb.GetPropertiesRequest,
     metadata: grpc.Metadata,

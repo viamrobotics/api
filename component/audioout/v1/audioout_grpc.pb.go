@@ -25,6 +25,11 @@ const _ = grpc.SupportPackageIsVersion7
 type AudioOutServiceClient interface {
 	// Play plays audio from the audioout component.
 	Play(ctx context.Context, in *PlayRequest, opts ...grpc.CallOption) (*PlayResponse, error)
+	// PlayStream streams audio chunks to the audioout component for playback.
+	// The first message on the stream must be a PlayStreamInit containing the
+	// component name and AudioInfo describing the audio format; subsequent
+	// messages must be PlayStreamChunk payloads.
+	PlayStream(ctx context.Context, opts ...grpc.CallOption) (AudioOutService_PlayStreamClient, error)
 	// GetProperties returns the properties of the audioout.
 	GetProperties(ctx context.Context, in *v1.GetPropertiesRequest, opts ...grpc.CallOption) (*v1.GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
@@ -50,6 +55,40 @@ func (c *audioOutServiceClient) Play(ctx context.Context, in *PlayRequest, opts 
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *audioOutServiceClient) PlayStream(ctx context.Context, opts ...grpc.CallOption) (AudioOutService_PlayStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AudioOutService_ServiceDesc.Streams[0], "/viam.component.audioout.v1.AudioOutService/PlayStream", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &audioOutServicePlayStreamClient{stream}
+	return x, nil
+}
+
+type AudioOutService_PlayStreamClient interface {
+	Send(*PlayStreamRequest) error
+	CloseAndRecv() (*PlayStreamResponse, error)
+	grpc.ClientStream
+}
+
+type audioOutServicePlayStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *audioOutServicePlayStreamClient) Send(m *PlayStreamRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *audioOutServicePlayStreamClient) CloseAndRecv() (*PlayStreamResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(PlayStreamResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *audioOutServiceClient) GetProperties(ctx context.Context, in *v1.GetPropertiesRequest, opts ...grpc.CallOption) (*v1.GetPropertiesResponse, error) {
@@ -94,6 +133,11 @@ func (c *audioOutServiceClient) GetGeometries(ctx context.Context, in *v1.GetGeo
 type AudioOutServiceServer interface {
 	// Play plays audio from the audioout component.
 	Play(context.Context, *PlayRequest) (*PlayResponse, error)
+	// PlayStream streams audio chunks to the audioout component for playback.
+	// The first message on the stream must be a PlayStreamInit containing the
+	// component name and AudioInfo describing the audio format; subsequent
+	// messages must be PlayStreamChunk payloads.
+	PlayStream(AudioOutService_PlayStreamServer) error
 	// GetProperties returns the properties of the audioout.
 	GetProperties(context.Context, *v1.GetPropertiesRequest) (*v1.GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
@@ -111,6 +155,9 @@ type UnimplementedAudioOutServiceServer struct {
 
 func (UnimplementedAudioOutServiceServer) Play(context.Context, *PlayRequest) (*PlayResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Play not implemented")
+}
+func (UnimplementedAudioOutServiceServer) PlayStream(AudioOutService_PlayStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method PlayStream not implemented")
 }
 func (UnimplementedAudioOutServiceServer) GetProperties(context.Context, *v1.GetPropertiesRequest) (*v1.GetPropertiesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProperties not implemented")
@@ -153,6 +200,32 @@ func _AudioOutService_Play_Handler(srv interface{}, ctx context.Context, dec fun
 		return srv.(AudioOutServiceServer).Play(ctx, req.(*PlayRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _AudioOutService_PlayStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(AudioOutServiceServer).PlayStream(&audioOutServicePlayStreamServer{stream})
+}
+
+type AudioOutService_PlayStreamServer interface {
+	SendAndClose(*PlayStreamResponse) error
+	Recv() (*PlayStreamRequest, error)
+	grpc.ServerStream
+}
+
+type audioOutServicePlayStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *audioOutServicePlayStreamServer) SendAndClose(m *PlayStreamResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *audioOutServicePlayStreamServer) Recv() (*PlayStreamRequest, error) {
+	m := new(PlayStreamRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func _AudioOutService_GetProperties_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -255,6 +328,12 @@ var AudioOutService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AudioOutService_GetGeometries_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "PlayStream",
+			Handler:       _AudioOutService_PlayStream_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "component/audioout/v1/audioout.proto",
 }

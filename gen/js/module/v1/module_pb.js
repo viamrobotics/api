@@ -1530,6 +1530,7 @@ proto.viam.module.v1.ReadyRequest.prototype.toObject = function(opt_includeInsta
 proto.viam.module.v1.ReadyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     parentAddress: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    rawParentAddress: jspb.Message.getFieldWithDefault(msg, 3, ""),
     webrtcOffer: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -1571,6 +1572,10 @@ proto.viam.module.v1.ReadyRequest.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.setParentAddress(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRawParentAddress(value);
+      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setWebrtcOffer(value);
@@ -1611,6 +1616,13 @@ proto.viam.module.v1.ReadyRequest.serializeBinaryToWriter = function(message, wr
       f
     );
   }
+  f = message.getRawParentAddress();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
   f = message.getWebrtcOffer();
   if (f.length > 0) {
     writer.writeString(
@@ -1636,6 +1648,24 @@ proto.viam.module.v1.ReadyRequest.prototype.getParentAddress = function() {
  */
 proto.viam.module.v1.ReadyRequest.prototype.setParentAddress = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string raw_parent_address = 3;
+ * @return {string}
+ */
+proto.viam.module.v1.ReadyRequest.prototype.getRawParentAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.module.v1.ReadyRequest} returns this
+ */
+proto.viam.module.v1.ReadyRequest.prototype.setRawParentAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

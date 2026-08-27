@@ -351,6 +351,9 @@ export namespace Decl {
     setOverloadsList(value: Array<Decl.FunctionDecl.Overload>): void;
     addOverloads(value?: Decl.FunctionDecl.Overload, index?: number): Decl.FunctionDecl.Overload;
 
+    getDoc(): string;
+    setDoc(value: string): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): FunctionDecl.AsObject;
     static toObject(includeInstance: boolean, msg: FunctionDecl): FunctionDecl.AsObject;
@@ -364,6 +367,7 @@ export namespace Decl {
   export namespace FunctionDecl {
     export type AsObject = {
       overloadsList: Array<Decl.FunctionDecl.Overload.AsObject>,
+      doc: string,
     }
 
     export class Overload extends jspb.Message {

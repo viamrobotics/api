@@ -64,6 +64,24 @@ DatasetService.MergeDatasets = {
   responseType: app_dataset_v1_dataset_pb.MergeDatasetsResponse
 };
 
+DatasetService.StartSequenceDatasetExport = {
+  methodName: "StartSequenceDatasetExport",
+  service: DatasetService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_dataset_v1_dataset_pb.StartSequenceDatasetExportRequest,
+  responseType: app_dataset_v1_dataset_pb.StartSequenceDatasetExportResponse
+};
+
+DatasetService.GetSequenceDatasetExport = {
+  methodName: "GetSequenceDatasetExport",
+  service: DatasetService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_dataset_v1_dataset_pb.GetSequenceDatasetExportRequest,
+  responseType: app_dataset_v1_dataset_pb.GetSequenceDatasetExportResponse
+};
+
 exports.DatasetService = DatasetService;
 
 function DatasetServiceClient(serviceHost, options) {
@@ -231,6 +249,68 @@ DatasetServiceClient.prototype.mergeDatasets = function mergeDatasets(requestMes
     callback = arguments[1];
   }
   var client = grpc.unary(DatasetService.MergeDatasets, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DatasetServiceClient.prototype.startSequenceDatasetExport = function startSequenceDatasetExport(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DatasetService.StartSequenceDatasetExport, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+DatasetServiceClient.prototype.getSequenceDatasetExport = function getSequenceDatasetExport(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(DatasetService.GetSequenceDatasetExport, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

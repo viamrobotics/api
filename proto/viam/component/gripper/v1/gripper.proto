@@ -38,6 +38,17 @@ service GripperService {
     option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/is_holding_something"};
   }
 
+  // GetCurrentInputs returns the current input values of a gripper
+  rpc GetCurrentInputs(GetCurrentInputsRequest) returns (GetCurrentInputsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/inputs"};
+  }
+
+  // GoToInputs moves the gripper to the given input values.
+  rpc GoToInputs(GoToInputsRequest) returns (GoToInputsResponse) {
+    option (common.v1.safety_heartbeat_monitored) = true;
+    option (google.api.http) = {put: "/viam/api/v1/component/gripper/{name}/inputs"};
+  }
+
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {post: "/viam/api/v1/component/gripper/{name}/do_command"};
@@ -101,3 +112,26 @@ message IsHoldingSomethingResponse {
   bool is_holding_something = 1;
   google.protobuf.Struct meta = 99;
 }
+
+message GetCurrentInputsRequest {
+  // Name of a gripper
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetCurrentInputsResponse {
+  // The current input values of the gripper
+  repeated double values = 1;
+}
+
+message GoToInputsRequest {
+  // Name of a gripper
+  string name = 1;
+  // The input values to move the gripper to
+  repeated double values = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GoToInputsResponse {}

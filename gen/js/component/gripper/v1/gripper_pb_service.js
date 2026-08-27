@@ -56,6 +56,24 @@ GripperService.IsHoldingSomething = {
   responseType: component_gripper_v1_gripper_pb.IsHoldingSomethingResponse
 };
 
+GripperService.GetCurrentInputs = {
+  methodName: "GetCurrentInputs",
+  service: GripperService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_gripper_v1_gripper_pb.GetCurrentInputsRequest,
+  responseType: component_gripper_v1_gripper_pb.GetCurrentInputsResponse
+};
+
+GripperService.GoToInputs = {
+  methodName: "GoToInputs",
+  service: GripperService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_gripper_v1_gripper_pb.GoToInputsRequest,
+  responseType: component_gripper_v1_gripper_pb.GoToInputsResponse
+};
+
 GripperService.DoCommand = {
   methodName: "DoCommand",
   service: GripperService,
@@ -228,6 +246,68 @@ GripperServiceClient.prototype.isHoldingSomething = function isHoldingSomething(
     callback = arguments[1];
   }
   var client = grpc.unary(GripperService.IsHoldingSomething, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+GripperServiceClient.prototype.getCurrentInputs = function getCurrentInputs(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(GripperService.GetCurrentInputs, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+GripperServiceClient.prototype.goToInputs = function goToInputs(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(GripperService.GoToInputs, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

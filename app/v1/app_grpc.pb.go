@@ -75,6 +75,7 @@ type AppServiceClient interface {
 	UpdateOAuthApp(ctx context.Context, in *UpdateOAuthAppRequest, opts ...grpc.CallOption) (*UpdateOAuthAppResponse, error)
 	DeleteOAuthApp(ctx context.Context, in *DeleteOAuthAppRequest, opts ...grpc.CallOption) (*DeleteOAuthAppResponse, error)
 	ListOAuthApps(ctx context.Context, in *ListOAuthAppsRequest, opts ...grpc.CallOption) (*ListOAuthAppsResponse, error)
+	CreateOAuthAppUser(ctx context.Context, in *CreateOAuthAppUserRequest, opts ...grpc.CallOption) (*CreateOAuthAppUserResponse, error)
 	// Create a location
 	CreateLocation(ctx context.Context, in *CreateLocationRequest, opts ...grpc.CallOption) (*CreateLocationResponse, error)
 	// Get a location
@@ -195,11 +196,15 @@ type AppServiceClient interface {
 	DeleteRegistryItem(ctx context.Context, in *DeleteRegistryItemRequest, opts ...grpc.CallOption) (*DeleteRegistryItemResponse, error)
 	RenameRegistryItem(ctx context.Context, in *RenameRegistryItemRequest, opts ...grpc.CallOption) (*RenameRegistryItemResponse, error)
 	TransferRegistryItem(ctx context.Context, in *TransferRegistryItemRequest, opts ...grpc.CallOption) (*TransferRegistryItemResponse, error)
+	DeprecateRegistryItem(ctx context.Context, in *DeprecateRegistryItemRequest, opts ...grpc.CallOption) (*DeprecateRegistryItemResponse, error)
+	UndeprecateRegistryItem(ctx context.Context, in *UndeprecateRegistryItemRequest, opts ...grpc.CallOption) (*UndeprecateRegistryItemResponse, error)
 	CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error)
 	UpdateModule(ctx context.Context, in *UpdateModuleRequest, opts ...grpc.CallOption) (*UpdateModuleResponse, error)
 	UploadModuleFile(ctx context.Context, opts ...grpc.CallOption) (AppService_UploadModuleFileClient, error)
 	GetModule(ctx context.Context, in *GetModuleRequest, opts ...grpc.CallOption) (*GetModuleResponse, error)
 	ListModules(ctx context.Context, in *ListModulesRequest, opts ...grpc.CallOption) (*ListModulesResponse, error)
+	DeprecateRegistryItemVersion(ctx context.Context, in *DeprecateRegistryItemVersionRequest, opts ...grpc.CallOption) (*DeprecateRegistryItemVersionResponse, error)
+	UndeprecateRegistryItemVersion(ctx context.Context, in *UndeprecateRegistryItemVersionRequest, opts ...grpc.CallOption) (*UndeprecateRegistryItemVersionResponse, error)
 	CreateKey(ctx context.Context, in *CreateKeyRequest, opts ...grpc.CallOption) (*CreateKeyResponse, error)
 	DeleteKey(ctx context.Context, in *DeleteKeyRequest, opts ...grpc.CallOption) (*DeleteKeyResponse, error)
 	ListKeys(ctx context.Context, in *ListKeysRequest, opts ...grpc.CallOption) (*ListKeysResponse, error)
@@ -531,6 +536,15 @@ func (c *appServiceClient) DeleteOAuthApp(ctx context.Context, in *DeleteOAuthAp
 func (c *appServiceClient) ListOAuthApps(ctx context.Context, in *ListOAuthAppsRequest, opts ...grpc.CallOption) (*ListOAuthAppsResponse, error) {
 	out := new(ListOAuthAppsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListOAuthApps", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) CreateOAuthAppUser(ctx context.Context, in *CreateOAuthAppUserRequest, opts ...grpc.CallOption) (*CreateOAuthAppUserResponse, error) {
+	out := new(CreateOAuthAppUserResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateOAuthAppUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1118,6 +1132,24 @@ func (c *appServiceClient) TransferRegistryItem(ctx context.Context, in *Transfe
 	return out, nil
 }
 
+func (c *appServiceClient) DeprecateRegistryItem(ctx context.Context, in *DeprecateRegistryItemRequest, opts ...grpc.CallOption) (*DeprecateRegistryItemResponse, error) {
+	out := new(DeprecateRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeprecateRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UndeprecateRegistryItem(ctx context.Context, in *UndeprecateRegistryItemRequest, opts ...grpc.CallOption) (*UndeprecateRegistryItemResponse, error) {
+	out := new(UndeprecateRegistryItemResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UndeprecateRegistryItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) CreateModule(ctx context.Context, in *CreateModuleRequest, opts ...grpc.CallOption) (*CreateModuleResponse, error) {
 	out := new(CreateModuleResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/CreateModule", in, out, opts...)
@@ -1182,6 +1214,24 @@ func (c *appServiceClient) GetModule(ctx context.Context, in *GetModuleRequest, 
 func (c *appServiceClient) ListModules(ctx context.Context, in *ListModulesRequest, opts ...grpc.CallOption) (*ListModulesResponse, error) {
 	out := new(ListModulesResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListModules", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) DeprecateRegistryItemVersion(ctx context.Context, in *DeprecateRegistryItemVersionRequest, opts ...grpc.CallOption) (*DeprecateRegistryItemVersionResponse, error) {
+	out := new(DeprecateRegistryItemVersionResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/DeprecateRegistryItemVersion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) UndeprecateRegistryItemVersion(ctx context.Context, in *UndeprecateRegistryItemVersionRequest, opts ...grpc.CallOption) (*UndeprecateRegistryItemVersionResponse, error) {
+	out := new(UndeprecateRegistryItemVersionResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UndeprecateRegistryItemVersion", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1371,6 +1421,7 @@ type AppServiceServer interface {
 	UpdateOAuthApp(context.Context, *UpdateOAuthAppRequest) (*UpdateOAuthAppResponse, error)
 	DeleteOAuthApp(context.Context, *DeleteOAuthAppRequest) (*DeleteOAuthAppResponse, error)
 	ListOAuthApps(context.Context, *ListOAuthAppsRequest) (*ListOAuthAppsResponse, error)
+	CreateOAuthAppUser(context.Context, *CreateOAuthAppUserRequest) (*CreateOAuthAppUserResponse, error)
 	// Create a location
 	CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error)
 	// Get a location
@@ -1491,11 +1542,15 @@ type AppServiceServer interface {
 	DeleteRegistryItem(context.Context, *DeleteRegistryItemRequest) (*DeleteRegistryItemResponse, error)
 	RenameRegistryItem(context.Context, *RenameRegistryItemRequest) (*RenameRegistryItemResponse, error)
 	TransferRegistryItem(context.Context, *TransferRegistryItemRequest) (*TransferRegistryItemResponse, error)
+	DeprecateRegistryItem(context.Context, *DeprecateRegistryItemRequest) (*DeprecateRegistryItemResponse, error)
+	UndeprecateRegistryItem(context.Context, *UndeprecateRegistryItemRequest) (*UndeprecateRegistryItemResponse, error)
 	CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error)
 	UpdateModule(context.Context, *UpdateModuleRequest) (*UpdateModuleResponse, error)
 	UploadModuleFile(AppService_UploadModuleFileServer) error
 	GetModule(context.Context, *GetModuleRequest) (*GetModuleResponse, error)
 	ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error)
+	DeprecateRegistryItemVersion(context.Context, *DeprecateRegistryItemVersionRequest) (*DeprecateRegistryItemVersionResponse, error)
+	UndeprecateRegistryItemVersion(context.Context, *UndeprecateRegistryItemVersionRequest) (*UndeprecateRegistryItemVersionResponse, error)
 	CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error)
 	DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error)
 	ListKeys(context.Context, *ListKeysRequest) (*ListKeysResponse, error)
@@ -1625,6 +1680,9 @@ func (UnimplementedAppServiceServer) DeleteOAuthApp(context.Context, *DeleteOAut
 }
 func (UnimplementedAppServiceServer) ListOAuthApps(context.Context, *ListOAuthAppsRequest) (*ListOAuthAppsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOAuthApps not implemented")
+}
+func (UnimplementedAppServiceServer) CreateOAuthAppUser(context.Context, *CreateOAuthAppUserRequest) (*CreateOAuthAppUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOAuthAppUser not implemented")
 }
 func (UnimplementedAppServiceServer) CreateLocation(context.Context, *CreateLocationRequest) (*CreateLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateLocation not implemented")
@@ -1812,6 +1870,12 @@ func (UnimplementedAppServiceServer) RenameRegistryItem(context.Context, *Rename
 func (UnimplementedAppServiceServer) TransferRegistryItem(context.Context, *TransferRegistryItemRequest) (*TransferRegistryItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TransferRegistryItem not implemented")
 }
+func (UnimplementedAppServiceServer) DeprecateRegistryItem(context.Context, *DeprecateRegistryItemRequest) (*DeprecateRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeprecateRegistryItem not implemented")
+}
+func (UnimplementedAppServiceServer) UndeprecateRegistryItem(context.Context, *UndeprecateRegistryItemRequest) (*UndeprecateRegistryItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UndeprecateRegistryItem not implemented")
+}
 func (UnimplementedAppServiceServer) CreateModule(context.Context, *CreateModuleRequest) (*CreateModuleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateModule not implemented")
 }
@@ -1826,6 +1890,12 @@ func (UnimplementedAppServiceServer) GetModule(context.Context, *GetModuleReques
 }
 func (UnimplementedAppServiceServer) ListModules(context.Context, *ListModulesRequest) (*ListModulesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListModules not implemented")
+}
+func (UnimplementedAppServiceServer) DeprecateRegistryItemVersion(context.Context, *DeprecateRegistryItemVersionRequest) (*DeprecateRegistryItemVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeprecateRegistryItemVersion not implemented")
+}
+func (UnimplementedAppServiceServer) UndeprecateRegistryItemVersion(context.Context, *UndeprecateRegistryItemVersionRequest) (*UndeprecateRegistryItemVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UndeprecateRegistryItemVersion not implemented")
 }
 func (UnimplementedAppServiceServer) CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKey not implemented")
@@ -2490,6 +2560,24 @@ func _AppService_ListOAuthApps_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListOAuthApps(ctx, req.(*ListOAuthAppsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_CreateOAuthAppUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOAuthAppUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).CreateOAuthAppUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/CreateOAuthAppUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).CreateOAuthAppUser(ctx, req.(*CreateOAuthAppUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3613,6 +3701,42 @@ func _AppService_TransferRegistryItem_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_DeprecateRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeprecateRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeprecateRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeprecateRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeprecateRegistryItem(ctx, req.(*DeprecateRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UndeprecateRegistryItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UndeprecateRegistryItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UndeprecateRegistryItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UndeprecateRegistryItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UndeprecateRegistryItem(ctx, req.(*UndeprecateRegistryItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_CreateModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateModuleRequest)
 	if err := dec(in); err != nil {
@@ -3707,6 +3831,42 @@ func _AppService_ListModules_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).ListModules(ctx, req.(*ListModulesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_DeprecateRegistryItemVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeprecateRegistryItemVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).DeprecateRegistryItemVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/DeprecateRegistryItemVersion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).DeprecateRegistryItemVersion(ctx, req.(*DeprecateRegistryItemVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_UndeprecateRegistryItemVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UndeprecateRegistryItemVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).UndeprecateRegistryItemVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/UndeprecateRegistryItemVersion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).UndeprecateRegistryItemVersion(ctx, req.(*UndeprecateRegistryItemVersionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4107,6 +4267,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_ListOAuthApps_Handler,
 		},
 		{
+			MethodName: "CreateOAuthAppUser",
+			Handler:    _AppService_CreateOAuthAppUser_Handler,
+		},
+		{
 			MethodName: "CreateLocation",
 			Handler:    _AppService_CreateLocation_Handler,
 		},
@@ -4351,6 +4515,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_TransferRegistryItem_Handler,
 		},
 		{
+			MethodName: "DeprecateRegistryItem",
+			Handler:    _AppService_DeprecateRegistryItem_Handler,
+		},
+		{
+			MethodName: "UndeprecateRegistryItem",
+			Handler:    _AppService_UndeprecateRegistryItem_Handler,
+		},
+		{
 			MethodName: "CreateModule",
 			Handler:    _AppService_CreateModule_Handler,
 		},
@@ -4365,6 +4537,14 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListModules",
 			Handler:    _AppService_ListModules_Handler,
+		},
+		{
+			MethodName: "DeprecateRegistryItemVersion",
+			Handler:    _AppService_DeprecateRegistryItemVersion_Handler,
+		},
+		{
+			MethodName: "UndeprecateRegistryItemVersion",
+			Handler:    _AppService_UndeprecateRegistryItemVersion_Handler,
 		},
 		{
 			MethodName: "CreateKey",

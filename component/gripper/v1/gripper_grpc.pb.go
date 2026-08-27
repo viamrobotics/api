@@ -33,6 +33,10 @@ type GripperServiceClient interface {
 	IsMoving(ctx context.Context, in *IsMovingRequest, opts ...grpc.CallOption) (*IsMovingResponse, error)
 	// IsHoldingSomething returns whether the gripper is currently holding onto an object
 	IsHoldingSomething(ctx context.Context, in *IsHoldingSomethingRequest, opts ...grpc.CallOption) (*IsHoldingSomethingResponse, error)
+	// GetCurrentInputs returns the current input values of a gripper
+	GetCurrentInputs(ctx context.Context, in *GetCurrentInputsRequest, opts ...grpc.CallOption) (*GetCurrentInputsResponse, error)
+	// GoToInputs moves the gripper to the given input values.
+	GoToInputs(ctx context.Context, in *GoToInputsRequest, opts ...grpc.CallOption) (*GoToInputsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -96,6 +100,24 @@ func (c *gripperServiceClient) IsHoldingSomething(ctx context.Context, in *IsHol
 	return out, nil
 }
 
+func (c *gripperServiceClient) GetCurrentInputs(ctx context.Context, in *GetCurrentInputsRequest, opts ...grpc.CallOption) (*GetCurrentInputsResponse, error) {
+	out := new(GetCurrentInputsResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/GetCurrentInputs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gripperServiceClient) GoToInputs(ctx context.Context, in *GoToInputsRequest, opts ...grpc.CallOption) (*GoToInputsResponse, error) {
+	out := new(GoToInputsResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/GoToInputs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gripperServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/DoCommand", in, out, opts...)
@@ -146,6 +168,10 @@ type GripperServiceServer interface {
 	IsMoving(context.Context, *IsMovingRequest) (*IsMovingResponse, error)
 	// IsHoldingSomething returns whether the gripper is currently holding onto an object
 	IsHoldingSomething(context.Context, *IsHoldingSomethingRequest) (*IsHoldingSomethingResponse, error)
+	// GetCurrentInputs returns the current input values of a gripper
+	GetCurrentInputs(context.Context, *GetCurrentInputsRequest) (*GetCurrentInputsResponse, error)
+	// GoToInputs moves the gripper to the given input values.
+	GoToInputs(context.Context, *GoToInputsRequest) (*GoToInputsResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -175,6 +201,12 @@ func (UnimplementedGripperServiceServer) IsMoving(context.Context, *IsMovingRequ
 }
 func (UnimplementedGripperServiceServer) IsHoldingSomething(context.Context, *IsHoldingSomethingRequest) (*IsHoldingSomethingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsHoldingSomething not implemented")
+}
+func (UnimplementedGripperServiceServer) GetCurrentInputs(context.Context, *GetCurrentInputsRequest) (*GetCurrentInputsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentInputs not implemented")
+}
+func (UnimplementedGripperServiceServer) GoToInputs(context.Context, *GoToInputsRequest) (*GoToInputsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GoToInputs not implemented")
 }
 func (UnimplementedGripperServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -291,6 +323,42 @@ func _GripperService_IsHoldingSomething_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GripperService_GetCurrentInputs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCurrentInputsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GripperServiceServer).GetCurrentInputs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gripper.v1.GripperService/GetCurrentInputs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GripperServiceServer).GetCurrentInputs(ctx, req.(*GetCurrentInputsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GripperService_GoToInputs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GoToInputsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GripperServiceServer).GoToInputs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gripper.v1.GripperService/GoToInputs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GripperServiceServer).GoToInputs(ctx, req.(*GoToInputsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GripperService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -389,6 +457,14 @@ var GripperService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsHoldingSomething",
 			Handler:    _GripperService_IsHoldingSomething_Handler,
+		},
+		{
+			MethodName: "GetCurrentInputs",
+			Handler:    _GripperService_GetCurrentInputs_Handler,
+		},
+		{
+			MethodName: "GoToInputs",
+			Handler:    _GripperService_GoToInputs_Handler,
 		},
 		{
 			MethodName: "DoCommand",

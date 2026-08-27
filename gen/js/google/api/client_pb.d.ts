@@ -237,6 +237,9 @@ export class PhpSettings extends jspb.Message {
   getCommon(): CommonLanguageSettings | undefined;
   setCommon(value?: CommonLanguageSettings): void;
 
+  getLibraryPackage(): string;
+  setLibraryPackage(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PhpSettings.AsObject;
   static toObject(includeInstance: boolean, msg: PhpSettings): PhpSettings.AsObject;
@@ -250,6 +253,7 @@ export class PhpSettings extends jspb.Message {
 export namespace PhpSettings {
   export type AsObject = {
     common?: CommonLanguageSettings.AsObject,
+    libraryPackage: string,
   }
 }
 
@@ -438,6 +442,11 @@ export class MethodSettings extends jspb.Message {
   setAutoPopulatedFieldsList(value: Array<string>): void;
   addAutoPopulatedFields(value: string, index?: number): string;
 
+  hasBatching(): boolean;
+  clearBatching(): void;
+  getBatching(): BatchingConfigProto | undefined;
+  setBatching(value?: BatchingConfigProto): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MethodSettings.AsObject;
   static toObject(includeInstance: boolean, msg: MethodSettings): MethodSettings.AsObject;
@@ -453,6 +462,7 @@ export namespace MethodSettings {
     selector: string,
     longRunning?: MethodSettings.LongRunning.AsObject,
     autoPopulatedFieldsList: Array<string>,
+    batching?: BatchingConfigProto.AsObject,
   }
 
   export class LongRunning extends jspb.Message {
@@ -520,6 +530,114 @@ export namespace SelectiveGapicGeneration {
   }
 }
 
+export class BatchingConfigProto extends jspb.Message {
+  hasThresholds(): boolean;
+  clearThresholds(): void;
+  getThresholds(): BatchingSettingsProto | undefined;
+  setThresholds(value?: BatchingSettingsProto): void;
+
+  hasBatchDescriptor(): boolean;
+  clearBatchDescriptor(): void;
+  getBatchDescriptor(): BatchingDescriptorProto | undefined;
+  setBatchDescriptor(value?: BatchingDescriptorProto): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BatchingConfigProto.AsObject;
+  static toObject(includeInstance: boolean, msg: BatchingConfigProto): BatchingConfigProto.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BatchingConfigProto, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BatchingConfigProto;
+  static deserializeBinaryFromReader(message: BatchingConfigProto, reader: jspb.BinaryReader): BatchingConfigProto;
+}
+
+export namespace BatchingConfigProto {
+  export type AsObject = {
+    thresholds?: BatchingSettingsProto.AsObject,
+    batchDescriptor?: BatchingDescriptorProto.AsObject,
+  }
+}
+
+export class BatchingSettingsProto extends jspb.Message {
+  getElementCountThreshold(): number;
+  setElementCountThreshold(value: number): void;
+
+  getRequestByteThreshold(): number;
+  setRequestByteThreshold(value: number): void;
+
+  hasDelayThreshold(): boolean;
+  clearDelayThreshold(): void;
+  getDelayThreshold(): google_protobuf_duration_pb.Duration | undefined;
+  setDelayThreshold(value?: google_protobuf_duration_pb.Duration): void;
+
+  getElementCountLimit(): number;
+  setElementCountLimit(value: number): void;
+
+  getRequestByteLimit(): number;
+  setRequestByteLimit(value: number): void;
+
+  getFlowControlElementLimit(): number;
+  setFlowControlElementLimit(value: number): void;
+
+  getFlowControlByteLimit(): number;
+  setFlowControlByteLimit(value: number): void;
+
+  getFlowControlLimitExceededBehavior(): FlowControlLimitExceededBehaviorProtoMap[keyof FlowControlLimitExceededBehaviorProtoMap];
+  setFlowControlLimitExceededBehavior(value: FlowControlLimitExceededBehaviorProtoMap[keyof FlowControlLimitExceededBehaviorProtoMap]): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BatchingSettingsProto.AsObject;
+  static toObject(includeInstance: boolean, msg: BatchingSettingsProto): BatchingSettingsProto.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BatchingSettingsProto, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BatchingSettingsProto;
+  static deserializeBinaryFromReader(message: BatchingSettingsProto, reader: jspb.BinaryReader): BatchingSettingsProto;
+}
+
+export namespace BatchingSettingsProto {
+  export type AsObject = {
+    elementCountThreshold: number,
+    requestByteThreshold: number,
+    delayThreshold?: google_protobuf_duration_pb.Duration.AsObject,
+    elementCountLimit: number,
+    requestByteLimit: number,
+    flowControlElementLimit: number,
+    flowControlByteLimit: number,
+    flowControlLimitExceededBehavior: FlowControlLimitExceededBehaviorProtoMap[keyof FlowControlLimitExceededBehaviorProtoMap],
+  }
+}
+
+export class BatchingDescriptorProto extends jspb.Message {
+  getBatchedField(): string;
+  setBatchedField(value: string): void;
+
+  clearDiscriminatorFieldsList(): void;
+  getDiscriminatorFieldsList(): Array<string>;
+  setDiscriminatorFieldsList(value: Array<string>): void;
+  addDiscriminatorFields(value: string, index?: number): string;
+
+  getSubresponseField(): string;
+  setSubresponseField(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BatchingDescriptorProto.AsObject;
+  static toObject(includeInstance: boolean, msg: BatchingDescriptorProto): BatchingDescriptorProto.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: BatchingDescriptorProto, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BatchingDescriptorProto;
+  static deserializeBinaryFromReader(message: BatchingDescriptorProto, reader: jspb.BinaryReader): BatchingDescriptorProto;
+}
+
+export namespace BatchingDescriptorProto {
+  export type AsObject = {
+    batchedField: string,
+    discriminatorFieldsList: Array<string>,
+    subresponseField: string,
+  }
+}
+
   export const methodSignature: jspb.ExtensionFieldInfo<string>;
 
   export const defaultHost: jspb.ExtensionFieldInfo<string>;
@@ -548,4 +666,13 @@ export interface ClientLibraryDestinationMap {
 }
 
 export const ClientLibraryDestination: ClientLibraryDestinationMap;
+
+export interface FlowControlLimitExceededBehaviorProtoMap {
+  UNSET_BEHAVIOR: 0;
+  THROW_EXCEPTION: 1;
+  BLOCK: 2;
+  IGNORE: 3;
+}
+
+export const FlowControlLimitExceededBehaviorProto: FlowControlLimitExceededBehaviorProtoMap;
 

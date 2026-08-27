@@ -28,12 +28,16 @@ type DatasetServiceClient interface {
 	DeleteDataset(ctx context.Context, in *DeleteDatasetRequest, opts ...grpc.CallOption) (*DeleteDatasetResponse, error)
 	// RenameDataset modifies the name of an existing dataset.
 	RenameDataset(ctx context.Context, in *RenameDatasetRequest, opts ...grpc.CallOption) (*RenameDatasetResponse, error)
-	// ListDatasetsByOrganizationID lists all of the datasets for an organization.
+	// ListDatasetsByOrganizationID lists all of the datasets for an organization, optionally filtering by DatasetType.
 	ListDatasetsByOrganizationID(ctx context.Context, in *ListDatasetsByOrganizationIDRequest, opts ...grpc.CallOption) (*ListDatasetsByOrganizationIDResponse, error)
 	// ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
 	ListDatasetsByIDs(ctx context.Context, in *ListDatasetsByIDsRequest, opts ...grpc.CallOption) (*ListDatasetsByIDsResponse, error)
 	// MergeDatasets merges multiple datasets into a new dataset.
 	MergeDatasets(ctx context.Context, in *MergeDatasetsRequest, opts ...grpc.CallOption) (*MergeDatasetsResponse, error)
+	// StartSequenceDatasetExport kicks off an async export of all data for a sequence dataset.
+	StartSequenceDatasetExport(ctx context.Context, in *StartSequenceDatasetExportRequest, opts ...grpc.CallOption) (*StartSequenceDatasetExportResponse, error)
+	// GetSequenceDatasetExport returns the current status of an export job.
+	GetSequenceDatasetExport(ctx context.Context, in *GetSequenceDatasetExportRequest, opts ...grpc.CallOption) (*GetSequenceDatasetExportResponse, error)
 }
 
 type datasetServiceClient struct {
@@ -98,6 +102,24 @@ func (c *datasetServiceClient) MergeDatasets(ctx context.Context, in *MergeDatas
 	return out, nil
 }
 
+func (c *datasetServiceClient) StartSequenceDatasetExport(ctx context.Context, in *StartSequenceDatasetExportRequest, opts ...grpc.CallOption) (*StartSequenceDatasetExportResponse, error) {
+	out := new(StartSequenceDatasetExportResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.dataset.v1.DatasetService/StartSequenceDatasetExport", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *datasetServiceClient) GetSequenceDatasetExport(ctx context.Context, in *GetSequenceDatasetExportRequest, opts ...grpc.CallOption) (*GetSequenceDatasetExportResponse, error) {
+	out := new(GetSequenceDatasetExportResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.dataset.v1.DatasetService/GetSequenceDatasetExport", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DatasetServiceServer is the server API for DatasetService service.
 // All implementations must embed UnimplementedDatasetServiceServer
 // for forward compatibility
@@ -108,12 +130,16 @@ type DatasetServiceServer interface {
 	DeleteDataset(context.Context, *DeleteDatasetRequest) (*DeleteDatasetResponse, error)
 	// RenameDataset modifies the name of an existing dataset.
 	RenameDataset(context.Context, *RenameDatasetRequest) (*RenameDatasetResponse, error)
-	// ListDatasetsByOrganizationID lists all of the datasets for an organization.
+	// ListDatasetsByOrganizationID lists all of the datasets for an organization, optionally filtering by DatasetType.
 	ListDatasetsByOrganizationID(context.Context, *ListDatasetsByOrganizationIDRequest) (*ListDatasetsByOrganizationIDResponse, error)
 	// ListDatasetsByIDs lists all of the datasets specified by the given dataset IDs.
 	ListDatasetsByIDs(context.Context, *ListDatasetsByIDsRequest) (*ListDatasetsByIDsResponse, error)
 	// MergeDatasets merges multiple datasets into a new dataset.
 	MergeDatasets(context.Context, *MergeDatasetsRequest) (*MergeDatasetsResponse, error)
+	// StartSequenceDatasetExport kicks off an async export of all data for a sequence dataset.
+	StartSequenceDatasetExport(context.Context, *StartSequenceDatasetExportRequest) (*StartSequenceDatasetExportResponse, error)
+	// GetSequenceDatasetExport returns the current status of an export job.
+	GetSequenceDatasetExport(context.Context, *GetSequenceDatasetExportRequest) (*GetSequenceDatasetExportResponse, error)
 	mustEmbedUnimplementedDatasetServiceServer()
 }
 
@@ -138,6 +164,12 @@ func (UnimplementedDatasetServiceServer) ListDatasetsByIDs(context.Context, *Lis
 }
 func (UnimplementedDatasetServiceServer) MergeDatasets(context.Context, *MergeDatasetsRequest) (*MergeDatasetsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MergeDatasets not implemented")
+}
+func (UnimplementedDatasetServiceServer) StartSequenceDatasetExport(context.Context, *StartSequenceDatasetExportRequest) (*StartSequenceDatasetExportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartSequenceDatasetExport not implemented")
+}
+func (UnimplementedDatasetServiceServer) GetSequenceDatasetExport(context.Context, *GetSequenceDatasetExportRequest) (*GetSequenceDatasetExportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSequenceDatasetExport not implemented")
 }
 func (UnimplementedDatasetServiceServer) mustEmbedUnimplementedDatasetServiceServer() {}
 
@@ -260,6 +292,42 @@ func _DatasetService_MergeDatasets_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DatasetService_StartSequenceDatasetExport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartSequenceDatasetExportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatasetServiceServer).StartSequenceDatasetExport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.dataset.v1.DatasetService/StartSequenceDatasetExport",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatasetServiceServer).StartSequenceDatasetExport(ctx, req.(*StartSequenceDatasetExportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatasetService_GetSequenceDatasetExport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSequenceDatasetExportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatasetServiceServer).GetSequenceDatasetExport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.dataset.v1.DatasetService/GetSequenceDatasetExport",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatasetServiceServer).GetSequenceDatasetExport(ctx, req.(*GetSequenceDatasetExportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DatasetService_ServiceDesc is the grpc.ServiceDesc for DatasetService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -290,6 +358,14 @@ var DatasetService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MergeDatasets",
 			Handler:    _DatasetService_MergeDatasets_Handler,
+		},
+		{
+			MethodName: "StartSequenceDatasetExport",
+			Handler:    _DatasetService_StartSequenceDatasetExport_Handler,
+		},
+		{
+			MethodName: "GetSequenceDatasetExport",
+			Handler:    _DatasetService_GetSequenceDatasetExport_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

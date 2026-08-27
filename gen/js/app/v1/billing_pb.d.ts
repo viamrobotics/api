@@ -29,6 +29,14 @@ export class InvoiceSummary extends jspb.Message {
   getPaidDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setPaidDate(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getLastPaymentFailureReason(): string;
+  setLastPaymentFailureReason(value: string): void;
+
+  hasLastPaymentFailureAt(): boolean;
+  clearLastPaymentFailureAt(): void;
+  getLastPaymentFailureAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastPaymentFailureAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InvoiceSummary.AsObject;
   static toObject(includeInstance: boolean, msg: InvoiceSummary): InvoiceSummary.AsObject;
@@ -47,6 +55,8 @@ export namespace InvoiceSummary {
     status: string,
     dueDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     paidDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    lastPaymentFailureReason: string,
+    lastPaymentFailureAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -838,6 +848,7 @@ export interface UsageCostTypeMap {
   USAGE_COST_TYPE_BINARY_DATA_CROSS_REGION_EGRESS: 24;
   USAGE_COST_TYPE_PIPELINE_SINK_CLOUD_STORAGE: 25;
   USAGE_COST_TYPE_PIPELINE_SINK_COMPUTE: 26;
+  USAGE_COST_TYPE_PREMIUM_MODULE: 27;
 }
 
 export const UsageCostType: UsageCostTypeMap;

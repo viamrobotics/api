@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb";
+import * as google_protobuf_field_mask_pb from "google-protobuf/google/protobuf/field_mask_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
@@ -1903,6 +1904,90 @@ export namespace RemoveBinaryDataFromDatasetByIDsResponse {
   }
 }
 
+export class AddSequencesToDatasetRequest extends jspb.Message {
+  getDatasetId(): string;
+  setDatasetId(value: string): void;
+
+  clearSequenceIdsList(): void;
+  getSequenceIdsList(): Array<string>;
+  setSequenceIdsList(value: Array<string>): void;
+  addSequenceIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddSequencesToDatasetRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddSequencesToDatasetRequest): AddSequencesToDatasetRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddSequencesToDatasetRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddSequencesToDatasetRequest;
+  static deserializeBinaryFromReader(message: AddSequencesToDatasetRequest, reader: jspb.BinaryReader): AddSequencesToDatasetRequest;
+}
+
+export namespace AddSequencesToDatasetRequest {
+  export type AsObject = {
+    datasetId: string,
+    sequenceIdsList: Array<string>,
+  }
+}
+
+export class AddSequencesToDatasetResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddSequencesToDatasetResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddSequencesToDatasetResponse): AddSequencesToDatasetResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddSequencesToDatasetResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddSequencesToDatasetResponse;
+  static deserializeBinaryFromReader(message: AddSequencesToDatasetResponse, reader: jspb.BinaryReader): AddSequencesToDatasetResponse;
+}
+
+export namespace AddSequencesToDatasetResponse {
+  export type AsObject = {
+  }
+}
+
+export class RemoveSequencesFromDatasetRequest extends jspb.Message {
+  getDatasetId(): string;
+  setDatasetId(value: string): void;
+
+  clearSequenceIdsList(): void;
+  getSequenceIdsList(): Array<string>;
+  setSequenceIdsList(value: Array<string>): void;
+  addSequenceIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveSequencesFromDatasetRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveSequencesFromDatasetRequest): RemoveSequencesFromDatasetRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveSequencesFromDatasetRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveSequencesFromDatasetRequest;
+  static deserializeBinaryFromReader(message: RemoveSequencesFromDatasetRequest, reader: jspb.BinaryReader): RemoveSequencesFromDatasetRequest;
+}
+
+export namespace RemoveSequencesFromDatasetRequest {
+  export type AsObject = {
+    datasetId: string,
+    sequenceIdsList: Array<string>,
+  }
+}
+
+export class RemoveSequencesFromDatasetResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveSequencesFromDatasetResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveSequencesFromDatasetResponse): RemoveSequencesFromDatasetResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveSequencesFromDatasetResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveSequencesFromDatasetResponse;
+  static deserializeBinaryFromReader(message: RemoveSequencesFromDatasetResponse, reader: jspb.BinaryReader): RemoveSequencesFromDatasetResponse;
+}
+
+export namespace RemoveSequencesFromDatasetResponse {
+  export type AsObject = {
+  }
+}
+
 export class CreateIndexRequest extends jspb.Message {
   getOrganizationId(): string;
   setOrganizationId(value: string): void;
@@ -2422,6 +2507,474 @@ export namespace CreateBinaryDataSignedURLResponse {
   export type AsObject = {
     signedUrl: string,
     expiresAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class SequenceResourceFilter extends jspb.Message {
+  getResourceName(): string;
+  setResourceName(value: string): void;
+
+  getMethodName(): string;
+  setMethodName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SequenceResourceFilter.AsObject;
+  static toObject(includeInstance: boolean, msg: SequenceResourceFilter): SequenceResourceFilter.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SequenceResourceFilter, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SequenceResourceFilter;
+  static deserializeBinaryFromReader(message: SequenceResourceFilter, reader: jspb.BinaryReader): SequenceResourceFilter;
+}
+
+export namespace SequenceResourceFilter {
+  export type AsObject = {
+    resourceName: string,
+    methodName: string,
+  }
+}
+
+export class Sequence extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  clearSequenceTagsList(): void;
+  getSequenceTagsList(): Array<string>;
+  setSequenceTagsList(value: Array<string>): void;
+  addSequenceTags(value: string, index?: number): string;
+
+  hasCreatedAt(): boolean;
+  clearCreatedAt(): void;
+  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasUpdatedAt(): boolean;
+  clearUpdatedAt(): void;
+  getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasStartTime(): boolean;
+  clearStartTime(): void;
+  getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasEndTime(): boolean;
+  clearEndTime(): void;
+  getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  clearResourcesList(): void;
+  getResourcesList(): Array<SequenceResourceFilter>;
+  setResourcesList(value: Array<SequenceResourceFilter>): void;
+  addResources(value?: SequenceResourceFilter, index?: number): SequenceResourceFilter;
+
+  clearDatasetIdsList(): void;
+  getDatasetIdsList(): Array<string>;
+  setDatasetIdsList(value: Array<string>): void;
+  addDatasetIds(value: string, index?: number): string;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Sequence.AsObject;
+  static toObject(includeInstance: boolean, msg: Sequence): Sequence.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Sequence, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Sequence;
+  static deserializeBinaryFromReader(message: Sequence, reader: jspb.BinaryReader): Sequence;
+}
+
+export namespace Sequence {
+  export type AsObject = {
+    id: string,
+    partId: string,
+    sequenceTagsList: Array<string>,
+    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    resourcesList: Array<SequenceResourceFilter.AsObject>,
+    datasetIdsList: Array<string>,
+  }
+}
+
+export class CreateSequenceRequest extends jspb.Message {
+  getPartId(): string;
+  setPartId(value: string): void;
+
+  clearResourcesList(): void;
+  getResourcesList(): Array<SequenceResourceFilter>;
+  setResourcesList(value: Array<SequenceResourceFilter>): void;
+  addResources(value?: SequenceResourceFilter, index?: number): SequenceResourceFilter;
+
+  clearSequenceTagsList(): void;
+  getSequenceTagsList(): Array<string>;
+  setSequenceTagsList(value: Array<string>): void;
+  addSequenceTags(value: string, index?: number): string;
+
+  hasStartTime(): boolean;
+  clearStartTime(): void;
+  getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasEndTime(): boolean;
+  clearEndTime(): void;
+  getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateSequenceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateSequenceRequest): CreateSequenceRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateSequenceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateSequenceRequest;
+  static deserializeBinaryFromReader(message: CreateSequenceRequest, reader: jspb.BinaryReader): CreateSequenceRequest;
+}
+
+export namespace CreateSequenceRequest {
+  export type AsObject = {
+    partId: string,
+    resourcesList: Array<SequenceResourceFilter.AsObject>,
+    sequenceTagsList: Array<string>,
+    startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class CreateSequenceResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateSequenceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateSequenceResponse): CreateSequenceResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateSequenceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateSequenceResponse;
+  static deserializeBinaryFromReader(message: CreateSequenceResponse, reader: jspb.BinaryReader): CreateSequenceResponse;
+}
+
+export namespace CreateSequenceResponse {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class GetSequenceRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSequenceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSequenceRequest): GetSequenceRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSequenceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSequenceRequest;
+  static deserializeBinaryFromReader(message: GetSequenceRequest, reader: jspb.BinaryReader): GetSequenceRequest;
+}
+
+export namespace GetSequenceRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class GetSequenceResponse extends jspb.Message {
+  hasSequence(): boolean;
+  clearSequence(): void;
+  getSequence(): Sequence | undefined;
+  setSequence(value?: Sequence): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSequenceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSequenceResponse): GetSequenceResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSequenceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSequenceResponse;
+  static deserializeBinaryFromReader(message: GetSequenceResponse, reader: jspb.BinaryReader): GetSequenceResponse;
+}
+
+export namespace GetSequenceResponse {
+  export type AsObject = {
+    sequence?: Sequence.AsObject,
+  }
+}
+
+export class UpdateSequenceRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  clearResourcesList(): void;
+  getResourcesList(): Array<SequenceResourceFilter>;
+  setResourcesList(value: Array<SequenceResourceFilter>): void;
+  addResources(value?: SequenceResourceFilter, index?: number): SequenceResourceFilter;
+
+  clearSequenceTagsList(): void;
+  getSequenceTagsList(): Array<string>;
+  setSequenceTagsList(value: Array<string>): void;
+  addSequenceTags(value: string, index?: number): string;
+
+  hasStartTime(): boolean;
+  clearStartTime(): void;
+  getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasEndTime(): boolean;
+  clearEndTime(): void;
+  getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasFieldMask(): boolean;
+  clearFieldMask(): void;
+  getFieldMask(): google_protobuf_field_mask_pb.FieldMask | undefined;
+  setFieldMask(value?: google_protobuf_field_mask_pb.FieldMask): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateSequenceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateSequenceRequest): UpdateSequenceRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateSequenceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateSequenceRequest;
+  static deserializeBinaryFromReader(message: UpdateSequenceRequest, reader: jspb.BinaryReader): UpdateSequenceRequest;
+}
+
+export namespace UpdateSequenceRequest {
+  export type AsObject = {
+    id: string,
+    resourcesList: Array<SequenceResourceFilter.AsObject>,
+    sequenceTagsList: Array<string>,
+    startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    fieldMask?: google_protobuf_field_mask_pb.FieldMask.AsObject,
+  }
+}
+
+export class UpdateSequenceResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateSequenceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateSequenceResponse): UpdateSequenceResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateSequenceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateSequenceResponse;
+  static deserializeBinaryFromReader(message: UpdateSequenceResponse, reader: jspb.BinaryReader): UpdateSequenceResponse;
+}
+
+export namespace UpdateSequenceResponse {
+  export type AsObject = {
+  }
+}
+
+export class DeleteSequenceRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteSequenceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteSequenceRequest): DeleteSequenceRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteSequenceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteSequenceRequest;
+  static deserializeBinaryFromReader(message: DeleteSequenceRequest, reader: jspb.BinaryReader): DeleteSequenceRequest;
+}
+
+export namespace DeleteSequenceRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class DeleteSequenceResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteSequenceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteSequenceResponse): DeleteSequenceResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteSequenceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteSequenceResponse;
+  static deserializeBinaryFromReader(message: DeleteSequenceResponse, reader: jspb.BinaryReader): DeleteSequenceResponse;
+}
+
+export namespace DeleteSequenceResponse {
+  export type AsObject = {
+  }
+}
+
+export class ListSequencesRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getPageToken(): string;
+  setPageToken(value: string): void;
+
+  getPageSize(): number;
+  setPageSize(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSequencesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSequencesRequest): ListSequencesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListSequencesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSequencesRequest;
+  static deserializeBinaryFromReader(message: ListSequencesRequest, reader: jspb.BinaryReader): ListSequencesRequest;
+}
+
+export namespace ListSequencesRequest {
+  export type AsObject = {
+    organizationId: string,
+    pageToken: string,
+    pageSize: number,
+  }
+}
+
+export class ListSequencesResponse extends jspb.Message {
+  clearSequencesList(): void;
+  getSequencesList(): Array<Sequence>;
+  setSequencesList(value: Array<Sequence>): void;
+  addSequences(value?: Sequence, index?: number): Sequence;
+
+  getNextPageToken(): string;
+  setNextPageToken(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSequencesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSequencesResponse): ListSequencesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListSequencesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSequencesResponse;
+  static deserializeBinaryFromReader(message: ListSequencesResponse, reader: jspb.BinaryReader): ListSequencesResponse;
+}
+
+export namespace ListSequencesResponse {
+  export type AsObject = {
+    sequencesList: Array<Sequence.AsObject>,
+    nextPageToken: string,
+  }
+}
+
+export class SequencesByDatasetIDRequest extends jspb.Message {
+  getDatasetId(): string;
+  setDatasetId(value: string): void;
+
+  getPageToken(): string;
+  setPageToken(value: string): void;
+
+  getPageSize(): number;
+  setPageSize(value: number): void;
+
+  getCountOnly(): boolean;
+  setCountOnly(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SequencesByDatasetIDRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SequencesByDatasetIDRequest): SequencesByDatasetIDRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SequencesByDatasetIDRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SequencesByDatasetIDRequest;
+  static deserializeBinaryFromReader(message: SequencesByDatasetIDRequest, reader: jspb.BinaryReader): SequencesByDatasetIDRequest;
+}
+
+export namespace SequencesByDatasetIDRequest {
+  export type AsObject = {
+    datasetId: string,
+    pageToken: string,
+    pageSize: number,
+    countOnly: boolean,
+  }
+}
+
+export class SequencesByDatasetIDResponse extends jspb.Message {
+  clearSequencesList(): void;
+  getSequencesList(): Array<Sequence>;
+  setSequencesList(value: Array<Sequence>): void;
+  addSequences(value?: Sequence, index?: number): Sequence;
+
+  getNextPageToken(): string;
+  setNextPageToken(value: string): void;
+
+  getCount(): number;
+  setCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SequencesByDatasetIDResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SequencesByDatasetIDResponse): SequencesByDatasetIDResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SequencesByDatasetIDResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SequencesByDatasetIDResponse;
+  static deserializeBinaryFromReader(message: SequencesByDatasetIDResponse, reader: jspb.BinaryReader): SequencesByDatasetIDResponse;
+}
+
+export namespace SequencesByDatasetIDResponse {
+  export type AsObject = {
+    sequencesList: Array<Sequence.AsObject>,
+    nextPageToken: string,
+    count: number,
+  }
+}
+
+export class GetSequenceBinaryDataRequest extends jspb.Message {
+  getSequenceId(): string;
+  setSequenceId(value: string): void;
+
+  getPageToken(): string;
+  setPageToken(value: string): void;
+
+  getPageSize(): number;
+  setPageSize(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSequenceBinaryDataRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSequenceBinaryDataRequest): GetSequenceBinaryDataRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSequenceBinaryDataRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSequenceBinaryDataRequest;
+  static deserializeBinaryFromReader(message: GetSequenceBinaryDataRequest, reader: jspb.BinaryReader): GetSequenceBinaryDataRequest;
+}
+
+export namespace GetSequenceBinaryDataRequest {
+  export type AsObject = {
+    sequenceId: string,
+    pageToken: string,
+    pageSize: number,
+  }
+}
+
+export class GetSequenceBinaryDataResponse extends jspb.Message {
+  clearDataList(): void;
+  getDataList(): Array<BinaryData>;
+  setDataList(value: Array<BinaryData>): void;
+  addData(value?: BinaryData, index?: number): BinaryData;
+
+  getNextPageToken(): string;
+  setNextPageToken(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSequenceBinaryDataResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSequenceBinaryDataResponse): GetSequenceBinaryDataResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetSequenceBinaryDataResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSequenceBinaryDataResponse;
+  static deserializeBinaryFromReader(message: GetSequenceBinaryDataResponse, reader: jspb.BinaryReader): GetSequenceBinaryDataResponse;
+}
+
+export namespace GetSequenceBinaryDataResponse {
+  export type AsObject = {
+    dataList: Array<BinaryData.AsObject>,
+    nextPageToken: string,
   }
 }
 

@@ -455,6 +455,9 @@ export class DataPipelineRun extends jspb.Message {
   getErrorMessage(): string;
   setErrorMessage(value: string): void;
 
+  getDataSourceType(): app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap];
+  setDataSourceType(value: app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DataPipelineRun.AsObject;
   static toObject(includeInstance: boolean, msg: DataPipelineRun): DataPipelineRun.AsObject;
@@ -474,6 +477,7 @@ export namespace DataPipelineRun {
     dataEndTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     status: DataPipelineRunStatusMap[keyof DataPipelineRunStatusMap],
     errorMessage: string,
+    dataSourceType: app_data_v1_data_pb.TabularDataSourceTypeMap[keyof app_data_v1_data_pb.TabularDataSourceTypeMap],
   }
 }
 
