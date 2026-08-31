@@ -817,5 +817,188 @@ proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.get3DModels =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.arm.v1.SetManualModeRequest,
+ *   !proto.viam.component.arm.v1.SetManualModeResponse>}
+ */
+const methodDescriptor_ArmService_SetManualMode = new grpc.web.MethodDescriptor(
+  '/viam.component.arm.v1.ArmService/SetManualMode',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.arm.v1.SetManualModeRequest,
+  proto.viam.component.arm.v1.SetManualModeResponse,
+  /**
+   * @param {!proto.viam.component.arm.v1.SetManualModeRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.arm.v1.SetManualModeResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.arm.v1.SetManualModeRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.arm.v1.SetManualModeResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.arm.v1.SetManualModeResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.arm.v1.ArmServiceClient.prototype.setManualMode =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/SetManualMode',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_SetManualMode,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.arm.v1.SetManualModeRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.arm.v1.SetManualModeResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.setManualMode =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/SetManualMode',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_SetManualMode);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.arm.v1.GetManualModeRequest,
+ *   !proto.viam.component.arm.v1.GetManualModeResponse>}
+ */
+const methodDescriptor_ArmService_GetManualMode = new grpc.web.MethodDescriptor(
+  '/viam.component.arm.v1.ArmService/GetManualMode',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.arm.v1.GetManualModeRequest,
+  proto.viam.component.arm.v1.GetManualModeResponse,
+  /**
+   * @param {!proto.viam.component.arm.v1.GetManualModeRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.arm.v1.GetManualModeResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.arm.v1.GetManualModeRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.arm.v1.GetManualModeResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.arm.v1.GetManualModeResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.arm.v1.ArmServiceClient.prototype.getManualMode =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/GetManualMode',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_GetManualMode,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.arm.v1.GetManualModeRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.arm.v1.GetManualModeResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.getManualMode =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/GetManualMode',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_GetManualMode);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.arm.v1.GetPropertiesRequest,
+ *   !proto.viam.component.arm.v1.GetPropertiesResponse>}
+ */
+const methodDescriptor_ArmService_GetProperties = new grpc.web.MethodDescriptor(
+  '/viam.component.arm.v1.ArmService/GetProperties',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.arm.v1.GetPropertiesRequest,
+  proto.viam.component.arm.v1.GetPropertiesResponse,
+  /**
+   * @param {!proto.viam.component.arm.v1.GetPropertiesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.arm.v1.GetPropertiesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.arm.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.arm.v1.GetPropertiesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.arm.v1.GetPropertiesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.arm.v1.ArmServiceClient.prototype.getProperties =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_GetProperties,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.arm.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.arm.v1.GetPropertiesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.arm.v1.ArmServicePromiseClient.prototype.getProperties =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.arm.v1.ArmService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_ArmService_GetProperties);
+};
+
+
 module.exports = proto.viam.component.arm.v1;
 
