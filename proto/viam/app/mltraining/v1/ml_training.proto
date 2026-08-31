@@ -197,6 +197,6 @@ message Container {
   google.protobuf.Timestamp eol = 5;   // unset for org-registered
   string organization_id = 6;
   google.protobuf.Timestamp created_on = 7; // unset for Viam containers
-  Role role = 8; // indicates whether container is custom or built-in
+  String uuid = 8;
+  Visibility visibility = 9; // public or private
 }
-
