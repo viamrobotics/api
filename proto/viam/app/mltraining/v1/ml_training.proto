@@ -216,10 +216,31 @@ message DeleteCustomTrainingContainerRequest {
 
 message DeleteCustomTrainingContainerResponse {}
 
-enum Role {
-  ROLE_UNSPECIFIED = 0;
-  ROLE_VIAM_CONTAINER = 1;
-  ROLE_CUSTOM_CONTAINER = 2;
+message RegisterCustomTrainingContainerRequest {
+  string organization_id = 1;
+
+  // Docker Hub reference, tag required: docker.io/<namespace>/<repo>:<tag>.
+  // Official images normalize to docker.io/library/<repo>:<tag>.
+  string image_uri = 3;
+
+  string description = 5; // will serve as display name
+}
+
+message RegisterCustomTrainingContainerResponse {
+  Container container = 1;
+}
+
+message DeleteCustomTrainingContainerRequest {
+  string organization_id = 1;
+  string key = 2;
+}
+
+message DeleteCustomTrainingContainerResponse {}
+
+enum Visibility {
+  VISIBILITY_UNSPECIFIED = 0;
+  VISIBILITY_PRIVATE = 1;
+  VISIBILITY_PUBLIC = 2;
 }
 
 message Container {
@@ -228,9 +249,8 @@ message Container {
   string framework = 3;                // unset for org-registered
   string description = 4;              // will serve as display name
   google.protobuf.Timestamp eol = 5;   // unset for org-registered
-  // 6 to 8 are new fields, 7 is set only for org-registered containers:
   string organization_id = 6;
-  google.protobuf.Timestamp created_on = 7;
-  Role role = 8; // indicates whether container is custom or built-in
+  google.protobuf.Timestamp created_on = 7; // unset for Viam containers
+  String id = 8;
+  Visibility visibility = 9; // public or private
 }
-
