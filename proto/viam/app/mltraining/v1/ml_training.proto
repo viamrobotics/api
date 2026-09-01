@@ -193,32 +193,6 @@ message ListSupportedContainersResponse {
 message RegisterCustomTrainingContainerRequest {
   string organization_id = 1;
 
-  // name format will be [user inputted name]:[first 8 characters of org id] 
-  string name = 2; 
-
-  // Docker Hub reference, tag required: docker.io/<namespace>/<repo>:<tag>.
-  // Official images normalize to docker.io/library/<repo>:<tag>.
-  string image_uri = 3;
-
-  // Optional. Defaults to the image tag. Registered key is "name:version".
-  string version = 4; 
-  string description = 5; // will serve as display name
-}
-
-message RegisterCustomTrainingContainerResponse {
-  Container container = 1;
-}
-
-message DeleteCustomTrainingContainerRequest {
-  string organization_id = 1;
-  string key = 2;
-}
-
-message DeleteCustomTrainingContainerResponse {}
-
-message RegisterCustomTrainingContainerRequest {
-  string organization_id = 1;
-
   // Docker Hub reference, tag required: docker.io/<namespace>/<repo>:<tag>.
   // Official images normalize to docker.io/library/<repo>:<tag>.
   string image_uri = 3;
