@@ -183,10 +183,10 @@ message ListSupportedContainersResponse {
   // }
 }
 
-enum Role {
-  ROLE_UNSPECIFIED = 0;
-  ROLE_VIAM_CONTAINER = 1;
-  ROLE_CUSTOM_CONTAINER = 2;
+enum Visibility {
+  VISIBILITY_UNSPECIFIED = 0;
+  VISIBILITY_PRIVATE = 1;
+  VISIBILITY_PUBLIC = 2;
 }
 
 message Container {
@@ -197,6 +197,6 @@ message Container {
   google.protobuf.Timestamp eol = 5;   // unset for org-registered
   string organization_id = 6;
   google.protobuf.Timestamp created_on = 7; // unset for Viam containers
-  String uuid = 8;
+  String id = 8;
   Visibility visibility = 9; // public or private
 }
