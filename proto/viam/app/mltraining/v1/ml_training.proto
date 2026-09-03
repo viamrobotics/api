@@ -32,6 +32,13 @@ service MLTrainingService {
 
   // ListSupportedContainers gets all the containers one can use for a custom training job.
   rpc ListSupportedContainers(ListSupportedContainersRequest) returns (ListSupportedContainersResponse);
+
+  // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
+  rpc RegisterCustomTrainingContainer(RegisterCustomTrainingContainerRequest) returns (RegisterCustomTrainingContainerResponse);
+  
+  // DeleteCustomTrainingContainer deletes a custom container from the database
+  rpc DeleteCustomTrainingContainer(DeleteCustomTrainingContainerRequest) returns (DeleteCustomTrainingContainerResponse);
+
 }
 
 enum ModelType {
@@ -182,6 +189,27 @@ message ListSupportedContainersResponse {
   //   }
   // }
 }
+
+message RegisterCustomTrainingContainerRequest {
+  string organization_id = 1;
+
+  // Docker Hub reference, tag required: docker.io/<namespace>/<repo>:<tag>.
+  // Official images normalize to docker.io/library/<repo>:<tag>.
+  string image_uri = 3;
+
+  string description = 5; // will serve as display name
+}
+
+message RegisterCustomTrainingContainerResponse {
+  Container container = 1;
+}
+
+message DeleteCustomTrainingContainerRequest {
+  string organization_id = 1;
+  string key = 2;
+}
+
+message DeleteCustomTrainingContainerResponse {}
 
 enum Visibility {
   VISIBILITY_UNSPECIFIED = 0;
