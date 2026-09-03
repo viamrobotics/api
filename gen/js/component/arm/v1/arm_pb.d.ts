@@ -674,3 +674,149 @@ export namespace MoveOptions {
   }
 }
 
+export class SetManualModeRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getManualMode(): boolean;
+  setManualMode(value: boolean): void;
+
+  getEnabledFor(): number;
+  setEnabledFor(value: number): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetManualModeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetManualModeRequest): SetManualModeRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetManualModeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetManualModeRequest;
+  static deserializeBinaryFromReader(message: SetManualModeRequest, reader: jspb.BinaryReader): SetManualModeRequest;
+}
+
+export namespace SetManualModeRequest {
+  export type AsObject = {
+    name: string,
+    manualMode: boolean,
+    enabledFor: number,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class SetManualModeResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetManualModeResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SetManualModeResponse): SetManualModeResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetManualModeResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetManualModeResponse;
+  static deserializeBinaryFromReader(message: SetManualModeResponse, reader: jspb.BinaryReader): SetManualModeResponse;
+}
+
+export namespace SetManualModeResponse {
+  export type AsObject = {
+  }
+}
+
+export class GetManualModeRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetManualModeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetManualModeRequest): GetManualModeRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetManualModeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetManualModeRequest;
+  static deserializeBinaryFromReader(message: GetManualModeRequest, reader: jspb.BinaryReader): GetManualModeRequest;
+}
+
+export namespace GetManualModeRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetManualModeResponse extends jspb.Message {
+  getManualMode(): boolean;
+  setManualMode(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetManualModeResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetManualModeResponse): GetManualModeResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetManualModeResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetManualModeResponse;
+  static deserializeBinaryFromReader(message: GetManualModeResponse, reader: jspb.BinaryReader): GetManualModeResponse;
+}
+
+export namespace GetManualModeResponse {
+  export type AsObject = {
+    manualMode: boolean,
+  }
+}
+
+export class GetPropertiesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesRequest): GetPropertiesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesRequest;
+  static deserializeBinaryFromReader(message: GetPropertiesRequest, reader: jspb.BinaryReader): GetPropertiesRequest;
+}
+
+export namespace GetPropertiesRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetPropertiesResponse extends jspb.Message {
+  getSupportManualMode(): boolean;
+  setSupportManualMode(value: boolean): void;
+
+  getSupportCartesianCommands(): boolean;
+  setSupportCartesianCommands(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesResponse;
+  static deserializeBinaryFromReader(message: GetPropertiesResponse, reader: jspb.BinaryReader): GetPropertiesResponse;
+}
+
+export namespace GetPropertiesResponse {
+  export type AsObject = {
+    supportManualMode: boolean,
+    supportCartesianCommands: boolean,
+  }
+}
+

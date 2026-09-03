@@ -52,6 +52,12 @@ type ArmServiceClient interface {
 	GetGeometries(ctx context.Context, in *v1.GetGeometriesRequest, opts ...grpc.CallOption) (*v1.GetGeometriesResponse, error)
 	// Get3DModels returns the 3D models of the component
 	Get3DModels(ctx context.Context, in *v1.Get3DModelsRequest, opts ...grpc.CallOption) (*v1.Get3DModelsResponse, error)
+	// SetManualMode enters or exits manual mode for an arm that supports it
+	SetManualMode(ctx context.Context, in *SetManualModeRequest, opts ...grpc.CallOption) (*SetManualModeResponse, error)
+	// GetManualMode returns whether the arm is currently in manual mode
+	GetManualMode(ctx context.Context, in *GetManualModeRequest, opts ...grpc.CallOption) (*GetManualModeResponse, error)
+	// GetProperties returns a message indicating which features the arm supports
+	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 }
 
 type armServiceClient struct {
@@ -201,6 +207,33 @@ func (c *armServiceClient) Get3DModels(ctx context.Context, in *v1.Get3DModelsRe
 	return out, nil
 }
 
+func (c *armServiceClient) SetManualMode(ctx context.Context, in *SetManualModeRequest, opts ...grpc.CallOption) (*SetManualModeResponse, error) {
+	out := new(SetManualModeResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.arm.v1.ArmService/SetManualMode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *armServiceClient) GetManualMode(ctx context.Context, in *GetManualModeRequest, opts ...grpc.CallOption) (*GetManualModeResponse, error) {
+	out := new(GetManualModeResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.arm.v1.ArmService/GetManualMode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *armServiceClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error) {
+	out := new(GetPropertiesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.arm.v1.ArmService/GetProperties", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArmServiceServer is the server API for ArmService service.
 // All implementations must embed UnimplementedArmServiceServer
 // for forward compatibility
@@ -234,6 +267,12 @@ type ArmServiceServer interface {
 	GetGeometries(context.Context, *v1.GetGeometriesRequest) (*v1.GetGeometriesResponse, error)
 	// Get3DModels returns the 3D models of the component
 	Get3DModels(context.Context, *v1.Get3DModelsRequest) (*v1.Get3DModelsResponse, error)
+	// SetManualMode enters or exits manual mode for an arm that supports it
+	SetManualMode(context.Context, *SetManualModeRequest) (*SetManualModeResponse, error)
+	// GetManualMode returns whether the arm is currently in manual mode
+	GetManualMode(context.Context, *GetManualModeRequest) (*GetManualModeResponse, error)
+	// GetProperties returns a message indicating which features the arm supports
+	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	mustEmbedUnimplementedArmServiceServer()
 }
 
@@ -279,6 +318,15 @@ func (UnimplementedArmServiceServer) GetGeometries(context.Context, *v1.GetGeome
 }
 func (UnimplementedArmServiceServer) Get3DModels(context.Context, *v1.Get3DModelsRequest) (*v1.Get3DModelsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get3DModels not implemented")
+}
+func (UnimplementedArmServiceServer) SetManualMode(context.Context, *SetManualModeRequest) (*SetManualModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetManualMode not implemented")
+}
+func (UnimplementedArmServiceServer) GetManualMode(context.Context, *GetManualModeRequest) (*GetManualModeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetManualMode not implemented")
+}
+func (UnimplementedArmServiceServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProperties not implemented")
 }
 func (UnimplementedArmServiceServer) mustEmbedUnimplementedArmServiceServer() {}
 
@@ -535,6 +583,60 @@ func _ArmService_Get3DModels_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArmService_SetManualMode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetManualModeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArmServiceServer).SetManualMode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.arm.v1.ArmService/SetManualMode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArmServiceServer).SetManualMode(ctx, req.(*SetManualModeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArmService_GetManualMode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetManualModeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArmServiceServer).GetManualMode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.arm.v1.ArmService/GetManualMode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArmServiceServer).GetManualMode(ctx, req.(*GetManualModeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArmService_GetProperties_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPropertiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArmServiceServer).GetProperties(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.arm.v1.ArmService/GetProperties",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArmServiceServer).GetProperties(ctx, req.(*GetPropertiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArmService_ServiceDesc is the grpc.ServiceDesc for ArmService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -589,6 +691,18 @@ var ArmService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get3DModels",
 			Handler:    _ArmService_Get3DModels_Handler,
+		},
+		{
+			MethodName: "SetManualMode",
+			Handler:    _ArmService_SetManualMode_Handler,
+		},
+		{
+			MethodName: "GetManualMode",
+			Handler:    _ArmService_GetManualMode_Handler,
+		},
+		{
+			MethodName: "GetProperties",
+			Handler:    _ArmService_GetProperties_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
