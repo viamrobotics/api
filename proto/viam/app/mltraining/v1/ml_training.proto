@@ -162,7 +162,12 @@ message GetTrainingJobLogsResponse {
   string next_page_token = 2;
 }
 
-message ListSupportedContainersRequest {}
+message ListSupportedContainersRequest {
+  // Optional. When set, the response merges the organization's registered
+  // custom training containers into the Viam-managed catalog.
+  // Only lists Viam containers if unset
+  string organization_id = 1;
+}
 
 message ListSupportedContainersResponse {
   map<string, Container> container_map = 1;
@@ -173,14 +178,25 @@ message ListSupportedContainersResponse {
   //     uri: "us-docker.pkg.dev/vertex-ai/training/tf-gpu.2-15.py310:latest"
   //     description: "Tensorflow 2.15"
   //     eol: { seconds: 1772630400, nanos: 0 } // 2026-03-03T00:00:00Z
+  //     org_id: "xyz"
   //   }
   // }
 }
 
+enum Visibility {
+  VISIBILITY_UNSPECIFIED = 0;
+  VISIBILITY_PRIVATE = 1;
+  VISIBILITY_PUBLIC = 2;
+}
+
 message Container {
-  string key = 1;
-  string uri = 2;
-  string framework = 3;
-  string description = 4;
-  google.protobuf.Timestamp eol = 5;
+  string key = 1;                      // org-registered keys are "name:version"
+  string uri = 2;                     
+  string framework = 3;                // unset for org-registered
+  string description = 4;              // will serve as display name
+  google.protobuf.Timestamp eol = 5;   // unset for org-registered
+  string organization_id = 6;
+  google.protobuf.Timestamp created_on = 7; // unset for Viam containers
+  String id = 8;
+  Visibility visibility = 9; // public or private
 }
