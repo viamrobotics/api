@@ -163,9 +163,10 @@ message GetTrainingJobLogsResponse {
 }
 
 message ListSupportedContainersRequest {
-  // Optional. When set, the response merges the organization's registered
-  // custom training containers into the Viam-managed catalog.
-  // Only lists Viam containers if unset
+ // Optional. Scopes the response to the containers available to this
+// organization: the Viam-managed catalog plus the org's registered
+// custom training containers. If unset, only the Viam-managed catalog
+// is returned.
   string organization_id = 1;
 }
 
