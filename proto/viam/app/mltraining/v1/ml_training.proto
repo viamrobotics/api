@@ -190,7 +190,7 @@ enum Visibility {
 }
 
 message Container {
-  string key = 1;                      // org-registered keys are "name:version"
+  string key = 1;                      // org-registered keys are derived from the Docker container info
   string uri = 2;                     
   string framework = 3;                // unset for org-registered
   string description = 4;              // will serve as display name
