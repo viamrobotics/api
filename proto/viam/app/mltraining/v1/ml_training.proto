@@ -170,6 +170,8 @@ message ListSupportedContainersRequest {
 }
 
 message ListSupportedContainersResponse {
+  // TODO: update this to specify frameowrk (instead of URI?)
+  // because the framework is shown when you list the containers
   map<string, Container> container_map = 1;
   // ex value:
   // container_map: {
@@ -178,7 +180,8 @@ message ListSupportedContainersResponse {
   //     uri: "us-docker.pkg.dev/vertex-ai/training/tf-gpu.2-15.py310:latest"
   //     description: "Tensorflow 2.15"
   //     eol: { seconds: 1772630400, nanos: 0 } // 2026-03-03T00:00:00Z
-  //     org_id: "xyz"
+  //     created_on: "2017-01-15T01:30:15.01Z"
+  //     visibility: public or private
   //   }
   // }
 }
@@ -192,11 +195,11 @@ enum Visibility {
 message Container {
   string key = 1;                      // org-registered keys are derived from the Docker container info
   string uri = 2;                     
-  string framework = 3;                // unset for org-registered
+  string framework = 3;                // unset for custom containers
   string description = 4;              // will serve as display name
-  google.protobuf.Timestamp eol = 5;   // unset for org-registered
+  google.protobuf.Timestamp eol = 5;   // unset for custom containers
   string organization_id = 6;
   google.protobuf.Timestamp created_on = 7; // unset for Viam containers
-  string id = 8;
+  string id = 8; // UUID of the container
   Visibility visibility = 9; // public or private
 }
