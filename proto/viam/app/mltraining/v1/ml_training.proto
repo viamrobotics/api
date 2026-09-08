@@ -170,20 +170,22 @@ message ListSupportedContainersRequest {
 }
 
 message ListSupportedContainersResponse {
-  // TODO: update this to specify frameowrk (instead of URI?)
-  // because the framework is shown when you list the containers
   map<string, Container> container_map = 1;
   // ex value:
   // container_map: {
   //   "tf:2.15": Container {
   //     key: "tf:2.15"
   //     uri: "us-docker.pkg.dev/vertex-ai/training/tf-gpu.2-15.py310:latest"
+  //     framework: Tensorflow
   //     description: "Tensorflow 2.15"
   //     eol: { seconds: 1772630400, nanos: 0 } // 2026-03-03T00:00:00Z
-  //     created_on: "2017-01-15T01:30:15.01Z"
-  //     visibility: public or private
+  //     created_on: 2026-01-15T01:30:15.01Z
+  //     organization_id: "xyz"
+  //     visibility: VISIBILITY_PUBLIC
   //   }
   // }
+  // This response takes a full Container, but not all the fields will be dispayed by CLI:
+  // only name/key, uri, eol, description, framework, created_on and visibility
 }
 
 enum Visibility {
