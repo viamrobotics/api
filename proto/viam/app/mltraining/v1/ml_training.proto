@@ -170,9 +170,10 @@ message GetTrainingJobLogsResponse {
 }
 
 message ListSupportedContainersRequest {
-  // Optional. When set, the response merges the organization's registered
-  // custom training containers into the Viam-managed catalog.
-  // Only lists Viam containers if unset
+ // Optional. Scopes the response to the containers available to this
+// organization: the Viam-managed catalog plus the org's registered
+// custom training containers. If unset, only the Viam-managed catalog
+// is returned.
   string organization_id = 1;
 }
 
@@ -183,11 +184,16 @@ message ListSupportedContainersResponse {
   //   "tf:2.15": Container {
   //     key: "tf:2.15"
   //     uri: "us-docker.pkg.dev/vertex-ai/training/tf-gpu.2-15.py310:latest"
+  //     framework: Tensorflow
   //     description: "Tensorflow 2.15"
   //     eol: { seconds: 1772630400, nanos: 0 } // 2026-03-03T00:00:00Z
-  //     org_id: "xyz"
+  //     created_on: 2026-01-15T01:30:15.01Z
+  //     organization_id: "xyz"
+  //     visibility: VISIBILITY_PUBLIC
   //   }
   // }
+  // This response takes a full Container, but not all the fields will be dispayed by CLI:
+  // only name/key, uri, eol, description, framework, created_on and visibility
 }
 
 message RegisterCustomTrainingContainerRequest {
@@ -219,13 +225,13 @@ enum Visibility {
 }
 
 message Container {
-  string key = 1;                      // org-registered keys are derived from the Docker container info
+  string key = 1;                      // custom container keys are derived from the Docker URI (image:tag)
   string uri = 2;                     
-  string framework = 3;                // unset for org-registered
+  string framework = 3;                // unset for custom containers
   string description = 4;              // will serve as display name
-  google.protobuf.Timestamp eol = 5;   // unset for org-registered
+  google.protobuf.Timestamp eol = 5;   // unset for custom containers
   string organization_id = 6;
   google.protobuf.Timestamp created_on = 7; // unset for Viam containers
-  string id = 8;
+  string id = 8; // UUID of the container
   Visibility visibility = 9; // public or private
 }

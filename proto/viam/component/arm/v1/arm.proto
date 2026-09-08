@@ -82,6 +82,21 @@ service ArmService {
   rpc Get3DModels(common.v1.Get3DModelsRequest) returns (common.v1.Get3DModelsResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/arm/{name}/3d_models"};
   }
+
+  // SetManualMode enters or exits manual mode for an arm that supports it
+  rpc SetManualMode(SetManualModeRequest) returns (SetManualModeResponse) {
+    option (google.api.http) = {put: "/viam/api/v1/component/arm/{name}/manual_mode"};
+  }
+
+  // GetManualMode returns whether the arm is currently in manual mode
+  rpc GetManualMode(GetManualModeRequest) returns (GetManualModeResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/arm/{name}/manual_mode"};
+  }
+
+  // GetProperties returns a message indicating which features the arm supports
+  rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/component/arm/{name}/features"};
+  }
 }
 
 message GetEndPositionRequest {
@@ -285,4 +300,43 @@ message MoveOptions {
   // Maximum allowable speed of an arm's tool center point in meters per second.
   // The arm driver will move the tool center point as fast as possible up to this set value.
   optional double max_tcp_speed = 5;
+}
+
+message SetManualModeRequest {
+  // Name of an arm
+  string name = 1;
+  // True to enter manual mode, false to exit it
+  bool manual_mode = 2;
+  // How long to stay in manual mode, in seconds; 0 means no time limit
+  int32 enabled_for = 3;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message SetManualModeResponse {}
+
+message GetManualModeRequest {
+  // Name of an arm
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetManualModeResponse {
+  // True if the arm is in manual mode
+  bool manual_mode = 1;
+}
+
+message GetPropertiesRequest {
+  // Name of an arm
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPropertiesResponse {
+  // True if the arm supports software-enabled manual mode
+  bool support_manual_mode = 1;
+  // True if the arm supports direct cartesian commands (MoveToPosition is implemented)
+  bool support_cartesian_commands = 2;
 }

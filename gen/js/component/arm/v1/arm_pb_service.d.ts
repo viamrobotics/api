@@ -122,6 +122,33 @@ type ArmServiceGet3DModels = {
   readonly responseType: typeof common_v1_common_pb.Get3DModelsResponse;
 };
 
+type ArmServiceSetManualMode = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_arm_v1_arm_pb.SetManualModeRequest;
+  readonly responseType: typeof component_arm_v1_arm_pb.SetManualModeResponse;
+};
+
+type ArmServiceGetManualMode = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_arm_v1_arm_pb.GetManualModeRequest;
+  readonly responseType: typeof component_arm_v1_arm_pb.GetManualModeResponse;
+};
+
+type ArmServiceGetProperties = {
+  readonly methodName: string;
+  readonly service: typeof ArmService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_arm_v1_arm_pb.GetPropertiesRequest;
+  readonly responseType: typeof component_arm_v1_arm_pb.GetPropertiesResponse;
+};
+
 export class ArmService {
   static readonly serviceName: string;
   static readonly GetEndPosition: ArmServiceGetEndPosition;
@@ -137,6 +164,9 @@ export class ArmService {
   static readonly GetKinematics: ArmServiceGetKinematics;
   static readonly GetGeometries: ArmServiceGetGeometries;
   static readonly Get3DModels: ArmServiceGet3DModels;
+  static readonly SetManualMode: ArmServiceSetManualMode;
+  static readonly GetManualMode: ArmServiceGetManualMode;
+  static readonly GetProperties: ArmServiceGetProperties;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -279,6 +309,33 @@ export class ArmServiceClient {
   get3DModels(
     requestMessage: common_v1_common_pb.Get3DModelsRequest,
     callback: (error: ServiceError|null, responseMessage: common_v1_common_pb.Get3DModelsResponse|null) => void
+  ): UnaryResponse;
+  setManualMode(
+    requestMessage: component_arm_v1_arm_pb.SetManualModeRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.SetManualModeResponse|null) => void
+  ): UnaryResponse;
+  setManualMode(
+    requestMessage: component_arm_v1_arm_pb.SetManualModeRequest,
+    callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.SetManualModeResponse|null) => void
+  ): UnaryResponse;
+  getManualMode(
+    requestMessage: component_arm_v1_arm_pb.GetManualModeRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.GetManualModeResponse|null) => void
+  ): UnaryResponse;
+  getManualMode(
+    requestMessage: component_arm_v1_arm_pb.GetManualModeRequest,
+    callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.GetManualModeResponse|null) => void
+  ): UnaryResponse;
+  getProperties(
+    requestMessage: component_arm_v1_arm_pb.GetPropertiesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.GetPropertiesResponse|null) => void
+  ): UnaryResponse;
+  getProperties(
+    requestMessage: component_arm_v1_arm_pb.GetPropertiesRequest,
+    callback: (error: ServiceError|null, responseMessage: component_arm_v1_arm_pb.GetPropertiesResponse|null) => void
   ): UnaryResponse;
 }
 
