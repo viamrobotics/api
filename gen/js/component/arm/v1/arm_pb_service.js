@@ -128,6 +128,33 @@ ArmService.Get3DModels = {
   responseType: common_v1_common_pb.Get3DModelsResponse
 };
 
+ArmService.SetManualMode = {
+  methodName: "SetManualMode",
+  service: ArmService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_arm_v1_arm_pb.SetManualModeRequest,
+  responseType: component_arm_v1_arm_pb.SetManualModeResponse
+};
+
+ArmService.GetManualMode = {
+  methodName: "GetManualMode",
+  service: ArmService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_arm_v1_arm_pb.GetManualModeRequest,
+  responseType: component_arm_v1_arm_pb.GetManualModeResponse
+};
+
+ArmService.GetProperties = {
+  methodName: "GetProperties",
+  service: ArmService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_arm_v1_arm_pb.GetPropertiesRequest,
+  responseType: component_arm_v1_arm_pb.GetPropertiesResponse
+};
+
 exports.ArmService = ArmService;
 
 function ArmServiceClient(serviceHost, options) {
@@ -526,6 +553,99 @@ ArmServiceClient.prototype.get3DModels = function get3DModels(requestMessage, me
     callback = arguments[1];
   }
   var client = grpc.unary(ArmService.Get3DModels, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ArmServiceClient.prototype.setManualMode = function setManualMode(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ArmService.SetManualMode, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ArmServiceClient.prototype.getManualMode = function getManualMode(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ArmService.GetManualMode, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+ArmServiceClient.prototype.getProperties = function getProperties(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ArmService.GetProperties, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
