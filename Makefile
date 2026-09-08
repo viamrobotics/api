@@ -26,3 +26,15 @@ dist/buf-web: dist/tool-install
 .PHONY: lint
 lint: dist/tool-install
 	mise r lint
+
+.PHONY: crud-lint
+crud-lint:
+	python3 tools/crud-linter.py
+
+.PHONY: crud-lint-strict
+crud-lint-strict:
+	python3 tools/crud-linter.py --strict
+
+.PHONY: lint-all
+lint-all: lint crud-lint
+	@echo "✅ All linting completed"
