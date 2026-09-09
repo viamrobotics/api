@@ -202,7 +202,7 @@ message Container {
   string description = 4;              // will serve as display name
   google.protobuf.Timestamp eol = 5;   // unset for custom containers
   string organization_id = 6;
-  google.protobuf.Timestamp created_on = 7; // unset for Viam containers
+  google.protobuf.Timestamp created_on = 7;
   string id = 8; // UUID of the container
   Visibility visibility = 9; // public or private
 }
