@@ -185,8 +185,6 @@ message ListSupportedContainersResponse {
   //     visibility: VISIBILITY_PUBLIC
   //   }
   // }
-  // This response takes a full Container, but not all the fields will be dispayed by CLI:
-  // only name/key, uri, eol, description, framework, created_on and visibility
 }
 
 enum Visibility {
