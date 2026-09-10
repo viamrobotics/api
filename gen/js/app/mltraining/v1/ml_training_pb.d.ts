@@ -489,6 +489,9 @@ export namespace GetTrainingJobLogsResponse {
 }
 
 export class ListSupportedContainersRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListSupportedContainersRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListSupportedContainersRequest): ListSupportedContainersRequest.AsObject;
@@ -501,6 +504,7 @@ export class ListSupportedContainersRequest extends jspb.Message {
 
 export namespace ListSupportedContainersRequest {
   export type AsObject = {
+    organizationId: string,
   }
 }
 
@@ -541,6 +545,20 @@ export class Container extends jspb.Message {
   getEol(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setEol(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getId(): string;
+  setId(value: string): void;
+
+  getVisibility(): VisibilityMap[keyof VisibilityMap];
+  setVisibility(value: VisibilityMap[keyof VisibilityMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Container.AsObject;
   static toObject(includeInstance: boolean, msg: Container): Container.AsObject;
@@ -558,6 +576,10 @@ export namespace Container {
     framework: string,
     description: string,
     eol?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    organizationId: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    id: string,
+    visibility: VisibilityMap[keyof VisibilityMap],
   }
 }
 
@@ -591,4 +613,12 @@ export interface TrainingStatusMap {
 }
 
 export const TrainingStatus: TrainingStatusMap;
+
+export interface VisibilityMap {
+  VISIBILITY_UNSPECIFIED: 0;
+  VISIBILITY_PRIVATE: 1;
+  VISIBILITY_PUBLIC: 2;
+}
+
+export const Visibility: VisibilityMap;
 
