@@ -32,6 +32,13 @@ service MLTrainingService {
 
   // ListSupportedContainers gets all the containers one can use for a custom training job.
   rpc ListSupportedContainers(ListSupportedContainersRequest) returns (ListSupportedContainersResponse);
+
+  // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
+  rpc RegisterCustomTrainingContainer(RegisterCustomTrainingContainerRequest) returns (RegisterCustomTrainingContainerResponse);
+  
+  // DeleteCustomTrainingContainer deletes a custom container from the database
+  rpc DeleteCustomTrainingContainer(DeleteCustomTrainingContainerRequest) returns (DeleteCustomTrainingContainerResponse);
+
 }
 
 enum ModelType {
@@ -183,9 +190,34 @@ message ListSupportedContainersResponse {
   //     created_on: 2026-01-15T01:30:15.01Z
   //     organization_id: "xyz"
   //     visibility: VISIBILITY_PUBLIC
+  //     created_on: 2026-01-15T01:30:15.01Z
+  //     organization_id: "xyz"
+  //     visibility: VISIBILITY_PUBLIC
   //   }
   // }
 }
+
+message RegisterCustomTrainingContainerRequest {
+  string organization_id = 1;
+
+  // On registration resolve URI to container's image:tag to set as key.
+  // Docker Hub reference, tag required: docker.io/<namespace>/<image>:<tag>.
+  // Official images normalize to docker.io/library/<image>:<tag>.
+  string image_uri = 3;
+
+  string description = 5; // will serve as display name
+}
+
+message RegisterCustomTrainingContainerResponse {
+  Container container = 1;
+}
+
+message DeleteCustomTrainingContainerRequest {
+  string organization_id = 1;
+  string key = 2;
+}
+
+message DeleteCustomTrainingContainerResponse {}
 
 enum Visibility {
   VISIBILITY_UNSPECIFIED = 0;
