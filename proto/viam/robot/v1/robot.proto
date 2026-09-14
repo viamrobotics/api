@@ -536,7 +536,7 @@ message PackageStatus {
     STATE_FAILED = 5;
   }
 
-  // the package name as declared in the robot config (PackageConfig.Name)
+  // the package name as declared in the robot config (`PackageConfig.Name`)
   string name = 1;
 
   // the package type (module, ml_model, slam_map, etc.)
