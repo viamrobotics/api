@@ -1987,9 +1987,11 @@ type StreamOptions struct {
 	TargetRunwayInArmMs *int32 `protobuf:"varint,1,opt,name=target_runway_in_arm_ms,json=targetRunwayInArmMs,proto3,oneof" json:"target_runway_in_arm_ms,omitempty"`
 	// How often (in ms) the motion service checks whether the arm's buffered runway needs topping up.
 	SendToArmIntervalMs *int32 `protobuf:"varint,2,opt,name=send_to_arm_interval_ms,json=sendToArmIntervalMs,proto3,oneof" json:"send_to_arm_interval_ms,omitempty"`
-	// Velocity limit, in degrees/sec, applied to every joint.
+	// Velocity limit, in degrees/sec, applied to every joint. If unset, falls back to the arm's
+	// own kinematics-declared per-joint velocity limits.
 	VelLimitDegPerSec *float64 `protobuf:"fixed64,3,opt,name=vel_limit_deg_per_sec,json=velLimitDegPerSec,proto3,oneof" json:"vel_limit_deg_per_sec,omitempty"`
-	// Acceleration limit, in degrees/sec^2, applied to every joint.
+	// Acceleration limit, in degrees/sec^2, applied to every joint. If unset, falls back to the
+	// arm's own kinematics-declared per-joint acceleration limits.
 	AccelLimitDegPerSec2 *float64 `protobuf:"fixed64,4,opt,name=accel_limit_deg_per_sec2,json=accelLimitDegPerSec2,proto3,oneof" json:"accel_limit_deg_per_sec2,omitempty"`
 	// Size (in ms) of the rolling window used to compute session diagnostics.
 	DiagnosticsWindowMs *int32 `protobuf:"varint,5,opt,name=diagnostics_window_ms,json=diagnosticsWindowMs,proto3,oneof" json:"diagnostics_window_ms,omitempty"`
