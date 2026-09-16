@@ -200,21 +200,18 @@ message ListSupportedContainersResponse {
 message RegisterCustomTrainingContainerRequest {
   string organization_id = 1;
 
-  // On registration resolve URI to container's image:tag to set as key.
-  // Docker Hub reference, tag required: docker.io/<namespace>/<image>:<tag>.
-  // Official images normalize to docker.io/library/<image>:<tag>.
-  string image_uri = 3;
+  // Docker Hub reference, official images normalize to docker.io/library/<image>:<tag>.
+  string image_uri = 2;
 
-  string description = 5; // will serve as display name
+  string description = 3; // will serve as display name
 }
 
 message RegisterCustomTrainingContainerResponse {
-  Container container = 1;
+  string id = 1;
 }
 
 message DeleteCustomTrainingContainerRequest {
-  string organization_id = 1;
-  string key = 2;
+  string id = 1;
 }
 
 message DeleteCustomTrainingContainerResponse {}
