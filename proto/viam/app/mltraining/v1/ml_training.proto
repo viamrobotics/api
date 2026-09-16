@@ -35,10 +35,9 @@ service MLTrainingService {
 
   // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
   rpc RegisterCustomTrainingContainer(RegisterCustomTrainingContainerRequest) returns (RegisterCustomTrainingContainerResponse);
-  
+
   // DeleteCustomTrainingContainer deletes a custom container from the database
   rpc DeleteCustomTrainingContainer(DeleteCustomTrainingContainerRequest) returns (DeleteCustomTrainingContainerResponse);
-
 }
 
 enum ModelType {
