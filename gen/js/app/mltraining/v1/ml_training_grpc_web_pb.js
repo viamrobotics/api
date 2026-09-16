@@ -571,5 +571,127 @@ proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.listSuppor
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerRequest,
+ *   !proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse>}
+ */
+const methodDescriptor_MLTrainingService_RegisterCustomTrainingContainer = new grpc.web.MethodDescriptor(
+  '/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerRequest,
+  proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse,
+  /**
+   * @param {!proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.registerCustomTrainingContainer =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_RegisterCustomTrainingContainer,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.registerCustomTrainingContainer =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_RegisterCustomTrainingContainer);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerRequest,
+ *   !proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerResponse>}
+ */
+const methodDescriptor_MLTrainingService_DeleteCustomTrainingContainer = new grpc.web.MethodDescriptor(
+  '/viam.app.mltraining.v1.MLTrainingService/DeleteCustomTrainingContainer',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerRequest,
+  proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerResponse,
+  /**
+   * @param {!proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.deleteCustomTrainingContainer =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/DeleteCustomTrainingContainer',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_DeleteCustomTrainingContainer,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.mltraining.v1.DeleteCustomTrainingContainerResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.deleteCustomTrainingContainer =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/DeleteCustomTrainingContainer',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_DeleteCustomTrainingContainer);
+};
+
+
 module.exports = proto.viam.app.mltraining.v1;
 
