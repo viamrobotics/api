@@ -190,9 +190,6 @@ message ListSupportedContainersResponse {
   //     created_on: 2026-01-15T01:30:15.01Z
   //     organization_id: "xyz"
   //     visibility: VISIBILITY_PUBLIC
-  //     created_on: 2026-01-15T01:30:15.01Z
-  //     organization_id: "xyz"
-  //     visibility: VISIBILITY_PUBLIC
   //   }
   // }
 }
