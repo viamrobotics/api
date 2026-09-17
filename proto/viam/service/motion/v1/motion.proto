@@ -434,8 +434,10 @@ message StreamOptions {
   // Acceleration limit, in degrees/sec^2, applied to every joint. If unset, falls back to the
   // arm's own kinematics-declared per-joint acceleration limits.
   optional double accel_limit_deg_per_sec2 = 4;
-  // Size (in ms) of the rolling window used to compute session diagnostics.
-  optional int32 diagnostics_window_ms = 5;
+  // Size (in seconds) of the rolling window used to compute session diagnostics. A non-positive
+  // value disables retention of that window's detail; whole-run diagnostic stats are still
+  // collected regardless.
+  optional int32 diagnostics_window_secs = 5;
 }
 
 message StreamArmJointPositionsRequest {
