@@ -2296,8 +2296,7 @@ type StreamArmJointPositionsRequest_Targets struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Target joint positions to append to the session, in order. Append-only; targets cannot
-	// be replaced or revoked.
+	// Target joint positions to append to the session, in order.
 	Positions []*v11.JointPositions `protobuf:"bytes,1,rep,name=positions,proto3" json:"positions,omitempty"`
 }
 

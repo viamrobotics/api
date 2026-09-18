@@ -455,8 +455,7 @@ message StreamArmJointPositionsRequest {
   }
 
   message Targets {
-    // Target joint positions to append to the session, in order. Append-only; targets cannot
-    // be replaced or revoked.
+    // Target joint positions to append to the session, in order.
     repeated viam.component.arm.v1.JointPositions positions = 1;
   }
 }
