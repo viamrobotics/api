@@ -428,16 +428,16 @@ message StreamOptions {
   optional int32 target_runway_in_arm_ms = 1;
   // How often (in ms) the motion service checks whether the arm's buffered runway needs topping up.
   optional int32 send_to_arm_interval_ms = 2;
-  // Velocity limit, in degrees/sec, applied to every joint. If unset, falls back to the arm's
-  // own kinematics-declared per-joint velocity limits.
-  optional double vel_limit_deg_per_sec = 3;
-  // Acceleration limit, in degrees/sec^2, applied to every joint. If unset, falls back to the
-  // arm's own kinematics-declared per-joint acceleration limits.
-  optional double accel_limit_deg_per_sec2 = 4;
+  // Per-joint velocity/acceleration limits for the session's trajectory, in the same shape as a
+  // single move's MoveOptions. max_vel_degs_per_sec/max_acc_degs_per_sec2 (or their per-joint
+  // array counterparts) apply uniformly for the whole session; unset fields fall back to the
+  // arm's own kinematics-declared per-joint limits. max_tcp_speed is not applicable to streaming
+  // and is ignored.
+  optional viam.component.arm.v1.MoveOptions move_options = 3;
   // Size (in seconds) of the rolling window used to compute session diagnostics. A non-positive
   // value disables retention of that window's detail; whole-run diagnostic stats are still
   // collected regardless.
-  optional int32 diagnostics_window_secs = 5;
+  optional int32 diagnostics_window_secs = 4;
 }
 
 message StreamArmJointPositionsRequest {
