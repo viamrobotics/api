@@ -1984,7 +1984,7 @@ type StreamOptions struct {
 	TargetRunwayInArmMs *int32 `protobuf:"varint,1,opt,name=target_runway_in_arm_ms,json=targetRunwayInArmMs,proto3,oneof" json:"target_runway_in_arm_ms,omitempty"`
 	// How often (in ms) the motion service checks whether the arm's buffered runway needs topping up.
 	SendToArmIntervalMs *int32 `protobuf:"varint,2,opt,name=send_to_arm_interval_ms,json=sendToArmIntervalMs,proto3,oneof" json:"send_to_arm_interval_ms,omitempty"`
-	// Velocity/acceleration limits for the session's trajectory; max_tcp_speed is ignored.
+	// Velocity/acceleration limits for the session's trajectory.
 	MoveOptions *v11.MoveOptions `protobuf:"bytes,3,opt,name=move_options,json=moveOptions,proto3,oneof" json:"move_options,omitempty"`
 	// Size (in seconds) of the diagnostics window; non-positive disables its retention.
 	DiagnosticsWindowSecs *int32 `protobuf:"varint,4,opt,name=diagnostics_window_secs,json=diagnosticsWindowSecs,proto3,oneof" json:"diagnostics_window_secs,omitempty"`
