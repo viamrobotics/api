@@ -1987,15 +1987,9 @@ type StreamOptions struct {
 	TargetRunwayInArmMs *int32 `protobuf:"varint,1,opt,name=target_runway_in_arm_ms,json=targetRunwayInArmMs,proto3,oneof" json:"target_runway_in_arm_ms,omitempty"`
 	// How often (in ms) the motion service checks whether the arm's buffered runway needs topping up.
 	SendToArmIntervalMs *int32 `protobuf:"varint,2,opt,name=send_to_arm_interval_ms,json=sendToArmIntervalMs,proto3,oneof" json:"send_to_arm_interval_ms,omitempty"`
-	// Per-joint velocity/acceleration limits for the session's trajectory, in the same shape as a
-	// single move's MoveOptions. max_vel_degs_per_sec/max_acc_degs_per_sec2 (or their per-joint
-	// array counterparts) apply uniformly for the whole session; unset fields fall back to the
-	// arm's own kinematics-declared per-joint limits. max_tcp_speed is not applicable to streaming
-	// and is ignored.
+	// Velocity/acceleration limits for the session's trajectory, applied for its whole duration; unset fields fall back to the arm's own kinematics-declared per-joint limits, and max_tcp_speed is ignored.
 	MoveOptions *v11.MoveOptions `protobuf:"bytes,3,opt,name=move_options,json=moveOptions,proto3,oneof" json:"move_options,omitempty"`
-	// Size (in seconds) of the rolling window used to compute session diagnostics. A non-positive
-	// value disables retention of that window's detail; whole-run diagnostic stats are still
-	// collected regardless.
+	// Size (in seconds) of the rolling window used to compute session diagnostics; a non-positive value disables retention of that window's detail, though whole-run diagnostic stats are still collected regardless.
 	DiagnosticsWindowSecs *int32 `protobuf:"varint,4,opt,name=diagnostics_window_secs,json=diagnosticsWindowSecs,proto3,oneof" json:"diagnostics_window_secs,omitempty"`
 }
 
