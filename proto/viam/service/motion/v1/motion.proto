@@ -422,7 +422,7 @@ message ComponentState {
 
 message StreamOptions {
   // How much trajectory the motion service tries to keep buffered on the arm's side.
-  optional int32 target_runway_in_arm_ms = 1;
+  optional int32 arm_side_target_runway_ms = 1;
 
   // How often the motion service aims to top up the arm's buffered runway.
   optional int32 send_to_arm_interval_ms = 2;
