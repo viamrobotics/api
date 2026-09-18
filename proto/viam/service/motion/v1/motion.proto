@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.service.motion.v1;
 
 import "common/v1/common.proto";
+import "component/arm/v1/arm.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
@@ -59,6 +60,13 @@ service MotionService {
   rpc GetPlan(GetPlanRequest) returns (GetPlanResponse) {
     option (google.api.http) = {get: "/viam/api/v1/service/motion/{name}/get_plan"};
   }
+
+  // Streams joint-space waypoints to an arm, one session per arm at a time.
+  // The first message on the stream must be an Init; every subsequent message
+  // must be a Targets batch. Closing the request stream (client-side) drains
+  // any buffered trajectory to the arm before ending the call; canceling the
+  // call's context aborts the session immediately.
+  rpc StreamArmJointPositions(stream StreamArmJointPositionsRequest) returns (stream StreamArmJointPositionsResponse);
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
@@ -411,3 +419,48 @@ message PlanStep {
 message ComponentState {
   common.v1.Pose pose = 1;
 }
+
+message StreamOptions {
+  // How much trajectory the motion service tries to keep buffered on the arm's side.
+  optional int32 arm_side_target_runway_ms = 1;
+
+  // How often the motion service aims to top up the arm's buffered runway.
+  optional int32 send_to_arm_interval_ms = 2;
+
+  // Size of the diagnostics window; non-positive disables its retention.
+  optional int32 diagnostics_window_secs = 3;
+
+  // Kinematic limits for the session's trajectory.
+  optional viam.component.arm.v1.MoveOptions move_options = 4;
+}
+
+message StreamArmJointPositionsRequest {
+  // Name of the motion service.
+  string name = 1;
+
+  oneof message {
+    // Session initiation. Sent exactly once and must be the first message on the stream.
+    Init init = 2;
+
+    // A batch of joint-position targets to append to the running session. Sent N times after init.
+    Targets targets = 3;
+  }
+
+  message Init {
+    // Name of the arm to stream joint positions to. Only one session per arm may run at a time.
+    string component_name = 1;
+
+    // Optional session configuration. If unset, the motion service applies its own defaults.
+    optional StreamOptions options = 2;
+
+    // Additional arguments to the method.
+    google.protobuf.Struct extra = 99;
+  }
+
+  message Targets {
+    // Target joint positions to append to the session, in order.
+    repeated viam.component.arm.v1.JointPositions positions = 1;
+  }
+}
+
+message StreamArmJointPositionsResponse {}
