@@ -420,9 +420,6 @@ message ComponentState {
   common.v1.Pose pose = 1;
 }
 
-// Session-wide configuration for a StreamArmJointPositions session. Governs how
-// the motion service samples and paces the trajectory it derives from targets,
-// not any single waypoint.
 message StreamOptions {
   // How much trajectory (in ms) the motion service tries to keep buffered on the arm's side.
   optional int32 target_runway_in_arm_ms = 1;
@@ -464,7 +461,4 @@ message StreamArmJointPositionsRequest {
   }
 }
 
-// Streamed back to the client while a StreamArmJointPositions session is running.
-// Currently carries no data; reserved so future server implementations can report
-// richer status without breaking existing clients.
 message StreamArmJointPositionsResponse {}

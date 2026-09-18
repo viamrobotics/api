@@ -1975,9 +1975,6 @@ func (x *ComponentState) GetPose() *v1.Pose {
 	return nil
 }
 
-// Session-wide configuration for a StreamArmJointPositions session. Governs how
-// the motion service samples and paces the trajectory it derives from targets,
-// not any single waypoint.
 type StreamOptions struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2141,9 +2138,6 @@ func (*StreamArmJointPositionsRequest_Init_) isStreamArmJointPositionsRequest_Me
 
 func (*StreamArmJointPositionsRequest_Targets_) isStreamArmJointPositionsRequest_Message() {}
 
-// Streamed back to the client while a StreamArmJointPositions session is running.
-// Currently carries no data; reserved so future server implementations can report
-// richer status without breaking existing clients.
 type StreamArmJointPositionsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
