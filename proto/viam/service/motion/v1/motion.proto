@@ -421,9 +421,9 @@ message ComponentState {
 }
 
 message StreamOptions {
-  // How much trajectory (in ms) the motion service tries to keep buffered on the arm's side.
+  // How much trajectory the motion service tries to keep buffered on the arm's side.
   optional int32 target_runway_in_arm_ms = 1;
-  // How often (in ms) the motion service checks whether the arm's buffered runway needs topping up.
+  // How often the motion service checks whether the arm's buffered runway needs topping up.
   optional int32 send_to_arm_interval_ms = 2;
   // Kinematic limits for the session's trajectory.
   optional viam.component.arm.v1.MoveOptions move_options = 3;
@@ -450,7 +450,7 @@ message StreamArmJointPositionsRequest {
     // Optional session configuration. If unset, the motion service applies its own defaults.
     optional StreamOptions options = 2;
 
-    // Additional sticky arguments to the method.
+    // Additional arguments to the method.
     google.protobuf.Struct extra = 99;
   }
 

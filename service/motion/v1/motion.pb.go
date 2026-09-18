@@ -1980,9 +1980,9 @@ type StreamOptions struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// How much trajectory (in ms) the motion service tries to keep buffered on the arm's side.
+	// How much trajectory the motion service tries to keep buffered on the arm's side.
 	TargetRunwayInArmMs *int32 `protobuf:"varint,1,opt,name=target_runway_in_arm_ms,json=targetRunwayInArmMs,proto3,oneof" json:"target_runway_in_arm_ms,omitempty"`
-	// How often (in ms) the motion service checks whether the arm's buffered runway needs topping up.
+	// How often the motion service checks whether the arm's buffered runway needs topping up.
 	SendToArmIntervalMs *int32 `protobuf:"varint,2,opt,name=send_to_arm_interval_ms,json=sendToArmIntervalMs,proto3,oneof" json:"send_to_arm_interval_ms,omitempty"`
 	// Kinematic limits for the session's trajectory.
 	MoveOptions *v11.MoveOptions `protobuf:"bytes,3,opt,name=move_options,json=moveOptions,proto3,oneof" json:"move_options,omitempty"`
@@ -2236,7 +2236,7 @@ type StreamArmJointPositionsRequest_Init struct {
 	ComponentName string `protobuf:"bytes,1,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
 	// Optional session configuration. If unset, the motion service applies its own defaults.
 	Options *StreamOptions `protobuf:"bytes,2,opt,name=options,proto3,oneof" json:"options,omitempty"`
-	// Additional sticky arguments to the method.
+	// Additional arguments to the method.
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
 }
 
