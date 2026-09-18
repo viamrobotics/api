@@ -427,11 +427,11 @@ message StreamOptions {
   // How often the motion service aims to top up the arm's buffered runway.
   optional int32 send_to_arm_interval_ms = 2;
 
-  // Kinematic limits for the session's trajectory.
-  optional viam.component.arm.v1.MoveOptions move_options = 3;
-
   // Size (in seconds) of the diagnostics window; non-positive disables its retention.
-  optional int32 diagnostics_window_secs = 4;
+  optional int32 diagnostics_window_secs = 3;
+
+  // Kinematic limits for the session's trajectory.
+  optional viam.component.arm.v1.MoveOptions move_options = 4;
 }
 
 message StreamArmJointPositionsRequest {
