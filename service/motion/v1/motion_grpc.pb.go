@@ -50,6 +50,11 @@ type MotionServiceClient interface {
 	// Replans share the execution_id of the previously executing plan.
 	// This currently only returns plans for MoveOnGlobe and MoveOnMap.
 	GetPlan(ctx context.Context, in *GetPlanRequest, opts ...grpc.CallOption) (*GetPlanResponse, error)
+	// Streams joint-space waypoints to an arm. The first message on the stream must
+	// be an Init; every subsequent message must be a Targets batch. Closing the
+	// request stream drains any buffered trajectory to the arm before ending the
+	// call; canceling the call's context aborts the session immediately.
+	TempStreamArmJointPositions(ctx context.Context, opts ...grpc.CallOption) (MotionService_TempStreamArmJointPositionsClient, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -128,6 +133,37 @@ func (c *motionServiceClient) GetPlan(ctx context.Context, in *GetPlanRequest, o
 	return out, nil
 }
 
+func (c *motionServiceClient) TempStreamArmJointPositions(ctx context.Context, opts ...grpc.CallOption) (MotionService_TempStreamArmJointPositionsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &MotionService_ServiceDesc.Streams[0], "/viam.service.motion.v1.MotionService/TempStreamArmJointPositions", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &motionServiceTempStreamArmJointPositionsClient{stream}
+	return x, nil
+}
+
+type MotionService_TempStreamArmJointPositionsClient interface {
+	Send(*TempStreamArmJointPositionsRequest) error
+	Recv() (*TempStreamArmJointPositionsResponse, error)
+	grpc.ClientStream
+}
+
+type motionServiceTempStreamArmJointPositionsClient struct {
+	grpc.ClientStream
+}
+
+func (x *motionServiceTempStreamArmJointPositionsClient) Send(m *TempStreamArmJointPositionsRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *motionServiceTempStreamArmJointPositionsClient) Recv() (*TempStreamArmJointPositionsResponse, error) {
+	m := new(TempStreamArmJointPositionsResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *motionServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/DoCommand", in, out, opts...)
@@ -177,6 +213,11 @@ type MotionServiceServer interface {
 	// Replans share the execution_id of the previously executing plan.
 	// This currently only returns plans for MoveOnGlobe and MoveOnMap.
 	GetPlan(context.Context, *GetPlanRequest) (*GetPlanResponse, error)
+	// Streams joint-space waypoints to an arm. The first message on the stream must
+	// be an Init; every subsequent message must be a Targets batch. Closing the
+	// request stream drains any buffered trajectory to the arm before ending the
+	// call; canceling the call's context aborts the session immediately.
+	TempStreamArmJointPositions(MotionService_TempStreamArmJointPositionsServer) error
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -208,6 +249,9 @@ func (UnimplementedMotionServiceServer) ListPlanStatuses(context.Context, *ListP
 }
 func (UnimplementedMotionServiceServer) GetPlan(context.Context, *GetPlanRequest) (*GetPlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPlan not implemented")
+}
+func (UnimplementedMotionServiceServer) TempStreamArmJointPositions(MotionService_TempStreamArmJointPositionsServer) error {
+	return status.Errorf(codes.Unimplemented, "method TempStreamArmJointPositions not implemented")
 }
 func (UnimplementedMotionServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -354,6 +398,32 @@ func _MotionService_GetPlan_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MotionService_TempStreamArmJointPositions_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(MotionServiceServer).TempStreamArmJointPositions(&motionServiceTempStreamArmJointPositionsServer{stream})
+}
+
+type MotionService_TempStreamArmJointPositionsServer interface {
+	Send(*TempStreamArmJointPositionsResponse) error
+	Recv() (*TempStreamArmJointPositionsRequest, error)
+	grpc.ServerStream
+}
+
+type motionServiceTempStreamArmJointPositionsServer struct {
+	grpc.ServerStream
+}
+
+func (x *motionServiceTempStreamArmJointPositionsServer) Send(m *TempStreamArmJointPositionsResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *motionServiceTempStreamArmJointPositionsServer) Recv() (*TempStreamArmJointPositionsRequest, error) {
+	m := new(TempStreamArmJointPositionsRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func _MotionService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -434,6 +504,13 @@ var MotionService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MotionService_GetStatus_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "TempStreamArmJointPositions",
+			Handler:       _MotionService_TempStreamArmJointPositions_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "service/motion/v1/motion.proto",
 }
