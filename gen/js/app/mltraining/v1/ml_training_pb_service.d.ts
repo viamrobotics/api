@@ -76,6 +76,15 @@ type MLTrainingServiceListSupportedContainers = {
   readonly responseType: typeof app_mltraining_v1_ml_training_pb.ListSupportedContainersResponse;
 };
 
+type MLTrainingServiceListContainers = {
+  readonly methodName: string;
+  readonly service: typeof MLTrainingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_mltraining_v1_ml_training_pb.ListContainersRequest;
+  readonly responseType: typeof app_mltraining_v1_ml_training_pb.ListContainersResponse;
+};
+
 type MLTrainingServiceRegisterCustomTrainingContainer = {
   readonly methodName: string;
   readonly service: typeof MLTrainingService;
@@ -104,6 +113,7 @@ export class MLTrainingService {
   static readonly DeleteCompletedTrainingJob: MLTrainingServiceDeleteCompletedTrainingJob;
   static readonly GetTrainingJobLogs: MLTrainingServiceGetTrainingJobLogs;
   static readonly ListSupportedContainers: MLTrainingServiceListSupportedContainers;
+  static readonly ListContainers: MLTrainingServiceListContainers;
   static readonly RegisterCustomTrainingContainer: MLTrainingServiceRegisterCustomTrainingContainer;
   static readonly DeleteCustomTrainingContainer: MLTrainingServiceDeleteCustomTrainingContainer;
 }
@@ -211,6 +221,15 @@ export class MLTrainingServiceClient {
   listSupportedContainers(
     requestMessage: app_mltraining_v1_ml_training_pb.ListSupportedContainersRequest,
     callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.ListSupportedContainersResponse|null) => void
+  ): UnaryResponse;
+  listContainers(
+    requestMessage: app_mltraining_v1_ml_training_pb.ListContainersRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.ListContainersResponse|null) => void
+  ): UnaryResponse;
+  listContainers(
+    requestMessage: app_mltraining_v1_ml_training_pb.ListContainersRequest,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.ListContainersResponse|null) => void
   ): UnaryResponse;
   registerCustomTrainingContainer(
     requestMessage: app_mltraining_v1_ml_training_pb.RegisterCustomTrainingContainerRequest,

@@ -82,6 +82,15 @@ MLTrainingService.ListSupportedContainers = {
   responseType: app_mltraining_v1_ml_training_pb.ListSupportedContainersResponse
 };
 
+MLTrainingService.ListContainers = {
+  methodName: "ListContainers",
+  service: MLTrainingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_mltraining_v1_ml_training_pb.ListContainersRequest,
+  responseType: app_mltraining_v1_ml_training_pb.ListContainersResponse
+};
+
 MLTrainingService.RegisterCustomTrainingContainer = {
   methodName: "RegisterCustomTrainingContainer",
   service: MLTrainingService,
@@ -329,6 +338,37 @@ MLTrainingServiceClient.prototype.listSupportedContainers = function listSupport
     callback = arguments[1];
   }
   var client = grpc.unary(MLTrainingService.ListSupportedContainers, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MLTrainingServiceClient.prototype.listContainers = function listContainers(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MLTrainingService.ListContainers, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
