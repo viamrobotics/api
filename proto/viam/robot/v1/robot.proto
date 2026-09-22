@@ -198,7 +198,9 @@ message Tunnel {
 message FrameSystemConfig {
   // this is an experimental API message
   common.v1.Transform frame = 1;
-  google.protobuf.Struct kinematics = 2;
+  // Deprecated: use model
+  google.protobuf.Struct kinematics = 2 [deprecated = true];
+  common.v1.KinematicModel model = 3;
 }
 
 message FrameSystemConfigRequest {
