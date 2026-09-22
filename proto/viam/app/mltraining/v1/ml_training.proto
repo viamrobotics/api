@@ -197,8 +197,7 @@ message ListSupportedContainersResponse {
 }
 
 message ListContainersRequest {
-  // Scopes the response to the containers available to this organization: the
-  // Viam-managed catalog plus the org's registered custom training containers.
+  // The associated Viam organization ID.
   string organization_id = 1;
 }
 
