@@ -33,6 +33,10 @@ service MLTrainingService {
   // ListSupportedContainers gets all the containers one can use for a custom training job.
   rpc ListSupportedContainers(ListSupportedContainersRequest) returns (ListSupportedContainersResponse);
 
+  // ListContainers gets all the containers one can use for a custom training job for a given organization,
+  // returned as a list rather than a map.
+  rpc ListContainers(ListContainersRequest) returns (ListContainersResponse);
+
   // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
   rpc RegisterCustomTrainingContainer(RegisterCustomTrainingContainerRequest) returns (RegisterCustomTrainingContainerResponse);
 
@@ -169,11 +173,8 @@ message GetTrainingJobLogsResponse {
 }
 
 message ListSupportedContainersRequest {
-  // Optional. Scopes the response to the containers available to this
-  // organization: the Viam-managed catalog plus the org's registered
-  // custom training containers. If unset, only the Viam-managed catalog
-  // is returned.
-  string organization_id = 1;
+  reserved 1;
+  reserved "organization_id";
 }
 
 message ListSupportedContainersResponse {
@@ -191,6 +192,16 @@ message ListSupportedContainersResponse {
   //     visibility: VISIBILITY_PUBLIC
   //   }
   // }
+}
+
+message ListContainersRequest {
+  // Scopes the response to the containers available to this organization: the
+  // Viam-managed catalog plus the org's registered custom training containers.
+  string organization_id = 1;
+}
+
+message ListContainersResponse {
+  repeated Container containers = 1;
 }
 
 message RegisterCustomTrainingContainerRequest {
