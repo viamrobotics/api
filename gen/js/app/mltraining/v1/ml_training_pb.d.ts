@@ -489,9 +489,6 @@ export namespace GetTrainingJobLogsResponse {
 }
 
 export class ListSupportedContainersRequest extends jspb.Message {
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListSupportedContainersRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListSupportedContainersRequest): ListSupportedContainersRequest.AsObject;
@@ -504,7 +501,6 @@ export class ListSupportedContainersRequest extends jspb.Message {
 
 export namespace ListSupportedContainersRequest {
   export type AsObject = {
-    organizationId: string,
   }
 }
 
@@ -524,6 +520,48 @@ export class ListSupportedContainersResponse extends jspb.Message {
 export namespace ListSupportedContainersResponse {
   export type AsObject = {
     containerMapMap: Array<[string, Container.AsObject]>,
+  }
+}
+
+export class ListContainersRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListContainersRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListContainersRequest): ListContainersRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListContainersRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListContainersRequest;
+  static deserializeBinaryFromReader(message: ListContainersRequest, reader: jspb.BinaryReader): ListContainersRequest;
+}
+
+export namespace ListContainersRequest {
+  export type AsObject = {
+    organizationId: string,
+  }
+}
+
+export class ListContainersResponse extends jspb.Message {
+  clearContainersList(): void;
+  getContainersList(): Array<Container>;
+  setContainersList(value: Array<Container>): void;
+  addContainers(value?: Container, index?: number): Container;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListContainersResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListContainersResponse): ListContainersResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListContainersResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListContainersResponse;
+  static deserializeBinaryFromReader(message: ListContainersResponse, reader: jspb.BinaryReader): ListContainersResponse;
+}
+
+export namespace ListContainersResponse {
+  export type AsObject = {
+    containersList: Array<Container.AsObject>,
   }
 }
 
