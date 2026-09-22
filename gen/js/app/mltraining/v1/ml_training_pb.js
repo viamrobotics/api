@@ -3978,7 +3978,7 @@ proto.viam.app.mltraining.v1.ListSupportedContainersRequest.prototype.toObject =
  */
 proto.viam.app.mltraining.v1.ListSupportedContainersRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    organizationId: jspb.Message.getFieldWithDefault(msg, 1, "")
+
   };
 
   if (includeInstance) {
@@ -4015,10 +4015,6 @@ proto.viam.app.mltraining.v1.ListSupportedContainersRequest.deserializeBinaryFro
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setOrganizationId(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -4048,31 +4044,6 @@ proto.viam.app.mltraining.v1.ListSupportedContainersRequest.prototype.serializeB
  */
 proto.viam.app.mltraining.v1.ListSupportedContainersRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getOrganizationId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string organization_id = 1;
- * @return {string}
- */
-proto.viam.app.mltraining.v1.ListSupportedContainersRequest.prototype.getOrganizationId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.viam.app.mltraining.v1.ListSupportedContainersRequest} returns this
- */
-proto.viam.app.mltraining.v1.ListSupportedContainersRequest.prototype.setOrganizationId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
