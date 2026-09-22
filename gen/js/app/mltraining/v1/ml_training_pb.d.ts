@@ -489,9 +489,6 @@ export namespace GetTrainingJobLogsResponse {
 }
 
 export class ListSupportedContainersRequest extends jspb.Message {
-  getOrganizationId(): string;
-  setOrganizationId(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListSupportedContainersRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListSupportedContainersRequest): ListSupportedContainersRequest.AsObject;
@@ -504,7 +501,6 @@ export class ListSupportedContainersRequest extends jspb.Message {
 
 export namespace ListSupportedContainersRequest {
   export type AsObject = {
-    organizationId: string,
   }
 }
 
