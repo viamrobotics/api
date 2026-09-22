@@ -1242,12 +1242,6 @@ type ListSupportedContainersRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	// Optional. Scopes the response to the containers available to this
-	// organization: the Viam-managed catalog plus the org's registered
-	// custom training containers. If unset, only the Viam-managed catalog
-	// is returned.
-	OrganizationId string `protobuf:"bytes,1,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
 }
 
 func (x *ListSupportedContainersRequest) Reset() {
