@@ -30,11 +30,10 @@ service MLTrainingService {
   // GetTrainingJobLogs gets the logs for a given custom training job.
   rpc GetTrainingJobLogs(GetTrainingJobLogsRequest) returns (GetTrainingJobLogsResponse);
 
-  // ListSupportedContainers gets all the containers one can use for a custom training job.
+  // ListSupportedContainers gets all the Viam-supported containers available for a custom training job.
   rpc ListSupportedContainers(ListSupportedContainersRequest) returns (ListSupportedContainersResponse);
 
-  // ListContainers gets all the containers one can use for a custom training job for a given organization,
-  // returned as a list rather than a map.
+  // ListContainers lists the containers available for a custom training job for a given organization.
   rpc ListContainers(ListContainersRequest) returns (ListContainersResponse);
 
   // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
