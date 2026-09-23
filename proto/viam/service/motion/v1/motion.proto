@@ -308,6 +308,11 @@ message PseudolinearConstraint {
 message OrientationConstraint {
   // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
   optional float orientation_tolerance_degs = 1;
+  // When true, deviation is measured between orientation vectors alone, disregarding rotation about the
+  // component's own pointing axis. Set this for payloads that are symmetric about that axis - an open
+  // container spills when tipped, not when spun - so the tolerance does not pin a rotation that cannot
+  // matter. Defaults to false, measuring the full orientation.
+  optional bool ignore_theta = 2;
 }
 
 // CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
