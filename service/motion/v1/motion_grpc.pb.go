@@ -54,6 +54,9 @@ type MotionServiceClient interface {
 	// be an Init; every subsequent message must be a Targets batch. Closing the
 	// request stream drains any buffered trajectory to the arm before ending the
 	// call; canceling the call's context aborts the session immediately.
+	//
+	// This method and its associated types are named as Temp because this API is
+	// under active development, and its current shape should not be depended on.
 	TempStreamArmJointPositions(ctx context.Context, opts ...grpc.CallOption) (MotionService_TempStreamArmJointPositionsClient, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
@@ -217,6 +220,9 @@ type MotionServiceServer interface {
 	// be an Init; every subsequent message must be a Targets batch. Closing the
 	// request stream drains any buffered trajectory to the arm before ending the
 	// call; canceling the call's context aborts the session immediately.
+	//
+	// This method and its associated types are named as Temp because this API is
+	// under active development, and its current shape should not be depended on.
 	TempStreamArmJointPositions(MotionService_TempStreamArmJointPositionsServer) error
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)

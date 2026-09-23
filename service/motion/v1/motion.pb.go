@@ -2234,7 +2234,7 @@ type TempStreamArmJointPositionsRequest_Init struct {
 
 	// Name of the arm to stream joint positions to.
 	ComponentName string `protobuf:"bytes,1,opt,name=component_name,json=componentName,proto3" json:"component_name,omitempty"`
-	// If unset, the motion service applies its own defaults.
+	// Configuration for this streaming session.
 	Options *TempStreamOptions `protobuf:"bytes,2,opt,name=options,proto3,oneof" json:"options,omitempty"`
 	// Additional arguments.
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
