@@ -3,6 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../../common/v1/common_pb";
+import * as component_arm_v1_arm_pb from "../../../component/arm/v1/arm_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
@@ -943,6 +944,155 @@ export class ComponentState extends jspb.Message {
 export namespace ComponentState {
   export type AsObject = {
     pose?: common_v1_common_pb.Pose.AsObject,
+  }
+}
+
+export class TempStreamOptions extends jspb.Message {
+  hasArmSideTargetRunwayMs(): boolean;
+  clearArmSideTargetRunwayMs(): void;
+  getArmSideTargetRunwayMs(): number;
+  setArmSideTargetRunwayMs(value: number): void;
+
+  hasSendToArmIntervalMs(): boolean;
+  clearSendToArmIntervalMs(): void;
+  getSendToArmIntervalMs(): number;
+  setSendToArmIntervalMs(value: number): void;
+
+  hasDiagnosticsWindowSecs(): boolean;
+  clearDiagnosticsWindowSecs(): void;
+  getDiagnosticsWindowSecs(): number;
+  setDiagnosticsWindowSecs(value: number): void;
+
+  hasMoveOptions(): boolean;
+  clearMoveOptions(): void;
+  getMoveOptions(): component_arm_v1_arm_pb.MoveOptions | undefined;
+  setMoveOptions(value?: component_arm_v1_arm_pb.MoveOptions): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TempStreamOptions.AsObject;
+  static toObject(includeInstance: boolean, msg: TempStreamOptions): TempStreamOptions.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TempStreamOptions, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TempStreamOptions;
+  static deserializeBinaryFromReader(message: TempStreamOptions, reader: jspb.BinaryReader): TempStreamOptions;
+}
+
+export namespace TempStreamOptions {
+  export type AsObject = {
+    armSideTargetRunwayMs: number,
+    sendToArmIntervalMs: number,
+    diagnosticsWindowSecs: number,
+    moveOptions?: component_arm_v1_arm_pb.MoveOptions.AsObject,
+  }
+}
+
+export class TempStreamArmJointPositionsRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasInit(): boolean;
+  clearInit(): void;
+  getInit(): TempStreamArmJointPositionsRequest.Init | undefined;
+  setInit(value?: TempStreamArmJointPositionsRequest.Init): void;
+
+  hasTargets(): boolean;
+  clearTargets(): void;
+  getTargets(): TempStreamArmJointPositionsRequest.Targets | undefined;
+  setTargets(value?: TempStreamArmJointPositionsRequest.Targets): void;
+
+  getMessageCase(): TempStreamArmJointPositionsRequest.MessageCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TempStreamArmJointPositionsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TempStreamArmJointPositionsRequest): TempStreamArmJointPositionsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TempStreamArmJointPositionsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TempStreamArmJointPositionsRequest;
+  static deserializeBinaryFromReader(message: TempStreamArmJointPositionsRequest, reader: jspb.BinaryReader): TempStreamArmJointPositionsRequest;
+}
+
+export namespace TempStreamArmJointPositionsRequest {
+  export type AsObject = {
+    name: string,
+    init?: TempStreamArmJointPositionsRequest.Init.AsObject,
+    targets?: TempStreamArmJointPositionsRequest.Targets.AsObject,
+  }
+
+  export class Init extends jspb.Message {
+    getComponentName(): string;
+    setComponentName(value: string): void;
+
+    hasOptions(): boolean;
+    clearOptions(): void;
+    getOptions(): TempStreamOptions | undefined;
+    setOptions(value?: TempStreamOptions): void;
+
+    hasExtra(): boolean;
+    clearExtra(): void;
+    getExtra(): google_protobuf_struct_pb.Struct | undefined;
+    setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Init.AsObject;
+    static toObject(includeInstance: boolean, msg: Init): Init.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Init, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Init;
+    static deserializeBinaryFromReader(message: Init, reader: jspb.BinaryReader): Init;
+  }
+
+  export namespace Init {
+    export type AsObject = {
+      componentName: string,
+      options?: TempStreamOptions.AsObject,
+      extra?: google_protobuf_struct_pb.Struct.AsObject,
+    }
+  }
+
+  export class Targets extends jspb.Message {
+    clearPositionsList(): void;
+    getPositionsList(): Array<component_arm_v1_arm_pb.JointPositions>;
+    setPositionsList(value: Array<component_arm_v1_arm_pb.JointPositions>): void;
+    addPositions(value?: component_arm_v1_arm_pb.JointPositions, index?: number): component_arm_v1_arm_pb.JointPositions;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Targets.AsObject;
+    static toObject(includeInstance: boolean, msg: Targets): Targets.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Targets, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Targets;
+    static deserializeBinaryFromReader(message: Targets, reader: jspb.BinaryReader): Targets;
+  }
+
+  export namespace Targets {
+    export type AsObject = {
+      positionsList: Array<component_arm_v1_arm_pb.JointPositions.AsObject>,
+    }
+  }
+
+  export enum MessageCase {
+    MESSAGE_NOT_SET = 0,
+    INIT = 2,
+    TARGETS = 3,
+  }
+}
+
+export class TempStreamArmJointPositionsResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TempStreamArmJointPositionsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: TempStreamArmJointPositionsResponse): TempStreamArmJointPositionsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TempStreamArmJointPositionsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TempStreamArmJointPositionsResponse;
+  static deserializeBinaryFromReader(message: TempStreamArmJointPositionsResponse, reader: jspb.BinaryReader): TempStreamArmJointPositionsResponse;
+}
+
+export namespace TempStreamArmJointPositionsResponse {
+  export type AsObject = {
   }
 }
 
