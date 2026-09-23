@@ -5862,7 +5862,8 @@ proto.viam.service.motion.v1.OrientationConstraint.prototype.toObject = function
  */
 proto.viam.service.motion.v1.OrientationConstraint.toObject = function(includeInstance, msg) {
   var f, obj = {
-    orientationToleranceDegs: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
+    orientationToleranceDegs: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    ignoreTheta: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -5903,6 +5904,10 @@ proto.viam.service.motion.v1.OrientationConstraint.deserializeBinaryFromReader =
       var value = /** @type {number} */ (reader.readFloat());
       msg.setOrientationToleranceDegs(value);
       break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIgnoreTheta(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5936,6 +5941,13 @@ proto.viam.service.motion.v1.OrientationConstraint.serializeBinaryToWriter = fun
   if (f != null) {
     writer.writeFloat(
       1,
+      f
+    );
+  }
+  f = /** @type {boolean} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeBool(
+      2,
       f
     );
   }
@@ -5975,6 +5987,42 @@ proto.viam.service.motion.v1.OrientationConstraint.prototype.clearOrientationTol
  */
 proto.viam.service.motion.v1.OrientationConstraint.prototype.hasOrientationToleranceDegs = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional bool ignore_theta = 2;
+ * @return {boolean}
+ */
+proto.viam.service.motion.v1.OrientationConstraint.prototype.getIgnoreTheta = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.service.motion.v1.OrientationConstraint} returns this
+ */
+proto.viam.service.motion.v1.OrientationConstraint.prototype.setIgnoreTheta = function(value) {
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.service.motion.v1.OrientationConstraint} returns this
+ */
+proto.viam.service.motion.v1.OrientationConstraint.prototype.clearIgnoreTheta = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.motion.v1.OrientationConstraint.prototype.hasIgnoreTheta = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
