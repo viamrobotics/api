@@ -1591,7 +1591,8 @@ proto.viam.component.camera.v1.GetPropertiesResponse.toObject = function(include
     distortionParameters: (f = msg.getDistortionParameters()) && proto.viam.component.camera.v1.DistortionParameters.toObject(includeInstance, f),
     mimeTypesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     frameRate: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    extrinsicParameters: (f = msg.getExtrinsicParameters()) && proto.viam.component.camera.v1.ExtrinsicParameters.toObject(includeInstance, f)
+    extrinsicParameters: (f = msg.getExtrinsicParameters()) && proto.viam.component.camera.v1.ExtrinsicParameters.toObject(includeInstance, f),
+    defaultReferenceFrame: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -1654,6 +1655,10 @@ proto.viam.component.camera.v1.GetPropertiesResponse.deserializeBinaryFromReader
       var value = new proto.viam.component.camera.v1.ExtrinsicParameters;
       reader.readMessage(value,proto.viam.component.camera.v1.ExtrinsicParameters.deserializeBinaryFromReader);
       msg.setExtrinsicParameters(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDefaultReferenceFrame(value);
       break;
     default:
       reader.skipField();
@@ -1727,6 +1732,13 @@ proto.viam.component.camera.v1.GetPropertiesResponse.serializeBinaryToWriter = f
       6,
       f,
       proto.viam.component.camera.v1.ExtrinsicParameters.serializeBinaryToWriter
+    );
+  }
+  f = message.getDefaultReferenceFrame();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -1931,6 +1943,24 @@ proto.viam.component.camera.v1.GetPropertiesResponse.prototype.clearExtrinsicPar
  */
 proto.viam.component.camera.v1.GetPropertiesResponse.prototype.hasExtrinsicParameters = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string default_reference_frame = 7;
+ * @return {string}
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.prototype.getDefaultReferenceFrame = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.component.camera.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.component.camera.v1.GetPropertiesResponse.prototype.setDefaultReferenceFrame = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
