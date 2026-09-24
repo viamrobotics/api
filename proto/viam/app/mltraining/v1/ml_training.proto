@@ -30,8 +30,11 @@ service MLTrainingService {
   // GetTrainingJobLogs gets the logs for a given custom training job.
   rpc GetTrainingJobLogs(GetTrainingJobLogsRequest) returns (GetTrainingJobLogsResponse);
 
-  // ListSupportedContainers gets all the containers one can use for a custom training job.
+  // ListSupportedContainers gets all the Viam-supported containers available for a custom training job.
   rpc ListSupportedContainers(ListSupportedContainersRequest) returns (ListSupportedContainersResponse);
+
+  // ListContainers lists the containers available for a custom training job for a given organization.
+  rpc ListContainers(ListContainersRequest) returns (ListContainersResponse);
 
   // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
   rpc RegisterCustomTrainingContainer(RegisterCustomTrainingContainerRequest) returns (RegisterCustomTrainingContainerResponse);
@@ -191,26 +194,12 @@ message ListSupportedContainersResponse {
 }
 
 message ListContainersRequest {
-  // Optional. Scopes the response to the containers available to this
-  // organization: the Viam-managed catalog plus the org's registered
-  // custom training containers. If unset, only the Viam-managed catalog
-  // is returned.
+  // The associated Viam organization ID.
   string organization_id = 1;
 }
 
 message ListContainersResponse {
   repeated Container containers = 1;
-  //   ex Container value:
-  //   {
-  //     key: "tf:2.15"
-  //     uri: "us-docker.pkg.dev/vertex-ai/training/tf-gpu.2-15.py310:latest"
-  //     framework: Tensorflow
-  //     description: "Tensorflow 2.15"
-  //     eol: { seconds: 1772630400, nanos: 0 } // 2026-03-03T00:00:00Z
-  //     created_on: 2026-01-15T01:30:15.01Z
-  //     organization_id: "xyz"
-  //     visibility: VISIBILITY_PUBLIC
-  //   }
 }
 
 message RegisterCustomTrainingContainerRequest {

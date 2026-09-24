@@ -36,8 +36,10 @@ type MLTrainingServiceClient interface {
 	DeleteCompletedTrainingJob(ctx context.Context, in *DeleteCompletedTrainingJobRequest, opts ...grpc.CallOption) (*DeleteCompletedTrainingJobResponse, error)
 	// GetTrainingJobLogs gets the logs for a given custom training job.
 	GetTrainingJobLogs(ctx context.Context, in *GetTrainingJobLogsRequest, opts ...grpc.CallOption) (*GetTrainingJobLogsResponse, error)
-	// ListSupportedContainers gets all the containers one can use for a custom training job.
+	// ListSupportedContainers gets all the Viam-supported containers available for a custom training job.
 	ListSupportedContainers(ctx context.Context, in *ListSupportedContainersRequest, opts ...grpc.CallOption) (*ListSupportedContainersResponse, error)
+	// ListContainers lists the containers available for a custom training job for a given organization.
+	ListContainers(ctx context.Context, in *ListContainersRequest, opts ...grpc.CallOption) (*ListContainersResponse, error)
 	// RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
 	RegisterCustomTrainingContainer(ctx context.Context, in *RegisterCustomTrainingContainerRequest, opts ...grpc.CallOption) (*RegisterCustomTrainingContainerResponse, error)
 	// DeleteCustomTrainingContainer deletes a custom container from the database
@@ -124,6 +126,15 @@ func (c *mLTrainingServiceClient) ListSupportedContainers(ctx context.Context, i
 	return out, nil
 }
 
+func (c *mLTrainingServiceClient) ListContainers(ctx context.Context, in *ListContainersRequest, opts ...grpc.CallOption) (*ListContainersResponse, error) {
+	out := new(ListContainersResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/ListContainers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *mLTrainingServiceClient) RegisterCustomTrainingContainer(ctx context.Context, in *RegisterCustomTrainingContainerRequest, opts ...grpc.CallOption) (*RegisterCustomTrainingContainerResponse, error) {
 	out := new(RegisterCustomTrainingContainerResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer", in, out, opts...)
@@ -160,8 +171,10 @@ type MLTrainingServiceServer interface {
 	DeleteCompletedTrainingJob(context.Context, *DeleteCompletedTrainingJobRequest) (*DeleteCompletedTrainingJobResponse, error)
 	// GetTrainingJobLogs gets the logs for a given custom training job.
 	GetTrainingJobLogs(context.Context, *GetTrainingJobLogsRequest) (*GetTrainingJobLogsResponse, error)
-	// ListSupportedContainers gets all the containers one can use for a custom training job.
+	// ListSupportedContainers gets all the Viam-supported containers available for a custom training job.
 	ListSupportedContainers(context.Context, *ListSupportedContainersRequest) (*ListSupportedContainersResponse, error)
+	// ListContainers lists the containers available for a custom training job for a given organization.
+	ListContainers(context.Context, *ListContainersRequest) (*ListContainersResponse, error)
 	// RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
 	RegisterCustomTrainingContainer(context.Context, *RegisterCustomTrainingContainerRequest) (*RegisterCustomTrainingContainerResponse, error)
 	// DeleteCustomTrainingContainer deletes a custom container from the database
@@ -196,6 +209,9 @@ func (UnimplementedMLTrainingServiceServer) GetTrainingJobLogs(context.Context, 
 }
 func (UnimplementedMLTrainingServiceServer) ListSupportedContainers(context.Context, *ListSupportedContainersRequest) (*ListSupportedContainersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSupportedContainers not implemented")
+}
+func (UnimplementedMLTrainingServiceServer) ListContainers(context.Context, *ListContainersRequest) (*ListContainersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListContainers not implemented")
 }
 func (UnimplementedMLTrainingServiceServer) RegisterCustomTrainingContainer(context.Context, *RegisterCustomTrainingContainerRequest) (*RegisterCustomTrainingContainerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterCustomTrainingContainer not implemented")
@@ -360,6 +376,24 @@ func _MLTrainingService_ListSupportedContainers_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MLTrainingService_ListContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListContainersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MLTrainingServiceServer).ListContainers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.mltraining.v1.MLTrainingService/ListContainers",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MLTrainingServiceServer).ListContainers(ctx, req.(*ListContainersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MLTrainingService_RegisterCustomTrainingContainer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterCustomTrainingContainerRequest)
 	if err := dec(in); err != nil {
@@ -434,6 +468,10 @@ var MLTrainingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListSupportedContainers",
 			Handler:    _MLTrainingService_ListSupportedContainers_Handler,
+		},
+		{
+			MethodName: "ListContainers",
+			Handler:    _MLTrainingService_ListContainers_Handler,
 		},
 		{
 			MethodName: "RegisterCustomTrainingContainer",
