@@ -3340,7 +3340,7 @@ type PackageStatus struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// the package name as declared in the robot config (PackageConfig.Name)
+	// the package name as declared in the robot config (`PackageConfig.Name`)
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// the package type (module, ml_model, slam_map, etc.)
 	Type v13.PackageType `protobuf:"varint,2,opt,name=type,proto3,enum=viam.app.packages.v1.PackageType" json:"type,omitempty"`
