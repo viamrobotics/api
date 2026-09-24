@@ -81,6 +81,7 @@ message SubmitCustomTrainingJobRequest {
   string model_version = 5 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
   map<string, string> arguments = 7;
   string container_version = 8;
+  string container_id = 9;
 }
 
 message SubmitCustomTrainingJobResponse {
