@@ -698,6 +698,11 @@ export class OrientationConstraint extends jspb.Message {
   getOrientationToleranceDegs(): number;
   setOrientationToleranceDegs(value: number): void;
 
+  hasIgnoreTheta(): boolean;
+  clearIgnoreTheta(): void;
+  getIgnoreTheta(): boolean;
+  setIgnoreTheta(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OrientationConstraint.AsObject;
   static toObject(includeInstance: boolean, msg: OrientationConstraint): OrientationConstraint.AsObject;
@@ -711,6 +716,7 @@ export class OrientationConstraint extends jspb.Message {
 export namespace OrientationConstraint {
   export type AsObject = {
     orientationToleranceDegs: number,
+    ignoreTheta: boolean,
   }
 }
 
