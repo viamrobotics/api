@@ -139,6 +139,7 @@ message TrainingJobMetadata {
   repeated string tags = 16 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   map<string, string> arguments = 21 [(tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
   string container_version = 22 [(tagger.v1.tags) = "bson:\"container_version\" json:\"container_version\""];
+  string container_id = 23 [(tagger.v1.tags) = "bson:\"container_id\" json:\"container_id\""];
 
   reserved 1, 6;
   reserved "request", "user_email";
