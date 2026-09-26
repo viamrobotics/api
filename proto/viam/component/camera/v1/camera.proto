@@ -111,6 +111,9 @@ message GetPropertiesResponse {
   // Parameters for the camera's position relative to a reference frame
   // If camera does not provide extrinsic parameters, leave the field empty
   ExtrinsicParameters extrinsic_parameters = 6;
+  // Name of the reference frame that points returned by GetPointCloud are expressed in
+  // An empty string means the frame is unknown; the frame is not guaranteed to exist in the frame system
+  string default_reference_frame = 7;
 }
 
 message Webcams {

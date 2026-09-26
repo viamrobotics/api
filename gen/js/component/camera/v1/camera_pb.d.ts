@@ -208,6 +208,9 @@ export class GetPropertiesResponse extends jspb.Message {
   getExtrinsicParameters(): ExtrinsicParameters | undefined;
   setExtrinsicParameters(value?: ExtrinsicParameters): void;
 
+  getDefaultReferenceFrame(): string;
+  setDefaultReferenceFrame(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
@@ -226,6 +229,7 @@ export namespace GetPropertiesResponse {
     mimeTypesList: Array<string>,
     frameRate: number,
     extrinsicParameters?: ExtrinsicParameters.AsObject,
+    defaultReferenceFrame: string,
   }
 }
 
