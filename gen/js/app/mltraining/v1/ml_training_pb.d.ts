@@ -96,6 +96,9 @@ export class SubmitCustomTrainingJobRequest extends jspb.Message {
   getContainerVersion(): string;
   setContainerVersion(value: string): void;
 
+  getContainerId(): string;
+  setContainerId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SubmitCustomTrainingJobRequest.AsObject;
   static toObject(includeInstance: boolean, msg: SubmitCustomTrainingJobRequest): SubmitCustomTrainingJobRequest.AsObject;
@@ -116,6 +119,7 @@ export namespace SubmitCustomTrainingJobRequest {
     modelVersion: string,
     argumentsMap: Array<[string, string]>,
     containerVersion: string,
+    containerId: string,
   }
 }
 
@@ -299,6 +303,9 @@ export class TrainingJobMetadata extends jspb.Message {
   getContainerVersion(): string;
   setContainerVersion(value: string): void;
 
+  getContainerId(): string;
+  setContainerId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -331,6 +338,7 @@ export namespace TrainingJobMetadata {
     tagsList: Array<string>,
     argumentsMap: Array<[string, string]>,
     containerVersion: string,
+    containerId: string,
   }
 }
 
