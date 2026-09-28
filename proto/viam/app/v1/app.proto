@@ -220,6 +220,15 @@ service AppService {
   // DeleteRobot deletes a robot
   rpc DeleteRobot(DeleteRobotRequest) returns (DeleteRobotResponse);
 
+  // AddFavoriteMachine adds a favorite machine for the user
+  rpc AddFavoriteMachine(AddFavoriteMachineRequest) returns (AddFavoriteMachineResponse);
+
+  // RemoveFavoriteMachine removes a favorite machine for the user
+  rpc RemoveFavoriteMachine(RemoveFavoriteMachineRequest) returns (RemoveFavoriteMachineResponse);
+
+  // ListFavoiteMachines lists all favorited machines for the user
+  rpc ListFavoriteMachines(ListFavoriteMachinesRequest) returns (ListFavoriteMachinesResponse);
+
   // Fragments
 
   // Gets a list of fragments
@@ -1338,6 +1347,32 @@ message DeleteRobotRequest {
 }
 
 message DeleteRobotResponse {}
+
+message FavoriteMachine {
+  string machine_id = 1;
+  string organization_id = 2;
+  google.protobuf.Timestamp created_on = 3;
+}
+
+message AddFavoriteMachineRequest {
+  string machine_id = 1;
+}
+
+message AddFavoriteMachineResponse {
+  FavoriteMachine favorite = 1;
+}
+
+message RemoveFavoriteMachineRequest {
+  string machine_id = 1;
+}
+
+message RemoveFavoriteMachineResponse {}
+
+message ListFavoriteMachinesRequest {}
+
+message ListFavoriteMachinesResponse {
+  repeated FavoriteMachine favorites = 1;
+}
 
 message GetRobotMetadataRequest {
   string id = 1;
