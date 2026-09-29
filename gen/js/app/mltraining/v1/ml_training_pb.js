@@ -1080,7 +1080,8 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.toObject = function(
     modelName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     modelVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
     argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : [],
-    containerVersion: jspb.Message.getFieldWithDefault(msg, 8, "")
+    containerVersion: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    containerId: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -1150,6 +1151,10 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.deserializeBinaryFro
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setContainerVersion(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setContainerId(value);
       break;
     default:
       reader.skipField();
@@ -1230,6 +1235,13 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.serializeBinaryToWri
   if (f.length > 0) {
     writer.writeString(
       8,
+      f
+    );
+  }
+  f = message.getContainerId();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
       f
     );
   }
@@ -1381,6 +1393,24 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getContain
  */
 proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.setContainerVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string container_id = 9;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getContainerId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest} returns this
+ */
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.setContainerId = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -2173,7 +2203,8 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInst
     syncedModelId: jspb.Message.getFieldWithDefault(msg, 5, ""),
     tagsList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f,
     argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : [],
-    containerVersion: jspb.Message.getFieldWithDefault(msg, 22, "")
+    containerVersion: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    containerId: jspb.Message.getFieldWithDefault(msg, 23, "")
   };
 
   if (includeInstance) {
@@ -2296,6 +2327,10 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
     case 22:
       var value = /** @type {string} */ (reader.readString());
       msg.setContainerVersion(value);
+      break;
+    case 23:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setContainerId(value);
       break;
     default:
       reader.skipField();
@@ -2465,6 +2500,13 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
   if (f.length > 0) {
     writer.writeString(
       22,
+      f
+    );
+  }
+  f = message.getContainerId();
+  if (f.length > 0) {
+    writer.writeString(
+      23,
       f
     );
   }
@@ -2946,6 +2988,24 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getContainerVersion =
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setContainerVersion = function(value) {
   return jspb.Message.setProto3StringField(this, 22, value);
+};
+
+
+/**
+ * optional string container_id = 23;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getContainerId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 23, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setContainerId = function(value) {
+  return jspb.Message.setProto3StringField(this, 23, value);
 };
 
 

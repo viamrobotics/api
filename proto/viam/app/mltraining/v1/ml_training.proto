@@ -84,6 +84,7 @@ message SubmitCustomTrainingJobRequest {
   string model_version = 5 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
   map<string, string> arguments = 7;
   string container_version = 8;
+  string container_id = 9;
 }
 
 message SubmitCustomTrainingJobResponse {
@@ -138,6 +139,7 @@ message TrainingJobMetadata {
   repeated string tags = 16 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   map<string, string> arguments = 21 [(tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
   string container_version = 22 [(tagger.v1.tags) = "bson:\"container_version\" json:\"container_version\""];
+  string container_id = 23 [(tagger.v1.tags) = "bson:\"container_id\" json:\"container_id\""];
 
   reserved 1, 6;
   reserved "request", "user_email";
