@@ -1426,6 +1426,97 @@ func (x *ListContainersResponse) GetContainers() []*Container {
 	return nil
 }
 
+type GetContainerRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The ID of the container to retrieve.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *GetContainerRequest) Reset() {
+	*x = GetContainerRequest{}
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetContainerRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetContainerRequest) ProtoMessage() {}
+
+func (x *GetContainerRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetContainerRequest.ProtoReflect.Descriptor instead.
+func (*GetContainerRequest) Descriptor() ([]byte, []int) {
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *GetContainerRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetContainerResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Container *Container `protobuf:"bytes,1,opt,name=container,proto3" json:"container,omitempty"`
+}
+
+func (x *GetContainerResponse) Reset() {
+	*x = GetContainerResponse{}
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetContainerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetContainerResponse) ProtoMessage() {}
+
+func (x *GetContainerResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetContainerResponse.ProtoReflect.Descriptor instead.
+func (*GetContainerResponse) Descriptor() ([]byte, []int) {
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *GetContainerResponse) GetContainer() *Container {
+	if x != nil {
+		return x.Container
+	}
+	return nil
+}
+
 type RegisterCustomTrainingContainerRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1439,7 +1530,7 @@ type RegisterCustomTrainingContainerRequest struct {
 
 func (x *RegisterCustomTrainingContainerRequest) Reset() {
 	*x = RegisterCustomTrainingContainerRequest{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[20]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1451,7 +1542,7 @@ func (x *RegisterCustomTrainingContainerRequest) String() string {
 func (*RegisterCustomTrainingContainerRequest) ProtoMessage() {}
 
 func (x *RegisterCustomTrainingContainerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[20]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1464,7 +1555,7 @@ func (x *RegisterCustomTrainingContainerRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use RegisterCustomTrainingContainerRequest.ProtoReflect.Descriptor instead.
 func (*RegisterCustomTrainingContainerRequest) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{20}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *RegisterCustomTrainingContainerRequest) GetOrganizationId() string {
@@ -1498,7 +1589,7 @@ type RegisterCustomTrainingContainerResponse struct {
 
 func (x *RegisterCustomTrainingContainerResponse) Reset() {
 	*x = RegisterCustomTrainingContainerResponse{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[21]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1510,7 +1601,7 @@ func (x *RegisterCustomTrainingContainerResponse) String() string {
 func (*RegisterCustomTrainingContainerResponse) ProtoMessage() {}
 
 func (x *RegisterCustomTrainingContainerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[21]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1523,7 +1614,7 @@ func (x *RegisterCustomTrainingContainerResponse) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use RegisterCustomTrainingContainerResponse.ProtoReflect.Descriptor instead.
 func (*RegisterCustomTrainingContainerResponse) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{21}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *RegisterCustomTrainingContainerResponse) GetId() string {
@@ -1543,7 +1634,7 @@ type DeleteCustomTrainingContainerRequest struct {
 
 func (x *DeleteCustomTrainingContainerRequest) Reset() {
 	*x = DeleteCustomTrainingContainerRequest{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[22]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1555,7 +1646,7 @@ func (x *DeleteCustomTrainingContainerRequest) String() string {
 func (*DeleteCustomTrainingContainerRequest) ProtoMessage() {}
 
 func (x *DeleteCustomTrainingContainerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[22]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1568,7 +1659,7 @@ func (x *DeleteCustomTrainingContainerRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use DeleteCustomTrainingContainerRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCustomTrainingContainerRequest) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{22}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *DeleteCustomTrainingContainerRequest) GetId() string {
@@ -1586,7 +1677,7 @@ type DeleteCustomTrainingContainerResponse struct {
 
 func (x *DeleteCustomTrainingContainerResponse) Reset() {
 	*x = DeleteCustomTrainingContainerResponse{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[23]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1598,7 +1689,7 @@ func (x *DeleteCustomTrainingContainerResponse) String() string {
 func (*DeleteCustomTrainingContainerResponse) ProtoMessage() {}
 
 func (x *DeleteCustomTrainingContainerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[23]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1611,7 +1702,7 @@ func (x *DeleteCustomTrainingContainerResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use DeleteCustomTrainingContainerResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCustomTrainingContainerResponse) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{23}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{25}
 }
 
 type Container struct {
@@ -1632,7 +1723,7 @@ type Container struct {
 
 func (x *Container) Reset() {
 	*x = Container{}
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[24]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1644,7 +1735,7 @@ func (x *Container) String() string {
 func (*Container) ProtoMessage() {}
 
 func (x *Container) ProtoReflect() protoreflect.Message {
-	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[24]
+	mi := &file_app_mltraining_v1_ml_training_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1657,7 +1748,7 @@ func (x *Container) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Container.ProtoReflect.Descriptor instead.
 func (*Container) Descriptor() ([]byte, []int) {
-	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{24}
+	return file_app_mltraining_v1_ml_training_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *Container) GetKey() string {
@@ -2050,6 +2141,14 @@ var file_app_mltraining_v1_ml_training_proto_rawDesc = []byte{
 	0x0b, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74,
 	0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x61,
 	0x69, 0x6e, 0x65, 0x72, 0x52, 0x0a, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x73,
+	0x22, 0x25, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x57, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x43, 0x6f,
+	0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x3f, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c,
+	0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x74,
+	0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72,
 	0x22, 0x90, 0x01, 0x0a, 0x26, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x43, 0x75, 0x73,
 	0x74, 0x6f, 0x6d, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61,
 	0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x0f, 0x6f,
@@ -2131,7 +2230,7 @@ var file_app_mltraining_v1_ml_training_proto_rawDesc = []byte{
 	0x45, 0x44, 0x10, 0x00, 0x12, 0x16, 0x0a, 0x12, 0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49,
 	0x54, 0x59, 0x5f, 0x50, 0x52, 0x49, 0x56, 0x41, 0x54, 0x45, 0x10, 0x01, 0x12, 0x15, 0x0a, 0x11,
 	0x56, 0x49, 0x53, 0x49, 0x42, 0x49, 0x4c, 0x49, 0x54, 0x59, 0x5f, 0x50, 0x55, 0x42, 0x4c, 0x49,
-	0x43, 0x10, 0x02, 0x32, 0xd1, 0x0b, 0x0a, 0x11, 0x4d, 0x4c, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69,
+	0x43, 0x10, 0x02, 0x32, 0xbc, 0x0c, 0x0a, 0x11, 0x4d, 0x4c, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69,
 	0x6e, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x78, 0x0a, 0x11, 0x53, 0x75, 0x62,
 	0x6d, 0x69, 0x74, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x4a, 0x6f, 0x62, 0x12, 0x30,
 	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69,
@@ -2204,30 +2303,36 @@ var file_app_mltraining_v1_ml_training_proto_rawDesc = []byte{
 	0x65, 0x73, 0x74, 0x1a, 0x2e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d,
 	0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73,
 	0x74, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0xa2, 0x01, 0x0a, 0x1f, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72,
-	0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x6f,
-	0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x12, 0x3e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
-	0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31,
-	0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x54,
-	0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
-	0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31,
-	0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x54,
-	0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x9c, 0x01, 0x0a, 0x1d, 0x44, 0x65, 0x6c,
+	0x6e, 0x73, 0x65, 0x12, 0x69, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69,
+	0x6e, 0x65, 0x72, 0x12, 0x2b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d,
+	0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74,
+	0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x2c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72,
+	0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e,
+	0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0xa2,
+	0x01, 0x0a, 0x1f, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x43, 0x75, 0x73, 0x74, 0x6f,
+	0x6d, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e,
+	0x65, 0x72, 0x12, 0x3e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c,
+	0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x67, 0x69,
+	0x73, 0x74, 0x65, 0x72, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69,
+	0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x3f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c,
+	0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x67, 0x69,
+	0x73, 0x74, 0x65, 0x72, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69,
+	0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x9c, 0x01, 0x0a, 0x1d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x75,
+	0x73, 0x74, 0x6f, 0x6d, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74,
+	0x61, 0x69, 0x6e, 0x65, 0x72, 0x12, 0x3c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
+	0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x54, 0x72, 0x61, 0x69, 0x6e,
+	0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x3d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d,
+	0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c,
 	0x65, 0x74, 0x65, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e,
-	0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x12, 0x3c, 0x2e, 0x76, 0x69, 0x61,
-	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67,
-	0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d,
-	0x54, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65,
-	0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3d, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
-	0x61, 0x70, 0x70, 0x2e, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2e, 0x76,
-	0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x54, 0x72,
-	0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x23, 0x5a, 0x21, 0x67, 0x6f, 0x2e, 0x76, 0x69,
-	0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x6d,
-	0x6c, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x69, 0x6e, 0x67, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x67, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x42, 0x23, 0x5a, 0x21, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x6d, 0x6c, 0x74, 0x72, 0x61, 0x69,
+	0x6e, 0x69, 0x6e, 0x67, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2243,7 +2348,7 @@ func file_app_mltraining_v1_ml_training_proto_rawDescGZIP() []byte {
 }
 
 var file_app_mltraining_v1_ml_training_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_app_mltraining_v1_ml_training_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_app_mltraining_v1_ml_training_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
 var file_app_mltraining_v1_ml_training_proto_goTypes = []any{
 	(ModelType)(0),                                  // 0: viam.app.mltraining.v1.ModelType
 	(ModelFramework)(0),                             // 1: viam.app.mltraining.v1.ModelFramework
@@ -2269,68 +2374,73 @@ var file_app_mltraining_v1_ml_training_proto_goTypes = []any{
 	(*ListSupportedContainersResponse)(nil),         // 21: viam.app.mltraining.v1.ListSupportedContainersResponse
 	(*ListContainersRequest)(nil),                   // 22: viam.app.mltraining.v1.ListContainersRequest
 	(*ListContainersResponse)(nil),                  // 23: viam.app.mltraining.v1.ListContainersResponse
-	(*RegisterCustomTrainingContainerRequest)(nil),  // 24: viam.app.mltraining.v1.RegisterCustomTrainingContainerRequest
-	(*RegisterCustomTrainingContainerResponse)(nil), // 25: viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse
-	(*DeleteCustomTrainingContainerRequest)(nil),    // 26: viam.app.mltraining.v1.DeleteCustomTrainingContainerRequest
-	(*DeleteCustomTrainingContainerResponse)(nil),   // 27: viam.app.mltraining.v1.DeleteCustomTrainingContainerResponse
-	(*Container)(nil),                               // 28: viam.app.mltraining.v1.Container
-	nil,                                             // 29: viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.ArgumentsEntry
-	nil,                                             // 30: viam.app.mltraining.v1.TrainingJobMetadata.ArgumentsEntry
-	nil,                                             // 31: viam.app.mltraining.v1.ListSupportedContainersResponse.ContainerMapEntry
-	(*status.Status)(nil),                           // 32: google.rpc.Status
-	(*timestamppb.Timestamp)(nil),                   // 33: google.protobuf.Timestamp
+	(*GetContainerRequest)(nil),                     // 24: viam.app.mltraining.v1.GetContainerRequest
+	(*GetContainerResponse)(nil),                    // 25: viam.app.mltraining.v1.GetContainerResponse
+	(*RegisterCustomTrainingContainerRequest)(nil),  // 26: viam.app.mltraining.v1.RegisterCustomTrainingContainerRequest
+	(*RegisterCustomTrainingContainerResponse)(nil), // 27: viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse
+	(*DeleteCustomTrainingContainerRequest)(nil),    // 28: viam.app.mltraining.v1.DeleteCustomTrainingContainerRequest
+	(*DeleteCustomTrainingContainerResponse)(nil),   // 29: viam.app.mltraining.v1.DeleteCustomTrainingContainerResponse
+	(*Container)(nil),                               // 30: viam.app.mltraining.v1.Container
+	nil,                                             // 31: viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.ArgumentsEntry
+	nil,                                             // 32: viam.app.mltraining.v1.TrainingJobMetadata.ArgumentsEntry
+	nil,                                             // 33: viam.app.mltraining.v1.ListSupportedContainersResponse.ContainerMapEntry
+	(*status.Status)(nil),                           // 34: google.rpc.Status
+	(*timestamppb.Timestamp)(nil),                   // 35: google.protobuf.Timestamp
 }
 var file_app_mltraining_v1_ml_training_proto_depIdxs = []int32{
 	0,  // 0: viam.app.mltraining.v1.SubmitTrainingJobRequest.model_type:type_name -> viam.app.mltraining.v1.ModelType
 	1,  // 1: viam.app.mltraining.v1.SubmitTrainingJobRequest.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
-	29, // 2: viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments:type_name -> viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.ArgumentsEntry
+	31, // 2: viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments:type_name -> viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.ArgumentsEntry
 	12, // 3: viam.app.mltraining.v1.GetTrainingJobResponse.metadata:type_name -> viam.app.mltraining.v1.TrainingJobMetadata
 	2,  // 4: viam.app.mltraining.v1.ListTrainingJobsRequest.status:type_name -> viam.app.mltraining.v1.TrainingStatus
 	12, // 5: viam.app.mltraining.v1.ListTrainingJobsResponse.jobs:type_name -> viam.app.mltraining.v1.TrainingJobMetadata
 	0,  // 6: viam.app.mltraining.v1.TrainingJobMetadata.model_type:type_name -> viam.app.mltraining.v1.ModelType
 	1,  // 7: viam.app.mltraining.v1.TrainingJobMetadata.model_framework:type_name -> viam.app.mltraining.v1.ModelFramework
 	2,  // 8: viam.app.mltraining.v1.TrainingJobMetadata.status:type_name -> viam.app.mltraining.v1.TrainingStatus
-	32, // 9: viam.app.mltraining.v1.TrainingJobMetadata.error_status:type_name -> google.rpc.Status
-	33, // 10: viam.app.mltraining.v1.TrainingJobMetadata.created_on:type_name -> google.protobuf.Timestamp
-	33, // 11: viam.app.mltraining.v1.TrainingJobMetadata.last_modified:type_name -> google.protobuf.Timestamp
-	33, // 12: viam.app.mltraining.v1.TrainingJobMetadata.training_started:type_name -> google.protobuf.Timestamp
-	33, // 13: viam.app.mltraining.v1.TrainingJobMetadata.training_ended:type_name -> google.protobuf.Timestamp
-	30, // 14: viam.app.mltraining.v1.TrainingJobMetadata.arguments:type_name -> viam.app.mltraining.v1.TrainingJobMetadata.ArgumentsEntry
-	33, // 15: viam.app.mltraining.v1.TrainingJobLogEntry.time:type_name -> google.protobuf.Timestamp
+	34, // 9: viam.app.mltraining.v1.TrainingJobMetadata.error_status:type_name -> google.rpc.Status
+	35, // 10: viam.app.mltraining.v1.TrainingJobMetadata.created_on:type_name -> google.protobuf.Timestamp
+	35, // 11: viam.app.mltraining.v1.TrainingJobMetadata.last_modified:type_name -> google.protobuf.Timestamp
+	35, // 12: viam.app.mltraining.v1.TrainingJobMetadata.training_started:type_name -> google.protobuf.Timestamp
+	35, // 13: viam.app.mltraining.v1.TrainingJobMetadata.training_ended:type_name -> google.protobuf.Timestamp
+	32, // 14: viam.app.mltraining.v1.TrainingJobMetadata.arguments:type_name -> viam.app.mltraining.v1.TrainingJobMetadata.ArgumentsEntry
+	35, // 15: viam.app.mltraining.v1.TrainingJobLogEntry.time:type_name -> google.protobuf.Timestamp
 	17, // 16: viam.app.mltraining.v1.GetTrainingJobLogsResponse.logs:type_name -> viam.app.mltraining.v1.TrainingJobLogEntry
-	31, // 17: viam.app.mltraining.v1.ListSupportedContainersResponse.container_map:type_name -> viam.app.mltraining.v1.ListSupportedContainersResponse.ContainerMapEntry
-	28, // 18: viam.app.mltraining.v1.ListContainersResponse.containers:type_name -> viam.app.mltraining.v1.Container
-	33, // 19: viam.app.mltraining.v1.Container.eol:type_name -> google.protobuf.Timestamp
-	33, // 20: viam.app.mltraining.v1.Container.created_on:type_name -> google.protobuf.Timestamp
-	3,  // 21: viam.app.mltraining.v1.Container.visibility:type_name -> viam.app.mltraining.v1.Visibility
-	28, // 22: viam.app.mltraining.v1.ListSupportedContainersResponse.ContainerMapEntry.value:type_name -> viam.app.mltraining.v1.Container
-	4,  // 23: viam.app.mltraining.v1.MLTrainingService.SubmitTrainingJob:input_type -> viam.app.mltraining.v1.SubmitTrainingJobRequest
-	6,  // 24: viam.app.mltraining.v1.MLTrainingService.SubmitCustomTrainingJob:input_type -> viam.app.mltraining.v1.SubmitCustomTrainingJobRequest
-	8,  // 25: viam.app.mltraining.v1.MLTrainingService.GetTrainingJob:input_type -> viam.app.mltraining.v1.GetTrainingJobRequest
-	10, // 26: viam.app.mltraining.v1.MLTrainingService.ListTrainingJobs:input_type -> viam.app.mltraining.v1.ListTrainingJobsRequest
-	13, // 27: viam.app.mltraining.v1.MLTrainingService.CancelTrainingJob:input_type -> viam.app.mltraining.v1.CancelTrainingJobRequest
-	15, // 28: viam.app.mltraining.v1.MLTrainingService.DeleteCompletedTrainingJob:input_type -> viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest
-	18, // 29: viam.app.mltraining.v1.MLTrainingService.GetTrainingJobLogs:input_type -> viam.app.mltraining.v1.GetTrainingJobLogsRequest
-	20, // 30: viam.app.mltraining.v1.MLTrainingService.ListSupportedContainers:input_type -> viam.app.mltraining.v1.ListSupportedContainersRequest
-	22, // 31: viam.app.mltraining.v1.MLTrainingService.ListContainers:input_type -> viam.app.mltraining.v1.ListContainersRequest
-	24, // 32: viam.app.mltraining.v1.MLTrainingService.RegisterCustomTrainingContainer:input_type -> viam.app.mltraining.v1.RegisterCustomTrainingContainerRequest
-	26, // 33: viam.app.mltraining.v1.MLTrainingService.DeleteCustomTrainingContainer:input_type -> viam.app.mltraining.v1.DeleteCustomTrainingContainerRequest
-	5,  // 34: viam.app.mltraining.v1.MLTrainingService.SubmitTrainingJob:output_type -> viam.app.mltraining.v1.SubmitTrainingJobResponse
-	7,  // 35: viam.app.mltraining.v1.MLTrainingService.SubmitCustomTrainingJob:output_type -> viam.app.mltraining.v1.SubmitCustomTrainingJobResponse
-	9,  // 36: viam.app.mltraining.v1.MLTrainingService.GetTrainingJob:output_type -> viam.app.mltraining.v1.GetTrainingJobResponse
-	11, // 37: viam.app.mltraining.v1.MLTrainingService.ListTrainingJobs:output_type -> viam.app.mltraining.v1.ListTrainingJobsResponse
-	14, // 38: viam.app.mltraining.v1.MLTrainingService.CancelTrainingJob:output_type -> viam.app.mltraining.v1.CancelTrainingJobResponse
-	16, // 39: viam.app.mltraining.v1.MLTrainingService.DeleteCompletedTrainingJob:output_type -> viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse
-	19, // 40: viam.app.mltraining.v1.MLTrainingService.GetTrainingJobLogs:output_type -> viam.app.mltraining.v1.GetTrainingJobLogsResponse
-	21, // 41: viam.app.mltraining.v1.MLTrainingService.ListSupportedContainers:output_type -> viam.app.mltraining.v1.ListSupportedContainersResponse
-	23, // 42: viam.app.mltraining.v1.MLTrainingService.ListContainers:output_type -> viam.app.mltraining.v1.ListContainersResponse
-	25, // 43: viam.app.mltraining.v1.MLTrainingService.RegisterCustomTrainingContainer:output_type -> viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse
-	27, // 44: viam.app.mltraining.v1.MLTrainingService.DeleteCustomTrainingContainer:output_type -> viam.app.mltraining.v1.DeleteCustomTrainingContainerResponse
-	34, // [34:45] is the sub-list for method output_type
-	23, // [23:34] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	33, // 17: viam.app.mltraining.v1.ListSupportedContainersResponse.container_map:type_name -> viam.app.mltraining.v1.ListSupportedContainersResponse.ContainerMapEntry
+	30, // 18: viam.app.mltraining.v1.ListContainersResponse.containers:type_name -> viam.app.mltraining.v1.Container
+	30, // 19: viam.app.mltraining.v1.GetContainerResponse.container:type_name -> viam.app.mltraining.v1.Container
+	35, // 20: viam.app.mltraining.v1.Container.eol:type_name -> google.protobuf.Timestamp
+	35, // 21: viam.app.mltraining.v1.Container.created_on:type_name -> google.protobuf.Timestamp
+	3,  // 22: viam.app.mltraining.v1.Container.visibility:type_name -> viam.app.mltraining.v1.Visibility
+	30, // 23: viam.app.mltraining.v1.ListSupportedContainersResponse.ContainerMapEntry.value:type_name -> viam.app.mltraining.v1.Container
+	4,  // 24: viam.app.mltraining.v1.MLTrainingService.SubmitTrainingJob:input_type -> viam.app.mltraining.v1.SubmitTrainingJobRequest
+	6,  // 25: viam.app.mltraining.v1.MLTrainingService.SubmitCustomTrainingJob:input_type -> viam.app.mltraining.v1.SubmitCustomTrainingJobRequest
+	8,  // 26: viam.app.mltraining.v1.MLTrainingService.GetTrainingJob:input_type -> viam.app.mltraining.v1.GetTrainingJobRequest
+	10, // 27: viam.app.mltraining.v1.MLTrainingService.ListTrainingJobs:input_type -> viam.app.mltraining.v1.ListTrainingJobsRequest
+	13, // 28: viam.app.mltraining.v1.MLTrainingService.CancelTrainingJob:input_type -> viam.app.mltraining.v1.CancelTrainingJobRequest
+	15, // 29: viam.app.mltraining.v1.MLTrainingService.DeleteCompletedTrainingJob:input_type -> viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest
+	18, // 30: viam.app.mltraining.v1.MLTrainingService.GetTrainingJobLogs:input_type -> viam.app.mltraining.v1.GetTrainingJobLogsRequest
+	20, // 31: viam.app.mltraining.v1.MLTrainingService.ListSupportedContainers:input_type -> viam.app.mltraining.v1.ListSupportedContainersRequest
+	22, // 32: viam.app.mltraining.v1.MLTrainingService.ListContainers:input_type -> viam.app.mltraining.v1.ListContainersRequest
+	24, // 33: viam.app.mltraining.v1.MLTrainingService.GetContainer:input_type -> viam.app.mltraining.v1.GetContainerRequest
+	26, // 34: viam.app.mltraining.v1.MLTrainingService.RegisterCustomTrainingContainer:input_type -> viam.app.mltraining.v1.RegisterCustomTrainingContainerRequest
+	28, // 35: viam.app.mltraining.v1.MLTrainingService.DeleteCustomTrainingContainer:input_type -> viam.app.mltraining.v1.DeleteCustomTrainingContainerRequest
+	5,  // 36: viam.app.mltraining.v1.MLTrainingService.SubmitTrainingJob:output_type -> viam.app.mltraining.v1.SubmitTrainingJobResponse
+	7,  // 37: viam.app.mltraining.v1.MLTrainingService.SubmitCustomTrainingJob:output_type -> viam.app.mltraining.v1.SubmitCustomTrainingJobResponse
+	9,  // 38: viam.app.mltraining.v1.MLTrainingService.GetTrainingJob:output_type -> viam.app.mltraining.v1.GetTrainingJobResponse
+	11, // 39: viam.app.mltraining.v1.MLTrainingService.ListTrainingJobs:output_type -> viam.app.mltraining.v1.ListTrainingJobsResponse
+	14, // 40: viam.app.mltraining.v1.MLTrainingService.CancelTrainingJob:output_type -> viam.app.mltraining.v1.CancelTrainingJobResponse
+	16, // 41: viam.app.mltraining.v1.MLTrainingService.DeleteCompletedTrainingJob:output_type -> viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse
+	19, // 42: viam.app.mltraining.v1.MLTrainingService.GetTrainingJobLogs:output_type -> viam.app.mltraining.v1.GetTrainingJobLogsResponse
+	21, // 43: viam.app.mltraining.v1.MLTrainingService.ListSupportedContainers:output_type -> viam.app.mltraining.v1.ListSupportedContainersResponse
+	23, // 44: viam.app.mltraining.v1.MLTrainingService.ListContainers:output_type -> viam.app.mltraining.v1.ListContainersResponse
+	25, // 45: viam.app.mltraining.v1.MLTrainingService.GetContainer:output_type -> viam.app.mltraining.v1.GetContainerResponse
+	27, // 46: viam.app.mltraining.v1.MLTrainingService.RegisterCustomTrainingContainer:output_type -> viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse
+	29, // 47: viam.app.mltraining.v1.MLTrainingService.DeleteCustomTrainingContainer:output_type -> viam.app.mltraining.v1.DeleteCustomTrainingContainerResponse
+	36, // [36:48] is the sub-list for method output_type
+	24, // [24:36] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_app_mltraining_v1_ml_training_proto_init() }
@@ -2345,7 +2455,7 @@ func file_app_mltraining_v1_ml_training_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_mltraining_v1_ml_training_proto_rawDesc,
 			NumEnums:      4,
-			NumMessages:   28,
+			NumMessages:   30,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -635,6 +635,67 @@ proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.listContai
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.mltraining.v1.GetContainerRequest,
+ *   !proto.viam.app.mltraining.v1.GetContainerResponse>}
+ */
+const methodDescriptor_MLTrainingService_GetContainer = new grpc.web.MethodDescriptor(
+  '/viam.app.mltraining.v1.MLTrainingService/GetContainer',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.mltraining.v1.GetContainerRequest,
+  proto.viam.app.mltraining.v1.GetContainerResponse,
+  /**
+   * @param {!proto.viam.app.mltraining.v1.GetContainerRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.mltraining.v1.GetContainerResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.GetContainerRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.mltraining.v1.GetContainerResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.mltraining.v1.GetContainerResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.mltraining.v1.MLTrainingServiceClient.prototype.getContainer =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/GetContainer',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_GetContainer,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.mltraining.v1.GetContainerRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.mltraining.v1.GetContainerResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.mltraining.v1.MLTrainingServicePromiseClient.prototype.getContainer =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.mltraining.v1.MLTrainingService/GetContainer',
+      request,
+      metadata || {},
+      methodDescriptor_MLTrainingService_GetContainer);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerRequest,
  *   !proto.viam.app.mltraining.v1.RegisterCustomTrainingContainerResponse>}
  */
