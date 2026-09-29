@@ -36,6 +36,9 @@ service MLTrainingService {
   // ListContainers lists the containers available for a custom training job for a given organization.
   rpc ListContainers(ListContainersRequest) returns (ListContainersResponse);
 
+  // GetContainer retrieves a container by its ID.
+  rpc GetContainer(GetContainerRequest) returns (GetContainerResponse);
+
   // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
   rpc RegisterCustomTrainingContainer(RegisterCustomTrainingContainerRequest) returns (RegisterCustomTrainingContainerResponse);
 
@@ -201,6 +204,15 @@ message ListContainersRequest {
 
 message ListContainersResponse {
   repeated Container containers = 1;
+}
+
+message GetContainerRequest {
+  // The ID of the container to retrieve.
+  string id = 1;
+}
+
+message GetContainerResponse {
+  Container container = 1;
 }
 
 message RegisterCustomTrainingContainerRequest {
