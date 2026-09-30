@@ -41,6 +41,15 @@ type VisionServiceGetClassifications = {
   readonly responseType: typeof service_vision_v1_vision_pb.GetClassificationsResponse;
 };
 
+type VisionServiceGetDetections3D = {
+  readonly methodName: string;
+  readonly service: typeof VisionService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_vision_v1_vision_pb.GetDetections3DRequest;
+  readonly responseType: typeof service_vision_v1_vision_pb.GetDetections3DResponse;
+};
+
 type VisionServiceGetObjectPointClouds = {
   readonly methodName: string;
   readonly service: typeof VisionService;
@@ -92,6 +101,7 @@ export class VisionService {
   static readonly GetDetections: VisionServiceGetDetections;
   static readonly GetClassificationsFromCamera: VisionServiceGetClassificationsFromCamera;
   static readonly GetClassifications: VisionServiceGetClassifications;
+  static readonly GetDetections3D: VisionServiceGetDetections3D;
   static readonly GetObjectPointClouds: VisionServiceGetObjectPointClouds;
   static readonly GetProperties: VisionServiceGetProperties;
   static readonly CaptureAllFromCamera: VisionServiceCaptureAllFromCamera;
@@ -166,6 +176,15 @@ export class VisionServiceClient {
   getClassifications(
     requestMessage: service_vision_v1_vision_pb.GetClassificationsRequest,
     callback: (error: ServiceError|null, responseMessage: service_vision_v1_vision_pb.GetClassificationsResponse|null) => void
+  ): UnaryResponse;
+  getDetections3D(
+    requestMessage: service_vision_v1_vision_pb.GetDetections3DRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_vision_v1_vision_pb.GetDetections3DResponse|null) => void
+  ): UnaryResponse;
+  getDetections3D(
+    requestMessage: service_vision_v1_vision_pb.GetDetections3DRequest,
+    callback: (error: ServiceError|null, responseMessage: service_vision_v1_vision_pb.GetDetections3DResponse|null) => void
   ): UnaryResponse;
   getObjectPointClouds(
     requestMessage: service_vision_v1_vision_pb.GetObjectPointCloudsRequest,
