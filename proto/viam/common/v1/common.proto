@@ -92,10 +92,13 @@ message RectangularPrism {
 }
 
 message Mesh {
-  // Content type of mesh (e.g. ply)
+  // Content type of mesh, extension style: stl, ply, glb
   string content_type = 1;
   // Contents of mesh data in binary form defined by content_type
   bytes mesh = 2;
+  // In a kinematics file, the mesh path relative to that file. On the wire, an
+  // identifier unique within the model that survives when mesh bytes are left out.
+  string source_path = 3;
 }
 
 message PointCloud {
@@ -219,6 +222,10 @@ message GetStatusResponse {
 message GetKinematicsRequest {
   // The component name
   string name = 1;
+  // When set, collision Mesh.mesh bytes are left empty; Mesh.source_path still identifies each mesh
+  bool exclude_collision_meshes = 2;
+  // When set, visual Mesh.mesh bytes are left empty; Mesh.source_path still identifies each mesh
+  bool exclude_visual_meshes = 3;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -230,13 +237,117 @@ enum KinematicsFileFormat {
 }
 
 message GetKinematicsResponse {
-  // The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+  // Deprecated: use model. The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
   // https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
-  KinematicsFileFormat format = 1;
-  // The byte contents of the file
-  bytes kinematics_data = 2;
-  // Map of URDF mesh file paths to mesh data
-  map<string, Mesh> meshes_by_urdf_filepath = 3;
+  KinematicsFileFormat format = 1 [deprecated = true];
+  // Deprecated: use model. The byte contents of the file
+  bytes kinematics_data = 2 [deprecated = true];
+  // Deprecated: use model. Map of URDF mesh file paths to mesh data
+  map<string, Mesh> meshes_by_urdf_filepath = 3 [deprecated = true];
+  // The kinematic model of the component
+  KinematicModel model = 4;
+}
+
+// KinematicModel is a tree of links and joints describing a component's kinematics. The proto JSON
+// encoding of this message is also the on-disk kinematics file format (SVA v2).
+message KinematicModel {
+  string name = 1;
+  repeated KinematicLink links = 2;
+  repeated KinematicJoint joints = 3;
+  // Names of the frames whose poses the model reports; at most one today
+  repeated string output_frames = 4;
+  KinematicProperties properties = 5;
+  // Bumped by the component whenever its model changes. Runtime only, never in a file.
+  uint64 generation = 6;
+}
+
+message KinematicLink {
+  string id = 1;
+  // The id of the parent link or joint; empty for the root
+  string parent = 2;
+  // Placement of this link relative to its parent
+  LinkPose pose = 3;
+  // Geometries used for collision checking. Meshes must be stl or ply.
+  repeated Geometry collision = 4;
+  // Geometries used for display only. Meshes may be any format a viewer can load, glb today.
+  repeated Geometry visual = 5;
+}
+
+// LinkPose is a translation in mm plus one of the orientation representations SVA v1 accepts.
+// Angles are in degrees. An absent orientation means identity.
+message LinkPose {
+  Vector3 translation = 1;
+  oneof orientation {
+    Quaternion quaternion = 2;
+    // theta in degrees
+    Orientation orientation_vector = 3;
+    EulerAngles euler_angles = 4;
+    AxisAngles axis_angles = 5;
+  }
+}
+
+message Quaternion {
+  double w = 1;
+  double x = 2;
+  double y = 3;
+  double z = 4;
+}
+
+// EulerAngles in degrees
+message EulerAngles {
+  double roll = 1;
+  double pitch = 2;
+  double yaw = 3;
+}
+
+// AxisAngles is a rotation axis plus an angle theta in degrees
+message AxisAngles {
+  double rx = 1;
+  double ry = 2;
+  double rz = 3;
+  double theta = 4;
+}
+
+enum JointType {
+  JOINT_TYPE_UNSPECIFIED = 0;
+  JOINT_TYPE_REVOLUTE = 1;
+  JOINT_TYPE_PRISMATIC = 2;
+}
+
+message KinematicJoint {
+  string id = 1;
+  // The id of the parent link
+  string parent = 2;
+  JointType type = 3;
+  Vector3 axis = 4;
+  // Model level: what the hardware can do, from the controller, the datasheet, or the shipped file
+  JointLimits hardware_limits = 5;
+  // Arm level: what this component's resource config asks for. Must sit inside hardware_limits.
+  JointLimits user_limits = 6;
+  MimicJoint mimic = 7;
+  // Only meaningful for prismatic joints
+  Geometry geometry = 8;
+}
+
+// JointLimits follow the joint type: degrees, deg/s, deg/s^2 for revolute joints and mm, mm/s,
+// mm/s^2 for prismatic joints. An absent field means unbounded.
+message JointLimits {
+  optional double min = 1;
+  optional double max = 2;
+  optional double max_velocity = 3;
+  optional double max_acceleration = 4;
+}
+
+// MimicJoint says this joint's position is multiplier * position(joint) + offset
+message MimicJoint {
+  string joint = 1;
+  double multiplier = 2;
+  double offset = 3;
+}
+
+// KinematicProperties describe the component as a whole rather than any joint
+message KinematicProperties {
+  optional double trajectory_sampling_freq_hz = 1;
 }
 
 message GetGeometriesRequest {
