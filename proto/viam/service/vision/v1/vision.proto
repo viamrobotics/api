@@ -36,6 +36,14 @@ service VisionService {
     option (google.api.http) = {post: "/viam/api/v1/service/vision/{name}/classifications"};
   }
 
+  // GetDetections3D returns the objects the service perceives through a camera.
+  // Each detection is a tree of named transforms carrying the object's shapes,
+  // plus class hypotheses. The transforms can be passed unchanged into a frame
+  // system or a motion WorldState.
+  rpc GetDetections3D(GetDetections3DRequest) returns (GetDetections3DResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/vision/{name}/detections_3d"};
+  }
+
   // GetObjectPointClouds returns all the found objects in a pointcloud from a
   // camera of the underlying robot, as well as the 3-vector center of each of
   // the found objects. A specific MIME type can be requested but may not
@@ -160,6 +168,45 @@ message Classification {
   double confidence = 2;
 }
 
+message GetDetections3DRequest {
+  // name of the vision service
+  string name = 1;
+  // name of the camera to observe
+  string camera_name = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetDetections3DResponse {
+  // one entry per perceived object
+  repeated Detection3D detections_3d = 1;
+}
+
+// Detection3D is one perceived object, described as a tree of transforms.
+//
+// transforms[0] is the root. Its pose_in_observer_frame.reference_frame is a
+// frame the robot already knows: typically the camera the service read from, or
+// "world" if the service re-expressed its output. Every later transform names
+// its parent in pose_in_observer_frame.reference_frame, and that parent is the
+// root or an earlier transform in the same list.
+//
+// Each transform's physical_object, when present, is expressed relative to that
+// transform's own origin, so a box centered on the part has its center at zero.
+// A point cloud is carried as the pointcloud variant of Geometry.
+//
+// The server forwards this message unchanged: it does not stamp frames or
+// validate the tree, so a dangling parent surfaces in the frame system at
+// planning time. Consumers correlating detections across calls should use
+// Transform.uuid or metadata.
+message Detection3D {
+  // frame tree of this object, root first
+  repeated common.v1.Transform transforms = 1;
+  // class hypotheses for the object
+  repeated Classification classifications = 2;
+  // implementation-specific data, e.g. source camera or model name
+  google.protobuf.Struct metadata = 99;
+}
+
 message GetObjectPointCloudsRequest {
   string name = 1;
   // Name of a camera
@@ -197,6 +244,8 @@ message CaptureAllFromCameraRequest {
   bool return_detections = 5;
   // whether or not including pcd in the response
   bool return_object_point_clouds = 6;
+  // whether or not including 3D detections in the response
+  bool return_detections_3d = 7;
 
   google.protobuf.Struct extra = 99;
 }
@@ -206,6 +255,7 @@ message CaptureAllFromCameraResponse {
   repeated Detection detections = 2;
   repeated Classification classifications = 3;
   repeated common.v1.PointCloudObject objects = 4;
+  repeated Detection3D detections_3d = 5;
   google.protobuf.Struct extra = 99;
 }
 
@@ -218,4 +268,6 @@ message GetPropertiesResponse {
   bool object_point_clouds_supported = 3;
   // the default camera used for *FromCamera and GetObjectPointClouds calls
   optional string default_camera = 4;
+  // whether or not GetDetections3D is supported by the vision service
+  bool detections_3d_supported = 5;
 }
