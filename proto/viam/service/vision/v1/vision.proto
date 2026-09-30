@@ -183,21 +183,9 @@ message GetDetections3DResponse {
 }
 
 // Detection3D is one perceived object, described as a tree of transforms.
-//
-// transforms[0] is the root. Its pose_in_observer_frame.reference_frame is a
-// frame the robot already knows: typically the camera the service read from, or
-// "world" if the service re-expressed its output. Every later transform names
-// its parent in pose_in_observer_frame.reference_frame, and that parent is the
-// root or an earlier transform in the same list.
-//
-// Each transform's physical_object, when present, is expressed relative to that
-// transform's own origin, so a box centered on the part has its center at zero.
-// A point cloud is carried as the pointcloud variant of Geometry.
-//
-// The server forwards this message unchanged: it does not stamp frames or
-// validate the tree, so a dangling parent surfaces in the frame system at
-// planning time. Consumers correlating detections across calls should use
-// Transform.uuid or metadata.
+// transforms[0] is the root, parented to a frame the robot already knows (e.g.
+// the camera). Each later transform's parent is the root or an earlier entry.
+// Each physical_object is expressed relative to its own transform's origin.
 message Detection3D {
   // frame tree of this object, root first
   repeated common.v1.Transform transforms = 1;
