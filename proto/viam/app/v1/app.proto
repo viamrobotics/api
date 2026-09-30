@@ -2017,6 +2017,9 @@ message AuthorizationDetails {
 message APIKeyWithAuthorizations {
   APIKey api_key = 1;
   repeated AuthorizationDetails authorizations = 2;
+  // True when this key is the active default key for a machine's
+  // robot-to-cloud communication.
+  bool is_default = 3;
 }
 
 message ListKeysRequest {
