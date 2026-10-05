@@ -36,6 +36,9 @@ service MLTrainingService {
   // ListContainers lists the containers available for a custom training job for a given organization.
   rpc ListContainers(ListContainersRequest) returns (ListContainersResponse);
 
+  // GetContainer retrieves a container by its ID.
+  rpc GetContainer(GetContainerRequest) returns (GetContainerResponse);
+
   // RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
   rpc RegisterCustomTrainingContainer(RegisterCustomTrainingContainerRequest) returns (RegisterCustomTrainingContainerResponse);
 
@@ -84,6 +87,7 @@ message SubmitCustomTrainingJobRequest {
   string model_version = 5 [(tagger.v1.tags) = "bson:\"model_version\" json:\"model_version\""];
   map<string, string> arguments = 7;
   string container_version = 8;
+  string container_id = 9;
 }
 
 message SubmitCustomTrainingJobResponse {
@@ -138,6 +142,7 @@ message TrainingJobMetadata {
   repeated string tags = 16 [(tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   map<string, string> arguments = 21 [(tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
   string container_version = 22 [(tagger.v1.tags) = "bson:\"container_version\" json:\"container_version\""];
+  string container_id = 23 [(tagger.v1.tags) = "bson:\"container_id\" json:\"container_id\""];
 
   reserved 1, 6;
   reserved "request", "user_email";
@@ -199,6 +204,15 @@ message ListContainersRequest {
 
 message ListContainersResponse {
   repeated Container containers = 1;
+}
+
+message GetContainerRequest {
+  // The ID of the container to retrieve.
+  string id = 1;
+}
+
+message GetContainerResponse {
+  Container container = 1;
 }
 
 message RegisterCustomTrainingContainerRequest {

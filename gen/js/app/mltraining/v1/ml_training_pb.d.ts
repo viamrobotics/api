@@ -96,6 +96,9 @@ export class SubmitCustomTrainingJobRequest extends jspb.Message {
   getContainerVersion(): string;
   setContainerVersion(value: string): void;
 
+  getContainerId(): string;
+  setContainerId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SubmitCustomTrainingJobRequest.AsObject;
   static toObject(includeInstance: boolean, msg: SubmitCustomTrainingJobRequest): SubmitCustomTrainingJobRequest.AsObject;
@@ -116,6 +119,7 @@ export namespace SubmitCustomTrainingJobRequest {
     modelVersion: string,
     argumentsMap: Array<[string, string]>,
     containerVersion: string,
+    containerId: string,
   }
 }
 
@@ -299,6 +303,9 @@ export class TrainingJobMetadata extends jspb.Message {
   getContainerVersion(): string;
   setContainerVersion(value: string): void;
 
+  getContainerId(): string;
+  setContainerId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -331,6 +338,7 @@ export namespace TrainingJobMetadata {
     tagsList: Array<string>,
     argumentsMap: Array<[string, string]>,
     containerVersion: string,
+    containerId: string,
   }
 }
 
@@ -562,6 +570,48 @@ export class ListContainersResponse extends jspb.Message {
 export namespace ListContainersResponse {
   export type AsObject = {
     containersList: Array<Container.AsObject>,
+  }
+}
+
+export class GetContainerRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetContainerRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetContainerRequest): GetContainerRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetContainerRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetContainerRequest;
+  static deserializeBinaryFromReader(message: GetContainerRequest, reader: jspb.BinaryReader): GetContainerRequest;
+}
+
+export namespace GetContainerRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class GetContainerResponse extends jspb.Message {
+  hasContainer(): boolean;
+  clearContainer(): void;
+  getContainer(): Container | undefined;
+  setContainer(value?: Container): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetContainerResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetContainerResponse): GetContainerResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetContainerResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetContainerResponse;
+  static deserializeBinaryFromReader(message: GetContainerResponse, reader: jspb.BinaryReader): GetContainerResponse;
+}
+
+export namespace GetContainerResponse {
+  export type AsObject = {
+    container?: Container.AsObject,
   }
 }
 
