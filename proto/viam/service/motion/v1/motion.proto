@@ -470,4 +470,10 @@ message TempStreamArmJointPositionsRequest {
   }
 }
 
-message TempStreamArmJointPositionsResponse {}
+message TempStreamArmJointPositionsResponse {
+  // The service's acknowledgment of one target. queued_ms is how much motion, in milliseconds, the
+  // service had accepted but not yet handed to the arm, measured once that target was added. A client
+  // that wants to be paced by execution can wait for each acknowledgment and hold its next target
+  // while queued_ms is above what it wants buffered. Unset if the service does not report it.
+  optional int32 queued_ms = 1;
+}
