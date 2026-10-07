@@ -141,6 +141,16 @@ message GeoPoint {
   double longitude = 2;
 }
 
+// GeoPose is a GPS position and heading, optionally with altitude.
+message GeoPose {
+  // Latitude and longitude in degrees
+  GeoPoint location = 1;
+  // Compass heading in degrees
+  double heading = 2;
+  // Optional altitude in meters
+  optional double altitude = 3;
+}
+
 // GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
 message GeoGeometry {
   // Location of the geometry
