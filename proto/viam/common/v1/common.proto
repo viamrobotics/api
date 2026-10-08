@@ -141,14 +141,38 @@ message GeoPoint {
   double longitude = 2;
 }
 
-// GeoPose is a GPS position and heading, optionally with altitude.
+// GeoPose is a GPS position and orientation, optionally with altitude.
+//
+// Orientation is expressed in the east-north-up tangent frame at location:
+// +X east, +Y north, +Z up. Viam base axes are +X right, +Y forward, and +Z up,
+// so the identity orientation (o_x, o_y, o_z, theta) = (0, 0, 1, 0) is level and
+// faces north: forward is north and right is east.
+//
+// The same rotation as an orientation vector is Viam's Tait-Bryan Euler sequence,
+// intrinsic z-y'-x'' (yaw, then pitch, then roll), in degrees:
+//   - yaw: right-handed rotation about local up (+Z). Zero faces north. Positive
+//     yaw is counterclockwise viewed from above, so a compass heading in degrees
+//     clockwise from north is the negation of yaw.
+//   - pitch: right-handed rotation about the base's forward axis (+Y).
+//   - roll: right-handed rotation about the base's right axis (+X). With pitch 0,
+//     positive roll raises the forward axis; that angle is the elevation of
+//     forward above the local horizon.
+//
+// Exactly one of heading or orientation_vector is set. heading is only the
+// compass yaw of a level pose (pitch 0, roll 0). It is not added to
+// orientation_vector.
 message GeoPose {
   // Latitude and longitude in degrees
   GeoPoint location = 1;
-  // Compass heading in degrees
-  double heading = 2;
   // Optional altitude in meters
   optional double altitude = 3;
+  oneof orientation {
+    // Compass heading in degrees, clockwise from north. Level pose: pitch 0, roll 0.
+    double heading = 2;
+    // Full orientation in the east-north-up tangent frame at location.
+    // o_x, o_y, o_z, theta in degrees, same orientation vector as Pose.
+    Orientation orientation_vector = 4;
+  }
 }
 
 // GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
