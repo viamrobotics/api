@@ -1812,6 +1812,10 @@ message Model {
   optional string description = 4;
   // A list of supported hardware names
   repeated string supported_hardware = 5;
+  // The full set of co-equal APIs this model serves. A composite model serves more than one; a
+  // single-API model may omit this (the `api` field is always one of these). Older tooling that
+  // reads only `api` continues to work.
+  repeated string apis = 6;
 }
 
 message ModuleFileInfo {
