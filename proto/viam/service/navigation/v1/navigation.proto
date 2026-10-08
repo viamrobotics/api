@@ -60,7 +60,9 @@ service NavigationService {
     option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/routes"};
   }
 
-  // UpdateRoute renames a route and/or replaces its waypoints.
+  // UpdateRoute renames a route and/or replaces its waypoints. An unset
+  // waypoints list leaves the waypoints unchanged. A set list, including an
+  // empty one, replaces them.
   rpc UpdateRoute(UpdateRouteRequest) returns (UpdateRouteResponse) {
     option (google.api.http) = {put: "/viam/api/v1/service/navigation/{name}/routes/{route_name}"};
   }
@@ -478,14 +480,20 @@ message ListRoutesResponse {
   repeated Route routes = 1;
 }
 
+// WaypointList is a wrapper so callers can distinguish an unset list from an
+// empty one. Proto3 repeated fields have no presence.
+message WaypointList {
+  repeated Waypoint waypoints = 1;
+}
+
 message UpdateRouteRequest {
   // Name of the navigation service
   string name = 1;
   string route_name = 2;
   // Omit to leave name unchanged
   optional string new_name = 3;
-  // Omit to leave waypoints unchanged
-  repeated Waypoint waypoints = 4;
+  // Unset: leave waypoints unchanged. Set, including empty: replace them.
+  optional WaypointList waypoints = 4;
   google.protobuf.Struct extra = 99;
 }
 
