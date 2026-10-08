@@ -258,4 +258,6 @@ message GetPropertiesResponse {
   optional string default_camera = 4;
   // whether or not GetDetections3D is supported by the vision service
   bool detections_3d_supported = 5;
+  // list of cameras the vision service works with, if empty the vision service works with any camera resource
+  repeated string cameras = 6;
 }
