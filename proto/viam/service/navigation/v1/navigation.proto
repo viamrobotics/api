@@ -5,48 +5,196 @@ package viam.service.navigation.v1;
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/service/navigation/v1";
 option java_package = "com.viam.service.navigation.v1";
 
-// A NavigationService declares the gRPC contract for a Navigation service
+// A NavigationService declares the gRPC contract for a Navigation service.
+// Each service instance is bound to exactly one controllable base and one map
+// type (local SLAM or GPS). Apps save named locations, routes, and zones, then
+// navigate with plan-then-drive or direct go-to motion.
 service NavigationService {
-  rpc GetMode(GetModeRequest) returns (GetModeResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/mode"};
+  // AddLocation saves a named position on the active map. If position is
+  // omitted, the robot's current position from GetPosition is saved.
+  rpc AddLocation(AddLocationRequest) returns (AddLocationResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/locations"};
   }
 
-  rpc SetMode(SetModeRequest) returns (SetModeResponse) {
-    option (google.api.http) = {put: "/viam/api/v1/service/navigation/{name}/mode"};
-  }
-
+  // GetLocation returns a saved location by name. This does not return the
+  // robot's current position; use GetPosition for that.
   rpc GetLocation(GetLocationRequest) returns (GetLocationResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/location"};
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/locations/{location_name}"};
   }
 
-  rpc GetWaypoints(GetWaypointsRequest) returns (GetWaypointsResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/waypoints"};
+  // ListLocations lists all saved locations on the active map.
+  rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/locations"};
   }
 
-  rpc AddWaypoint(AddWaypointRequest) returns (AddWaypointResponse) {
-    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/waypoints"};
+  // UpdateLocation changes a saved location's position or name. Renaming a
+  // location updates every route waypoint that references it.
+  rpc UpdateLocation(UpdateLocationRequest) returns (UpdateLocationResponse) {
+    option (google.api.http) = {put: "/viam/api/v1/service/navigation/{name}/locations/{location_name}"};
   }
 
-  rpc RemoveWaypoint(RemoveWaypointRequest) returns (RemoveWaypointResponse) {
-    option (google.api.http) = {delete: "/viam/api/v1/service/navigation/{name}/waypoints/{id}"};
+  // DeleteLocation deletes a saved location. The location is also removed from
+  // every route that references it.
+  rpc DeleteLocation(DeleteLocationRequest) returns (DeleteLocationResponse) {
+    option (google.api.http) = {delete: "/viam/api/v1/service/navigation/{name}/locations/{location_name}"};
   }
 
-  rpc GetObstacles(GetObstaclesRequest) returns (GetObstaclesResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/get_obstacles"};
+  // AddRoute creates a named route from an ordered list of waypoints. Every
+  // referenced location must already exist.
+  rpc AddRoute(AddRouteRequest) returns (AddRouteResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/routes"};
   }
 
-  rpc GetPaths(GetPathsRequest) returns (GetPathsResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/get_paths"};
+  // GetRoute returns a route by name.
+  rpc GetRoute(GetRouteRequest) returns (GetRouteResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/routes/{route_name}"};
   }
 
-  // GetProperties returns properties of the current navigation service, including the
-  // map_type being operated on.
+  // ListRoutes lists all routes on the active map.
+  rpc ListRoutes(ListRoutesRequest) returns (ListRoutesResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/routes"};
+  }
+
+  // UpdateRoute renames a route and/or replaces its waypoints. An unset
+  // waypoints list leaves the waypoints unchanged. A set list, including an
+  // empty one, replaces them.
+  rpc UpdateRoute(UpdateRouteRequest) returns (UpdateRouteResponse) {
+    option (google.api.http) = {put: "/viam/api/v1/service/navigation/{name}/routes/{route_name}"};
+  }
+
+  // DeleteRoute deletes a route. The locations it references are not affected.
+  rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {
+    option (google.api.http) = {delete: "/viam/api/v1/service/navigation/{name}/routes/{route_name}"};
+  }
+
+  // AddZone creates a keep-out or speed-limit zone on the active map. The
+  // planner avoids keep-out zones and caps speed inside speed-limit zones.
+  rpc AddZone(AddZoneRequest) returns (AddZoneResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/zones"};
+  }
+
+  // GetZone returns a zone by name.
+  rpc GetZone(GetZoneRequest) returns (GetZoneResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/zones/{zone_name}"};
+  }
+
+  // ListZones lists zones on the active map, optionally filtered by type.
+  rpc ListZones(ListZonesRequest) returns (ListZonesResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/zones"};
+  }
+
+  // UpdateZone changes a zone's type, geometry, speed limit, or name.
+  rpc UpdateZone(UpdateZoneRequest) returns (UpdateZoneResponse) {
+    option (google.api.http) = {put: "/viam/api/v1/service/navigation/{name}/zones/{zone_name}"};
+  }
+
+  // DeleteZone deletes a zone.
+  rpc DeleteZone(DeleteZoneRequest) returns (DeleteZoneResponse) {
+    option (google.api.http) = {delete: "/viam/api/v1/service/navigation/{name}/zones/{zone_name}"};
+  }
+
+  // NavigateToLocation plans an obstacle-aware path to a saved location and
+  // starts driving it. Returns once the goal is accepted; track progress with
+  // GetNavigationStatus.
+  rpc NavigateToLocation(NavigateToLocationRequest) returns (NavigateToLocationResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/navigate_to_location"};
+  }
+
+  // NavigateToPoint plans an obstacle-aware path to a Position and starts
+  // driving it. Returns once the goal is accepted; track progress with
+  // GetNavigationStatus. On a Pose, theta defaults to 0 if omitted.
+  rpc NavigateToPoint(NavigateToPointRequest) returns (NavigateToPointResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/navigate_to_point"};
+  }
+
+  // NavigateRoute drives a route one waypoint at a time using the
+  // obstacle-aware planner. Provide either route_name (a saved route) or
+  // waypoints (an inline list).
+  rpc NavigateRoute(NavigateRouteRequest) returns (NavigateRouteResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/navigate_route"};
+  }
+
+  // PlanToPoint computes a path from the robot (or a given start) to a
+  // Position without moving. Pass a feasible result to ExecutePlan to drive it.
+  // Raises an error if no path exists.
+  rpc PlanToPoint(PlanToPointRequest) returns (PlanToPointResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/plan_to_point"};
+  }
+
+  // PlanToLocation computes a path to a saved location without moving. Accepts
+  // the same optional start as PlanToPoint. Raises an error if no path exists.
+  rpc PlanToLocation(PlanToLocationRequest) returns (PlanToLocationResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/plan_to_location"};
+  }
+
+  // ExecutePlan drives a Plan (typically from PlanToPoint or PlanToLocation).
+  // While navigating, the active path is available on GetNavigationStatus. Rejected if
+  // the path is empty.
+  rpc ExecutePlan(ExecutePlanRequest) returns (ExecutePlanResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/execute_plan"};
+  }
+
+  // GoToLocation drives directly to a saved location with a closed-loop
+  // controller, without full path planning. Intended for short hops and
+  // docking. With wait false, returns immediately while navigating.
+  rpc GoToLocation(GoToLocationRequest) returns (GoToLocationResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/go_to_location"};
+  }
+
+  // GoToPoint drives directly to a Position with a closed-loop controller,
+  // without full path planning. Intended for short hops and docking. With wait
+  // false, returns immediately while navigating.
+  rpc GoToPoint(GoToPointRequest) returns (GoToPointResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/go_to_point"};
+  }
+
+  // Suspend stops motion but remembers the current goal, including the current
+  // waypoint and loop setting for routes. A suspended goal must be canceled
+  // before a new one starts.
+  rpc Suspend(SuspendRequest) returns (SuspendResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/suspend"};
+  }
+
+  // Resume resumes the suspended goal the same way it was started: planned
+  // navigation, simple go-to, or a route from its current waypoint.
+  rpc Resume(ResumeRequest) returns (ResumeResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/resume"};
+  }
+
+  // Cancel stops all motion and discards both the active goal and any
+  // suspended goal.
+  rpc Cancel(CancelRequest) returns (CancelResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/cancel"};
+  }
+
+  // GetPosition returns the robot's current position on the active map. Use
+  // this for frequent position polling; GetNavigationStatus reports the same position
+  // alongside the rest of the navigation state.
+  rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/position"};
+  }
+
+  // GetNavigationStatus returns the full navigation state, including the robot's
+  // current position and the latest goal.
+  rpc GetNavigationStatus(GetNavigationStatusRequest) returns (GetNavigationStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/status"};
+  }
+
+  // GetProperties returns the map type the service operates on and robot
+  // properties. These values do not change while the service is running.
   rpc GetProperties(GetPropertiesRequest) returns (GetPropertiesResponse) {
     option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/properties"};
+  }
+
+  // GetCostmap returns the local or global costmap as a downsampled grid, for
+  // display in UIs.
+  rpc GetCostmap(GetCostmapRequest) returns (GetCostmapResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/costmap"};
   }
 
   // DoCommand sends/receives arbitrary commands
@@ -60,119 +208,539 @@ service NavigationService {
   }
 }
 
-// MapType represents the various types of maps the navigation service can ingest.
+// MapType represents the type of map the navigation service operates on.
+// Each service instance uses exactly one map type.
 enum MapType {
   MAP_TYPE_UNSPECIFIED = 0;
-  MAP_TYPE_NONE = 1;
+  // Positions are Poses in the active SLAM map's frame
+  MAP_TYPE_LOCAL = 1;
+  // Positions are GeoPoses
   MAP_TYPE_GPS = 2;
 }
 
-enum Mode {
-  MODE_UNSPECIFIED = 0;
-  MODE_MANUAL = 1;
-  MODE_WAYPOINT = 2;
-  MODE_EXPLORE = 3;
+enum GoalState {
+  GOAL_STATE_UNSPECIFIED = 0;
+  GOAL_STATE_ACTIVE = 1;
+  // Held; see Resume
+  GOAL_STATE_SUSPENDED = 2;
+  GOAL_STATE_SUCCEEDED = 3;
+  // See error
+  GOAL_STATE_FAILED = 4;
+  GOAL_STATE_CANCELED = 5;
 }
 
-message GetModeRequest {
+enum NavMode {
+  NAV_MODE_UNSPECIFIED = 0;
+  // NavigateTo*, ExecutePlan
+  NAV_MODE_PLANNED = 1;
+  // GoTo*
+  NAV_MODE_DIRECT = 2;
+  // NavigateRoute
+  NAV_MODE_ROUTE = 3;
+}
+
+enum NavErrorCode {
+  NAV_ERROR_CODE_UNSPECIFIED = 0;
+  NAV_ERROR_CODE_NO_PATH = 1;
+  NAV_ERROR_CODE_BLOCKED = 2;
+  NAV_ERROR_CODE_LOCALIZATION_LOST = 3;
+  NAV_ERROR_CODE_BASE_ERROR = 4;
+  NAV_ERROR_CODE_TIMEOUT = 5;
+  NAV_ERROR_CODE_OTHER = 6;
+}
+
+// Position is a shared oneof for any map-typed position. Exactly one of pose or
+// geo_pose is set; the service rejects a value that does not match GetProperties
+// map type.
+message Position {
+  oneof value {
+    // MAP_TYPE_LOCAL — common.Pose in the map frame
+    common.v1.Pose pose = 1;
+    // MAP_TYPE_GPS — common.GeoPose
+    common.v1.GeoPose geo_pose = 2;
+  }
+}
+
+// Location is a named Position on the active map.
+message Location {
   string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
+  Position position = 2;
 }
 
-message GetModeResponse {
-  Mode mode = 1;
-}
-
-message SetModeRequest {
-  string name = 1;
-  Mode mode = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message SetModeResponse {}
-
+// Waypoint is a route stop: either the name of a saved Location or an inline
+// Position.
 message Waypoint {
-  string id = 1;
-  common.v1.GeoPoint location = 2;
+  oneof value {
+    string location = 1;
+    Position position = 2;
+  }
+}
+
+// Route is an ordered list of waypoints. A location can appear in more than one
+// route, and more than once in the same route.
+message Route {
+  string name = 1;
+  repeated Waypoint waypoints = 2;
+}
+
+// Zone is a named region on the active map. Geometry is a Struct following the
+// Geometry shapes described in the Navigation API (circle, box, or polygon).
+// Units follow the map type: millimeters on local maps, meters for GPS radii
+// and sizes.
+message Zone {
+  string name = 1;
+  // "keepout" or "speed_limit"
+  string type = 2;
+  google.protobuf.Struct geometry = 3;
+  // Max speed in meters/sec; required when type is "speed_limit"
+  optional double max_speed = 4;
+}
+
+// Plan is a path preview returned by PlanToPoint and PlanToLocation.
+message Plan {
+  repeated Position path = 1;
+  // Set by PlanToLocation
+  optional string location = 2;
+  double length_m = 3;
+}
+
+message Velocity {
+  // Forward linear velocity
+  double linear_m_per_sec = 1;
+  // Yaw rate, counterclockwise positive
+  double angular_deg_per_sec = 2;
+}
+
+message NavError {
+  NavErrorCode code = 1;
+  string message = 2;
+}
+
+message Progress {
+  double distance_remaining_m = 1;
+  // PLANNED and ROUTE only; updates on replan
+  repeated Position path = 2;
+  // Same meaning as Plan.length_m
+  double length_m = 3;
+}
+
+message RouteProgress {
+  // Empty for inline routes
+  string name = 1;
+  repeated Waypoint waypoints = 2;
+  // Current waypoint; waypoints[index] is the target
+  uint32 index = 3;
+  bool loop = 4;
+  uint32 lap = 5;
+}
+
+// GoalStatus is one goal and its lifecycle. Returned (embedded in Status) by
+// every method that starts, suspends, resumes, or cancels motion, and embedded
+// in Status from GetNavigationStatus. Only the latest goal is kept. SUCCEEDED, FAILED,
+// and CANCELED are terminal.
+message GoalStatus {
+  GoalState state = 1;
+  NavMode mode = 2;
+  // For a route, the current waypoint
+  Position target = 3;
+  // Set when the target is a saved location
+  optional string location = 4;
+  // While ACTIVE
+  optional Progress progress = 5;
+  // When mode == NAV_MODE_ROUTE
+  optional RouteProgress route = 6;
+  // When SUSPENDED
+  optional string suspend_reason = 7;
+  // When FAILED
+  optional NavError error = 8;
+  google.protobuf.Timestamp started_at = 9;
+  // Set once terminal
+  optional google.protobuf.Timestamp finished_at = 10;
+}
+
+// Status is the robot navigation state returned by GetNavigationStatus and by methods that
+// start, suspend, or resume motion. The robot is idle when goal is unset or
+// goal.state is terminal. It is moving when goal.state == GOAL_STATE_ACTIVE.
+// Methods that start motion fail while localized is false.
+message Status {
+  // Same as GetPosition
+  Position position = 1;
+  // Pose is trusted; false blocks new goals
+  bool localized = 2;
+  // Current body-frame velocity; zero when stopped
+  Velocity velocity = 3;
+  // Latest goal; unset until the first one
+  optional GoalStatus goal = 4;
+  google.protobuf.Timestamp updated_at = 5;
+  // Backend-specific diagnostics
+  google.protobuf.Struct extra = 99;
+}
+
+// Properties are returned by GetProperties and do not change while the service
+// is running.
+message Properties {
+  MapType map_type = 1;
+  double footprint_length_m = 2;
+  double footprint_width_m = 3;
+  double robot_radius_m = 4;
+  // PlanTo*, ExecutePlan, NavigateTo*
+  bool planning_supported = 5;
+  // GetCostmap
+  bool costmap_supported = 6;
+  // Keep-out / speed-limit zones
+  bool zones_supported = 7;
+  // Route store + NavigateRoute
+  bool routes_supported = 8;
+}
+
+message AddLocationRequest {
+  // Name of the navigation service
+  string name = 1;
+  // Name of the location to save
+  string location_name = 2;
+  // Omit to use the robot's current Position
+  optional Position position = 3;
+  google.protobuf.Struct extra = 99;
+}
+
+message AddLocationResponse {
+  Location location = 1;
 }
 
 message GetLocationRequest {
+  // Name of the navigation service
   string name = 1;
-  // Additional arguments to the method
+  string location_name = 2;
   google.protobuf.Struct extra = 99;
 }
 
 message GetLocationResponse {
-  common.v1.GeoPoint location = 1;
-  // A number from [0-360) where 0 is north
-  // 90 is east, 180 is south, 270 is west
-  double compass_heading = 2;
+  Location location = 1;
 }
 
-message GetWaypointsRequest {
-  string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message GetWaypointsResponse {
-  repeated Waypoint waypoints = 1;
-}
-
-message AddWaypointRequest {
-  string name = 1;
-  common.v1.GeoPoint location = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message AddWaypointResponse {}
-
-message RemoveWaypointRequest {
-  string name = 1;
-  string id = 2;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message RemoveWaypointResponse {}
-
-// GetObstacles will return the geopoint location and geometry of all
-// known obstacles on the navigation map. Obstacles that are detected
-// through the vision service will only be returned if this endpoint is called
-// when the robot is sensing the obstacle
-message GetObstaclesRequest {
-  string name = 1;
-  // Additional arguments to the method
-  google.protobuf.Struct extra = 99;
-}
-
-message GetObstaclesResponse {
-  // List of all known geometries
-  repeated common.v1.GeoGeometry obstacles = 1;
-}
-
-// A user provided destination and the set of geopoints that
-// the robot is expected to take to get there
-message Path {
-  // The id of the user specified waypoint
-  string destination_waypoint_id = 1;
-  // List of geopoints that the motion planner output to reach the destination
-  // The first geopoint is the starting position of the robot for that path
-  repeated common.v1.GeoPoint geopoints = 2;
-}
-
-// Returns all the paths known to the navigation service
-message GetPathsRequest {
+message ListLocationsRequest {
   // Name of the navigation service
   string name = 1;
   google.protobuf.Struct extra = 99;
 }
 
-message GetPathsResponse {
-  repeated Path paths = 1;
+message ListLocationsResponse {
+  repeated Location locations = 1;
+}
+
+message UpdateLocationRequest {
+  // Name of the navigation service
+  string name = 1;
+  string location_name = 2;
+  // Omit to leave position unchanged
+  optional Position position = 3;
+  // Omit to leave name unchanged
+  optional string new_name = 4;
+  google.protobuf.Struct extra = 99;
+}
+
+message UpdateLocationResponse {
+  Location location = 1;
+}
+
+message DeleteLocationRequest {
+  // Name of the navigation service
+  string name = 1;
+  string location_name = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message DeleteLocationResponse {}
+
+message AddRouteRequest {
+  // Name of the navigation service
+  string name = 1;
+  string route_name = 2;
+  repeated Waypoint waypoints = 3;
+  google.protobuf.Struct extra = 99;
+}
+
+message AddRouteResponse {
+  Route route = 1;
+}
+
+message GetRouteRequest {
+  // Name of the navigation service
+  string name = 1;
+  string route_name = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message GetRouteResponse {
+  Route route = 1;
+}
+
+message ListRoutesRequest {
+  // Name of the navigation service
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message ListRoutesResponse {
+  repeated Route routes = 1;
+}
+
+// WaypointList is a wrapper so callers can distinguish an unset list from an
+// empty one. Proto3 repeated fields have no presence.
+message WaypointList {
+  repeated Waypoint waypoints = 1;
+}
+
+message UpdateRouteRequest {
+  // Name of the navigation service
+  string name = 1;
+  string route_name = 2;
+  // Omit to leave name unchanged
+  optional string new_name = 3;
+  // Unset: leave waypoints unchanged. Set, including empty: replace them.
+  optional WaypointList waypoints = 4;
+  google.protobuf.Struct extra = 99;
+}
+
+message UpdateRouteResponse {
+  Route route = 1;
+}
+
+message DeleteRouteRequest {
+  // Name of the navigation service
+  string name = 1;
+  string route_name = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message DeleteRouteResponse {}
+
+message AddZoneRequest {
+  // Name of the navigation service
+  string name = 1;
+  string zone_name = 2;
+  // "keepout" or "speed_limit"
+  string type = 3;
+  // See Zone geometry shapes
+  google.protobuf.Struct geometry = 4;
+  // Max speed in meters/sec; required when type is "speed_limit"
+  optional double max_speed = 5;
+  google.protobuf.Struct extra = 99;
+}
+
+message AddZoneResponse {
+  Zone zone = 1;
+}
+
+message GetZoneRequest {
+  // Name of the navigation service
+  string name = 1;
+  string zone_name = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message GetZoneResponse {
+  Zone zone = 1;
+}
+
+message ListZonesRequest {
+  // Name of the navigation service
+  string name = 1;
+  // Optional; "keepout" or "speed_limit"
+  string type = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message ListZonesResponse {
+  repeated Zone zones = 1;
+}
+
+message UpdateZoneRequest {
+  // Name of the navigation service
+  string name = 1;
+  string zone_name = 2;
+  // Optional; "keepout" or "speed_limit"
+  optional string type = 3;
+  // Optional; see Zone geometry shapes
+  optional google.protobuf.Struct geometry = 4;
+  // Max speed in meters/sec
+  optional double max_speed = 5;
+  optional string new_name = 6;
+  google.protobuf.Struct extra = 99;
+}
+
+message UpdateZoneResponse {
+  Zone zone = 1;
+}
+
+message DeleteZoneRequest {
+  // Name of the navigation service
+  string name = 1;
+  string zone_name = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message DeleteZoneResponse {}
+
+message NavigateToLocationRequest {
+  // Name of the navigation service
+  string name = 1;
+  string location_name = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message NavigateToLocationResponse {
+  Status status = 1;
+}
+
+message NavigateToPointRequest {
+  // Name of the navigation service
+  string name = 1;
+  Position destination = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message NavigateToPointResponse {
+  Status status = 1;
+}
+
+message NavigateRouteRequest {
+  // Name of the navigation service
+  string name = 1;
+  // Optional; a saved route
+  string route_name = 2;
+  // Optional; inline waypoints
+  repeated Waypoint waypoints = 3;
+  // Optional; default 0
+  uint32 start_index = 4;
+  // Optional; overrides start_index
+  bool start_nearest = 5;
+  // Optional; default false
+  bool loop = 6;
+  // Optional; default false. With loop, only returns when stopped
+  bool wait = 7;
+  google.protobuf.Struct extra = 99;
+}
+
+message NavigateRouteResponse {
+  Status status = 1;
+}
+
+message PlanToPointRequest {
+  // Name of the navigation service
+  string name = 1;
+  Position destination = 2;
+  // Optional; defaults to GetPosition
+  optional Position start = 3;
+  google.protobuf.Struct extra = 99;
+}
+
+message PlanToPointResponse {
+  Plan plan = 1;
+}
+
+message PlanToLocationRequest {
+  // Name of the navigation service
+  string name = 1;
+  string location_name = 2;
+  // Optional; defaults to GetPosition
+  optional Position start = 3;
+  google.protobuf.Struct extra = 99;
+}
+
+message PlanToLocationResponse {
+  Plan plan = 1;
+}
+
+message ExecutePlanRequest {
+  // Name of the navigation service
+  string name = 1;
+  Plan plan = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message ExecutePlanResponse {
+  Status status = 1;
+}
+
+message GoToLocationRequest {
+  // Name of the navigation service
+  string name = 1;
+  string location_name = 2;
+  // Optional; default true
+  optional bool wait = 3;
+  optional double linear_m_per_sec = 4;
+  google.protobuf.Struct extra = 99;
+}
+
+message GoToLocationResponse {
+  Status status = 1;
+}
+
+message GoToPointRequest {
+  // Name of the navigation service
+  string name = 1;
+  Position destination = 2;
+  // Optional; default true
+  optional bool wait = 3;
+  optional double linear_m_per_sec = 4;
+  google.protobuf.Struct extra = 99;
+}
+
+message GoToPointResponse {
+  Status status = 1;
+}
+
+message SuspendRequest {
+  // Name of the navigation service
+  string name = 1;
+  // Optional; reported on the suspended goal
+  string reason = 2;
+  google.protobuf.Struct extra = 99;
+}
+
+message SuspendResponse {
+  Status status = 1;
+}
+
+message ResumeRequest {
+  // Name of the navigation service
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message ResumeResponse {
+  Status status = 1;
+}
+
+message CancelRequest {
+  // Name of the navigation service
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message CancelResponse {
+  Status status = 1;
+}
+
+message GetPositionRequest {
+  // Name of the navigation service
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message GetPositionResponse {
+  Position position = 1;
+}
+
+message GetNavigationStatusRequest {
+  // Name of the navigation service
+  string name = 1;
+  google.protobuf.Struct extra = 99;
+}
+
+message GetNavigationStatusResponse {
+  Status status = 1;
 }
 
 message GetPropertiesRequest {
@@ -180,7 +748,34 @@ message GetPropertiesRequest {
   string name = 1;
 }
 
-// Returns properties information for the named navigation service
 message GetPropertiesResponse {
-  MapType map_type = 1;
+  Properties properties = 1;
+}
+
+message GetCostmapRequest {
+  // Name of the navigation service
+  string name = 1;
+  // Optional; "auto", "local", or "global". Default "auto"
+  string layer = 2;
+  // Optional; downsample factor. Default 2
+  uint32 stride = 3;
+  google.protobuf.Struct extra = 99;
+}
+
+message GetCostmapResponse {
+  bool available = 1;
+  string layer = 2;
+  string nav_backend = 3;
+  // Map-frame origin, meters
+  double origin_x = 4;
+  double origin_y = 5;
+  // Meters per cell
+  double resolution = 6;
+  // Cells
+  uint32 width = 7;
+  uint32 height = 8;
+  // "uint8_row_major"
+  string encoding = 9;
+  // Costs 0–100; unknown cells are 255
+  bytes data = 10;
 }
