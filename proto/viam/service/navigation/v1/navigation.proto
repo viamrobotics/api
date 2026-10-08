@@ -100,14 +100,14 @@ service NavigationService {
 
   // NavigateToLocation plans an obstacle-aware path to a saved location and
   // starts driving it. Returns once the goal is accepted; track progress with
-  // GetStatus.
+  // GetNavigationStatus.
   rpc NavigateToLocation(NavigateToLocationRequest) returns (NavigateToLocationResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/navigate_to_location"};
   }
 
   // NavigateToPoint plans an obstacle-aware path to a Position and starts
   // driving it. Returns once the goal is accepted; track progress with
-  // GetStatus. On a Pose, theta defaults to 0 if omitted.
+  // GetNavigationStatus. On a Pose, theta defaults to 0 if omitted.
   rpc NavigateToPoint(NavigateToPointRequest) returns (NavigateToPointResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/navigate_to_point"};
   }
@@ -133,7 +133,7 @@ service NavigationService {
   }
 
   // ExecutePlan drives a Plan (typically from PlanToPoint or PlanToLocation).
-  // While navigating, the active path is available on GetStatus. Rejected if
+  // While navigating, the active path is available on GetNavigationStatus. Rejected if
   // the path is empty.
   rpc ExecutePlan(ExecutePlanRequest) returns (ExecutePlanResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/execute_plan"};
@@ -173,15 +173,15 @@ service NavigationService {
   }
 
   // GetPosition returns the robot's current position on the active map. Use
-  // this for frequent position polling; GetStatus reports the same position
+  // this for frequent position polling; GetNavigationStatus reports the same position
   // alongside the rest of the navigation state.
   rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {
     option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/position"};
   }
 
-  // GetStatus returns the full navigation state, including the robot's current
-  // position and the latest goal.
-  rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {
+  // GetNavigationStatus returns the full navigation state, including the robot's
+  // current position and the latest goal.
+  rpc GetNavigationStatus(GetNavigationStatusRequest) returns (GetNavigationStatusResponse) {
     option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/status"};
   }
 
@@ -200,6 +200,11 @@ service NavigationService {
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/navigation/{name}/do_command"};
+  }
+
+  // GetStatus returns the status of the resource
+  rpc GetStatus(common.v1.GetStatusRequest) returns (common.v1.GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/navigation/{name}/get_status"};
   }
 }
 
@@ -331,7 +336,7 @@ message RouteProgress {
 
 // GoalStatus is one goal and its lifecycle. Returned (embedded in Status) by
 // every method that starts, suspends, resumes, or cancels motion, and embedded
-// in Status from GetStatus. Only the latest goal is kept. SUCCEEDED, FAILED,
+// in Status from GetNavigationStatus. Only the latest goal is kept. SUCCEEDED, FAILED,
 // and CANCELED are terminal.
 message GoalStatus {
   GoalState state = 1;
@@ -353,7 +358,7 @@ message GoalStatus {
   optional google.protobuf.Timestamp finished_at = 10;
 }
 
-// Status is the robot navigation state returned by GetStatus and by methods that
+// Status is the robot navigation state returned by GetNavigationStatus and by methods that
 // start, suspend, or resume motion. The robot is idle when goal is unset or
 // goal.state is terminal. It is moving when goal.state == GOAL_STATE_ACTIVE.
 // Methods that start motion fail while localized is false.
@@ -728,13 +733,13 @@ message GetPositionResponse {
   Position position = 1;
 }
 
-message GetStatusRequest {
+message GetNavigationStatusRequest {
   // Name of the navigation service
   string name = 1;
   google.protobuf.Struct extra = 99;
 }
 
-message GetStatusResponse {
+message GetNavigationStatusResponse {
   Status status = 1;
 }
 
