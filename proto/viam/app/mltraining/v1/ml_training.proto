@@ -88,6 +88,8 @@ message SubmitCustomTrainingJobRequest {
   map<string, string> arguments = 7;
   string container_version = 8;
   string container_id = 9;
+  // Export the dataset fresh instead of reusing a cached export, and replace the cached export with it.
+  bool refresh_dataset_cache = 10;
 }
 
 message SubmitCustomTrainingJobResponse {
