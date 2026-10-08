@@ -99,6 +99,9 @@ export class SubmitCustomTrainingJobRequest extends jspb.Message {
   getContainerId(): string;
   setContainerId(value: string): void;
 
+  getRefreshDatasetCache(): boolean;
+  setRefreshDatasetCache(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SubmitCustomTrainingJobRequest.AsObject;
   static toObject(includeInstance: boolean, msg: SubmitCustomTrainingJobRequest): SubmitCustomTrainingJobRequest.AsObject;
@@ -120,6 +123,7 @@ export namespace SubmitCustomTrainingJobRequest {
     argumentsMap: Array<[string, string]>,
     containerVersion: string,
     containerId: string,
+    refreshDatasetCache: boolean,
   }
 }
 

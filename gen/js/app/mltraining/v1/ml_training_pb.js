@@ -1125,7 +1125,8 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.toObject = function(
     modelVersion: jspb.Message.getFieldWithDefault(msg, 5, ""),
     argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : [],
     containerVersion: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    containerId: jspb.Message.getFieldWithDefault(msg, 9, "")
+    containerId: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    refreshDatasetCache: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -1199,6 +1200,10 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.deserializeBinaryFro
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setContainerId(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setRefreshDatasetCache(value);
       break;
     default:
       reader.skipField();
@@ -1286,6 +1291,13 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.serializeBinaryToWri
   if (f.length > 0) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = message.getRefreshDatasetCache();
+  if (f) {
+    writer.writeBool(
+      10,
       f
     );
   }
@@ -1455,6 +1467,24 @@ proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getContain
  */
 proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.setContainerId = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional bool refresh_dataset_cache = 10;
+ * @return {boolean}
+ */
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.getRefreshDatasetCache = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest} returns this
+ */
+proto.viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.prototype.setRefreshDatasetCache = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 
