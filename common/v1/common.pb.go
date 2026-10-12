@@ -80,8 +80,7 @@ const (
 	JointType_JOINT_TYPE_UNSPECIFIED JointType = 0
 	JointType_JOINT_TYPE_REVOLUTE    JointType = 1
 	JointType_JOINT_TYPE_PRISMATIC   JointType = 2
-	// A revolute joint with no position bound. Carried so URDF and the C++ SDK round
-	// trip. Planning with one is separate work.
+	// Revolute joint with no position bound
 	JointType_JOINT_TYPE_CONTINUOUS JointType = 3
 )
 
@@ -744,14 +743,11 @@ type Mesh struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Content type of mesh, extension style: stl, ply, glb
+	// Content type of mesh (e.g. ply)
 	ContentType string `protobuf:"bytes,1,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
 	// Contents of mesh data in binary form defined by content_type
 	Mesh []byte `protobuf:"bytes,2,opt,name=mesh,proto3" json:"mesh,omitempty"`
-	// In a kinematics file, the mesh path relative to that file, which only the driver
-	// that owns the file resolves. On the wire, set by the driver so a caller can tell
-	// meshes apart when the bytes were left out and find the file on the module's
-	// machine for diagnostics. Nothing outside the driver reads a file by this path.
+	// Path the mesh was loaded from, relative to the kinematics file. Informational on the wire.
 	OriginalFileSourcePathDiagnostic *string `protobuf:"bytes,3,opt,name=original_file_source_path_diagnostic,json=originalFileSourcePathDiagnostic,proto3,oneof" json:"original_file_source_path_diagnostic,omitempty"`
 }
 
@@ -1653,12 +1649,10 @@ type GetKinematicsRequest struct {
 
 	// The component name
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Mesh bytes travel only when asked for. Without a flag every Mesh arrives with
-	// empty bytes and its original_file_source_path_diagnostic, so a caller that polls
-	// kinematics does not refetch meshes it already holds. RDK's own frame system and
-	// motion service ask for collision meshes.
+	// Include collision mesh bytes in the response. Otherwise meshes carry only their path.
 	IncludeCollisionMeshes bool `protobuf:"varint,2,opt,name=include_collision_meshes,json=includeCollisionMeshes,proto3" json:"include_collision_meshes,omitempty"`
-	IncludeVisualMeshes    bool `protobuf:"varint,3,opt,name=include_visual_meshes,json=includeVisualMeshes,proto3" json:"include_visual_meshes,omitempty"`
+	// Include visual mesh bytes in the response
+	IncludeVisualMeshes bool `protobuf:"varint,3,opt,name=include_visual_meshes,json=includeVisualMeshes,proto3" json:"include_visual_meshes,omitempty"`
 	// Additional arguments to the method
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
 }
@@ -1804,19 +1798,18 @@ func (x *GetKinematicsResponse) GetModel() *KinematicModel {
 	return nil
 }
 
-// KinematicModel is a tree of links and joints describing a component's kinematics. The proto JSON
-// encoding of this message is also the on-disk kinematics file format.
+// KinematicModel describes a component's kinematics as a tree of links and joints.
+// Its proto JSON encoding is also the on-disk kinematics file format.
 type KinematicModel struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Set by the SDK to the resource name when the model is served. Module code never
-	// sets it. In a file it is an optional label.
+	// Set to the resource name by the SDK when served
 	Name   string            `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Links  []*KinematicLink  `protobuf:"bytes,2,rep,name=links,proto3" json:"links,omitempty"`
 	Joints []*KinematicJoint `protobuf:"bytes,3,rep,name=joints,proto3" json:"joints,omitempty"`
-	// Names of the frames whose poses the model reports; at most one today
+	// Frames whose poses the model reports
 	OutputFrames []string             `protobuf:"bytes,4,rep,name=output_frames,json=outputFrames,proto3" json:"output_frames,omitempty"`
 	Properties   *KinematicProperties `protobuf:"bytes,5,opt,name=properties,proto3" json:"properties,omitempty"`
 }
@@ -1892,13 +1885,13 @@ type KinematicLink struct {
 	unknownFields protoimpl.UnknownFields
 
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The id of the parent link or joint; empty for the root
+	// Parent link or joint id, empty for the root
 	Parent string `protobuf:"bytes,2,opt,name=parent,proto3" json:"parent,omitempty"`
-	// Placement of this link relative to its parent
+	// Pose relative to the parent
 	Pose *LinkPose `protobuf:"bytes,3,opt,name=pose,proto3" json:"pose,omitempty"`
-	// Geometries used for collision checking. Meshes must be stl or ply.
+	// Collision geometries, meshes must be stl or ply
 	Collision []*Geometry `protobuf:"bytes,4,rep,name=collision,proto3" json:"collision,omitempty"`
-	// Geometries used for display only. Meshes may be any format a viewer can load, glb today.
+	// Display geometries, not used for collision checking
 	Visual []*Geometry `protobuf:"bytes,5,rep,name=visual,proto3" json:"visual,omitempty"`
 }
 
@@ -1967,8 +1960,7 @@ func (x *KinematicLink) GetVisual() []*Geometry {
 	return nil
 }
 
-// LinkPose is a translation in mm plus one of the orientation representations SVA files accept.
-// Angles are in degrees. An absent orientation means identity.
+// LinkPose is a translation in mm and an orientation in degrees, identity when absent
 type LinkPose struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2154,7 +2146,7 @@ func (x *Quaternion) GetZ() float64 {
 	return 0
 }
 
-// EulerAngles in degrees
+// Euler angles in degrees
 type EulerAngles struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2216,7 +2208,7 @@ func (x *EulerAngles) GetYaw() float64 {
 	return 0
 }
 
-// AxisAngles is a rotation axis plus an angle theta in degrees
+// Rotation axis and an angle theta in degrees
 type AxisAngles struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2292,11 +2284,11 @@ type KinematicJoint struct {
 	unknownFields protoimpl.UnknownFields
 
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The id of the parent link
+	// Parent link id
 	Parent string    `protobuf:"bytes,2,opt,name=parent,proto3" json:"parent,omitempty"`
 	Type   JointType `protobuf:"varint,3,opt,name=type,proto3,enum=viam.common.v1.JointType" json:"type,omitempty"`
 	Axis   *Vector3  `protobuf:"bytes,4,opt,name=axis,proto3" json:"axis,omitempty"`
-	// The limits the driver serves, which describe the workspace the resource should have
+	// Effective limits the component serves
 	Limits *JointLimits `protobuf:"bytes,5,opt,name=limits,proto3" json:"limits,omitempty"`
 	Mimic  *MimicJoint  `protobuf:"bytes,6,opt,name=mimic,proto3" json:"mimic,omitempty"`
 	// Only meaningful for prismatic joints
@@ -2382,8 +2374,7 @@ func (x *KinematicJoint) GetGeometry() *Geometry {
 	return nil
 }
 
-// JointLimits follow the joint type: degrees, deg/s, deg/s^2 for revolute joints and mm, mm/s,
-// mm/s^2 for prismatic joints. An absent field means unbounded.
+// Degrees, deg/s and deg/s^2 for revolute joints, mm, mm/s and mm/s^2 for prismatic. Absent means unbounded.
 type JointLimits struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2453,7 +2444,7 @@ func (x *JointLimits) GetMaxAcceleration() float64 {
 	return 0
 }
 
-// MimicJoint says this joint's position is multiplier * position(joint) + offset
+// Position is multiplier * position of joint + offset
 type MimicJoint struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2515,16 +2506,15 @@ func (x *MimicJoint) GetOffset() float64 {
 	return 0
 }
 
-// KinematicProperties describe the component as a whole rather than any joint. This list is
-// expected to grow.
+// Properties of the component as a whole
 type KinematicProperties struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Rate at which the component expects to be driven, in Hz
+	// Rate the component expects to be driven at
 	OperatingFreqHz *float64 `protobuf:"fixed64,1,opt,name=operating_freq_hz,json=operatingFreqHz,proto3,oneof" json:"operating_freq_hz,omitempty"`
-	// Maximum linear speed of the tool center point, in mm/s
+	// Maximum linear speed of the tool center point
 	MaxLinearTcpSpeedMmPerSec *float64 `protobuf:"fixed64,2,opt,name=max_linear_tcp_speed_mm_per_sec,json=maxLinearTcpSpeedMmPerSec,proto3,oneof" json:"max_linear_tcp_speed_mm_per_sec,omitempty"`
 }
 

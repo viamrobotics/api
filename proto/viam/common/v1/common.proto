@@ -92,14 +92,11 @@ message RectangularPrism {
 }
 
 message Mesh {
-  // Content type of mesh, extension style: stl, ply, glb
+  // Content type of mesh (e.g. ply)
   string content_type = 1;
   // Contents of mesh data in binary form defined by content_type
   bytes mesh = 2;
-  // In a kinematics file, the mesh path relative to that file, which only the driver
-  // that owns the file resolves. On the wire, set by the driver so a caller can tell
-  // meshes apart when the bytes were left out and find the file on the module's
-  // machine for diagnostics. Nothing outside the driver reads a file by this path.
+  // Path the mesh was loaded from, relative to the kinematics file. Informational on the wire.
   optional string original_file_source_path_diagnostic = 3;
 }
 
@@ -224,11 +221,9 @@ message GetStatusResponse {
 message GetKinematicsRequest {
   // The component name
   string name = 1;
-  // Mesh bytes travel only when asked for. Without a flag every Mesh arrives with
-  // empty bytes and its original_file_source_path_diagnostic, so a caller that polls
-  // kinematics does not refetch meshes it already holds. RDK's own frame system and
-  // motion service ask for collision meshes.
+  // Include collision mesh bytes in the response. Otherwise meshes carry only their path.
   bool include_collision_meshes = 2;
+  // Include visual mesh bytes in the response
   bool include_visual_meshes = 3;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
@@ -252,33 +247,31 @@ message GetKinematicsResponse {
   KinematicModel model = 4;
 }
 
-// KinematicModel is a tree of links and joints describing a component's kinematics. The proto JSON
-// encoding of this message is also the on-disk kinematics file format.
+// KinematicModel describes a component's kinematics as a tree of links and joints.
+// Its proto JSON encoding is also the on-disk kinematics file format.
 message KinematicModel {
-  // Set by the SDK to the resource name when the model is served. Module code never
-  // sets it. In a file it is an optional label.
+  // Set to the resource name by the SDK when served
   string name = 1;
   repeated KinematicLink links = 2;
   repeated KinematicJoint joints = 3;
-  // Names of the frames whose poses the model reports; at most one today
+  // Frames whose poses the model reports
   repeated string output_frames = 4;
   KinematicProperties properties = 5;
 }
 
 message KinematicLink {
   string id = 1;
-  // The id of the parent link or joint; empty for the root
+  // Parent link or joint id, empty for the root
   string parent = 2;
-  // Placement of this link relative to its parent
+  // Pose relative to the parent
   LinkPose pose = 3;
-  // Geometries used for collision checking. Meshes must be stl or ply.
+  // Collision geometries, meshes must be stl or ply
   repeated Geometry collision = 4;
-  // Geometries used for display only. Meshes may be any format a viewer can load, glb today.
+  // Display geometries, not used for collision checking
   repeated Geometry visual = 5;
 }
 
-// LinkPose is a translation in mm plus one of the orientation representations SVA files accept.
-// Angles are in degrees. An absent orientation means identity.
+// LinkPose is a translation in mm and an orientation in degrees, identity when absent
 message LinkPose {
   Vector3 translation = 1;
   oneof orientation {
@@ -297,14 +290,14 @@ message Quaternion {
   double z = 4;
 }
 
-// EulerAngles in degrees
+// Euler angles in degrees
 message EulerAngles {
   double roll = 1;
   double pitch = 2;
   double yaw = 3;
 }
 
-// AxisAngles is a rotation axis plus an angle theta in degrees
+// Rotation axis and an angle theta in degrees
 message AxisAngles {
   double rx = 1;
   double ry = 2;
@@ -316,26 +309,24 @@ enum JointType {
   JOINT_TYPE_UNSPECIFIED = 0;
   JOINT_TYPE_REVOLUTE = 1;
   JOINT_TYPE_PRISMATIC = 2;
-  // A revolute joint with no position bound. Carried so URDF and the C++ SDK round
-  // trip. Planning with one is separate work.
+  // Revolute joint with no position bound
   JOINT_TYPE_CONTINUOUS = 3;
 }
 
 message KinematicJoint {
   string id = 1;
-  // The id of the parent link
+  // Parent link id
   string parent = 2;
   JointType type = 3;
   Vector3 axis = 4;
-  // The limits the driver serves, which describe the workspace the resource should have
+  // Effective limits the component serves
   JointLimits limits = 5;
   MimicJoint mimic = 6;
   // Only meaningful for prismatic joints
   Geometry geometry = 7;
 }
 
-// JointLimits follow the joint type: degrees, deg/s, deg/s^2 for revolute joints and mm, mm/s,
-// mm/s^2 for prismatic joints. An absent field means unbounded.
+// Degrees, deg/s and deg/s^2 for revolute joints, mm, mm/s and mm/s^2 for prismatic. Absent means unbounded.
 message JointLimits {
   optional double min = 1;
   optional double max = 2;
@@ -343,19 +334,18 @@ message JointLimits {
   optional double max_acceleration = 4;
 }
 
-// MimicJoint says this joint's position is multiplier * position(joint) + offset
+// Position is multiplier * position of joint + offset
 message MimicJoint {
   string joint = 1;
   double multiplier = 2;
   double offset = 3;
 }
 
-// KinematicProperties describe the component as a whole rather than any joint. This list is
-// expected to grow.
+// Properties of the component as a whole
 message KinematicProperties {
-  // Rate at which the component expects to be driven, in Hz
+  // Rate the component expects to be driven at
   optional double operating_freq_hz = 1;
-  // Maximum linear speed of the tool center point, in mm/s
+  // Maximum linear speed of the tool center point
   optional double max_linear_tcp_speed_mm_per_sec = 2;
 }
 
