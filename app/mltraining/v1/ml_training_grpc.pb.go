@@ -38,6 +38,10 @@ type MLTrainingServiceClient interface {
 	GetTrainingJobLogs(ctx context.Context, in *GetTrainingJobLogsRequest, opts ...grpc.CallOption) (*GetTrainingJobLogsResponse, error)
 	// ListSupportedContainers gets all the containers one can use for a custom training job.
 	ListSupportedContainers(ctx context.Context, in *ListSupportedContainersRequest, opts ...grpc.CallOption) (*ListSupportedContainersResponse, error)
+	// RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
+	RegisterCustomTrainingContainer(ctx context.Context, in *RegisterCustomTrainingContainerRequest, opts ...grpc.CallOption) (*RegisterCustomTrainingContainerResponse, error)
+	// DeleteCustomTrainingContainer deletes a custom container from the database
+	DeleteCustomTrainingContainer(ctx context.Context, in *DeleteCustomTrainingContainerRequest, opts ...grpc.CallOption) (*DeleteCustomTrainingContainerResponse, error)
 }
 
 type mLTrainingServiceClient struct {
@@ -120,6 +124,24 @@ func (c *mLTrainingServiceClient) ListSupportedContainers(ctx context.Context, i
 	return out, nil
 }
 
+func (c *mLTrainingServiceClient) RegisterCustomTrainingContainer(ctx context.Context, in *RegisterCustomTrainingContainerRequest, opts ...grpc.CallOption) (*RegisterCustomTrainingContainerResponse, error) {
+	out := new(RegisterCustomTrainingContainerResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mLTrainingServiceClient) DeleteCustomTrainingContainer(ctx context.Context, in *DeleteCustomTrainingContainerRequest, opts ...grpc.CallOption) (*DeleteCustomTrainingContainerResponse, error) {
+	out := new(DeleteCustomTrainingContainerResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.mltraining.v1.MLTrainingService/DeleteCustomTrainingContainer", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MLTrainingServiceServer is the server API for MLTrainingService service.
 // All implementations must embed UnimplementedMLTrainingServiceServer
 // for forward compatibility
@@ -140,6 +162,10 @@ type MLTrainingServiceServer interface {
 	GetTrainingJobLogs(context.Context, *GetTrainingJobLogsRequest) (*GetTrainingJobLogsResponse, error)
 	// ListSupportedContainers gets all the containers one can use for a custom training job.
 	ListSupportedContainers(context.Context, *ListSupportedContainersRequest) (*ListSupportedContainersResponse, error)
+	// RegisterCustomTrainingContainer registers a custom container in the database for custom training jobs
+	RegisterCustomTrainingContainer(context.Context, *RegisterCustomTrainingContainerRequest) (*RegisterCustomTrainingContainerResponse, error)
+	// DeleteCustomTrainingContainer deletes a custom container from the database
+	DeleteCustomTrainingContainer(context.Context, *DeleteCustomTrainingContainerRequest) (*DeleteCustomTrainingContainerResponse, error)
 	mustEmbedUnimplementedMLTrainingServiceServer()
 }
 
@@ -170,6 +196,12 @@ func (UnimplementedMLTrainingServiceServer) GetTrainingJobLogs(context.Context, 
 }
 func (UnimplementedMLTrainingServiceServer) ListSupportedContainers(context.Context, *ListSupportedContainersRequest) (*ListSupportedContainersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSupportedContainers not implemented")
+}
+func (UnimplementedMLTrainingServiceServer) RegisterCustomTrainingContainer(context.Context, *RegisterCustomTrainingContainerRequest) (*RegisterCustomTrainingContainerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterCustomTrainingContainer not implemented")
+}
+func (UnimplementedMLTrainingServiceServer) DeleteCustomTrainingContainer(context.Context, *DeleteCustomTrainingContainerRequest) (*DeleteCustomTrainingContainerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCustomTrainingContainer not implemented")
 }
 func (UnimplementedMLTrainingServiceServer) mustEmbedUnimplementedMLTrainingServiceServer() {}
 
@@ -328,6 +360,42 @@ func _MLTrainingService_ListSupportedContainers_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MLTrainingService_RegisterCustomTrainingContainer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterCustomTrainingContainerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MLTrainingServiceServer).RegisterCustomTrainingContainer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MLTrainingServiceServer).RegisterCustomTrainingContainer(ctx, req.(*RegisterCustomTrainingContainerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MLTrainingService_DeleteCustomTrainingContainer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCustomTrainingContainerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MLTrainingServiceServer).DeleteCustomTrainingContainer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.mltraining.v1.MLTrainingService/DeleteCustomTrainingContainer",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MLTrainingServiceServer).DeleteCustomTrainingContainer(ctx, req.(*DeleteCustomTrainingContainerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MLTrainingService_ServiceDesc is the grpc.ServiceDesc for MLTrainingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -366,6 +434,14 @@ var MLTrainingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListSupportedContainers",
 			Handler:    _MLTrainingService_ListSupportedContainers_Handler,
+		},
+		{
+			MethodName: "RegisterCustomTrainingContainer",
+			Handler:    _MLTrainingService_RegisterCustomTrainingContainer_Handler,
+		},
+		{
+			MethodName: "DeleteCustomTrainingContainer",
+			Handler:    _MLTrainingService_DeleteCustomTrainingContainer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

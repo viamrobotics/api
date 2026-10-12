@@ -489,6 +489,9 @@ export namespace GetTrainingJobLogsResponse {
 }
 
 export class ListSupportedContainersRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListSupportedContainersRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListSupportedContainersRequest): ListSupportedContainersRequest.AsObject;
@@ -501,6 +504,7 @@ export class ListSupportedContainersRequest extends jspb.Message {
 
 export namespace ListSupportedContainersRequest {
   export type AsObject = {
+    organizationId: string,
   }
 }
 
@@ -523,6 +527,90 @@ export namespace ListSupportedContainersResponse {
   }
 }
 
+export class RegisterCustomTrainingContainerRequest extends jspb.Message {
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  getImageUri(): string;
+  setImageUri(value: string): void;
+
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegisterCustomTrainingContainerRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RegisterCustomTrainingContainerRequest): RegisterCustomTrainingContainerRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegisterCustomTrainingContainerRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegisterCustomTrainingContainerRequest;
+  static deserializeBinaryFromReader(message: RegisterCustomTrainingContainerRequest, reader: jspb.BinaryReader): RegisterCustomTrainingContainerRequest;
+}
+
+export namespace RegisterCustomTrainingContainerRequest {
+  export type AsObject = {
+    organizationId: string,
+    imageUri: string,
+    description: string,
+  }
+}
+
+export class RegisterCustomTrainingContainerResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RegisterCustomTrainingContainerResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RegisterCustomTrainingContainerResponse): RegisterCustomTrainingContainerResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RegisterCustomTrainingContainerResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RegisterCustomTrainingContainerResponse;
+  static deserializeBinaryFromReader(message: RegisterCustomTrainingContainerResponse, reader: jspb.BinaryReader): RegisterCustomTrainingContainerResponse;
+}
+
+export namespace RegisterCustomTrainingContainerResponse {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class DeleteCustomTrainingContainerRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteCustomTrainingContainerRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteCustomTrainingContainerRequest): DeleteCustomTrainingContainerRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteCustomTrainingContainerRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteCustomTrainingContainerRequest;
+  static deserializeBinaryFromReader(message: DeleteCustomTrainingContainerRequest, reader: jspb.BinaryReader): DeleteCustomTrainingContainerRequest;
+}
+
+export namespace DeleteCustomTrainingContainerRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class DeleteCustomTrainingContainerResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeleteCustomTrainingContainerResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteCustomTrainingContainerResponse): DeleteCustomTrainingContainerResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeleteCustomTrainingContainerResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteCustomTrainingContainerResponse;
+  static deserializeBinaryFromReader(message: DeleteCustomTrainingContainerResponse, reader: jspb.BinaryReader): DeleteCustomTrainingContainerResponse;
+}
+
+export namespace DeleteCustomTrainingContainerResponse {
+  export type AsObject = {
+  }
+}
+
 export class Container extends jspb.Message {
   getKey(): string;
   setKey(value: string): void;
@@ -541,6 +629,20 @@ export class Container extends jspb.Message {
   getEol(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setEol(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getId(): string;
+  setId(value: string): void;
+
+  getVisibility(): VisibilityMap[keyof VisibilityMap];
+  setVisibility(value: VisibilityMap[keyof VisibilityMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Container.AsObject;
   static toObject(includeInstance: boolean, msg: Container): Container.AsObject;
@@ -558,6 +660,10 @@ export namespace Container {
     framework: string,
     description: string,
     eol?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    organizationId: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    id: string,
+    visibility: VisibilityMap[keyof VisibilityMap],
   }
 }
 
@@ -591,4 +697,12 @@ export interface TrainingStatusMap {
 }
 
 export const TrainingStatus: TrainingStatusMap;
+
+export interface VisibilityMap {
+  VISIBILITY_UNSPECIFIED: 0;
+  VISIBILITY_PRIVATE: 1;
+  VISIBILITY_PUBLIC: 2;
+}
+
+export const Visibility: VisibilityMap;
 

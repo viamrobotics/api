@@ -76,6 +76,24 @@ type MLTrainingServiceListSupportedContainers = {
   readonly responseType: typeof app_mltraining_v1_ml_training_pb.ListSupportedContainersResponse;
 };
 
+type MLTrainingServiceRegisterCustomTrainingContainer = {
+  readonly methodName: string;
+  readonly service: typeof MLTrainingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_mltraining_v1_ml_training_pb.RegisterCustomTrainingContainerRequest;
+  readonly responseType: typeof app_mltraining_v1_ml_training_pb.RegisterCustomTrainingContainerResponse;
+};
+
+type MLTrainingServiceDeleteCustomTrainingContainer = {
+  readonly methodName: string;
+  readonly service: typeof MLTrainingService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_mltraining_v1_ml_training_pb.DeleteCustomTrainingContainerRequest;
+  readonly responseType: typeof app_mltraining_v1_ml_training_pb.DeleteCustomTrainingContainerResponse;
+};
+
 export class MLTrainingService {
   static readonly serviceName: string;
   static readonly SubmitTrainingJob: MLTrainingServiceSubmitTrainingJob;
@@ -86,6 +104,8 @@ export class MLTrainingService {
   static readonly DeleteCompletedTrainingJob: MLTrainingServiceDeleteCompletedTrainingJob;
   static readonly GetTrainingJobLogs: MLTrainingServiceGetTrainingJobLogs;
   static readonly ListSupportedContainers: MLTrainingServiceListSupportedContainers;
+  static readonly RegisterCustomTrainingContainer: MLTrainingServiceRegisterCustomTrainingContainer;
+  static readonly DeleteCustomTrainingContainer: MLTrainingServiceDeleteCustomTrainingContainer;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -191,6 +211,24 @@ export class MLTrainingServiceClient {
   listSupportedContainers(
     requestMessage: app_mltraining_v1_ml_training_pb.ListSupportedContainersRequest,
     callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.ListSupportedContainersResponse|null) => void
+  ): UnaryResponse;
+  registerCustomTrainingContainer(
+    requestMessage: app_mltraining_v1_ml_training_pb.RegisterCustomTrainingContainerRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.RegisterCustomTrainingContainerResponse|null) => void
+  ): UnaryResponse;
+  registerCustomTrainingContainer(
+    requestMessage: app_mltraining_v1_ml_training_pb.RegisterCustomTrainingContainerRequest,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.RegisterCustomTrainingContainerResponse|null) => void
+  ): UnaryResponse;
+  deleteCustomTrainingContainer(
+    requestMessage: app_mltraining_v1_ml_training_pb.DeleteCustomTrainingContainerRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.DeleteCustomTrainingContainerResponse|null) => void
+  ): UnaryResponse;
+  deleteCustomTrainingContainer(
+    requestMessage: app_mltraining_v1_ml_training_pb.DeleteCustomTrainingContainerRequest,
+    callback: (error: ServiceError|null, responseMessage: app_mltraining_v1_ml_training_pb.DeleteCustomTrainingContainerResponse|null) => void
   ): UnaryResponse;
 }
 

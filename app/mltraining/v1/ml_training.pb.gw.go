@@ -239,6 +239,58 @@ func local_request_MLTrainingService_ListSupportedContainers_0(ctx context.Conte
 
 }
 
+func request_MLTrainingService_RegisterCustomTrainingContainer_0(ctx context.Context, marshaler runtime.Marshaler, client MLTrainingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RegisterCustomTrainingContainerRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.RegisterCustomTrainingContainer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_MLTrainingService_RegisterCustomTrainingContainer_0(ctx context.Context, marshaler runtime.Marshaler, server MLTrainingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RegisterCustomTrainingContainerRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.RegisterCustomTrainingContainer(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_MLTrainingService_DeleteCustomTrainingContainer_0(ctx context.Context, marshaler runtime.Marshaler, client MLTrainingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteCustomTrainingContainerRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.DeleteCustomTrainingContainer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_MLTrainingService_DeleteCustomTrainingContainer_0(ctx context.Context, marshaler runtime.Marshaler, server MLTrainingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteCustomTrainingContainerRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.DeleteCustomTrainingContainer(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 // RegisterMLTrainingServiceHandlerServer registers the http handlers for service MLTrainingService to "mux".
 // UnaryRPC     :call MLTrainingServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -442,6 +494,56 @@ func RegisterMLTrainingServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		}
 
 		forward_MLTrainingService_ListSupportedContainers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_MLTrainingService_RegisterCustomTrainingContainer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_MLTrainingService_RegisterCustomTrainingContainer_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_MLTrainingService_RegisterCustomTrainingContainer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_MLTrainingService_DeleteCustomTrainingContainer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/DeleteCustomTrainingContainer", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/DeleteCustomTrainingContainer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_MLTrainingService_DeleteCustomTrainingContainer_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_MLTrainingService_DeleteCustomTrainingContainer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -662,6 +764,50 @@ func RegisterMLTrainingServiceHandlerClient(ctx context.Context, mux *runtime.Se
 
 	})
 
+	mux.Handle("POST", pattern_MLTrainingService_RegisterCustomTrainingContainer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/RegisterCustomTrainingContainer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_MLTrainingService_RegisterCustomTrainingContainer_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_MLTrainingService_RegisterCustomTrainingContainer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_MLTrainingService_DeleteCustomTrainingContainer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/viam.app.mltraining.v1.MLTrainingService/DeleteCustomTrainingContainer", runtime.WithHTTPPathPattern("/viam.app.mltraining.v1.MLTrainingService/DeleteCustomTrainingContainer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_MLTrainingService_DeleteCustomTrainingContainer_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_MLTrainingService_DeleteCustomTrainingContainer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -681,6 +827,10 @@ var (
 	pattern_MLTrainingService_GetTrainingJobLogs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.mltraining.v1.MLTrainingService", "GetTrainingJobLogs"}, ""))
 
 	pattern_MLTrainingService_ListSupportedContainers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.mltraining.v1.MLTrainingService", "ListSupportedContainers"}, ""))
+
+	pattern_MLTrainingService_RegisterCustomTrainingContainer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.mltraining.v1.MLTrainingService", "RegisterCustomTrainingContainer"}, ""))
+
+	pattern_MLTrainingService_DeleteCustomTrainingContainer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"viam.app.mltraining.v1.MLTrainingService", "DeleteCustomTrainingContainer"}, ""))
 )
 
 var (
@@ -699,4 +849,8 @@ var (
 	forward_MLTrainingService_GetTrainingJobLogs_0 = runtime.ForwardResponseMessage
 
 	forward_MLTrainingService_ListSupportedContainers_0 = runtime.ForwardResponseMessage
+
+	forward_MLTrainingService_RegisterCustomTrainingContainer_0 = runtime.ForwardResponseMessage
+
+	forward_MLTrainingService_DeleteCustomTrainingContainer_0 = runtime.ForwardResponseMessage
 )

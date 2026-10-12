@@ -82,6 +82,24 @@ MLTrainingService.ListSupportedContainers = {
   responseType: app_mltraining_v1_ml_training_pb.ListSupportedContainersResponse
 };
 
+MLTrainingService.RegisterCustomTrainingContainer = {
+  methodName: "RegisterCustomTrainingContainer",
+  service: MLTrainingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_mltraining_v1_ml_training_pb.RegisterCustomTrainingContainerRequest,
+  responseType: app_mltraining_v1_ml_training_pb.RegisterCustomTrainingContainerResponse
+};
+
+MLTrainingService.DeleteCustomTrainingContainer = {
+  methodName: "DeleteCustomTrainingContainer",
+  service: MLTrainingService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_mltraining_v1_ml_training_pb.DeleteCustomTrainingContainerRequest,
+  responseType: app_mltraining_v1_ml_training_pb.DeleteCustomTrainingContainerResponse
+};
+
 exports.MLTrainingService = MLTrainingService;
 
 function MLTrainingServiceClient(serviceHost, options) {
@@ -311,6 +329,68 @@ MLTrainingServiceClient.prototype.listSupportedContainers = function listSupport
     callback = arguments[1];
   }
   var client = grpc.unary(MLTrainingService.ListSupportedContainers, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MLTrainingServiceClient.prototype.registerCustomTrainingContainer = function registerCustomTrainingContainer(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MLTrainingService.RegisterCustomTrainingContainer, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+MLTrainingServiceClient.prototype.deleteCustomTrainingContainer = function deleteCustomTrainingContainer(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MLTrainingService.DeleteCustomTrainingContainer, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
