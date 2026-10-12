@@ -96,9 +96,11 @@ message Mesh {
   string content_type = 1;
   // Contents of mesh data in binary form defined by content_type
   bytes mesh = 2;
-  // In a kinematics file, the mesh path relative to that file. On the wire, an
-  // identifier unique within the model that survives when mesh bytes are left out.
-  string source_path = 3;
+  // In a kinematics file, the mesh path relative to that file, which only the driver
+  // that owns the file resolves. On the wire, set by the driver so a caller can tell
+  // meshes apart when the bytes were left out and find the file on the module's
+  // machine for diagnostics. Nothing outside the driver reads a file by this path.
+  optional string original_file_source_path_diagnostic = 3;
 }
 
 message PointCloud {
@@ -222,10 +224,12 @@ message GetStatusResponse {
 message GetKinematicsRequest {
   // The component name
   string name = 1;
-  // When set, collision Mesh.mesh bytes are left empty; Mesh.source_path still identifies each mesh
-  bool exclude_collision_meshes = 2;
-  // When set, visual Mesh.mesh bytes are left empty; Mesh.source_path still identifies each mesh
-  bool exclude_visual_meshes = 3;
+  // Mesh bytes travel only when asked for. Without a flag every Mesh arrives with
+  // empty bytes and its original_file_source_path_diagnostic, so a caller that polls
+  // kinematics does not refetch meshes it already holds. RDK's own frame system and
+  // motion service ask for collision meshes.
+  bool include_collision_meshes = 2;
+  bool include_visual_meshes = 3;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -249,16 +253,16 @@ message GetKinematicsResponse {
 }
 
 // KinematicModel is a tree of links and joints describing a component's kinematics. The proto JSON
-// encoding of this message is also the on-disk kinematics file format (SVA v2).
+// encoding of this message is also the on-disk kinematics file format.
 message KinematicModel {
+  // Set by the SDK to the resource name when the model is served. Module code never
+  // sets it. In a file it is an optional label.
   string name = 1;
   repeated KinematicLink links = 2;
   repeated KinematicJoint joints = 3;
   // Names of the frames whose poses the model reports; at most one today
   repeated string output_frames = 4;
   KinematicProperties properties = 5;
-  // Bumped by the component whenever its model changes. Runtime only, never in a file.
-  uint64 generation = 6;
 }
 
 message KinematicLink {
@@ -273,7 +277,7 @@ message KinematicLink {
   repeated Geometry visual = 5;
 }
 
-// LinkPose is a translation in mm plus one of the orientation representations SVA v1 accepts.
+// LinkPose is a translation in mm plus one of the orientation representations SVA files accept.
 // Angles are in degrees. An absent orientation means identity.
 message LinkPose {
   Vector3 translation = 1;
@@ -312,6 +316,9 @@ enum JointType {
   JOINT_TYPE_UNSPECIFIED = 0;
   JOINT_TYPE_REVOLUTE = 1;
   JOINT_TYPE_PRISMATIC = 2;
+  // A revolute joint with no position bound. Carried so URDF and the C++ SDK round
+  // trip. Planning with one is separate work.
+  JOINT_TYPE_CONTINUOUS = 3;
 }
 
 message KinematicJoint {
@@ -320,13 +327,11 @@ message KinematicJoint {
   string parent = 2;
   JointType type = 3;
   Vector3 axis = 4;
-  // Model level: what the hardware can do, from the controller, the datasheet, or the shipped file
-  JointLimits hardware_limits = 5;
-  // Arm level: what this component's resource config asks for. Must sit inside hardware_limits.
-  JointLimits user_limits = 6;
-  MimicJoint mimic = 7;
+  // The limits the driver serves, which describe the workspace the resource should have
+  JointLimits limits = 5;
+  MimicJoint mimic = 6;
   // Only meaningful for prismatic joints
-  Geometry geometry = 8;
+  Geometry geometry = 7;
 }
 
 // JointLimits follow the joint type: degrees, deg/s, deg/s^2 for revolute joints and mm, mm/s,
@@ -345,9 +350,13 @@ message MimicJoint {
   double offset = 3;
 }
 
-// KinematicProperties describe the component as a whole rather than any joint
+// KinematicProperties describe the component as a whole rather than any joint. This list is
+// expected to grow.
 message KinematicProperties {
-  optional double trajectory_sampling_freq_hz = 1;
+  // Rate at which the component expects to be driven, in Hz
+  optional double operating_freq_hz = 1;
+  // Maximum linear speed of the tool center point, in mm/s
+  optional double max_linear_tcp_speed_mm_per_sec = 2;
 }
 
 message GetGeometriesRequest {
