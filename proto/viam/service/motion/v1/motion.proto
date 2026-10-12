@@ -3,6 +3,7 @@ syntax = "proto3";
 package viam.service.motion.v1;
 
 import "common/v1/common.proto";
+import "component/arm/v1/arm.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
@@ -59,6 +60,15 @@ service MotionService {
   rpc GetPlan(GetPlanRequest) returns (GetPlanResponse) {
     option (google.api.http) = {get: "/viam/api/v1/service/motion/{name}/get_plan"};
   }
+
+  // Streams joint-space waypoints to an arm. The first message on the stream must
+  // be an Init; every subsequent message must be a Targets batch. Closing the
+  // request stream drains any buffered trajectory to the arm before ending the
+  // call; canceling the call's context aborts the session immediately.
+  //
+  // This method and its associated types are named as Temp because this API is
+  // under active development, and its current shape should not be depended on.
+  rpc TempStreamArmJointPositions(stream TempStreamArmJointPositionsRequest) returns (stream TempStreamArmJointPositionsResponse);
 
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
@@ -298,6 +308,11 @@ message PseudolinearConstraint {
 message OrientationConstraint {
   // Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
   optional float orientation_tolerance_degs = 1;
+  // When true, deviation is measured between orientation vectors alone, disregarding rotation about the
+  // component's own pointing axis. Set this for payloads that are symmetric about that axis - an open
+  // container spills when tipped, not when spun - so the tolerance does not pin a rotation that cannot
+  // matter. Defaults to false, measuring the full orientation.
+  optional bool ignore_theta = 2;
 }
 
 // CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
@@ -411,3 +426,48 @@ message PlanStep {
 message ComponentState {
   common.v1.Pose pose = 1;
 }
+
+message TempStreamOptions {
+  // How much trajectory the motion service tries to keep buffered on the arm's side.
+  optional int32 arm_side_target_runway_ms = 1;
+
+  // How often the motion service aims to top up the arm's buffered runway.
+  optional int32 send_to_arm_interval_ms = 2;
+
+  // Size of the detailed diagnostics window.
+  optional int32 diagnostics_window_secs = 3;
+
+  // Kinematic limits for the session's trajectory.
+  optional viam.component.arm.v1.MoveOptions move_options = 4;
+}
+
+message TempStreamArmJointPositionsRequest {
+  // Name of the motion service.
+  string name = 1;
+
+  oneof message {
+    // Session initiation. Sent exactly once and must be the first message on the stream.
+    Init init = 2;
+
+    // A batch of targets to append to the running session. Sent N times after init.
+    Targets targets = 3;
+  }
+
+  message Init {
+    // Name of the arm to stream joint positions to.
+    string component_name = 1;
+
+    // Configuration for this streaming session.
+    optional TempStreamOptions options = 2;
+
+    // Additional arguments.
+    google.protobuf.Struct extra = 99;
+  }
+
+  message Targets {
+    // Target joint positions to append to the session, in order.
+    repeated viam.component.arm.v1.JointPositions positions = 1;
+  }
+}
+
+message TempStreamArmJointPositionsResponse {}

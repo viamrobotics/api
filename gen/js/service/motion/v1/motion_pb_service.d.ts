@@ -68,6 +68,15 @@ type MotionServiceGetPlan = {
   readonly responseType: typeof service_motion_v1_motion_pb.GetPlanResponse;
 };
 
+type MotionServiceTempStreamArmJointPositions = {
+  readonly methodName: string;
+  readonly service: typeof MotionService;
+  readonly requestStream: true;
+  readonly responseStream: true;
+  readonly requestType: typeof service_motion_v1_motion_pb.TempStreamArmJointPositionsRequest;
+  readonly responseType: typeof service_motion_v1_motion_pb.TempStreamArmJointPositionsResponse;
+};
+
 type MotionServiceDoCommand = {
   readonly methodName: string;
   readonly service: typeof MotionService;
@@ -95,6 +104,7 @@ export class MotionService {
   static readonly StopPlan: MotionServiceStopPlan;
   static readonly ListPlanStatuses: MotionServiceListPlanStatuses;
   static readonly GetPlan: MotionServiceGetPlan;
+  static readonly TempStreamArmJointPositions: MotionServiceTempStreamArmJointPositions;
   static readonly DoCommand: MotionServiceDoCommand;
   static readonly GetStatus: MotionServiceGetStatus;
 }
@@ -194,6 +204,7 @@ export class MotionServiceClient {
     requestMessage: service_motion_v1_motion_pb.GetPlanRequest,
     callback: (error: ServiceError|null, responseMessage: service_motion_v1_motion_pb.GetPlanResponse|null) => void
   ): UnaryResponse;
+  tempStreamArmJointPositions(metadata?: grpc.Metadata): BidirectionalStream<service_motion_v1_motion_pb.TempStreamArmJointPositionsRequest, service_motion_v1_motion_pb.TempStreamArmJointPositionsResponse>;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     metadata: grpc.Metadata,

@@ -15,7 +15,8 @@ jobs:
         uses: actions/github-script@v6
         id: check-membership
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # PR_TOKEN (PAT) so the label add below retriggers pullrequest.yml; GITHUB_TOKEN events don't.
+          github-token: ${{ secrets.PR_TOKEN }}
           script: |
             let prNumber = context.payload.pull_request?.number;
             const ownerAndRepo = {
@@ -23,12 +24,29 @@ jobs:
               owner: "viamrobotics",
               repo: "${{ github.event.repository.name }}",
             };
-            let orgResp = await github.rest.orgs.checkMembershipForUser({org: ownerAndRepo.owner, username: context.payload.sender.login});
-            if (orgResp.status === 204) {
+            const pr = context.payload.pull_request;
+            const sender = context.payload.sender.login;
+            // Non-member bots that push same-repo branches; forks never take this path.
+            const trustedBots = ["dependabot[bot]", "viam-overwatch[bot]"];
+            const isFork = pr.head.repo?.full_name !== pr.base.repo.full_name;
+            let isAuthorized = !isFork && trustedBots.includes(sender);
+            if (!isAuthorized) {
+              try {
+                // checkMembershipForUser returns 204 for members and throws a 404 for non-members.
+                const orgResp = await github.rest.orgs.checkMembershipForUser({org: ownerAndRepo.owner, username: sender});
+                isAuthorized = orgResp.status === 204;
+              } catch (err) {
+                core.info(`${sender} is not a viamrobotics org member: ${err}`);
+              }
+            }
+            if (isAuthorized) {
               await github.rest.issues.addLabels({...ownerAndRepo, issue_number: prNumber, labels: ["safe to test"]});
               return true;
-            } else {
+            }
+            try {
               await github.rest.issues.removeLabel({...ownerAndRepo, issue_number: prNumber, name: "safe to test"});
+            } catch (err) {
+              core.info(`Non-fatal: could not remove 'safe to test' label: ${err}`);
             }
             return false;
 

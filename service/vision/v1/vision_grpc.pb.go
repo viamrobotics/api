@@ -35,6 +35,11 @@ type VisionServiceClient interface {
 	// GetClassifications will return a list of classifications in the next image
 	// given the image bytes and a classifier
 	GetClassifications(ctx context.Context, in *GetClassificationsRequest, opts ...grpc.CallOption) (*GetClassificationsResponse, error)
+	// GetDetections3D returns the objects the service perceives through a camera.
+	// Each detection is a tree of named transforms carrying the object's shapes,
+	// plus class hypotheses. The transforms can be passed unchanged into a frame
+	// system or a motion WorldState.
+	GetDetections3D(ctx context.Context, in *GetDetections3DRequest, opts ...grpc.CallOption) (*GetDetections3DResponse, error)
 	// GetObjectPointClouds returns all the found objects in a pointcloud from a
 	// camera of the underlying robot, as well as the 3-vector center of each of
 	// the found objects. A specific MIME type can be requested but may not
@@ -88,6 +93,15 @@ func (c *visionServiceClient) GetClassificationsFromCamera(ctx context.Context, 
 func (c *visionServiceClient) GetClassifications(ctx context.Context, in *GetClassificationsRequest, opts ...grpc.CallOption) (*GetClassificationsResponse, error) {
 	out := new(GetClassificationsResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.vision.v1.VisionService/GetClassifications", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *visionServiceClient) GetDetections3D(ctx context.Context, in *GetDetections3DRequest, opts ...grpc.CallOption) (*GetDetections3DResponse, error) {
+	out := new(GetDetections3DResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.vision.v1.VisionService/GetDetections3D", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -155,6 +169,11 @@ type VisionServiceServer interface {
 	// GetClassifications will return a list of classifications in the next image
 	// given the image bytes and a classifier
 	GetClassifications(context.Context, *GetClassificationsRequest) (*GetClassificationsResponse, error)
+	// GetDetections3D returns the objects the service perceives through a camera.
+	// Each detection is a tree of named transforms carrying the object's shapes,
+	// plus class hypotheses. The transforms can be passed unchanged into a frame
+	// system or a motion WorldState.
+	GetDetections3D(context.Context, *GetDetections3DRequest) (*GetDetections3DResponse, error)
 	// GetObjectPointClouds returns all the found objects in a pointcloud from a
 	// camera of the underlying robot, as well as the 3-vector center of each of
 	// the found objects. A specific MIME type can be requested but may not
@@ -186,6 +205,9 @@ func (UnimplementedVisionServiceServer) GetClassificationsFromCamera(context.Con
 }
 func (UnimplementedVisionServiceServer) GetClassifications(context.Context, *GetClassificationsRequest) (*GetClassificationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClassifications not implemented")
+}
+func (UnimplementedVisionServiceServer) GetDetections3D(context.Context, *GetDetections3DRequest) (*GetDetections3DResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDetections3D not implemented")
 }
 func (UnimplementedVisionServiceServer) GetObjectPointClouds(context.Context, *GetObjectPointCloudsRequest) (*GetObjectPointCloudsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObjectPointClouds not implemented")
@@ -283,6 +305,24 @@ func _VisionService_GetClassifications_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(VisionServiceServer).GetClassifications(ctx, req.(*GetClassificationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VisionService_GetDetections3D_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDetections3DRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VisionServiceServer).GetDetections3D(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.vision.v1.VisionService/GetDetections3D",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VisionServiceServer).GetDetections3D(ctx, req.(*GetDetections3DRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -399,6 +439,10 @@ var VisionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetClassifications",
 			Handler:    _VisionService_GetClassifications_Handler,
+		},
+		{
+			MethodName: "GetDetections3D",
+			Handler:    _VisionService_GetDetections3D_Handler,
 		},
 		{
 			MethodName: "GetObjectPointClouds",

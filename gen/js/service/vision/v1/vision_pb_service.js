@@ -47,6 +47,15 @@ VisionService.GetClassifications = {
   responseType: service_vision_v1_vision_pb.GetClassificationsResponse
 };
 
+VisionService.GetDetections3D = {
+  methodName: "GetDetections3D",
+  service: VisionService,
+  requestStream: false,
+  responseStream: false,
+  requestType: service_vision_v1_vision_pb.GetDetections3DRequest,
+  responseType: service_vision_v1_vision_pb.GetDetections3DResponse
+};
+
 VisionService.GetObjectPointClouds = {
   methodName: "GetObjectPointClouds",
   service: VisionService,
@@ -197,6 +206,37 @@ VisionServiceClient.prototype.getClassifications = function getClassifications(r
     callback = arguments[1];
   }
   var client = grpc.unary(VisionService.GetClassifications, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+VisionServiceClient.prototype.getDetections3D = function getDetections3D(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(VisionService.GetDetections3D, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

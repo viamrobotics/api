@@ -347,6 +347,92 @@ export namespace Classification {
   }
 }
 
+export class GetDetections3DRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getCameraName(): string;
+  setCameraName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDetections3DRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDetections3DRequest): GetDetections3DRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDetections3DRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDetections3DRequest;
+  static deserializeBinaryFromReader(message: GetDetections3DRequest, reader: jspb.BinaryReader): GetDetections3DRequest;
+}
+
+export namespace GetDetections3DRequest {
+  export type AsObject = {
+    name: string,
+    cameraName: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetDetections3DResponse extends jspb.Message {
+  clearDetections3dList(): void;
+  getDetections3dList(): Array<Detection3D>;
+  setDetections3dList(value: Array<Detection3D>): void;
+  addDetections3d(value?: Detection3D, index?: number): Detection3D;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDetections3DResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDetections3DResponse): GetDetections3DResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDetections3DResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDetections3DResponse;
+  static deserializeBinaryFromReader(message: GetDetections3DResponse, reader: jspb.BinaryReader): GetDetections3DResponse;
+}
+
+export namespace GetDetections3DResponse {
+  export type AsObject = {
+    detections3dList: Array<Detection3D.AsObject>,
+  }
+}
+
+export class Detection3D extends jspb.Message {
+  clearTransformsList(): void;
+  getTransformsList(): Array<common_v1_common_pb.Transform>;
+  setTransformsList(value: Array<common_v1_common_pb.Transform>): void;
+  addTransforms(value?: common_v1_common_pb.Transform, index?: number): common_v1_common_pb.Transform;
+
+  clearClassificationsList(): void;
+  getClassificationsList(): Array<Classification>;
+  setClassificationsList(value: Array<Classification>): void;
+  addClassifications(value?: Classification, index?: number): Classification;
+
+  hasMetadata(): boolean;
+  clearMetadata(): void;
+  getMetadata(): google_protobuf_struct_pb.Struct | undefined;
+  setMetadata(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Detection3D.AsObject;
+  static toObject(includeInstance: boolean, msg: Detection3D): Detection3D.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Detection3D, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Detection3D;
+  static deserializeBinaryFromReader(message: Detection3D, reader: jspb.BinaryReader): Detection3D;
+}
+
+export namespace Detection3D {
+  export type AsObject = {
+    transformsList: Array<common_v1_common_pb.Transform.AsObject>,
+    classificationsList: Array<Classification.AsObject>,
+    metadata?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
 export class GetObjectPointCloudsRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
@@ -452,6 +538,9 @@ export class CaptureAllFromCameraRequest extends jspb.Message {
   getReturnObjectPointClouds(): boolean;
   setReturnObjectPointClouds(value: boolean): void;
 
+  getReturnDetections3d(): boolean;
+  setReturnDetections3d(value: boolean): void;
+
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -475,6 +564,7 @@ export namespace CaptureAllFromCameraRequest {
     returnClassifications: boolean,
     returnDetections: boolean,
     returnObjectPointClouds: boolean,
+    returnDetections3d: boolean,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -500,6 +590,11 @@ export class CaptureAllFromCameraResponse extends jspb.Message {
   setObjectsList(value: Array<common_v1_common_pb.PointCloudObject>): void;
   addObjects(value?: common_v1_common_pb.PointCloudObject, index?: number): common_v1_common_pb.PointCloudObject;
 
+  clearDetections3dList(): void;
+  getDetections3dList(): Array<Detection3D>;
+  setDetections3dList(value: Array<Detection3D>): void;
+  addDetections3d(value?: Detection3D, index?: number): Detection3D;
+
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -521,6 +616,7 @@ export namespace CaptureAllFromCameraResponse {
     detectionsList: Array<Detection.AsObject>,
     classificationsList: Array<Classification.AsObject>,
     objectsList: Array<common_v1_common_pb.PointCloudObject.AsObject>,
+    detections3dList: Array<Detection3D.AsObject>,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -540,6 +636,9 @@ export class GetPropertiesResponse extends jspb.Message {
   getDefaultCamera(): string;
   setDefaultCamera(value: string): void;
 
+  getDetections3dSupported(): boolean;
+  setDetections3dSupported(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
@@ -556,6 +655,7 @@ export namespace GetPropertiesResponse {
     detectionsSupported: boolean,
     objectPointCloudsSupported: boolean,
     defaultCamera: string,
+    detections3dSupported: boolean,
   }
 }
 

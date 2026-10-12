@@ -22,6 +22,8 @@ grpc.web = require('grpc-web');
 
 var common_v1_common_pb = require('../../../common/v1/common_pb.js')
 
+var component_arm_v1_arm_pb = require('../../../component/arm/v1/arm_pb.js')
+
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
