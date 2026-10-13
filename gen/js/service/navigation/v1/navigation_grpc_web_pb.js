@@ -25,6 +25,8 @@ var common_v1_common_pb = require('../../../common/v1/common_pb.js')
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
+
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
 proto.viam = {};
 proto.viam.service = {};
@@ -86,122 +88,61 @@ proto.viam.service.navigation.v1.NavigationServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.navigation.v1.GetModeRequest,
- *   !proto.viam.service.navigation.v1.GetModeResponse>}
+ *   !proto.viam.service.navigation.v1.AddLocationRequest,
+ *   !proto.viam.service.navigation.v1.AddLocationResponse>}
  */
-const methodDescriptor_NavigationService_GetMode = new grpc.web.MethodDescriptor(
-  '/viam.service.navigation.v1.NavigationService/GetMode',
+const methodDescriptor_NavigationService_AddLocation = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/AddLocation',
   grpc.web.MethodType.UNARY,
-  proto.viam.service.navigation.v1.GetModeRequest,
-  proto.viam.service.navigation.v1.GetModeResponse,
+  proto.viam.service.navigation.v1.AddLocationRequest,
+  proto.viam.service.navigation.v1.AddLocationResponse,
   /**
-   * @param {!proto.viam.service.navigation.v1.GetModeRequest} request
+   * @param {!proto.viam.service.navigation.v1.AddLocationRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.service.navigation.v1.GetModeResponse.deserializeBinary
+  proto.viam.service.navigation.v1.AddLocationResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.GetModeRequest} request The
+ * @param {!proto.viam.service.navigation.v1.AddLocationRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetModeResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.AddLocationResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetModeResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.AddLocationResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getMode =
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.addLocation =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/GetMode',
+      '/viam.service.navigation.v1.NavigationService/AddLocation',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_GetMode,
+      methodDescriptor_NavigationService_AddLocation,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.GetModeRequest} request The
+ * @param {!proto.viam.service.navigation.v1.AddLocationRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.service.navigation.v1.GetModeResponse>}
+ * @return {!Promise<!proto.viam.service.navigation.v1.AddLocationResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getMode =
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.addLocation =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/GetMode',
+      '/viam.service.navigation.v1.NavigationService/AddLocation',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_GetMode);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.navigation.v1.SetModeRequest,
- *   !proto.viam.service.navigation.v1.SetModeResponse>}
- */
-const methodDescriptor_NavigationService_SetMode = new grpc.web.MethodDescriptor(
-  '/viam.service.navigation.v1.NavigationService/SetMode',
-  grpc.web.MethodType.UNARY,
-  proto.viam.service.navigation.v1.SetModeRequest,
-  proto.viam.service.navigation.v1.SetModeResponse,
-  /**
-   * @param {!proto.viam.service.navigation.v1.SetModeRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.viam.service.navigation.v1.SetModeResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.viam.service.navigation.v1.SetModeRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.SetModeResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.SetModeResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.viam.service.navigation.v1.NavigationServiceClient.prototype.setMode =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/SetMode',
-      request,
-      metadata || {},
-      methodDescriptor_NavigationService_SetMode,
-      callback);
-};
-
-
-/**
- * @param {!proto.viam.service.navigation.v1.SetModeRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.viam.service.navigation.v1.SetModeResponse>}
- *     Promise that resolves to the response
- */
-proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.setMode =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/SetMode',
-      request,
-      metadata || {},
-      methodDescriptor_NavigationService_SetMode);
+      methodDescriptor_NavigationService_AddLocation);
 };
 
 
@@ -269,305 +210,1586 @@ proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getLoc
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.navigation.v1.GetWaypointsRequest,
- *   !proto.viam.service.navigation.v1.GetWaypointsResponse>}
+ *   !proto.viam.service.navigation.v1.ListLocationsRequest,
+ *   !proto.viam.service.navigation.v1.ListLocationsResponse>}
  */
-const methodDescriptor_NavigationService_GetWaypoints = new grpc.web.MethodDescriptor(
-  '/viam.service.navigation.v1.NavigationService/GetWaypoints',
+const methodDescriptor_NavigationService_ListLocations = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/ListLocations',
   grpc.web.MethodType.UNARY,
-  proto.viam.service.navigation.v1.GetWaypointsRequest,
-  proto.viam.service.navigation.v1.GetWaypointsResponse,
+  proto.viam.service.navigation.v1.ListLocationsRequest,
+  proto.viam.service.navigation.v1.ListLocationsResponse,
   /**
-   * @param {!proto.viam.service.navigation.v1.GetWaypointsRequest} request
+   * @param {!proto.viam.service.navigation.v1.ListLocationsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.service.navigation.v1.GetWaypointsResponse.deserializeBinary
+  proto.viam.service.navigation.v1.ListLocationsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.GetWaypointsRequest} request The
+ * @param {!proto.viam.service.navigation.v1.ListLocationsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetWaypointsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.ListLocationsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetWaypointsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.ListLocationsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getWaypoints =
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.listLocations =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/GetWaypoints',
+      '/viam.service.navigation.v1.NavigationService/ListLocations',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_GetWaypoints,
+      methodDescriptor_NavigationService_ListLocations,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.GetWaypointsRequest} request The
+ * @param {!proto.viam.service.navigation.v1.ListLocationsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.service.navigation.v1.GetWaypointsResponse>}
+ * @return {!Promise<!proto.viam.service.navigation.v1.ListLocationsResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getWaypoints =
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.listLocations =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/GetWaypoints',
+      '/viam.service.navigation.v1.NavigationService/ListLocations',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_GetWaypoints);
+      methodDescriptor_NavigationService_ListLocations);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.navigation.v1.AddWaypointRequest,
- *   !proto.viam.service.navigation.v1.AddWaypointResponse>}
+ *   !proto.viam.service.navigation.v1.UpdateLocationRequest,
+ *   !proto.viam.service.navigation.v1.UpdateLocationResponse>}
  */
-const methodDescriptor_NavigationService_AddWaypoint = new grpc.web.MethodDescriptor(
-  '/viam.service.navigation.v1.NavigationService/AddWaypoint',
+const methodDescriptor_NavigationService_UpdateLocation = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/UpdateLocation',
   grpc.web.MethodType.UNARY,
-  proto.viam.service.navigation.v1.AddWaypointRequest,
-  proto.viam.service.navigation.v1.AddWaypointResponse,
+  proto.viam.service.navigation.v1.UpdateLocationRequest,
+  proto.viam.service.navigation.v1.UpdateLocationResponse,
   /**
-   * @param {!proto.viam.service.navigation.v1.AddWaypointRequest} request
+   * @param {!proto.viam.service.navigation.v1.UpdateLocationRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.service.navigation.v1.AddWaypointResponse.deserializeBinary
+  proto.viam.service.navigation.v1.UpdateLocationResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.AddWaypointRequest} request The
+ * @param {!proto.viam.service.navigation.v1.UpdateLocationRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.AddWaypointResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.UpdateLocationResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.AddWaypointResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.UpdateLocationResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.service.navigation.v1.NavigationServiceClient.prototype.addWaypoint =
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.updateLocation =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/AddWaypoint',
+      '/viam.service.navigation.v1.NavigationService/UpdateLocation',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_AddWaypoint,
+      methodDescriptor_NavigationService_UpdateLocation,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.AddWaypointRequest} request The
+ * @param {!proto.viam.service.navigation.v1.UpdateLocationRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.service.navigation.v1.AddWaypointResponse>}
+ * @return {!Promise<!proto.viam.service.navigation.v1.UpdateLocationResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.addWaypoint =
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.updateLocation =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/AddWaypoint',
+      '/viam.service.navigation.v1.NavigationService/UpdateLocation',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_AddWaypoint);
+      methodDescriptor_NavigationService_UpdateLocation);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.navigation.v1.RemoveWaypointRequest,
- *   !proto.viam.service.navigation.v1.RemoveWaypointResponse>}
+ *   !proto.viam.service.navigation.v1.DeleteLocationRequest,
+ *   !proto.viam.service.navigation.v1.DeleteLocationResponse>}
  */
-const methodDescriptor_NavigationService_RemoveWaypoint = new grpc.web.MethodDescriptor(
-  '/viam.service.navigation.v1.NavigationService/RemoveWaypoint',
+const methodDescriptor_NavigationService_DeleteLocation = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/DeleteLocation',
   grpc.web.MethodType.UNARY,
-  proto.viam.service.navigation.v1.RemoveWaypointRequest,
-  proto.viam.service.navigation.v1.RemoveWaypointResponse,
+  proto.viam.service.navigation.v1.DeleteLocationRequest,
+  proto.viam.service.navigation.v1.DeleteLocationResponse,
   /**
-   * @param {!proto.viam.service.navigation.v1.RemoveWaypointRequest} request
+   * @param {!proto.viam.service.navigation.v1.DeleteLocationRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.service.navigation.v1.RemoveWaypointResponse.deserializeBinary
+  proto.viam.service.navigation.v1.DeleteLocationResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.RemoveWaypointRequest} request The
+ * @param {!proto.viam.service.navigation.v1.DeleteLocationRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.RemoveWaypointResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.DeleteLocationResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.RemoveWaypointResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.DeleteLocationResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.service.navigation.v1.NavigationServiceClient.prototype.removeWaypoint =
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.deleteLocation =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/RemoveWaypoint',
+      '/viam.service.navigation.v1.NavigationService/DeleteLocation',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_RemoveWaypoint,
+      methodDescriptor_NavigationService_DeleteLocation,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.RemoveWaypointRequest} request The
+ * @param {!proto.viam.service.navigation.v1.DeleteLocationRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.service.navigation.v1.RemoveWaypointResponse>}
+ * @return {!Promise<!proto.viam.service.navigation.v1.DeleteLocationResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.removeWaypoint =
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.deleteLocation =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/RemoveWaypoint',
+      '/viam.service.navigation.v1.NavigationService/DeleteLocation',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_RemoveWaypoint);
+      methodDescriptor_NavigationService_DeleteLocation);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.navigation.v1.GetObstaclesRequest,
- *   !proto.viam.service.navigation.v1.GetObstaclesResponse>}
+ *   !proto.viam.service.navigation.v1.AddRouteRequest,
+ *   !proto.viam.service.navigation.v1.AddRouteResponse>}
  */
-const methodDescriptor_NavigationService_GetObstacles = new grpc.web.MethodDescriptor(
-  '/viam.service.navigation.v1.NavigationService/GetObstacles',
+const methodDescriptor_NavigationService_AddRoute = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/AddRoute',
   grpc.web.MethodType.UNARY,
-  proto.viam.service.navigation.v1.GetObstaclesRequest,
-  proto.viam.service.navigation.v1.GetObstaclesResponse,
+  proto.viam.service.navigation.v1.AddRouteRequest,
+  proto.viam.service.navigation.v1.AddRouteResponse,
   /**
-   * @param {!proto.viam.service.navigation.v1.GetObstaclesRequest} request
+   * @param {!proto.viam.service.navigation.v1.AddRouteRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.service.navigation.v1.GetObstaclesResponse.deserializeBinary
+  proto.viam.service.navigation.v1.AddRouteResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.GetObstaclesRequest} request The
+ * @param {!proto.viam.service.navigation.v1.AddRouteRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetObstaclesResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.AddRouteResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetObstaclesResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.AddRouteResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getObstacles =
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.addRoute =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/GetObstacles',
+      '/viam.service.navigation.v1.NavigationService/AddRoute',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_GetObstacles,
+      methodDescriptor_NavigationService_AddRoute,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.GetObstaclesRequest} request The
+ * @param {!proto.viam.service.navigation.v1.AddRouteRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.service.navigation.v1.GetObstaclesResponse>}
+ * @return {!Promise<!proto.viam.service.navigation.v1.AddRouteResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getObstacles =
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.addRoute =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/GetObstacles',
+      '/viam.service.navigation.v1.NavigationService/AddRoute',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_GetObstacles);
+      methodDescriptor_NavigationService_AddRoute);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.viam.service.navigation.v1.GetPathsRequest,
- *   !proto.viam.service.navigation.v1.GetPathsResponse>}
+ *   !proto.viam.service.navigation.v1.GetRouteRequest,
+ *   !proto.viam.service.navigation.v1.GetRouteResponse>}
  */
-const methodDescriptor_NavigationService_GetPaths = new grpc.web.MethodDescriptor(
-  '/viam.service.navigation.v1.NavigationService/GetPaths',
+const methodDescriptor_NavigationService_GetRoute = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/GetRoute',
   grpc.web.MethodType.UNARY,
-  proto.viam.service.navigation.v1.GetPathsRequest,
-  proto.viam.service.navigation.v1.GetPathsResponse,
+  proto.viam.service.navigation.v1.GetRouteRequest,
+  proto.viam.service.navigation.v1.GetRouteResponse,
   /**
-   * @param {!proto.viam.service.navigation.v1.GetPathsRequest} request
+   * @param {!proto.viam.service.navigation.v1.GetRouteRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.viam.service.navigation.v1.GetPathsResponse.deserializeBinary
+  proto.viam.service.navigation.v1.GetRouteResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.GetPathsRequest} request The
+ * @param {!proto.viam.service.navigation.v1.GetRouteRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetPathsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetRouteResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetPathsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetRouteResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getPaths =
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getRoute =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/GetPaths',
+      '/viam.service.navigation.v1.NavigationService/GetRoute',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_GetPaths,
+      methodDescriptor_NavigationService_GetRoute,
       callback);
 };
 
 
 /**
- * @param {!proto.viam.service.navigation.v1.GetPathsRequest} request The
+ * @param {!proto.viam.service.navigation.v1.GetRouteRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.viam.service.navigation.v1.GetPathsResponse>}
+ * @return {!Promise<!proto.viam.service.navigation.v1.GetRouteResponse>}
  *     Promise that resolves to the response
  */
-proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getPaths =
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getRoute =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/viam.service.navigation.v1.NavigationService/GetPaths',
+      '/viam.service.navigation.v1.NavigationService/GetRoute',
       request,
       metadata || {},
-      methodDescriptor_NavigationService_GetPaths);
+      methodDescriptor_NavigationService_GetRoute);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.ListRoutesRequest,
+ *   !proto.viam.service.navigation.v1.ListRoutesResponse>}
+ */
+const methodDescriptor_NavigationService_ListRoutes = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/ListRoutes',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.ListRoutesRequest,
+  proto.viam.service.navigation.v1.ListRoutesResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.ListRoutesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.ListRoutesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.ListRoutesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.ListRoutesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.ListRoutesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.listRoutes =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/ListRoutes',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_ListRoutes,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.ListRoutesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.ListRoutesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.listRoutes =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/ListRoutes',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_ListRoutes);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.UpdateRouteRequest,
+ *   !proto.viam.service.navigation.v1.UpdateRouteResponse>}
+ */
+const methodDescriptor_NavigationService_UpdateRoute = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/UpdateRoute',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.UpdateRouteRequest,
+  proto.viam.service.navigation.v1.UpdateRouteResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.UpdateRouteRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.UpdateRouteResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.UpdateRouteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.UpdateRouteResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.UpdateRouteResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.updateRoute =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/UpdateRoute',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_UpdateRoute,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.UpdateRouteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.UpdateRouteResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.updateRoute =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/UpdateRoute',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_UpdateRoute);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.DeleteRouteRequest,
+ *   !proto.viam.service.navigation.v1.DeleteRouteResponse>}
+ */
+const methodDescriptor_NavigationService_DeleteRoute = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/DeleteRoute',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.DeleteRouteRequest,
+  proto.viam.service.navigation.v1.DeleteRouteResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.DeleteRouteRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.DeleteRouteResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.DeleteRouteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.DeleteRouteResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.DeleteRouteResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.deleteRoute =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/DeleteRoute',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_DeleteRoute,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.DeleteRouteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.DeleteRouteResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.deleteRoute =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/DeleteRoute',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_DeleteRoute);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.AddZoneRequest,
+ *   !proto.viam.service.navigation.v1.AddZoneResponse>}
+ */
+const methodDescriptor_NavigationService_AddZone = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/AddZone',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.AddZoneRequest,
+  proto.viam.service.navigation.v1.AddZoneResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.AddZoneRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.AddZoneResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.AddZoneRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.AddZoneResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.AddZoneResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.addZone =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/AddZone',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_AddZone,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.AddZoneRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.AddZoneResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.addZone =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/AddZone',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_AddZone);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.GetZoneRequest,
+ *   !proto.viam.service.navigation.v1.GetZoneResponse>}
+ */
+const methodDescriptor_NavigationService_GetZone = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/GetZone',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.GetZoneRequest,
+  proto.viam.service.navigation.v1.GetZoneResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.GetZoneRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.GetZoneResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetZoneRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetZoneResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetZoneResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getZone =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetZone',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetZone,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetZoneRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.GetZoneResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getZone =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetZone',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetZone);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.ListZonesRequest,
+ *   !proto.viam.service.navigation.v1.ListZonesResponse>}
+ */
+const methodDescriptor_NavigationService_ListZones = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/ListZones',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.ListZonesRequest,
+  proto.viam.service.navigation.v1.ListZonesResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.ListZonesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.ListZonesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.ListZonesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.ListZonesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.ListZonesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.listZones =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/ListZones',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_ListZones,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.ListZonesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.ListZonesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.listZones =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/ListZones',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_ListZones);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.UpdateZoneRequest,
+ *   !proto.viam.service.navigation.v1.UpdateZoneResponse>}
+ */
+const methodDescriptor_NavigationService_UpdateZone = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/UpdateZone',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.UpdateZoneRequest,
+  proto.viam.service.navigation.v1.UpdateZoneResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.UpdateZoneRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.UpdateZoneResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.UpdateZoneRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.UpdateZoneResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.UpdateZoneResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.updateZone =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/UpdateZone',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_UpdateZone,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.UpdateZoneRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.UpdateZoneResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.updateZone =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/UpdateZone',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_UpdateZone);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.DeleteZoneRequest,
+ *   !proto.viam.service.navigation.v1.DeleteZoneResponse>}
+ */
+const methodDescriptor_NavigationService_DeleteZone = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/DeleteZone',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.DeleteZoneRequest,
+  proto.viam.service.navigation.v1.DeleteZoneResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.DeleteZoneRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.DeleteZoneResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.DeleteZoneRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.DeleteZoneResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.DeleteZoneResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.deleteZone =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/DeleteZone',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_DeleteZone,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.DeleteZoneRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.DeleteZoneResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.deleteZone =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/DeleteZone',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_DeleteZone);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.NavigateToLocationRequest,
+ *   !proto.viam.service.navigation.v1.NavigateToLocationResponse>}
+ */
+const methodDescriptor_NavigationService_NavigateToLocation = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/NavigateToLocation',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.NavigateToLocationRequest,
+  proto.viam.service.navigation.v1.NavigateToLocationResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.NavigateToLocationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.NavigateToLocationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.NavigateToLocationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.NavigateToLocationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.NavigateToLocationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.navigateToLocation =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/NavigateToLocation',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_NavigateToLocation,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.NavigateToLocationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.NavigateToLocationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.navigateToLocation =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/NavigateToLocation',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_NavigateToLocation);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.NavigateToPointRequest,
+ *   !proto.viam.service.navigation.v1.NavigateToPointResponse>}
+ */
+const methodDescriptor_NavigationService_NavigateToPoint = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/NavigateToPoint',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.NavigateToPointRequest,
+  proto.viam.service.navigation.v1.NavigateToPointResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.NavigateToPointRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.NavigateToPointResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.NavigateToPointRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.NavigateToPointResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.NavigateToPointResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.navigateToPoint =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/NavigateToPoint',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_NavigateToPoint,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.NavigateToPointRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.NavigateToPointResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.navigateToPoint =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/NavigateToPoint',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_NavigateToPoint);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.NavigateRouteRequest,
+ *   !proto.viam.service.navigation.v1.NavigateRouteResponse>}
+ */
+const methodDescriptor_NavigationService_NavigateRoute = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/NavigateRoute',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.NavigateRouteRequest,
+  proto.viam.service.navigation.v1.NavigateRouteResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.NavigateRouteRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.NavigateRouteResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.NavigateRouteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.NavigateRouteResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.NavigateRouteResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.navigateRoute =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/NavigateRoute',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_NavigateRoute,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.NavigateRouteRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.NavigateRouteResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.navigateRoute =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/NavigateRoute',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_NavigateRoute);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.PlanToPointRequest,
+ *   !proto.viam.service.navigation.v1.PlanToPointResponse>}
+ */
+const methodDescriptor_NavigationService_PlanToPoint = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/PlanToPoint',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.PlanToPointRequest,
+  proto.viam.service.navigation.v1.PlanToPointResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.PlanToPointRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.PlanToPointResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.PlanToPointRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.PlanToPointResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.PlanToPointResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.planToPoint =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/PlanToPoint',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_PlanToPoint,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.PlanToPointRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.PlanToPointResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.planToPoint =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/PlanToPoint',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_PlanToPoint);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.PlanToLocationRequest,
+ *   !proto.viam.service.navigation.v1.PlanToLocationResponse>}
+ */
+const methodDescriptor_NavigationService_PlanToLocation = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/PlanToLocation',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.PlanToLocationRequest,
+  proto.viam.service.navigation.v1.PlanToLocationResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.PlanToLocationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.PlanToLocationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.PlanToLocationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.PlanToLocationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.PlanToLocationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.planToLocation =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/PlanToLocation',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_PlanToLocation,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.PlanToLocationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.PlanToLocationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.planToLocation =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/PlanToLocation',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_PlanToLocation);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.ExecutePlanRequest,
+ *   !proto.viam.service.navigation.v1.ExecutePlanResponse>}
+ */
+const methodDescriptor_NavigationService_ExecutePlan = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/ExecutePlan',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.ExecutePlanRequest,
+  proto.viam.service.navigation.v1.ExecutePlanResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.ExecutePlanRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.ExecutePlanResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.ExecutePlanRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.ExecutePlanResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.ExecutePlanResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.executePlan =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/ExecutePlan',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_ExecutePlan,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.ExecutePlanRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.ExecutePlanResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.executePlan =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/ExecutePlan',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_ExecutePlan);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.GoToLocationRequest,
+ *   !proto.viam.service.navigation.v1.GoToLocationResponse>}
+ */
+const methodDescriptor_NavigationService_GoToLocation = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/GoToLocation',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.GoToLocationRequest,
+  proto.viam.service.navigation.v1.GoToLocationResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.GoToLocationRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.GoToLocationResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GoToLocationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GoToLocationResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GoToLocationResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.goToLocation =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GoToLocation',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GoToLocation,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GoToLocationRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.GoToLocationResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.goToLocation =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GoToLocation',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GoToLocation);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.GoToPointRequest,
+ *   !proto.viam.service.navigation.v1.GoToPointResponse>}
+ */
+const methodDescriptor_NavigationService_GoToPoint = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/GoToPoint',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.GoToPointRequest,
+  proto.viam.service.navigation.v1.GoToPointResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.GoToPointRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.GoToPointResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GoToPointRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GoToPointResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GoToPointResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.goToPoint =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GoToPoint',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GoToPoint,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GoToPointRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.GoToPointResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.goToPoint =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GoToPoint',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GoToPoint);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.SuspendRequest,
+ *   !proto.viam.service.navigation.v1.SuspendResponse>}
+ */
+const methodDescriptor_NavigationService_Suspend = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/Suspend',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.SuspendRequest,
+  proto.viam.service.navigation.v1.SuspendResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.SuspendRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.SuspendResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.SuspendRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.SuspendResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.SuspendResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.suspend =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/Suspend',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_Suspend,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.SuspendRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.SuspendResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.suspend =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/Suspend',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_Suspend);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.ResumeRequest,
+ *   !proto.viam.service.navigation.v1.ResumeResponse>}
+ */
+const methodDescriptor_NavigationService_Resume = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/Resume',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.ResumeRequest,
+  proto.viam.service.navigation.v1.ResumeResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.ResumeRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.ResumeResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.ResumeRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.ResumeResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.ResumeResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.resume =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/Resume',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_Resume,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.ResumeRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.ResumeResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.resume =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/Resume',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_Resume);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.CancelRequest,
+ *   !proto.viam.service.navigation.v1.CancelResponse>}
+ */
+const methodDescriptor_NavigationService_Cancel = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/Cancel',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.CancelRequest,
+  proto.viam.service.navigation.v1.CancelResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.CancelRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.CancelResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.CancelRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.CancelResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.CancelResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.cancel =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/Cancel',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_Cancel,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.CancelRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.CancelResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.cancel =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/Cancel',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_Cancel);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.GetPositionRequest,
+ *   !proto.viam.service.navigation.v1.GetPositionResponse>}
+ */
+const methodDescriptor_NavigationService_GetPosition = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/GetPosition',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.GetPositionRequest,
+  proto.viam.service.navigation.v1.GetPositionResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.GetPositionRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.GetPositionResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetPositionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetPositionResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetPositionResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getPosition =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetPosition',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetPosition,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetPositionRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.GetPositionResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getPosition =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetPosition',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetPosition);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.GetNavigationStatusRequest,
+ *   !proto.viam.service.navigation.v1.GetNavigationStatusResponse>}
+ */
+const methodDescriptor_NavigationService_GetNavigationStatus = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/GetNavigationStatus',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.GetNavigationStatusRequest,
+  proto.viam.service.navigation.v1.GetNavigationStatusResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.GetNavigationStatusRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.GetNavigationStatusResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetNavigationStatusRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetNavigationStatusResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetNavigationStatusResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getNavigationStatus =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetNavigationStatus',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetNavigationStatus,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetNavigationStatusRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.GetNavigationStatusResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getNavigationStatus =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetNavigationStatus',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetNavigationStatus);
 };
 
 
@@ -629,6 +1851,67 @@ proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getPro
       request,
       metadata || {},
       methodDescriptor_NavigationService_GetProperties);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.navigation.v1.GetCostmapRequest,
+ *   !proto.viam.service.navigation.v1.GetCostmapResponse>}
+ */
+const methodDescriptor_NavigationService_GetCostmap = new grpc.web.MethodDescriptor(
+  '/viam.service.navigation.v1.NavigationService/GetCostmap',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.navigation.v1.GetCostmapRequest,
+  proto.viam.service.navigation.v1.GetCostmapResponse,
+  /**
+   * @param {!proto.viam.service.navigation.v1.GetCostmapRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.navigation.v1.GetCostmapResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetCostmapRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.navigation.v1.GetCostmapResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.navigation.v1.GetCostmapResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.navigation.v1.NavigationServiceClient.prototype.getCostmap =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetCostmap',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetCostmap,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.navigation.v1.GetCostmapRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.navigation.v1.GetCostmapResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.navigation.v1.NavigationServicePromiseClient.prototype.getCostmap =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.navigation.v1.NavigationService/GetCostmap',
+      request,
+      metadata || {},
+      methodDescriptor_NavigationService_GetCostmap);
 };
 
 

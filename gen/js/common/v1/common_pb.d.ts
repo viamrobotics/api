@@ -476,6 +476,53 @@ export namespace GeoPoint {
   }
 }
 
+export class GeoPose extends jspb.Message {
+  hasLocation(): boolean;
+  clearLocation(): void;
+  getLocation(): GeoPoint | undefined;
+  setLocation(value?: GeoPoint): void;
+
+  hasAltitude(): boolean;
+  clearAltitude(): void;
+  getAltitude(): number;
+  setAltitude(value: number): void;
+
+  hasHeading(): boolean;
+  clearHeading(): void;
+  getHeading(): number;
+  setHeading(value: number): void;
+
+  hasOrientationVector(): boolean;
+  clearOrientationVector(): void;
+  getOrientationVector(): Orientation | undefined;
+  setOrientationVector(value?: Orientation): void;
+
+  getOrientationCase(): GeoPose.OrientationCase;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GeoPose.AsObject;
+  static toObject(includeInstance: boolean, msg: GeoPose): GeoPose.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GeoPose, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GeoPose;
+  static deserializeBinaryFromReader(message: GeoPose, reader: jspb.BinaryReader): GeoPose;
+}
+
+export namespace GeoPose {
+  export type AsObject = {
+    location?: GeoPoint.AsObject,
+    altitude: number,
+    heading: number,
+    orientationVector?: Orientation.AsObject,
+  }
+
+  export enum OrientationCase {
+    ORIENTATION_NOT_SET = 0,
+    HEADING = 2,
+    ORIENTATION_VECTOR = 4,
+  }
+}
+
 export class GeoGeometry extends jspb.Message {
   hasLocation(): boolean;
   clearLocation(): void;
