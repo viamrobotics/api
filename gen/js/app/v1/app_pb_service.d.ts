@@ -526,6 +526,15 @@ type AppServiceUpdateRobotPart = {
   readonly responseType: typeof app_v1_app_pb.UpdateRobotPartResponse;
 };
 
+type AppServiceSetConfigProperty = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.SetConfigPropertyRequest;
+  readonly responseType: typeof app_v1_app_pb.SetConfigPropertyResponse;
+};
+
 type AppServiceNewRobotPart = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -1144,6 +1153,7 @@ export class AppService {
   static readonly TailRobotPartLogs: AppServiceTailRobotPartLogs;
   static readonly GetRobotPartHistory: AppServiceGetRobotPartHistory;
   static readonly UpdateRobotPart: AppServiceUpdateRobotPart;
+  static readonly SetConfigProperty: AppServiceSetConfigProperty;
   static readonly NewRobotPart: AppServiceNewRobotPart;
   static readonly DeleteRobotPart: AppServiceDeleteRobotPart;
   static readonly GetRobotPartMetadata: AppServiceGetRobotPartMetadata;
@@ -1753,6 +1763,15 @@ export class AppServiceClient {
   updateRobotPart(
     requestMessage: app_v1_app_pb.UpdateRobotPartRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRobotPartResponse|null) => void
+  ): UnaryResponse;
+  setConfigProperty(
+    requestMessage: app_v1_app_pb.SetConfigPropertyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SetConfigPropertyResponse|null) => void
+  ): UnaryResponse;
+  setConfigProperty(
+    requestMessage: app_v1_app_pb.SetConfigPropertyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SetConfigPropertyResponse|null) => void
   ): UnaryResponse;
   newRobotPart(
     requestMessage: app_v1_app_pb.NewRobotPartRequest,

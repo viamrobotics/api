@@ -532,6 +532,15 @@ AppService.UpdateRobotPart = {
   responseType: app_v1_app_pb.UpdateRobotPartResponse
 };
 
+AppService.SetConfigProperty = {
+  methodName: "SetConfigProperty",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.SetConfigPropertyRequest,
+  responseType: app_v1_app_pb.SetConfigPropertyResponse
+};
+
 AppService.NewRobotPart = {
   methodName: "NewRobotPart",
   service: AppService,
@@ -2877,6 +2886,37 @@ AppServiceClient.prototype.updateRobotPart = function updateRobotPart(requestMes
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.UpdateRobotPart, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.setConfigProperty = function setConfigProperty(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.SetConfigProperty, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

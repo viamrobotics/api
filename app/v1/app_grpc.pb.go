@@ -120,6 +120,8 @@ type AppServiceClient interface {
 	GetRobotPartHistory(ctx context.Context, in *GetRobotPartHistoryRequest, opts ...grpc.CallOption) (*GetRobotPartHistoryResponse, error)
 	// Update a robot
 	UpdateRobotPart(ctx context.Context, in *UpdateRobotPartRequest, opts ...grpc.CallOption) (*UpdateRobotPartResponse, error)
+	// Set config properties on a robot part
+	SetConfigProperty(ctx context.Context, in *SetConfigPropertyRequest, opts ...grpc.CallOption) (*SetConfigPropertyResponse, error)
 	// Create a new robot part
 	NewRobotPart(ctx context.Context, in *NewRobotPartRequest, opts ...grpc.CallOption) (*NewRobotPartResponse, error)
 	// Delete a robot part
@@ -775,6 +777,15 @@ func (c *appServiceClient) GetRobotPartHistory(ctx context.Context, in *GetRobot
 func (c *appServiceClient) UpdateRobotPart(ctx context.Context, in *UpdateRobotPartRequest, opts ...grpc.CallOption) (*UpdateRobotPartResponse, error) {
 	out := new(UpdateRobotPartResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/UpdateRobotPart", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) SetConfigProperty(ctx context.Context, in *SetConfigPropertyRequest, opts ...grpc.CallOption) (*SetConfigPropertyResponse, error) {
+	out := new(SetConfigPropertyResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/SetConfigProperty", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1466,6 +1477,8 @@ type AppServiceServer interface {
 	GetRobotPartHistory(context.Context, *GetRobotPartHistoryRequest) (*GetRobotPartHistoryResponse, error)
 	// Update a robot
 	UpdateRobotPart(context.Context, *UpdateRobotPartRequest) (*UpdateRobotPartResponse, error)
+	// Set config properties on a robot part
+	SetConfigProperty(context.Context, *SetConfigPropertyRequest) (*SetConfigPropertyResponse, error)
 	// Create a new robot part
 	NewRobotPart(context.Context, *NewRobotPartRequest) (*NewRobotPartResponse, error)
 	// Delete a robot part
@@ -1752,6 +1765,9 @@ func (UnimplementedAppServiceServer) GetRobotPartHistory(context.Context, *GetRo
 }
 func (UnimplementedAppServiceServer) UpdateRobotPart(context.Context, *UpdateRobotPartRequest) (*UpdateRobotPartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRobotPart not implemented")
+}
+func (UnimplementedAppServiceServer) SetConfigProperty(context.Context, *SetConfigPropertyRequest) (*SetConfigPropertyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetConfigProperty not implemented")
 }
 func (UnimplementedAppServiceServer) NewRobotPart(context.Context, *NewRobotPartRequest) (*NewRobotPartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NewRobotPart not implemented")
@@ -2995,6 +3011,24 @@ func _AppService_UpdateRobotPart_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppServiceServer).UpdateRobotPart(ctx, req.(*UpdateRobotPartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_SetConfigProperty_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetConfigPropertyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).SetConfigProperty(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/SetConfigProperty",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).SetConfigProperty(ctx, req.(*SetConfigPropertyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4357,6 +4391,10 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateRobotPart",
 			Handler:    _AppService_UpdateRobotPart_Handler,
+		},
+		{
+			MethodName: "SetConfigProperty",
+			Handler:    _AppService_SetConfigProperty_Handler,
 		},
 		{
 			MethodName: "NewRobotPart",

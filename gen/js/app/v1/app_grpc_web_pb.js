@@ -3624,6 +3624,67 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.updateRobotPart =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.SetConfigPropertyRequest,
+ *   !proto.viam.app.v1.SetConfigPropertyResponse>}
+ */
+const methodDescriptor_AppService_SetConfigProperty = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/SetConfigProperty',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.SetConfigPropertyRequest,
+  proto.viam.app.v1.SetConfigPropertyResponse,
+  /**
+   * @param {!proto.viam.app.v1.SetConfigPropertyRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.SetConfigPropertyResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.SetConfigPropertyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.SetConfigPropertyResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.SetConfigPropertyResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.setConfigProperty =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/SetConfigProperty',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_SetConfigProperty,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.SetConfigPropertyRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.SetConfigPropertyResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.setConfigProperty =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/SetConfigProperty',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_SetConfigProperty);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.NewRobotPartRequest,
  *   !proto.viam.app.v1.NewRobotPartResponse>}
  */
