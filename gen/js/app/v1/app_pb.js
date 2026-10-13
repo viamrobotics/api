@@ -28322,7 +28322,7 @@ proto.viam.app.v1.Fragment.toObject = function(includeInstance, msg) {
     lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     revision: jspb.Message.getFieldWithDefault(msg, 14, ""),
     publicNamespace: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    fragmentJson: jspb.Message.getFieldWithDefault(msg, 16, "")
+    fragmentConfigJson: jspb.Message.getFieldWithDefault(msg, 16, "")
   };
 
   if (includeInstance) {
@@ -28420,7 +28420,7 @@ proto.viam.app.v1.Fragment.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 16:
       var value = /** @type {string} */ (reader.readString());
-      msg.setFragmentJson(value);
+      msg.setFragmentConfigJson(value);
       break;
     default:
       reader.skipField();
@@ -28890,10 +28890,10 @@ proto.viam.app.v1.Fragment.prototype.hasPublicNamespace = function() {
 
 
 /**
- * optional string fragment_json = 16;
+ * optional string fragment_config_json = 16;
  * @return {string}
  */
-proto.viam.app.v1.Fragment.prototype.getFragmentJson = function() {
+proto.viam.app.v1.Fragment.prototype.getFragmentConfigJson = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
 };
 
@@ -28902,7 +28902,7 @@ proto.viam.app.v1.Fragment.prototype.getFragmentJson = function() {
  * @param {string} value
  * @return {!proto.viam.app.v1.Fragment} returns this
  */
-proto.viam.app.v1.Fragment.prototype.setFragmentJson = function(value) {
+proto.viam.app.v1.Fragment.prototype.setFragmentConfigJson = function(value) {
   return jspb.Message.setField(this, 16, value);
 };
 
@@ -28911,7 +28911,7 @@ proto.viam.app.v1.Fragment.prototype.setFragmentJson = function(value) {
  * Clears the field making it undefined.
  * @return {!proto.viam.app.v1.Fragment} returns this
  */
-proto.viam.app.v1.Fragment.prototype.clearFragmentJson = function() {
+proto.viam.app.v1.Fragment.prototype.clearFragmentConfigJson = function() {
   return jspb.Message.setField(this, 16, undefined);
 };
 
@@ -28920,7 +28920,7 @@ proto.viam.app.v1.Fragment.prototype.clearFragmentJson = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.app.v1.Fragment.prototype.hasFragmentJson = function() {
+proto.viam.app.v1.Fragment.prototype.hasFragmentConfigJson = function() {
   return jspb.Message.getField(this, 16) != null;
 };
 
@@ -32044,7 +32044,7 @@ proto.viam.app.v1.UpdateFragmentRequest.toObject = function(includeInstance, msg
     pb_public: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
     visibility: jspb.Message.getFieldWithDefault(msg, 5, 0),
     lastKnownUpdate: (f = msg.getLastKnownUpdate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    configJson: jspb.Message.getFieldWithDefault(msg, 7, "")
+    fragmentConfigJson: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -32109,7 +32109,7 @@ proto.viam.app.v1.UpdateFragmentRequest.deserializeBinaryFromReader = function(m
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setConfigJson(value);
+      msg.setFragmentConfigJson(value);
       break;
     default:
       reader.skipField();
@@ -32377,10 +32377,10 @@ proto.viam.app.v1.UpdateFragmentRequest.prototype.hasLastKnownUpdate = function(
 
 
 /**
- * optional string config_json = 7;
+ * optional string fragment_config_json = 7;
  * @return {string}
  */
-proto.viam.app.v1.UpdateFragmentRequest.prototype.getConfigJson = function() {
+proto.viam.app.v1.UpdateFragmentRequest.prototype.getFragmentConfigJson = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -32389,7 +32389,7 @@ proto.viam.app.v1.UpdateFragmentRequest.prototype.getConfigJson = function() {
  * @param {string} value
  * @return {!proto.viam.app.v1.UpdateFragmentRequest} returns this
  */
-proto.viam.app.v1.UpdateFragmentRequest.prototype.setConfigJson = function(value) {
+proto.viam.app.v1.UpdateFragmentRequest.prototype.setFragmentConfigJson = function(value) {
   return jspb.Message.setField(this, 7, value);
 };
 
@@ -32398,7 +32398,7 @@ proto.viam.app.v1.UpdateFragmentRequest.prototype.setConfigJson = function(value
  * Clears the field making it undefined.
  * @return {!proto.viam.app.v1.UpdateFragmentRequest} returns this
  */
-proto.viam.app.v1.UpdateFragmentRequest.prototype.clearConfigJson = function() {
+proto.viam.app.v1.UpdateFragmentRequest.prototype.clearFragmentConfigJson = function() {
   return jspb.Message.setField(this, 7, undefined);
 };
 
@@ -32407,7 +32407,7 @@ proto.viam.app.v1.UpdateFragmentRequest.prototype.clearConfigJson = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.viam.app.v1.UpdateFragmentRequest.prototype.hasConfigJson = function() {
+proto.viam.app.v1.UpdateFragmentRequest.prototype.hasFragmentConfigJson = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 

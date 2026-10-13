@@ -3124,10 +3124,10 @@ export class Fragment extends jspb.Message {
   getPublicNamespace(): string;
   setPublicNamespace(value: string): void;
 
-  hasFragmentJson(): boolean;
-  clearFragmentJson(): void;
-  getFragmentJson(): string;
-  setFragmentJson(value: string): void;
+  hasFragmentConfigJson(): boolean;
+  clearFragmentConfigJson(): void;
+  getFragmentConfigJson(): string;
+  setFragmentConfigJson(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
@@ -3155,7 +3155,7 @@ export namespace Fragment {
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     revision: string,
     publicNamespace: string,
-    fragmentJson: string,
+    fragmentConfigJson: string,
   }
 }
 
@@ -3611,10 +3611,10 @@ export class UpdateFragmentRequest extends jspb.Message {
   getLastKnownUpdate(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setLastKnownUpdate(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
-  hasConfigJson(): boolean;
-  clearConfigJson(): void;
-  getConfigJson(): string;
-  setConfigJson(value: string): void;
+  hasFragmentConfigJson(): boolean;
+  clearFragmentConfigJson(): void;
+  getFragmentConfigJson(): string;
+  setFragmentConfigJson(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateFragmentRequest.AsObject;
@@ -3634,7 +3634,7 @@ export namespace UpdateFragmentRequest {
     pb_public: boolean,
     visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
     lastKnownUpdate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    configJson: string,
+    fragmentConfigJson: string,
   }
 }
 
