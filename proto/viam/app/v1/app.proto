@@ -1069,8 +1069,8 @@ message Fragment {
   google.protobuf.Timestamp last_updated = 13 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
   string revision = 14;
   optional string public_namespace = 15;
-  // fragment_json is the raw JSON string of the fragment config, preserving user-defined key order.
-  optional string fragment_json = 16;
+  // Fragment config JSON, preserving key order.
+  optional string fragment_config_json = 16;
 }
 
 message FragmentHistoryEntry {
@@ -1180,9 +1180,8 @@ message UpdateFragmentRequest {
   optional bool public = 4;
   optional FragmentVisibility visibility = 5;
   optional google.protobuf.Timestamp last_known_update = 6;
-  // config_json is the raw JSON string of the fragment config, preserving user-defined key order.
-  // When set, this takes precedence over config for storage purposes.
-  optional string config_json = 7;
+  // Fragment config JSON, preserving key order. Takes precedence over config.
+  optional string fragment_config_json = 7;
 }
 
 message UpdateFragmentResponse {
