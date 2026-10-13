@@ -2725,6 +2725,114 @@ export namespace UpdateRobotPartResponse {
   }
 }
 
+export class ConfigPropertyChange extends jspb.Message {
+  getPath(): string;
+  setPath(value: string): void;
+
+  hasValue(): boolean;
+  clearValue(): void;
+  getValue(): google_protobuf_struct_pb.Value | undefined;
+  setValue(value?: google_protobuf_struct_pb.Value): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConfigPropertyChange.AsObject;
+  static toObject(includeInstance: boolean, msg: ConfigPropertyChange): ConfigPropertyChange.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ConfigPropertyChange, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConfigPropertyChange;
+  static deserializeBinaryFromReader(message: ConfigPropertyChange, reader: jspb.BinaryReader): ConfigPropertyChange;
+}
+
+export namespace ConfigPropertyChange {
+  export type AsObject = {
+    path: string,
+    value?: google_protobuf_struct_pb.Value.AsObject,
+  }
+}
+
+export class SetConfigPropertyRequest extends jspb.Message {
+  getRobotPartId(): string;
+  setRobotPartId(value: string): void;
+
+  clearPropertyChangesList(): void;
+  getPropertyChangesList(): Array<ConfigPropertyChange>;
+  setPropertyChangesList(value: Array<ConfigPropertyChange>): void;
+  addPropertyChanges(value?: ConfigPropertyChange, index?: number): ConfigPropertyChange;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetConfigPropertyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetConfigPropertyRequest): SetConfigPropertyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetConfigPropertyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetConfigPropertyRequest;
+  static deserializeBinaryFromReader(message: SetConfigPropertyRequest, reader: jspb.BinaryReader): SetConfigPropertyRequest;
+}
+
+export namespace SetConfigPropertyRequest {
+  export type AsObject = {
+    robotPartId: string,
+    propertyChangesList: Array<ConfigPropertyChange.AsObject>,
+  }
+}
+
+export class ConfigPropertyChangeResult extends jspb.Message {
+  getPath(): string;
+  setPath(value: string): void;
+
+  hasValue(): boolean;
+  clearValue(): void;
+  getValue(): google_protobuf_struct_pb.Value | undefined;
+  setValue(value?: google_protobuf_struct_pb.Value): void;
+
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
+
+  getError(): string;
+  setError(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConfigPropertyChangeResult.AsObject;
+  static toObject(includeInstance: boolean, msg: ConfigPropertyChangeResult): ConfigPropertyChangeResult.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ConfigPropertyChangeResult, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConfigPropertyChangeResult;
+  static deserializeBinaryFromReader(message: ConfigPropertyChangeResult, reader: jspb.BinaryReader): ConfigPropertyChangeResult;
+}
+
+export namespace ConfigPropertyChangeResult {
+  export type AsObject = {
+    path: string,
+    value?: google_protobuf_struct_pb.Value.AsObject,
+    success: boolean,
+    error: string,
+  }
+}
+
+export class SetConfigPropertyResponse extends jspb.Message {
+  clearPropertyChangesList(): void;
+  getPropertyChangesList(): Array<ConfigPropertyChangeResult>;
+  setPropertyChangesList(value: Array<ConfigPropertyChangeResult>): void;
+  addPropertyChanges(value?: ConfigPropertyChangeResult, index?: number): ConfigPropertyChangeResult;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetConfigPropertyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SetConfigPropertyResponse): SetConfigPropertyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetConfigPropertyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetConfigPropertyResponse;
+  static deserializeBinaryFromReader(message: SetConfigPropertyResponse, reader: jspb.BinaryReader): SetConfigPropertyResponse;
+}
+
+export namespace SetConfigPropertyResponse {
+  export type AsObject = {
+    propertyChangesList: Array<ConfigPropertyChangeResult.AsObject>,
+  }
+}
+
 export class NewRobotPartRequest extends jspb.Message {
   getRobotId(): string;
   setRobotId(value: string): void;
