@@ -4584,6 +4584,148 @@ export namespace DeleteRobotResponse {
   }
 }
 
+export class FavoriteMachine extends jspb.Message {
+  hasMachine(): boolean;
+  clearMachine(): void;
+  getMachine(): Robot | undefined;
+  setMachine(value?: Robot): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FavoriteMachine.AsObject;
+  static toObject(includeInstance: boolean, msg: FavoriteMachine): FavoriteMachine.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FavoriteMachine, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FavoriteMachine;
+  static deserializeBinaryFromReader(message: FavoriteMachine, reader: jspb.BinaryReader): FavoriteMachine;
+}
+
+export namespace FavoriteMachine {
+  export type AsObject = {
+    machine?: Robot.AsObject,
+    organizationId: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class AddFavoriteMachineRequest extends jspb.Message {
+  getMachineId(): string;
+  setMachineId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddFavoriteMachineRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddFavoriteMachineRequest): AddFavoriteMachineRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddFavoriteMachineRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddFavoriteMachineRequest;
+  static deserializeBinaryFromReader(message: AddFavoriteMachineRequest, reader: jspb.BinaryReader): AddFavoriteMachineRequest;
+}
+
+export namespace AddFavoriteMachineRequest {
+  export type AsObject = {
+    machineId: string,
+  }
+}
+
+export class AddFavoriteMachineResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddFavoriteMachineResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddFavoriteMachineResponse): AddFavoriteMachineResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddFavoriteMachineResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddFavoriteMachineResponse;
+  static deserializeBinaryFromReader(message: AddFavoriteMachineResponse, reader: jspb.BinaryReader): AddFavoriteMachineResponse;
+}
+
+export namespace AddFavoriteMachineResponse {
+  export type AsObject = {
+  }
+}
+
+export class RemoveFavoriteMachineRequest extends jspb.Message {
+  getMachineId(): string;
+  setMachineId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveFavoriteMachineRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveFavoriteMachineRequest): RemoveFavoriteMachineRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveFavoriteMachineRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveFavoriteMachineRequest;
+  static deserializeBinaryFromReader(message: RemoveFavoriteMachineRequest, reader: jspb.BinaryReader): RemoveFavoriteMachineRequest;
+}
+
+export namespace RemoveFavoriteMachineRequest {
+  export type AsObject = {
+    machineId: string,
+  }
+}
+
+export class RemoveFavoriteMachineResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveFavoriteMachineResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveFavoriteMachineResponse): RemoveFavoriteMachineResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveFavoriteMachineResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveFavoriteMachineResponse;
+  static deserializeBinaryFromReader(message: RemoveFavoriteMachineResponse, reader: jspb.BinaryReader): RemoveFavoriteMachineResponse;
+}
+
+export namespace RemoveFavoriteMachineResponse {
+  export type AsObject = {
+  }
+}
+
+export class ListFavoriteMachinesRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListFavoriteMachinesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListFavoriteMachinesRequest): ListFavoriteMachinesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListFavoriteMachinesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListFavoriteMachinesRequest;
+  static deserializeBinaryFromReader(message: ListFavoriteMachinesRequest, reader: jspb.BinaryReader): ListFavoriteMachinesRequest;
+}
+
+export namespace ListFavoriteMachinesRequest {
+  export type AsObject = {
+  }
+}
+
+export class ListFavoriteMachinesResponse extends jspb.Message {
+  clearFavoritesList(): void;
+  getFavoritesList(): Array<FavoriteMachine>;
+  setFavoritesList(value: Array<FavoriteMachine>): void;
+  addFavorites(value?: FavoriteMachine, index?: number): FavoriteMachine;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListFavoriteMachinesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListFavoriteMachinesResponse): ListFavoriteMachinesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListFavoriteMachinesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListFavoriteMachinesResponse;
+  static deserializeBinaryFromReader(message: ListFavoriteMachinesResponse, reader: jspb.BinaryReader): ListFavoriteMachinesResponse;
+}
+
+export namespace ListFavoriteMachinesResponse {
+  export type AsObject = {
+    favoritesList: Array<FavoriteMachine.AsObject>,
+  }
+}
+
 export class GetRobotMetadataRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;

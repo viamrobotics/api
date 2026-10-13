@@ -676,6 +676,33 @@ AppService.DeleteRobot = {
   responseType: app_v1_app_pb.DeleteRobotResponse
 };
 
+AppService.AddFavoriteMachine = {
+  methodName: "AddFavoriteMachine",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.AddFavoriteMachineRequest,
+  responseType: app_v1_app_pb.AddFavoriteMachineResponse
+};
+
+AppService.RemoveFavoriteMachine = {
+  methodName: "RemoveFavoriteMachine",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.RemoveFavoriteMachineRequest,
+  responseType: app_v1_app_pb.RemoveFavoriteMachineResponse
+};
+
+AppService.ListFavoriteMachines = {
+  methodName: "ListFavoriteMachines",
+  service: AppService,
+  requestStream: false,
+  responseStream: false,
+  requestType: app_v1_app_pb.ListFavoriteMachinesRequest,
+  responseType: app_v1_app_pb.ListFavoriteMachinesResponse
+};
+
 AppService.ListFragments = {
   methodName: "ListFragments",
   service: AppService,
@@ -3382,6 +3409,99 @@ AppServiceClient.prototype.deleteRobot = function deleteRobot(requestMessage, me
     callback = arguments[1];
   }
   var client = grpc.unary(AppService.DeleteRobot, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.addFavoriteMachine = function addFavoriteMachine(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.AddFavoriteMachine, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.removeFavoriteMachine = function removeFavoriteMachine(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.RemoveFavoriteMachine, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppServiceClient.prototype.listFavoriteMachines = function listFavoriteMachines(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppService.ListFavoriteMachines, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

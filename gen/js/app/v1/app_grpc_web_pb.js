@@ -4600,6 +4600,189 @@ proto.viam.app.v1.AppServicePromiseClient.prototype.deleteRobot =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.AddFavoriteMachineRequest,
+ *   !proto.viam.app.v1.AddFavoriteMachineResponse>}
+ */
+const methodDescriptor_AppService_AddFavoriteMachine = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/AddFavoriteMachine',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.AddFavoriteMachineRequest,
+  proto.viam.app.v1.AddFavoriteMachineResponse,
+  /**
+   * @param {!proto.viam.app.v1.AddFavoriteMachineRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.AddFavoriteMachineResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.AddFavoriteMachineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.AddFavoriteMachineResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.AddFavoriteMachineResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.addFavoriteMachine =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/AddFavoriteMachine',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_AddFavoriteMachine,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.AddFavoriteMachineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.AddFavoriteMachineResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.addFavoriteMachine =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/AddFavoriteMachine',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_AddFavoriteMachine);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.RemoveFavoriteMachineRequest,
+ *   !proto.viam.app.v1.RemoveFavoriteMachineResponse>}
+ */
+const methodDescriptor_AppService_RemoveFavoriteMachine = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/RemoveFavoriteMachine',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.RemoveFavoriteMachineRequest,
+  proto.viam.app.v1.RemoveFavoriteMachineResponse,
+  /**
+   * @param {!proto.viam.app.v1.RemoveFavoriteMachineRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.RemoveFavoriteMachineResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.RemoveFavoriteMachineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.RemoveFavoriteMachineResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.RemoveFavoriteMachineResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.removeFavoriteMachine =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/RemoveFavoriteMachine',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_RemoveFavoriteMachine,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.RemoveFavoriteMachineRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.RemoveFavoriteMachineResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.removeFavoriteMachine =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/RemoveFavoriteMachine',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_RemoveFavoriteMachine);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.app.v1.ListFavoriteMachinesRequest,
+ *   !proto.viam.app.v1.ListFavoriteMachinesResponse>}
+ */
+const methodDescriptor_AppService_ListFavoriteMachines = new grpc.web.MethodDescriptor(
+  '/viam.app.v1.AppService/ListFavoriteMachines',
+  grpc.web.MethodType.UNARY,
+  proto.viam.app.v1.ListFavoriteMachinesRequest,
+  proto.viam.app.v1.ListFavoriteMachinesResponse,
+  /**
+   * @param {!proto.viam.app.v1.ListFavoriteMachinesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.app.v1.ListFavoriteMachinesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.app.v1.ListFavoriteMachinesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.app.v1.ListFavoriteMachinesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.app.v1.ListFavoriteMachinesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.app.v1.AppServiceClient.prototype.listFavoriteMachines =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListFavoriteMachines',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListFavoriteMachines,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.app.v1.ListFavoriteMachinesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.app.v1.ListFavoriteMachinesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.app.v1.AppServicePromiseClient.prototype.listFavoriteMachines =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.app.v1.AppService/ListFavoriteMachines',
+      request,
+      metadata || {},
+      methodDescriptor_AppService_ListFavoriteMachines);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.app.v1.ListFragmentsRequest,
  *   !proto.viam.app.v1.ListFragmentsResponse>}
  */
