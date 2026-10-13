@@ -157,6 +157,12 @@ type AppServiceClient interface {
 	UpdateRobot(ctx context.Context, in *UpdateRobotRequest, opts ...grpc.CallOption) (*UpdateRobotResponse, error)
 	// DeleteRobot deletes a robot
 	DeleteRobot(ctx context.Context, in *DeleteRobotRequest, opts ...grpc.CallOption) (*DeleteRobotResponse, error)
+	// AddFavoriteMachine adds a favorite machine for the user
+	AddFavoriteMachine(ctx context.Context, in *AddFavoriteMachineRequest, opts ...grpc.CallOption) (*AddFavoriteMachineResponse, error)
+	// RemoveFavoriteMachine removes a favorite machine for the user
+	RemoveFavoriteMachine(ctx context.Context, in *RemoveFavoriteMachineRequest, opts ...grpc.CallOption) (*RemoveFavoriteMachineResponse, error)
+	// ListFavoriteMachines lists all favorited machines for the user
+	ListFavoriteMachines(ctx context.Context, in *ListFavoriteMachinesRequest, opts ...grpc.CallOption) (*ListFavoriteMachinesResponse, error)
 	// Gets a list of fragments
 	ListFragments(ctx context.Context, in *ListFragmentsRequest, opts ...grpc.CallOption) (*ListFragmentsResponse, error)
 	// Gets a single fragment
@@ -927,6 +933,33 @@ func (c *appServiceClient) DeleteRobot(ctx context.Context, in *DeleteRobotReque
 	return out, nil
 }
 
+func (c *appServiceClient) AddFavoriteMachine(ctx context.Context, in *AddFavoriteMachineRequest, opts ...grpc.CallOption) (*AddFavoriteMachineResponse, error) {
+	out := new(AddFavoriteMachineResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/AddFavoriteMachine", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) RemoveFavoriteMachine(ctx context.Context, in *RemoveFavoriteMachineRequest, opts ...grpc.CallOption) (*RemoveFavoriteMachineResponse, error) {
+	out := new(RemoveFavoriteMachineResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/RemoveFavoriteMachine", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListFavoriteMachines(ctx context.Context, in *ListFavoriteMachinesRequest, opts ...grpc.CallOption) (*ListFavoriteMachinesResponse, error) {
+	out := new(ListFavoriteMachinesResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListFavoriteMachines", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appServiceClient) ListFragments(ctx context.Context, in *ListFragmentsRequest, opts ...grpc.CallOption) (*ListFragmentsResponse, error) {
 	out := new(ListFragmentsResponse)
 	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListFragments", in, out, opts...)
@@ -1514,6 +1547,12 @@ type AppServiceServer interface {
 	UpdateRobot(context.Context, *UpdateRobotRequest) (*UpdateRobotResponse, error)
 	// DeleteRobot deletes a robot
 	DeleteRobot(context.Context, *DeleteRobotRequest) (*DeleteRobotResponse, error)
+	// AddFavoriteMachine adds a favorite machine for the user
+	AddFavoriteMachine(context.Context, *AddFavoriteMachineRequest) (*AddFavoriteMachineResponse, error)
+	// RemoveFavoriteMachine removes a favorite machine for the user
+	RemoveFavoriteMachine(context.Context, *RemoveFavoriteMachineRequest) (*RemoveFavoriteMachineResponse, error)
+	// ListFavoriteMachines lists all favorited machines for the user
+	ListFavoriteMachines(context.Context, *ListFavoriteMachinesRequest) (*ListFavoriteMachinesResponse, error)
 	// Gets a list of fragments
 	ListFragments(context.Context, *ListFragmentsRequest) (*ListFragmentsResponse, error)
 	// Gets a single fragment
@@ -1813,6 +1852,15 @@ func (UnimplementedAppServiceServer) UpdateRobot(context.Context, *UpdateRobotRe
 }
 func (UnimplementedAppServiceServer) DeleteRobot(context.Context, *DeleteRobotRequest) (*DeleteRobotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRobot not implemented")
+}
+func (UnimplementedAppServiceServer) AddFavoriteMachine(context.Context, *AddFavoriteMachineRequest) (*AddFavoriteMachineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddFavoriteMachine not implemented")
+}
+func (UnimplementedAppServiceServer) RemoveFavoriteMachine(context.Context, *RemoveFavoriteMachineRequest) (*RemoveFavoriteMachineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveFavoriteMachine not implemented")
+}
+func (UnimplementedAppServiceServer) ListFavoriteMachines(context.Context, *ListFavoriteMachinesRequest) (*ListFavoriteMachinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFavoriteMachines not implemented")
 }
 func (UnimplementedAppServiceServer) ListFragments(context.Context, *ListFragmentsRequest) (*ListFragmentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFragments not implemented")
@@ -3303,6 +3351,60 @@ func _AppService_DeleteRobot_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_AddFavoriteMachine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddFavoriteMachineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).AddFavoriteMachine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/AddFavoriteMachine",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).AddFavoriteMachine(ctx, req.(*AddFavoriteMachineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_RemoveFavoriteMachine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveFavoriteMachineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).RemoveFavoriteMachine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/RemoveFavoriteMachine",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).RemoveFavoriteMachine(ctx, req.(*RemoveFavoriteMachineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListFavoriteMachines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFavoriteMachinesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListFavoriteMachines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListFavoriteMachines",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListFavoriteMachines(ctx, req.(*ListFavoriteMachinesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AppService_ListFragments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListFragmentsRequest)
 	if err := dec(in); err != nil {
@@ -4455,6 +4557,18 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRobot",
 			Handler:    _AppService_DeleteRobot_Handler,
+		},
+		{
+			MethodName: "AddFavoriteMachine",
+			Handler:    _AppService_AddFavoriteMachine_Handler,
+		},
+		{
+			MethodName: "RemoveFavoriteMachine",
+			Handler:    _AppService_RemoveFavoriteMachine_Handler,
+		},
+		{
+			MethodName: "ListFavoriteMachines",
+			Handler:    _AppService_ListFavoriteMachines_Handler,
 		},
 		{
 			MethodName: "ListFragments",
