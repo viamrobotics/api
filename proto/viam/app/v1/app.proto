@@ -170,6 +170,9 @@ service AppService {
   // Update a robot
   rpc UpdateRobotPart(UpdateRobotPartRequest) returns (UpdateRobotPartResponse);
 
+  // Set config properties on a robot part
+  rpc SetConfigProperty(SetConfigPropertyRequest) returns (SetConfigPropertyResponse);
+
   // Create a new robot part
   rpc NewRobotPart(NewRobotPartRequest) returns (NewRobotPartResponse);
 
@@ -978,6 +981,27 @@ message UpdateRobotPartRequest {
 
 message UpdateRobotPartResponse {
   RobotPart part = 1;
+}
+
+message ConfigPropertyChange {
+  string path = 1;
+  google.protobuf.Value value = 2;
+}
+
+message SetConfigPropertyRequest {
+  string robot_part_id = 1;
+  repeated ConfigPropertyChange property_changes = 2;
+}
+
+message ConfigPropertyChangeResult {
+  string path = 1;
+  google.protobuf.Value value = 2;
+  bool success = 3;
+  string error = 4;
+}
+
+message SetConfigPropertyResponse {
+  repeated ConfigPropertyChangeResult property_changes = 1;
 }
 
 message NewRobotPartRequest {
