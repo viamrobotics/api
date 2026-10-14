@@ -3252,7 +3252,8 @@ type ResourceStatus struct {
 	CloudMetadata *GetCloudMetadataResponse `protobuf:"bytes,6,opt,name=cloud_metadata,json=cloudMetadata,proto3,oneof" json:"cloud_metadata,omitempty"`
 	// whether calls to this resource by name can be routed through this machine.
 	Reachability ResourceStatus_Reachability `protobuf:"varint,7,opt,name=reachability,proto3,enum=viam.robot.v1.ResourceStatus_Reachability" json:"reachability,omitempty"`
-	// remote machine this resource comes from; unset for local resources.
+	// name of the remote, as configured on this machine, that this resource is reached through;
+	// for a resource on a remote's remote, this is the first hop. Unset for local resources.
 	Remote *string `protobuf:"bytes,8,opt,name=remote,proto3,oneof" json:"remote,omitempty"`
 }
 

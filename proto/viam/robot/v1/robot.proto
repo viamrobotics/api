@@ -485,7 +485,8 @@ message ResourceStatus {
   // whether calls to this resource by name can be routed through this machine.
   Reachability reachability = 7;
 
-  // remote machine this resource comes from; unset for local resources.
+  // name of the remote, as configured on this machine, that this resource is reached through;
+  // for a resource on a remote's remote, this is the first hop. Unset for local resources.
   optional string remote = 8;
 }
 
