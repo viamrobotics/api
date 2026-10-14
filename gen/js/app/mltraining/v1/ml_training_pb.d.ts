@@ -306,6 +306,9 @@ export class TrainingJobMetadata extends jspb.Message {
   getContainerId(): string;
   setContainerId(value: string): void;
 
+  getDeploymentModularResource(): string;
+  setDeploymentModularResource(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: TrainingJobMetadata): TrainingJobMetadata.AsObject;
@@ -339,6 +342,7 @@ export namespace TrainingJobMetadata {
     argumentsMap: Array<[string, string]>,
     containerVersion: string,
     containerId: string,
+    deploymentModularResource: string,
   }
 }
 
@@ -770,6 +774,7 @@ export interface ModelFrameworkMap {
   MODEL_FRAMEWORK_TENSORFLOW: 2;
   MODEL_FRAMEWORK_PYTORCH: 3;
   MODEL_FRAMEWORK_ONNX: 4;
+  MODEL_FRAMEWORK_REGISTRY: 5;
 }
 
 export const ModelFramework: ModelFrameworkMap;

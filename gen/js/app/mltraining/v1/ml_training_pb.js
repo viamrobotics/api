@@ -2248,7 +2248,8 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInst
     tagsList: (f = jspb.Message.getRepeatedField(msg, 16)) == null ? undefined : f,
     argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : [],
     containerVersion: jspb.Message.getFieldWithDefault(msg, 22, ""),
-    containerId: jspb.Message.getFieldWithDefault(msg, 23, "")
+    containerId: jspb.Message.getFieldWithDefault(msg, 23, ""),
+    deploymentModularResource: jspb.Message.getFieldWithDefault(msg, 24, "")
   };
 
   if (includeInstance) {
@@ -2375,6 +2376,10 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
     case 23:
       var value = /** @type {string} */ (reader.readString());
       msg.setContainerId(value);
+      break;
+    case 24:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeploymentModularResource(value);
       break;
     default:
       reader.skipField();
@@ -2551,6 +2556,13 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
   if (f.length > 0) {
     writer.writeString(
       23,
+      f
+    );
+  }
+  f = message.getDeploymentModularResource();
+  if (f.length > 0) {
+    writer.writeString(
+      24,
       f
     );
   }
@@ -3050,6 +3062,24 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getContainerId = func
  */
 proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setContainerId = function(value) {
   return jspb.Message.setProto3StringField(this, 23, value);
+};
+
+
+/**
+ * optional string deployment_modular_resource = 24;
+ * @return {string}
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getDeploymentModularResource = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 24, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setDeploymentModularResource = function(value) {
+  return jspb.Message.setProto3StringField(this, 24, value);
 };
 
 
@@ -5880,7 +5910,8 @@ proto.viam.app.mltraining.v1.ModelFramework = {
   MODEL_FRAMEWORK_TFLITE: 1,
   MODEL_FRAMEWORK_TENSORFLOW: 2,
   MODEL_FRAMEWORK_PYTORCH: 3,
-  MODEL_FRAMEWORK_ONNX: 4
+  MODEL_FRAMEWORK_ONNX: 4,
+  MODEL_FRAMEWORK_REGISTRY: 5
 };
 
 /**

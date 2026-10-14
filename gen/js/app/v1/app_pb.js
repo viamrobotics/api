@@ -44878,7 +44878,8 @@ proto.viam.app.v1.MLModelMetadata.toObject = function(includeInstance, msg) {
     modelType: jspb.Message.getFieldWithDefault(msg, 2, 0),
     modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0),
     detailedVersionsList: jspb.Message.toObjectList(msg.getDetailedVersionsList(),
-    proto.viam.app.v1.MLModelVersion.toObject, includeInstance)
+    proto.viam.app.v1.MLModelVersion.toObject, includeInstance),
+    deploymentModularResource: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -44931,6 +44932,10 @@ proto.viam.app.v1.MLModelMetadata.deserializeBinaryFromReader = function(msg, re
       var value = new proto.viam.app.v1.MLModelVersion;
       reader.readMessage(value,proto.viam.app.v1.MLModelVersion.deserializeBinaryFromReader);
       msg.addDetailedVersions(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeploymentModularResource(value);
       break;
     default:
       reader.skipField();
@@ -44988,6 +44993,13 @@ proto.viam.app.v1.MLModelMetadata.serializeBinaryToWriter = function(message, wr
       4,
       f,
       proto.viam.app.v1.MLModelVersion.serializeBinaryToWriter
+    );
+  }
+  f = message.getDeploymentModularResource();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
     );
   }
 };
@@ -45101,6 +45113,24 @@ proto.viam.app.v1.MLModelMetadata.prototype.addDetailedVersions = function(opt_v
  */
 proto.viam.app.v1.MLModelMetadata.prototype.clearDetailedVersionsList = function() {
   return this.setDetailedVersionsList([]);
+};
+
+
+/**
+ * optional string deployment_modular_resource = 5;
+ * @return {string}
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.getDeploymentModularResource = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.MLModelMetadata} returns this
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.setDeploymentModularResource = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -45328,7 +45358,8 @@ proto.viam.app.v1.MLTrainingMetadata.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.MLTrainingVersion.toObject, includeInstance),
     modelType: jspb.Message.getFieldWithDefault(msg, 2, 0),
     modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    draft: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    draft: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    deploymentModularResource: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -45381,6 +45412,10 @@ proto.viam.app.v1.MLTrainingMetadata.deserializeBinaryFromReader = function(msg,
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDraft(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeploymentModularResource(value);
       break;
     default:
       reader.skipField();
@@ -45437,6 +45472,13 @@ proto.viam.app.v1.MLTrainingMetadata.serializeBinaryToWriter = function(message,
   if (f) {
     writer.writeBool(
       4,
+      f
+    );
+  }
+  f = message.getDeploymentModularResource();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -45532,6 +45574,24 @@ proto.viam.app.v1.MLTrainingMetadata.prototype.getDraft = function() {
  */
 proto.viam.app.v1.MLTrainingMetadata.prototype.setDraft = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional string deployment_modular_resource = 6;
+ * @return {string}
+ */
+proto.viam.app.v1.MLTrainingMetadata.prototype.getDeploymentModularResource = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.MLTrainingMetadata} returns this
+ */
+proto.viam.app.v1.MLTrainingMetadata.prototype.setDeploymentModularResource = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -52222,7 +52282,8 @@ proto.viam.app.v1.UpdateMLModelMetadata.prototype.toObject = function(opt_includ
 proto.viam.app.v1.UpdateMLModelMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
     modelType: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    modelFramework: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    modelFramework: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    deploymentModularResource: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -52267,6 +52328,10 @@ proto.viam.app.v1.UpdateMLModelMetadata.deserializeBinaryFromReader = function(m
       var value = /** @type {!proto.viam.app.mltraining.v1.ModelFramework} */ (reader.readEnum());
       msg.setModelFramework(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeploymentModularResource(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -52310,6 +52375,13 @@ proto.viam.app.v1.UpdateMLModelMetadata.serializeBinaryToWriter = function(messa
       f
     );
   }
+  f = message.getDeploymentModularResource();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -52349,6 +52421,24 @@ proto.viam.app.v1.UpdateMLModelMetadata.prototype.setModelFramework = function(v
 };
 
 
+/**
+ * optional string deployment_modular_resource = 3;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateMLModelMetadata.prototype.getDeploymentModularResource = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateMLModelMetadata} returns this
+ */
+proto.viam.app.v1.UpdateMLModelMetadata.prototype.setDeploymentModularResource = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
 
 
 
@@ -52383,7 +52473,8 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.toObject = function(includeInstance, 
   var f, obj = {
     modelType: jspb.Message.getFieldWithDefault(msg, 1, 0),
     modelFramework: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    draft: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    draft: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    deploymentModularResource: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -52432,6 +52523,10 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.deserializeBinaryFromReader = functio
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDraft(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeploymentModularResource(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -52479,6 +52574,13 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.serializeBinaryToWriter = function(me
   if (f) {
     writer.writeBool(
       3,
+      f
+    );
+  }
+  f = message.getDeploymentModularResource();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -52536,6 +52638,24 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.getDraft = function() {
  */
 proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.setDraft = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * optional string deployment_modular_resource = 4;
+ * @return {string}
+ */
+proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.getDeploymentModularResource = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.UpdateMLTrainingMetadata} returns this
+ */
+proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.setDeploymentModularResource = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
