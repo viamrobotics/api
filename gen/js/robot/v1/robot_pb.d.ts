@@ -242,6 +242,11 @@ export class FrameSystemConfig extends jspb.Message {
   getKinematics(): google_protobuf_struct_pb.Struct | undefined;
   setKinematics(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasModel(): boolean;
+  clearModel(): void;
+  getModel(): common_v1_common_pb.KinematicModel | undefined;
+  setModel(value?: common_v1_common_pb.KinematicModel): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FrameSystemConfig.AsObject;
   static toObject(includeInstance: boolean, msg: FrameSystemConfig): FrameSystemConfig.AsObject;
@@ -256,6 +261,7 @@ export namespace FrameSystemConfig {
   export type AsObject = {
     frame?: common_v1_common_pb.Transform.AsObject,
     kinematics?: google_protobuf_struct_pb.Struct.AsObject,
+    model?: common_v1_common_pb.KinematicModel.AsObject,
   }
 }
 
