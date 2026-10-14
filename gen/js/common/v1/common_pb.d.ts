@@ -293,11 +293,6 @@ export class Mesh extends jspb.Message {
   getMesh_asB64(): string;
   setMesh(value: Uint8Array | string): void;
 
-  hasOriginalFileSourcePathDiagnostic(): boolean;
-  clearOriginalFileSourcePathDiagnostic(): void;
-  getOriginalFileSourcePathDiagnostic(): string;
-  setOriginalFileSourcePathDiagnostic(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Mesh.AsObject;
   static toObject(includeInstance: boolean, msg: Mesh): Mesh.AsObject;
@@ -312,7 +307,6 @@ export namespace Mesh {
   export type AsObject = {
     contentType: string,
     mesh: Uint8Array | string,
-    originalFileSourcePathDiagnostic: string,
   }
 }
 
@@ -479,53 +473,6 @@ export namespace GeoPoint {
   export type AsObject = {
     latitude: number,
     longitude: number,
-  }
-}
-
-export class GeoPose extends jspb.Message {
-  hasLocation(): boolean;
-  clearLocation(): void;
-  getLocation(): GeoPoint | undefined;
-  setLocation(value?: GeoPoint): void;
-
-  hasAltitude(): boolean;
-  clearAltitude(): void;
-  getAltitude(): number;
-  setAltitude(value: number): void;
-
-  hasHeading(): boolean;
-  clearHeading(): void;
-  getHeading(): number;
-  setHeading(value: number): void;
-
-  hasOrientationVector(): boolean;
-  clearOrientationVector(): void;
-  getOrientationVector(): Orientation | undefined;
-  setOrientationVector(value?: Orientation): void;
-
-  getOrientationCase(): GeoPose.OrientationCase;
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GeoPose.AsObject;
-  static toObject(includeInstance: boolean, msg: GeoPose): GeoPose.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GeoPose, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GeoPose;
-  static deserializeBinaryFromReader(message: GeoPose, reader: jspb.BinaryReader): GeoPose;
-}
-
-export namespace GeoPose {
-  export type AsObject = {
-    location?: GeoPoint.AsObject,
-    altitude: number,
-    heading: number,
-    orientationVector?: Orientation.AsObject,
-  }
-
-  export enum OrientationCase {
-    ORIENTATION_NOT_SET = 0,
-    HEADING = 2,
-    ORIENTATION_VECTOR = 4,
   }
 }
 
@@ -765,12 +712,6 @@ export class GetKinematicsRequest extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  getIncludeCollisionMeshes(): boolean;
-  setIncludeCollisionMeshes(value: boolean): void;
-
-  getIncludeVisualMeshes(): boolean;
-  setIncludeVisualMeshes(value: boolean): void;
-
   hasExtra(): boolean;
   clearExtra(): void;
   getExtra(): google_protobuf_struct_pb.Struct | undefined;
@@ -789,8 +730,6 @@ export class GetKinematicsRequest extends jspb.Message {
 export namespace GetKinematicsRequest {
   export type AsObject = {
     name: string,
-    includeCollisionMeshes: boolean,
-    includeVisualMeshes: boolean,
     extra?: google_protobuf_struct_pb.Struct.AsObject,
   }
 }
@@ -806,11 +745,6 @@ export class GetKinematicsResponse extends jspb.Message {
 
   getMeshesByUrdfFilepathMap(): jspb.Map<string, Mesh>;
   clearMeshesByUrdfFilepathMap(): void;
-  hasModel(): boolean;
-  clearModel(): void;
-  getModel(): KinematicModel | undefined;
-  setModel(value?: KinematicModel): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetKinematicsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetKinematicsResponse): GetKinematicsResponse.AsObject;
@@ -826,388 +760,6 @@ export namespace GetKinematicsResponse {
     format: KinematicsFileFormatMap[keyof KinematicsFileFormatMap],
     kinematicsData: Uint8Array | string,
     meshesByUrdfFilepathMap: Array<[string, Mesh.AsObject]>,
-    model?: KinematicModel.AsObject,
-  }
-}
-
-export class KinematicModel extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  clearLinksList(): void;
-  getLinksList(): Array<KinematicLink>;
-  setLinksList(value: Array<KinematicLink>): void;
-  addLinks(value?: KinematicLink, index?: number): KinematicLink;
-
-  clearJointsList(): void;
-  getJointsList(): Array<KinematicJoint>;
-  setJointsList(value: Array<KinematicJoint>): void;
-  addJoints(value?: KinematicJoint, index?: number): KinematicJoint;
-
-  clearOutputFramesList(): void;
-  getOutputFramesList(): Array<string>;
-  setOutputFramesList(value: Array<string>): void;
-  addOutputFrames(value: string, index?: number): string;
-
-  hasProperties(): boolean;
-  clearProperties(): void;
-  getProperties(): KinematicProperties | undefined;
-  setProperties(value?: KinematicProperties): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): KinematicModel.AsObject;
-  static toObject(includeInstance: boolean, msg: KinematicModel): KinematicModel.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: KinematicModel, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): KinematicModel;
-  static deserializeBinaryFromReader(message: KinematicModel, reader: jspb.BinaryReader): KinematicModel;
-}
-
-export namespace KinematicModel {
-  export type AsObject = {
-    name: string,
-    linksList: Array<KinematicLink.AsObject>,
-    jointsList: Array<KinematicJoint.AsObject>,
-    outputFramesList: Array<string>,
-    properties?: KinematicProperties.AsObject,
-  }
-}
-
-export class KinematicLink extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  getParent(): string;
-  setParent(value: string): void;
-
-  hasPose(): boolean;
-  clearPose(): void;
-  getPose(): LinkPose | undefined;
-  setPose(value?: LinkPose): void;
-
-  clearCollisionList(): void;
-  getCollisionList(): Array<Geometry>;
-  setCollisionList(value: Array<Geometry>): void;
-  addCollision(value?: Geometry, index?: number): Geometry;
-
-  clearVisualList(): void;
-  getVisualList(): Array<Geometry>;
-  setVisualList(value: Array<Geometry>): void;
-  addVisual(value?: Geometry, index?: number): Geometry;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): KinematicLink.AsObject;
-  static toObject(includeInstance: boolean, msg: KinematicLink): KinematicLink.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: KinematicLink, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): KinematicLink;
-  static deserializeBinaryFromReader(message: KinematicLink, reader: jspb.BinaryReader): KinematicLink;
-}
-
-export namespace KinematicLink {
-  export type AsObject = {
-    id: string,
-    parent: string,
-    pose?: LinkPose.AsObject,
-    collisionList: Array<Geometry.AsObject>,
-    visualList: Array<Geometry.AsObject>,
-  }
-}
-
-export class LinkPose extends jspb.Message {
-  hasTranslation(): boolean;
-  clearTranslation(): void;
-  getTranslation(): Vector3 | undefined;
-  setTranslation(value?: Vector3): void;
-
-  hasQuaternion(): boolean;
-  clearQuaternion(): void;
-  getQuaternion(): Quaternion | undefined;
-  setQuaternion(value?: Quaternion): void;
-
-  hasOrientationVector(): boolean;
-  clearOrientationVector(): void;
-  getOrientationVector(): Orientation | undefined;
-  setOrientationVector(value?: Orientation): void;
-
-  hasEulerAngles(): boolean;
-  clearEulerAngles(): void;
-  getEulerAngles(): EulerAngles | undefined;
-  setEulerAngles(value?: EulerAngles): void;
-
-  hasAxisAngles(): boolean;
-  clearAxisAngles(): void;
-  getAxisAngles(): AxisAngles | undefined;
-  setAxisAngles(value?: AxisAngles): void;
-
-  getOrientationCase(): LinkPose.OrientationCase;
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): LinkPose.AsObject;
-  static toObject(includeInstance: boolean, msg: LinkPose): LinkPose.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: LinkPose, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): LinkPose;
-  static deserializeBinaryFromReader(message: LinkPose, reader: jspb.BinaryReader): LinkPose;
-}
-
-export namespace LinkPose {
-  export type AsObject = {
-    translation?: Vector3.AsObject,
-    quaternion?: Quaternion.AsObject,
-    orientationVector?: Orientation.AsObject,
-    eulerAngles?: EulerAngles.AsObject,
-    axisAngles?: AxisAngles.AsObject,
-  }
-
-  export enum OrientationCase {
-    ORIENTATION_NOT_SET = 0,
-    QUATERNION = 2,
-    ORIENTATION_VECTOR = 3,
-    EULER_ANGLES = 4,
-    AXIS_ANGLES = 5,
-  }
-}
-
-export class Quaternion extends jspb.Message {
-  getW(): number;
-  setW(value: number): void;
-
-  getX(): number;
-  setX(value: number): void;
-
-  getY(): number;
-  setY(value: number): void;
-
-  getZ(): number;
-  setZ(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Quaternion.AsObject;
-  static toObject(includeInstance: boolean, msg: Quaternion): Quaternion.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Quaternion, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Quaternion;
-  static deserializeBinaryFromReader(message: Quaternion, reader: jspb.BinaryReader): Quaternion;
-}
-
-export namespace Quaternion {
-  export type AsObject = {
-    w: number,
-    x: number,
-    y: number,
-    z: number,
-  }
-}
-
-export class EulerAngles extends jspb.Message {
-  getRoll(): number;
-  setRoll(value: number): void;
-
-  getPitch(): number;
-  setPitch(value: number): void;
-
-  getYaw(): number;
-  setYaw(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): EulerAngles.AsObject;
-  static toObject(includeInstance: boolean, msg: EulerAngles): EulerAngles.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: EulerAngles, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): EulerAngles;
-  static deserializeBinaryFromReader(message: EulerAngles, reader: jspb.BinaryReader): EulerAngles;
-}
-
-export namespace EulerAngles {
-  export type AsObject = {
-    roll: number,
-    pitch: number,
-    yaw: number,
-  }
-}
-
-export class AxisAngles extends jspb.Message {
-  getRx(): number;
-  setRx(value: number): void;
-
-  getRy(): number;
-  setRy(value: number): void;
-
-  getRz(): number;
-  setRz(value: number): void;
-
-  getTheta(): number;
-  setTheta(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AxisAngles.AsObject;
-  static toObject(includeInstance: boolean, msg: AxisAngles): AxisAngles.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AxisAngles, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AxisAngles;
-  static deserializeBinaryFromReader(message: AxisAngles, reader: jspb.BinaryReader): AxisAngles;
-}
-
-export namespace AxisAngles {
-  export type AsObject = {
-    rx: number,
-    ry: number,
-    rz: number,
-    theta: number,
-  }
-}
-
-export class KinematicJoint extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  getParent(): string;
-  setParent(value: string): void;
-
-  getType(): JointTypeMap[keyof JointTypeMap];
-  setType(value: JointTypeMap[keyof JointTypeMap]): void;
-
-  hasAxis(): boolean;
-  clearAxis(): void;
-  getAxis(): Vector3 | undefined;
-  setAxis(value?: Vector3): void;
-
-  hasLimits(): boolean;
-  clearLimits(): void;
-  getLimits(): JointLimits | undefined;
-  setLimits(value?: JointLimits): void;
-
-  hasMimic(): boolean;
-  clearMimic(): void;
-  getMimic(): MimicJoint | undefined;
-  setMimic(value?: MimicJoint): void;
-
-  hasGeometry(): boolean;
-  clearGeometry(): void;
-  getGeometry(): Geometry | undefined;
-  setGeometry(value?: Geometry): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): KinematicJoint.AsObject;
-  static toObject(includeInstance: boolean, msg: KinematicJoint): KinematicJoint.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: KinematicJoint, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): KinematicJoint;
-  static deserializeBinaryFromReader(message: KinematicJoint, reader: jspb.BinaryReader): KinematicJoint;
-}
-
-export namespace KinematicJoint {
-  export type AsObject = {
-    id: string,
-    parent: string,
-    type: JointTypeMap[keyof JointTypeMap],
-    axis?: Vector3.AsObject,
-    limits?: JointLimits.AsObject,
-    mimic?: MimicJoint.AsObject,
-    geometry?: Geometry.AsObject,
-  }
-}
-
-export class JointLimits extends jspb.Message {
-  hasMin(): boolean;
-  clearMin(): void;
-  getMin(): number;
-  setMin(value: number): void;
-
-  hasMax(): boolean;
-  clearMax(): void;
-  getMax(): number;
-  setMax(value: number): void;
-
-  hasMaxVelocity(): boolean;
-  clearMaxVelocity(): void;
-  getMaxVelocity(): number;
-  setMaxVelocity(value: number): void;
-
-  hasMaxAcceleration(): boolean;
-  clearMaxAcceleration(): void;
-  getMaxAcceleration(): number;
-  setMaxAcceleration(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): JointLimits.AsObject;
-  static toObject(includeInstance: boolean, msg: JointLimits): JointLimits.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: JointLimits, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): JointLimits;
-  static deserializeBinaryFromReader(message: JointLimits, reader: jspb.BinaryReader): JointLimits;
-}
-
-export namespace JointLimits {
-  export type AsObject = {
-    min: number,
-    max: number,
-    maxVelocity: number,
-    maxAcceleration: number,
-  }
-}
-
-export class MimicJoint extends jspb.Message {
-  getJoint(): string;
-  setJoint(value: string): void;
-
-  getMultiplier(): number;
-  setMultiplier(value: number): void;
-
-  getOffset(): number;
-  setOffset(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): MimicJoint.AsObject;
-  static toObject(includeInstance: boolean, msg: MimicJoint): MimicJoint.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: MimicJoint, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): MimicJoint;
-  static deserializeBinaryFromReader(message: MimicJoint, reader: jspb.BinaryReader): MimicJoint;
-}
-
-export namespace MimicJoint {
-  export type AsObject = {
-    joint: string,
-    multiplier: number,
-    offset: number,
-  }
-}
-
-export class KinematicProperties extends jspb.Message {
-  hasOperatingFreqHz(): boolean;
-  clearOperatingFreqHz(): void;
-  getOperatingFreqHz(): number;
-  setOperatingFreqHz(value: number): void;
-
-  hasMaxLinearTcpSpeedMmPerSec(): boolean;
-  clearMaxLinearTcpSpeedMmPerSec(): void;
-  getMaxLinearTcpSpeedMmPerSec(): number;
-  setMaxLinearTcpSpeedMmPerSec(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): KinematicProperties.AsObject;
-  static toObject(includeInstance: boolean, msg: KinematicProperties): KinematicProperties.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: KinematicProperties, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): KinematicProperties;
-  static deserializeBinaryFromReader(message: KinematicProperties, reader: jspb.BinaryReader): KinematicProperties;
-}
-
-export namespace KinematicProperties {
-  export type AsObject = {
-    operatingFreqHz: number,
-    maxLinearTcpSpeedMmPerSec: number,
   }
 }
 
@@ -1518,13 +1070,4 @@ export interface KinematicsFileFormatMap {
 }
 
 export const KinematicsFileFormat: KinematicsFileFormatMap;
-
-export interface JointTypeMap {
-  JOINT_TYPE_UNSPECIFIED: 0;
-  JOINT_TYPE_REVOLUTE: 1;
-  JOINT_TYPE_PRISMATIC: 2;
-  JOINT_TYPE_CONTINUOUS: 3;
-}
-
-export const JointType: JointTypeMap;
 

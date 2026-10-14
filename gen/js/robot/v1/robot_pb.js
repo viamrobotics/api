@@ -3071,8 +3071,7 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.toObject = function(opt_includeI
 proto.viam.robot.v1.FrameSystemConfig.toObject = function(includeInstance, msg) {
   var f, obj = {
     frame: (f = msg.getFrame()) && common_v1_common_pb.Transform.toObject(includeInstance, f),
-    kinematics: (f = msg.getKinematics()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    model: (f = msg.getModel()) && common_v1_common_pb.KinematicModel.toObject(includeInstance, f)
+    kinematics: (f = msg.getKinematics()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3119,11 +3118,6 @@ proto.viam.robot.v1.FrameSystemConfig.deserializeBinaryFromReader = function(msg
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setKinematics(value);
       break;
-    case 3:
-      var value = new common_v1_common_pb.KinematicModel;
-      reader.readMessage(value,common_v1_common_pb.KinematicModel.deserializeBinaryFromReader);
-      msg.setModel(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -3167,14 +3161,6 @@ proto.viam.robot.v1.FrameSystemConfig.serializeBinaryToWriter = function(message
       2,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
-  }
-  f = message.getModel();
-  if (f != null) {
-    writer.writeMessage(
-      3,
-      f,
-      common_v1_common_pb.KinematicModel.serializeBinaryToWriter
     );
   }
 };
@@ -3251,43 +3237,6 @@ proto.viam.robot.v1.FrameSystemConfig.prototype.clearKinematics = function() {
  */
 proto.viam.robot.v1.FrameSystemConfig.prototype.hasKinematics = function() {
   return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional viam.common.v1.KinematicModel model = 3;
- * @return {?proto.viam.common.v1.KinematicModel}
- */
-proto.viam.robot.v1.FrameSystemConfig.prototype.getModel = function() {
-  return /** @type{?proto.viam.common.v1.KinematicModel} */ (
-    jspb.Message.getWrapperField(this, common_v1_common_pb.KinematicModel, 3));
-};
-
-
-/**
- * @param {?proto.viam.common.v1.KinematicModel|undefined} value
- * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
-*/
-proto.viam.robot.v1.FrameSystemConfig.prototype.setModel = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.FrameSystemConfig} returns this
- */
-proto.viam.robot.v1.FrameSystemConfig.prototype.clearModel = function() {
-  return this.setModel(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.robot.v1.FrameSystemConfig.prototype.hasModel = function() {
-  return jspb.Message.getField(this, 3) != null;
 };
 
 
