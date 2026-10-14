@@ -1547,7 +1547,6 @@ message MLModelMetadata {
   repeated MLModelVersion detailed_versions = 4;
   // Colon-delimited triplet of the modular component or service used when
   // model_framework is MODEL_FRAMEWORK_REGISTRY.
-  // Example: viam-labs:arm-policy:policy.
   string deployment_modular_resource = 5;
 }
 
@@ -1564,7 +1563,6 @@ message MLTrainingMetadata {
   bool draft = 4;
   // Colon-delimited triplet of the modular component or service used when
   // model_framework is MODEL_FRAMEWORK_REGISTRY.
-  // Example: viam-labs:arm-policy:policy.
   // Copied onto packages published by this training script.
   string deployment_modular_resource = 6;
 
@@ -1861,7 +1859,6 @@ message UpdateMLModelMetadata {
   viam.app.mltraining.v1.ModelFramework model_framework = 2;
   // Colon-delimited triplet of the modular component or service used when
   // model_framework is MODEL_FRAMEWORK_REGISTRY.
-  // Example: viam-labs:arm-policy:policy.
   string deployment_modular_resource = 3;
 }
 
@@ -1871,7 +1868,6 @@ message UpdateMLTrainingMetadata {
   bool draft = 3;
   // Colon-delimited triplet of the modular component or service used when
   // model_framework is MODEL_FRAMEWORK_REGISTRY.
-  // Example: viam-labs:arm-policy:policy.
   string deployment_modular_resource = 4;
 }
 

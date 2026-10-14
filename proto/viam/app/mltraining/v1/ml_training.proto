@@ -149,7 +149,6 @@ message TrainingJobMetadata {
   string container_id = 23 [(tagger.v1.tags) = "bson:\"container_id\" json:\"container_id\""];
   // Colon-delimited triplet of the modular component or service copied from the
   // training script when model_framework is MODEL_FRAMEWORK_REGISTRY.
-  // Example: viam-labs:arm-policy:policy.
   string deployment_modular_resource = 24 [(tagger.v1.tags) = "bson:\"deployment_modular_resource\" json:\"deployment_modular_resource\""];
 
   reserved 1, 6;
