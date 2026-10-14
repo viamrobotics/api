@@ -11969,8 +11969,10 @@ type MLModelMetadata struct {
 	ModelType        v11.ModelType      `protobuf:"varint,2,opt,name=model_type,json=modelType,proto3,enum=viam.app.mltraining.v1.ModelType" json:"model_type,omitempty"`
 	ModelFramework   v11.ModelFramework `protobuf:"varint,3,opt,name=model_framework,json=modelFramework,proto3,enum=viam.app.mltraining.v1.ModelFramework" json:"model_framework,omitempty"`
 	DetailedVersions []*MLModelVersion  `protobuf:"bytes,4,rep,name=detailed_versions,json=detailedVersions,proto3" json:"detailed_versions,omitempty"`
-	// Colon-delimited triplets of modular components or services used when
-	// model_framework is MODEL_FRAMEWORK_REGISTRY.
+	// Colon-delimited triplets of components or services from the registry used when
+	// model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+	// associated component or service that consumes the files and should be deployed
+	// along with the model.
 	DeploymentModularResources []string `protobuf:"bytes,5,rep,name=deployment_modular_resources,json=deploymentModularResources,proto3" json:"deployment_modular_resources,omitempty"`
 }
 
@@ -12103,8 +12105,10 @@ type MLTrainingMetadata struct {
 	ModelType      v11.ModelType        `protobuf:"varint,2,opt,name=model_type,json=modelType,proto3,enum=viam.app.mltraining.v1.ModelType" json:"model_type,omitempty"`
 	ModelFramework v11.ModelFramework   `protobuf:"varint,3,opt,name=model_framework,json=modelFramework,proto3,enum=viam.app.mltraining.v1.ModelFramework" json:"model_framework,omitempty"`
 	Draft          bool                 `protobuf:"varint,4,opt,name=draft,proto3" json:"draft,omitempty"`
-	// Colon-delimited triplets of modular components or services used when
-	// model_framework is MODEL_FRAMEWORK_REGISTRY.
+	// Colon-delimited triplets of components or services from the registry used when
+	// model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+	// associated component or service that consumes the files and should be deployed
+	// along with the model.
 	// Copied onto packages published by this training script.
 	DeploymentModularResources []string `protobuf:"bytes,6,rep,name=deployment_modular_resources,json=deploymentModularResources,proto3" json:"deployment_modular_resources,omitempty"`
 }
@@ -14129,8 +14133,10 @@ type UpdateMLModelMetadata struct {
 
 	ModelType      v11.ModelType      `protobuf:"varint,1,opt,name=model_type,json=modelType,proto3,enum=viam.app.mltraining.v1.ModelType" json:"model_type,omitempty"`
 	ModelFramework v11.ModelFramework `protobuf:"varint,2,opt,name=model_framework,json=modelFramework,proto3,enum=viam.app.mltraining.v1.ModelFramework" json:"model_framework,omitempty"`
-	// Colon-delimited triplets of modular components or services used when
-	// model_framework is MODEL_FRAMEWORK_REGISTRY.
+	// Colon-delimited triplets of components or services from the registry used when
+	// model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+	// associated component or service that consumes the files and should be deployed
+	// along with the model.
 	DeploymentModularResources []string `protobuf:"bytes,3,rep,name=deployment_modular_resources,json=deploymentModularResources,proto3" json:"deployment_modular_resources,omitempty"`
 }
 
@@ -14193,8 +14199,10 @@ type UpdateMLTrainingMetadata struct {
 	ModelType      v11.ModelType      `protobuf:"varint,1,opt,name=model_type,json=modelType,proto3,enum=viam.app.mltraining.v1.ModelType" json:"model_type,omitempty"`
 	ModelFramework v11.ModelFramework `protobuf:"varint,2,opt,name=model_framework,json=modelFramework,proto3,enum=viam.app.mltraining.v1.ModelFramework" json:"model_framework,omitempty"`
 	Draft          bool               `protobuf:"varint,3,opt,name=draft,proto3" json:"draft,omitempty"`
-	// Colon-delimited triplets of modular components or services used when
-	// model_framework is MODEL_FRAMEWORK_REGISTRY.
+	// Colon-delimited triplets of components or services from the registry used when
+	// model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+	// associated component or service that consumes the files and should be deployed
+	// along with the model.
 	DeploymentModularResources []string `protobuf:"bytes,4,rep,name=deployment_modular_resources,json=deploymentModularResources,proto3" json:"deployment_modular_resources,omitempty"`
 }
 

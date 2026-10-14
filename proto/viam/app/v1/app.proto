@@ -1545,8 +1545,10 @@ message MLModelMetadata {
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
   repeated MLModelVersion detailed_versions = 4;
-  // Colon-delimited triplets of modular components or services used when
-  // model_framework is MODEL_FRAMEWORK_REGISTRY.
+  // Colon-delimited triplets of components or services from the registry used when
+  // model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+  // associated component or service that consumes the files and should be deployed
+  // along with the model.
   repeated string deployment_modular_resources = 5;
 }
 
@@ -1561,8 +1563,10 @@ message MLTrainingMetadata {
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
   bool draft = 4;
-  // Colon-delimited triplets of modular components or services used when
-  // model_framework is MODEL_FRAMEWORK_REGISTRY.
+  // Colon-delimited triplets of components or services from the registry used when
+  // model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+  // associated component or service that consumes the files and should be deployed
+  // along with the model.
   // Copied onto packages published by this training script.
   repeated string deployment_modular_resources = 6;
 
@@ -1857,8 +1861,10 @@ message UpdateModuleMetadata {
 message UpdateMLModelMetadata {
   viam.app.mltraining.v1.ModelType model_type = 1;
   viam.app.mltraining.v1.ModelFramework model_framework = 2;
-  // Colon-delimited triplets of modular components or services used when
-  // model_framework is MODEL_FRAMEWORK_REGISTRY.
+  // Colon-delimited triplets of components or services from the registry used when
+  // model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+  // associated component or service that consumes the files and should be deployed
+  // along with the model.
   repeated string deployment_modular_resources = 3;
 }
 
@@ -1866,8 +1872,10 @@ message UpdateMLTrainingMetadata {
   viam.app.mltraining.v1.ModelType model_type = 1;
   viam.app.mltraining.v1.ModelFramework model_framework = 2;
   bool draft = 3;
-  // Colon-delimited triplets of modular components or services used when
-  // model_framework is MODEL_FRAMEWORK_REGISTRY.
+  // Colon-delimited triplets of components or services from the registry used when
+  // model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+  // associated component or service that consumes the files and should be deployed
+  // along with the model.
   repeated string deployment_modular_resources = 4;
 }
 

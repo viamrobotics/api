@@ -752,8 +752,10 @@ type TrainingJobMetadata struct {
 	Arguments           map[string]string      `protobuf:"bytes,21,rep,name=arguments,proto3" json:"arguments" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"arguments"`
 	ContainerVersion    string                 `protobuf:"bytes,22,opt,name=container_version,json=containerVersion,proto3" json:"container_version" bson:"container_version"`
 	ContainerId         string                 `protobuf:"bytes,23,opt,name=container_id,json=containerId,proto3" json:"container_id" bson:"container_id"`
-	// Colon-delimited triplets of modular components or services copied from the
-	// training script when model_framework is MODEL_FRAMEWORK_REGISTRY.
+	// Colon-delimited triplets of components or services from the registry used when
+	// model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+	// associated component or service that consumes the files and should be deployed
+	// along with the model.
 	DeploymentModularResources []string `protobuf:"bytes,24,rep,name=deployment_modular_resources,json=deploymentModularResources,proto3" json:"deployment_modular_resources" bson:"deployment_modular_resources"`
 }
 

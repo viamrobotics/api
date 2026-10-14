@@ -147,8 +147,10 @@ message TrainingJobMetadata {
   map<string, string> arguments = 21 [(tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
   string container_version = 22 [(tagger.v1.tags) = "bson:\"container_version\" json:\"container_version\""];
   string container_id = 23 [(tagger.v1.tags) = "bson:\"container_id\" json:\"container_id\""];
-  // Colon-delimited triplets of modular components or services copied from the
-  // training script when model_framework is MODEL_FRAMEWORK_REGISTRY.
+  // Colon-delimited triplets of components or services from the registry used when
+  // model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+  // associated component or service that consumes the files and should be deployed
+  // along with the model.
   repeated string deployment_modular_resources = 24 [(tagger.v1.tags) = "bson:\"deployment_modular_resources\" json:\"deployment_modular_resources\""];
 
   reserved 1, 6;
