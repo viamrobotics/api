@@ -449,6 +449,20 @@ message ResourceStatus {
     STATE_UNHEALTHY = 5;
   }
 
+  // whether calls to the resource by name can be routed through this machine.
+  // Independent of state, which for an unreachable resource is its last known state.
+  enum Reachability {
+    // set by machines that predate this field; treat as reachable.
+    REACHABILITY_UNSPECIFIED = 0;
+    REACHABILITY_REACHABLE = 1;
+    // the remote machine this resource is on is disconnected.
+    REACHABILITY_REMOTE_DISCONNECTED = 2;
+    // a local resource has the same name, so calls by name go to the local resource.
+    REACHABILITY_SHADOWED_BY_LOCAL = 3;
+    // multiple remote resources have the same name and no local resource claims it.
+    REACHABILITY_AMBIGUOUS_REMOTE = 4;
+  }
+
   // resource name.
   common.v1.ResourceName name = 1;
 
@@ -467,6 +481,12 @@ message ResourceStatus {
 
   // infomation about resource orgID, locationID and partID
   optional GetCloudMetadataResponse cloud_metadata = 6;
+
+  // whether calls to this resource by name can be routed through this machine.
+  Reachability reachability = 7;
+
+  // remote machine this resource comes from; unset for local resources.
+  optional string remote = 8;
 }
 
 message ModuleStatus {

@@ -1411,6 +1411,14 @@ export class ResourceStatus extends jspb.Message {
   getCloudMetadata(): GetCloudMetadataResponse | undefined;
   setCloudMetadata(value?: GetCloudMetadataResponse): void;
 
+  getReachability(): ResourceStatus.ReachabilityMap[keyof ResourceStatus.ReachabilityMap];
+  setReachability(value: ResourceStatus.ReachabilityMap[keyof ResourceStatus.ReachabilityMap]): void;
+
+  hasRemote(): boolean;
+  clearRemote(): void;
+  getRemote(): string;
+  setRemote(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResourceStatus.AsObject;
   static toObject(includeInstance: boolean, msg: ResourceStatus): ResourceStatus.AsObject;
@@ -1429,6 +1437,8 @@ export namespace ResourceStatus {
     revision: string,
     error: string,
     cloudMetadata?: GetCloudMetadataResponse.AsObject,
+    reachability: ResourceStatus.ReachabilityMap[keyof ResourceStatus.ReachabilityMap],
+    remote: string,
   }
 
   export interface StateMap {
@@ -1441,6 +1451,16 @@ export namespace ResourceStatus {
   }
 
   export const State: StateMap;
+
+  export interface ReachabilityMap {
+    REACHABILITY_UNSPECIFIED: 0;
+    REACHABILITY_REACHABLE: 1;
+    REACHABILITY_REMOTE_DISCONNECTED: 2;
+    REACHABILITY_SHADOWED_BY_LOCAL: 3;
+    REACHABILITY_AMBIGUOUS_REMOTE: 4;
+  }
+
+  export const Reachability: ReachabilityMap;
 }
 
 export class ModuleStatus extends jspb.Message {
