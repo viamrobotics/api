@@ -5427,8 +5427,10 @@ export class MLModelMetadata extends jspb.Message {
   setDetailedVersionsList(value: Array<MLModelVersion>): void;
   addDetailedVersions(value?: MLModelVersion, index?: number): MLModelVersion;
 
-  getDeploymentModularResource(): string;
-  setDeploymentModularResource(value: string): void;
+  clearDeploymentModularResourcesList(): void;
+  getDeploymentModularResourcesList(): Array<string>;
+  setDeploymentModularResourcesList(value: Array<string>): void;
+  addDeploymentModularResources(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MLModelMetadata.AsObject;
@@ -5446,7 +5448,7 @@ export namespace MLModelMetadata {
     modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
     modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
     detailedVersionsList: Array<MLModelVersion.AsObject>,
-    deploymentModularResource: string,
+    deploymentModularResourcesList: Array<string>,
   }
 }
 
@@ -5491,8 +5493,10 @@ export class MLTrainingMetadata extends jspb.Message {
   getDraft(): boolean;
   setDraft(value: boolean): void;
 
-  getDeploymentModularResource(): string;
-  setDeploymentModularResource(value: string): void;
+  clearDeploymentModularResourcesList(): void;
+  getDeploymentModularResourcesList(): Array<string>;
+  setDeploymentModularResourcesList(value: Array<string>): void;
+  addDeploymentModularResources(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MLTrainingMetadata.AsObject;
@@ -5510,7 +5514,7 @@ export namespace MLTrainingMetadata {
     modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
     modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
     draft: boolean,
-    deploymentModularResource: string,
+    deploymentModularResourcesList: Array<string>,
   }
 }
 
@@ -6460,8 +6464,10 @@ export class UpdateMLModelMetadata extends jspb.Message {
   getModelFramework(): app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap];
   setModelFramework(value: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap]): void;
 
-  getDeploymentModularResource(): string;
-  setDeploymentModularResource(value: string): void;
+  clearDeploymentModularResourcesList(): void;
+  getDeploymentModularResourcesList(): Array<string>;
+  setDeploymentModularResourcesList(value: Array<string>): void;
+  addDeploymentModularResources(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMLModelMetadata.AsObject;
@@ -6477,7 +6483,7 @@ export namespace UpdateMLModelMetadata {
   export type AsObject = {
     modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
     modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
-    deploymentModularResource: string,
+    deploymentModularResourcesList: Array<string>,
   }
 }
 
@@ -6491,8 +6497,10 @@ export class UpdateMLTrainingMetadata extends jspb.Message {
   getDraft(): boolean;
   setDraft(value: boolean): void;
 
-  getDeploymentModularResource(): string;
-  setDeploymentModularResource(value: string): void;
+  clearDeploymentModularResourcesList(): void;
+  getDeploymentModularResourcesList(): Array<string>;
+  setDeploymentModularResourcesList(value: Array<string>): void;
+  addDeploymentModularResources(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMLTrainingMetadata.AsObject;
@@ -6509,7 +6517,7 @@ export namespace UpdateMLTrainingMetadata {
     modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
     modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
     draft: boolean,
-    deploymentModularResource: string,
+    deploymentModularResourcesList: Array<string>,
   }
 }
 

@@ -306,8 +306,10 @@ export class TrainingJobMetadata extends jspb.Message {
   getContainerId(): string;
   setContainerId(value: string): void;
 
-  getDeploymentModularResource(): string;
-  setDeploymentModularResource(value: string): void;
+  clearDeploymentModularResourcesList(): void;
+  getDeploymentModularResourcesList(): Array<string>;
+  setDeploymentModularResourcesList(value: Array<string>): void;
+  addDeploymentModularResources(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TrainingJobMetadata.AsObject;
@@ -342,7 +344,7 @@ export namespace TrainingJobMetadata {
     argumentsMap: Array<[string, string]>,
     containerVersion: string,
     containerId: string,
-    deploymentModularResource: string,
+    deploymentModularResourcesList: Array<string>,
   }
 }
 

@@ -2195,7 +2195,7 @@ proto.viam.app.mltraining.v1.ListTrainingJobsResponse.prototype.clearJobsList = 
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.repeatedFields_ = [16];
+proto.viam.app.mltraining.v1.TrainingJobMetadata.repeatedFields_ = [16,24];
 
 
 
@@ -2249,7 +2249,7 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.toObject = function(includeInst
     argumentsMap: (f = msg.getArgumentsMap()) ? f.toObject(includeInstance, undefined) : [],
     containerVersion: jspb.Message.getFieldWithDefault(msg, 22, ""),
     containerId: jspb.Message.getFieldWithDefault(msg, 23, ""),
-    deploymentModularResource: jspb.Message.getFieldWithDefault(msg, 24, "")
+    deploymentModularResourcesList: (f = jspb.Message.getRepeatedField(msg, 24)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2379,7 +2379,7 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.deserializeBinaryFromReader = f
       break;
     case 24:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDeploymentModularResource(value);
+      msg.addDeploymentModularResources(value);
       break;
     default:
       reader.skipField();
@@ -2559,9 +2559,9 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.serializeBinaryToWriter = funct
       f
     );
   }
-  f = message.getDeploymentModularResource();
+  f = message.getDeploymentModularResourcesList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedString(
       24,
       f
     );
@@ -3066,20 +3066,39 @@ proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setContainerId = func
 
 
 /**
- * optional string deployment_modular_resource = 24;
- * @return {string}
+ * repeated string deployment_modular_resources = 24;
+ * @return {!Array<string>}
  */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getDeploymentModularResource = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 24, ""));
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.getDeploymentModularResourcesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 24));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setDeploymentModularResourcesList = function(value) {
+  return jspb.Message.setField(this, 24, value || []);
 };
 
 
 /**
  * @param {string} value
+ * @param {number=} opt_index
  * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
  */
-proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.setDeploymentModularResource = function(value) {
-  return jspb.Message.setProto3StringField(this, 24, value);
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.addDeploymentModularResources = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 24, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.mltraining.v1.TrainingJobMetadata} returns this
+ */
+proto.viam.app.mltraining.v1.TrainingJobMetadata.prototype.clearDeploymentModularResourcesList = function() {
+  return this.setDeploymentModularResourcesList([]);
 };
 
 

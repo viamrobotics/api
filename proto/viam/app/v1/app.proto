@@ -1545,9 +1545,9 @@ message MLModelMetadata {
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
   repeated MLModelVersion detailed_versions = 4;
-  // Colon-delimited triplet of the modular component or service used when
+  // Colon-delimited triplets of modular components or services used when
   // model_framework is MODEL_FRAMEWORK_REGISTRY.
-  string deployment_modular_resource = 5;
+  repeated string deployment_modular_resources = 5;
 }
 
 message MLTrainingVersion {
@@ -1561,10 +1561,10 @@ message MLTrainingMetadata {
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
   bool draft = 4;
-  // Colon-delimited triplet of the modular component or service used when
+  // Colon-delimited triplets of modular components or services used when
   // model_framework is MODEL_FRAMEWORK_REGISTRY.
   // Copied onto packages published by this training script.
-  string deployment_modular_resource = 6;
+  repeated string deployment_modular_resources = 6;
 
   reserved 1;
 }
@@ -1857,18 +1857,18 @@ message UpdateModuleMetadata {
 message UpdateMLModelMetadata {
   viam.app.mltraining.v1.ModelType model_type = 1;
   viam.app.mltraining.v1.ModelFramework model_framework = 2;
-  // Colon-delimited triplet of the modular component or service used when
+  // Colon-delimited triplets of modular components or services used when
   // model_framework is MODEL_FRAMEWORK_REGISTRY.
-  string deployment_modular_resource = 3;
+  repeated string deployment_modular_resources = 3;
 }
 
 message UpdateMLTrainingMetadata {
   viam.app.mltraining.v1.ModelType model_type = 1;
   viam.app.mltraining.v1.ModelFramework model_framework = 2;
   bool draft = 3;
-  // Colon-delimited triplet of the modular component or service used when
+  // Colon-delimited triplets of modular components or services used when
   // model_framework is MODEL_FRAMEWORK_REGISTRY.
-  string deployment_modular_resource = 4;
+  repeated string deployment_modular_resources = 4;
 }
 
 message Model {

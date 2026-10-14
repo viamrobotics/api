@@ -59,8 +59,8 @@ enum ModelFramework {
   MODEL_FRAMEWORK_TENSORFLOW = 2;
   MODEL_FRAMEWORK_PYTORCH = 3;
   MODEL_FRAMEWORK_ONNX = 4;
-  // A modular component or service in the registry, identified by
-  // deployment_modular_resource.
+  // Modular components or services in the registry, identified by
+  // deployment_modular_resources.
   // This is a deploy target, not a managed-training backend.
   MODEL_FRAMEWORK_REGISTRY = 5;
 }
@@ -147,9 +147,9 @@ message TrainingJobMetadata {
   map<string, string> arguments = 21 [(tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
   string container_version = 22 [(tagger.v1.tags) = "bson:\"container_version\" json:\"container_version\""];
   string container_id = 23 [(tagger.v1.tags) = "bson:\"container_id\" json:\"container_id\""];
-  // Colon-delimited triplet of the modular component or service copied from the
+  // Colon-delimited triplets of modular components or services copied from the
   // training script when model_framework is MODEL_FRAMEWORK_REGISTRY.
-  string deployment_modular_resource = 24 [(tagger.v1.tags) = "bson:\"deployment_modular_resource\" json:\"deployment_modular_resource\""];
+  repeated string deployment_modular_resources = 24 [(tagger.v1.tags) = "bson:\"deployment_modular_resources\" json:\"deployment_modular_resources\""];
 
   reserved 1, 6;
   reserved "request", "user_email";
