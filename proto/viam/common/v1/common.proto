@@ -96,8 +96,6 @@ message Mesh {
   string content_type = 1;
   // Contents of mesh data in binary form defined by content_type
   bytes mesh = 2;
-  // Path the mesh was loaded from, relative to the kinematics file. Informational on the wire.
-  optional string original_file_source_path_diagnostic = 3;
 }
 
 message PointCloud {
@@ -141,40 +139,6 @@ message PointCloudObject {
 message GeoPoint {
   double latitude = 1;
   double longitude = 2;
-}
-
-// GeoPose is a GPS position and orientation, optionally with altitude.
-//
-// Orientation is expressed in the east-north-up tangent frame at location:
-// +X east, +Y north, +Z up. Viam base axes are +X right, +Y forward, and +Z up,
-// so the identity orientation (o_x, o_y, o_z, theta) = (0, 0, 1, 0) is level and
-// faces north: forward is north and right is east.
-//
-// The same rotation as an orientation vector is Viam's Tait-Bryan Euler sequence,
-// intrinsic z-y'-x'' (yaw, then pitch, then roll), in degrees:
-//   - yaw: right-handed rotation about local up (+Z). Zero faces north. Positive
-//     yaw is counterclockwise viewed from above, so a compass heading in degrees
-//     clockwise from north is the negation of yaw.
-//   - pitch: right-handed rotation about the base's forward axis (+Y).
-//   - roll: right-handed rotation about the base's right axis (+X). With pitch 0,
-//     positive roll raises the forward axis; that angle is the elevation of
-//     forward above the local horizon.
-//
-// Exactly one of heading or orientation_vector is set. heading is only the
-// compass yaw of a level pose (pitch 0, roll 0). It is not added to
-// orientation_vector.
-message GeoPose {
-  // Latitude and longitude in degrees
-  GeoPoint location = 1;
-  // Optional altitude in meters
-  optional double altitude = 3;
-  oneof orientation {
-    // Compass heading in degrees, clockwise from north. Level pose: pitch 0, roll 0.
-    double heading = 2;
-    // Full orientation in the east-north-up tangent frame at location.
-    // o_x, o_y, o_z, theta in degrees, same orientation vector as Pose.
-    Orientation orientation_vector = 4;
-  }
 }
 
 // GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
@@ -255,10 +219,6 @@ message GetStatusResponse {
 message GetKinematicsRequest {
   // The component name
   string name = 1;
-  // Include collision mesh bytes in the response. Otherwise meshes carry only their path.
-  bool include_collision_meshes = 2;
-  // Include visual mesh bytes in the response
-  bool include_visual_meshes = 3;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -270,117 +230,13 @@ enum KinematicsFileFormat {
 }
 
 message GetKinematicsResponse {
-  // Deprecated: use model. The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+  // The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
   // https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
-  KinematicsFileFormat format = 1 [deprecated = true];
-  // Deprecated: use model. The byte contents of the file
-  bytes kinematics_data = 2 [deprecated = true];
-  // Deprecated: use model. Map of URDF mesh file paths to mesh data
-  map<string, Mesh> meshes_by_urdf_filepath = 3 [deprecated = true];
-  // The kinematic model of the component
-  KinematicModel model = 4;
-}
-
-// KinematicModel describes a component's kinematics as a tree of links and joints.
-// Its proto JSON encoding is also the on-disk kinematics file format.
-message KinematicModel {
-  // Set to the resource name by the SDK when served
-  string name = 1;
-  repeated KinematicLink links = 2;
-  repeated KinematicJoint joints = 3;
-  // Frames whose poses the model reports
-  repeated string output_frames = 4;
-  KinematicProperties properties = 5;
-}
-
-message KinematicLink {
-  string id = 1;
-  // Parent link or joint id, empty for the root
-  string parent = 2;
-  // Pose relative to the parent
-  LinkPose pose = 3;
-  // Collision geometries, meshes must be stl or ply
-  repeated Geometry collision = 4;
-  // Display geometries, not used for collision checking
-  repeated Geometry visual = 5;
-}
-
-// LinkPose is a translation in mm and an orientation in degrees, identity when absent
-message LinkPose {
-  Vector3 translation = 1;
-  oneof orientation {
-    Quaternion quaternion = 2;
-    // theta in degrees
-    Orientation orientation_vector = 3;
-    EulerAngles euler_angles = 4;
-    AxisAngles axis_angles = 5;
-  }
-}
-
-message Quaternion {
-  double w = 1;
-  double x = 2;
-  double y = 3;
-  double z = 4;
-}
-
-// Euler angles in degrees
-message EulerAngles {
-  double roll = 1;
-  double pitch = 2;
-  double yaw = 3;
-}
-
-// Rotation axis and an angle theta in degrees
-message AxisAngles {
-  double rx = 1;
-  double ry = 2;
-  double rz = 3;
-  double theta = 4;
-}
-
-enum JointType {
-  JOINT_TYPE_UNSPECIFIED = 0;
-  JOINT_TYPE_REVOLUTE = 1;
-  JOINT_TYPE_PRISMATIC = 2;
-  // Revolute joint with no position bound
-  JOINT_TYPE_CONTINUOUS = 3;
-}
-
-message KinematicJoint {
-  string id = 1;
-  // Parent link id
-  string parent = 2;
-  JointType type = 3;
-  Vector3 axis = 4;
-  // Effective limits the component serves
-  JointLimits limits = 5;
-  MimicJoint mimic = 6;
-  // Only meaningful for prismatic joints
-  Geometry geometry = 7;
-}
-
-// Degrees, deg/s and deg/s^2 for revolute joints, mm, mm/s and mm/s^2 for prismatic. Absent means unbounded.
-message JointLimits {
-  optional double min = 1;
-  optional double max = 2;
-  optional double max_velocity = 3;
-  optional double max_acceleration = 4;
-}
-
-// Position is multiplier * position of joint + offset
-message MimicJoint {
-  string joint = 1;
-  double multiplier = 2;
-  double offset = 3;
-}
-
-// Properties of the component as a whole
-message KinematicProperties {
-  // Rate the component expects to be driven at
-  optional double operating_freq_hz = 1;
-  // Maximum linear speed of the tool center point
-  optional double max_linear_tcp_speed_mm_per_sec = 2;
+  KinematicsFileFormat format = 1;
+  // The byte contents of the file
+  bytes kinematics_data = 2;
+  // Map of URDF mesh file paths to mesh data
+  map<string, Mesh> meshes_by_urdf_filepath = 3;
 }
 
 message GetGeometriesRequest {
