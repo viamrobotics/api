@@ -974,6 +974,11 @@ export class TempStreamOptions extends jspb.Message {
   getMoveOptions(): component_arm_v1_arm_pb.MoveOptions | undefined;
   setMoveOptions(value?: component_arm_v1_arm_pb.MoveOptions): void;
 
+  hasMaxTrajexRunwayMs(): boolean;
+  clearMaxTrajexRunwayMs(): void;
+  getMaxTrajexRunwayMs(): number;
+  setMaxTrajexRunwayMs(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TempStreamOptions.AsObject;
   static toObject(includeInstance: boolean, msg: TempStreamOptions): TempStreamOptions.AsObject;
@@ -990,6 +995,7 @@ export namespace TempStreamOptions {
     sendToArmIntervalMs: number,
     diagnosticsWindowSecs: number,
     moveOptions?: component_arm_v1_arm_pb.MoveOptions.AsObject,
+    maxTrajexRunwayMs: number,
   }
 }
 

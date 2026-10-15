@@ -439,6 +439,12 @@ message TempStreamOptions {
 
   // Kinematic limits for the session's trajectory.
   optional viam.component.arm.v1.MoveOptions move_options = 4;
+
+  // Cap on how much not-yet-sampled trajectory the motion service buffers inside its
+  // trajectory-generation session. While the buffered trajectory is at the cap, the
+  // service stops reading targets from the stream, so the client's next send blocks
+  // until execution drains the backlog. Unset or 0 disables the cap.
+  optional int32 max_trajex_runway_ms = 5;
 }
 
 message TempStreamArmJointPositionsRequest {

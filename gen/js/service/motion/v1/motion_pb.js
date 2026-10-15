@@ -7749,7 +7749,8 @@ proto.viam.service.motion.v1.TempStreamOptions.toObject = function(includeInstan
     armSideTargetRunwayMs: jspb.Message.getFieldWithDefault(msg, 1, 0),
     sendToArmIntervalMs: jspb.Message.getFieldWithDefault(msg, 2, 0),
     diagnosticsWindowSecs: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    moveOptions: (f = msg.getMoveOptions()) && component_arm_v1_arm_pb.MoveOptions.toObject(includeInstance, f)
+    moveOptions: (f = msg.getMoveOptions()) && component_arm_v1_arm_pb.MoveOptions.toObject(includeInstance, f),
+    maxTrajexRunwayMs: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -7802,6 +7803,10 @@ proto.viam.service.motion.v1.TempStreamOptions.deserializeBinaryFromReader = fun
       var value = new component_arm_v1_arm_pb.MoveOptions;
       reader.readMessage(value,component_arm_v1_arm_pb.MoveOptions.deserializeBinaryFromReader);
       msg.setMoveOptions(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMaxTrajexRunwayMs(value);
       break;
     default:
       reader.skipField();
@@ -7859,6 +7864,13 @@ proto.viam.service.motion.v1.TempStreamOptions.serializeBinaryToWriter = functio
       4,
       f,
       component_arm_v1_arm_pb.MoveOptions.serializeBinaryToWriter
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 5));
+  if (f != null) {
+    writer.writeInt32(
+      5,
+      f
     );
   }
 };
@@ -8006,6 +8018,42 @@ proto.viam.service.motion.v1.TempStreamOptions.prototype.clearMoveOptions = func
  */
 proto.viam.service.motion.v1.TempStreamOptions.prototype.hasMoveOptions = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional int32 max_trajex_runway_ms = 5;
+ * @return {number}
+ */
+proto.viam.service.motion.v1.TempStreamOptions.prototype.getMaxTrajexRunwayMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.service.motion.v1.TempStreamOptions} returns this
+ */
+proto.viam.service.motion.v1.TempStreamOptions.prototype.setMaxTrajexRunwayMs = function(value) {
+  return jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.service.motion.v1.TempStreamOptions} returns this
+ */
+proto.viam.service.motion.v1.TempStreamOptions.prototype.clearMaxTrajexRunwayMs = function() {
+  return jspb.Message.setField(this, 5, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.motion.v1.TempStreamOptions.prototype.hasMaxTrajexRunwayMs = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
