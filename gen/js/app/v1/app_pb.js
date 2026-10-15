@@ -5308,7 +5308,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.UpdateMLModelMetadata = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.UpdateMLModelMetadata.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.UpdateMLModelMetadata, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -5329,7 +5329,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.app.v1.UpdateMLTrainingMetadata = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.app.v1.UpdateMLTrainingMetadata.repeatedFields_, null);
 };
 goog.inherits(proto.viam.app.v1.UpdateMLTrainingMetadata, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -44937,7 +44937,7 @@ proto.viam.app.v1.MLModelVersion.prototype.hasCreatedOn = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.MLModelMetadata.repeatedFields_ = [1,4];
+proto.viam.app.v1.MLModelMetadata.repeatedFields_ = [1,4,5];
 
 
 
@@ -44974,7 +44974,8 @@ proto.viam.app.v1.MLModelMetadata.toObject = function(includeInstance, msg) {
     modelType: jspb.Message.getFieldWithDefault(msg, 2, 0),
     modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0),
     detailedVersionsList: jspb.Message.toObjectList(msg.getDetailedVersionsList(),
-    proto.viam.app.v1.MLModelVersion.toObject, includeInstance)
+    proto.viam.app.v1.MLModelVersion.toObject, includeInstance),
+    deploymentModularResourcesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -45027,6 +45028,10 @@ proto.viam.app.v1.MLModelMetadata.deserializeBinaryFromReader = function(msg, re
       var value = new proto.viam.app.v1.MLModelVersion;
       reader.readMessage(value,proto.viam.app.v1.MLModelVersion.deserializeBinaryFromReader);
       msg.addDetailedVersions(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addDeploymentModularResources(value);
       break;
     default:
       reader.skipField();
@@ -45084,6 +45089,13 @@ proto.viam.app.v1.MLModelMetadata.serializeBinaryToWriter = function(message, wr
       4,
       f,
       proto.viam.app.v1.MLModelVersion.serializeBinaryToWriter
+    );
+  }
+  f = message.getDeploymentModularResourcesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      5,
+      f
     );
   }
 };
@@ -45197,6 +45209,43 @@ proto.viam.app.v1.MLModelMetadata.prototype.addDetailedVersions = function(opt_v
  */
 proto.viam.app.v1.MLModelMetadata.prototype.clearDetailedVersionsList = function() {
   return this.setDetailedVersionsList([]);
+};
+
+
+/**
+ * repeated string deployment_modular_resources = 5;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.getDeploymentModularResourcesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.MLModelMetadata} returns this
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.setDeploymentModularResourcesList = function(value) {
+  return jspb.Message.setField(this, 5, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.MLModelMetadata} returns this
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.addDeploymentModularResources = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.MLModelMetadata} returns this
+ */
+proto.viam.app.v1.MLModelMetadata.prototype.clearDeploymentModularResourcesList = function() {
+  return this.setDeploymentModularResourcesList([]);
 };
 
 
@@ -45387,7 +45436,7 @@ proto.viam.app.v1.MLTrainingVersion.prototype.hasCreatedOn = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.MLTrainingMetadata.repeatedFields_ = [5];
+proto.viam.app.v1.MLTrainingMetadata.repeatedFields_ = [5,6];
 
 
 
@@ -45424,7 +45473,8 @@ proto.viam.app.v1.MLTrainingMetadata.toObject = function(includeInstance, msg) {
     proto.viam.app.v1.MLTrainingVersion.toObject, includeInstance),
     modelType: jspb.Message.getFieldWithDefault(msg, 2, 0),
     modelFramework: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    draft: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    draft: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    deploymentModularResourcesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -45477,6 +45527,10 @@ proto.viam.app.v1.MLTrainingMetadata.deserializeBinaryFromReader = function(msg,
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDraft(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addDeploymentModularResources(value);
       break;
     default:
       reader.skipField();
@@ -45533,6 +45587,13 @@ proto.viam.app.v1.MLTrainingMetadata.serializeBinaryToWriter = function(message,
   if (f) {
     writer.writeBool(
       4,
+      f
+    );
+  }
+  f = message.getDeploymentModularResourcesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      6,
       f
     );
   }
@@ -45628,6 +45689,43 @@ proto.viam.app.v1.MLTrainingMetadata.prototype.getDraft = function() {
  */
 proto.viam.app.v1.MLTrainingMetadata.prototype.setDraft = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * repeated string deployment_modular_resources = 6;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.MLTrainingMetadata.prototype.getDeploymentModularResourcesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 6));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.MLTrainingMetadata} returns this
+ */
+proto.viam.app.v1.MLTrainingMetadata.prototype.setDeploymentModularResourcesList = function(value) {
+  return jspb.Message.setField(this, 6, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.MLTrainingMetadata} returns this
+ */
+proto.viam.app.v1.MLTrainingMetadata.prototype.addDeploymentModularResources = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.MLTrainingMetadata} returns this
+ */
+proto.viam.app.v1.MLTrainingMetadata.prototype.clearDeploymentModularResourcesList = function() {
+  return this.setDeploymentModularResourcesList([]);
 };
 
 
@@ -52286,6 +52384,13 @@ proto.viam.app.v1.UpdateModuleMetadata.prototype.hasMinViamServerVersion = funct
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.UpdateMLModelMetadata.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -52318,7 +52423,8 @@ proto.viam.app.v1.UpdateMLModelMetadata.prototype.toObject = function(opt_includ
 proto.viam.app.v1.UpdateMLModelMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
     modelType: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    modelFramework: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    modelFramework: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    deploymentModularResourcesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -52363,6 +52469,10 @@ proto.viam.app.v1.UpdateMLModelMetadata.deserializeBinaryFromReader = function(m
       var value = /** @type {!proto.viam.app.mltraining.v1.ModelFramework} */ (reader.readEnum());
       msg.setModelFramework(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addDeploymentModularResources(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -52406,6 +52516,13 @@ proto.viam.app.v1.UpdateMLModelMetadata.serializeBinaryToWriter = function(messa
       f
     );
   }
+  f = message.getDeploymentModularResourcesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -52445,6 +52562,50 @@ proto.viam.app.v1.UpdateMLModelMetadata.prototype.setModelFramework = function(v
 };
 
 
+/**
+ * repeated string deployment_modular_resources = 3;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.UpdateMLModelMetadata.prototype.getDeploymentModularResourcesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.UpdateMLModelMetadata} returns this
+ */
+proto.viam.app.v1.UpdateMLModelMetadata.prototype.setDeploymentModularResourcesList = function(value) {
+  return jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.UpdateMLModelMetadata} returns this
+ */
+proto.viam.app.v1.UpdateMLModelMetadata.prototype.addDeploymentModularResources = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.UpdateMLModelMetadata} returns this
+ */
+proto.viam.app.v1.UpdateMLModelMetadata.prototype.clearDeploymentModularResourcesList = function() {
+  return this.setDeploymentModularResourcesList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.app.v1.UpdateMLTrainingMetadata.repeatedFields_ = [4];
 
 
 
@@ -52479,7 +52640,8 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.toObject = function(includeInstance, 
   var f, obj = {
     modelType: jspb.Message.getFieldWithDefault(msg, 1, 0),
     modelFramework: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    draft: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    draft: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    deploymentModularResourcesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -52528,6 +52690,10 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.deserializeBinaryFromReader = functio
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDraft(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addDeploymentModularResources(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -52575,6 +52741,13 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.serializeBinaryToWriter = function(me
   if (f) {
     writer.writeBool(
       3,
+      f
+    );
+  }
+  f = message.getDeploymentModularResourcesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
       f
     );
   }
@@ -52632,6 +52805,43 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.getDraft = function() {
  */
 proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.setDraft = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * repeated string deployment_modular_resources = 4;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.getDeploymentModularResourcesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.UpdateMLTrainingMetadata} returns this
+ */
+proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.setDeploymentModularResourcesList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.UpdateMLTrainingMetadata} returns this
+ */
+proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.addDeploymentModularResources = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.UpdateMLTrainingMetadata} returns this
+ */
+proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.clearDeploymentModularResourcesList = function() {
+  return this.setDeploymentModularResourcesList([]);
 };
 
 
