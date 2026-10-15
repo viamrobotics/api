@@ -52755,7 +52755,7 @@ proto.viam.app.v1.UpdateMLTrainingMetadata.prototype.clearDeploymentModularResou
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.Model.repeatedFields_ = [5];
+proto.viam.app.v1.Model.repeatedFields_ = [5,6];
 
 
 
@@ -52792,7 +52792,8 @@ proto.viam.app.v1.Model.toObject = function(includeInstance, msg) {
     model: jspb.Message.getFieldWithDefault(msg, 2, ""),
     markdownDocumentation: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    supportedHardwareList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f
+    supportedHardwareList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+    apisList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -52848,6 +52849,10 @@ proto.viam.app.v1.Model.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.addSupportedHardware(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addApis(value);
       break;
     default:
       reader.skipField();
@@ -52910,6 +52915,13 @@ proto.viam.app.v1.Model.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeRepeatedString(
       5,
+      f
+    );
+  }
+  f = message.getApisList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      6,
       f
     );
   }
@@ -53058,6 +53070,43 @@ proto.viam.app.v1.Model.prototype.addSupportedHardware = function(value, opt_ind
  */
 proto.viam.app.v1.Model.prototype.clearSupportedHardwareList = function() {
   return this.setSupportedHardwareList([]);
+};
+
+
+/**
+ * repeated string apis = 6;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.Model.prototype.getApisList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 6));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.Model} returns this
+ */
+proto.viam.app.v1.Model.prototype.setApisList = function(value) {
+  return jspb.Message.setField(this, 6, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.Model} returns this
+ */
+proto.viam.app.v1.Model.prototype.addApis = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.Model} returns this
+ */
+proto.viam.app.v1.Model.prototype.clearApisList = function() {
+  return this.setApisList([]);
 };
 
 
