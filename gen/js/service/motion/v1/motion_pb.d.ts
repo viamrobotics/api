@@ -1087,6 +1087,11 @@ export namespace TempStreamArmJointPositionsRequest {
 }
 
 export class TempStreamArmJointPositionsResponse extends jspb.Message {
+  hasQueuedMs(): boolean;
+  clearQueuedMs(): void;
+  getQueuedMs(): number;
+  setQueuedMs(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TempStreamArmJointPositionsResponse.AsObject;
   static toObject(includeInstance: boolean, msg: TempStreamArmJointPositionsResponse): TempStreamArmJointPositionsResponse.AsObject;
@@ -1099,6 +1104,7 @@ export class TempStreamArmJointPositionsResponse extends jspb.Message {
 
 export namespace TempStreamArmJointPositionsResponse {
   export type AsObject = {
+    queuedMs: number,
   }
 }
 

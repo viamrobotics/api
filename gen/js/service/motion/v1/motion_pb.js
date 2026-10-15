@@ -8691,7 +8691,7 @@ proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse.prototype.toObj
  */
 proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    queuedMs: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -8728,6 +8728,10 @@ proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse.deserializeBina
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setQueuedMs(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -8757,6 +8761,49 @@ proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse.prototype.seria
  */
 proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = /** @type {number} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
+    writer.writeInt32(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int32 queued_ms = 1;
+ * @return {number}
+ */
+proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse.prototype.getQueuedMs = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse} returns this
+ */
+proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse.prototype.setQueuedMs = function(value) {
+  return jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse} returns this
+ */
+proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse.prototype.clearQueuedMs = function() {
+  return jspb.Message.setField(this, 1, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.service.motion.v1.TempStreamArmJointPositionsResponse.prototype.hasQueuedMs = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
