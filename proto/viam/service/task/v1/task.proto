@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package viam.service.task.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/service/task/v1";
+option java_package = "com.viam.service.task.v1";
+
+// A TaskService is a unit of robot work with a clear start, a clear end and an
+// outcome: pick up the glass, pour 150 ml, wait until a glass is empty. A task
+// runs once per call, reports progress while it runs, and returns an outcome
+// plus output data. Tasks emit outcomes; a state machine owns what happens next.
+service TaskService {
+  // Run performs one execution of the task. The stream carries progress
+  // updates and ends with exactly one Result message. A gRPC error ends the
+  // stream without a Result and is treated by callers as the outcome "error".
+  // Cancelling the call cancels the task: the task must leave the hardware in
+  // a safe state before the stream closes. Only one execution may be in flight
+  // per task resource; a concurrent Run fails with FAILED_PRECONDITION.
+  rpc Run(RunRequest) returns (stream RunResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/task/{name}/run"};
+  }
+
+  // GetStatus reports whether the task is idle or running and its last result.
+  // It never drives lifecycle; it exists so a UI or an agent can ask what is
+  // running without holding a Run call open.
+  rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/task/{name}/status"};
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/task/{name}/do_command"};
+  }
+}
+
+// Phase is whether a task currently has an execution in flight.
+enum Phase {
+  PHASE_UNSPECIFIED = 0;
+  PHASE_IDLE = 1;
+  PHASE_RUNNING = 2;
+}
+
+// Progress is a non-terminal update from a running task.
+message Progress {
+  // A human readable description of what the task is doing right now.
+  string message = 1;
+  // Fraction complete in [0, 1]. 0 when the task cannot estimate progress.
+  double fraction = 2;
+}
+
+// Result is the terminal outcome of one execution.
+message Result {
+  // The outcome name, e.g. "done", "no_glass", "error". A state machine looks
+  // this up in the current state's transition table.
+  string outcome = 1;
+  // Output data. A state machine merges it into its context.
+  google.protobuf.Struct output = 2;
+}
+
+message RunRequest {
+  // Name of the task service
+  string name = 1;
+  // Input data for this execution. From a state machine this is the machine's
+  // context merged with the payload of the event that triggered the transition.
+  google.protobuf.Struct input = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message RunResponse {
+  oneof update {
+    Progress progress = 1;
+    // Terminal. The stream closes after this message.
+    Result result = 2;
+  }
+}
+
+message GetStatusRequest {
+  // Name of the task service
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetStatusResponse {
+  Phase phase = 1;
+  // The result of the most recent completed execution, if any.
+  Result last_result = 2;
+  // When the current execution started. Unset when idle.
+  google.protobuf.Timestamp started_at = 3;
+  // The latest progress of the current execution. Unset when idle.
+  Progress progress = 4;
+}
