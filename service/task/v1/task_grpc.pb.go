@@ -23,13 +23,12 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TaskServiceClient interface {
-	// Run performs one execution of the task. The stream carries progress
-	// updates and ends with exactly one Result message. A gRPC error ends the
-	// stream without a Result and is treated by callers as the outcome "error".
-	// Cancelling the call cancels the task: the task must leave the hardware in
-	// a safe state before the stream closes. Only one execution may be in flight
-	// per task resource; a concurrent Run fails with FAILED_PRECONDITION.
-	Run(ctx context.Context, in *RunRequest, opts ...grpc.CallOption) (TaskService_RunClient, error)
+	// Run performs one execution of the task and returns its result when it is
+	// finished. Cancelling the call cancels the task: the task must leave the
+	// hardware in a safe state before returning. Only one execution may be in
+	// flight per task resource; a concurrent Run fails with FAILED_PRECONDITION.
+	// Progress while it runs is read with GetStatus.
+	Run(ctx context.Context, in *RunRequest, opts ...grpc.CallOption) (*RunResponse, error)
 	// GetStatus reports whether the task is idle or running and its last result.
 	// It never drives lifecycle; it exists so a UI or an agent can ask what is
 	// running without holding a Run call open.
@@ -46,36 +45,13 @@ func NewTaskServiceClient(cc grpc.ClientConnInterface) TaskServiceClient {
 	return &taskServiceClient{cc}
 }
 
-func (c *taskServiceClient) Run(ctx context.Context, in *RunRequest, opts ...grpc.CallOption) (TaskService_RunClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TaskService_ServiceDesc.Streams[0], "/viam.service.task.v1.TaskService/Run", opts...)
+func (c *taskServiceClient) Run(ctx context.Context, in *RunRequest, opts ...grpc.CallOption) (*RunResponse, error) {
+	out := new(RunResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.task.v1.TaskService/Run", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &taskServiceRunClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type TaskService_RunClient interface {
-	Recv() (*RunResponse, error)
-	grpc.ClientStream
-}
-
-type taskServiceRunClient struct {
-	grpc.ClientStream
-}
-
-func (x *taskServiceRunClient) Recv() (*RunResponse, error) {
-	m := new(RunResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 func (c *taskServiceClient) GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error) {
@@ -100,13 +76,12 @@ func (c *taskServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReque
 // All implementations must embed UnimplementedTaskServiceServer
 // for forward compatibility
 type TaskServiceServer interface {
-	// Run performs one execution of the task. The stream carries progress
-	// updates and ends with exactly one Result message. A gRPC error ends the
-	// stream without a Result and is treated by callers as the outcome "error".
-	// Cancelling the call cancels the task: the task must leave the hardware in
-	// a safe state before the stream closes. Only one execution may be in flight
-	// per task resource; a concurrent Run fails with FAILED_PRECONDITION.
-	Run(*RunRequest, TaskService_RunServer) error
+	// Run performs one execution of the task and returns its result when it is
+	// finished. Cancelling the call cancels the task: the task must leave the
+	// hardware in a safe state before returning. Only one execution may be in
+	// flight per task resource; a concurrent Run fails with FAILED_PRECONDITION.
+	// Progress while it runs is read with GetStatus.
+	Run(context.Context, *RunRequest) (*RunResponse, error)
 	// GetStatus reports whether the task is idle or running and its last result.
 	// It never drives lifecycle; it exists so a UI or an agent can ask what is
 	// running without holding a Run call open.
@@ -120,8 +95,8 @@ type TaskServiceServer interface {
 type UnimplementedTaskServiceServer struct {
 }
 
-func (UnimplementedTaskServiceServer) Run(*RunRequest, TaskService_RunServer) error {
-	return status.Errorf(codes.Unimplemented, "method Run not implemented")
+func (UnimplementedTaskServiceServer) Run(context.Context, *RunRequest) (*RunResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Run not implemented")
 }
 func (UnimplementedTaskServiceServer) GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
@@ -142,25 +117,22 @@ func RegisterTaskServiceServer(s grpc.ServiceRegistrar, srv TaskServiceServer) {
 	s.RegisterService(&TaskService_ServiceDesc, srv)
 }
 
-func _TaskService_Run_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(RunRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _TaskService_Run_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RunRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(TaskServiceServer).Run(m, &taskServiceRunServer{stream})
-}
-
-type TaskService_RunServer interface {
-	Send(*RunResponse) error
-	grpc.ServerStream
-}
-
-type taskServiceRunServer struct {
-	grpc.ServerStream
-}
-
-func (x *taskServiceRunServer) Send(m *RunResponse) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(TaskServiceServer).Run(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.task.v1.TaskService/Run",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskServiceServer).Run(ctx, req.(*RunRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _TaskService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -207,6 +179,10 @@ var TaskService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TaskServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "Run",
+			Handler:    _TaskService_Run_Handler,
+		},
+		{
 			MethodName: "GetStatus",
 			Handler:    _TaskService_GetStatus_Handler,
 		},
@@ -215,12 +191,6 @@ var TaskService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TaskService_DoCommand_Handler,
 		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "Run",
-			Handler:       _TaskService_Run_Handler,
-			ServerStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "service/task/v1/task.proto",
 }

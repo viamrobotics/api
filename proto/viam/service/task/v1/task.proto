@@ -15,13 +15,12 @@ option java_package = "com.viam.service.task.v1";
 // runs once per call, reports progress while it runs, and returns an outcome
 // plus output data. Tasks emit outcomes; a state machine owns what happens next.
 service TaskService {
-  // Run performs one execution of the task. The stream carries progress
-  // updates and ends with exactly one Result message. A gRPC error ends the
-  // stream without a Result and is treated by callers as the outcome "error".
-  // Cancelling the call cancels the task: the task must leave the hardware in
-  // a safe state before the stream closes. Only one execution may be in flight
-  // per task resource; a concurrent Run fails with FAILED_PRECONDITION.
-  rpc Run(RunRequest) returns (stream RunResponse) {
+  // Run performs one execution of the task and returns its result when it is
+  // finished. Cancelling the call cancels the task: the task must leave the
+  // hardware in a safe state before returning. Only one execution may be in
+  // flight per task resource; a concurrent Run fails with FAILED_PRECONDITION.
+  // Progress while it runs is read with GetStatus.
+  rpc Run(RunRequest) returns (RunResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/task/{name}/run"};
   }
 
@@ -45,7 +44,7 @@ enum Phase {
   PHASE_RUNNING = 2;
 }
 
-// Progress is a non-terminal update from a running task.
+// Progress is the latest report from a running task, as GetStatus returns it.
 message Progress {
   // A human readable description of what the task is doing right now.
   string message = 1;
@@ -73,11 +72,7 @@ message RunRequest {
 }
 
 message RunResponse {
-  oneof update {
-    Progress progress = 1;
-    // Terminal. The stream closes after this message.
-    Result result = 2;
-  }
+  Result result = 1;
 }
 
 message GetStatusRequest {
