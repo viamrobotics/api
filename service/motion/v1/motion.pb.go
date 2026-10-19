@@ -2155,8 +2155,8 @@ type TempStreamArmJointPositionsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// motion_side_current_runway_ms is how much motion, in milliseconds, the
-	// service had accepted but not yet handed to the arm, measured once that target was added.
+	// motion_side_current_runway_ms is sent once per target, right after the service adds it. It is how much
+	// motion, in milliseconds, the service has accepted but not yet handed to the arm at that moment.
 	MotionSideCurrentRunwayMs *int32 `protobuf:"varint,1,opt,name=motion_side_current_runway_ms,json=motionSideCurrentRunwayMs,proto3,oneof" json:"motion_side_current_runway_ms,omitempty"`
 }
 
