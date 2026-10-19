@@ -470,4 +470,8 @@ message TempStreamArmJointPositionsRequest {
   }
 }
 
-message TempStreamArmJointPositionsResponse {}
+message TempStreamArmJointPositionsResponse {
+  // motion_side_current_runway_ms is how much motion, in milliseconds, the
+  // service had accepted but not yet handed to the arm, measured once that target was added.
+  optional int32 motion_side_current_runway_ms = 1;
+}
