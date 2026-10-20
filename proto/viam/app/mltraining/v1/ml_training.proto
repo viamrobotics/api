@@ -227,7 +227,7 @@ message GetContainerResponse {
 message RegisterCustomTrainingContainerRequest {
   string organization_id = 1;
 
-  // Docker Hub reference, official images normalize to docker.io/library/<image>:<tag>.
+  // Docker Hub reference, official images normalize to `docker.io/library/<image>:<tag>`.
   string image_uri = 2;
 
   string description = 3; // will serve as display name
