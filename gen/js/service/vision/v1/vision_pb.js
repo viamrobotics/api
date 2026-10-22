@@ -431,7 +431,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.viam.service.vision.v1.GetPropertiesResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.viam.service.vision.v1.GetPropertiesResponse.repeatedFields_, null);
 };
 goog.inherits(proto.viam.service.vision.v1.GetPropertiesResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -4947,6 +4947,13 @@ proto.viam.service.vision.v1.CaptureAllFromCameraResponse.prototype.hasExtra = f
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.viam.service.vision.v1.GetPropertiesResponse.repeatedFields_ = [6];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -4982,7 +4989,8 @@ proto.viam.service.vision.v1.GetPropertiesResponse.toObject = function(includeIn
     detectionsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     objectPointCloudsSupported: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     defaultCamera: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    detections3dSupported: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+    detections3dSupported: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    camerasList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -5038,6 +5046,10 @@ proto.viam.service.vision.v1.GetPropertiesResponse.deserializeBinaryFromReader =
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDetections3dSupported(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addCameras(value);
       break;
     default:
       reader.skipField();
@@ -5100,6 +5112,13 @@ proto.viam.service.vision.v1.GetPropertiesResponse.serializeBinaryToWriter = fun
   if (f) {
     writer.writeBool(
       5,
+      f
+    );
+  }
+  f = message.getCamerasList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      6,
       f
     );
   }
@@ -5211,6 +5230,43 @@ proto.viam.service.vision.v1.GetPropertiesResponse.prototype.getDetections3dSupp
  */
 proto.viam.service.vision.v1.GetPropertiesResponse.prototype.setDetections3dSupported = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * repeated string cameras = 6;
+ * @return {!Array<string>}
+ */
+proto.viam.service.vision.v1.GetPropertiesResponse.prototype.getCamerasList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 6));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.service.vision.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.service.vision.v1.GetPropertiesResponse.prototype.setCamerasList = function(value) {
+  return jspb.Message.setField(this, 6, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.service.vision.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.service.vision.v1.GetPropertiesResponse.prototype.addCameras = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.service.vision.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.service.vision.v1.GetPropertiesResponse.prototype.clearCamerasList = function() {
+  return this.setCamerasList([]);
 };
 
 
