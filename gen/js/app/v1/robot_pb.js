@@ -6160,7 +6160,7 @@ proto.viam.app.v1.AuthConfig.prototype.clearUserPermissionsList = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.UserPermission.repeatedFields_ = [2];
+proto.viam.app.v1.UserPermission.repeatedFields_ = [3,2];
 
 
 
@@ -6193,9 +6193,11 @@ proto.viam.app.v1.UserPermission.prototype.toObject = function(opt_includeInstan
  */
 proto.viam.app.v1.UserPermission.toObject = function(includeInstance, msg) {
   var f, obj = {
-    user: (f = msg.getUser()) && proto.viam.app.v1.User.toObject(includeInstance, f),
+    usersList: jspb.Message.toObjectList(msg.getUsersList(),
+    proto.viam.app.v1.User.toObject, includeInstance),
     permissionsList: jspb.Message.toObjectList(msg.getPermissionsList(),
-    proto.viam.app.v1.Permission.toObject, includeInstance)
+    proto.viam.app.v1.Permission.toObject, includeInstance),
+    user: (f = msg.getUser()) && proto.viam.app.v1.User.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6232,15 +6234,20 @@ proto.viam.app.v1.UserPermission.deserializeBinaryFromReader = function(msg, rea
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
+    case 3:
       var value = new proto.viam.app.v1.User;
       reader.readMessage(value,proto.viam.app.v1.User.deserializeBinaryFromReader);
-      msg.setUser(value);
+      msg.addUsers(value);
       break;
     case 2:
       var value = new proto.viam.app.v1.Permission;
       reader.readMessage(value,proto.viam.app.v1.Permission.deserializeBinaryFromReader);
       msg.addPermissions(value);
+      break;
+    case 1:
+      var value = new proto.viam.app.v1.User;
+      reader.readMessage(value,proto.viam.app.v1.User.deserializeBinaryFromReader);
+      msg.setUser(value);
       break;
     default:
       reader.skipField();
@@ -6271,10 +6278,10 @@ proto.viam.app.v1.UserPermission.prototype.serializeBinary = function() {
  */
 proto.viam.app.v1.UserPermission.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUser();
-  if (f != null) {
-    writer.writeMessage(
-      1,
+  f = message.getUsersList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
       f,
       proto.viam.app.v1.User.serializeBinaryToWriter
     );
@@ -6287,43 +6294,52 @@ proto.viam.app.v1.UserPermission.serializeBinaryToWriter = function(message, wri
       proto.viam.app.v1.Permission.serializeBinaryToWriter
     );
   }
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.viam.app.v1.User.serializeBinaryToWriter
+    );
+  }
 };
 
 
 /**
- * optional User user = 1;
- * @return {?proto.viam.app.v1.User}
+ * repeated User users = 3;
+ * @return {!Array<!proto.viam.app.v1.User>}
  */
-proto.viam.app.v1.UserPermission.prototype.getUser = function() {
-  return /** @type{?proto.viam.app.v1.User} */ (
-    jspb.Message.getWrapperField(this, proto.viam.app.v1.User, 1));
+proto.viam.app.v1.UserPermission.prototype.getUsersList = function() {
+  return /** @type{!Array<!proto.viam.app.v1.User>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.viam.app.v1.User, 3));
 };
 
 
 /**
- * @param {?proto.viam.app.v1.User|undefined} value
+ * @param {!Array<!proto.viam.app.v1.User>} value
  * @return {!proto.viam.app.v1.UserPermission} returns this
 */
-proto.viam.app.v1.UserPermission.prototype.setUser = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+proto.viam.app.v1.UserPermission.prototype.setUsersList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
 
 /**
- * Clears the message field making it undefined.
+ * @param {!proto.viam.app.v1.User=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.User}
+ */
+proto.viam.app.v1.UserPermission.prototype.addUsers = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.viam.app.v1.User, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
  * @return {!proto.viam.app.v1.UserPermission} returns this
  */
-proto.viam.app.v1.UserPermission.prototype.clearUser = function() {
-  return this.setUser(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.app.v1.UserPermission.prototype.hasUser = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.viam.app.v1.UserPermission.prototype.clearUsersList = function() {
+  return this.setUsersList([]);
 };
 
 
@@ -6362,6 +6378,43 @@ proto.viam.app.v1.UserPermission.prototype.addPermissions = function(opt_value, 
  */
 proto.viam.app.v1.UserPermission.prototype.clearPermissionsList = function() {
   return this.setPermissionsList([]);
+};
+
+
+/**
+ * optional User user = 1;
+ * @return {?proto.viam.app.v1.User}
+ */
+proto.viam.app.v1.UserPermission.prototype.getUser = function() {
+  return /** @type{?proto.viam.app.v1.User} */ (
+    jspb.Message.getWrapperField(this, proto.viam.app.v1.User, 1));
+};
+
+
+/**
+ * @param {?proto.viam.app.v1.User|undefined} value
+ * @return {!proto.viam.app.v1.UserPermission} returns this
+*/
+proto.viam.app.v1.UserPermission.prototype.setUser = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.viam.app.v1.UserPermission} returns this
+ */
+proto.viam.app.v1.UserPermission.prototype.clearUser = function() {
+  return this.setUser(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.app.v1.UserPermission.prototype.hasUser = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
