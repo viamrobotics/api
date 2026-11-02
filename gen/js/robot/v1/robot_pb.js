@@ -75,6 +75,7 @@ goog.exportSymbol('proto.viam.robot.v1.ResourceRPCSubtype', null, global);
 goog.exportSymbol('proto.viam.robot.v1.ResourceRPCSubtypesRequest', null, global);
 goog.exportSymbol('proto.viam.robot.v1.ResourceRPCSubtypesResponse', null, global);
 goog.exportSymbol('proto.viam.robot.v1.ResourceStatus', null, global);
+goog.exportSymbol('proto.viam.robot.v1.ResourceStatus.Reachability', null, global);
 goog.exportSymbol('proto.viam.robot.v1.ResourceStatus.State', null, global);
 goog.exportSymbol('proto.viam.robot.v1.RestartModuleRequest', null, global);
 goog.exportSymbol('proto.viam.robot.v1.RestartModuleRequest.IdOrNameCase', null, global);
@@ -11102,7 +11103,9 @@ proto.viam.robot.v1.ResourceStatus.toObject = function(includeInstance, msg) {
     lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     revision: jspb.Message.getFieldWithDefault(msg, 4, ""),
     error: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    cloudMetadata: (f = msg.getCloudMetadata()) && proto.viam.robot.v1.GetCloudMetadataResponse.toObject(includeInstance, f)
+    cloudMetadata: (f = msg.getCloudMetadata()) && proto.viam.robot.v1.GetCloudMetadataResponse.toObject(includeInstance, f),
+    reachability: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    remote: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -11165,6 +11168,14 @@ proto.viam.robot.v1.ResourceStatus.deserializeBinaryFromReader = function(msg, r
       var value = new proto.viam.robot.v1.GetCloudMetadataResponse;
       reader.readMessage(value,proto.viam.robot.v1.GetCloudMetadataResponse.deserializeBinaryFromReader);
       msg.setCloudMetadata(value);
+      break;
+    case 7:
+      var value = /** @type {!proto.viam.robot.v1.ResourceStatus.Reachability} */ (reader.readEnum());
+      msg.setReachability(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRemote(value);
       break;
     default:
       reader.skipField();
@@ -11240,6 +11251,20 @@ proto.viam.robot.v1.ResourceStatus.serializeBinaryToWriter = function(message, w
       proto.viam.robot.v1.GetCloudMetadataResponse.serializeBinaryToWriter
     );
   }
+  f = message.getReachability();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      7,
+      f
+    );
+  }
+  f = /** @type {string} */ (jspb.Message.getField(message, 8));
+  if (f != null) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
 };
 
 
@@ -11253,6 +11278,17 @@ proto.viam.robot.v1.ResourceStatus.State = {
   STATE_READY: 3,
   STATE_REMOVING: 4,
   STATE_UNHEALTHY: 5
+};
+
+/**
+ * @enum {number}
+ */
+proto.viam.robot.v1.ResourceStatus.Reachability = {
+  REACHABILITY_UNSPECIFIED: 0,
+  REACHABILITY_REACHABLE: 1,
+  REACHABILITY_REMOTE_DISCONNECTED: 2,
+  REACHABILITY_SHADOWED_BY_LOCAL: 3,
+  REACHABILITY_AMBIGUOUS_REMOTE: 4
 };
 
 /**
@@ -11417,6 +11453,60 @@ proto.viam.robot.v1.ResourceStatus.prototype.clearCloudMetadata = function() {
  */
 proto.viam.robot.v1.ResourceStatus.prototype.hasCloudMetadata = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional Reachability reachability = 7;
+ * @return {!proto.viam.robot.v1.ResourceStatus.Reachability}
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.getReachability = function() {
+  return /** @type {!proto.viam.robot.v1.ResourceStatus.Reachability} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {!proto.viam.robot.v1.ResourceStatus.Reachability} value
+ * @return {!proto.viam.robot.v1.ResourceStatus} returns this
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.setReachability = function(value) {
+  return jspb.Message.setProto3EnumField(this, 7, value);
+};
+
+
+/**
+ * optional string remote = 8;
+ * @return {string}
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.getRemote = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.robot.v1.ResourceStatus} returns this
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.setRemote = function(value) {
+  return jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.viam.robot.v1.ResourceStatus} returns this
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.clearRemote = function() {
+  return jspb.Message.setField(this, 8, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.viam.robot.v1.ResourceStatus.prototype.hasRemote = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

@@ -51,6 +51,8 @@ enum ModelType {
   MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION = 1;
   MODEL_TYPE_MULTI_LABEL_CLASSIFICATION = 2;
   MODEL_TYPE_OBJECT_DETECTION = 3;
+  // A policy that controls a robot.
+  MODEL_TYPE_ROBOT_POLICY = 4;
 }
 
 enum ModelFramework {
