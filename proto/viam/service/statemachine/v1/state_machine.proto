@@ -1,0 +1,171 @@
+syntax = "proto3";
+
+package viam.service.statemachine.v1;
+
+import "common/v1/common.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "service/task/v1/task.proto";
+
+option go_package = "go.viam.com/api/service/statemachine/v1";
+option java_package = "com.viam.service.statemachine.v1";
+
+// A StateMachineService runs a configured graph of states. Each state may run
+// one task; when that task returns an outcome, or an event arrives, the
+// machine looks up the transition and enters the next state. States nest: a
+// mode is a state that contains a sub-machine. The machine exposes where it
+// is, accepts events, and shows its history.
+service StateMachineService {
+  // GetState returns the active state path, the machine status, the context
+  // and the running task's latest progress.
+  rpc GetState(GetStateRequest) returns (GetStateResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/state_machine/{name}/state"};
+  }
+
+  // SendEvent delivers an external event. An event with no matching transition
+  // in the current state or any ancestor is dropped and logged; the response
+  // then says handled: false. Events are never queued.
+  rpc SendEvent(SendEventRequest) returns (SendEventResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/state_machine/{name}/event"};
+  }
+
+  // GetHistory returns the most recent transitions, newest last.
+  rpc GetHistory(GetHistoryRequest) returns (GetHistoryResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/state_machine/{name}/history"};
+  }
+
+  // GetDefinition returns the graph as configured.
+  rpc GetDefinition(GetDefinitionRequest) returns (GetDefinitionResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/state_machine/{name}/definition"};
+  }
+
+  // Stop cancels the current task and holds the machine in its current state
+  // until Reset or an event with a transition out.
+  rpc Stop(StopRequest) returns (StopResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/state_machine/{name}/stop"};
+  }
+
+  // Reset cancels the current task, clears the context back to its configured
+  // value and re-enters the initial state.
+  rpc Reset(ResetRequest) returns (ResetResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/state_machine/{name}/reset"};
+  }
+
+  // DoCommand sends/receives arbitrary commands
+  rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/service/state_machine/{name}/do_command"};
+  }
+
+  // GetStatus returns the status of the resource
+  rpc GetStatus(common.v1.GetStatusRequest) returns (common.v1.GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/state_machine/{name}/get_status"};
+  }
+}
+
+// Status is whether the machine is driving its graph.
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  // The machine enters states and runs their tasks.
+  STATUS_RUNNING = 1;
+  // Stop was called: the machine holds its state and runs nothing until Reset
+  // or an event with a transition out.
+  STATUS_STOPPED = 2;
+  // A task returned "error" with no handler, or would not cancel in time. The
+  // machine runs nothing until Reset or an event with a transition out.
+  STATUS_FAULTED = 3;
+}
+
+// Transition is one recorded change of active state.
+message Transition {
+  // The active state path before the transition.
+  repeated string from = 1;
+  // The active state path after the transition.
+  repeated string to = 2;
+  // What caused it: the task outcome, the event name, "timeout", "stop" or "reset".
+  string trigger = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  // The result of the task that was running in the from state, if it finished.
+  viam.service.task.v1.Result task_result = 5;
+}
+
+message GetStateRequest {
+  // Name of the state machine service
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetStateResponse {
+  // The active state path from the root, e.g. ["auto", "pour", "picking_glass"].
+  repeated string path = 1;
+  Status status = 2;
+  google.protobuf.Struct context = 3;
+  // When the innermost active state was entered.
+  google.protobuf.Timestamp entered_at = 4;
+  // The running task's latest progress. Unset when no task is running.
+  viam.service.task.v1.Progress task_progress = 5;
+}
+
+message SendEventRequest {
+  // Name of the state machine service
+  string name = 1;
+  // The event name, as written in a state's "on" map.
+  string event = 2;
+  // Event payload, merged into the input of the task the target state runs.
+  google.protobuf.Struct payload = 3;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message SendEventResponse {
+  // Whether a transition matched the event.
+  bool handled = 1;
+  // The active state path after the event was processed.
+  repeated string path = 2;
+}
+
+message GetHistoryRequest {
+  // Name of the state machine service
+  string name = 1;
+  // Maximum number of transitions to return, newest first. 0 means all retained.
+  int32 limit = 2;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetHistoryResponse {
+  // Transitions in the order they happened, oldest first.
+  repeated Transition transitions = 1;
+}
+
+message GetDefinitionRequest {
+  // Name of the state machine service
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetDefinitionResponse {
+  // The machine definition as configured: initial, states, machines, watchers,
+  // on and context, in the same shape as the service's attributes.
+  google.protobuf.Struct definition = 1;
+}
+
+message StopRequest {
+  // Name of the state machine service
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message StopResponse {}
+
+message ResetRequest {
+  // Name of the state machine service
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message ResetResponse {}
