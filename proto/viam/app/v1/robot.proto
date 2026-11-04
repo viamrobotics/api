@@ -5,6 +5,7 @@ package viam.app.v1;
 import "common/v1/common.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/v1";
@@ -380,6 +381,23 @@ message AgentInfo {
   optional string platform = 6;
   // Optional tags to further constrain which artifact is returned for modules.
   repeated string platform_tags = 7;
+  // registry modules on the machine and their installed / running versions
+  repeated ModuleVersionInfo module_versions = 8;
+  // when the viam-server process started; used for machines without viam-agent
+  optional google.protobuf.Timestamp viam_server_started_at = 9;
+}
+
+message ModuleVersionInfo {
+  // registry module ID, e.g. "viam:raspberry-pi"
+  string module_id = 1;
+  // version of the module package installed on disk
+  string installed_version = 2;
+  // when installed_version finished installing (unset if unknown)
+  google.protobuf.Timestamp installed_at = 3;
+  // version of the module process currently running (empty if not running)
+  string running_version = 4;
+  // when the running module last became ready (unset if not running)
+  google.protobuf.Timestamp running_since = 5;
 }
 
 enum CredentialsType {
