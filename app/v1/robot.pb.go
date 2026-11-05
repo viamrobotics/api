@@ -7,8 +7,8 @@
 package v1
 
 import (
-	_ "github.com/srikrsna/protoc-gen-gotag/tagger"
 	v1 "go.viam.com/api/common/v1"
+	_ "go.viam.com/api/tagger/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"

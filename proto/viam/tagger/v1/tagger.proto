@@ -4,7 +4,7 @@ package tagger.v1;
 
 import "google/protobuf/descriptor.proto";
 
-option go_package = "github.com/srikrsna/protoc-gen-gotag/tagger;tagger";
+option go_package = "go.viam.com/api/tagger/v1;tagger";
 
 // Tags are applied at the field level
 extend google.protobuf.FieldOptions {
