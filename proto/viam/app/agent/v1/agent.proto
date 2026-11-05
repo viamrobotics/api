@@ -4,7 +4,6 @@ package viam.app.agent.v1;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/app/agent/v1";
 
@@ -72,10 +71,6 @@ message VersionInfo {
   string viam_server_running = 3;
   // the version of viam-server installed (will run after restart if different)
   string viam_server_installed = 4;
-  // when the installed version of viam-agent was installed (unset if unknown)
-  google.protobuf.Timestamp agent_installed_at = 5;
-  // when the installed version of viam-server was installed (unset if unknown)
-  google.protobuf.Timestamp viam_server_installed_at = 6;
 }
 
 message HostInfo {
