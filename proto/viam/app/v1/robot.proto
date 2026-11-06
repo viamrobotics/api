@@ -5,7 +5,6 @@ package viam.app.v1;
 import "common/v1/common.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "tagger/v1/tagger.proto";
 
 option go_package = "go.viam.com/api/app/v1";
@@ -381,10 +380,10 @@ message AgentInfo {
   optional string platform = 6;
   // Optional tags to further constrain which artifact is returned for modules.
   repeated string platform_tags = 7;
-  // running registry modules and when each started (empty if none or not reported)
+  // running registry modules and how long each has been running (empty if none or not reported)
   repeated ModuleVersionInfo module_versions = 8;
-  // when the viam-server process started; used for machines without viam-agent
-  optional google.protobuf.Timestamp viam_server_started_at = 9;
+  // how long this viam-server process has been running, measured with a monotonic clock
+  google.protobuf.Duration viam_server_uptime = 9;
 }
 
 message ModuleVersionInfo {
@@ -392,8 +391,8 @@ message ModuleVersionInfo {
   string module_id = 1;
   // version currently running (empty if not running)
   string running_version = 2;
-  // when the module last became ready (unset if not running)
-  google.protobuf.Timestamp running_since = 3;
+  // how long the running version has been ready (unset if not running)
+  google.protobuf.Duration running_for = 3;
 }
 
 enum CredentialsType {
