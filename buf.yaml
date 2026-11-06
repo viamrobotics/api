@@ -22,6 +22,9 @@ lint:
     RPC_RESPONSE_STANDARD_NAME:
       - proto/viam/component/audioinput/v1/audioinput.proto
       - proto/viam/component/camera/v1/camera.proto
+      # StreamTurn streams TurnEvent, the shared event message, rather than a
+      # response named for the RPC.
+      - proto/viam/app/assistant/v1/assistant.proto
 breaking:
   use:
     - FILE
