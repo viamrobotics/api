@@ -54,6 +54,11 @@ type RobotServiceClient interface {
 	RestartModule(ctx context.Context, in *RestartModuleRequest, opts ...grpc.CallOption) (*RestartModuleResponse, error)
 	// Shutdown shuts down the robot.
 	Shutdown(ctx context.Context, in *ShutdownRequest, opts ...grpc.CallOption) (*ShutdownResponse, error)
+	// OverrideMaintenanceSensor arms a one-shot override of the machine's maintenance
+	// sensor: the next config update the sensor would block is applied anyway. The
+	// override is consumed by that reconfiguration, or lapses after two config polls if
+	// no changed config arrives. It is held in memory and does not survive a restart.
+	OverrideMaintenanceSensor(ctx context.Context, in *OverrideMaintenanceSensorRequest, opts ...grpc.CallOption) (*OverrideMaintenanceSensorResponse, error)
 	// GetMachineStatus returns the current status of the robot.
 	GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error)
 	// GetVersion returns version information about the robot.
@@ -253,6 +258,15 @@ func (c *robotServiceClient) Shutdown(ctx context.Context, in *ShutdownRequest, 
 	return out, nil
 }
 
+func (c *robotServiceClient) OverrideMaintenanceSensor(ctx context.Context, in *OverrideMaintenanceSensorRequest, opts ...grpc.CallOption) (*OverrideMaintenanceSensorResponse, error) {
+	out := new(OverrideMaintenanceSensorResponse)
+	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/OverrideMaintenanceSensor", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *robotServiceClient) GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error) {
 	out := new(GetMachineStatusResponse)
 	err := c.cc.Invoke(ctx, "/viam.robot.v1.RobotService/GetMachineStatus", in, out, opts...)
@@ -401,6 +415,11 @@ type RobotServiceServer interface {
 	RestartModule(context.Context, *RestartModuleRequest) (*RestartModuleResponse, error)
 	// Shutdown shuts down the robot.
 	Shutdown(context.Context, *ShutdownRequest) (*ShutdownResponse, error)
+	// OverrideMaintenanceSensor arms a one-shot override of the machine's maintenance
+	// sensor: the next config update the sensor would block is applied anyway. The
+	// override is consumed by that reconfiguration, or lapses after two config polls if
+	// no changed config arrives. It is held in memory and does not survive a restart.
+	OverrideMaintenanceSensor(context.Context, *OverrideMaintenanceSensorRequest) (*OverrideMaintenanceSensorResponse, error)
 	// GetMachineStatus returns the current status of the robot.
 	GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error)
 	// GetVersion returns version information about the robot.
@@ -475,6 +494,9 @@ func (UnimplementedRobotServiceServer) RestartModule(context.Context, *RestartMo
 }
 func (UnimplementedRobotServiceServer) Shutdown(context.Context, *ShutdownRequest) (*ShutdownResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Shutdown not implemented")
+}
+func (UnimplementedRobotServiceServer) OverrideMaintenanceSensor(context.Context, *OverrideMaintenanceSensorRequest) (*OverrideMaintenanceSensorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OverrideMaintenanceSensor not implemented")
 }
 func (UnimplementedRobotServiceServer) GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMachineStatus not implemented")
@@ -810,6 +832,24 @@ func _RobotService_Shutdown_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RobotService_OverrideMaintenanceSensor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OverrideMaintenanceSensorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RobotServiceServer).OverrideMaintenanceSensor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.robot.v1.RobotService/OverrideMaintenanceSensor",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RobotServiceServer).OverrideMaintenanceSensor(ctx, req.(*OverrideMaintenanceSensorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RobotService_GetMachineStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetMachineStatusRequest)
 	if err := dec(in); err != nil {
@@ -1064,6 +1104,10 @@ var RobotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Shutdown",
 			Handler:    _RobotService_Shutdown_Handler,
+		},
+		{
+			MethodName: "OverrideMaintenanceSensor",
+			Handler:    _RobotService_OverrideMaintenanceSensor_Handler,
 		},
 		{
 			MethodName: "GetMachineStatus",

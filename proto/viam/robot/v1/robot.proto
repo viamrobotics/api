@@ -96,6 +96,14 @@ service RobotService {
     option (google.api.http) = {post: "/viam/api/v1/shutdown"};
   }
 
+  // OverrideMaintenanceSensor arms a one-shot override of the machine's maintenance
+  // sensor: the next config update the sensor would block is applied anyway. The
+  // override is consumed by that reconfiguration, or lapses after two config polls if
+  // no changed config arrives. It is held in memory and does not survive a restart.
+  rpc OverrideMaintenanceSensor(OverrideMaintenanceSensorRequest) returns (OverrideMaintenanceSensorResponse) {
+    option (google.api.http) = {post: "/viam/api/v1/override_maintenance_sensor"};
+  }
+
   // GetMachineStatus returns the current status of the robot.
   rpc GetMachineStatus(GetMachineStatusRequest) returns (GetMachineStatusResponse) {
     option (google.api.http) = {get: "/viam/api/v1/machine_status"};
@@ -407,6 +415,13 @@ message ShutdownRequest {}
 
 message ShutdownResponse {}
 
+message OverrideMaintenanceSensorRequest {}
+
+message OverrideMaintenanceSensorResponse {
+  // When the armed override lapses if no reconfiguration consumes it first.
+  google.protobuf.Timestamp expires_at = 1;
+}
+
 message GetMachineStatusRequest {}
 
 message GetMachineStatusResponse {
@@ -425,6 +440,8 @@ message GetMachineStatusResponse {
   repeated JobStatus job_statuses = 4;
   repeated ModuleStatus modules = 5;
   repeated PackageStatus packages = 6;
+  // Set while a one-shot maintenance sensor override is armed and unconsumed.
+  optional google.protobuf.Timestamp maintenance_override_expires_at = 7;
 }
 
 message JobStatus {
