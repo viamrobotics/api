@@ -85,6 +85,8 @@ message ApprovalRequired {
   string tool_name = 2;
   // What the card shows. The frozen call stays on the server.
   string summary = 3;
+  // Unified diff of a config or code change. Empty when the call has no document to diff.
+  string diff = 4;
 }
 
 message ClientTool {
@@ -110,6 +112,7 @@ message ConversationListItem {
 }
 
 message ListConversationsResponse {
+  // Newest updated_at first. Clients must not assume an unsorted list.
   repeated ConversationListItem conversations = 1;
 }
 
@@ -126,6 +129,10 @@ message TranscriptMessage {
 
 message GetConversationResponse {
   repeated TranscriptMessage messages = 1;
-  // Set when a turn is waiting on a card. Empty when the pending id has expired.
+  // Set when a turn is waiting on an approval card. Empty when the pending id has expired.
   ApprovalRequired open_approval = 2;
+  // Set when a turn is waiting on the client to run a tool. Empty otherwise.
+  ClientTool open_client_tool = 3;
+  // The context stored with the conversation. Empty fields were never set.
+  ConversationContext context = 4;
 }
