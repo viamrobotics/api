@@ -689,15 +689,20 @@ export namespace AuthConfig {
 }
 
 export class UserPermission extends jspb.Message {
-  hasUser(): boolean;
-  clearUser(): void;
-  getUser(): User | undefined;
-  setUser(value?: User): void;
+  clearUsersList(): void;
+  getUsersList(): Array<User>;
+  setUsersList(value: Array<User>): void;
+  addUsers(value?: User, index?: number): User;
 
   clearPermissionsList(): void;
   getPermissionsList(): Array<Permission>;
   setPermissionsList(value: Array<Permission>): void;
   addPermissions(value?: Permission, index?: number): Permission;
+
+  hasUser(): boolean;
+  clearUser(): void;
+  getUser(): User | undefined;
+  setUser(value?: User): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UserPermission.AsObject;
@@ -711,8 +716,9 @@ export class UserPermission extends jspb.Message {
 
 export namespace UserPermission {
   export type AsObject = {
-    user?: User.AsObject,
+    usersList: Array<User.AsObject>,
     permissionsList: Array<Permission.AsObject>,
+    user?: User.AsObject,
   }
 }
 
