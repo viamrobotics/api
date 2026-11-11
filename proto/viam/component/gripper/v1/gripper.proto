@@ -54,13 +54,17 @@ service GripperService {
   // linearly onto its range of motion and owns any inversion of its hardware scale.
   // A percent_open that is NaN or outside 0.0-1.0 returns InvalidArgument.
   // This call blocks until the move completes or is stopped, like Open and Grab. Stop cancels it.
+  // If the gripper does not support percent open (GetProperties reports
+  // percent_open_supported = false or is Unimplemented, or SetPercentOpen is Unimplemented),
+  // the server falls back to Grab for a percent_open below 0.5 and Open for 0.5 and above.
   rpc SetPercentOpen(SetPercentOpenRequest) returns (SetPercentOpenResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
     option (google.api.http) = {put: "/viam/api/v1/component/gripper/{name}/percent_open"};
   }
 
   // GetPercentOpen returns the measured opening of the gripper on the same 0.0 (closed) to
-  // 1.0 (open) scale as SetPercentOpen.
+  // 1.0 (open) scale as SetPercentOpen. Returns Unimplemented if the gripper does not support
+  // percent open; there is no fallback.
   rpc GetPercentOpen(GetPercentOpenRequest) returns (GetPercentOpenResponse) {
     option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/percent_open"};
   }
@@ -191,6 +195,7 @@ message GetPropertiesRequest {
 
 message GetPropertiesResponse {
   // True if the gripper supports SetPercentOpen and GetPercentOpen. False for any gripper that
-  // cannot measure its opening.
+  // cannot measure its opening, such as vacuum and suction grippers; SetPercentOpen on these
+  // falls back to Grab or Open.
   bool percent_open_supported = 1;
 }
