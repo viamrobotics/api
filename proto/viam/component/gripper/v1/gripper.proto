@@ -52,7 +52,7 @@ service GripperService {
   // SetPercentOpen moves the gripper to a normalized opening, where 0.0 is fully closed (where
   // Grab moves to) and 1.0 is fully open (where Open moves to). The gripper maps the value
   // linearly onto its range of motion and owns any inversion of its hardware scale.
-  // A position that is NaN or outside 0.0-1.0 returns InvalidArgument.
+  // A percent_open that is NaN or outside 0.0-1.0 returns InvalidArgument.
   // This call blocks until the move completes or is stopped, like Open and Grab. Stop cancels it.
   rpc SetPercentOpen(SetPercentOpenRequest) returns (SetPercentOpenResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
@@ -163,7 +163,7 @@ message SetPercentOpenRequest {
   // Name of a gripper
   string name = 1;
   // The opening to move to, from 0.0 (fully closed) to 1.0 (fully open)
-  double position = 2;
+  double percent_open = 2;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
@@ -179,7 +179,7 @@ message GetPercentOpenRequest {
 
 message GetPercentOpenResponse {
   // The measured opening, from 0.0 (fully closed) to 1.0 (fully open)
-  double position = 1;
+  double percent_open = 1;
 }
 
 message GetPropertiesRequest {
