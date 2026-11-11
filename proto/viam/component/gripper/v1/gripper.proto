@@ -56,13 +56,13 @@ service GripperService {
   // This call blocks until the move completes or is stopped, like Open and Grab. Stop cancels it.
   rpc SetPercentOpen(SetPercentOpenRequest) returns (SetPercentOpenResponse) {
     option (common.v1.safety_heartbeat_monitored) = true;
-    option (google.api.http) = {put: "/viam/api/v1/component/gripper/{name}/position"};
+    option (google.api.http) = {put: "/viam/api/v1/component/gripper/{name}/percent_open"};
   }
 
   // GetPercentOpen returns the measured opening of the gripper on the same 0.0 (closed) to
   // 1.0 (open) scale as SetPercentOpen.
   rpc GetPercentOpen(GetPercentOpenRequest) returns (GetPercentOpenResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/position"};
+    option (google.api.http) = {get: "/viam/api/v1/component/gripper/{name}/percent_open"};
   }
 
   // GetProperties returns the capabilities of the gripper.
