@@ -1297,11 +1297,6 @@ export namespace OverrideMaintenanceSensorRequest {
 }
 
 export class OverrideMaintenanceSensorResponse extends jspb.Message {
-  hasExpiresAt(): boolean;
-  clearExpiresAt(): void;
-  getExpiresAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setExpiresAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OverrideMaintenanceSensorResponse.AsObject;
   static toObject(includeInstance: boolean, msg: OverrideMaintenanceSensorResponse): OverrideMaintenanceSensorResponse.AsObject;
@@ -1314,7 +1309,6 @@ export class OverrideMaintenanceSensorResponse extends jspb.Message {
 
 export namespace OverrideMaintenanceSensorResponse {
   export type AsObject = {
-    expiresAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -1363,10 +1357,8 @@ export class GetMachineStatusResponse extends jspb.Message {
   setPackagesList(value: Array<PackageStatus>): void;
   addPackages(value?: PackageStatus, index?: number): PackageStatus;
 
-  hasMaintenanceOverrideExpiresAt(): boolean;
-  clearMaintenanceOverrideExpiresAt(): void;
-  getMaintenanceOverrideExpiresAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setMaintenanceOverrideExpiresAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  getMaintenanceOverrideArmed(): boolean;
+  setMaintenanceOverrideArmed(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMachineStatusResponse.AsObject;
@@ -1386,7 +1378,7 @@ export namespace GetMachineStatusResponse {
     jobStatusesList: Array<JobStatus.AsObject>,
     modulesList: Array<ModuleStatus.AsObject>,
     packagesList: Array<PackageStatus.AsObject>,
-    maintenanceOverrideExpiresAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    maintenanceOverrideArmed: boolean,
   }
 
   export interface StateMap {

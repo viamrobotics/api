@@ -55,9 +55,9 @@ type RobotServiceClient interface {
 	// Shutdown shuts down the robot.
 	Shutdown(ctx context.Context, in *ShutdownRequest, opts ...grpc.CallOption) (*ShutdownResponse, error)
 	// OverrideMaintenanceSensor arms a one-shot override of the machine's maintenance
-	// sensor: the next config update the sensor would block is applied anyway. The
-	// override is consumed by that reconfiguration, or lapses after two config polls if
-	// no changed config arrives. It is held in memory and does not survive a restart.
+	// sensor: the next reconfiguration attempt skips the sensor and consumes the override,
+	// whether or not its config changes anything. It is held in memory and does not
+	// survive a restart.
 	OverrideMaintenanceSensor(ctx context.Context, in *OverrideMaintenanceSensorRequest, opts ...grpc.CallOption) (*OverrideMaintenanceSensorResponse, error)
 	// GetMachineStatus returns the current status of the robot.
 	GetMachineStatus(ctx context.Context, in *GetMachineStatusRequest, opts ...grpc.CallOption) (*GetMachineStatusResponse, error)
@@ -416,9 +416,9 @@ type RobotServiceServer interface {
 	// Shutdown shuts down the robot.
 	Shutdown(context.Context, *ShutdownRequest) (*ShutdownResponse, error)
 	// OverrideMaintenanceSensor arms a one-shot override of the machine's maintenance
-	// sensor: the next config update the sensor would block is applied anyway. The
-	// override is consumed by that reconfiguration, or lapses after two config polls if
-	// no changed config arrives. It is held in memory and does not survive a restart.
+	// sensor: the next reconfiguration attempt skips the sensor and consumes the override,
+	// whether or not its config changes anything. It is held in memory and does not
+	// survive a restart.
 	OverrideMaintenanceSensor(context.Context, *OverrideMaintenanceSensorRequest) (*OverrideMaintenanceSensorResponse, error)
 	// GetMachineStatus returns the current status of the robot.
 	GetMachineStatus(context.Context, *GetMachineStatusRequest) (*GetMachineStatusResponse, error)

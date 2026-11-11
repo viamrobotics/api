@@ -10490,7 +10490,7 @@ proto.viam.robot.v1.OverrideMaintenanceSensorResponse.prototype.toObject = funct
  */
 proto.viam.robot.v1.OverrideMaintenanceSensorResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    expiresAt: (f = msg.getExpiresAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+
   };
 
   if (includeInstance) {
@@ -10527,11 +10527,6 @@ proto.viam.robot.v1.OverrideMaintenanceSensorResponse.deserializeBinaryFromReade
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setExpiresAt(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -10561,51 +10556,6 @@ proto.viam.robot.v1.OverrideMaintenanceSensorResponse.prototype.serializeBinary 
  */
 proto.viam.robot.v1.OverrideMaintenanceSensorResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getExpiresAt();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional google.protobuf.Timestamp expires_at = 1;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.viam.robot.v1.OverrideMaintenanceSensorResponse.prototype.getExpiresAt = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 1));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.viam.robot.v1.OverrideMaintenanceSensorResponse} returns this
-*/
-proto.viam.robot.v1.OverrideMaintenanceSensorResponse.prototype.setExpiresAt = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.OverrideMaintenanceSensorResponse} returns this
- */
-proto.viam.robot.v1.OverrideMaintenanceSensorResponse.prototype.clearExpiresAt = function() {
-  return this.setExpiresAt(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.viam.robot.v1.OverrideMaintenanceSensorResponse.prototype.hasExpiresAt = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -10759,7 +10709,7 @@ proto.viam.robot.v1.GetMachineStatusResponse.toObject = function(includeInstance
     proto.viam.robot.v1.ModuleStatus.toObject, includeInstance),
     packagesList: jspb.Message.toObjectList(msg.getPackagesList(),
     proto.viam.robot.v1.PackageStatus.toObject, includeInstance),
-    maintenanceOverrideExpiresAt: (f = msg.getMaintenanceOverrideExpiresAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    maintenanceOverrideArmed: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -10826,9 +10776,8 @@ proto.viam.robot.v1.GetMachineStatusResponse.deserializeBinaryFromReader = funct
       msg.addPackages(value);
       break;
     case 7:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setMaintenanceOverrideExpiresAt(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setMaintenanceOverrideArmed(value);
       break;
     default:
       reader.skipField();
@@ -10906,12 +10855,11 @@ proto.viam.robot.v1.GetMachineStatusResponse.serializeBinaryToWriter = function(
       proto.viam.robot.v1.PackageStatus.serializeBinaryToWriter
     );
   }
-  f = message.getMaintenanceOverrideExpiresAt();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getMaintenanceOverrideArmed();
+  if (f) {
+    writer.writeBool(
       7,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+      f
     );
   }
 };
@@ -11134,39 +11082,20 @@ proto.viam.robot.v1.GetMachineStatusResponse.prototype.clearPackagesList = funct
 
 
 /**
- * optional google.protobuf.Timestamp maintenance_override_expires_at = 7;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.viam.robot.v1.GetMachineStatusResponse.prototype.getMaintenanceOverrideExpiresAt = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.viam.robot.v1.GetMachineStatusResponse} returns this
-*/
-proto.viam.robot.v1.GetMachineStatusResponse.prototype.setMaintenanceOverrideExpiresAt = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.viam.robot.v1.GetMachineStatusResponse} returns this
- */
-proto.viam.robot.v1.GetMachineStatusResponse.prototype.clearMaintenanceOverrideExpiresAt = function() {
-  return this.setMaintenanceOverrideExpiresAt(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
+ * optional bool maintenance_override_armed = 7;
  * @return {boolean}
  */
-proto.viam.robot.v1.GetMachineStatusResponse.prototype.hasMaintenanceOverrideExpiresAt = function() {
-  return jspb.Message.getField(this, 7) != null;
+proto.viam.robot.v1.GetMachineStatusResponse.prototype.getMaintenanceOverrideArmed = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.robot.v1.GetMachineStatusResponse} returns this
+ */
+proto.viam.robot.v1.GetMachineStatusResponse.prototype.setMaintenanceOverrideArmed = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
