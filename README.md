@@ -39,14 +39,14 @@ Some common ones are:
 
 ### Submitting PRs for Protobuf Changes
 
-Please only edit `.proto` files. The generated interfaces build in CI.
+Generated code is checked in. You must recompile the protos locally and include
+those changes as part of your PR. After editing `.proto` files:
 
-To build protos for a PR:
-- add the `ready-for-protos` label
-- adding the label will compile your protos, and commit the compiled changes to your PR branch from the github-actions bot
-    - the bot commit will also add a `protos-compiled` label which is checked to merge. subsequent manual commits remove this label
-- when you're ready to merge, **remove** the `ready-for-protos` label; that will trigger lint and merge checks
-- in order to merge, the last commit to your PR must be a bot commit. (this is enforced through labeling)
+- run `mise run -f buf` to lint, format, and recompile the protos
+- commit the generated code and push it together with your `.proto` edits
+
+CI recompiles the protos on every PR and fails if that produces any changes,
+so a PR can't merge until its generated code matches its `.proto` files.
 
 Other guidelines:
 - Do not make breaking changes to APIs if it can be avoided.
