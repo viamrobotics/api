@@ -1280,6 +1280,38 @@ export namespace ShutdownResponse {
   }
 }
 
+export class OverrideMaintenanceSensorRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OverrideMaintenanceSensorRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: OverrideMaintenanceSensorRequest): OverrideMaintenanceSensorRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OverrideMaintenanceSensorRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OverrideMaintenanceSensorRequest;
+  static deserializeBinaryFromReader(message: OverrideMaintenanceSensorRequest, reader: jspb.BinaryReader): OverrideMaintenanceSensorRequest;
+}
+
+export namespace OverrideMaintenanceSensorRequest {
+  export type AsObject = {
+  }
+}
+
+export class OverrideMaintenanceSensorResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OverrideMaintenanceSensorResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: OverrideMaintenanceSensorResponse): OverrideMaintenanceSensorResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OverrideMaintenanceSensorResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OverrideMaintenanceSensorResponse;
+  static deserializeBinaryFromReader(message: OverrideMaintenanceSensorResponse, reader: jspb.BinaryReader): OverrideMaintenanceSensorResponse;
+}
+
+export namespace OverrideMaintenanceSensorResponse {
+  export type AsObject = {
+  }
+}
+
 export class GetMachineStatusRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMachineStatusRequest.AsObject;
@@ -1325,6 +1357,9 @@ export class GetMachineStatusResponse extends jspb.Message {
   setPackagesList(value: Array<PackageStatus>): void;
   addPackages(value?: PackageStatus, index?: number): PackageStatus;
 
+  getMaintenanceOverrideArmed(): boolean;
+  setMaintenanceOverrideArmed(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMachineStatusResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetMachineStatusResponse): GetMachineStatusResponse.AsObject;
@@ -1343,6 +1378,7 @@ export namespace GetMachineStatusResponse {
     jobStatusesList: Array<JobStatus.AsObject>,
     modulesList: Array<ModuleStatus.AsObject>,
     packagesList: Array<PackageStatus.AsObject>,
+    maintenanceOverrideArmed: boolean,
   }
 
   export interface StateMap {
