@@ -271,7 +271,7 @@ enum KinematicsFileFormat {
 
 message GetKinematicsResponse {
   // Deprecated: use model. The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
-  // https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
+  // https://docs.viam.com/motion-planning/frame-system/overview/
   KinematicsFileFormat format = 1 [deprecated = true];
   // Deprecated: use model. The byte contents of the file
   bytes kinematics_data = 2 [deprecated = true];
