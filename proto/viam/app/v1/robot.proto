@@ -381,7 +381,7 @@ message AgentInfo {
   optional string platform = 6;
   // Optional tags to further constrain which artifact is returned for modules.
   repeated string platform_tags = 7;
-  // running registry modules and how long each has been running (empty if none or not reported)
+  // modules in the applied config (registry and local) with their running version and status
   repeated ModuleVersionInfo module_versions = 8;
   // how long this viam-server process has been running, measured with a monotonic clock
   google.protobuf.Duration viam_server_uptime = 9;
