@@ -6555,6 +6555,11 @@ export class Model extends jspb.Message {
   setSupportedHardwareList(value: Array<string>): void;
   addSupportedHardware(value: string, index?: number): string;
 
+  hasSimulation(): boolean;
+  clearSimulation(): void;
+  getSimulation(): SimulationTarget | undefined;
+  setSimulation(value?: SimulationTarget): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Model.AsObject;
   static toObject(includeInstance: boolean, msg: Model): Model.AsObject;
@@ -6572,6 +6577,35 @@ export namespace Model {
     markdownDocumentation: string,
     description: string,
     supportedHardwareList: Array<string>,
+    simulation?: SimulationTarget.AsObject,
+  }
+}
+
+export class SimulationTarget extends jspb.Message {
+  getModel(): string;
+  setModel(value: string): void;
+
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  getVersion(): string;
+  setVersion(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SimulationTarget.AsObject;
+  static toObject(includeInstance: boolean, msg: SimulationTarget): SimulationTarget.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SimulationTarget, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SimulationTarget;
+  static deserializeBinaryFromReader(message: SimulationTarget, reader: jspb.BinaryReader): SimulationTarget;
+}
+
+export namespace SimulationTarget {
+  export type AsObject = {
+    model: string,
+    moduleId: string,
+    version: string,
   }
 }
 
