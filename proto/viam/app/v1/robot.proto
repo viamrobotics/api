@@ -383,7 +383,8 @@ message AgentInfo {
   repeated string platform_tags = 7;
   // modules in the applied config (registry and local) with their running version and status
   repeated ModuleVersionInfo module_versions = 8;
-  // how long this viam-server process has been running, measured with a monotonic clock
+  // how long this viam-server process has been running, measured with a monotonic clock;
+  // app anchors it to the time the request is received
   google.protobuf.Duration viam_server_uptime = 9;
   // true while a pending reconfigure is being held back by the maintenance sensor;
   // false once that reconfigure is applied (or when nothing is pending)
@@ -391,13 +392,14 @@ message AgentInfo {
 }
 
 message ModuleVersionInfo {
-  // registry module ID, e.g. "viam:realsense"
+  // registry module ID, e.g. "viam:realsense" (empty for local modules)
   string module_id = 1;
   // module name from the machine config; unique within the part
   string module_name = 8;
-  // version currently running (empty if not running)
+  // version currently running ("local" for local modules; empty if not running or unknown)
   string running_version = 2;
-  // how long the running version has been ready (unset if not running)
+  // how long the running version has been ready, measured with a monotonic clock; app anchors it
+  // to the time the request is received (unset if not running)
   google.protobuf.Duration running_for = 3;
   // current lifecycle state of the module process
   viam.robot.v1.ModuleStatus.State state = 4;
@@ -405,8 +407,9 @@ message ModuleVersionInfo {
   string error = 5;
   // failures since the module was last ready
   uint32 consecutive_failures = 6;
-  // times the module has become ready since viam-server started; only goes up
-  uint32 restart_count = 7;
+  // times the module has become ready since viam-server started, including the first start;
+  // only goes up, and resets when viam-server restarts
+  uint32 ready_count = 7;
 }
 
 enum CredentialsType {
