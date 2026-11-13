@@ -2940,6 +2940,7 @@ type MaintenanceConfig struct {
 
 	SensorName            *v1.ResourceName `protobuf:"bytes,1,opt,name=sensor_name,json=sensorName,proto3" json:"sensor_name,omitempty"`
 	MaintenanceAllowedKey string           `protobuf:"bytes,2,opt,name=maintenance_allowed_key,json=maintenanceAllowedKey,proto3" json:"maintenance_allowed_key,omitempty"`
+	FollowPart            *FollowPartRef   `protobuf:"bytes,3,opt,name=follow_part,json=followPart,proto3" json:"follow_part,omitempty"`
 }
 
 func (x *MaintenanceConfig) Reset() {
@@ -2986,6 +2987,66 @@ func (x *MaintenanceConfig) GetMaintenanceAllowedKey() string {
 	return ""
 }
 
+func (x *MaintenanceConfig) GetFollowPart() *FollowPartRef {
+	if x != nil {
+		return x.FollowPart
+	}
+	return nil
+}
+
+type FollowPartRef struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Address string      `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+	Auth    *RemoteAuth `protobuf:"bytes,2,opt,name=auth,proto3" json:"auth,omitempty"`
+}
+
+func (x *FollowPartRef) Reset() {
+	*x = FollowPartRef{}
+	mi := &file_app_v1_robot_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FollowPartRef) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FollowPartRef) ProtoMessage() {}
+
+func (x *FollowPartRef) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_robot_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FollowPartRef.ProtoReflect.Descriptor instead.
+func (*FollowPartRef) Descriptor() ([]byte, []int) {
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *FollowPartRef) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+func (x *FollowPartRef) GetAuth() *RemoteAuth {
+	if x != nil {
+		return x.Auth
+	}
+	return nil
+}
+
 type Orientation_NoOrientation struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2994,7 +3055,7 @@ type Orientation_NoOrientation struct {
 
 func (x *Orientation_NoOrientation) Reset() {
 	*x = Orientation_NoOrientation{}
-	mi := &file_app_v1_robot_proto_msgTypes[40]
+	mi := &file_app_v1_robot_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3006,7 +3067,7 @@ func (x *Orientation_NoOrientation) String() string {
 func (*Orientation_NoOrientation) ProtoMessage() {}
 
 func (x *Orientation_NoOrientation) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[40]
+	mi := &file_app_v1_robot_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3044,7 +3105,7 @@ type Orientation_OrientationVectorRadians struct {
 
 func (x *Orientation_OrientationVectorRadians) Reset() {
 	*x = Orientation_OrientationVectorRadians{}
-	mi := &file_app_v1_robot_proto_msgTypes[41]
+	mi := &file_app_v1_robot_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3056,7 +3117,7 @@ func (x *Orientation_OrientationVectorRadians) String() string {
 func (*Orientation_OrientationVectorRadians) ProtoMessage() {}
 
 func (x *Orientation_OrientationVectorRadians) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[41]
+	mi := &file_app_v1_robot_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3115,7 +3176,7 @@ type Orientation_OrientationVectorDegrees struct {
 
 func (x *Orientation_OrientationVectorDegrees) Reset() {
 	*x = Orientation_OrientationVectorDegrees{}
-	mi := &file_app_v1_robot_proto_msgTypes[42]
+	mi := &file_app_v1_robot_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3127,7 +3188,7 @@ func (x *Orientation_OrientationVectorDegrees) String() string {
 func (*Orientation_OrientationVectorDegrees) ProtoMessage() {}
 
 func (x *Orientation_OrientationVectorDegrees) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[42]
+	mi := &file_app_v1_robot_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3185,7 +3246,7 @@ type Orientation_EulerAngles struct {
 
 func (x *Orientation_EulerAngles) Reset() {
 	*x = Orientation_EulerAngles{}
-	mi := &file_app_v1_robot_proto_msgTypes[43]
+	mi := &file_app_v1_robot_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3197,7 +3258,7 @@ func (x *Orientation_EulerAngles) String() string {
 func (*Orientation_EulerAngles) ProtoMessage() {}
 
 func (x *Orientation_EulerAngles) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[43]
+	mi := &file_app_v1_robot_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3254,7 +3315,7 @@ type Orientation_AxisAngles struct {
 
 func (x *Orientation_AxisAngles) Reset() {
 	*x = Orientation_AxisAngles{}
-	mi := &file_app_v1_robot_proto_msgTypes[44]
+	mi := &file_app_v1_robot_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3266,7 +3327,7 @@ func (x *Orientation_AxisAngles) String() string {
 func (*Orientation_AxisAngles) ProtoMessage() {}
 
 func (x *Orientation_AxisAngles) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[44]
+	mi := &file_app_v1_robot_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3324,7 +3385,7 @@ type Orientation_Quaternion struct {
 
 func (x *Orientation_Quaternion) Reset() {
 	*x = Orientation_Quaternion{}
-	mi := &file_app_v1_robot_proto_msgTypes[45]
+	mi := &file_app_v1_robot_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3336,7 +3397,7 @@ func (x *Orientation_Quaternion) String() string {
 func (*Orientation_Quaternion) ProtoMessage() {}
 
 func (x *Orientation_Quaternion) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[45]
+	mi := &file_app_v1_robot_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3393,7 +3454,7 @@ type RemoteAuth_Credentials struct {
 
 func (x *RemoteAuth_Credentials) Reset() {
 	*x = RemoteAuth_Credentials{}
-	mi := &file_app_v1_robot_proto_msgTypes[46]
+	mi := &file_app_v1_robot_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3405,7 +3466,7 @@ func (x *RemoteAuth_Credentials) String() string {
 func (*RemoteAuth_Credentials) ProtoMessage() {}
 
 func (x *RemoteAuth_Credentials) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[46]
+	mi := &file_app_v1_robot_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3960,7 +4021,7 @@ var file_app_v1_robot_proto_rawDesc = []byte{
 	0x38, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x20, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x70,
 	0x70, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75,
-	0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x8a, 0x01, 0x0a, 0x11, 0x4d, 0x61,
+	0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0xc7, 0x01, 0x0a, 0x11, 0x4d, 0x61,
 	0x69, 0x6e, 0x74, 0x65, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12,
 	0x3d, 0x0a, 0x0b, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d,
@@ -3969,40 +4030,50 @@ var file_app_v1_robot_proto_rawDesc = []byte{
 	0x0a, 0x17, 0x6d, 0x61, 0x69, 0x6e, 0x74, 0x65, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x5f, 0x61, 0x6c,
 	0x6c, 0x6f, 0x77, 0x65, 0x64, 0x5f, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x15, 0x6d, 0x61, 0x69, 0x6e, 0x74, 0x65, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x41, 0x6c, 0x6c, 0x6f,
-	0x77, 0x65, 0x64, 0x4b, 0x65, 0x79, 0x2a, 0xbf, 0x01, 0x0a, 0x0f, 0x43, 0x72, 0x65, 0x64, 0x65,
-	0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x54, 0x79, 0x70, 0x65, 0x12, 0x20, 0x0a, 0x1c, 0x43, 0x52,
-	0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55,
-	0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x1d, 0x0a, 0x19,
-	0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45,
-	0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x4e, 0x41, 0x4c, 0x10, 0x01, 0x12, 0x1c, 0x0a, 0x18, 0x43,
-	0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f,
-	0x41, 0x50, 0x49, 0x5f, 0x4b, 0x45, 0x59, 0x10, 0x02, 0x12, 0x21, 0x0a, 0x1d, 0x43, 0x52, 0x45,
-	0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x52, 0x4f,
-	0x42, 0x4f, 0x54, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54, 0x10, 0x03, 0x12, 0x2a, 0x0a, 0x26,
-	0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45,
-	0x5f, 0x52, 0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x4c, 0x4f, 0x43, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f,
-	0x53, 0x45, 0x43, 0x52, 0x45, 0x54, 0x10, 0x04, 0x32, 0xb2, 0x02, 0x0a, 0x0c, 0x52, 0x6f, 0x62,
-	0x6f, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x41, 0x0a, 0x06, 0x43, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x12, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
-	0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f,
-	0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x0b,
-	0x43, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x12, 0x1f, 0x2e, 0x76, 0x69,
-	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x65, 0x72, 0x74, 0x69, 0x66,
-	0x69, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x65, 0x72, 0x74, 0x69,
-	0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x38,
-	0x0a, 0x03, 0x4c, 0x6f, 0x67, 0x12, 0x17, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18,
-	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x67,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0c, 0x4e, 0x65, 0x65, 0x64,
-	0x73, 0x52, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x20, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
-	0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52, 0x65, 0x73, 0x74,
-	0x61, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x76, 0x69, 0x61,
-	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52, 0x65,
-	0x73, 0x74, 0x61, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x18, 0x5a,
-	0x16, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x70, 0x69,
-	0x2f, 0x61, 0x70, 0x70, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x77, 0x65, 0x64, 0x4b, 0x65, 0x79, 0x12, 0x3b, 0x0a, 0x0b, 0x66, 0x6f, 0x6c, 0x6c, 0x6f, 0x77,
+	0x5f, 0x70, 0x61, 0x72, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x6f, 0x6c, 0x6c, 0x6f, 0x77,
+	0x50, 0x61, 0x72, 0x74, 0x52, 0x65, 0x66, 0x52, 0x0a, 0x66, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x50,
+	0x61, 0x72, 0x74, 0x22, 0x56, 0x0a, 0x0d, 0x46, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x50, 0x61, 0x72,
+	0x74, 0x52, 0x65, 0x66, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x2b,
+	0x0a, 0x04, 0x61, 0x75, 0x74, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x74,
+	0x65, 0x41, 0x75, 0x74, 0x68, 0x52, 0x04, 0x61, 0x75, 0x74, 0x68, 0x2a, 0xbf, 0x01, 0x0a, 0x0f,
+	0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x54, 0x79, 0x70, 0x65, 0x12,
+	0x20, 0x0a, 0x1c, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54,
+	0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10,
+	0x00, 0x12, 0x1d, 0x0a, 0x19, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53,
+	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x4e, 0x41, 0x4c, 0x10, 0x01,
+	0x12, 0x1c, 0x0a, 0x18, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f,
+	0x54, 0x59, 0x50, 0x45, 0x5f, 0x41, 0x50, 0x49, 0x5f, 0x4b, 0x45, 0x59, 0x10, 0x02, 0x12, 0x21,
+	0x0a, 0x1d, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59,
+	0x50, 0x45, 0x5f, 0x52, 0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54, 0x10,
+	0x03, 0x12, 0x2a, 0x0a, 0x26, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53,
+	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x52, 0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x4c, 0x4f, 0x43, 0x41,
+	0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54, 0x10, 0x04, 0x32, 0xb2, 0x02,
+	0x0a, 0x0c, 0x52, 0x6f, 0x62, 0x6f, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x41,
+	0x0a, 0x06, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e,
+	0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x50, 0x0a, 0x0b, 0x43, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65,
+	0x12, 0x1f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43,
+	0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x20, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
+	0x43, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x38, 0x0a, 0x03, 0x4c, 0x6f, 0x67, 0x12, 0x17, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76,
+	0x31, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a,
+	0x0c, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x20, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x65, 0x65, 0x64,
+	0x73, 0x52, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x21, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x65,
+	0x65, 0x64, 0x73, 0x52, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x42, 0x18, 0x5a, 0x16, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4018,7 +4089,7 @@ func file_app_v1_robot_proto_rawDescGZIP() []byte {
 }
 
 var file_app_v1_robot_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_app_v1_robot_proto_msgTypes = make([]protoimpl.MessageInfo, 48)
+var file_app_v1_robot_proto_msgTypes = make([]protoimpl.MessageInfo, 49)
 var file_app_v1_robot_proto_goTypes = []any{
 	(CredentialsType)(0),                         // 0: viam.app.v1.CredentialsType
 	(*RobotConfig)(nil),                          // 1: viam.app.v1.RobotConfig
@@ -4060,20 +4131,21 @@ var file_app_v1_robot_proto_goTypes = []any{
 	(*ModuleConfig)(nil),                         // 37: viam.app.v1.ModuleConfig
 	(*PackageConfig)(nil),                        // 38: viam.app.v1.PackageConfig
 	(*MaintenanceConfig)(nil),                    // 39: viam.app.v1.MaintenanceConfig
-	nil,                                          // 40: viam.app.v1.ProcessConfig.EnvEntry
-	(*Orientation_NoOrientation)(nil),            // 41: viam.app.v1.Orientation.NoOrientation
-	(*Orientation_OrientationVectorRadians)(nil), // 42: viam.app.v1.Orientation.OrientationVectorRadians
-	(*Orientation_OrientationVectorDegrees)(nil), // 43: viam.app.v1.Orientation.OrientationVectorDegrees
-	(*Orientation_EulerAngles)(nil),              // 44: viam.app.v1.Orientation.EulerAngles
-	(*Orientation_AxisAngles)(nil),               // 45: viam.app.v1.Orientation.AxisAngles
-	(*Orientation_Quaternion)(nil),               // 46: viam.app.v1.Orientation.Quaternion
-	(*RemoteAuth_Credentials)(nil),               // 47: viam.app.v1.RemoteAuth.Credentials
-	nil,                                          // 48: viam.app.v1.ModuleConfig.EnvEntry
-	(*structpb.Struct)(nil),                      // 49: google.protobuf.Struct
-	(*durationpb.Duration)(nil),                  // 50: google.protobuf.Duration
-	(*v1.Geometry)(nil),                          // 51: viam.common.v1.Geometry
-	(*v1.LogEntry)(nil),                          // 52: viam.common.v1.LogEntry
-	(*v1.ResourceName)(nil),                      // 53: viam.common.v1.ResourceName
+	(*FollowPartRef)(nil),                        // 40: viam.app.v1.FollowPartRef
+	nil,                                          // 41: viam.app.v1.ProcessConfig.EnvEntry
+	(*Orientation_NoOrientation)(nil),            // 42: viam.app.v1.Orientation.NoOrientation
+	(*Orientation_OrientationVectorRadians)(nil), // 43: viam.app.v1.Orientation.OrientationVectorRadians
+	(*Orientation_OrientationVectorDegrees)(nil), // 44: viam.app.v1.Orientation.OrientationVectorDegrees
+	(*Orientation_EulerAngles)(nil),              // 45: viam.app.v1.Orientation.EulerAngles
+	(*Orientation_AxisAngles)(nil),               // 46: viam.app.v1.Orientation.AxisAngles
+	(*Orientation_Quaternion)(nil),               // 47: viam.app.v1.Orientation.Quaternion
+	(*RemoteAuth_Credentials)(nil),               // 48: viam.app.v1.RemoteAuth.Credentials
+	nil,                                          // 49: viam.app.v1.ModuleConfig.EnvEntry
+	(*structpb.Struct)(nil),                      // 50: google.protobuf.Struct
+	(*durationpb.Duration)(nil),                  // 51: google.protobuf.Duration
+	(*v1.Geometry)(nil),                          // 52: viam.common.v1.Geometry
+	(*v1.LogEntry)(nil),                          // 53: viam.common.v1.LogEntry
+	(*v1.ResourceName)(nil),                      // 54: viam.common.v1.ResourceName
 }
 var file_app_v1_robot_proto_depIdxs = []int32{
 	7,  // 0: viam.app.v1.RobotConfig.cloud:type_name -> viam.app.v1.CloudConfig
@@ -4090,71 +4162,73 @@ var file_app_v1_robot_proto_depIdxs = []int32{
 	39, // 11: viam.app.v1.RobotConfig.maintenance:type_name -> viam.app.v1.MaintenanceConfig
 	3,  // 12: viam.app.v1.RobotConfig.jobs:type_name -> viam.app.v1.JobConfig
 	4,  // 13: viam.app.v1.RobotConfig.tracing:type_name -> viam.app.v1.TracingConfig
-	49, // 14: viam.app.v1.JobConfig.command:type_name -> google.protobuf.Struct
+	50, // 14: viam.app.v1.JobConfig.command:type_name -> google.protobuf.Struct
 	23, // 15: viam.app.v1.JobConfig.log_configuration:type_name -> viam.app.v1.LogConfiguration
 	5,  // 16: viam.app.v1.CloudConfig.location_secrets:type_name -> viam.app.v1.LocationSecret
 	22, // 17: viam.app.v1.ComponentConfig.frame:type_name -> viam.app.v1.Frame
 	9,  // 18: viam.app.v1.ComponentConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
-	49, // 19: viam.app.v1.ComponentConfig.attributes:type_name -> google.protobuf.Struct
+	50, // 19: viam.app.v1.ComponentConfig.attributes:type_name -> google.protobuf.Struct
 	23, // 20: viam.app.v1.ComponentConfig.log_configuration:type_name -> viam.app.v1.LogConfiguration
-	49, // 21: viam.app.v1.ResourceLevelServiceConfig.attributes:type_name -> google.protobuf.Struct
-	50, // 22: viam.app.v1.ProcessConfig.stop_timeout:type_name -> google.protobuf.Duration
-	40, // 23: viam.app.v1.ProcessConfig.env:type_name -> viam.app.v1.ProcessConfig.EnvEntry
-	49, // 24: viam.app.v1.ServiceConfig.attributes:type_name -> google.protobuf.Struct
+	50, // 21: viam.app.v1.ResourceLevelServiceConfig.attributes:type_name -> google.protobuf.Struct
+	51, // 22: viam.app.v1.ProcessConfig.stop_timeout:type_name -> google.protobuf.Duration
+	41, // 23: viam.app.v1.ProcessConfig.env:type_name -> viam.app.v1.ProcessConfig.EnvEntry
+	50, // 24: viam.app.v1.ServiceConfig.attributes:type_name -> google.protobuf.Struct
 	9,  // 25: viam.app.v1.ServiceConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
 	23, // 26: viam.app.v1.ServiceConfig.log_configuration:type_name -> viam.app.v1.LogConfiguration
 	13, // 27: viam.app.v1.NetworkConfig.sessions:type_name -> viam.app.v1.SessionsConfig
 	14, // 28: viam.app.v1.NetworkConfig.traffic_tunnel_endpoints:type_name -> viam.app.v1.TrafficTunnelEndpoint
-	50, // 29: viam.app.v1.SessionsConfig.heartbeat_window:type_name -> google.protobuf.Duration
-	50, // 30: viam.app.v1.TrafficTunnelEndpoint.connection_timeout:type_name -> google.protobuf.Duration
+	51, // 29: viam.app.v1.SessionsConfig.heartbeat_window:type_name -> google.protobuf.Duration
+	51, // 30: viam.app.v1.TrafficTunnelEndpoint.connection_timeout:type_name -> google.protobuf.Duration
 	21, // 31: viam.app.v1.AuthConfig.handlers:type_name -> viam.app.v1.AuthHandlerConfig
 	20, // 32: viam.app.v1.AuthConfig.external_auth_config:type_name -> viam.app.v1.ExternalAuthConfig
 	16, // 33: viam.app.v1.AuthConfig.user_permissions:type_name -> viam.app.v1.UserPermission
 	17, // 34: viam.app.v1.UserPermission.users:type_name -> viam.app.v1.User
 	18, // 35: viam.app.v1.UserPermission.permissions:type_name -> viam.app.v1.Permission
 	17, // 36: viam.app.v1.UserPermission.user:type_name -> viam.app.v1.User
-	49, // 37: viam.app.v1.JWKSFile.json:type_name -> google.protobuf.Struct
+	50, // 37: viam.app.v1.JWKSFile.json:type_name -> google.protobuf.Struct
 	19, // 38: viam.app.v1.ExternalAuthConfig.jwks:type_name -> viam.app.v1.JWKSFile
 	0,  // 39: viam.app.v1.AuthHandlerConfig.type:type_name -> viam.app.v1.CredentialsType
-	49, // 40: viam.app.v1.AuthHandlerConfig.config:type_name -> google.protobuf.Struct
+	50, // 40: viam.app.v1.AuthHandlerConfig.config:type_name -> google.protobuf.Struct
 	24, // 41: viam.app.v1.Frame.translation:type_name -> viam.app.v1.Translation
 	25, // 42: viam.app.v1.Frame.orientation:type_name -> viam.app.v1.Orientation
-	51, // 43: viam.app.v1.Frame.geometry:type_name -> viam.common.v1.Geometry
-	41, // 44: viam.app.v1.Orientation.no_orientation:type_name -> viam.app.v1.Orientation.NoOrientation
-	42, // 45: viam.app.v1.Orientation.vector_radians:type_name -> viam.app.v1.Orientation.OrientationVectorRadians
-	43, // 46: viam.app.v1.Orientation.vector_degrees:type_name -> viam.app.v1.Orientation.OrientationVectorDegrees
-	44, // 47: viam.app.v1.Orientation.euler_angles:type_name -> viam.app.v1.Orientation.EulerAngles
-	45, // 48: viam.app.v1.Orientation.axis_angles:type_name -> viam.app.v1.Orientation.AxisAngles
-	46, // 49: viam.app.v1.Orientation.quaternion:type_name -> viam.app.v1.Orientation.Quaternion
+	52, // 43: viam.app.v1.Frame.geometry:type_name -> viam.common.v1.Geometry
+	42, // 44: viam.app.v1.Orientation.no_orientation:type_name -> viam.app.v1.Orientation.NoOrientation
+	43, // 45: viam.app.v1.Orientation.vector_radians:type_name -> viam.app.v1.Orientation.OrientationVectorRadians
+	44, // 46: viam.app.v1.Orientation.vector_degrees:type_name -> viam.app.v1.Orientation.OrientationVectorDegrees
+	45, // 47: viam.app.v1.Orientation.euler_angles:type_name -> viam.app.v1.Orientation.EulerAngles
+	46, // 48: viam.app.v1.Orientation.axis_angles:type_name -> viam.app.v1.Orientation.AxisAngles
+	47, // 49: viam.app.v1.Orientation.quaternion:type_name -> viam.app.v1.Orientation.Quaternion
 	22, // 50: viam.app.v1.RemoteConfig.frame:type_name -> viam.app.v1.Frame
 	27, // 51: viam.app.v1.RemoteConfig.auth:type_name -> viam.app.v1.RemoteAuth
-	50, // 52: viam.app.v1.RemoteConfig.connection_check_interval:type_name -> google.protobuf.Duration
-	50, // 53: viam.app.v1.RemoteConfig.reconnect_interval:type_name -> google.protobuf.Duration
+	51, // 52: viam.app.v1.RemoteConfig.connection_check_interval:type_name -> google.protobuf.Duration
+	51, // 53: viam.app.v1.RemoteConfig.reconnect_interval:type_name -> google.protobuf.Duration
 	9,  // 54: viam.app.v1.RemoteConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
-	47, // 55: viam.app.v1.RemoteAuth.credentials:type_name -> viam.app.v1.RemoteAuth.Credentials
+	48, // 55: viam.app.v1.RemoteAuth.credentials:type_name -> viam.app.v1.RemoteAuth.Credentials
 	28, // 56: viam.app.v1.ConfigRequest.agent_info:type_name -> viam.app.v1.AgentInfo
 	1,  // 57: viam.app.v1.ConfigResponse.config:type_name -> viam.app.v1.RobotConfig
-	52, // 58: viam.app.v1.LogRequest.logs:type_name -> viam.common.v1.LogEntry
-	50, // 59: viam.app.v1.NeedsRestartResponse.restart_check_interval:type_name -> google.protobuf.Duration
-	48, // 60: viam.app.v1.ModuleConfig.env:type_name -> viam.app.v1.ModuleConfig.EnvEntry
+	53, // 58: viam.app.v1.LogRequest.logs:type_name -> viam.common.v1.LogEntry
+	51, // 59: viam.app.v1.NeedsRestartResponse.restart_check_interval:type_name -> google.protobuf.Duration
+	49, // 60: viam.app.v1.ModuleConfig.env:type_name -> viam.app.v1.ModuleConfig.EnvEntry
 	6,  // 61: viam.app.v1.ModuleConfig.status:type_name -> viam.app.v1.AppValidationStatus
-	50, // 62: viam.app.v1.ModuleConfig.first_run_timeout:type_name -> google.protobuf.Duration
+	51, // 62: viam.app.v1.ModuleConfig.first_run_timeout:type_name -> google.protobuf.Duration
 	6,  // 63: viam.app.v1.PackageConfig.status:type_name -> viam.app.v1.AppValidationStatus
-	53, // 64: viam.app.v1.MaintenanceConfig.sensor_name:type_name -> viam.common.v1.ResourceName
-	0,  // 65: viam.app.v1.RemoteAuth.Credentials.type:type_name -> viam.app.v1.CredentialsType
-	29, // 66: viam.app.v1.RobotService.Config:input_type -> viam.app.v1.ConfigRequest
-	31, // 67: viam.app.v1.RobotService.Certificate:input_type -> viam.app.v1.CertificateRequest
-	33, // 68: viam.app.v1.RobotService.Log:input_type -> viam.app.v1.LogRequest
-	35, // 69: viam.app.v1.RobotService.NeedsRestart:input_type -> viam.app.v1.NeedsRestartRequest
-	30, // 70: viam.app.v1.RobotService.Config:output_type -> viam.app.v1.ConfigResponse
-	32, // 71: viam.app.v1.RobotService.Certificate:output_type -> viam.app.v1.CertificateResponse
-	34, // 72: viam.app.v1.RobotService.Log:output_type -> viam.app.v1.LogResponse
-	36, // 73: viam.app.v1.RobotService.NeedsRestart:output_type -> viam.app.v1.NeedsRestartResponse
-	70, // [70:74] is the sub-list for method output_type
-	66, // [66:70] is the sub-list for method input_type
-	66, // [66:66] is the sub-list for extension type_name
-	66, // [66:66] is the sub-list for extension extendee
-	0,  // [0:66] is the sub-list for field type_name
+	54, // 64: viam.app.v1.MaintenanceConfig.sensor_name:type_name -> viam.common.v1.ResourceName
+	40, // 65: viam.app.v1.MaintenanceConfig.follow_part:type_name -> viam.app.v1.FollowPartRef
+	27, // 66: viam.app.v1.FollowPartRef.auth:type_name -> viam.app.v1.RemoteAuth
+	0,  // 67: viam.app.v1.RemoteAuth.Credentials.type:type_name -> viam.app.v1.CredentialsType
+	29, // 68: viam.app.v1.RobotService.Config:input_type -> viam.app.v1.ConfigRequest
+	31, // 69: viam.app.v1.RobotService.Certificate:input_type -> viam.app.v1.CertificateRequest
+	33, // 70: viam.app.v1.RobotService.Log:input_type -> viam.app.v1.LogRequest
+	35, // 71: viam.app.v1.RobotService.NeedsRestart:input_type -> viam.app.v1.NeedsRestartRequest
+	30, // 72: viam.app.v1.RobotService.Config:output_type -> viam.app.v1.ConfigResponse
+	32, // 73: viam.app.v1.RobotService.Certificate:output_type -> viam.app.v1.CertificateResponse
+	34, // 74: viam.app.v1.RobotService.Log:output_type -> viam.app.v1.LogResponse
+	36, // 75: viam.app.v1.RobotService.NeedsRestart:output_type -> viam.app.v1.NeedsRestartResponse
+	72, // [72:76] is the sub-list for method output_type
+	68, // [68:72] is the sub-list for method input_type
+	68, // [68:68] is the sub-list for extension type_name
+	68, // [68:68] is the sub-list for extension extendee
+	0,  // [0:68] is the sub-list for field type_name
 }
 
 func init() { file_app_v1_robot_proto_init() }
@@ -4180,7 +4254,7 @@ func file_app_v1_robot_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_v1_robot_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   48,
+			NumMessages:   49,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
