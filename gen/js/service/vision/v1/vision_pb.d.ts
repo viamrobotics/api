@@ -639,6 +639,11 @@ export class GetPropertiesResponse extends jspb.Message {
   getDetections3dSupported(): boolean;
   setDetections3dSupported(value: boolean): void;
 
+  clearCamerasList(): void;
+  getCamerasList(): Array<string>;
+  setCamerasList(value: Array<string>): void;
+  addCameras(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
@@ -656,6 +661,7 @@ export namespace GetPropertiesResponse {
     objectPointCloudsSupported: boolean,
     defaultCamera: string,
     detections3dSupported: boolean,
+    camerasList: Array<string>,
   }
 }
 
