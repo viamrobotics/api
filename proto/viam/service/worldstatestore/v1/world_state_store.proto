@@ -19,7 +19,7 @@ service WorldStateStoreService {
 
   // ListTransforms returns a snapshot of every transform in the world state, as it was when the request was received.
   //
-  // The snapshot is consistent: it includes all transforms in the world state at the time of the request, and no 
+  // The snapshot is consistent: it includes all transforms in the world state at the time of the request, and no
   // change made after the request was received.
   //
   // A world state can be large, so the snapshot is sent as a stream of batches rather than as one message, and the
@@ -127,7 +127,8 @@ message TransformChange {
   TransformChangeType change_type = 1;
 
   // The transform to apply the change to.
-  // - ADDED: the complete transform to add, including its UUID.
+  // - ADDED: the complete transform to add. If its UUID is empty, the service assigns one and returns it in the
+  //   response. Later changes in the same request cannot refer to a UUID assigned this way.
   // - REMOVED: only the UUID needs to be set.
   // - UPDATED: the UUID of the transform to update, plus the new values for the fields listed in updated_fields.
   common.v1.Transform transform = 2;
@@ -149,4 +150,8 @@ message ApplyTransformChangesRequest {
   google.protobuf.Struct extra = 99;
 }
 
-message ApplyTransformChangesResponse {}
+message ApplyTransformChangesResponse {
+  // The UUID of the transform each change applied to, in the order of the request's changes. For an addition sent
+  // without a UUID, this is the UUID the service assigned.
+  repeated bytes uuids = 1;
+}
