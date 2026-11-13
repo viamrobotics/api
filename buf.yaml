@@ -28,3 +28,9 @@ breaking:
   except:
     - EXTENSION_NO_DELETE
     - FIELD_SAME_DEFAULT
+  ignore_only:
+    # tagger.proto's go_package deliberately moved from the upstream protoc-gen-gotag
+    # package to the regenerated copy so that the file registers under the path
+    # dependents import. Go-only; no wire or proto-path change.
+    FILE_SAME_GO_PACKAGE:
+      - proto/viam/tagger/v1/tagger.proto

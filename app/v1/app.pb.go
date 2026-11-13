@@ -7,10 +7,10 @@
 package v1
 
 import (
-	_ "github.com/srikrsna/protoc-gen-gotag/tagger"
 	v11 "go.viam.com/api/app/mltraining/v1"
 	v12 "go.viam.com/api/app/packages/v1"
 	v1 "go.viam.com/api/common/v1"
+	_ "go.viam.com/api/tagger/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	structpb "google.golang.org/protobuf/types/known/structpb"
