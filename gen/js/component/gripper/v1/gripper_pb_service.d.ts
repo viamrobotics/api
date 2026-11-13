@@ -68,6 +68,33 @@ type GripperServiceGoToInputs = {
   readonly responseType: typeof component_gripper_v1_gripper_pb.GoToInputsResponse;
 };
 
+type GripperServiceSetPercentOpen = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_gripper_v1_gripper_pb.SetPercentOpenRequest;
+  readonly responseType: typeof component_gripper_v1_gripper_pb.SetPercentOpenResponse;
+};
+
+type GripperServiceGetPercentOpen = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_gripper_v1_gripper_pb.GetPercentOpenRequest;
+  readonly responseType: typeof component_gripper_v1_gripper_pb.GetPercentOpenResponse;
+};
+
+type GripperServiceGetProperties = {
+  readonly methodName: string;
+  readonly service: typeof GripperService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_gripper_v1_gripper_pb.GetPropertiesRequest;
+  readonly responseType: typeof component_gripper_v1_gripper_pb.GetPropertiesResponse;
+};
+
 type GripperServiceDoCommand = {
   readonly methodName: string;
   readonly service: typeof GripperService;
@@ -113,6 +140,9 @@ export class GripperService {
   static readonly IsHoldingSomething: GripperServiceIsHoldingSomething;
   static readonly GetCurrentInputs: GripperServiceGetCurrentInputs;
   static readonly GoToInputs: GripperServiceGoToInputs;
+  static readonly SetPercentOpen: GripperServiceSetPercentOpen;
+  static readonly GetPercentOpen: GripperServiceGetPercentOpen;
+  static readonly GetProperties: GripperServiceGetProperties;
   static readonly DoCommand: GripperServiceDoCommand;
   static readonly GetStatus: GripperServiceGetStatus;
   static readonly GetGeometries: GripperServiceGetGeometries;
@@ -213,6 +243,33 @@ export class GripperServiceClient {
   goToInputs(
     requestMessage: component_gripper_v1_gripper_pb.GoToInputsRequest,
     callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.GoToInputsResponse|null) => void
+  ): UnaryResponse;
+  setPercentOpen(
+    requestMessage: component_gripper_v1_gripper_pb.SetPercentOpenRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.SetPercentOpenResponse|null) => void
+  ): UnaryResponse;
+  setPercentOpen(
+    requestMessage: component_gripper_v1_gripper_pb.SetPercentOpenRequest,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.SetPercentOpenResponse|null) => void
+  ): UnaryResponse;
+  getPercentOpen(
+    requestMessage: component_gripper_v1_gripper_pb.GetPercentOpenRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.GetPercentOpenResponse|null) => void
+  ): UnaryResponse;
+  getPercentOpen(
+    requestMessage: component_gripper_v1_gripper_pb.GetPercentOpenRequest,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.GetPercentOpenResponse|null) => void
+  ): UnaryResponse;
+  getProperties(
+    requestMessage: component_gripper_v1_gripper_pb.GetPropertiesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.GetPropertiesResponse|null) => void
+  ): UnaryResponse;
+  getProperties(
+    requestMessage: component_gripper_v1_gripper_pb.GetPropertiesRequest,
+    callback: (error: ServiceError|null, responseMessage: component_gripper_v1_gripper_pb.GetPropertiesResponse|null) => void
   ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
