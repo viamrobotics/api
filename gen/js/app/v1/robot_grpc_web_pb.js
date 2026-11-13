@@ -26,6 +26,8 @@ var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/durat
 
 var google_protobuf_struct_pb = require('google-protobuf/google/protobuf/struct_pb.js')
 
+var robot_v1_robot_pb = require('../../robot/v1/robot_pb.js')
+
 var tagger_v1_tagger_pb = require('../../tagger/v1/tagger_pb.js')
 const proto = {};
 proto.viam = {};

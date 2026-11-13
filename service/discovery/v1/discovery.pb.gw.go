@@ -15,7 +15,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	v1_0 "go.viam.com/api/common/v1"
+	v1_3 "go.viam.com/api/common/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -107,7 +107,7 @@ var (
 )
 
 func request_DiscoveryService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, client DiscoveryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1_3.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -140,7 +140,7 @@ func request_DiscoveryService_DoCommand_0(ctx context.Context, marshaler runtime
 }
 
 func local_request_DiscoveryService_DoCommand_0(ctx context.Context, marshaler runtime.Marshaler, server DiscoveryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DoCommandRequest
+	var protoReq v1_3.DoCommandRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -173,7 +173,7 @@ func local_request_DiscoveryService_DoCommand_0(ctx context.Context, marshaler r
 }
 
 func request_DiscoveryService_GetStatus_0(ctx context.Context, marshaler runtime.Marshaler, client DiscoveryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetStatusRequest
+	var protoReq v1_3.GetStatusRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -199,7 +199,7 @@ func request_DiscoveryService_GetStatus_0(ctx context.Context, marshaler runtime
 }
 
 func local_request_DiscoveryService_GetStatus_0(ctx context.Context, marshaler runtime.Marshaler, server DiscoveryServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetStatusRequest
+	var protoReq v1_3.GetStatusRequest
 	var metadata runtime.ServerMetadata
 
 	var (
