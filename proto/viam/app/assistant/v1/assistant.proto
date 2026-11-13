@@ -1,0 +1,138 @@
+syntax = "proto3";
+
+package viam.app.assistant.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.viam.com/api/app/assistant/v1";
+
+// AppAssistantService is the chat on the web app and on Viam mobile.
+// The server owns the transcript. Auth is the caller's existing app credential.
+service AppAssistantService {
+  // One turn. Events arrive as the model writes. The stream ends on complete,
+  // on approval_required, or on client_tool.
+  rpc StreamTurn(StreamTurnRequest) returns (stream TurnEvent);
+
+  rpc ListConversations(ListConversationsRequest) returns (ListConversationsResponse);
+  rpc GetConversation(GetConversationRequest) returns (GetConversationResponse);
+}
+
+// Ids the screen has. Every field is optional. A tool is enabled when the fields it
+// requires are set. Further down the screen, the client sets more of them.
+// More fields can be added later.
+message ConversationContext {
+  string organization_id = 1;
+  string location_id = 2;
+  // The machine. Named robot to match viam.app.v1.
+  string robot_id = 3;
+  string part_id = 4;
+  string fragment_id = 5;
+}
+
+message StreamTurnRequest {
+  // Empty creates a conversation. The first event returns the id.
+  string conversation_id = 1;
+  ConversationContext context = 2;
+  oneof input {
+    string user_message = 3;
+    ApprovalDecision approval = 4;
+    ClientToolResult client_tool_result = 5;
+  }
+}
+
+message ApprovalDecision {
+  // Signed id from approval_required. The client cannot send a different patch.
+  string pending_id = 1;
+  bool approved = 2;
+}
+
+// Result of a client tool the caller ran after a client_tool event.
+message ClientToolResult {
+  string tool_use_id = 1;
+  string content = 2;
+  bool is_error = 3;
+}
+
+message TurnEvent {
+  oneof event {
+    ConversationStarted conversation = 1;
+    TextDelta text_delta = 2;
+    // A backend tool running inside this turn, such as "Reading logs".
+    ToolStatus tool_status = 3;
+    ApprovalRequired approval_required = 4;
+    // A tool only the client can run. The client that sent the context runs it.
+    ClientTool client_tool = 5;
+    TurnComplete complete = 6;
+  }
+}
+
+message ConversationStarted {
+  string conversation_id = 1;
+}
+
+message TextDelta {
+  // Display only. The server stores the finished text.
+  string text = 1;
+}
+
+message ToolStatus {
+  string tool_name = 1;
+  string label = 2;
+}
+
+message ApprovalRequired {
+  string pending_id = 1;
+  string tool_name = 2;
+  // What the card shows. The frozen call stays on the server.
+  string summary = 3;
+  // Unified diff of a config or code change. Empty when the call has no document to diff.
+  string diff = 4;
+}
+
+message ClientTool {
+  string tool_use_id = 1;
+  string name = 2;
+  string input_json = 3;
+}
+
+message TurnComplete {
+  // "end_turn" | "max_tokens" | "model_context_window_exceeded"
+  string stop_reason = 1;
+}
+
+message ListConversationsRequest {
+  // Optional filter. Empty lists the caller's conversations.
+  string organization_id = 1;
+}
+
+message ConversationListItem {
+  string conversation_id = 1;
+  string title = 2;
+  google.protobuf.Timestamp updated_at = 3;
+}
+
+message ListConversationsResponse {
+  // Newest updated_at first. Clients must not assume an unsorted list.
+  repeated ConversationListItem conversations = 1;
+}
+
+message GetConversationRequest {
+  string conversation_id = 1;
+}
+
+message TranscriptMessage {
+  // "user" or "assistant". Visible text only.
+  string role = 1;
+  string text = 2;
+  google.protobuf.Timestamp created_at = 3;
+}
+
+message GetConversationResponse {
+  repeated TranscriptMessage messages = 1;
+  // Set when a turn is waiting on an approval card. Empty when the pending id has expired.
+  ApprovalRequired open_approval = 2;
+  // Set when a turn is waiting on the client to run a tool. Empty otherwise.
+  ClientTool open_client_tool = 3;
+  // The context stored with the conversation. Empty fields were never set.
+  ConversationContext context = 4;
+}
