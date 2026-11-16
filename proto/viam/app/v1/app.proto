@@ -170,6 +170,9 @@ service AppService {
   // Update a robot
   rpc UpdateRobotPart(UpdateRobotPartRequest) returns (UpdateRobotPartResponse);
 
+  // Set config properties on a robot part
+  rpc SetConfigProperty(SetConfigPropertyRequest) returns (SetConfigPropertyResponse);
+
   // Create a new robot part
   rpc NewRobotPart(NewRobotPartRequest) returns (NewRobotPartResponse);
 
@@ -219,6 +222,15 @@ service AppService {
 
   // DeleteRobot deletes a robot
   rpc DeleteRobot(DeleteRobotRequest) returns (DeleteRobotResponse);
+
+  // AddFavoriteMachine adds a favorite machine for the user
+  rpc AddFavoriteMachine(AddFavoriteMachineRequest) returns (AddFavoriteMachineResponse);
+
+  // RemoveFavoriteMachine removes a favorite machine for the user
+  rpc RemoveFavoriteMachine(RemoveFavoriteMachineRequest) returns (RemoveFavoriteMachineResponse);
+
+  // ListFavoriteMachines lists all favorited machines for the user
+  rpc ListFavoriteMachines(ListFavoriteMachinesRequest) returns (ListFavoriteMachinesResponse);
 
   // Fragments
 
@@ -971,6 +983,27 @@ message UpdateRobotPartResponse {
   RobotPart part = 1;
 }
 
+message ConfigPropertyChange {
+  string path = 1;
+  google.protobuf.Value value = 2;
+}
+
+message SetConfigPropertyRequest {
+  string robot_part_id = 1;
+  repeated ConfigPropertyChange property_changes = 2;
+}
+
+message ConfigPropertyChangeResult {
+  string path = 1;
+  google.protobuf.Value value = 2;
+  bool success = 3;
+  string error = 4;
+}
+
+message SetConfigPropertyResponse {
+  repeated ConfigPropertyChangeResult property_changes = 1;
+}
+
 message NewRobotPartRequest {
   string robot_id = 1;
   string part_name = 2;
@@ -1036,6 +1069,8 @@ message Fragment {
   google.protobuf.Timestamp last_updated = 13 [(tagger.v1.tags) = "bson:\"last_updated_at\""];
   string revision = 14;
   optional string public_namespace = 15;
+  // Fragment config JSON, preserving key order.
+  optional string fragment_config_json = 16;
 }
 
 message FragmentHistoryEntry {
@@ -1145,6 +1180,8 @@ message UpdateFragmentRequest {
   optional bool public = 4;
   optional FragmentVisibility visibility = 5;
   optional google.protobuf.Timestamp last_known_update = 6;
+  // Fragment config JSON, preserving key order. Takes precedence over config.
+  optional string fragment_config_json = 7;
 }
 
 message UpdateFragmentResponse {
@@ -1339,6 +1376,30 @@ message DeleteRobotRequest {
 
 message DeleteRobotResponse {}
 
+message FavoriteMachine {
+  Robot machine = 1;
+  string organization_id = 2;
+  google.protobuf.Timestamp created_on = 3;
+}
+
+message AddFavoriteMachineRequest {
+  string machine_id = 1;
+}
+
+message AddFavoriteMachineResponse {}
+
+message RemoveFavoriteMachineRequest {
+  string machine_id = 1;
+}
+
+message RemoveFavoriteMachineResponse {}
+
+message ListFavoriteMachinesRequest {}
+
+message ListFavoriteMachinesResponse {
+  repeated FavoriteMachine favorites = 1;
+}
+
 message GetRobotMetadataRequest {
   string id = 1;
 }
@@ -1488,6 +1549,11 @@ message MLModelMetadata {
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
   repeated MLModelVersion detailed_versions = 4;
+  // Colon-delimited triplets of components or services from the registry used when
+  // model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+  // associated component or service that consumes the files and should be deployed
+  // along with the model.
+  repeated string deployment_modular_resources = 5;
 }
 
 message MLTrainingVersion {
@@ -1501,6 +1567,12 @@ message MLTrainingMetadata {
   viam.app.mltraining.v1.ModelType model_type = 2;
   viam.app.mltraining.v1.ModelFramework model_framework = 3;
   bool draft = 4;
+  // Colon-delimited triplets of components or services from the registry used when
+  // model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+  // associated component or service that consumes the files and should be deployed
+  // along with the model.
+  // Copied onto packages published by this training script.
+  repeated string deployment_modular_resources = 6;
 
   reserved 1;
 }
@@ -1793,12 +1865,22 @@ message UpdateModuleMetadata {
 message UpdateMLModelMetadata {
   viam.app.mltraining.v1.ModelType model_type = 1;
   viam.app.mltraining.v1.ModelFramework model_framework = 2;
+  // Colon-delimited triplets of components or services from the registry used when
+  // model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+  // associated component or service that consumes the files and should be deployed
+  // along with the model.
+  repeated string deployment_modular_resources = 3;
 }
 
 message UpdateMLTrainingMetadata {
   viam.app.mltraining.v1.ModelType model_type = 1;
   viam.app.mltraining.v1.ModelFramework model_framework = 2;
   bool draft = 3;
+  // Colon-delimited triplets of components or services from the registry used when
+  // model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+  // associated component or service that consumes the files and should be deployed
+  // along with the model.
+  repeated string deployment_modular_resources = 4;
 }
 
 message Model {
@@ -1812,6 +1894,9 @@ message Model {
   optional string description = 4;
   // A list of supported hardware names
   repeated string supported_hardware = 5;
+  // The full set of co-equal APIs this model serves. The `api` field is always one of these and is
+  // retained for tooling that predates `apis`; new code should read `apis`.
+  repeated string apis = 6;
 }
 
 message ModuleFileInfo {

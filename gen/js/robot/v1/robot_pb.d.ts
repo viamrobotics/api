@@ -242,6 +242,11 @@ export class FrameSystemConfig extends jspb.Message {
   getKinematics(): google_protobuf_struct_pb.Struct | undefined;
   setKinematics(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasModel(): boolean;
+  clearModel(): void;
+  getModel(): common_v1_common_pb.KinematicModel | undefined;
+  setModel(value?: common_v1_common_pb.KinematicModel): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FrameSystemConfig.AsObject;
   static toObject(includeInstance: boolean, msg: FrameSystemConfig): FrameSystemConfig.AsObject;
@@ -256,6 +261,7 @@ export namespace FrameSystemConfig {
   export type AsObject = {
     frame?: common_v1_common_pb.Transform.AsObject,
     kinematics?: google_protobuf_struct_pb.Struct.AsObject,
+    model?: common_v1_common_pb.KinematicModel.AsObject,
   }
 }
 
@@ -1319,6 +1325,11 @@ export class GetMachineStatusResponse extends jspb.Message {
   setPackagesList(value: Array<PackageStatus>): void;
   addPackages(value?: PackageStatus, index?: number): PackageStatus;
 
+  hasMaintenanceStatus(): boolean;
+  clearMaintenanceStatus(): void;
+  getMaintenanceStatus(): MaintenanceStatus | undefined;
+  setMaintenanceStatus(value?: MaintenanceStatus): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMachineStatusResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetMachineStatusResponse): GetMachineStatusResponse.AsObject;
@@ -1337,6 +1348,7 @@ export namespace GetMachineStatusResponse {
     jobStatusesList: Array<JobStatus.AsObject>,
     modulesList: Array<ModuleStatus.AsObject>,
     packagesList: Array<PackageStatus.AsObject>,
+    maintenanceStatus?: MaintenanceStatus.AsObject,
   }
 
   export interface StateMap {
@@ -1346,6 +1358,30 @@ export namespace GetMachineStatusResponse {
   }
 
   export const State: StateMap;
+}
+
+export class MaintenanceStatus extends jspb.Message {
+  getAllowed(): boolean;
+  setAllowed(value: boolean): void;
+
+  getReason(): string;
+  setReason(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MaintenanceStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: MaintenanceStatus): MaintenanceStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MaintenanceStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MaintenanceStatus;
+  static deserializeBinaryFromReader(message: MaintenanceStatus, reader: jspb.BinaryReader): MaintenanceStatus;
+}
+
+export namespace MaintenanceStatus {
+  export type AsObject = {
+    allowed: boolean,
+    reason: string,
+  }
 }
 
 export class JobStatus extends jspb.Message {
@@ -1405,6 +1441,14 @@ export class ResourceStatus extends jspb.Message {
   getCloudMetadata(): GetCloudMetadataResponse | undefined;
   setCloudMetadata(value?: GetCloudMetadataResponse): void;
 
+  getReachability(): ResourceStatus.ReachabilityMap[keyof ResourceStatus.ReachabilityMap];
+  setReachability(value: ResourceStatus.ReachabilityMap[keyof ResourceStatus.ReachabilityMap]): void;
+
+  hasRemote(): boolean;
+  clearRemote(): void;
+  getRemote(): string;
+  setRemote(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ResourceStatus.AsObject;
   static toObject(includeInstance: boolean, msg: ResourceStatus): ResourceStatus.AsObject;
@@ -1423,6 +1467,8 @@ export namespace ResourceStatus {
     revision: string,
     error: string,
     cloudMetadata?: GetCloudMetadataResponse.AsObject,
+    reachability: ResourceStatus.ReachabilityMap[keyof ResourceStatus.ReachabilityMap],
+    remote: string,
   }
 
   export interface StateMap {
@@ -1435,6 +1481,16 @@ export namespace ResourceStatus {
   }
 
   export const State: StateMap;
+
+  export interface ReachabilityMap {
+    REACHABILITY_UNSPECIFIED: 0;
+    REACHABILITY_REACHABLE: 1;
+    REACHABILITY_REMOTE_DISCONNECTED: 2;
+    REACHABILITY_SHADOWED_BY_LOCAL: 3;
+    REACHABILITY_AMBIGUOUS_REMOTE: 4;
+  }
+
+  export const Reachability: ReachabilityMap;
 }
 
 export class ModuleStatus extends jspb.Message {

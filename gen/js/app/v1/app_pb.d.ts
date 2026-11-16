@@ -2725,6 +2725,114 @@ export namespace UpdateRobotPartResponse {
   }
 }
 
+export class ConfigPropertyChange extends jspb.Message {
+  getPath(): string;
+  setPath(value: string): void;
+
+  hasValue(): boolean;
+  clearValue(): void;
+  getValue(): google_protobuf_struct_pb.Value | undefined;
+  setValue(value?: google_protobuf_struct_pb.Value): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConfigPropertyChange.AsObject;
+  static toObject(includeInstance: boolean, msg: ConfigPropertyChange): ConfigPropertyChange.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ConfigPropertyChange, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConfigPropertyChange;
+  static deserializeBinaryFromReader(message: ConfigPropertyChange, reader: jspb.BinaryReader): ConfigPropertyChange;
+}
+
+export namespace ConfigPropertyChange {
+  export type AsObject = {
+    path: string,
+    value?: google_protobuf_struct_pb.Value.AsObject,
+  }
+}
+
+export class SetConfigPropertyRequest extends jspb.Message {
+  getRobotPartId(): string;
+  setRobotPartId(value: string): void;
+
+  clearPropertyChangesList(): void;
+  getPropertyChangesList(): Array<ConfigPropertyChange>;
+  setPropertyChangesList(value: Array<ConfigPropertyChange>): void;
+  addPropertyChanges(value?: ConfigPropertyChange, index?: number): ConfigPropertyChange;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetConfigPropertyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetConfigPropertyRequest): SetConfigPropertyRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetConfigPropertyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetConfigPropertyRequest;
+  static deserializeBinaryFromReader(message: SetConfigPropertyRequest, reader: jspb.BinaryReader): SetConfigPropertyRequest;
+}
+
+export namespace SetConfigPropertyRequest {
+  export type AsObject = {
+    robotPartId: string,
+    propertyChangesList: Array<ConfigPropertyChange.AsObject>,
+  }
+}
+
+export class ConfigPropertyChangeResult extends jspb.Message {
+  getPath(): string;
+  setPath(value: string): void;
+
+  hasValue(): boolean;
+  clearValue(): void;
+  getValue(): google_protobuf_struct_pb.Value | undefined;
+  setValue(value?: google_protobuf_struct_pb.Value): void;
+
+  getSuccess(): boolean;
+  setSuccess(value: boolean): void;
+
+  getError(): string;
+  setError(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConfigPropertyChangeResult.AsObject;
+  static toObject(includeInstance: boolean, msg: ConfigPropertyChangeResult): ConfigPropertyChangeResult.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ConfigPropertyChangeResult, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConfigPropertyChangeResult;
+  static deserializeBinaryFromReader(message: ConfigPropertyChangeResult, reader: jspb.BinaryReader): ConfigPropertyChangeResult;
+}
+
+export namespace ConfigPropertyChangeResult {
+  export type AsObject = {
+    path: string,
+    value?: google_protobuf_struct_pb.Value.AsObject,
+    success: boolean,
+    error: string,
+  }
+}
+
+export class SetConfigPropertyResponse extends jspb.Message {
+  clearPropertyChangesList(): void;
+  getPropertyChangesList(): Array<ConfigPropertyChangeResult>;
+  setPropertyChangesList(value: Array<ConfigPropertyChangeResult>): void;
+  addPropertyChanges(value?: ConfigPropertyChangeResult, index?: number): ConfigPropertyChangeResult;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetConfigPropertyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SetConfigPropertyResponse): SetConfigPropertyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetConfigPropertyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetConfigPropertyResponse;
+  static deserializeBinaryFromReader(message: SetConfigPropertyResponse, reader: jspb.BinaryReader): SetConfigPropertyResponse;
+}
+
+export namespace SetConfigPropertyResponse {
+  export type AsObject = {
+    propertyChangesList: Array<ConfigPropertyChangeResult.AsObject>,
+  }
+}
+
 export class NewRobotPartRequest extends jspb.Message {
   getRobotId(): string;
   setRobotId(value: string): void;
@@ -3016,6 +3124,11 @@ export class Fragment extends jspb.Message {
   getPublicNamespace(): string;
   setPublicNamespace(value: string): void;
 
+  hasFragmentConfigJson(): boolean;
+  clearFragmentConfigJson(): void;
+  getFragmentConfigJson(): string;
+  setFragmentConfigJson(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fragment.AsObject;
   static toObject(includeInstance: boolean, msg: Fragment): Fragment.AsObject;
@@ -3042,6 +3155,7 @@ export namespace Fragment {
     lastUpdated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     revision: string,
     publicNamespace: string,
+    fragmentConfigJson: string,
   }
 }
 
@@ -3497,6 +3611,11 @@ export class UpdateFragmentRequest extends jspb.Message {
   getLastKnownUpdate(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setLastKnownUpdate(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasFragmentConfigJson(): boolean;
+  clearFragmentConfigJson(): void;
+  getFragmentConfigJson(): string;
+  setFragmentConfigJson(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateFragmentRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateFragmentRequest): UpdateFragmentRequest.AsObject;
@@ -3515,6 +3634,7 @@ export namespace UpdateFragmentRequest {
     pb_public: boolean,
     visibility: FragmentVisibilityMap[keyof FragmentVisibilityMap],
     lastKnownUpdate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    fragmentConfigJson: string,
   }
 }
 
@@ -4476,6 +4596,148 @@ export namespace DeleteRobotResponse {
   }
 }
 
+export class FavoriteMachine extends jspb.Message {
+  hasMachine(): boolean;
+  clearMachine(): void;
+  getMachine(): Robot | undefined;
+  setMachine(value?: Robot): void;
+
+  getOrganizationId(): string;
+  setOrganizationId(value: string): void;
+
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): void;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FavoriteMachine.AsObject;
+  static toObject(includeInstance: boolean, msg: FavoriteMachine): FavoriteMachine.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FavoriteMachine, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FavoriteMachine;
+  static deserializeBinaryFromReader(message: FavoriteMachine, reader: jspb.BinaryReader): FavoriteMachine;
+}
+
+export namespace FavoriteMachine {
+  export type AsObject = {
+    machine?: Robot.AsObject,
+    organizationId: string,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class AddFavoriteMachineRequest extends jspb.Message {
+  getMachineId(): string;
+  setMachineId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddFavoriteMachineRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddFavoriteMachineRequest): AddFavoriteMachineRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddFavoriteMachineRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddFavoriteMachineRequest;
+  static deserializeBinaryFromReader(message: AddFavoriteMachineRequest, reader: jspb.BinaryReader): AddFavoriteMachineRequest;
+}
+
+export namespace AddFavoriteMachineRequest {
+  export type AsObject = {
+    machineId: string,
+  }
+}
+
+export class AddFavoriteMachineResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddFavoriteMachineResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddFavoriteMachineResponse): AddFavoriteMachineResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddFavoriteMachineResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddFavoriteMachineResponse;
+  static deserializeBinaryFromReader(message: AddFavoriteMachineResponse, reader: jspb.BinaryReader): AddFavoriteMachineResponse;
+}
+
+export namespace AddFavoriteMachineResponse {
+  export type AsObject = {
+  }
+}
+
+export class RemoveFavoriteMachineRequest extends jspb.Message {
+  getMachineId(): string;
+  setMachineId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveFavoriteMachineRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveFavoriteMachineRequest): RemoveFavoriteMachineRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveFavoriteMachineRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveFavoriteMachineRequest;
+  static deserializeBinaryFromReader(message: RemoveFavoriteMachineRequest, reader: jspb.BinaryReader): RemoveFavoriteMachineRequest;
+}
+
+export namespace RemoveFavoriteMachineRequest {
+  export type AsObject = {
+    machineId: string,
+  }
+}
+
+export class RemoveFavoriteMachineResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveFavoriteMachineResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveFavoriteMachineResponse): RemoveFavoriteMachineResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveFavoriteMachineResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveFavoriteMachineResponse;
+  static deserializeBinaryFromReader(message: RemoveFavoriteMachineResponse, reader: jspb.BinaryReader): RemoveFavoriteMachineResponse;
+}
+
+export namespace RemoveFavoriteMachineResponse {
+  export type AsObject = {
+  }
+}
+
+export class ListFavoriteMachinesRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListFavoriteMachinesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListFavoriteMachinesRequest): ListFavoriteMachinesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListFavoriteMachinesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListFavoriteMachinesRequest;
+  static deserializeBinaryFromReader(message: ListFavoriteMachinesRequest, reader: jspb.BinaryReader): ListFavoriteMachinesRequest;
+}
+
+export namespace ListFavoriteMachinesRequest {
+  export type AsObject = {
+  }
+}
+
+export class ListFavoriteMachinesResponse extends jspb.Message {
+  clearFavoritesList(): void;
+  getFavoritesList(): Array<FavoriteMachine>;
+  setFavoritesList(value: Array<FavoriteMachine>): void;
+  addFavorites(value?: FavoriteMachine, index?: number): FavoriteMachine;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListFavoriteMachinesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListFavoriteMachinesResponse): ListFavoriteMachinesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListFavoriteMachinesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListFavoriteMachinesResponse;
+  static deserializeBinaryFromReader(message: ListFavoriteMachinesResponse, reader: jspb.BinaryReader): ListFavoriteMachinesResponse;
+}
+
+export namespace ListFavoriteMachinesResponse {
+  export type AsObject = {
+    favoritesList: Array<FavoriteMachine.AsObject>,
+  }
+}
+
 export class GetRobotMetadataRequest extends jspb.Message {
   getId(): string;
   setId(value: string): void;
@@ -5177,6 +5439,11 @@ export class MLModelMetadata extends jspb.Message {
   setDetailedVersionsList(value: Array<MLModelVersion>): void;
   addDetailedVersions(value?: MLModelVersion, index?: number): MLModelVersion;
 
+  clearDeploymentModularResourcesList(): void;
+  getDeploymentModularResourcesList(): Array<string>;
+  setDeploymentModularResourcesList(value: Array<string>): void;
+  addDeploymentModularResources(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MLModelMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: MLModelMetadata): MLModelMetadata.AsObject;
@@ -5193,6 +5460,7 @@ export namespace MLModelMetadata {
     modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
     modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
     detailedVersionsList: Array<MLModelVersion.AsObject>,
+    deploymentModularResourcesList: Array<string>,
   }
 }
 
@@ -5237,6 +5505,11 @@ export class MLTrainingMetadata extends jspb.Message {
   getDraft(): boolean;
   setDraft(value: boolean): void;
 
+  clearDeploymentModularResourcesList(): void;
+  getDeploymentModularResourcesList(): Array<string>;
+  setDeploymentModularResourcesList(value: Array<string>): void;
+  addDeploymentModularResources(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MLTrainingMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: MLTrainingMetadata): MLTrainingMetadata.AsObject;
@@ -5253,6 +5526,7 @@ export namespace MLTrainingMetadata {
     modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
     modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
     draft: boolean,
+    deploymentModularResourcesList: Array<string>,
   }
 }
 
@@ -6202,6 +6476,11 @@ export class UpdateMLModelMetadata extends jspb.Message {
   getModelFramework(): app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap];
   setModelFramework(value: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap]): void;
 
+  clearDeploymentModularResourcesList(): void;
+  getDeploymentModularResourcesList(): Array<string>;
+  setDeploymentModularResourcesList(value: Array<string>): void;
+  addDeploymentModularResources(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMLModelMetadata.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateMLModelMetadata): UpdateMLModelMetadata.AsObject;
@@ -6216,6 +6495,7 @@ export namespace UpdateMLModelMetadata {
   export type AsObject = {
     modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
     modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
+    deploymentModularResourcesList: Array<string>,
   }
 }
 
@@ -6228,6 +6508,11 @@ export class UpdateMLTrainingMetadata extends jspb.Message {
 
   getDraft(): boolean;
   setDraft(value: boolean): void;
+
+  clearDeploymentModularResourcesList(): void;
+  getDeploymentModularResourcesList(): Array<string>;
+  setDeploymentModularResourcesList(value: Array<string>): void;
+  addDeploymentModularResources(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMLTrainingMetadata.AsObject;
@@ -6244,6 +6529,7 @@ export namespace UpdateMLTrainingMetadata {
     modelType: app_mltraining_v1_ml_training_pb.ModelTypeMap[keyof app_mltraining_v1_ml_training_pb.ModelTypeMap],
     modelFramework: app_mltraining_v1_ml_training_pb.ModelFrameworkMap[keyof app_mltraining_v1_ml_training_pb.ModelFrameworkMap],
     draft: boolean,
+    deploymentModularResourcesList: Array<string>,
   }
 }
 
@@ -6269,6 +6555,11 @@ export class Model extends jspb.Message {
   setSupportedHardwareList(value: Array<string>): void;
   addSupportedHardware(value: string, index?: number): string;
 
+  clearApisList(): void;
+  getApisList(): Array<string>;
+  setApisList(value: Array<string>): void;
+  addApis(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Model.AsObject;
   static toObject(includeInstance: boolean, msg: Model): Model.AsObject;
@@ -6286,6 +6577,7 @@ export namespace Model {
     markdownDocumentation: string,
     description: string,
     supportedHardwareList: Array<string>,
+    apisList: Array<string>,
   }
 }
 

@@ -23,17 +23,98 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NavigationServiceClient interface {
-	GetMode(ctx context.Context, in *GetModeRequest, opts ...grpc.CallOption) (*GetModeResponse, error)
-	SetMode(ctx context.Context, in *SetModeRequest, opts ...grpc.CallOption) (*SetModeResponse, error)
+	// AddLocation saves a named position on the active map. If position is
+	// omitted, the robot's current position from GetPosition is saved.
+	AddLocation(ctx context.Context, in *AddLocationRequest, opts ...grpc.CallOption) (*AddLocationResponse, error)
+	// GetLocation returns a saved location by name. This does not return the
+	// robot's current position; use GetPosition for that.
 	GetLocation(ctx context.Context, in *GetLocationRequest, opts ...grpc.CallOption) (*GetLocationResponse, error)
-	GetWaypoints(ctx context.Context, in *GetWaypointsRequest, opts ...grpc.CallOption) (*GetWaypointsResponse, error)
-	AddWaypoint(ctx context.Context, in *AddWaypointRequest, opts ...grpc.CallOption) (*AddWaypointResponse, error)
-	RemoveWaypoint(ctx context.Context, in *RemoveWaypointRequest, opts ...grpc.CallOption) (*RemoveWaypointResponse, error)
-	GetObstacles(ctx context.Context, in *GetObstaclesRequest, opts ...grpc.CallOption) (*GetObstaclesResponse, error)
-	GetPaths(ctx context.Context, in *GetPathsRequest, opts ...grpc.CallOption) (*GetPathsResponse, error)
-	// GetProperties returns properties of the current navigation service, including the
-	// map_type being operated on.
+	// ListLocations lists all saved locations on the active map.
+	ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error)
+	// UpdateLocation changes a saved location's position or name. Renaming a
+	// location updates every route waypoint that references it.
+	UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error)
+	// DeleteLocation deletes a saved location. The location is also removed from
+	// every route that references it.
+	DeleteLocation(ctx context.Context, in *DeleteLocationRequest, opts ...grpc.CallOption) (*DeleteLocationResponse, error)
+	// AddRoute creates a named route from an ordered list of waypoints. Every
+	// referenced location must already exist.
+	AddRoute(ctx context.Context, in *AddRouteRequest, opts ...grpc.CallOption) (*AddRouteResponse, error)
+	// GetRoute returns a route by name.
+	GetRoute(ctx context.Context, in *GetRouteRequest, opts ...grpc.CallOption) (*GetRouteResponse, error)
+	// ListRoutes lists all routes on the active map.
+	ListRoutes(ctx context.Context, in *ListRoutesRequest, opts ...grpc.CallOption) (*ListRoutesResponse, error)
+	// UpdateRoute renames a route and/or replaces its waypoints. An unset
+	// waypoints list leaves the waypoints unchanged. A set list, including an
+	// empty one, replaces them.
+	UpdateRoute(ctx context.Context, in *UpdateRouteRequest, opts ...grpc.CallOption) (*UpdateRouteResponse, error)
+	// DeleteRoute deletes a route. The locations it references are not affected.
+	DeleteRoute(ctx context.Context, in *DeleteRouteRequest, opts ...grpc.CallOption) (*DeleteRouteResponse, error)
+	// AddZone creates a keep-out or speed-limit zone on the active map. The
+	// planner avoids keep-out zones and caps speed inside speed-limit zones.
+	AddZone(ctx context.Context, in *AddZoneRequest, opts ...grpc.CallOption) (*AddZoneResponse, error)
+	// GetZone returns a zone by name.
+	GetZone(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*GetZoneResponse, error)
+	// ListZones lists zones on the active map, optionally filtered by type.
+	ListZones(ctx context.Context, in *ListZonesRequest, opts ...grpc.CallOption) (*ListZonesResponse, error)
+	// UpdateZone changes a zone's type, geometry, speed limit, or name.
+	UpdateZone(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*UpdateZoneResponse, error)
+	// DeleteZone deletes a zone.
+	DeleteZone(ctx context.Context, in *DeleteZoneRequest, opts ...grpc.CallOption) (*DeleteZoneResponse, error)
+	// NavigateToLocation plans an obstacle-aware path to a saved location and
+	// starts driving it. Returns once the goal is accepted; track progress with
+	// GetNavigationStatus.
+	NavigateToLocation(ctx context.Context, in *NavigateToLocationRequest, opts ...grpc.CallOption) (*NavigateToLocationResponse, error)
+	// NavigateToPoint plans an obstacle-aware path to a Position and starts
+	// driving it. Returns once the goal is accepted; track progress with
+	// GetNavigationStatus. On a Pose, theta defaults to 0 if omitted.
+	NavigateToPoint(ctx context.Context, in *NavigateToPointRequest, opts ...grpc.CallOption) (*NavigateToPointResponse, error)
+	// NavigateRoute drives a route one waypoint at a time using the
+	// obstacle-aware planner. Provide either route_name (a saved route) or
+	// waypoints (an inline list).
+	NavigateRoute(ctx context.Context, in *NavigateRouteRequest, opts ...grpc.CallOption) (*NavigateRouteResponse, error)
+	// PlanToPoint computes a path from the robot (or a given start) to a
+	// Position without moving. Pass a feasible result to ExecutePlan to drive it.
+	// Raises an error if no path exists.
+	PlanToPoint(ctx context.Context, in *PlanToPointRequest, opts ...grpc.CallOption) (*PlanToPointResponse, error)
+	// PlanToLocation computes a path to a saved location without moving. Accepts
+	// the same optional start as PlanToPoint. Raises an error if no path exists.
+	PlanToLocation(ctx context.Context, in *PlanToLocationRequest, opts ...grpc.CallOption) (*PlanToLocationResponse, error)
+	// ExecutePlan drives a Plan (typically from PlanToPoint or PlanToLocation).
+	// While navigating, the active path is available on GetNavigationStatus. Rejected if
+	// the path is empty.
+	ExecutePlan(ctx context.Context, in *ExecutePlanRequest, opts ...grpc.CallOption) (*ExecutePlanResponse, error)
+	// GoToLocation drives directly to a saved location with a closed-loop
+	// controller, without full path planning. Intended for short hops and
+	// docking. With wait false, returns immediately while navigating.
+	GoToLocation(ctx context.Context, in *GoToLocationRequest, opts ...grpc.CallOption) (*GoToLocationResponse, error)
+	// GoToPoint drives directly to a Position with a closed-loop controller,
+	// without full path planning. Intended for short hops and docking. With wait
+	// false, returns immediately while navigating.
+	GoToPoint(ctx context.Context, in *GoToPointRequest, opts ...grpc.CallOption) (*GoToPointResponse, error)
+	// Suspend stops motion but remembers the current goal, including the current
+	// waypoint and loop setting for routes. A suspended goal must be canceled
+	// before a new one starts.
+	Suspend(ctx context.Context, in *SuspendRequest, opts ...grpc.CallOption) (*SuspendResponse, error)
+	// Resume resumes the suspended goal the same way it was started: planned
+	// navigation, simple go-to, or a route from its current waypoint.
+	Resume(ctx context.Context, in *ResumeRequest, opts ...grpc.CallOption) (*ResumeResponse, error)
+	// Cancel stops all motion and discards both the active goal and any
+	// suspended goal.
+	Cancel(ctx context.Context, in *CancelRequest, opts ...grpc.CallOption) (*CancelResponse, error)
+	// GetPosition returns the robot's current position on the active map. Use
+	// this for frequent position polling; GetNavigationStatus reports the same position
+	// alongside the rest of the navigation state.
+	GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error)
+	// GetNavigationStatus returns the full navigation state, including the robot's
+	// current position and the latest goal.
+	GetNavigationStatus(ctx context.Context, in *GetNavigationStatusRequest, opts ...grpc.CallOption) (*GetNavigationStatusResponse, error)
+	// GetProperties returns the map type the service operates on and robot
+	// properties. These values do not change while the service is running.
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
+	// GetCostmap returns the local or global costmap as a downsampled grid, for
+	// display in UIs.
+	GetCostmap(ctx context.Context, in *GetCostmapRequest, opts ...grpc.CallOption) (*GetCostmapResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -48,18 +129,9 @@ func NewNavigationServiceClient(cc grpc.ClientConnInterface) NavigationServiceCl
 	return &navigationServiceClient{cc}
 }
 
-func (c *navigationServiceClient) GetMode(ctx context.Context, in *GetModeRequest, opts ...grpc.CallOption) (*GetModeResponse, error) {
-	out := new(GetModeResponse)
-	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetMode", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *navigationServiceClient) SetMode(ctx context.Context, in *SetModeRequest, opts ...grpc.CallOption) (*SetModeResponse, error) {
-	out := new(SetModeResponse)
-	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/SetMode", in, out, opts...)
+func (c *navigationServiceClient) AddLocation(ctx context.Context, in *AddLocationRequest, opts ...grpc.CallOption) (*AddLocationResponse, error) {
+	out := new(AddLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/AddLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -75,45 +147,234 @@ func (c *navigationServiceClient) GetLocation(ctx context.Context, in *GetLocati
 	return out, nil
 }
 
-func (c *navigationServiceClient) GetWaypoints(ctx context.Context, in *GetWaypointsRequest, opts ...grpc.CallOption) (*GetWaypointsResponse, error) {
-	out := new(GetWaypointsResponse)
-	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetWaypoints", in, out, opts...)
+func (c *navigationServiceClient) ListLocations(ctx context.Context, in *ListLocationsRequest, opts ...grpc.CallOption) (*ListLocationsResponse, error) {
+	out := new(ListLocationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/ListLocations", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *navigationServiceClient) AddWaypoint(ctx context.Context, in *AddWaypointRequest, opts ...grpc.CallOption) (*AddWaypointResponse, error) {
-	out := new(AddWaypointResponse)
-	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/AddWaypoint", in, out, opts...)
+func (c *navigationServiceClient) UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateLocationResponse, error) {
+	out := new(UpdateLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/UpdateLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *navigationServiceClient) RemoveWaypoint(ctx context.Context, in *RemoveWaypointRequest, opts ...grpc.CallOption) (*RemoveWaypointResponse, error) {
-	out := new(RemoveWaypointResponse)
-	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/RemoveWaypoint", in, out, opts...)
+func (c *navigationServiceClient) DeleteLocation(ctx context.Context, in *DeleteLocationRequest, opts ...grpc.CallOption) (*DeleteLocationResponse, error) {
+	out := new(DeleteLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/DeleteLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *navigationServiceClient) GetObstacles(ctx context.Context, in *GetObstaclesRequest, opts ...grpc.CallOption) (*GetObstaclesResponse, error) {
-	out := new(GetObstaclesResponse)
-	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetObstacles", in, out, opts...)
+func (c *navigationServiceClient) AddRoute(ctx context.Context, in *AddRouteRequest, opts ...grpc.CallOption) (*AddRouteResponse, error) {
+	out := new(AddRouteResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/AddRoute", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *navigationServiceClient) GetPaths(ctx context.Context, in *GetPathsRequest, opts ...grpc.CallOption) (*GetPathsResponse, error) {
-	out := new(GetPathsResponse)
-	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetPaths", in, out, opts...)
+func (c *navigationServiceClient) GetRoute(ctx context.Context, in *GetRouteRequest, opts ...grpc.CallOption) (*GetRouteResponse, error) {
+	out := new(GetRouteResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetRoute", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) ListRoutes(ctx context.Context, in *ListRoutesRequest, opts ...grpc.CallOption) (*ListRoutesResponse, error) {
+	out := new(ListRoutesResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/ListRoutes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) UpdateRoute(ctx context.Context, in *UpdateRouteRequest, opts ...grpc.CallOption) (*UpdateRouteResponse, error) {
+	out := new(UpdateRouteResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/UpdateRoute", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) DeleteRoute(ctx context.Context, in *DeleteRouteRequest, opts ...grpc.CallOption) (*DeleteRouteResponse, error) {
+	out := new(DeleteRouteResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/DeleteRoute", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) AddZone(ctx context.Context, in *AddZoneRequest, opts ...grpc.CallOption) (*AddZoneResponse, error) {
+	out := new(AddZoneResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/AddZone", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) GetZone(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*GetZoneResponse, error) {
+	out := new(GetZoneResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetZone", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) ListZones(ctx context.Context, in *ListZonesRequest, opts ...grpc.CallOption) (*ListZonesResponse, error) {
+	out := new(ListZonesResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/ListZones", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) UpdateZone(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*UpdateZoneResponse, error) {
+	out := new(UpdateZoneResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/UpdateZone", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) DeleteZone(ctx context.Context, in *DeleteZoneRequest, opts ...grpc.CallOption) (*DeleteZoneResponse, error) {
+	out := new(DeleteZoneResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/DeleteZone", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) NavigateToLocation(ctx context.Context, in *NavigateToLocationRequest, opts ...grpc.CallOption) (*NavigateToLocationResponse, error) {
+	out := new(NavigateToLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/NavigateToLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) NavigateToPoint(ctx context.Context, in *NavigateToPointRequest, opts ...grpc.CallOption) (*NavigateToPointResponse, error) {
+	out := new(NavigateToPointResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/NavigateToPoint", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) NavigateRoute(ctx context.Context, in *NavigateRouteRequest, opts ...grpc.CallOption) (*NavigateRouteResponse, error) {
+	out := new(NavigateRouteResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/NavigateRoute", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) PlanToPoint(ctx context.Context, in *PlanToPointRequest, opts ...grpc.CallOption) (*PlanToPointResponse, error) {
+	out := new(PlanToPointResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/PlanToPoint", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) PlanToLocation(ctx context.Context, in *PlanToLocationRequest, opts ...grpc.CallOption) (*PlanToLocationResponse, error) {
+	out := new(PlanToLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/PlanToLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) ExecutePlan(ctx context.Context, in *ExecutePlanRequest, opts ...grpc.CallOption) (*ExecutePlanResponse, error) {
+	out := new(ExecutePlanResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/ExecutePlan", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) GoToLocation(ctx context.Context, in *GoToLocationRequest, opts ...grpc.CallOption) (*GoToLocationResponse, error) {
+	out := new(GoToLocationResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GoToLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) GoToPoint(ctx context.Context, in *GoToPointRequest, opts ...grpc.CallOption) (*GoToPointResponse, error) {
+	out := new(GoToPointResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GoToPoint", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) Suspend(ctx context.Context, in *SuspendRequest, opts ...grpc.CallOption) (*SuspendResponse, error) {
+	out := new(SuspendResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/Suspend", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) Resume(ctx context.Context, in *ResumeRequest, opts ...grpc.CallOption) (*ResumeResponse, error) {
+	out := new(ResumeResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/Resume", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) Cancel(ctx context.Context, in *CancelRequest, opts ...grpc.CallOption) (*CancelResponse, error) {
+	out := new(CancelResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/Cancel", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) GetPosition(ctx context.Context, in *GetPositionRequest, opts ...grpc.CallOption) (*GetPositionResponse, error) {
+	out := new(GetPositionResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetPosition", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) GetNavigationStatus(ctx context.Context, in *GetNavigationStatusRequest, opts ...grpc.CallOption) (*GetNavigationStatusResponse, error) {
+	out := new(GetNavigationStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetNavigationStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -123,6 +384,15 @@ func (c *navigationServiceClient) GetPaths(ctx context.Context, in *GetPathsRequ
 func (c *navigationServiceClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error) {
 	out := new(GetPropertiesResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetProperties", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *navigationServiceClient) GetCostmap(ctx context.Context, in *GetCostmapRequest, opts ...grpc.CallOption) (*GetCostmapResponse, error) {
+	out := new(GetCostmapResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.navigation.v1.NavigationService/GetCostmap", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -151,17 +421,98 @@ func (c *navigationServiceClient) GetStatus(ctx context.Context, in *v1.GetStatu
 // All implementations must embed UnimplementedNavigationServiceServer
 // for forward compatibility
 type NavigationServiceServer interface {
-	GetMode(context.Context, *GetModeRequest) (*GetModeResponse, error)
-	SetMode(context.Context, *SetModeRequest) (*SetModeResponse, error)
+	// AddLocation saves a named position on the active map. If position is
+	// omitted, the robot's current position from GetPosition is saved.
+	AddLocation(context.Context, *AddLocationRequest) (*AddLocationResponse, error)
+	// GetLocation returns a saved location by name. This does not return the
+	// robot's current position; use GetPosition for that.
 	GetLocation(context.Context, *GetLocationRequest) (*GetLocationResponse, error)
-	GetWaypoints(context.Context, *GetWaypointsRequest) (*GetWaypointsResponse, error)
-	AddWaypoint(context.Context, *AddWaypointRequest) (*AddWaypointResponse, error)
-	RemoveWaypoint(context.Context, *RemoveWaypointRequest) (*RemoveWaypointResponse, error)
-	GetObstacles(context.Context, *GetObstaclesRequest) (*GetObstaclesResponse, error)
-	GetPaths(context.Context, *GetPathsRequest) (*GetPathsResponse, error)
-	// GetProperties returns properties of the current navigation service, including the
-	// map_type being operated on.
+	// ListLocations lists all saved locations on the active map.
+	ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error)
+	// UpdateLocation changes a saved location's position or name. Renaming a
+	// location updates every route waypoint that references it.
+	UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error)
+	// DeleteLocation deletes a saved location. The location is also removed from
+	// every route that references it.
+	DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error)
+	// AddRoute creates a named route from an ordered list of waypoints. Every
+	// referenced location must already exist.
+	AddRoute(context.Context, *AddRouteRequest) (*AddRouteResponse, error)
+	// GetRoute returns a route by name.
+	GetRoute(context.Context, *GetRouteRequest) (*GetRouteResponse, error)
+	// ListRoutes lists all routes on the active map.
+	ListRoutes(context.Context, *ListRoutesRequest) (*ListRoutesResponse, error)
+	// UpdateRoute renames a route and/or replaces its waypoints. An unset
+	// waypoints list leaves the waypoints unchanged. A set list, including an
+	// empty one, replaces them.
+	UpdateRoute(context.Context, *UpdateRouteRequest) (*UpdateRouteResponse, error)
+	// DeleteRoute deletes a route. The locations it references are not affected.
+	DeleteRoute(context.Context, *DeleteRouteRequest) (*DeleteRouteResponse, error)
+	// AddZone creates a keep-out or speed-limit zone on the active map. The
+	// planner avoids keep-out zones and caps speed inside speed-limit zones.
+	AddZone(context.Context, *AddZoneRequest) (*AddZoneResponse, error)
+	// GetZone returns a zone by name.
+	GetZone(context.Context, *GetZoneRequest) (*GetZoneResponse, error)
+	// ListZones lists zones on the active map, optionally filtered by type.
+	ListZones(context.Context, *ListZonesRequest) (*ListZonesResponse, error)
+	// UpdateZone changes a zone's type, geometry, speed limit, or name.
+	UpdateZone(context.Context, *UpdateZoneRequest) (*UpdateZoneResponse, error)
+	// DeleteZone deletes a zone.
+	DeleteZone(context.Context, *DeleteZoneRequest) (*DeleteZoneResponse, error)
+	// NavigateToLocation plans an obstacle-aware path to a saved location and
+	// starts driving it. Returns once the goal is accepted; track progress with
+	// GetNavigationStatus.
+	NavigateToLocation(context.Context, *NavigateToLocationRequest) (*NavigateToLocationResponse, error)
+	// NavigateToPoint plans an obstacle-aware path to a Position and starts
+	// driving it. Returns once the goal is accepted; track progress with
+	// GetNavigationStatus. On a Pose, theta defaults to 0 if omitted.
+	NavigateToPoint(context.Context, *NavigateToPointRequest) (*NavigateToPointResponse, error)
+	// NavigateRoute drives a route one waypoint at a time using the
+	// obstacle-aware planner. Provide either route_name (a saved route) or
+	// waypoints (an inline list).
+	NavigateRoute(context.Context, *NavigateRouteRequest) (*NavigateRouteResponse, error)
+	// PlanToPoint computes a path from the robot (or a given start) to a
+	// Position without moving. Pass a feasible result to ExecutePlan to drive it.
+	// Raises an error if no path exists.
+	PlanToPoint(context.Context, *PlanToPointRequest) (*PlanToPointResponse, error)
+	// PlanToLocation computes a path to a saved location without moving. Accepts
+	// the same optional start as PlanToPoint. Raises an error if no path exists.
+	PlanToLocation(context.Context, *PlanToLocationRequest) (*PlanToLocationResponse, error)
+	// ExecutePlan drives a Plan (typically from PlanToPoint or PlanToLocation).
+	// While navigating, the active path is available on GetNavigationStatus. Rejected if
+	// the path is empty.
+	ExecutePlan(context.Context, *ExecutePlanRequest) (*ExecutePlanResponse, error)
+	// GoToLocation drives directly to a saved location with a closed-loop
+	// controller, without full path planning. Intended for short hops and
+	// docking. With wait false, returns immediately while navigating.
+	GoToLocation(context.Context, *GoToLocationRequest) (*GoToLocationResponse, error)
+	// GoToPoint drives directly to a Position with a closed-loop controller,
+	// without full path planning. Intended for short hops and docking. With wait
+	// false, returns immediately while navigating.
+	GoToPoint(context.Context, *GoToPointRequest) (*GoToPointResponse, error)
+	// Suspend stops motion but remembers the current goal, including the current
+	// waypoint and loop setting for routes. A suspended goal must be canceled
+	// before a new one starts.
+	Suspend(context.Context, *SuspendRequest) (*SuspendResponse, error)
+	// Resume resumes the suspended goal the same way it was started: planned
+	// navigation, simple go-to, or a route from its current waypoint.
+	Resume(context.Context, *ResumeRequest) (*ResumeResponse, error)
+	// Cancel stops all motion and discards both the active goal and any
+	// suspended goal.
+	Cancel(context.Context, *CancelRequest) (*CancelResponse, error)
+	// GetPosition returns the robot's current position on the active map. Use
+	// this for frequent position polling; GetNavigationStatus reports the same position
+	// alongside the rest of the navigation state.
+	GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error)
+	// GetNavigationStatus returns the full navigation state, including the robot's
+	// current position and the latest goal.
+	GetNavigationStatus(context.Context, *GetNavigationStatusRequest) (*GetNavigationStatusResponse, error)
+	// GetProperties returns the map type the service operates on and robot
+	// properties. These values do not change while the service is running.
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
+	// GetCostmap returns the local or global costmap as a downsampled grid, for
+	// display in UIs.
+	GetCostmap(context.Context, *GetCostmapRequest) (*GetCostmapResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -173,32 +524,95 @@ type NavigationServiceServer interface {
 type UnimplementedNavigationServiceServer struct {
 }
 
-func (UnimplementedNavigationServiceServer) GetMode(context.Context, *GetModeRequest) (*GetModeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMode not implemented")
-}
-func (UnimplementedNavigationServiceServer) SetMode(context.Context, *SetModeRequest) (*SetModeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetMode not implemented")
+func (UnimplementedNavigationServiceServer) AddLocation(context.Context, *AddLocationRequest) (*AddLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddLocation not implemented")
 }
 func (UnimplementedNavigationServiceServer) GetLocation(context.Context, *GetLocationRequest) (*GetLocationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLocation not implemented")
 }
-func (UnimplementedNavigationServiceServer) GetWaypoints(context.Context, *GetWaypointsRequest) (*GetWaypointsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetWaypoints not implemented")
+func (UnimplementedNavigationServiceServer) ListLocations(context.Context, *ListLocationsRequest) (*ListLocationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListLocations not implemented")
 }
-func (UnimplementedNavigationServiceServer) AddWaypoint(context.Context, *AddWaypointRequest) (*AddWaypointResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddWaypoint not implemented")
+func (UnimplementedNavigationServiceServer) UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocation not implemented")
 }
-func (UnimplementedNavigationServiceServer) RemoveWaypoint(context.Context, *RemoveWaypointRequest) (*RemoveWaypointResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveWaypoint not implemented")
+func (UnimplementedNavigationServiceServer) DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteLocation not implemented")
 }
-func (UnimplementedNavigationServiceServer) GetObstacles(context.Context, *GetObstaclesRequest) (*GetObstaclesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetObstacles not implemented")
+func (UnimplementedNavigationServiceServer) AddRoute(context.Context, *AddRouteRequest) (*AddRouteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRoute not implemented")
 }
-func (UnimplementedNavigationServiceServer) GetPaths(context.Context, *GetPathsRequest) (*GetPathsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPaths not implemented")
+func (UnimplementedNavigationServiceServer) GetRoute(context.Context, *GetRouteRequest) (*GetRouteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRoute not implemented")
+}
+func (UnimplementedNavigationServiceServer) ListRoutes(context.Context, *ListRoutesRequest) (*ListRoutesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRoutes not implemented")
+}
+func (UnimplementedNavigationServiceServer) UpdateRoute(context.Context, *UpdateRouteRequest) (*UpdateRouteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRoute not implemented")
+}
+func (UnimplementedNavigationServiceServer) DeleteRoute(context.Context, *DeleteRouteRequest) (*DeleteRouteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRoute not implemented")
+}
+func (UnimplementedNavigationServiceServer) AddZone(context.Context, *AddZoneRequest) (*AddZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddZone not implemented")
+}
+func (UnimplementedNavigationServiceServer) GetZone(context.Context, *GetZoneRequest) (*GetZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetZone not implemented")
+}
+func (UnimplementedNavigationServiceServer) ListZones(context.Context, *ListZonesRequest) (*ListZonesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListZones not implemented")
+}
+func (UnimplementedNavigationServiceServer) UpdateZone(context.Context, *UpdateZoneRequest) (*UpdateZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateZone not implemented")
+}
+func (UnimplementedNavigationServiceServer) DeleteZone(context.Context, *DeleteZoneRequest) (*DeleteZoneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteZone not implemented")
+}
+func (UnimplementedNavigationServiceServer) NavigateToLocation(context.Context, *NavigateToLocationRequest) (*NavigateToLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NavigateToLocation not implemented")
+}
+func (UnimplementedNavigationServiceServer) NavigateToPoint(context.Context, *NavigateToPointRequest) (*NavigateToPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NavigateToPoint not implemented")
+}
+func (UnimplementedNavigationServiceServer) NavigateRoute(context.Context, *NavigateRouteRequest) (*NavigateRouteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NavigateRoute not implemented")
+}
+func (UnimplementedNavigationServiceServer) PlanToPoint(context.Context, *PlanToPointRequest) (*PlanToPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlanToPoint not implemented")
+}
+func (UnimplementedNavigationServiceServer) PlanToLocation(context.Context, *PlanToLocationRequest) (*PlanToLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlanToLocation not implemented")
+}
+func (UnimplementedNavigationServiceServer) ExecutePlan(context.Context, *ExecutePlanRequest) (*ExecutePlanResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecutePlan not implemented")
+}
+func (UnimplementedNavigationServiceServer) GoToLocation(context.Context, *GoToLocationRequest) (*GoToLocationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GoToLocation not implemented")
+}
+func (UnimplementedNavigationServiceServer) GoToPoint(context.Context, *GoToPointRequest) (*GoToPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GoToPoint not implemented")
+}
+func (UnimplementedNavigationServiceServer) Suspend(context.Context, *SuspendRequest) (*SuspendResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Suspend not implemented")
+}
+func (UnimplementedNavigationServiceServer) Resume(context.Context, *ResumeRequest) (*ResumeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Resume not implemented")
+}
+func (UnimplementedNavigationServiceServer) Cancel(context.Context, *CancelRequest) (*CancelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Cancel not implemented")
+}
+func (UnimplementedNavigationServiceServer) GetPosition(context.Context, *GetPositionRequest) (*GetPositionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPosition not implemented")
+}
+func (UnimplementedNavigationServiceServer) GetNavigationStatus(context.Context, *GetNavigationStatusRequest) (*GetNavigationStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNavigationStatus not implemented")
 }
 func (UnimplementedNavigationServiceServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProperties not implemented")
+}
+func (UnimplementedNavigationServiceServer) GetCostmap(context.Context, *GetCostmapRequest) (*GetCostmapResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCostmap not implemented")
 }
 func (UnimplementedNavigationServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -219,38 +633,20 @@ func RegisterNavigationServiceServer(s grpc.ServiceRegistrar, srv NavigationServ
 	s.RegisterService(&NavigationService_ServiceDesc, srv)
 }
 
-func _NavigationService_GetMode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetModeRequest)
+func _NavigationService_AddLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddLocationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NavigationServiceServer).GetMode(ctx, in)
+		return srv.(NavigationServiceServer).AddLocation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.service.navigation.v1.NavigationService/GetMode",
+		FullMethod: "/viam.service.navigation.v1.NavigationService/AddLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NavigationServiceServer).GetMode(ctx, req.(*GetModeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NavigationService_SetMode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetModeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NavigationServiceServer).SetMode(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/viam.service.navigation.v1.NavigationService/SetMode",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NavigationServiceServer).SetMode(ctx, req.(*SetModeRequest))
+		return srv.(NavigationServiceServer).AddLocation(ctx, req.(*AddLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -273,92 +669,470 @@ func _NavigationService_GetLocation_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NavigationService_GetWaypoints_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetWaypointsRequest)
+func _NavigationService_ListLocations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListLocationsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NavigationServiceServer).GetWaypoints(ctx, in)
+		return srv.(NavigationServiceServer).ListLocations(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.service.navigation.v1.NavigationService/GetWaypoints",
+		FullMethod: "/viam.service.navigation.v1.NavigationService/ListLocations",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NavigationServiceServer).GetWaypoints(ctx, req.(*GetWaypointsRequest))
+		return srv.(NavigationServiceServer).ListLocations(ctx, req.(*ListLocationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NavigationService_AddWaypoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddWaypointRequest)
+func _NavigationService_UpdateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLocationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NavigationServiceServer).AddWaypoint(ctx, in)
+		return srv.(NavigationServiceServer).UpdateLocation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.service.navigation.v1.NavigationService/AddWaypoint",
+		FullMethod: "/viam.service.navigation.v1.NavigationService/UpdateLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NavigationServiceServer).AddWaypoint(ctx, req.(*AddWaypointRequest))
+		return srv.(NavigationServiceServer).UpdateLocation(ctx, req.(*UpdateLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NavigationService_RemoveWaypoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveWaypointRequest)
+func _NavigationService_DeleteLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteLocationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NavigationServiceServer).RemoveWaypoint(ctx, in)
+		return srv.(NavigationServiceServer).DeleteLocation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.service.navigation.v1.NavigationService/RemoveWaypoint",
+		FullMethod: "/viam.service.navigation.v1.NavigationService/DeleteLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NavigationServiceServer).RemoveWaypoint(ctx, req.(*RemoveWaypointRequest))
+		return srv.(NavigationServiceServer).DeleteLocation(ctx, req.(*DeleteLocationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NavigationService_GetObstacles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetObstaclesRequest)
+func _NavigationService_AddRoute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRouteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NavigationServiceServer).GetObstacles(ctx, in)
+		return srv.(NavigationServiceServer).AddRoute(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.service.navigation.v1.NavigationService/GetObstacles",
+		FullMethod: "/viam.service.navigation.v1.NavigationService/AddRoute",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NavigationServiceServer).GetObstacles(ctx, req.(*GetObstaclesRequest))
+		return srv.(NavigationServiceServer).AddRoute(ctx, req.(*AddRouteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NavigationService_GetPaths_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPathsRequest)
+func _NavigationService_GetRoute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRouteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NavigationServiceServer).GetPaths(ctx, in)
+		return srv.(NavigationServiceServer).GetRoute(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/viam.service.navigation.v1.NavigationService/GetPaths",
+		FullMethod: "/viam.service.navigation.v1.NavigationService/GetRoute",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NavigationServiceServer).GetPaths(ctx, req.(*GetPathsRequest))
+		return srv.(NavigationServiceServer).GetRoute(ctx, req.(*GetRouteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_ListRoutes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRoutesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).ListRoutes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/ListRoutes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).ListRoutes(ctx, req.(*ListRoutesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_UpdateRoute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRouteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).UpdateRoute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/UpdateRoute",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).UpdateRoute(ctx, req.(*UpdateRouteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_DeleteRoute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRouteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).DeleteRoute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/DeleteRoute",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).DeleteRoute(ctx, req.(*DeleteRouteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_AddZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).AddZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/AddZone",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).AddZone(ctx, req.(*AddZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_GetZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).GetZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/GetZone",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).GetZone(ctx, req.(*GetZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_ListZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListZonesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).ListZones(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/ListZones",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).ListZones(ctx, req.(*ListZonesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_UpdateZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).UpdateZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/UpdateZone",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).UpdateZone(ctx, req.(*UpdateZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_DeleteZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).DeleteZone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/DeleteZone",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).DeleteZone(ctx, req.(*DeleteZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_NavigateToLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NavigateToLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).NavigateToLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/NavigateToLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).NavigateToLocation(ctx, req.(*NavigateToLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_NavigateToPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NavigateToPointRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).NavigateToPoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/NavigateToPoint",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).NavigateToPoint(ctx, req.(*NavigateToPointRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_NavigateRoute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NavigateRouteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).NavigateRoute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/NavigateRoute",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).NavigateRoute(ctx, req.(*NavigateRouteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_PlanToPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PlanToPointRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).PlanToPoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/PlanToPoint",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).PlanToPoint(ctx, req.(*PlanToPointRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_PlanToLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PlanToLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).PlanToLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/PlanToLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).PlanToLocation(ctx, req.(*PlanToLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_ExecutePlan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExecutePlanRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).ExecutePlan(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/ExecutePlan",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).ExecutePlan(ctx, req.(*ExecutePlanRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_GoToLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GoToLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).GoToLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/GoToLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).GoToLocation(ctx, req.(*GoToLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_GoToPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GoToPointRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).GoToPoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/GoToPoint",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).GoToPoint(ctx, req.(*GoToPointRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_Suspend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SuspendRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).Suspend(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/Suspend",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).Suspend(ctx, req.(*SuspendRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_Resume_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResumeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).Resume(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/Resume",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).Resume(ctx, req.(*ResumeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_Cancel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CancelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).Cancel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/Cancel",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).Cancel(ctx, req.(*CancelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_GetPosition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPositionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).GetPosition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/GetPosition",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).GetPosition(ctx, req.(*GetPositionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_GetNavigationStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNavigationStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).GetNavigationStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/GetNavigationStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).GetNavigationStatus(ctx, req.(*GetNavigationStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -377,6 +1151,24 @@ func _NavigationService_GetProperties_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NavigationServiceServer).GetProperties(ctx, req.(*GetPropertiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NavigationService_GetCostmap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCostmapRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NavigationServiceServer).GetCostmap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.navigation.v1.NavigationService/GetCostmap",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NavigationServiceServer).GetCostmap(ctx, req.(*GetCostmapRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -425,40 +1217,124 @@ var NavigationService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*NavigationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetMode",
-			Handler:    _NavigationService_GetMode_Handler,
-		},
-		{
-			MethodName: "SetMode",
-			Handler:    _NavigationService_SetMode_Handler,
+			MethodName: "AddLocation",
+			Handler:    _NavigationService_AddLocation_Handler,
 		},
 		{
 			MethodName: "GetLocation",
 			Handler:    _NavigationService_GetLocation_Handler,
 		},
 		{
-			MethodName: "GetWaypoints",
-			Handler:    _NavigationService_GetWaypoints_Handler,
+			MethodName: "ListLocations",
+			Handler:    _NavigationService_ListLocations_Handler,
 		},
 		{
-			MethodName: "AddWaypoint",
-			Handler:    _NavigationService_AddWaypoint_Handler,
+			MethodName: "UpdateLocation",
+			Handler:    _NavigationService_UpdateLocation_Handler,
 		},
 		{
-			MethodName: "RemoveWaypoint",
-			Handler:    _NavigationService_RemoveWaypoint_Handler,
+			MethodName: "DeleteLocation",
+			Handler:    _NavigationService_DeleteLocation_Handler,
 		},
 		{
-			MethodName: "GetObstacles",
-			Handler:    _NavigationService_GetObstacles_Handler,
+			MethodName: "AddRoute",
+			Handler:    _NavigationService_AddRoute_Handler,
 		},
 		{
-			MethodName: "GetPaths",
-			Handler:    _NavigationService_GetPaths_Handler,
+			MethodName: "GetRoute",
+			Handler:    _NavigationService_GetRoute_Handler,
+		},
+		{
+			MethodName: "ListRoutes",
+			Handler:    _NavigationService_ListRoutes_Handler,
+		},
+		{
+			MethodName: "UpdateRoute",
+			Handler:    _NavigationService_UpdateRoute_Handler,
+		},
+		{
+			MethodName: "DeleteRoute",
+			Handler:    _NavigationService_DeleteRoute_Handler,
+		},
+		{
+			MethodName: "AddZone",
+			Handler:    _NavigationService_AddZone_Handler,
+		},
+		{
+			MethodName: "GetZone",
+			Handler:    _NavigationService_GetZone_Handler,
+		},
+		{
+			MethodName: "ListZones",
+			Handler:    _NavigationService_ListZones_Handler,
+		},
+		{
+			MethodName: "UpdateZone",
+			Handler:    _NavigationService_UpdateZone_Handler,
+		},
+		{
+			MethodName: "DeleteZone",
+			Handler:    _NavigationService_DeleteZone_Handler,
+		},
+		{
+			MethodName: "NavigateToLocation",
+			Handler:    _NavigationService_NavigateToLocation_Handler,
+		},
+		{
+			MethodName: "NavigateToPoint",
+			Handler:    _NavigationService_NavigateToPoint_Handler,
+		},
+		{
+			MethodName: "NavigateRoute",
+			Handler:    _NavigationService_NavigateRoute_Handler,
+		},
+		{
+			MethodName: "PlanToPoint",
+			Handler:    _NavigationService_PlanToPoint_Handler,
+		},
+		{
+			MethodName: "PlanToLocation",
+			Handler:    _NavigationService_PlanToLocation_Handler,
+		},
+		{
+			MethodName: "ExecutePlan",
+			Handler:    _NavigationService_ExecutePlan_Handler,
+		},
+		{
+			MethodName: "GoToLocation",
+			Handler:    _NavigationService_GoToLocation_Handler,
+		},
+		{
+			MethodName: "GoToPoint",
+			Handler:    _NavigationService_GoToPoint_Handler,
+		},
+		{
+			MethodName: "Suspend",
+			Handler:    _NavigationService_Suspend_Handler,
+		},
+		{
+			MethodName: "Resume",
+			Handler:    _NavigationService_Resume_Handler,
+		},
+		{
+			MethodName: "Cancel",
+			Handler:    _NavigationService_Cancel_Handler,
+		},
+		{
+			MethodName: "GetPosition",
+			Handler:    _NavigationService_GetPosition_Handler,
+		},
+		{
+			MethodName: "GetNavigationStatus",
+			Handler:    _NavigationService_GetNavigationStatus_Handler,
 		},
 		{
 			MethodName: "GetProperties",
 			Handler:    _NavigationService_GetProperties_Handler,
+		},
+		{
+			MethodName: "GetCostmap",
+			Handler:    _NavigationService_GetCostmap_Handler,
 		},
 		{
 			MethodName: "DoCommand",

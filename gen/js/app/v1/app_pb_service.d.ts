@@ -526,6 +526,15 @@ type AppServiceUpdateRobotPart = {
   readonly responseType: typeof app_v1_app_pb.UpdateRobotPartResponse;
 };
 
+type AppServiceSetConfigProperty = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.SetConfigPropertyRequest;
+  readonly responseType: typeof app_v1_app_pb.SetConfigPropertyResponse;
+};
+
 type AppServiceNewRobotPart = {
   readonly methodName: string;
   readonly service: typeof AppService;
@@ -659,6 +668,33 @@ type AppServiceDeleteRobot = {
   readonly responseStream: false;
   readonly requestType: typeof app_v1_app_pb.DeleteRobotRequest;
   readonly responseType: typeof app_v1_app_pb.DeleteRobotResponse;
+};
+
+type AppServiceAddFavoriteMachine = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.AddFavoriteMachineRequest;
+  readonly responseType: typeof app_v1_app_pb.AddFavoriteMachineResponse;
+};
+
+type AppServiceRemoveFavoriteMachine = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.RemoveFavoriteMachineRequest;
+  readonly responseType: typeof app_v1_app_pb.RemoveFavoriteMachineResponse;
+};
+
+type AppServiceListFavoriteMachines = {
+  readonly methodName: string;
+  readonly service: typeof AppService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof app_v1_app_pb.ListFavoriteMachinesRequest;
+  readonly responseType: typeof app_v1_app_pb.ListFavoriteMachinesResponse;
 };
 
 type AppServiceListFragments = {
@@ -1144,6 +1180,7 @@ export class AppService {
   static readonly TailRobotPartLogs: AppServiceTailRobotPartLogs;
   static readonly GetRobotPartHistory: AppServiceGetRobotPartHistory;
   static readonly UpdateRobotPart: AppServiceUpdateRobotPart;
+  static readonly SetConfigProperty: AppServiceSetConfigProperty;
   static readonly NewRobotPart: AppServiceNewRobotPart;
   static readonly DeleteRobotPart: AppServiceDeleteRobotPart;
   static readonly GetRobotPartMetadata: AppServiceGetRobotPartMetadata;
@@ -1159,6 +1196,9 @@ export class AppService {
   static readonly NewRobot: AppServiceNewRobot;
   static readonly UpdateRobot: AppServiceUpdateRobot;
   static readonly DeleteRobot: AppServiceDeleteRobot;
+  static readonly AddFavoriteMachine: AppServiceAddFavoriteMachine;
+  static readonly RemoveFavoriteMachine: AppServiceRemoveFavoriteMachine;
+  static readonly ListFavoriteMachines: AppServiceListFavoriteMachines;
   static readonly ListFragments: AppServiceListFragments;
   static readonly GetFragment: AppServiceGetFragment;
   static readonly CreateFragment: AppServiceCreateFragment;
@@ -1754,6 +1794,15 @@ export class AppServiceClient {
     requestMessage: app_v1_app_pb.UpdateRobotPartRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.UpdateRobotPartResponse|null) => void
   ): UnaryResponse;
+  setConfigProperty(
+    requestMessage: app_v1_app_pb.SetConfigPropertyRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SetConfigPropertyResponse|null) => void
+  ): UnaryResponse;
+  setConfigProperty(
+    requestMessage: app_v1_app_pb.SetConfigPropertyRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.SetConfigPropertyResponse|null) => void
+  ): UnaryResponse;
   newRobotPart(
     requestMessage: app_v1_app_pb.NewRobotPartRequest,
     metadata: grpc.Metadata,
@@ -1888,6 +1937,33 @@ export class AppServiceClient {
   deleteRobot(
     requestMessage: app_v1_app_pb.DeleteRobotRequest,
     callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.DeleteRobotResponse|null) => void
+  ): UnaryResponse;
+  addFavoriteMachine(
+    requestMessage: app_v1_app_pb.AddFavoriteMachineRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.AddFavoriteMachineResponse|null) => void
+  ): UnaryResponse;
+  addFavoriteMachine(
+    requestMessage: app_v1_app_pb.AddFavoriteMachineRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.AddFavoriteMachineResponse|null) => void
+  ): UnaryResponse;
+  removeFavoriteMachine(
+    requestMessage: app_v1_app_pb.RemoveFavoriteMachineRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RemoveFavoriteMachineResponse|null) => void
+  ): UnaryResponse;
+  removeFavoriteMachine(
+    requestMessage: app_v1_app_pb.RemoveFavoriteMachineRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.RemoveFavoriteMachineResponse|null) => void
+  ): UnaryResponse;
+  listFavoriteMachines(
+    requestMessage: app_v1_app_pb.ListFavoriteMachinesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListFavoriteMachinesResponse|null) => void
+  ): UnaryResponse;
+  listFavoriteMachines(
+    requestMessage: app_v1_app_pb.ListFavoriteMachinesRequest,
+    callback: (error: ServiceError|null, responseMessage: app_v1_app_pb.ListFavoriteMachinesResponse|null) => void
   ): UnaryResponse;
   listFragments(
     requestMessage: app_v1_app_pb.ListFragmentsRequest,
