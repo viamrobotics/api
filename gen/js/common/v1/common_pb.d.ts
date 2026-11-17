@@ -262,6 +262,34 @@ export namespace Capsule {
   }
 }
 
+export class Cylinder extends jspb.Message {
+  getRadiusMm(): number;
+  setRadiusMm(value: number): void;
+
+  getLengthMm(): number;
+  setLengthMm(value: number): void;
+
+  getUncapped(): boolean;
+  setUncapped(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Cylinder.AsObject;
+  static toObject(includeInstance: boolean, msg: Cylinder): Cylinder.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Cylinder, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Cylinder;
+  static deserializeBinaryFromReader(message: Cylinder, reader: jspb.BinaryReader): Cylinder;
+}
+
+export namespace Cylinder {
+  export type AsObject = {
+    radiusMm: number,
+    lengthMm: number,
+    uncapped: boolean,
+  }
+}
+
 export class RectangularPrism extends jspb.Message {
   hasDimsMm(): boolean;
   clearDimsMm(): void;
@@ -369,6 +397,11 @@ export class Geometry extends jspb.Message {
   getPointcloud(): PointCloud | undefined;
   setPointcloud(value?: PointCloud): void;
 
+  hasCylinder(): boolean;
+  clearCylinder(): void;
+  getCylinder(): Cylinder | undefined;
+  setCylinder(value?: Cylinder): void;
+
   getLabel(): string;
   setLabel(value: string): void;
 
@@ -391,6 +424,7 @@ export namespace Geometry {
     capsule?: Capsule.AsObject,
     mesh?: Mesh.AsObject,
     pointcloud?: PointCloud.AsObject,
+    cylinder?: Cylinder.AsObject,
     label: string,
   }
 
@@ -401,6 +435,7 @@ export namespace Geometry {
     CAPSULE = 5,
     MESH = 6,
     POINTCLOUD = 7,
+    CYLINDER = 8,
   }
 }
 
