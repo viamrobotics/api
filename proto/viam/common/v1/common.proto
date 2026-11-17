@@ -85,6 +85,16 @@ message Capsule {
   double length_mm = 2;
 }
 
+// Cylinder is a right circular cylinder whose axis is the local Z axis of the geometry's center pose.
+message Cylinder {
+  double radius_mm = 1;
+  // Full end-to-end length along the cylinder's axis.
+  double length_mm = 2;
+  // When true, the flat end caps are omitted: an open tube with no interior volume. Phrased
+  // negatively so the default (false) is a solid cylinder, matching URDF and SDF cylinders.
+  bool uncapped = 3;
+}
+
 // RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
 // These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
 message RectangularPrism {
@@ -115,6 +125,7 @@ message Geometry {
     Capsule capsule = 5;
     Mesh mesh = 6;
     PointCloud pointcloud = 7;
+    Cylinder cylinder = 8;
   }
   // Label of the geometry. If none supplied, will be an empty string.
   string label = 4;
