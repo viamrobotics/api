@@ -5,6 +5,7 @@ import * as jspb from "google-protobuf";
 import * as common_v1_common_pb from "../../common/v1/common_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 import * as google_protobuf_struct_pb from "google-protobuf/google/protobuf/struct_pb";
+import * as robot_v1_robot_pb from "../../robot/v1/robot_pb";
 import * as tagger_v1_tagger_pb from "../../tagger/v1/tagger_pb";
 
 export class RobotConfig extends jspb.Message {
@@ -1313,6 +1314,19 @@ export class AgentInfo extends jspb.Message {
   setPlatformTagsList(value: Array<string>): void;
   addPlatformTags(value: string, index?: number): string;
 
+  clearModuleVersionsList(): void;
+  getModuleVersionsList(): Array<ModuleVersionInfo>;
+  setModuleVersionsList(value: Array<ModuleVersionInfo>): void;
+  addModuleVersions(value?: ModuleVersionInfo, index?: number): ModuleVersionInfo;
+
+  hasViamServerUptime(): boolean;
+  clearViamServerUptime(): void;
+  getViamServerUptime(): google_protobuf_duration_pb.Duration | undefined;
+  setViamServerUptime(value?: google_protobuf_duration_pb.Duration): void;
+
+  getReconfigureBlocked(): boolean;
+  setReconfigureBlocked(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AgentInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AgentInfo): AgentInfo.AsObject;
@@ -1332,6 +1346,59 @@ export namespace AgentInfo {
     gitRevision: string,
     platform: string,
     platformTagsList: Array<string>,
+    moduleVersionsList: Array<ModuleVersionInfo.AsObject>,
+    viamServerUptime?: google_protobuf_duration_pb.Duration.AsObject,
+    reconfigureBlocked: boolean,
+  }
+}
+
+export class ModuleVersionInfo extends jspb.Message {
+  getModuleId(): string;
+  setModuleId(value: string): void;
+
+  getModuleName(): string;
+  setModuleName(value: string): void;
+
+  getRunningVersion(): string;
+  setRunningVersion(value: string): void;
+
+  hasRunningFor(): boolean;
+  clearRunningFor(): void;
+  getRunningFor(): google_protobuf_duration_pb.Duration | undefined;
+  setRunningFor(value?: google_protobuf_duration_pb.Duration): void;
+
+  getState(): robot_v1_robot_pb.ModuleStatus.StateMap[keyof robot_v1_robot_pb.ModuleStatus.StateMap];
+  setState(value: robot_v1_robot_pb.ModuleStatus.StateMap[keyof robot_v1_robot_pb.ModuleStatus.StateMap]): void;
+
+  getError(): string;
+  setError(value: string): void;
+
+  getConsecutiveFailures(): number;
+  setConsecutiveFailures(value: number): void;
+
+  getReadyCount(): number;
+  setReadyCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleVersionInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleVersionInfo): ModuleVersionInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleVersionInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleVersionInfo;
+  static deserializeBinaryFromReader(message: ModuleVersionInfo, reader: jspb.BinaryReader): ModuleVersionInfo;
+}
+
+export namespace ModuleVersionInfo {
+  export type AsObject = {
+    moduleId: string,
+    moduleName: string,
+    runningVersion: string,
+    runningFor?: google_protobuf_duration_pb.Duration.AsObject,
+    state: robot_v1_robot_pb.ModuleStatus.StateMap[keyof robot_v1_robot_pb.ModuleStatus.StateMap],
+    error: string,
+    consecutiveFailures: number,
+    readyCount: number,
   }
 }
 
