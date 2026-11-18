@@ -38,6 +38,24 @@ PowerSensorService.GetPower = {
   responseType: component_powersensor_v1_powersensor_pb.GetPowerResponse
 };
 
+PowerSensorService.GetBatteryPercent = {
+  methodName: "GetBatteryPercent",
+  service: PowerSensorService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_powersensor_v1_powersensor_pb.GetBatteryPercentRequest,
+  responseType: component_powersensor_v1_powersensor_pb.GetBatteryPercentResponse
+};
+
+PowerSensorService.GetProperties = {
+  methodName: "GetProperties",
+  service: PowerSensorService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_powersensor_v1_powersensor_pb.GetPropertiesRequest,
+  responseType: component_powersensor_v1_powersensor_pb.GetPropertiesResponse
+};
+
 PowerSensorService.GetReadings = {
   methodName: "GetReadings",
   service: PowerSensorService,
@@ -139,6 +157,68 @@ PowerSensorServiceClient.prototype.getPower = function getPower(requestMessage, 
     callback = arguments[1];
   }
   var client = grpc.unary(PowerSensorService.GetPower, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+PowerSensorServiceClient.prototype.getBatteryPercent = function getBatteryPercent(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(PowerSensorService.GetBatteryPercent, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+PowerSensorServiceClient.prototype.getProperties = function getProperties(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(PowerSensorService.GetProperties, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
