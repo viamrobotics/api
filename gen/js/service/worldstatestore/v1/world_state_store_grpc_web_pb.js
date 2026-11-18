@@ -210,6 +210,62 @@ proto.viam.service.worldstatestore.v1.WorldStateStoreServicePromiseClient.protot
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.worldstatestore.v1.ListTransformsRequest,
+ *   !proto.viam.service.worldstatestore.v1.ListTransformsResponse>}
+ */
+const methodDescriptor_WorldStateStoreService_ListTransforms = new grpc.web.MethodDescriptor(
+  '/viam.service.worldstatestore.v1.WorldStateStoreService/ListTransforms',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.viam.service.worldstatestore.v1.ListTransformsRequest,
+  proto.viam.service.worldstatestore.v1.ListTransformsResponse,
+  /**
+   * @param {!proto.viam.service.worldstatestore.v1.ListTransformsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.worldstatestore.v1.ListTransformsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.worldstatestore.v1.ListTransformsRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.worldstatestore.v1.ListTransformsResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.worldstatestore.v1.WorldStateStoreServiceClient.prototype.listTransforms =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.service.worldstatestore.v1.WorldStateStoreService/ListTransforms',
+      request,
+      metadata || {},
+      methodDescriptor_WorldStateStoreService_ListTransforms);
+};
+
+
+/**
+ * @param {!proto.viam.service.worldstatestore.v1.ListTransformsRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.worldstatestore.v1.ListTransformsResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.worldstatestore.v1.WorldStateStoreServicePromiseClient.prototype.listTransforms =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/viam.service.worldstatestore.v1.WorldStateStoreService/ListTransforms',
+      request,
+      metadata || {},
+      methodDescriptor_WorldStateStoreService_ListTransforms);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.service.worldstatestore.v1.StreamTransformChangesRequest,
  *   !proto.viam.service.worldstatestore.v1.StreamTransformChangesResponse>}
  */
@@ -260,6 +316,67 @@ proto.viam.service.worldstatestore.v1.WorldStateStoreServicePromiseClient.protot
       request,
       metadata || {},
       methodDescriptor_WorldStateStoreService_StreamTransformChanges);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.service.worldstatestore.v1.ApplyTransformChangesRequest,
+ *   !proto.viam.service.worldstatestore.v1.ApplyTransformChangesResponse>}
+ */
+const methodDescriptor_WorldStateStoreService_ApplyTransformChanges = new grpc.web.MethodDescriptor(
+  '/viam.service.worldstatestore.v1.WorldStateStoreService/ApplyTransformChanges',
+  grpc.web.MethodType.UNARY,
+  proto.viam.service.worldstatestore.v1.ApplyTransformChangesRequest,
+  proto.viam.service.worldstatestore.v1.ApplyTransformChangesResponse,
+  /**
+   * @param {!proto.viam.service.worldstatestore.v1.ApplyTransformChangesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.service.worldstatestore.v1.ApplyTransformChangesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.service.worldstatestore.v1.ApplyTransformChangesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.service.worldstatestore.v1.ApplyTransformChangesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.service.worldstatestore.v1.ApplyTransformChangesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.service.worldstatestore.v1.WorldStateStoreServiceClient.prototype.applyTransformChanges =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.service.worldstatestore.v1.WorldStateStoreService/ApplyTransformChanges',
+      request,
+      metadata || {},
+      methodDescriptor_WorldStateStoreService_ApplyTransformChanges,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.service.worldstatestore.v1.ApplyTransformChangesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.service.worldstatestore.v1.ApplyTransformChangesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.service.worldstatestore.v1.WorldStateStoreServicePromiseClient.prototype.applyTransformChanges =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.service.worldstatestore.v1.WorldStateStoreService/ApplyTransformChanges',
+      request,
+      metadata || {},
+      methodDescriptor_WorldStateStoreService_ApplyTransformChanges);
 };
 
 
