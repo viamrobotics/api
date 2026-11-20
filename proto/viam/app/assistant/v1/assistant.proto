@@ -61,7 +61,8 @@ message TurnEvent {
     // A tool only the client can run. The client that sent the context runs it.
     ClientTool client_tool = 4;
     TurnComplete complete = 5;
-    // What the turn cost so far. Sent after the model ran, before complete or client_tool.
+    // The model that served the turn and the organization's AI cost this month. Sent after the
+    // model ran, before complete or client_tool.
     TurnUsage usage = 6;
   }
 }
@@ -95,11 +96,9 @@ message TurnUsage {
   // The model that served the turn's last call. It differs from the requested model when the
   // provider fell back to another one.
   string served_model = 1;
-  // USD the organization is billed for this conversation so far, at its billing tier's AI rate.
-  double conversation_cost_usd = 2;
   // Month-to-date USD of AI usage for the organization that pays for this conversation, after the
   // tier's credit. Unset when the caller may not see that organization's billing.
-  optional double organization_month_cost_usd = 3;
+  optional double organization_month_cost_usd = 2;
 }
 
 message ListConversationsRequest {
@@ -137,8 +136,6 @@ message GetConversationResponse {
   ConversationContext context = 3;
   // The model id the conversation uses. Empty means the default.
   string model = 4;
-  // USD the organization is billed for this conversation so far, at its billing tier's AI rate.
-  double cost_usd = 5;
 }
 
 message ListModelsRequest {
