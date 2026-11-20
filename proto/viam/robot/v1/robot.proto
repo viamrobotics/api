@@ -574,8 +574,8 @@ message PackageStatus {
   // current lifecycle state
   State state = 3;
 
-  // human-readable error detail from the most recent failure. Kept while a failed
-  // first run is retried, and cleared once the package reaches STATE_READY.
+  // human-readable error detail from the most recent failure. Kept through retries of
+  // the same version, and cleared once the package reaches STATE_READY.
   string error = 4;
 
   // when this status was last updated

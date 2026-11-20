@@ -3499,8 +3499,8 @@ type PackageStatus struct {
 	Type v13.PackageType `protobuf:"varint,2,opt,name=type,proto3,enum=viam.app.packages.v1.PackageType" json:"type,omitempty"`
 	// current lifecycle state
 	State PackageStatus_State `protobuf:"varint,3,opt,name=state,proto3,enum=viam.robot.v1.PackageStatus_State" json:"state,omitempty"`
-	// human-readable error detail from the most recent failure. Kept while a failed
-	// first run is retried, and cleared once the package reaches STATE_READY.
+	// human-readable error detail from the most recent failure. Kept through retries of
+	// the same version, and cleared once the package reaches STATE_READY.
 	Error string `protobuf:"bytes,4,opt,name=error,proto3" json:"error,omitempty"`
 	// when this status was last updated
 	LastUpdated *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
