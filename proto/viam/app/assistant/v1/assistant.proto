@@ -9,8 +9,8 @@ option go_package = "go.viam.com/api/app/assistant/v1";
 // AppAssistantService is the chat on the web app and on Viam mobile.
 // The server owns the transcript. Auth is the caller's existing app credential.
 service AppAssistantService {
-  // One turn. Events arrive as the model writes. The stream ends on complete,
-  // on approval_required, or on client_tool.
+  // One turn. Events arrive as the model writes. The stream ends on complete
+  // or on client_tool.
   rpc StreamTurn(StreamTurnRequest) returns (stream TurnEvent);
 
   rpc ListConversations(ListConversationsRequest) returns (ListConversationsResponse);
@@ -35,15 +35,8 @@ message StreamTurnRequest {
   ConversationContext context = 2;
   oneof input {
     string user_message = 3;
-    ApprovalDecision approval = 4;
-    ClientToolResult client_tool_result = 5;
+    ClientToolResult client_tool_result = 4;
   }
-}
-
-message ApprovalDecision {
-  // Signed id from approval_required. The client cannot send a different patch.
-  string pending_id = 1;
-  bool approved = 2;
 }
 
 // Result of a client tool the caller ran after a client_tool event.
@@ -59,10 +52,9 @@ message TurnEvent {
     TextDelta text_delta = 2;
     // A backend tool running inside this turn, such as "Reading logs".
     ToolStatus tool_status = 3;
-    ApprovalRequired approval_required = 4;
     // A tool only the client can run. The client that sent the context runs it.
-    ClientTool client_tool = 5;
-    TurnComplete complete = 6;
+    ClientTool client_tool = 4;
+    TurnComplete complete = 5;
   }
 }
 
@@ -78,15 +70,6 @@ message TextDelta {
 message ToolStatus {
   string tool_name = 1;
   string label = 2;
-}
-
-message ApprovalRequired {
-  string pending_id = 1;
-  string tool_name = 2;
-  // What the card shows. The frozen call stays on the server.
-  string summary = 3;
-  // Unified diff of a config or code change. Empty when the call has no document to diff.
-  string diff = 4;
 }
 
 message ClientTool {
@@ -129,10 +112,8 @@ message TranscriptMessage {
 
 message GetConversationResponse {
   repeated TranscriptMessage messages = 1;
-  // Set when a turn is waiting on an approval card. Empty when the pending id has expired.
-  ApprovalRequired open_approval = 2;
   // Set when a turn is waiting on the client to run a tool. Empty otherwise.
-  ClientTool open_client_tool = 3;
+  ClientTool open_client_tool = 2;
   // The context stored with the conversation. Empty fields were never set.
-  ConversationContext context = 4;
+  ConversationContext context = 3;
 }

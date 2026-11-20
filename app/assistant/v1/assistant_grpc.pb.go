@@ -22,8 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppAssistantServiceClient interface {
-	// One turn. Events arrive as the model writes. The stream ends on complete,
-	// on approval_required, or on client_tool.
+	// One turn. Events arrive as the model writes. The stream ends on complete
+	// or on client_tool.
 	StreamTurn(ctx context.Context, in *StreamTurnRequest, opts ...grpc.CallOption) (AppAssistantService_StreamTurnClient, error)
 	ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error)
 	GetConversation(ctx context.Context, in *GetConversationRequest, opts ...grpc.CallOption) (*GetConversationResponse, error)
@@ -91,8 +91,8 @@ func (c *appAssistantServiceClient) GetConversation(ctx context.Context, in *Get
 // All implementations must embed UnimplementedAppAssistantServiceServer
 // for forward compatibility
 type AppAssistantServiceServer interface {
-	// One turn. Events arrive as the model writes. The stream ends on complete,
-	// on approval_required, or on client_tool.
+	// One turn. Events arrive as the model writes. The stream ends on complete
+	// or on client_tool.
 	StreamTurn(*StreamTurnRequest, AppAssistantService_StreamTurnServer) error
 	ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error)
 	GetConversation(context.Context, *GetConversationRequest) (*GetConversationResponse, error)
