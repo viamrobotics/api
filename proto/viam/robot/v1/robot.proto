@@ -574,7 +574,8 @@ message PackageStatus {
   // current lifecycle state
   State state = 3;
 
-  // human-readable error detail when state == STATE_FAILED
+  // human-readable error detail from the most recent failure. Kept while a failed
+  // first run is retried, and cleared once the package reaches STATE_READY.
   string error = 4;
 
   // when this status was last updated
@@ -589,6 +590,10 @@ message PackageStatus {
 
   // total size of the package tarball in bytes. Zero if the size is unknown.
   uint64 total_bytes = 8;
+
+  // number of consecutive failed first runs for this version. Reset when the package
+  // reaches STATE_READY or its version changes.
+  uint32 consecutive_failures = 9;
 }
 
 message ConfigStatus {

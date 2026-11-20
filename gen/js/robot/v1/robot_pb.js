@@ -12065,7 +12065,8 @@ proto.viam.robot.v1.PackageStatus.toObject = function(includeInstance, msg) {
     lastUpdated: (f = msg.getLastUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     version: jspb.Message.getFieldWithDefault(msg, 6, ""),
     bytesDownloaded: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    totalBytes: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    totalBytes: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    consecutiveFailures: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
 
   if (includeInstance) {
@@ -12134,6 +12135,10 @@ proto.viam.robot.v1.PackageStatus.deserializeBinaryFromReader = function(msg, re
     case 8:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setTotalBytes(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setConsecutiveFailures(value);
       break;
     default:
       reader.skipField();
@@ -12218,6 +12223,13 @@ proto.viam.robot.v1.PackageStatus.serializeBinaryToWriter = function(message, wr
   if (f !== 0) {
     writer.writeUint64(
       8,
+      f
+    );
+  }
+  f = message.getConsecutiveFailures();
+  if (f !== 0) {
+    writer.writeUint32(
+      9,
       f
     );
   }
@@ -12396,6 +12408,24 @@ proto.viam.robot.v1.PackageStatus.prototype.getTotalBytes = function() {
  */
 proto.viam.robot.v1.PackageStatus.prototype.setTotalBytes = function(value) {
   return jspb.Message.setProto3IntField(this, 8, value);
+};
+
+
+/**
+ * optional uint32 consecutive_failures = 9;
+ * @return {number}
+ */
+proto.viam.robot.v1.PackageStatus.prototype.getConsecutiveFailures = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.viam.robot.v1.PackageStatus} returns this
+ */
+proto.viam.robot.v1.PackageStatus.prototype.setConsecutiveFailures = function(value) {
+  return jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
