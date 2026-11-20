@@ -74,6 +74,33 @@ GripperService.GoToInputs = {
   responseType: component_gripper_v1_gripper_pb.GoToInputsResponse
 };
 
+GripperService.SetPercentOpen = {
+  methodName: "SetPercentOpen",
+  service: GripperService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_gripper_v1_gripper_pb.SetPercentOpenRequest,
+  responseType: component_gripper_v1_gripper_pb.SetPercentOpenResponse
+};
+
+GripperService.GetPercentOpen = {
+  methodName: "GetPercentOpen",
+  service: GripperService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_gripper_v1_gripper_pb.GetPercentOpenRequest,
+  responseType: component_gripper_v1_gripper_pb.GetPercentOpenResponse
+};
+
+GripperService.GetProperties = {
+  methodName: "GetProperties",
+  service: GripperService,
+  requestStream: false,
+  responseStream: false,
+  requestType: component_gripper_v1_gripper_pb.GetPropertiesRequest,
+  responseType: component_gripper_v1_gripper_pb.GetPropertiesResponse
+};
+
 GripperService.DoCommand = {
   methodName: "DoCommand",
   service: GripperService,
@@ -308,6 +335,99 @@ GripperServiceClient.prototype.goToInputs = function goToInputs(requestMessage, 
     callback = arguments[1];
   }
   var client = grpc.unary(GripperService.GoToInputs, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+GripperServiceClient.prototype.setPercentOpen = function setPercentOpen(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(GripperService.SetPercentOpen, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+GripperServiceClient.prototype.getPercentOpen = function getPercentOpen(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(GripperService.GetPercentOpen, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+GripperServiceClient.prototype.getProperties = function getProperties(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(GripperService.GetProperties, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

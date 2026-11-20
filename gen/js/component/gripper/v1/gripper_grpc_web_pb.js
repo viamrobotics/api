@@ -513,6 +513,189 @@ proto.viam.component.gripper.v1.GripperServicePromiseClient.prototype.goToInputs
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.gripper.v1.SetPercentOpenRequest,
+ *   !proto.viam.component.gripper.v1.SetPercentOpenResponse>}
+ */
+const methodDescriptor_GripperService_SetPercentOpen = new grpc.web.MethodDescriptor(
+  '/viam.component.gripper.v1.GripperService/SetPercentOpen',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.gripper.v1.SetPercentOpenRequest,
+  proto.viam.component.gripper.v1.SetPercentOpenResponse,
+  /**
+   * @param {!proto.viam.component.gripper.v1.SetPercentOpenRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.gripper.v1.SetPercentOpenResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.gripper.v1.SetPercentOpenRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.gripper.v1.SetPercentOpenResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.gripper.v1.SetPercentOpenResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.gripper.v1.GripperServiceClient.prototype.setPercentOpen =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/SetPercentOpen',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_SetPercentOpen,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.gripper.v1.SetPercentOpenRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.gripper.v1.SetPercentOpenResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.gripper.v1.GripperServicePromiseClient.prototype.setPercentOpen =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/SetPercentOpen',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_SetPercentOpen);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.gripper.v1.GetPercentOpenRequest,
+ *   !proto.viam.component.gripper.v1.GetPercentOpenResponse>}
+ */
+const methodDescriptor_GripperService_GetPercentOpen = new grpc.web.MethodDescriptor(
+  '/viam.component.gripper.v1.GripperService/GetPercentOpen',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.gripper.v1.GetPercentOpenRequest,
+  proto.viam.component.gripper.v1.GetPercentOpenResponse,
+  /**
+   * @param {!proto.viam.component.gripper.v1.GetPercentOpenRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.gripper.v1.GetPercentOpenResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.gripper.v1.GetPercentOpenRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.gripper.v1.GetPercentOpenResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.gripper.v1.GetPercentOpenResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.gripper.v1.GripperServiceClient.prototype.getPercentOpen =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/GetPercentOpen',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_GetPercentOpen,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.gripper.v1.GetPercentOpenRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.gripper.v1.GetPercentOpenResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.gripper.v1.GripperServicePromiseClient.prototype.getPercentOpen =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/GetPercentOpen',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_GetPercentOpen);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.gripper.v1.GetPropertiesRequest,
+ *   !proto.viam.component.gripper.v1.GetPropertiesResponse>}
+ */
+const methodDescriptor_GripperService_GetProperties = new grpc.web.MethodDescriptor(
+  '/viam.component.gripper.v1.GripperService/GetProperties',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.gripper.v1.GetPropertiesRequest,
+  proto.viam.component.gripper.v1.GetPropertiesResponse,
+  /**
+   * @param {!proto.viam.component.gripper.v1.GetPropertiesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.gripper.v1.GetPropertiesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.gripper.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.gripper.v1.GetPropertiesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.gripper.v1.GetPropertiesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.gripper.v1.GripperServiceClient.prototype.getProperties =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_GetProperties,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.gripper.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.gripper.v1.GetPropertiesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.gripper.v1.GripperServicePromiseClient.prototype.getProperties =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.gripper.v1.GripperService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_GripperService_GetProperties);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.common.v1.DoCommandRequest,
  *   !proto.viam.common.v1.DoCommandResponse>}
  */
