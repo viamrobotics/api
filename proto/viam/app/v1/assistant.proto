@@ -2,12 +2,20 @@ syntax = "proto3";
 
 package viam.app.v1;
 
+import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "go.viam.com/api/app/v1";
 
 // The App assistant is the chat on the web app and on Viam mobile. Its RPCs are on AppService.
 // The server owns the transcript. Auth is the caller's existing app credential.
+//
+// A turn runs on the server to the end even when the client disconnects, as when a phone app goes
+// to the background. The client reopens the conversation with GetAssistantConversation, which says
+// whether a turn is still running and shows the steps stored so far.
+//
+// A failed assistant RPC carries an AssistantError in its gRPC status details. Clients branch on
+// its reason, never on the status message.
 
 // The ids the client is open on. Every field is optional. A tool is enabled when the fields it
 // requires are set. Further into a machine or fragment, the client sets more of them.
@@ -40,7 +48,8 @@ message AssistantClientToolResult {
   bool is_error = 3;
 }
 
-// One event of a turn. The stream ends on complete or on client_tool.
+// One event of a turn. The stream ends on complete or on client_tool. A client that disconnects
+// does not stop the turn.
 message StreamAssistantTurnResponse {
   oneof event {
     AssistantConversationStarted conversation = 1;
@@ -63,6 +72,9 @@ message AssistantConversationStarted {
 message AssistantTextDelta {
   // Display only. The server stores the finished text.
   string text = 1;
+  // The text block the delta belongs to, counting from 0 in this stream. A new index starts a new
+  // block. A block that a tool_status follows is narration; complete names the answer's blocks.
+  uint32 block_index = 2;
 }
 
 message AssistantToolStatus {
@@ -77,8 +89,20 @@ message AssistantClientTool {
 }
 
 message AssistantTurnComplete {
-  // "end_turn" | "max_tokens" | "model_context_window_exceeded"
-  string stop_reason = 1;
+  AssistantStopReason stop_reason = 1;
+  // The first text block of the final answer. Blocks before it are narration between tool calls,
+  // and blocks from it on are the answer. Unset when this stream sent no answer text.
+  optional uint32 answer_block_index = 2;
+}
+
+enum AssistantStopReason {
+  ASSISTANT_STOP_REASON_UNSPECIFIED = 0;
+  // The model finished its answer.
+  ASSISTANT_STOP_REASON_END_TURN = 1;
+  // The answer was cut off at the model's output limit.
+  ASSISTANT_STOP_REASON_MAX_TOKENS = 2;
+  // The conversation no longer fits the model's context. Offer a new conversation.
+  ASSISTANT_STOP_REASON_CONTEXT_WINDOW_EXCEEDED = 3;
 }
 
 message AssistantTurnUsage {
@@ -93,28 +117,53 @@ message AssistantTurnUsage {
 message ListAssistantConversationsRequest {
   // Optional filter. Empty lists the caller's conversations.
   string organization_id = 1;
+  // The most conversations to return. 0 means 50; more than 100 is treated as 100.
+  uint32 page_size = 2;
+  // next_page_token from the previous page. Empty starts at the newest conversation.
+  string page_token = 3;
 }
 
 message AssistantConversationListItem {
   string conversation_id = 1;
   string title = 2;
   google.protobuf.Timestamp updated_at = 3;
+  // A turn is running in this conversation.
+  bool running = 4;
 }
 
 message ListAssistantConversationsResponse {
-  // Newest updated_at first. Clients must not assume an unsorted list.
+  // Newest updated_at first. A conversation updated while the caller pages can move to the front.
   repeated AssistantConversationListItem conversations = 1;
+  // Pass as page_token for the next page. Empty on the last page.
+  string next_page_token = 2;
 }
 
 message GetAssistantConversationRequest {
   string conversation_id = 1;
 }
 
+// One user message, or the assistant's whole reply to one.
 message AssistantTranscriptMessage {
-  // "user" or "assistant". Visible text only.
+  // "user" or "assistant".
   string role = 1;
+  // What the user typed, or the assistant's final answer. Empty while the reply is unfinished.
   string text = 2;
+  // When the message was sent. For a reply, when its last step was stored.
   google.protobuf.Timestamp created_at = 3;
+  // A reply's narration and tool calls, in order, before its answer.
+  repeated AssistantTranscriptStep steps = 4;
+  // How long the reply took, from the user's message to the answer. Unset while the reply is
+  // unfinished, and for a reply stored without times.
+  google.protobuf.Duration worked_for = 5;
+}
+
+message AssistantTranscriptStep {
+  oneof step {
+    // Text the assistant wrote between tool calls.
+    string narration = 1;
+    // A tool the assistant called. The label matches the stream's tool_status.
+    AssistantToolStatus tool = 2;
+  }
 }
 
 message GetAssistantConversationResponse {
@@ -125,6 +174,9 @@ message GetAssistantConversationResponse {
   AssistantConversationContext context = 3;
   // The model id the conversation uses. Empty means the default.
   string model = 4;
+  // A turn is running. Its steps so far are in messages. Poll until it is false; a new message
+  // sent meanwhile fails with ASSISTANT_ERROR_REASON_TURN_RUNNING.
+  bool running = 5;
 }
 
 message ListAssistantModelsRequest {
@@ -143,4 +195,32 @@ message ListAssistantModelsResponse {
   repeated AssistantModel models = 1;
   // The id a conversation uses until the caller picks another.
   string default_model = 2;
+}
+
+// The gRPC status detail of a failed assistant RPC.
+message AssistantError {
+  AssistantErrorReason reason = 1;
+}
+
+enum AssistantErrorReason {
+  ASSISTANT_ERROR_REASON_UNSPECIFIED = 0;
+  // The conversation no longer fits the model's context. Offer a new conversation.
+  ASSISTANT_ERROR_REASON_CONVERSATION_TOO_LONG = 1;
+  // A turn is still running in the conversation. Poll GetAssistantConversation until running is
+  // false, then send again.
+  ASSISTANT_ERROR_REASON_TURN_RUNNING = 2;
+  // Another request changed the conversation first. Reload it with GetAssistantConversation.
+  ASSISTANT_ERROR_REASON_CONVERSATION_CHANGED = 3;
+  // The model could not finish the turn. What its tools did is stored. Send the same input again.
+  ASSISTANT_ERROR_REASON_TURN_FAILED = 4;
+  // This deployment has no assistant.
+  ASSISTANT_ERROR_REASON_ASSISTANT_UNAVAILABLE = 5;
+  // The context names no organization, machine or fragment to bill the turn to.
+  ASSISTANT_ERROR_REASON_NO_BILLING_ORGANIZATION = 6;
+  // model is not an id from ListAssistantModels.
+  ASSISTANT_ERROR_REASON_UNKNOWN_MODEL = 7;
+  // client_tool_result answers no tool the conversation is waiting on.
+  ASSISTANT_ERROR_REASON_NO_CLIENT_TOOL_WAITING = 8;
+  // The request has neither a user_message nor a client_tool_result, or the message is empty.
+  ASSISTANT_ERROR_REASON_EMPTY_INPUT = 9;
 }
