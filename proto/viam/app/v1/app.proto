@@ -4,6 +4,7 @@ package viam.app.v1;
 
 import "app/mltraining/v1/ml_training.proto";
 import "app/packages/v1/packages.proto";
+import "app/v1/assistant.proto";
 import "common/v1/common.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
@@ -351,6 +352,21 @@ service AppService {
 
   // Deletes a Firebase config JSON for a specific app id.
   rpc DeleteFirebaseConfig(DeleteFirebaseConfigRequest) returns (DeleteFirebaseConfigResponse);
+
+  // App assistant
+
+  // One turn of an App assistant conversation. Responses arrive as the model writes. The stream
+  // ends on complete or on client_tool.
+  rpc StreamAssistantTurn(StreamAssistantTurnRequest) returns (stream StreamAssistantTurnResponse);
+
+  // The caller's App assistant conversations.
+  rpc ListAssistantConversations(ListAssistantConversationsRequest) returns (ListAssistantConversationsResponse);
+
+  // One of the caller's App assistant conversations.
+  rpc GetAssistantConversation(GetAssistantConversationRequest) returns (GetAssistantConversationResponse);
+
+  // The models an App assistant conversation can use, in display order.
+  rpc ListAssistantModels(ListAssistantModelsRequest) returns (ListAssistantModelsResponse);
 }
 
 enum OnlineState {

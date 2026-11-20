@@ -234,6 +234,15 @@ type AppServiceClient interface {
 	GetFirebaseConfig(ctx context.Context, in *GetFirebaseConfigRequest, opts ...grpc.CallOption) (*GetFirebaseConfigResponse, error)
 	// Deletes a Firebase config JSON for a specific app id.
 	DeleteFirebaseConfig(ctx context.Context, in *DeleteFirebaseConfigRequest, opts ...grpc.CallOption) (*DeleteFirebaseConfigResponse, error)
+	// One turn of an App assistant conversation. Responses arrive as the model writes. The stream
+	// ends on complete or on client_tool.
+	StreamAssistantTurn(ctx context.Context, in *StreamAssistantTurnRequest, opts ...grpc.CallOption) (AppService_StreamAssistantTurnClient, error)
+	// The caller's App assistant conversations.
+	ListAssistantConversations(ctx context.Context, in *ListAssistantConversationsRequest, opts ...grpc.CallOption) (*ListAssistantConversationsResponse, error)
+	// One of the caller's App assistant conversations.
+	GetAssistantConversation(ctx context.Context, in *GetAssistantConversationRequest, opts ...grpc.CallOption) (*GetAssistantConversationResponse, error)
+	// The models an App assistant conversation can use, in display order.
+	ListAssistantModels(ctx context.Context, in *ListAssistantModelsRequest, opts ...grpc.CallOption) (*ListAssistantModelsResponse, error)
 }
 
 type appServiceClient struct {
@@ -1408,6 +1417,65 @@ func (c *appServiceClient) DeleteFirebaseConfig(ctx context.Context, in *DeleteF
 	return out, nil
 }
 
+func (c *appServiceClient) StreamAssistantTurn(ctx context.Context, in *StreamAssistantTurnRequest, opts ...grpc.CallOption) (AppService_StreamAssistantTurnClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AppService_ServiceDesc.Streams[2], "/viam.app.v1.AppService/StreamAssistantTurn", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &appServiceStreamAssistantTurnClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type AppService_StreamAssistantTurnClient interface {
+	Recv() (*StreamAssistantTurnResponse, error)
+	grpc.ClientStream
+}
+
+type appServiceStreamAssistantTurnClient struct {
+	grpc.ClientStream
+}
+
+func (x *appServiceStreamAssistantTurnClient) Recv() (*StreamAssistantTurnResponse, error) {
+	m := new(StreamAssistantTurnResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *appServiceClient) ListAssistantConversations(ctx context.Context, in *ListAssistantConversationsRequest, opts ...grpc.CallOption) (*ListAssistantConversationsResponse, error) {
+	out := new(ListAssistantConversationsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListAssistantConversations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) GetAssistantConversation(ctx context.Context, in *GetAssistantConversationRequest, opts ...grpc.CallOption) (*GetAssistantConversationResponse, error) {
+	out := new(GetAssistantConversationResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/GetAssistantConversation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appServiceClient) ListAssistantModels(ctx context.Context, in *ListAssistantModelsRequest, opts ...grpc.CallOption) (*ListAssistantModelsResponse, error) {
+	out := new(ListAssistantModelsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.v1.AppService/ListAssistantModels", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
@@ -1624,6 +1692,15 @@ type AppServiceServer interface {
 	GetFirebaseConfig(context.Context, *GetFirebaseConfigRequest) (*GetFirebaseConfigResponse, error)
 	// Deletes a Firebase config JSON for a specific app id.
 	DeleteFirebaseConfig(context.Context, *DeleteFirebaseConfigRequest) (*DeleteFirebaseConfigResponse, error)
+	// One turn of an App assistant conversation. Responses arrive as the model writes. The stream
+	// ends on complete or on client_tool.
+	StreamAssistantTurn(*StreamAssistantTurnRequest, AppService_StreamAssistantTurnServer) error
+	// The caller's App assistant conversations.
+	ListAssistantConversations(context.Context, *ListAssistantConversationsRequest) (*ListAssistantConversationsResponse, error)
+	// One of the caller's App assistant conversations.
+	GetAssistantConversation(context.Context, *GetAssistantConversationRequest) (*GetAssistantConversationResponse, error)
+	// The models an App assistant conversation can use, in display order.
+	ListAssistantModels(context.Context, *ListAssistantModelsRequest) (*ListAssistantModelsResponse, error)
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -2002,6 +2079,18 @@ func (UnimplementedAppServiceServer) GetFirebaseConfig(context.Context, *GetFire
 }
 func (UnimplementedAppServiceServer) DeleteFirebaseConfig(context.Context, *DeleteFirebaseConfigRequest) (*DeleteFirebaseConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFirebaseConfig not implemented")
+}
+func (UnimplementedAppServiceServer) StreamAssistantTurn(*StreamAssistantTurnRequest, AppService_StreamAssistantTurnServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamAssistantTurn not implemented")
+}
+func (UnimplementedAppServiceServer) ListAssistantConversations(context.Context, *ListAssistantConversationsRequest) (*ListAssistantConversationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAssistantConversations not implemented")
+}
+func (UnimplementedAppServiceServer) GetAssistantConversation(context.Context, *GetAssistantConversationRequest) (*GetAssistantConversationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAssistantConversation not implemented")
+}
+func (UnimplementedAppServiceServer) ListAssistantModels(context.Context, *ListAssistantModelsRequest) (*ListAssistantModelsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAssistantModels not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -4259,6 +4348,81 @@ func _AppService_DeleteFirebaseConfig_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_StreamAssistantTurn_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StreamAssistantTurnRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(AppServiceServer).StreamAssistantTurn(m, &appServiceStreamAssistantTurnServer{stream})
+}
+
+type AppService_StreamAssistantTurnServer interface {
+	Send(*StreamAssistantTurnResponse) error
+	grpc.ServerStream
+}
+
+type appServiceStreamAssistantTurnServer struct {
+	grpc.ServerStream
+}
+
+func (x *appServiceStreamAssistantTurnServer) Send(m *StreamAssistantTurnResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _AppService_ListAssistantConversations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAssistantConversationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListAssistantConversations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListAssistantConversations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListAssistantConversations(ctx, req.(*ListAssistantConversationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_GetAssistantConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAssistantConversationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).GetAssistantConversation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/GetAssistantConversation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).GetAssistantConversation(ctx, req.(*GetAssistantConversationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppService_ListAssistantModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAssistantModelsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServiceServer).ListAssistantModels(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.v1.AppService/ListAssistantModels",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServiceServer).ListAssistantModels(ctx, req.(*ListAssistantModelsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4754,6 +4918,18 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "DeleteFirebaseConfig",
 			Handler:    _AppService_DeleteFirebaseConfig_Handler,
 		},
+		{
+			MethodName: "ListAssistantConversations",
+			Handler:    _AppService_ListAssistantConversations_Handler,
+		},
+		{
+			MethodName: "GetAssistantConversation",
+			Handler:    _AppService_GetAssistantConversation_Handler,
+		},
+		{
+			MethodName: "ListAssistantModels",
+			Handler:    _AppService_ListAssistantModels_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -4765,6 +4941,11 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			StreamName:    "UploadModuleFile",
 			Handler:       _AppService_UploadModuleFile_Handler,
 			ClientStreams: true,
+		},
+		{
+			StreamName:    "StreamAssistantTurn",
+			Handler:       _AppService_StreamAssistantTurn_Handler,
+			ServerStreams: true,
 		},
 	},
 	Metadata: "app/v1/app.proto",
