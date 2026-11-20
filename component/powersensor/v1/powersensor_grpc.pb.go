@@ -29,6 +29,10 @@ type PowerSensorServiceClient interface {
 	GetCurrent(ctx context.Context, in *GetCurrentRequest, opts ...grpc.CallOption) (*GetCurrentResponse, error)
 	// GetPower returns the power reading of a power sensor in watts
 	GetPower(ctx context.Context, in *GetPowerRequest, opts ...grpc.CallOption) (*GetPowerResponse, error)
+	// GetBatteryPercent returns the remaining charge of the battery the power sensor monitors
+	GetBatteryPercent(ctx context.Context, in *GetBatteryPercentRequest, opts ...grpc.CallOption) (*GetBatteryPercentResponse, error)
+	// GetProperties returns the properties of a power sensor
+	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	// GetReadings returns the readings of a sensor of the underlying robot.
 	GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
@@ -72,6 +76,24 @@ func (c *powerSensorServiceClient) GetPower(ctx context.Context, in *GetPowerReq
 	return out, nil
 }
 
+func (c *powerSensorServiceClient) GetBatteryPercent(ctx context.Context, in *GetBatteryPercentRequest, opts ...grpc.CallOption) (*GetBatteryPercentResponse, error) {
+	out := new(GetBatteryPercentResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.powersensor.v1.PowerSensorService/GetBatteryPercent", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *powerSensorServiceClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error) {
+	out := new(GetPropertiesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.powersensor.v1.PowerSensorService/GetProperties", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *powerSensorServiceClient) GetReadings(ctx context.Context, in *v1.GetReadingsRequest, opts ...grpc.CallOption) (*v1.GetReadingsResponse, error) {
 	out := new(v1.GetReadingsResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.powersensor.v1.PowerSensorService/GetReadings", in, out, opts...)
@@ -109,6 +131,10 @@ type PowerSensorServiceServer interface {
 	GetCurrent(context.Context, *GetCurrentRequest) (*GetCurrentResponse, error)
 	// GetPower returns the power reading of a power sensor in watts
 	GetPower(context.Context, *GetPowerRequest) (*GetPowerResponse, error)
+	// GetBatteryPercent returns the remaining charge of the battery the power sensor monitors
+	GetBatteryPercent(context.Context, *GetBatteryPercentRequest) (*GetBatteryPercentResponse, error)
+	// GetProperties returns the properties of a power sensor
+	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	// GetReadings returns the readings of a sensor of the underlying robot.
 	GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error)
 	// DoCommand sends/receives arbitrary commands
@@ -130,6 +156,12 @@ func (UnimplementedPowerSensorServiceServer) GetCurrent(context.Context, *GetCur
 }
 func (UnimplementedPowerSensorServiceServer) GetPower(context.Context, *GetPowerRequest) (*GetPowerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPower not implemented")
+}
+func (UnimplementedPowerSensorServiceServer) GetBatteryPercent(context.Context, *GetBatteryPercentRequest) (*GetBatteryPercentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBatteryPercent not implemented")
+}
+func (UnimplementedPowerSensorServiceServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProperties not implemented")
 }
 func (UnimplementedPowerSensorServiceServer) GetReadings(context.Context, *v1.GetReadingsRequest) (*v1.GetReadingsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReadings not implemented")
@@ -207,6 +239,42 @@ func _PowerSensorService_GetPower_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PowerSensorService_GetBatteryPercent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBatteryPercentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PowerSensorServiceServer).GetBatteryPercent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.powersensor.v1.PowerSensorService/GetBatteryPercent",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PowerSensorServiceServer).GetBatteryPercent(ctx, req.(*GetBatteryPercentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PowerSensorService_GetProperties_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPropertiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PowerSensorServiceServer).GetProperties(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.powersensor.v1.PowerSensorService/GetProperties",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PowerSensorServiceServer).GetProperties(ctx, req.(*GetPropertiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PowerSensorService_GetReadings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.GetReadingsRequest)
 	if err := dec(in); err != nil {
@@ -279,6 +347,14 @@ var PowerSensorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPower",
 			Handler:    _PowerSensorService_GetPower_Handler,
+		},
+		{
+			MethodName: "GetBatteryPercent",
+			Handler:    _PowerSensorService_GetBatteryPercent_Handler,
+		},
+		{
+			MethodName: "GetProperties",
+			Handler:    _PowerSensorService_GetProperties_Handler,
 		},
 		{
 			MethodName: "GetReadings",

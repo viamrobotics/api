@@ -1625,6 +1625,11 @@ export class MaintenanceConfig extends jspb.Message {
   getMaintenanceAllowedKey(): string;
   setMaintenanceAllowedKey(value: string): void;
 
+  hasFollowPart(): boolean;
+  clearFollowPart(): void;
+  getFollowPart(): FollowPartRef | undefined;
+  setFollowPart(value?: FollowPartRef): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MaintenanceConfig.AsObject;
   static toObject(includeInstance: boolean, msg: MaintenanceConfig): MaintenanceConfig.AsObject;
@@ -1639,6 +1644,33 @@ export namespace MaintenanceConfig {
   export type AsObject = {
     sensorName?: common_v1_common_pb.ResourceName.AsObject,
     maintenanceAllowedKey: string,
+    followPart?: FollowPartRef.AsObject,
+  }
+}
+
+export class FollowPartRef extends jspb.Message {
+  getAddress(): string;
+  setAddress(value: string): void;
+
+  hasAuth(): boolean;
+  clearAuth(): void;
+  getAuth(): RemoteAuth | undefined;
+  setAuth(value?: RemoteAuth): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FollowPartRef.AsObject;
+  static toObject(includeInstance: boolean, msg: FollowPartRef): FollowPartRef.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FollowPartRef, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FollowPartRef;
+  static deserializeBinaryFromReader(message: FollowPartRef, reader: jspb.BinaryReader): FollowPartRef;
+}
+
+export namespace FollowPartRef {
+  export type AsObject = {
+    address: string,
+    auth?: RemoteAuth.AsObject,
   }
 }
 

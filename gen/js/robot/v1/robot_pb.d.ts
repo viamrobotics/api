@@ -1325,6 +1325,11 @@ export class GetMachineStatusResponse extends jspb.Message {
   setPackagesList(value: Array<PackageStatus>): void;
   addPackages(value?: PackageStatus, index?: number): PackageStatus;
 
+  hasMaintenanceStatus(): boolean;
+  clearMaintenanceStatus(): void;
+  getMaintenanceStatus(): MaintenanceStatus | undefined;
+  setMaintenanceStatus(value?: MaintenanceStatus): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetMachineStatusResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetMachineStatusResponse): GetMachineStatusResponse.AsObject;
@@ -1343,6 +1348,7 @@ export namespace GetMachineStatusResponse {
     jobStatusesList: Array<JobStatus.AsObject>,
     modulesList: Array<ModuleStatus.AsObject>,
     packagesList: Array<PackageStatus.AsObject>,
+    maintenanceStatus?: MaintenanceStatus.AsObject,
   }
 
   export interface StateMap {
@@ -1352,6 +1358,30 @@ export namespace GetMachineStatusResponse {
   }
 
   export const State: StateMap;
+}
+
+export class MaintenanceStatus extends jspb.Message {
+  getAllowed(): boolean;
+  setAllowed(value: boolean): void;
+
+  getReason(): string;
+  setReason(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MaintenanceStatus.AsObject;
+  static toObject(includeInstance: boolean, msg: MaintenanceStatus): MaintenanceStatus.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MaintenanceStatus, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MaintenanceStatus;
+  static deserializeBinaryFromReader(message: MaintenanceStatus, reader: jspb.BinaryReader): MaintenanceStatus;
+}
+
+export namespace MaintenanceStatus {
+  export type AsObject = {
+    allowed: boolean,
+    reason: string,
+  }
 }
 
 export class JobStatus extends jspb.Message {

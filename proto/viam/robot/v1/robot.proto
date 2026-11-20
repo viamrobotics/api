@@ -425,6 +425,12 @@ message GetMachineStatusResponse {
   repeated JobStatus job_statuses = 4;
   repeated ModuleStatus modules = 5;
   repeated PackageStatus packages = 6;
+  MaintenanceStatus maintenance_status = 7;
+}
+
+message MaintenanceStatus {
+  bool allowed = 1;
+  string reason = 2;
 }
 
 message JobStatus {

@@ -32,6 +32,24 @@ type PowerSensorServiceGetPower = {
   readonly responseType: typeof component_powersensor_v1_powersensor_pb.GetPowerResponse;
 };
 
+type PowerSensorServiceGetBatteryPercent = {
+  readonly methodName: string;
+  readonly service: typeof PowerSensorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_powersensor_v1_powersensor_pb.GetBatteryPercentRequest;
+  readonly responseType: typeof component_powersensor_v1_powersensor_pb.GetBatteryPercentResponse;
+};
+
+type PowerSensorServiceGetProperties = {
+  readonly methodName: string;
+  readonly service: typeof PowerSensorService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof component_powersensor_v1_powersensor_pb.GetPropertiesRequest;
+  readonly responseType: typeof component_powersensor_v1_powersensor_pb.GetPropertiesResponse;
+};
+
 type PowerSensorServiceGetReadings = {
   readonly methodName: string;
   readonly service: typeof PowerSensorService;
@@ -64,6 +82,8 @@ export class PowerSensorService {
   static readonly GetVoltage: PowerSensorServiceGetVoltage;
   static readonly GetCurrent: PowerSensorServiceGetCurrent;
   static readonly GetPower: PowerSensorServiceGetPower;
+  static readonly GetBatteryPercent: PowerSensorServiceGetBatteryPercent;
+  static readonly GetProperties: PowerSensorServiceGetProperties;
   static readonly GetReadings: PowerSensorServiceGetReadings;
   static readonly DoCommand: PowerSensorServiceDoCommand;
   static readonly GetStatus: PowerSensorServiceGetStatus;
@@ -127,6 +147,24 @@ export class PowerSensorServiceClient {
   getPower(
     requestMessage: component_powersensor_v1_powersensor_pb.GetPowerRequest,
     callback: (error: ServiceError|null, responseMessage: component_powersensor_v1_powersensor_pb.GetPowerResponse|null) => void
+  ): UnaryResponse;
+  getBatteryPercent(
+    requestMessage: component_powersensor_v1_powersensor_pb.GetBatteryPercentRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_powersensor_v1_powersensor_pb.GetBatteryPercentResponse|null) => void
+  ): UnaryResponse;
+  getBatteryPercent(
+    requestMessage: component_powersensor_v1_powersensor_pb.GetBatteryPercentRequest,
+    callback: (error: ServiceError|null, responseMessage: component_powersensor_v1_powersensor_pb.GetBatteryPercentResponse|null) => void
+  ): UnaryResponse;
+  getProperties(
+    requestMessage: component_powersensor_v1_powersensor_pb.GetPropertiesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: component_powersensor_v1_powersensor_pb.GetPropertiesResponse|null) => void
+  ): UnaryResponse;
+  getProperties(
+    requestMessage: component_powersensor_v1_powersensor_pb.GetPropertiesRequest,
+    callback: (error: ServiceError|null, responseMessage: component_powersensor_v1_powersensor_pb.GetPropertiesResponse|null) => void
   ): UnaryResponse;
   getReadings(
     requestMessage: common_v1_common_pb.GetReadingsRequest,
