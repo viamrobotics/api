@@ -27,6 +27,8 @@ type AppAssistantServiceClient interface {
 	StreamTurn(ctx context.Context, in *StreamTurnRequest, opts ...grpc.CallOption) (AppAssistantService_StreamTurnClient, error)
 	ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error)
 	GetConversation(ctx context.Context, in *GetConversationRequest, opts ...grpc.CallOption) (*GetConversationResponse, error)
+	// The models a caller can pick for a conversation, in display order.
+	ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error)
 }
 
 type appAssistantServiceClient struct {
@@ -87,6 +89,15 @@ func (c *appAssistantServiceClient) GetConversation(ctx context.Context, in *Get
 	return out, nil
 }
 
+func (c *appAssistantServiceClient) ListModels(ctx context.Context, in *ListModelsRequest, opts ...grpc.CallOption) (*ListModelsResponse, error) {
+	out := new(ListModelsResponse)
+	err := c.cc.Invoke(ctx, "/viam.app.assistant.v1.AppAssistantService/ListModels", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppAssistantServiceServer is the server API for AppAssistantService service.
 // All implementations must embed UnimplementedAppAssistantServiceServer
 // for forward compatibility
@@ -96,6 +107,8 @@ type AppAssistantServiceServer interface {
 	StreamTurn(*StreamTurnRequest, AppAssistantService_StreamTurnServer) error
 	ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error)
 	GetConversation(context.Context, *GetConversationRequest) (*GetConversationResponse, error)
+	// The models a caller can pick for a conversation, in display order.
+	ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error)
 	mustEmbedUnimplementedAppAssistantServiceServer()
 }
 
@@ -111,6 +124,9 @@ func (UnimplementedAppAssistantServiceServer) ListConversations(context.Context,
 }
 func (UnimplementedAppAssistantServiceServer) GetConversation(context.Context, *GetConversationRequest) (*GetConversationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConversation not implemented")
+}
+func (UnimplementedAppAssistantServiceServer) ListModels(context.Context, *ListModelsRequest) (*ListModelsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListModels not implemented")
 }
 func (UnimplementedAppAssistantServiceServer) mustEmbedUnimplementedAppAssistantServiceServer() {}
 
@@ -182,6 +198,24 @@ func _AppAssistantService_GetConversation_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppAssistantService_ListModels_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListModelsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppAssistantServiceServer).ListModels(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.app.assistant.v1.AppAssistantService/ListModels",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppAssistantServiceServer).ListModels(ctx, req.(*ListModelsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AppAssistantService_ServiceDesc is the grpc.ServiceDesc for AppAssistantService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -196,6 +230,10 @@ var AppAssistantService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetConversation",
 			Handler:    _AppAssistantService_GetConversation_Handler,
+		},
+		{
+			MethodName: "ListModels",
+			Handler:    _AppAssistantService_ListModels_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
