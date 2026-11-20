@@ -1,0 +1,37 @@
+name: Check Compiled Protos
+
+on:
+  workflow_dispatch:
+  # This job doesn't use any secrets and the github workflow token is RO, so
+  # doesn't need `pull_request_target` + `safe-to-test` filtering.
+  pull_request:
+    branches: [ 'main' ]
+
+permissions:
+  contents: read
+
+jobs:
+  check-protos:
+    name: Check Compiled Protos Are Up To Date
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install toolchain
+        # jdx/mise-action@v5.2.7
+        uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b
+
+      # --force because a fresh checkout's mtimes would otherwise let mise's
+      # sources/outputs check skip generation entirely.
+      - name: Compile protos
+        run: mise run --force buf
+
+      - name: Check for uncommitted changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            git diff --stat
+            echo "::error::Compiled protos are out of date. Run 'mise r -f buf' and commit the results."
+            exit 1
+          fi
