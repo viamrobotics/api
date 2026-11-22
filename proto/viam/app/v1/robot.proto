@@ -403,8 +403,6 @@ message ModuleVersionInfo {
   google.protobuf.Duration running_for = 3;
   // current lifecycle state of the module process
   viam.robot.v1.ModuleStatus.State state = 4;
-  // most recent error; kept until the module is ready again
-  string error = 5;
   // failures since the module was last ready
   uint32 consecutive_failures = 6;
   // times the module has become ready since viam-server started, including the first start;
