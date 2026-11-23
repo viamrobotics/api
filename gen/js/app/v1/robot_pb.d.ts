@@ -1313,6 +1313,11 @@ export class AgentInfo extends jspb.Message {
   setPlatformTagsList(value: Array<string>): void;
   addPlatformTags(value: string, index?: number): string;
 
+  clearSystemUsersList(): void;
+  getSystemUsersList(): Array<string>;
+  setSystemUsersList(value: Array<string>): void;
+  addSystemUsers(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AgentInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AgentInfo): AgentInfo.AsObject;
@@ -1332,6 +1337,7 @@ export namespace AgentInfo {
     gitRevision: string,
     platform: string,
     platformTagsList: Array<string>,
+    systemUsersList: Array<string>,
   }
 }
 
@@ -1554,6 +1560,9 @@ export class ModuleConfig extends jspb.Message {
   getTcpMode(): boolean;
   setTcpMode(value: boolean): void;
 
+  getRunAsUser(): string;
+  setRunAsUser(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1575,6 +1584,7 @@ export namespace ModuleConfig {
     status?: AppValidationStatus.AsObject,
     firstRunTimeout?: google_protobuf_duration_pb.Duration.AsObject,
     tcpMode: boolean,
+    runAsUser: string,
   }
 }
 

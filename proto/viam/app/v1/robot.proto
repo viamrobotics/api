@@ -380,6 +380,8 @@ message AgentInfo {
   optional string platform = 6;
   // Optional tags to further constrain which artifact is returned for modules.
   repeated string platform_tags = 7;
+  // System users on the machine that modules can be configured to run as.
+  repeated string system_users = 8;
 }
 
 enum CredentialsType {
@@ -453,6 +455,8 @@ message ModuleConfig {
   google.protobuf.Duration first_run_timeout = 8;
   // whether we are starting a module in TCP mode
   bool tcp_mode = 9;
+  // system user the module process runs as; empty means the same user as viam-server
+  string run_as_user = 10;
 }
 
 // PackageConfig is the configration for deployed Packages.

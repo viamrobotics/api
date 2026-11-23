@@ -10389,7 +10389,7 @@ proto.viam.app.v1.RemoteAuth.prototype.setEntity = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.viam.app.v1.AgentInfo.repeatedFields_ = [3,7];
+proto.viam.app.v1.AgentInfo.repeatedFields_ = [3,7,8];
 
 
 
@@ -10428,7 +10428,8 @@ proto.viam.app.v1.AgentInfo.toObject = function(includeInstance, msg) {
     version: jspb.Message.getFieldWithDefault(msg, 4, ""),
     gitRevision: jspb.Message.getFieldWithDefault(msg, 5, ""),
     platform: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    platformTagsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
+    platformTagsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+    systemUsersList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -10492,6 +10493,10 @@ proto.viam.app.v1.AgentInfo.deserializeBinaryFromReader = function(msg, reader) 
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.addPlatformTags(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addSystemUsers(value);
       break;
     default:
       reader.skipField();
@@ -10568,6 +10573,13 @@ proto.viam.app.v1.AgentInfo.serializeBinaryToWriter = function(message, writer) 
   if (f.length > 0) {
     writer.writeRepeatedString(
       7,
+      f
+    );
+  }
+  f = message.getSystemUsersList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      8,
       f
     );
   }
@@ -10753,6 +10765,43 @@ proto.viam.app.v1.AgentInfo.prototype.addPlatformTags = function(value, opt_inde
  */
 proto.viam.app.v1.AgentInfo.prototype.clearPlatformTagsList = function() {
   return this.setPlatformTagsList([]);
+};
+
+
+/**
+ * repeated string system_users = 8;
+ * @return {!Array<string>}
+ */
+proto.viam.app.v1.AgentInfo.prototype.getSystemUsersList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 8));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.viam.app.v1.AgentInfo} returns this
+ */
+proto.viam.app.v1.AgentInfo.prototype.setSystemUsersList = function(value) {
+  return jspb.Message.setField(this, 8, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.viam.app.v1.AgentInfo} returns this
+ */
+proto.viam.app.v1.AgentInfo.prototype.addSystemUsers = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 8, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.viam.app.v1.AgentInfo} returns this
+ */
+proto.viam.app.v1.AgentInfo.prototype.clearSystemUsersList = function() {
+  return this.setSystemUsersList([]);
 };
 
 
@@ -12080,7 +12129,8 @@ proto.viam.app.v1.ModuleConfig.toObject = function(includeInstance, msg) {
     envMap: (f = msg.getEnvMap()) ? f.toObject(includeInstance, undefined) : [],
     status: (f = msg.getStatus()) && proto.viam.app.v1.AppValidationStatus.toObject(includeInstance, f),
     firstRunTimeout: (f = msg.getFirstRunTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    tcpMode: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
+    tcpMode: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    runAsUser: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -12156,6 +12206,10 @@ proto.viam.app.v1.ModuleConfig.deserializeBinaryFromReader = function(msg, reade
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setTcpMode(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRunAsUser(value);
       break;
     default:
       reader.skipField();
@@ -12245,6 +12299,13 @@ proto.viam.app.v1.ModuleConfig.serializeBinaryToWriter = function(message, write
   if (f) {
     writer.writeBool(
       9,
+      f
+    );
+  }
+  f = message.getRunAsUser();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -12452,6 +12513,24 @@ proto.viam.app.v1.ModuleConfig.prototype.getTcpMode = function() {
  */
 proto.viam.app.v1.ModuleConfig.prototype.setTcpMode = function(value) {
   return jspb.Message.setProto3BooleanField(this, 9, value);
+};
+
+
+/**
+ * optional string run_as_user = 10;
+ * @return {string}
+ */
+proto.viam.app.v1.ModuleConfig.prototype.getRunAsUser = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.viam.app.v1.ModuleConfig} returns this
+ */
+proto.viam.app.v1.ModuleConfig.prototype.setRunAsUser = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
