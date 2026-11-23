@@ -79,6 +79,58 @@ func (CredentialsType) EnumDescriptor() ([]byte, []int) {
 	return file_app_v1_robot_proto_rawDescGZIP(), []int{0}
 }
 
+type ModuleCloudAccessMode int32
+
+const (
+	// same as MODULE_CLOUD_ACCESS_MODE_MACHINE
+	ModuleCloudAccessMode_MODULE_CLOUD_ACCESS_MODE_UNSPECIFIED ModuleCloudAccessMode = 0
+	// the machine's own cloud API key
+	ModuleCloudAccessMode_MODULE_CLOUD_ACCESS_MODE_MACHINE ModuleCloudAccessMode = 1
+	// no cloud API key
+	ModuleCloudAccessMode_MODULE_CLOUD_ACCESS_MODE_NONE ModuleCloudAccessMode = 2
+)
+
+// Enum value maps for ModuleCloudAccessMode.
+var (
+	ModuleCloudAccessMode_name = map[int32]string{
+		0: "MODULE_CLOUD_ACCESS_MODE_UNSPECIFIED",
+		1: "MODULE_CLOUD_ACCESS_MODE_MACHINE",
+		2: "MODULE_CLOUD_ACCESS_MODE_NONE",
+	}
+	ModuleCloudAccessMode_value = map[string]int32{
+		"MODULE_CLOUD_ACCESS_MODE_UNSPECIFIED": 0,
+		"MODULE_CLOUD_ACCESS_MODE_MACHINE":     1,
+		"MODULE_CLOUD_ACCESS_MODE_NONE":        2,
+	}
+)
+
+func (x ModuleCloudAccessMode) Enum() *ModuleCloudAccessMode {
+	p := new(ModuleCloudAccessMode)
+	*p = x
+	return p
+}
+
+func (x ModuleCloudAccessMode) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ModuleCloudAccessMode) Descriptor() protoreflect.EnumDescriptor {
+	return file_app_v1_robot_proto_enumTypes[1].Descriptor()
+}
+
+func (ModuleCloudAccessMode) Type() protoreflect.EnumType {
+	return &file_app_v1_robot_proto_enumTypes[1]
+}
+
+func (x ModuleCloudAccessMode) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ModuleCloudAccessMode.Descriptor instead.
+func (ModuleCloudAccessMode) EnumDescriptor() ([]byte, []int) {
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{1}
+}
+
 type RobotConfig struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2766,8 +2818,8 @@ type ModuleConfig struct {
 	TcpMode bool `protobuf:"varint,9,opt,name=tcp_mode,json=tcpMode,proto3" json:"tcp_mode,omitempty"`
 	// system user the module process runs as; empty means the same user as viam-server
 	RunAsUser string `protobuf:"bytes,10,opt,name=run_as_user,json=runAsUser,proto3" json:"run_as_user,omitempty"`
-	// when true, viam-server does not add the machine's cloud API key (VIAM_API_KEY, VIAM_API_KEY_ID) to the module's environment
-	DisableCloudApiKeyEnv bool `protobuf:"varint,11,opt,name=disable_cloud_api_key_env,json=disableCloudApiKeyEnv,proto3" json:"disable_cloud_api_key_env,omitempty"`
+	// which cloud API key, if any, viam-server puts in the module's environment (VIAM_API_KEY, VIAM_API_KEY_ID)
+	CloudAccess *ModuleCloudAccess `protobuf:"bytes,11,opt,name=cloud_access,json=cloudAccess,proto3" json:"cloud_access,omitempty"`
 }
 
 func (x *ModuleConfig) Reset() {
@@ -2870,11 +2922,66 @@ func (x *ModuleConfig) GetRunAsUser() string {
 	return ""
 }
 
-func (x *ModuleConfig) GetDisableCloudApiKeyEnv() bool {
+func (x *ModuleConfig) GetCloudAccess() *ModuleCloudAccess {
 	if x != nil {
-		return x.DisableCloudApiKeyEnv
+		return x.CloudAccess
 	}
-	return false
+	return nil
+}
+
+// ModuleCloudAccess selects the cloud credentials a module receives.
+type ModuleCloudAccess struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Mode ModuleCloudAccessMode `protobuf:"varint,1,opt,name=mode,proto3,enum=viam.app.v1.ModuleCloudAccessMode" json:"mode,omitempty"`
+	// reserved for choosing a specific API key; must be empty until a mode uses it
+	ApiKeyId string `protobuf:"bytes,2,opt,name=api_key_id,json=apiKeyId,proto3" json:"api_key_id,omitempty"`
+}
+
+func (x *ModuleCloudAccess) Reset() {
+	*x = ModuleCloudAccess{}
+	mi := &file_app_v1_robot_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ModuleCloudAccess) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ModuleCloudAccess) ProtoMessage() {}
+
+func (x *ModuleCloudAccess) ProtoReflect() protoreflect.Message {
+	mi := &file_app_v1_robot_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ModuleCloudAccess.ProtoReflect.Descriptor instead.
+func (*ModuleCloudAccess) Descriptor() ([]byte, []int) {
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *ModuleCloudAccess) GetMode() ModuleCloudAccessMode {
+	if x != nil {
+		return x.Mode
+	}
+	return ModuleCloudAccessMode_MODULE_CLOUD_ACCESS_MODE_UNSPECIFIED
+}
+
+func (x *ModuleCloudAccess) GetApiKeyId() string {
+	if x != nil {
+		return x.ApiKeyId
+	}
+	return ""
 }
 
 // PackageConfig is the configration for deployed Packages.
@@ -2897,7 +3004,7 @@ type PackageConfig struct {
 
 func (x *PackageConfig) Reset() {
 	*x = PackageConfig{}
-	mi := &file_app_v1_robot_proto_msgTypes[37]
+	mi := &file_app_v1_robot_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2909,7 +3016,7 @@ func (x *PackageConfig) String() string {
 func (*PackageConfig) ProtoMessage() {}
 
 func (x *PackageConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[37]
+	mi := &file_app_v1_robot_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2922,7 +3029,7 @@ func (x *PackageConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PackageConfig.ProtoReflect.Descriptor instead.
 func (*PackageConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{37}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *PackageConfig) GetName() string {
@@ -2972,7 +3079,7 @@ type MaintenanceConfig struct {
 
 func (x *MaintenanceConfig) Reset() {
 	*x = MaintenanceConfig{}
-	mi := &file_app_v1_robot_proto_msgTypes[38]
+	mi := &file_app_v1_robot_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2984,7 +3091,7 @@ func (x *MaintenanceConfig) String() string {
 func (*MaintenanceConfig) ProtoMessage() {}
 
 func (x *MaintenanceConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[38]
+	mi := &file_app_v1_robot_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2997,7 +3104,7 @@ func (x *MaintenanceConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MaintenanceConfig.ProtoReflect.Descriptor instead.
 func (*MaintenanceConfig) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{38}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *MaintenanceConfig) GetSensorName() *v1.ResourceName {
@@ -3032,7 +3139,7 @@ type FollowPartRef struct {
 
 func (x *FollowPartRef) Reset() {
 	*x = FollowPartRef{}
-	mi := &file_app_v1_robot_proto_msgTypes[39]
+	mi := &file_app_v1_robot_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3044,7 +3151,7 @@ func (x *FollowPartRef) String() string {
 func (*FollowPartRef) ProtoMessage() {}
 
 func (x *FollowPartRef) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[39]
+	mi := &file_app_v1_robot_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3057,7 +3164,7 @@ func (x *FollowPartRef) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FollowPartRef.ProtoReflect.Descriptor instead.
 func (*FollowPartRef) Descriptor() ([]byte, []int) {
-	return file_app_v1_robot_proto_rawDescGZIP(), []int{39}
+	return file_app_v1_robot_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *FollowPartRef) GetAddress() string {
@@ -3082,7 +3189,7 @@ type Orientation_NoOrientation struct {
 
 func (x *Orientation_NoOrientation) Reset() {
 	*x = Orientation_NoOrientation{}
-	mi := &file_app_v1_robot_proto_msgTypes[41]
+	mi := &file_app_v1_robot_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3094,7 +3201,7 @@ func (x *Orientation_NoOrientation) String() string {
 func (*Orientation_NoOrientation) ProtoMessage() {}
 
 func (x *Orientation_NoOrientation) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[41]
+	mi := &file_app_v1_robot_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3132,7 +3239,7 @@ type Orientation_OrientationVectorRadians struct {
 
 func (x *Orientation_OrientationVectorRadians) Reset() {
 	*x = Orientation_OrientationVectorRadians{}
-	mi := &file_app_v1_robot_proto_msgTypes[42]
+	mi := &file_app_v1_robot_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3144,7 +3251,7 @@ func (x *Orientation_OrientationVectorRadians) String() string {
 func (*Orientation_OrientationVectorRadians) ProtoMessage() {}
 
 func (x *Orientation_OrientationVectorRadians) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[42]
+	mi := &file_app_v1_robot_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3203,7 +3310,7 @@ type Orientation_OrientationVectorDegrees struct {
 
 func (x *Orientation_OrientationVectorDegrees) Reset() {
 	*x = Orientation_OrientationVectorDegrees{}
-	mi := &file_app_v1_robot_proto_msgTypes[43]
+	mi := &file_app_v1_robot_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3215,7 +3322,7 @@ func (x *Orientation_OrientationVectorDegrees) String() string {
 func (*Orientation_OrientationVectorDegrees) ProtoMessage() {}
 
 func (x *Orientation_OrientationVectorDegrees) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[43]
+	mi := &file_app_v1_robot_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3273,7 +3380,7 @@ type Orientation_EulerAngles struct {
 
 func (x *Orientation_EulerAngles) Reset() {
 	*x = Orientation_EulerAngles{}
-	mi := &file_app_v1_robot_proto_msgTypes[44]
+	mi := &file_app_v1_robot_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3285,7 +3392,7 @@ func (x *Orientation_EulerAngles) String() string {
 func (*Orientation_EulerAngles) ProtoMessage() {}
 
 func (x *Orientation_EulerAngles) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[44]
+	mi := &file_app_v1_robot_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3342,7 +3449,7 @@ type Orientation_AxisAngles struct {
 
 func (x *Orientation_AxisAngles) Reset() {
 	*x = Orientation_AxisAngles{}
-	mi := &file_app_v1_robot_proto_msgTypes[45]
+	mi := &file_app_v1_robot_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3354,7 +3461,7 @@ func (x *Orientation_AxisAngles) String() string {
 func (*Orientation_AxisAngles) ProtoMessage() {}
 
 func (x *Orientation_AxisAngles) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[45]
+	mi := &file_app_v1_robot_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3412,7 +3519,7 @@ type Orientation_Quaternion struct {
 
 func (x *Orientation_Quaternion) Reset() {
 	*x = Orientation_Quaternion{}
-	mi := &file_app_v1_robot_proto_msgTypes[46]
+	mi := &file_app_v1_robot_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3424,7 +3531,7 @@ func (x *Orientation_Quaternion) String() string {
 func (*Orientation_Quaternion) ProtoMessage() {}
 
 func (x *Orientation_Quaternion) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[46]
+	mi := &file_app_v1_robot_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3481,7 +3588,7 @@ type RemoteAuth_Credentials struct {
 
 func (x *RemoteAuth_Credentials) Reset() {
 	*x = RemoteAuth_Credentials{}
-	mi := &file_app_v1_robot_proto_msgTypes[47]
+	mi := &file_app_v1_robot_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3493,7 +3600,7 @@ func (x *RemoteAuth_Credentials) String() string {
 func (*RemoteAuth_Credentials) ProtoMessage() {}
 
 func (x *RemoteAuth_Credentials) ProtoReflect() protoreflect.Message {
-	mi := &file_app_v1_robot_proto_msgTypes[47]
+	mi := &file_app_v1_robot_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4015,7 +4122,7 @@ var file_app_v1_robot_proto_rawDesc = []byte{
 	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x14, 0x72,
 	0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x49, 0x6e, 0x74, 0x65, 0x72,
-	0x76, 0x61, 0x6c, 0x22, 0xe8, 0x03, 0x0a, 0x0c, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x43, 0x6f,
+	0x76, 0x61, 0x6c, 0x22, 0xf1, 0x03, 0x0a, 0x0c, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x43, 0x6f,
 	0x6e, 0x66, 0x69, 0x67, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68,
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x12, 0x1b, 0x0a, 0x09,
@@ -4038,77 +4145,93 @@ var file_app_v1_robot_proto_rawDesc = []byte{
 	0x74, 0x12, 0x19, 0x0a, 0x08, 0x74, 0x63, 0x70, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x18, 0x09, 0x20,
 	0x01, 0x28, 0x08, 0x52, 0x07, 0x74, 0x63, 0x70, 0x4d, 0x6f, 0x64, 0x65, 0x12, 0x1e, 0x0a, 0x0b,
 	0x72, 0x75, 0x6e, 0x5f, 0x61, 0x73, 0x5f, 0x75, 0x73, 0x65, 0x72, 0x18, 0x0a, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x09, 0x72, 0x75, 0x6e, 0x41, 0x73, 0x55, 0x73, 0x65, 0x72, 0x12, 0x38, 0x0a, 0x19,
-	0x64, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x5f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5f, 0x61, 0x70,
-	0x69, 0x5f, 0x6b, 0x65, 0x79, 0x5f, 0x65, 0x6e, 0x76, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x08, 0x52,
-	0x15, 0x64, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x41, 0x70, 0x69,
-	0x4b, 0x65, 0x79, 0x45, 0x6e, 0x76, 0x1a, 0x36, 0x0a, 0x08, 0x45, 0x6e, 0x76, 0x45, 0x6e, 0x74,
-	0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0xa5,
-	0x01, 0x0a, 0x0d, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
-	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
-	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x70, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x12, 0x18,
-	0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65,
-	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x38, 0x0a, 0x06,
-	0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x70, 0x70, 0x56, 0x61,
-	0x6c, 0x69, 0x64, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06,
-	0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0xc7, 0x01, 0x0a, 0x11, 0x4d, 0x61, 0x69, 0x6e, 0x74,
-	0x65, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x3d, 0x0a, 0x0b,
-	0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x1c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e,
-	0x76, 0x31, 0x2e, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x52,
-	0x0a, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x36, 0x0a, 0x17, 0x6d,
-	0x61, 0x69, 0x6e, 0x74, 0x65, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x5f, 0x61, 0x6c, 0x6c, 0x6f, 0x77,
-	0x65, 0x64, 0x5f, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x15, 0x6d, 0x61,
-	0x69, 0x6e, 0x74, 0x65, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x41, 0x6c, 0x6c, 0x6f, 0x77, 0x65, 0x64,
-	0x4b, 0x65, 0x79, 0x12, 0x3b, 0x0a, 0x0b, 0x66, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x5f, 0x70, 0x61,
-	0x72, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
-	0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x50, 0x61, 0x72,
-	0x74, 0x52, 0x65, 0x66, 0x52, 0x0a, 0x66, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x50, 0x61, 0x72, 0x74,
-	0x22, 0x56, 0x0a, 0x0d, 0x46, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x50, 0x61, 0x72, 0x74, 0x52, 0x65,
-	0x66, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x2b, 0x0a, 0x04, 0x61,
-	0x75, 0x74, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x76, 0x69, 0x61, 0x6d,
-	0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x74, 0x65, 0x41, 0x75,
-	0x74, 0x68, 0x52, 0x04, 0x61, 0x75, 0x74, 0x68, 0x2a, 0xbf, 0x01, 0x0a, 0x0f, 0x43, 0x72, 0x65,
-	0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x54, 0x79, 0x70, 0x65, 0x12, 0x20, 0x0a, 0x1c,
-	0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45,
-	0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x1d,
-	0x0a, 0x19, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59,
-	0x50, 0x45, 0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x4e, 0x41, 0x4c, 0x10, 0x01, 0x12, 0x1c, 0x0a,
-	0x18, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50,
-	0x45, 0x5f, 0x41, 0x50, 0x49, 0x5f, 0x4b, 0x45, 0x59, 0x10, 0x02, 0x12, 0x21, 0x0a, 0x1d, 0x43,
-	0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f,
-	0x52, 0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54, 0x10, 0x03, 0x12, 0x2a,
-	0x0a, 0x26, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54, 0x59,
-	0x50, 0x45, 0x5f, 0x52, 0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x4c, 0x4f, 0x43, 0x41, 0x54, 0x49, 0x4f,
-	0x4e, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54, 0x10, 0x04, 0x32, 0xb2, 0x02, 0x0a, 0x0c, 0x52,
-	0x6f, 0x62, 0x6f, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x41, 0x0a, 0x06, 0x43,
-	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70,
-	0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
-	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50,
-	0x0a, 0x0b, 0x43, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x12, 0x1f, 0x2e,
-	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x65, 0x72, 0x74,
-	0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20,
+	0x09, 0x52, 0x09, 0x72, 0x75, 0x6e, 0x41, 0x73, 0x55, 0x73, 0x65, 0x72, 0x12, 0x41, 0x0a, 0x0c,
+	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5f, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x0b, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31,
+	0x2e, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x65,
+	0x73, 0x73, 0x52, 0x0b, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x1a,
+	0x36, 0x0a, 0x08, 0x45, 0x6e, 0x76, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b,
+	0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61,
+	0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x69, 0x0a, 0x11, 0x4d, 0x6f, 0x64, 0x75, 0x6c,
+	0x65, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x36, 0x0a, 0x04,
+	0x6d, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x22, 0x2e, 0x76, 0x69, 0x61,
+	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x43,
+	0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4d, 0x6f, 0x64, 0x65, 0x52, 0x04,
+	0x6d, 0x6f, 0x64, 0x65, 0x12, 0x1c, 0x0a, 0x0a, 0x61, 0x70, 0x69, 0x5f, 0x6b, 0x65, 0x79, 0x5f,
+	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x61, 0x70, 0x69, 0x4b, 0x65, 0x79,
+	0x49, 0x64, 0x22, 0xa5, 0x01, 0x0a, 0x0d, 0x50, 0x61, 0x63, 0x6b, 0x61, 0x67, 0x65, 0x43, 0x6f,
+	0x6e, 0x66, 0x69, 0x67, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x61, 0x63, 0x6b,
+	0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x70, 0x61, 0x63, 0x6b, 0x61,
+	0x67, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04,
+	0x74, 0x79, 0x70, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65,
+	0x12, 0x38, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x20, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x41,
+	0x70, 0x70, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0xc7, 0x01, 0x0a, 0x11, 0x4d,
+	0x61, 0x69, 0x6e, 0x74, 0x65, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x12, 0x3d, 0x0a, 0x0b, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d,
+	0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x4e,
+	0x61, 0x6d, 0x65, 0x52, 0x0a, 0x73, 0x65, 0x6e, 0x73, 0x6f, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12,
+	0x36, 0x0a, 0x17, 0x6d, 0x61, 0x69, 0x6e, 0x74, 0x65, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x5f, 0x61,
+	0x6c, 0x6c, 0x6f, 0x77, 0x65, 0x64, 0x5f, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x15, 0x6d, 0x61, 0x69, 0x6e, 0x74, 0x65, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x41, 0x6c, 0x6c,
+	0x6f, 0x77, 0x65, 0x64, 0x4b, 0x65, 0x79, 0x12, 0x3b, 0x0a, 0x0b, 0x66, 0x6f, 0x6c, 0x6c, 0x6f,
+	0x77, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x6f, 0x6c, 0x6c, 0x6f,
+	0x77, 0x50, 0x61, 0x72, 0x74, 0x52, 0x65, 0x66, 0x52, 0x0a, 0x66, 0x6f, 0x6c, 0x6c, 0x6f, 0x77,
+	0x50, 0x61, 0x72, 0x74, 0x22, 0x56, 0x0a, 0x0d, 0x46, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x50, 0x61,
+	0x72, 0x74, 0x52, 0x65, 0x66, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12,
+	0x2b, 0x0a, 0x04, 0x61, 0x75, 0x74, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x6d, 0x6f,
+	0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x52, 0x04, 0x61, 0x75, 0x74, 0x68, 0x2a, 0xbf, 0x01, 0x0a,
+	0x0f, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x54, 0x79, 0x70, 0x65,
+	0x12, 0x20, 0x0a, 0x1c, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f,
+	0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44,
+	0x10, 0x00, 0x12, 0x1d, 0x0a, 0x19, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c,
+	0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x4e, 0x41, 0x4c, 0x10,
+	0x01, 0x12, 0x1c, 0x0a, 0x18, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53,
+	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x41, 0x50, 0x49, 0x5f, 0x4b, 0x45, 0x59, 0x10, 0x02, 0x12,
+	0x21, 0x0a, 0x1d, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c, 0x53, 0x5f, 0x54,
+	0x59, 0x50, 0x45, 0x5f, 0x52, 0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54,
+	0x10, 0x03, 0x12, 0x2a, 0x0a, 0x26, 0x43, 0x52, 0x45, 0x44, 0x45, 0x4e, 0x54, 0x49, 0x41, 0x4c,
+	0x53, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x52, 0x4f, 0x42, 0x4f, 0x54, 0x5f, 0x4c, 0x4f, 0x43,
+	0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x53, 0x45, 0x43, 0x52, 0x45, 0x54, 0x10, 0x04, 0x2a, 0x8a,
+	0x01, 0x0a, 0x15, 0x4d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x4d, 0x6f, 0x64, 0x65, 0x12, 0x28, 0x0a, 0x24, 0x4d, 0x4f, 0x44, 0x55,
+	0x4c, 0x45, 0x5f, 0x43, 0x4c, 0x4f, 0x55, 0x44, 0x5f, 0x41, 0x43, 0x43, 0x45, 0x53, 0x53, 0x5f,
+	0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44,
+	0x10, 0x00, 0x12, 0x24, 0x0a, 0x20, 0x4d, 0x4f, 0x44, 0x55, 0x4c, 0x45, 0x5f, 0x43, 0x4c, 0x4f,
+	0x55, 0x44, 0x5f, 0x41, 0x43, 0x43, 0x45, 0x53, 0x53, 0x5f, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x4d,
+	0x41, 0x43, 0x48, 0x49, 0x4e, 0x45, 0x10, 0x01, 0x12, 0x21, 0x0a, 0x1d, 0x4d, 0x4f, 0x44, 0x55,
+	0x4c, 0x45, 0x5f, 0x43, 0x4c, 0x4f, 0x55, 0x44, 0x5f, 0x41, 0x43, 0x43, 0x45, 0x53, 0x53, 0x5f,
+	0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x4e, 0x4f, 0x4e, 0x45, 0x10, 0x02, 0x32, 0xb2, 0x02, 0x0a, 0x0c,
+	0x52, 0x6f, 0x62, 0x6f, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x41, 0x0a, 0x06,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x1a, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70,
+	0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31,
+	0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x50, 0x0a, 0x0b, 0x43, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x12, 0x1f,
 	0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x65, 0x72,
-	0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x38, 0x0a, 0x03, 0x4c, 0x6f, 0x67, 0x12, 0x17, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61,
-	0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4c,
-	0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0c, 0x4e, 0x65,
-	0x65, 0x64, 0x73, 0x52, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x20, 0x2e, 0x76, 0x69, 0x61,
-	0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52, 0x65,
-	0x73, 0x74, 0x61, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x76,
-	0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x65, 0x65, 0x64, 0x73,
-	0x52, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42,
-	0x18, 0x5a, 0x16, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61,
-	0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x20, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x65,
+	0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x38, 0x0a, 0x03, 0x4c, 0x6f, 0x67, 0x12, 0x17, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e,
+	0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x18, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e,
+	0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0c, 0x4e,
+	0x65, 0x65, 0x64, 0x73, 0x52, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x20, 0x2e, 0x76, 0x69,
+	0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x65, 0x65, 0x64, 0x73, 0x52,
+	0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e,
+	0x76, 0x69, 0x61, 0x6d, 0x2e, 0x61, 0x70, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x65, 0x65, 0x64,
+	0x73, 0x52, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x42, 0x18, 0x5a, 0x16, 0x67, 0x6f, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
+	0x61, 0x70, 0x69, 0x2f, 0x61, 0x70, 0x70, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -4123,147 +4246,151 @@ func file_app_v1_robot_proto_rawDescGZIP() []byte {
 	return file_app_v1_robot_proto_rawDescData
 }
 
-var file_app_v1_robot_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_app_v1_robot_proto_msgTypes = make([]protoimpl.MessageInfo, 49)
+var file_app_v1_robot_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_app_v1_robot_proto_msgTypes = make([]protoimpl.MessageInfo, 50)
 var file_app_v1_robot_proto_goTypes = []any{
 	(CredentialsType)(0),                         // 0: viam.app.v1.CredentialsType
-	(*RobotConfig)(nil),                          // 1: viam.app.v1.RobotConfig
-	(*LogPatternConfig)(nil),                     // 2: viam.app.v1.LogPatternConfig
-	(*JobConfig)(nil),                            // 3: viam.app.v1.JobConfig
-	(*TracingConfig)(nil),                        // 4: viam.app.v1.TracingConfig
-	(*LocationSecret)(nil),                       // 5: viam.app.v1.LocationSecret
-	(*AppValidationStatus)(nil),                  // 6: viam.app.v1.AppValidationStatus
-	(*CloudConfig)(nil),                          // 7: viam.app.v1.CloudConfig
-	(*ComponentConfig)(nil),                      // 8: viam.app.v1.ComponentConfig
-	(*ResourceLevelServiceConfig)(nil),           // 9: viam.app.v1.ResourceLevelServiceConfig
-	(*ProcessConfig)(nil),                        // 10: viam.app.v1.ProcessConfig
-	(*ServiceConfig)(nil),                        // 11: viam.app.v1.ServiceConfig
-	(*NetworkConfig)(nil),                        // 12: viam.app.v1.NetworkConfig
-	(*SessionsConfig)(nil),                       // 13: viam.app.v1.SessionsConfig
-	(*TrafficTunnelEndpoint)(nil),                // 14: viam.app.v1.TrafficTunnelEndpoint
-	(*AuthConfig)(nil),                           // 15: viam.app.v1.AuthConfig
-	(*UserPermission)(nil),                       // 16: viam.app.v1.UserPermission
-	(*User)(nil),                                 // 17: viam.app.v1.User
-	(*Permission)(nil),                           // 18: viam.app.v1.Permission
-	(*JWKSFile)(nil),                             // 19: viam.app.v1.JWKSFile
-	(*ExternalAuthConfig)(nil),                   // 20: viam.app.v1.ExternalAuthConfig
-	(*AuthHandlerConfig)(nil),                    // 21: viam.app.v1.AuthHandlerConfig
-	(*Frame)(nil),                                // 22: viam.app.v1.Frame
-	(*LogConfiguration)(nil),                     // 23: viam.app.v1.LogConfiguration
-	(*Translation)(nil),                          // 24: viam.app.v1.Translation
-	(*Orientation)(nil),                          // 25: viam.app.v1.Orientation
-	(*RemoteConfig)(nil),                         // 26: viam.app.v1.RemoteConfig
-	(*RemoteAuth)(nil),                           // 27: viam.app.v1.RemoteAuth
-	(*AgentInfo)(nil),                            // 28: viam.app.v1.AgentInfo
-	(*ConfigRequest)(nil),                        // 29: viam.app.v1.ConfigRequest
-	(*ConfigResponse)(nil),                       // 30: viam.app.v1.ConfigResponse
-	(*CertificateRequest)(nil),                   // 31: viam.app.v1.CertificateRequest
-	(*CertificateResponse)(nil),                  // 32: viam.app.v1.CertificateResponse
-	(*LogRequest)(nil),                           // 33: viam.app.v1.LogRequest
-	(*LogResponse)(nil),                          // 34: viam.app.v1.LogResponse
-	(*NeedsRestartRequest)(nil),                  // 35: viam.app.v1.NeedsRestartRequest
-	(*NeedsRestartResponse)(nil),                 // 36: viam.app.v1.NeedsRestartResponse
-	(*ModuleConfig)(nil),                         // 37: viam.app.v1.ModuleConfig
-	(*PackageConfig)(nil),                        // 38: viam.app.v1.PackageConfig
-	(*MaintenanceConfig)(nil),                    // 39: viam.app.v1.MaintenanceConfig
-	(*FollowPartRef)(nil),                        // 40: viam.app.v1.FollowPartRef
-	nil,                                          // 41: viam.app.v1.ProcessConfig.EnvEntry
-	(*Orientation_NoOrientation)(nil),            // 42: viam.app.v1.Orientation.NoOrientation
-	(*Orientation_OrientationVectorRadians)(nil), // 43: viam.app.v1.Orientation.OrientationVectorRadians
-	(*Orientation_OrientationVectorDegrees)(nil), // 44: viam.app.v1.Orientation.OrientationVectorDegrees
-	(*Orientation_EulerAngles)(nil),              // 45: viam.app.v1.Orientation.EulerAngles
-	(*Orientation_AxisAngles)(nil),               // 46: viam.app.v1.Orientation.AxisAngles
-	(*Orientation_Quaternion)(nil),               // 47: viam.app.v1.Orientation.Quaternion
-	(*RemoteAuth_Credentials)(nil),               // 48: viam.app.v1.RemoteAuth.Credentials
-	nil,                                          // 49: viam.app.v1.ModuleConfig.EnvEntry
-	(*structpb.Struct)(nil),                      // 50: google.protobuf.Struct
-	(*durationpb.Duration)(nil),                  // 51: google.protobuf.Duration
-	(*v1.Geometry)(nil),                          // 52: viam.common.v1.Geometry
-	(*v1.LogEntry)(nil),                          // 53: viam.common.v1.LogEntry
-	(*v1.ResourceName)(nil),                      // 54: viam.common.v1.ResourceName
+	(ModuleCloudAccessMode)(0),                   // 1: viam.app.v1.ModuleCloudAccessMode
+	(*RobotConfig)(nil),                          // 2: viam.app.v1.RobotConfig
+	(*LogPatternConfig)(nil),                     // 3: viam.app.v1.LogPatternConfig
+	(*JobConfig)(nil),                            // 4: viam.app.v1.JobConfig
+	(*TracingConfig)(nil),                        // 5: viam.app.v1.TracingConfig
+	(*LocationSecret)(nil),                       // 6: viam.app.v1.LocationSecret
+	(*AppValidationStatus)(nil),                  // 7: viam.app.v1.AppValidationStatus
+	(*CloudConfig)(nil),                          // 8: viam.app.v1.CloudConfig
+	(*ComponentConfig)(nil),                      // 9: viam.app.v1.ComponentConfig
+	(*ResourceLevelServiceConfig)(nil),           // 10: viam.app.v1.ResourceLevelServiceConfig
+	(*ProcessConfig)(nil),                        // 11: viam.app.v1.ProcessConfig
+	(*ServiceConfig)(nil),                        // 12: viam.app.v1.ServiceConfig
+	(*NetworkConfig)(nil),                        // 13: viam.app.v1.NetworkConfig
+	(*SessionsConfig)(nil),                       // 14: viam.app.v1.SessionsConfig
+	(*TrafficTunnelEndpoint)(nil),                // 15: viam.app.v1.TrafficTunnelEndpoint
+	(*AuthConfig)(nil),                           // 16: viam.app.v1.AuthConfig
+	(*UserPermission)(nil),                       // 17: viam.app.v1.UserPermission
+	(*User)(nil),                                 // 18: viam.app.v1.User
+	(*Permission)(nil),                           // 19: viam.app.v1.Permission
+	(*JWKSFile)(nil),                             // 20: viam.app.v1.JWKSFile
+	(*ExternalAuthConfig)(nil),                   // 21: viam.app.v1.ExternalAuthConfig
+	(*AuthHandlerConfig)(nil),                    // 22: viam.app.v1.AuthHandlerConfig
+	(*Frame)(nil),                                // 23: viam.app.v1.Frame
+	(*LogConfiguration)(nil),                     // 24: viam.app.v1.LogConfiguration
+	(*Translation)(nil),                          // 25: viam.app.v1.Translation
+	(*Orientation)(nil),                          // 26: viam.app.v1.Orientation
+	(*RemoteConfig)(nil),                         // 27: viam.app.v1.RemoteConfig
+	(*RemoteAuth)(nil),                           // 28: viam.app.v1.RemoteAuth
+	(*AgentInfo)(nil),                            // 29: viam.app.v1.AgentInfo
+	(*ConfigRequest)(nil),                        // 30: viam.app.v1.ConfigRequest
+	(*ConfigResponse)(nil),                       // 31: viam.app.v1.ConfigResponse
+	(*CertificateRequest)(nil),                   // 32: viam.app.v1.CertificateRequest
+	(*CertificateResponse)(nil),                  // 33: viam.app.v1.CertificateResponse
+	(*LogRequest)(nil),                           // 34: viam.app.v1.LogRequest
+	(*LogResponse)(nil),                          // 35: viam.app.v1.LogResponse
+	(*NeedsRestartRequest)(nil),                  // 36: viam.app.v1.NeedsRestartRequest
+	(*NeedsRestartResponse)(nil),                 // 37: viam.app.v1.NeedsRestartResponse
+	(*ModuleConfig)(nil),                         // 38: viam.app.v1.ModuleConfig
+	(*ModuleCloudAccess)(nil),                    // 39: viam.app.v1.ModuleCloudAccess
+	(*PackageConfig)(nil),                        // 40: viam.app.v1.PackageConfig
+	(*MaintenanceConfig)(nil),                    // 41: viam.app.v1.MaintenanceConfig
+	(*FollowPartRef)(nil),                        // 42: viam.app.v1.FollowPartRef
+	nil,                                          // 43: viam.app.v1.ProcessConfig.EnvEntry
+	(*Orientation_NoOrientation)(nil),            // 44: viam.app.v1.Orientation.NoOrientation
+	(*Orientation_OrientationVectorRadians)(nil), // 45: viam.app.v1.Orientation.OrientationVectorRadians
+	(*Orientation_OrientationVectorDegrees)(nil), // 46: viam.app.v1.Orientation.OrientationVectorDegrees
+	(*Orientation_EulerAngles)(nil),              // 47: viam.app.v1.Orientation.EulerAngles
+	(*Orientation_AxisAngles)(nil),               // 48: viam.app.v1.Orientation.AxisAngles
+	(*Orientation_Quaternion)(nil),               // 49: viam.app.v1.Orientation.Quaternion
+	(*RemoteAuth_Credentials)(nil),               // 50: viam.app.v1.RemoteAuth.Credentials
+	nil,                                          // 51: viam.app.v1.ModuleConfig.EnvEntry
+	(*structpb.Struct)(nil),                      // 52: google.protobuf.Struct
+	(*durationpb.Duration)(nil),                  // 53: google.protobuf.Duration
+	(*v1.Geometry)(nil),                          // 54: viam.common.v1.Geometry
+	(*v1.LogEntry)(nil),                          // 55: viam.common.v1.LogEntry
+	(*v1.ResourceName)(nil),                      // 56: viam.common.v1.ResourceName
 }
 var file_app_v1_robot_proto_depIdxs = []int32{
-	7,  // 0: viam.app.v1.RobotConfig.cloud:type_name -> viam.app.v1.CloudConfig
-	26, // 1: viam.app.v1.RobotConfig.remotes:type_name -> viam.app.v1.RemoteConfig
-	8,  // 2: viam.app.v1.RobotConfig.components:type_name -> viam.app.v1.ComponentConfig
-	10, // 3: viam.app.v1.RobotConfig.processes:type_name -> viam.app.v1.ProcessConfig
-	11, // 4: viam.app.v1.RobotConfig.services:type_name -> viam.app.v1.ServiceConfig
-	12, // 5: viam.app.v1.RobotConfig.network:type_name -> viam.app.v1.NetworkConfig
-	15, // 6: viam.app.v1.RobotConfig.auth:type_name -> viam.app.v1.AuthConfig
-	37, // 7: viam.app.v1.RobotConfig.modules:type_name -> viam.app.v1.ModuleConfig
-	38, // 8: viam.app.v1.RobotConfig.packages:type_name -> viam.app.v1.PackageConfig
-	6,  // 9: viam.app.v1.RobotConfig.overwrite_fragment_status:type_name -> viam.app.v1.AppValidationStatus
-	2,  // 10: viam.app.v1.RobotConfig.log:type_name -> viam.app.v1.LogPatternConfig
-	39, // 11: viam.app.v1.RobotConfig.maintenance:type_name -> viam.app.v1.MaintenanceConfig
-	3,  // 12: viam.app.v1.RobotConfig.jobs:type_name -> viam.app.v1.JobConfig
-	4,  // 13: viam.app.v1.RobotConfig.tracing:type_name -> viam.app.v1.TracingConfig
-	50, // 14: viam.app.v1.JobConfig.command:type_name -> google.protobuf.Struct
-	23, // 15: viam.app.v1.JobConfig.log_configuration:type_name -> viam.app.v1.LogConfiguration
-	5,  // 16: viam.app.v1.CloudConfig.location_secrets:type_name -> viam.app.v1.LocationSecret
-	22, // 17: viam.app.v1.ComponentConfig.frame:type_name -> viam.app.v1.Frame
-	9,  // 18: viam.app.v1.ComponentConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
-	50, // 19: viam.app.v1.ComponentConfig.attributes:type_name -> google.protobuf.Struct
-	23, // 20: viam.app.v1.ComponentConfig.log_configuration:type_name -> viam.app.v1.LogConfiguration
-	50, // 21: viam.app.v1.ResourceLevelServiceConfig.attributes:type_name -> google.protobuf.Struct
-	51, // 22: viam.app.v1.ProcessConfig.stop_timeout:type_name -> google.protobuf.Duration
-	41, // 23: viam.app.v1.ProcessConfig.env:type_name -> viam.app.v1.ProcessConfig.EnvEntry
-	50, // 24: viam.app.v1.ServiceConfig.attributes:type_name -> google.protobuf.Struct
-	9,  // 25: viam.app.v1.ServiceConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
-	23, // 26: viam.app.v1.ServiceConfig.log_configuration:type_name -> viam.app.v1.LogConfiguration
-	13, // 27: viam.app.v1.NetworkConfig.sessions:type_name -> viam.app.v1.SessionsConfig
-	14, // 28: viam.app.v1.NetworkConfig.traffic_tunnel_endpoints:type_name -> viam.app.v1.TrafficTunnelEndpoint
-	51, // 29: viam.app.v1.SessionsConfig.heartbeat_window:type_name -> google.protobuf.Duration
-	51, // 30: viam.app.v1.TrafficTunnelEndpoint.connection_timeout:type_name -> google.protobuf.Duration
-	21, // 31: viam.app.v1.AuthConfig.handlers:type_name -> viam.app.v1.AuthHandlerConfig
-	20, // 32: viam.app.v1.AuthConfig.external_auth_config:type_name -> viam.app.v1.ExternalAuthConfig
-	16, // 33: viam.app.v1.AuthConfig.user_permissions:type_name -> viam.app.v1.UserPermission
-	17, // 34: viam.app.v1.UserPermission.users:type_name -> viam.app.v1.User
-	18, // 35: viam.app.v1.UserPermission.permissions:type_name -> viam.app.v1.Permission
-	17, // 36: viam.app.v1.UserPermission.user:type_name -> viam.app.v1.User
-	50, // 37: viam.app.v1.JWKSFile.json:type_name -> google.protobuf.Struct
-	19, // 38: viam.app.v1.ExternalAuthConfig.jwks:type_name -> viam.app.v1.JWKSFile
+	8,  // 0: viam.app.v1.RobotConfig.cloud:type_name -> viam.app.v1.CloudConfig
+	27, // 1: viam.app.v1.RobotConfig.remotes:type_name -> viam.app.v1.RemoteConfig
+	9,  // 2: viam.app.v1.RobotConfig.components:type_name -> viam.app.v1.ComponentConfig
+	11, // 3: viam.app.v1.RobotConfig.processes:type_name -> viam.app.v1.ProcessConfig
+	12, // 4: viam.app.v1.RobotConfig.services:type_name -> viam.app.v1.ServiceConfig
+	13, // 5: viam.app.v1.RobotConfig.network:type_name -> viam.app.v1.NetworkConfig
+	16, // 6: viam.app.v1.RobotConfig.auth:type_name -> viam.app.v1.AuthConfig
+	38, // 7: viam.app.v1.RobotConfig.modules:type_name -> viam.app.v1.ModuleConfig
+	40, // 8: viam.app.v1.RobotConfig.packages:type_name -> viam.app.v1.PackageConfig
+	7,  // 9: viam.app.v1.RobotConfig.overwrite_fragment_status:type_name -> viam.app.v1.AppValidationStatus
+	3,  // 10: viam.app.v1.RobotConfig.log:type_name -> viam.app.v1.LogPatternConfig
+	41, // 11: viam.app.v1.RobotConfig.maintenance:type_name -> viam.app.v1.MaintenanceConfig
+	4,  // 12: viam.app.v1.RobotConfig.jobs:type_name -> viam.app.v1.JobConfig
+	5,  // 13: viam.app.v1.RobotConfig.tracing:type_name -> viam.app.v1.TracingConfig
+	52, // 14: viam.app.v1.JobConfig.command:type_name -> google.protobuf.Struct
+	24, // 15: viam.app.v1.JobConfig.log_configuration:type_name -> viam.app.v1.LogConfiguration
+	6,  // 16: viam.app.v1.CloudConfig.location_secrets:type_name -> viam.app.v1.LocationSecret
+	23, // 17: viam.app.v1.ComponentConfig.frame:type_name -> viam.app.v1.Frame
+	10, // 18: viam.app.v1.ComponentConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
+	52, // 19: viam.app.v1.ComponentConfig.attributes:type_name -> google.protobuf.Struct
+	24, // 20: viam.app.v1.ComponentConfig.log_configuration:type_name -> viam.app.v1.LogConfiguration
+	52, // 21: viam.app.v1.ResourceLevelServiceConfig.attributes:type_name -> google.protobuf.Struct
+	53, // 22: viam.app.v1.ProcessConfig.stop_timeout:type_name -> google.protobuf.Duration
+	43, // 23: viam.app.v1.ProcessConfig.env:type_name -> viam.app.v1.ProcessConfig.EnvEntry
+	52, // 24: viam.app.v1.ServiceConfig.attributes:type_name -> google.protobuf.Struct
+	10, // 25: viam.app.v1.ServiceConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
+	24, // 26: viam.app.v1.ServiceConfig.log_configuration:type_name -> viam.app.v1.LogConfiguration
+	14, // 27: viam.app.v1.NetworkConfig.sessions:type_name -> viam.app.v1.SessionsConfig
+	15, // 28: viam.app.v1.NetworkConfig.traffic_tunnel_endpoints:type_name -> viam.app.v1.TrafficTunnelEndpoint
+	53, // 29: viam.app.v1.SessionsConfig.heartbeat_window:type_name -> google.protobuf.Duration
+	53, // 30: viam.app.v1.TrafficTunnelEndpoint.connection_timeout:type_name -> google.protobuf.Duration
+	22, // 31: viam.app.v1.AuthConfig.handlers:type_name -> viam.app.v1.AuthHandlerConfig
+	21, // 32: viam.app.v1.AuthConfig.external_auth_config:type_name -> viam.app.v1.ExternalAuthConfig
+	17, // 33: viam.app.v1.AuthConfig.user_permissions:type_name -> viam.app.v1.UserPermission
+	18, // 34: viam.app.v1.UserPermission.users:type_name -> viam.app.v1.User
+	19, // 35: viam.app.v1.UserPermission.permissions:type_name -> viam.app.v1.Permission
+	18, // 36: viam.app.v1.UserPermission.user:type_name -> viam.app.v1.User
+	52, // 37: viam.app.v1.JWKSFile.json:type_name -> google.protobuf.Struct
+	20, // 38: viam.app.v1.ExternalAuthConfig.jwks:type_name -> viam.app.v1.JWKSFile
 	0,  // 39: viam.app.v1.AuthHandlerConfig.type:type_name -> viam.app.v1.CredentialsType
-	50, // 40: viam.app.v1.AuthHandlerConfig.config:type_name -> google.protobuf.Struct
-	24, // 41: viam.app.v1.Frame.translation:type_name -> viam.app.v1.Translation
-	25, // 42: viam.app.v1.Frame.orientation:type_name -> viam.app.v1.Orientation
-	52, // 43: viam.app.v1.Frame.geometry:type_name -> viam.common.v1.Geometry
-	42, // 44: viam.app.v1.Orientation.no_orientation:type_name -> viam.app.v1.Orientation.NoOrientation
-	43, // 45: viam.app.v1.Orientation.vector_radians:type_name -> viam.app.v1.Orientation.OrientationVectorRadians
-	44, // 46: viam.app.v1.Orientation.vector_degrees:type_name -> viam.app.v1.Orientation.OrientationVectorDegrees
-	45, // 47: viam.app.v1.Orientation.euler_angles:type_name -> viam.app.v1.Orientation.EulerAngles
-	46, // 48: viam.app.v1.Orientation.axis_angles:type_name -> viam.app.v1.Orientation.AxisAngles
-	47, // 49: viam.app.v1.Orientation.quaternion:type_name -> viam.app.v1.Orientation.Quaternion
-	22, // 50: viam.app.v1.RemoteConfig.frame:type_name -> viam.app.v1.Frame
-	27, // 51: viam.app.v1.RemoteConfig.auth:type_name -> viam.app.v1.RemoteAuth
-	51, // 52: viam.app.v1.RemoteConfig.connection_check_interval:type_name -> google.protobuf.Duration
-	51, // 53: viam.app.v1.RemoteConfig.reconnect_interval:type_name -> google.protobuf.Duration
-	9,  // 54: viam.app.v1.RemoteConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
-	48, // 55: viam.app.v1.RemoteAuth.credentials:type_name -> viam.app.v1.RemoteAuth.Credentials
-	28, // 56: viam.app.v1.ConfigRequest.agent_info:type_name -> viam.app.v1.AgentInfo
-	1,  // 57: viam.app.v1.ConfigResponse.config:type_name -> viam.app.v1.RobotConfig
-	53, // 58: viam.app.v1.LogRequest.logs:type_name -> viam.common.v1.LogEntry
-	51, // 59: viam.app.v1.NeedsRestartResponse.restart_check_interval:type_name -> google.protobuf.Duration
-	49, // 60: viam.app.v1.ModuleConfig.env:type_name -> viam.app.v1.ModuleConfig.EnvEntry
-	6,  // 61: viam.app.v1.ModuleConfig.status:type_name -> viam.app.v1.AppValidationStatus
-	51, // 62: viam.app.v1.ModuleConfig.first_run_timeout:type_name -> google.protobuf.Duration
-	6,  // 63: viam.app.v1.PackageConfig.status:type_name -> viam.app.v1.AppValidationStatus
-	54, // 64: viam.app.v1.MaintenanceConfig.sensor_name:type_name -> viam.common.v1.ResourceName
-	40, // 65: viam.app.v1.MaintenanceConfig.follow_part:type_name -> viam.app.v1.FollowPartRef
-	27, // 66: viam.app.v1.FollowPartRef.auth:type_name -> viam.app.v1.RemoteAuth
-	0,  // 67: viam.app.v1.RemoteAuth.Credentials.type:type_name -> viam.app.v1.CredentialsType
-	29, // 68: viam.app.v1.RobotService.Config:input_type -> viam.app.v1.ConfigRequest
-	31, // 69: viam.app.v1.RobotService.Certificate:input_type -> viam.app.v1.CertificateRequest
-	33, // 70: viam.app.v1.RobotService.Log:input_type -> viam.app.v1.LogRequest
-	35, // 71: viam.app.v1.RobotService.NeedsRestart:input_type -> viam.app.v1.NeedsRestartRequest
-	30, // 72: viam.app.v1.RobotService.Config:output_type -> viam.app.v1.ConfigResponse
-	32, // 73: viam.app.v1.RobotService.Certificate:output_type -> viam.app.v1.CertificateResponse
-	34, // 74: viam.app.v1.RobotService.Log:output_type -> viam.app.v1.LogResponse
-	36, // 75: viam.app.v1.RobotService.NeedsRestart:output_type -> viam.app.v1.NeedsRestartResponse
-	72, // [72:76] is the sub-list for method output_type
-	68, // [68:72] is the sub-list for method input_type
-	68, // [68:68] is the sub-list for extension type_name
-	68, // [68:68] is the sub-list for extension extendee
-	0,  // [0:68] is the sub-list for field type_name
+	52, // 40: viam.app.v1.AuthHandlerConfig.config:type_name -> google.protobuf.Struct
+	25, // 41: viam.app.v1.Frame.translation:type_name -> viam.app.v1.Translation
+	26, // 42: viam.app.v1.Frame.orientation:type_name -> viam.app.v1.Orientation
+	54, // 43: viam.app.v1.Frame.geometry:type_name -> viam.common.v1.Geometry
+	44, // 44: viam.app.v1.Orientation.no_orientation:type_name -> viam.app.v1.Orientation.NoOrientation
+	45, // 45: viam.app.v1.Orientation.vector_radians:type_name -> viam.app.v1.Orientation.OrientationVectorRadians
+	46, // 46: viam.app.v1.Orientation.vector_degrees:type_name -> viam.app.v1.Orientation.OrientationVectorDegrees
+	47, // 47: viam.app.v1.Orientation.euler_angles:type_name -> viam.app.v1.Orientation.EulerAngles
+	48, // 48: viam.app.v1.Orientation.axis_angles:type_name -> viam.app.v1.Orientation.AxisAngles
+	49, // 49: viam.app.v1.Orientation.quaternion:type_name -> viam.app.v1.Orientation.Quaternion
+	23, // 50: viam.app.v1.RemoteConfig.frame:type_name -> viam.app.v1.Frame
+	28, // 51: viam.app.v1.RemoteConfig.auth:type_name -> viam.app.v1.RemoteAuth
+	53, // 52: viam.app.v1.RemoteConfig.connection_check_interval:type_name -> google.protobuf.Duration
+	53, // 53: viam.app.v1.RemoteConfig.reconnect_interval:type_name -> google.protobuf.Duration
+	10, // 54: viam.app.v1.RemoteConfig.service_configs:type_name -> viam.app.v1.ResourceLevelServiceConfig
+	50, // 55: viam.app.v1.RemoteAuth.credentials:type_name -> viam.app.v1.RemoteAuth.Credentials
+	29, // 56: viam.app.v1.ConfigRequest.agent_info:type_name -> viam.app.v1.AgentInfo
+	2,  // 57: viam.app.v1.ConfigResponse.config:type_name -> viam.app.v1.RobotConfig
+	55, // 58: viam.app.v1.LogRequest.logs:type_name -> viam.common.v1.LogEntry
+	53, // 59: viam.app.v1.NeedsRestartResponse.restart_check_interval:type_name -> google.protobuf.Duration
+	51, // 60: viam.app.v1.ModuleConfig.env:type_name -> viam.app.v1.ModuleConfig.EnvEntry
+	7,  // 61: viam.app.v1.ModuleConfig.status:type_name -> viam.app.v1.AppValidationStatus
+	53, // 62: viam.app.v1.ModuleConfig.first_run_timeout:type_name -> google.protobuf.Duration
+	39, // 63: viam.app.v1.ModuleConfig.cloud_access:type_name -> viam.app.v1.ModuleCloudAccess
+	1,  // 64: viam.app.v1.ModuleCloudAccess.mode:type_name -> viam.app.v1.ModuleCloudAccessMode
+	7,  // 65: viam.app.v1.PackageConfig.status:type_name -> viam.app.v1.AppValidationStatus
+	56, // 66: viam.app.v1.MaintenanceConfig.sensor_name:type_name -> viam.common.v1.ResourceName
+	42, // 67: viam.app.v1.MaintenanceConfig.follow_part:type_name -> viam.app.v1.FollowPartRef
+	28, // 68: viam.app.v1.FollowPartRef.auth:type_name -> viam.app.v1.RemoteAuth
+	0,  // 69: viam.app.v1.RemoteAuth.Credentials.type:type_name -> viam.app.v1.CredentialsType
+	30, // 70: viam.app.v1.RobotService.Config:input_type -> viam.app.v1.ConfigRequest
+	32, // 71: viam.app.v1.RobotService.Certificate:input_type -> viam.app.v1.CertificateRequest
+	34, // 72: viam.app.v1.RobotService.Log:input_type -> viam.app.v1.LogRequest
+	36, // 73: viam.app.v1.RobotService.NeedsRestart:input_type -> viam.app.v1.NeedsRestartRequest
+	31, // 74: viam.app.v1.RobotService.Config:output_type -> viam.app.v1.ConfigResponse
+	33, // 75: viam.app.v1.RobotService.Certificate:output_type -> viam.app.v1.CertificateResponse
+	35, // 76: viam.app.v1.RobotService.Log:output_type -> viam.app.v1.LogResponse
+	37, // 77: viam.app.v1.RobotService.NeedsRestart:output_type -> viam.app.v1.NeedsRestartResponse
+	74, // [74:78] is the sub-list for method output_type
+	70, // [70:74] is the sub-list for method input_type
+	70, // [70:70] is the sub-list for extension type_name
+	70, // [70:70] is the sub-list for extension extendee
+	0,  // [0:70] is the sub-list for field type_name
 }
 
 func init() { file_app_v1_robot_proto_init() }
@@ -4288,8 +4415,8 @@ func file_app_v1_robot_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_v1_robot_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   49,
+			NumEnums:      2,
+			NumMessages:   50,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

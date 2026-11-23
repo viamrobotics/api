@@ -1563,8 +1563,10 @@ export class ModuleConfig extends jspb.Message {
   getRunAsUser(): string;
   setRunAsUser(value: string): void;
 
-  getDisableCloudApiKeyEnv(): boolean;
-  setDisableCloudApiKeyEnv(value: boolean): void;
+  hasCloudAccess(): boolean;
+  clearCloudAccess(): void;
+  getCloudAccess(): ModuleCloudAccess | undefined;
+  setCloudAccess(value?: ModuleCloudAccess): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
@@ -1588,7 +1590,31 @@ export namespace ModuleConfig {
     firstRunTimeout?: google_protobuf_duration_pb.Duration.AsObject,
     tcpMode: boolean,
     runAsUser: string,
-    disableCloudApiKeyEnv: boolean,
+    cloudAccess?: ModuleCloudAccess.AsObject,
+  }
+}
+
+export class ModuleCloudAccess extends jspb.Message {
+  getMode(): ModuleCloudAccessModeMap[keyof ModuleCloudAccessModeMap];
+  setMode(value: ModuleCloudAccessModeMap[keyof ModuleCloudAccessModeMap]): void;
+
+  getApiKeyId(): string;
+  setApiKeyId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleCloudAccess.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleCloudAccess): ModuleCloudAccess.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleCloudAccess, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleCloudAccess;
+  static deserializeBinaryFromReader(message: ModuleCloudAccess, reader: jspb.BinaryReader): ModuleCloudAccess;
+}
+
+export namespace ModuleCloudAccess {
+  export type AsObject = {
+    mode: ModuleCloudAccessModeMap[keyof ModuleCloudAccessModeMap],
+    apiKeyId: string,
   }
 }
 
@@ -1697,4 +1723,12 @@ export interface CredentialsTypeMap {
 }
 
 export const CredentialsType: CredentialsTypeMap;
+
+export interface ModuleCloudAccessModeMap {
+  MODULE_CLOUD_ACCESS_MODE_UNSPECIFIED: 0;
+  MODULE_CLOUD_ACCESS_MODE_MACHINE: 1;
+  MODULE_CLOUD_ACCESS_MODE_NONE: 2;
+}
+
+export const ModuleCloudAccessMode: ModuleCloudAccessModeMap;
 

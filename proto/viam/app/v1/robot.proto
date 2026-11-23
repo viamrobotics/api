@@ -457,8 +457,24 @@ message ModuleConfig {
   bool tcp_mode = 9;
   // system user the module process runs as; empty means the same user as viam-server
   string run_as_user = 10;
-  // when true, viam-server does not add the machine's cloud API key (VIAM_API_KEY, VIAM_API_KEY_ID) to the module's environment
-  bool disable_cloud_api_key_env = 11;
+  // which cloud API key, if any, viam-server puts in the module's environment (VIAM_API_KEY, VIAM_API_KEY_ID)
+  ModuleCloudAccess cloud_access = 11;
+}
+
+// ModuleCloudAccess selects the cloud credentials a module receives.
+message ModuleCloudAccess {
+  ModuleCloudAccessMode mode = 1;
+  // reserved for choosing a specific API key; must be empty until a mode uses it
+  string api_key_id = 2;
+}
+
+enum ModuleCloudAccessMode {
+  // same as MODULE_CLOUD_ACCESS_MODE_MACHINE
+  MODULE_CLOUD_ACCESS_MODE_UNSPECIFIED = 0;
+  // the machine's own cloud API key
+  MODULE_CLOUD_ACCESS_MODE_MACHINE = 1;
+  // no cloud API key
+  MODULE_CLOUD_ACCESS_MODE_NONE = 2;
 }
 
 // PackageConfig is the configration for deployed Packages.
