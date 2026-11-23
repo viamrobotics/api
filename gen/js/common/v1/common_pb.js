@@ -2910,8 +2910,7 @@ proto.viam.common.v1.Cylinder.prototype.toObject = function(opt_includeInstance)
 proto.viam.common.v1.Cylinder.toObject = function(includeInstance, msg) {
   var f, obj = {
     radiusMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    lengthMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    uncapped: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    lengthMm: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -2956,10 +2955,6 @@ proto.viam.common.v1.Cylinder.deserializeBinaryFromReader = function(msg, reader
       var value = /** @type {number} */ (reader.readDouble());
       msg.setLengthMm(value);
       break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setUncapped(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -3003,13 +2998,6 @@ proto.viam.common.v1.Cylinder.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getUncapped();
-  if (f) {
-    writer.writeBool(
-      3,
-      f
-    );
-  }
 };
 
 
@@ -3046,24 +3034,6 @@ proto.viam.common.v1.Cylinder.prototype.getLengthMm = function() {
  */
 proto.viam.common.v1.Cylinder.prototype.setLengthMm = function(value) {
   return jspb.Message.setProto3FloatField(this, 2, value);
-};
-
-
-/**
- * optional bool uncapped = 3;
- * @return {boolean}
- */
-proto.viam.common.v1.Cylinder.prototype.getUncapped = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.viam.common.v1.Cylinder} returns this
- */
-proto.viam.common.v1.Cylinder.prototype.setUncapped = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 

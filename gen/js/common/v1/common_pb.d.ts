@@ -269,9 +269,6 @@ export class Cylinder extends jspb.Message {
   getLengthMm(): number;
   setLengthMm(value: number): void;
 
-  getUncapped(): boolean;
-  setUncapped(value: boolean): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Cylinder.AsObject;
   static toObject(includeInstance: boolean, msg: Cylinder): Cylinder.AsObject;
@@ -286,7 +283,6 @@ export namespace Cylinder {
   export type AsObject = {
     radiusMm: number,
     lengthMm: number,
-    uncapped: boolean,
   }
 }
 
