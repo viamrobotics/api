@@ -457,6 +457,8 @@ message ModuleConfig {
   bool tcp_mode = 9;
   // system user the module process runs as; empty means the same user as viam-server
   string run_as_user = 10;
+  // when true, viam-server does not add the machine's cloud API key (VIAM_API_KEY, VIAM_API_KEY_ID) to the module's environment
+  bool disable_cloud_api_key_env = 11;
 }
 
 // PackageConfig is the configration for deployed Packages.

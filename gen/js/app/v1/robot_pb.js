@@ -12130,7 +12130,8 @@ proto.viam.app.v1.ModuleConfig.toObject = function(includeInstance, msg) {
     status: (f = msg.getStatus()) && proto.viam.app.v1.AppValidationStatus.toObject(includeInstance, f),
     firstRunTimeout: (f = msg.getFirstRunTimeout()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
     tcpMode: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
-    runAsUser: jspb.Message.getFieldWithDefault(msg, 10, "")
+    runAsUser: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    disableCloudApiKeyEnv: jspb.Message.getBooleanFieldWithDefault(msg, 11, false)
   };
 
   if (includeInstance) {
@@ -12210,6 +12211,10 @@ proto.viam.app.v1.ModuleConfig.deserializeBinaryFromReader = function(msg, reade
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setRunAsUser(value);
+      break;
+    case 11:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDisableCloudApiKeyEnv(value);
       break;
     default:
       reader.skipField();
@@ -12306,6 +12311,13 @@ proto.viam.app.v1.ModuleConfig.serializeBinaryToWriter = function(message, write
   if (f.length > 0) {
     writer.writeString(
       10,
+      f
+    );
+  }
+  f = message.getDisableCloudApiKeyEnv();
+  if (f) {
+    writer.writeBool(
+      11,
       f
     );
   }
@@ -12531,6 +12543,24 @@ proto.viam.app.v1.ModuleConfig.prototype.getRunAsUser = function() {
  */
 proto.viam.app.v1.ModuleConfig.prototype.setRunAsUser = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional bool disable_cloud_api_key_env = 11;
+ * @return {boolean}
+ */
+proto.viam.app.v1.ModuleConfig.prototype.getDisableCloudApiKeyEnv = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.app.v1.ModuleConfig} returns this
+ */
+proto.viam.app.v1.ModuleConfig.prototype.setDisableCloudApiKeyEnv = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 

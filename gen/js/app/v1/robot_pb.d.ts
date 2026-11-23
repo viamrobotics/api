@@ -1563,6 +1563,9 @@ export class ModuleConfig extends jspb.Message {
   getRunAsUser(): string;
   setRunAsUser(value: string): void;
 
+  getDisableCloudApiKeyEnv(): boolean;
+  setDisableCloudApiKeyEnv(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1585,6 +1588,7 @@ export namespace ModuleConfig {
     firstRunTimeout?: google_protobuf_duration_pb.Duration.AsObject,
     tcpMode: boolean,
     runAsUser: string,
+    disableCloudApiKeyEnv: boolean,
   }
 }
 
