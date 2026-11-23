@@ -1894,6 +1894,9 @@ message Model {
   optional string description = 4;
   // A list of supported hardware names
   repeated string supported_hardware = 5;
+  // The full set of co-equal APIs this model serves. The `api` field is always one of these and is
+  // retained for tooling that predates `apis`; new code should read `apis`.
+  repeated string apis = 6;
 }
 
 message ModuleFileInfo {
