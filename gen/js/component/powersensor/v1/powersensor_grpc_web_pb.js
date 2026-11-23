@@ -269,6 +269,128 @@ proto.viam.component.powersensor.v1.PowerSensorServicePromiseClient.prototype.ge
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.powersensor.v1.GetBatteryPercentRequest,
+ *   !proto.viam.component.powersensor.v1.GetBatteryPercentResponse>}
+ */
+const methodDescriptor_PowerSensorService_GetBatteryPercent = new grpc.web.MethodDescriptor(
+  '/viam.component.powersensor.v1.PowerSensorService/GetBatteryPercent',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.powersensor.v1.GetBatteryPercentRequest,
+  proto.viam.component.powersensor.v1.GetBatteryPercentResponse,
+  /**
+   * @param {!proto.viam.component.powersensor.v1.GetBatteryPercentRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.powersensor.v1.GetBatteryPercentResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.powersensor.v1.GetBatteryPercentRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.powersensor.v1.GetBatteryPercentResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.powersensor.v1.GetBatteryPercentResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.powersensor.v1.PowerSensorServiceClient.prototype.getBatteryPercent =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.powersensor.v1.PowerSensorService/GetBatteryPercent',
+      request,
+      metadata || {},
+      methodDescriptor_PowerSensorService_GetBatteryPercent,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.powersensor.v1.GetBatteryPercentRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.powersensor.v1.GetBatteryPercentResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.powersensor.v1.PowerSensorServicePromiseClient.prototype.getBatteryPercent =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.powersensor.v1.PowerSensorService/GetBatteryPercent',
+      request,
+      metadata || {},
+      methodDescriptor_PowerSensorService_GetBatteryPercent);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.viam.component.powersensor.v1.GetPropertiesRequest,
+ *   !proto.viam.component.powersensor.v1.GetPropertiesResponse>}
+ */
+const methodDescriptor_PowerSensorService_GetProperties = new grpc.web.MethodDescriptor(
+  '/viam.component.powersensor.v1.PowerSensorService/GetProperties',
+  grpc.web.MethodType.UNARY,
+  proto.viam.component.powersensor.v1.GetPropertiesRequest,
+  proto.viam.component.powersensor.v1.GetPropertiesResponse,
+  /**
+   * @param {!proto.viam.component.powersensor.v1.GetPropertiesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.viam.component.powersensor.v1.GetPropertiesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.viam.component.powersensor.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.viam.component.powersensor.v1.GetPropertiesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.viam.component.powersensor.v1.GetPropertiesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.viam.component.powersensor.v1.PowerSensorServiceClient.prototype.getProperties =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/viam.component.powersensor.v1.PowerSensorService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_PowerSensorService_GetProperties,
+      callback);
+};
+
+
+/**
+ * @param {!proto.viam.component.powersensor.v1.GetPropertiesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.viam.component.powersensor.v1.GetPropertiesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.viam.component.powersensor.v1.PowerSensorServicePromiseClient.prototype.getProperties =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/viam.component.powersensor.v1.PowerSensorService/GetProperties',
+      request,
+      metadata || {},
+      methodDescriptor_PowerSensorService_GetProperties);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.viam.common.v1.GetReadingsRequest,
  *   !proto.viam.common.v1.GetReadingsResponse>}
  */
