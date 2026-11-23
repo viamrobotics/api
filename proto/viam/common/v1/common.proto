@@ -85,14 +85,12 @@ message Capsule {
   double length_mm = 2;
 }
 
-// Cylinder is a right circular cylinder whose axis is the local Z axis of the geometry's center pose.
+// Cylinder is a solid right circular cylinder, flat end caps included, whose axis is the local Z
+// axis of the geometry's center pose.
 message Cylinder {
   double radius_mm = 1;
   // Full end-to-end length along the cylinder's axis.
   double length_mm = 2;
-  // When true, the flat end caps are omitted: an open tube with no interior volume. Phrased
-  // negatively so the default (false) is a solid cylinder, matching URDF and SDF cylinders.
-  bool uncapped = 3;
 }
 
 // RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
