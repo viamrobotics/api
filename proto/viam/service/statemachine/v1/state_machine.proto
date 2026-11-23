@@ -35,9 +35,18 @@ service StateMachineService {
     option (google.api.http) = {get: "/viam/api/v1/service/state_machine/{name}/history"};
   }
 
-  // GetDefinition returns the graph as configured.
+  // GetDefinition returns the machine's states and the triggers each one
+  // handles, as configured. The app renders it; an agent reads it to learn
+  // which events exist.
   rpc GetDefinition(GetDefinitionRequest) returns (GetDefinitionResponse) {
     option (google.api.http) = {get: "/viam/api/v1/service/state_machine/{name}/definition"};
+  }
+
+  // GetCurrentJobId returns the id of the machine's current job. A new job
+  // starts each time the machine enters its initial state from the outside:
+  // at startup and on Reset.
+  rpc GetCurrentJobId(GetCurrentJobIdRequest) returns (GetCurrentJobIdResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/state_machine/{name}/job_id"};
   }
 
   // Stop cancels the current task and holds the machine in its current state
@@ -146,10 +155,41 @@ message GetDefinitionRequest {
   google.protobuf.Struct extra = 99;
 }
 
+// StateDefinition is one state of the machine as configured.
+message StateDefinition {
+  // The state's path from the root, e.g. ["auto", "pour", "picking_glass"].
+  repeated string path = 1;
+  // The child state entered first, for a compound state. Empty for a leaf.
+  string initial = 2;
+  // The triggers (task outcomes and event names) this state handles, mapped
+  // to the target state name as written in config ("$history" and "$done"
+  // are the special targets).
+  map<string, string> on = 3;
+  // Whether the state runs a task.
+  bool has_task = 4;
+}
+
 message GetDefinitionResponse {
-  // The machine definition as configured: initial, states, machines, watchers,
-  // on and context, in the same shape as the service's attributes.
-  google.protobuf.Struct definition = 1;
+  // The name of the top-level state entered on start and on Reset.
+  string initial = 1;
+  // Every state, compound states included, in no particular order.
+  repeated StateDefinition states = 2;
+  // Every trigger any state or the machine itself handles. Task outcomes and
+  // external events share this namespace; an agent may send any of them.
+  repeated string events = 3;
+  // Triggers the machine handles at its top level, mapped to target state names.
+  map<string, string> on = 4;
+}
+
+message GetCurrentJobIdRequest {
+  // Name of the state machine service
+  string name = 1;
+  // Additional arguments to the method
+  google.protobuf.Struct extra = 99;
+}
+
+message GetCurrentJobIdResponse {
+  string job_id = 1;
 }
 
 message StopRequest {

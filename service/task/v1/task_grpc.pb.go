@@ -27,12 +27,14 @@ type TaskServiceClient interface {
 	// finished. Cancelling the call cancels the task: the task must leave the
 	// hardware in a safe state before returning. Only one execution may be in
 	// flight per task resource; a concurrent Run fails with FAILED_PRECONDITION.
-	// Progress while it runs is read with GetStatus.
+	// Progress while it runs is read with GetTaskStatus.
 	Run(ctx context.Context, in *RunRequest, opts ...grpc.CallOption) (*RunResponse, error)
-	// GetStatus reports whether the task is idle or running and its last result.
-	// It never drives lifecycle; it exists so a UI or an agent can ask what is
-	// running without holding a Run call open.
-	GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error)
+	// GetTaskStatus reports whether the task is idle or running, its progress
+	// and its last result. It never drives lifecycle; it exists so a UI or an
+	// agent can ask what is running without holding a Run call open.
+	GetTaskStatus(ctx context.Context, in *GetTaskStatusRequest, opts ...grpc.CallOption) (*GetTaskStatusResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 }
@@ -54,8 +56,17 @@ func (c *taskServiceClient) Run(ctx context.Context, in *RunRequest, opts ...grp
 	return out, nil
 }
 
-func (c *taskServiceClient) GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error) {
-	out := new(GetStatusResponse)
+func (c *taskServiceClient) GetTaskStatus(ctx context.Context, in *GetTaskStatusRequest, opts ...grpc.CallOption) (*GetTaskStatusResponse, error) {
+	out := new(GetTaskStatusResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.task.v1.TaskService/GetTaskStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskServiceClient) GetStatus(ctx context.Context, in *v1.GetStatusRequest, opts ...grpc.CallOption) (*v1.GetStatusResponse, error) {
+	out := new(v1.GetStatusResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.task.v1.TaskService/GetStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -80,12 +91,14 @@ type TaskServiceServer interface {
 	// finished. Cancelling the call cancels the task: the task must leave the
 	// hardware in a safe state before returning. Only one execution may be in
 	// flight per task resource; a concurrent Run fails with FAILED_PRECONDITION.
-	// Progress while it runs is read with GetStatus.
+	// Progress while it runs is read with GetTaskStatus.
 	Run(context.Context, *RunRequest) (*RunResponse, error)
-	// GetStatus reports whether the task is idle or running and its last result.
-	// It never drives lifecycle; it exists so a UI or an agent can ask what is
-	// running without holding a Run call open.
-	GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error)
+	// GetTaskStatus reports whether the task is idle or running, its progress
+	// and its last result. It never drives lifecycle; it exists so a UI or an
+	// agent can ask what is running without holding a Run call open.
+	GetTaskStatus(context.Context, *GetTaskStatusRequest) (*GetTaskStatusResponse, error)
+	// GetStatus returns the status of the resource
+	GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	mustEmbedUnimplementedTaskServiceServer()
@@ -98,7 +111,10 @@ type UnimplementedTaskServiceServer struct {
 func (UnimplementedTaskServiceServer) Run(context.Context, *RunRequest) (*RunResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Run not implemented")
 }
-func (UnimplementedTaskServiceServer) GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error) {
+func (UnimplementedTaskServiceServer) GetTaskStatus(context.Context, *GetTaskStatusRequest) (*GetTaskStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTaskStatus not implemented")
+}
+func (UnimplementedTaskServiceServer) GetStatus(context.Context, *v1.GetStatusRequest) (*v1.GetStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedTaskServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
@@ -135,8 +151,26 @@ func _TaskService_Run_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TaskService_GetTaskStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTaskStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskServiceServer).GetTaskStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.task.v1.TaskService/GetTaskStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskServiceServer).GetTaskStatus(ctx, req.(*GetTaskStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TaskService_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetStatusRequest)
+	in := new(v1.GetStatusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -148,7 +182,7 @@ func _TaskService_GetStatus_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/viam.service.task.v1.TaskService/GetStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskServiceServer).GetStatus(ctx, req.(*GetStatusRequest))
+		return srv.(TaskServiceServer).GetStatus(ctx, req.(*v1.GetStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -181,6 +215,10 @@ var TaskService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Run",
 			Handler:    _TaskService_Run_Handler,
+		},
+		{
+			MethodName: "GetTaskStatus",
+			Handler:    _TaskService_GetTaskStatus_Handler,
 		},
 		{
 			MethodName: "GetStatus",

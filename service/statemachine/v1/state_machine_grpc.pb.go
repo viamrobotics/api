@@ -32,8 +32,14 @@ type StateMachineServiceClient interface {
 	SendEvent(ctx context.Context, in *SendEventRequest, opts ...grpc.CallOption) (*SendEventResponse, error)
 	// GetHistory returns the most recent transitions, newest last.
 	GetHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error)
-	// GetDefinition returns the graph as configured.
+	// GetDefinition returns the machine's states and the triggers each one
+	// handles, as configured. The app renders it; an agent reads it to learn
+	// which events exist.
 	GetDefinition(ctx context.Context, in *GetDefinitionRequest, opts ...grpc.CallOption) (*GetDefinitionResponse, error)
+	// GetCurrentJobId returns the id of the machine's current job. A new job
+	// starts each time the machine enters its initial state from the outside:
+	// at startup and on Reset.
+	GetCurrentJobId(ctx context.Context, in *GetCurrentJobIdRequest, opts ...grpc.CallOption) (*GetCurrentJobIdResponse, error)
 	// Stop cancels the current task and holds the machine in its current state
 	// until Reset or an event with a transition out.
 	Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error)
@@ -90,6 +96,15 @@ func (c *stateMachineServiceClient) GetDefinition(ctx context.Context, in *GetDe
 	return out, nil
 }
 
+func (c *stateMachineServiceClient) GetCurrentJobId(ctx context.Context, in *GetCurrentJobIdRequest, opts ...grpc.CallOption) (*GetCurrentJobIdResponse, error) {
+	out := new(GetCurrentJobIdResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.statemachine.v1.StateMachineService/GetCurrentJobId", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *stateMachineServiceClient) Stop(ctx context.Context, in *StopRequest, opts ...grpc.CallOption) (*StopResponse, error) {
 	out := new(StopResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.statemachine.v1.StateMachineService/Stop", in, out, opts...)
@@ -139,8 +154,14 @@ type StateMachineServiceServer interface {
 	SendEvent(context.Context, *SendEventRequest) (*SendEventResponse, error)
 	// GetHistory returns the most recent transitions, newest last.
 	GetHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error)
-	// GetDefinition returns the graph as configured.
+	// GetDefinition returns the machine's states and the triggers each one
+	// handles, as configured. The app renders it; an agent reads it to learn
+	// which events exist.
 	GetDefinition(context.Context, *GetDefinitionRequest) (*GetDefinitionResponse, error)
+	// GetCurrentJobId returns the id of the machine's current job. A new job
+	// starts each time the machine enters its initial state from the outside:
+	// at startup and on Reset.
+	GetCurrentJobId(context.Context, *GetCurrentJobIdRequest) (*GetCurrentJobIdResponse, error)
 	// Stop cancels the current task and holds the machine in its current state
 	// until Reset or an event with a transition out.
 	Stop(context.Context, *StopRequest) (*StopResponse, error)
@@ -169,6 +190,9 @@ func (UnimplementedStateMachineServiceServer) GetHistory(context.Context, *GetHi
 }
 func (UnimplementedStateMachineServiceServer) GetDefinition(context.Context, *GetDefinitionRequest) (*GetDefinitionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDefinition not implemented")
+}
+func (UnimplementedStateMachineServiceServer) GetCurrentJobId(context.Context, *GetCurrentJobIdRequest) (*GetCurrentJobIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentJobId not implemented")
 }
 func (UnimplementedStateMachineServiceServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stop not implemented")
@@ -267,6 +291,24 @@ func _StateMachineService_GetDefinition_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StateMachineService_GetCurrentJobId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCurrentJobIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StateMachineServiceServer).GetCurrentJobId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.statemachine.v1.StateMachineService/GetCurrentJobId",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StateMachineServiceServer).GetCurrentJobId(ctx, req.(*GetCurrentJobIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _StateMachineService_Stop_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StopRequest)
 	if err := dec(in); err != nil {
@@ -361,6 +403,10 @@ var StateMachineService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDefinition",
 			Handler:    _StateMachineService_GetDefinition_Handler,
+		},
+		{
+			MethodName: "GetCurrentJobId",
+			Handler:    _StateMachineService_GetCurrentJobId_Handler,
 		},
 		{
 			MethodName: "Stop",

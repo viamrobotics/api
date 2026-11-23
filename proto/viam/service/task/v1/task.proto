@@ -19,16 +19,21 @@ service TaskService {
   // finished. Cancelling the call cancels the task: the task must leave the
   // hardware in a safe state before returning. Only one execution may be in
   // flight per task resource; a concurrent Run fails with FAILED_PRECONDITION.
-  // Progress while it runs is read with GetStatus.
+  // Progress while it runs is read with GetTaskStatus.
   rpc Run(RunRequest) returns (RunResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/task/{name}/run"};
   }
 
-  // GetStatus reports whether the task is idle or running and its last result.
-  // It never drives lifecycle; it exists so a UI or an agent can ask what is
-  // running without holding a Run call open.
-  rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {
-    option (google.api.http) = {get: "/viam/api/v1/service/task/{name}/status"};
+  // GetTaskStatus reports whether the task is idle or running, its progress
+  // and its last result. It never drives lifecycle; it exists so a UI or an
+  // agent can ask what is running without holding a Run call open.
+  rpc GetTaskStatus(GetTaskStatusRequest) returns (GetTaskStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/task/{name}/task_status"};
+  }
+
+  // GetStatus returns the status of the resource
+  rpc GetStatus(common.v1.GetStatusRequest) returns (common.v1.GetStatusResponse) {
+    option (google.api.http) = {get: "/viam/api/v1/service/task/{name}/get_status"};
   }
 
   // DoCommand sends/receives arbitrary commands
@@ -44,7 +49,7 @@ enum Phase {
   PHASE_RUNNING = 2;
 }
 
-// Progress is the latest report from a running task, as GetStatus returns it.
+// Progress is the latest report from a running task, as GetTaskStatus returns it.
 message Progress {
   // A human readable description of what the task is doing right now.
   string message = 1;
@@ -75,14 +80,14 @@ message RunResponse {
   Result result = 1;
 }
 
-message GetStatusRequest {
+message GetTaskStatusRequest {
   // Name of the task service
   string name = 1;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
 
-message GetStatusResponse {
+message GetTaskStatusResponse {
   Phase phase = 1;
   // The result of the most recent completed execution, if any.
   Result last_result = 2;
