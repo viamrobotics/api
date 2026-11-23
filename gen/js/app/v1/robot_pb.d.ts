@@ -1370,9 +1370,6 @@ export class ModuleVersionInfo extends jspb.Message {
   getState(): robot_v1_robot_pb.ModuleStatus.StateMap[keyof robot_v1_robot_pb.ModuleStatus.StateMap];
   setState(value: robot_v1_robot_pb.ModuleStatus.StateMap[keyof robot_v1_robot_pb.ModuleStatus.StateMap]): void;
 
-  getError(): string;
-  setError(value: string): void;
-
   getConsecutiveFailures(): number;
   setConsecutiveFailures(value: number): void;
 
@@ -1396,7 +1393,6 @@ export namespace ModuleVersionInfo {
     runningVersion: string,
     runningFor?: google_protobuf_duration_pb.Duration.AsObject,
     state: robot_v1_robot_pb.ModuleStatus.StateMap[keyof robot_v1_robot_pb.ModuleStatus.StateMap],
-    error: string,
     consecutiveFailures: number,
     readyCount: number,
   }
