@@ -176,8 +176,6 @@ type Transition struct {
 	// What kind of thing caused the transition. An outcome name sent through
 	// SendEvent is recorded as an event, so history shows the override.
 	Source TransitionSource `protobuf:"varint,6,opt,name=source,proto3,enum=viam.service.statemachine.v1.TransitionSource" json:"source,omitempty"`
-	// The job the transition belongs to.
-	JobId string `protobuf:"bytes,7,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
 }
 
 func (x *Transition) Reset() {
@@ -252,11 +250,69 @@ func (x *Transition) GetSource() TransitionSource {
 	return TransitionSource_TRANSITION_SOURCE_UNSPECIFIED
 }
 
-func (x *Transition) GetJobId() string {
+// JobHistory is every retained transition of one job, oldest first. A job
+// starts when the machine enters its initial state from the outside: at
+// startup and on Reset.
+type JobHistory struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	JobId string `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	// When the job started: the timestamp of its first transition.
+	StartedAt   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`
+	Transitions []*Transition          `protobuf:"bytes,3,rep,name=transitions,proto3" json:"transitions,omitempty"`
+}
+
+func (x *JobHistory) Reset() {
+	*x = JobHistory{}
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *JobHistory) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JobHistory) ProtoMessage() {}
+
+func (x *JobHistory) ProtoReflect() protoreflect.Message {
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JobHistory.ProtoReflect.Descriptor instead.
+func (*JobHistory) Descriptor() ([]byte, []int) {
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *JobHistory) GetJobId() string {
 	if x != nil {
 		return x.JobId
 	}
 	return ""
+}
+
+func (x *JobHistory) GetStartedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartedAt
+	}
+	return nil
+}
+
+func (x *JobHistory) GetTransitions() []*Transition {
+	if x != nil {
+		return x.Transitions
+	}
+	return nil
 }
 
 type GetStateRequest struct {
@@ -272,7 +328,7 @@ type GetStateRequest struct {
 
 func (x *GetStateRequest) Reset() {
 	*x = GetStateRequest{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[1]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -284,7 +340,7 @@ func (x *GetStateRequest) String() string {
 func (*GetStateRequest) ProtoMessage() {}
 
 func (x *GetStateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[1]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -297,7 +353,7 @@ func (x *GetStateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStateRequest.ProtoReflect.Descriptor instead.
 func (*GetStateRequest) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{1}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetStateRequest) GetName() string {
@@ -334,7 +390,7 @@ type GetStateResponse struct {
 
 func (x *GetStateResponse) Reset() {
 	*x = GetStateResponse{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[2]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -346,7 +402,7 @@ func (x *GetStateResponse) String() string {
 func (*GetStateResponse) ProtoMessage() {}
 
 func (x *GetStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[2]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -359,7 +415,7 @@ func (x *GetStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStateResponse.ProtoReflect.Descriptor instead.
 func (*GetStateResponse) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{2}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetStateResponse) GetPath() []string {
@@ -423,7 +479,7 @@ type SendEventRequest struct {
 
 func (x *SendEventRequest) Reset() {
 	*x = SendEventRequest{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[3]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -435,7 +491,7 @@ func (x *SendEventRequest) String() string {
 func (*SendEventRequest) ProtoMessage() {}
 
 func (x *SendEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[3]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -448,7 +504,7 @@ func (x *SendEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendEventRequest.ProtoReflect.Descriptor instead.
 func (*SendEventRequest) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{3}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SendEventRequest) GetName() string {
@@ -492,7 +548,7 @@ type SendEventResponse struct {
 
 func (x *SendEventResponse) Reset() {
 	*x = SendEventResponse{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[4]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -504,7 +560,7 @@ func (x *SendEventResponse) String() string {
 func (*SendEventResponse) ProtoMessage() {}
 
 func (x *SendEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[4]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -517,7 +573,7 @@ func (x *SendEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendEventResponse.ProtoReflect.Descriptor instead.
 func (*SendEventResponse) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{4}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SendEventResponse) GetHandled() bool {
@@ -541,16 +597,18 @@ type GetHistoryRequest struct {
 
 	// Name of the state machine service
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Maximum number of transitions to return; the most recent ones are kept.
-	// 0 means all retained.
+	// Maximum number of jobs to return; the most recent ones are kept. 0 means
+	// every retained job.
 	Limit int32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	// Return only this job. Empty returns every retained job.
+	JobId string `protobuf:"bytes,3,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
 	// Additional arguments to the method
 	Extra *structpb.Struct `protobuf:"bytes,99,opt,name=extra,proto3" json:"extra,omitempty"`
 }
 
 func (x *GetHistoryRequest) Reset() {
 	*x = GetHistoryRequest{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[5]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -562,7 +620,7 @@ func (x *GetHistoryRequest) String() string {
 func (*GetHistoryRequest) ProtoMessage() {}
 
 func (x *GetHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[5]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -575,7 +633,7 @@ func (x *GetHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetHistoryRequest.ProtoReflect.Descriptor instead.
 func (*GetHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{5}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetHistoryRequest) GetName() string {
@@ -592,6 +650,13 @@ func (x *GetHistoryRequest) GetLimit() int32 {
 	return 0
 }
 
+func (x *GetHistoryRequest) GetJobId() string {
+	if x != nil {
+		return x.JobId
+	}
+	return ""
+}
+
 func (x *GetHistoryRequest) GetExtra() *structpb.Struct {
 	if x != nil {
 		return x.Extra
@@ -604,13 +669,13 @@ type GetHistoryResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The most recent transitions, oldest first.
-	Transitions []*Transition `protobuf:"bytes,1,rep,name=transitions,proto3" json:"transitions,omitempty"`
+	// Jobs oldest first, each with its transitions oldest first.
+	Jobs []*JobHistory `protobuf:"bytes,1,rep,name=jobs,proto3" json:"jobs,omitempty"`
 }
 
 func (x *GetHistoryResponse) Reset() {
 	*x = GetHistoryResponse{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[6]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -622,7 +687,7 @@ func (x *GetHistoryResponse) String() string {
 func (*GetHistoryResponse) ProtoMessage() {}
 
 func (x *GetHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[6]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -635,12 +700,12 @@ func (x *GetHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetHistoryResponse.ProtoReflect.Descriptor instead.
 func (*GetHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{6}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetHistoryResponse) GetTransitions() []*Transition {
+func (x *GetHistoryResponse) GetJobs() []*JobHistory {
 	if x != nil {
-		return x.Transitions
+		return x.Jobs
 	}
 	return nil
 }
@@ -658,7 +723,7 @@ type GetDefinitionRequest struct {
 
 func (x *GetDefinitionRequest) Reset() {
 	*x = GetDefinitionRequest{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[7]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -670,7 +735,7 @@ func (x *GetDefinitionRequest) String() string {
 func (*GetDefinitionRequest) ProtoMessage() {}
 
 func (x *GetDefinitionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[7]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -683,7 +748,7 @@ func (x *GetDefinitionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDefinitionRequest.ProtoReflect.Descriptor instead.
 func (*GetDefinitionRequest) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{7}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetDefinitionRequest) GetName() string {
@@ -725,7 +790,7 @@ type StateDefinition struct {
 
 func (x *StateDefinition) Reset() {
 	*x = StateDefinition{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[8]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -737,7 +802,7 @@ func (x *StateDefinition) String() string {
 func (*StateDefinition) ProtoMessage() {}
 
 func (x *StateDefinition) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[8]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -750,7 +815,7 @@ func (x *StateDefinition) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StateDefinition.ProtoReflect.Descriptor instead.
 func (*StateDefinition) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{8}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *StateDefinition) GetPath() []string {
@@ -808,7 +873,7 @@ type GetDefinitionResponse struct {
 
 func (x *GetDefinitionResponse) Reset() {
 	*x = GetDefinitionResponse{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[9]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -820,7 +885,7 @@ func (x *GetDefinitionResponse) String() string {
 func (*GetDefinitionResponse) ProtoMessage() {}
 
 func (x *GetDefinitionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[9]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -833,7 +898,7 @@ func (x *GetDefinitionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDefinitionResponse.ProtoReflect.Descriptor instead.
 func (*GetDefinitionResponse) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{9}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetDefinitionResponse) GetInitial() string {
@@ -877,7 +942,7 @@ type GetCurrentJobIdRequest struct {
 
 func (x *GetCurrentJobIdRequest) Reset() {
 	*x = GetCurrentJobIdRequest{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[10]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -889,7 +954,7 @@ func (x *GetCurrentJobIdRequest) String() string {
 func (*GetCurrentJobIdRequest) ProtoMessage() {}
 
 func (x *GetCurrentJobIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[10]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -902,7 +967,7 @@ func (x *GetCurrentJobIdRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCurrentJobIdRequest.ProtoReflect.Descriptor instead.
 func (*GetCurrentJobIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{10}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetCurrentJobIdRequest) GetName() string {
@@ -929,7 +994,7 @@ type GetCurrentJobIdResponse struct {
 
 func (x *GetCurrentJobIdResponse) Reset() {
 	*x = GetCurrentJobIdResponse{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[11]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -941,7 +1006,7 @@ func (x *GetCurrentJobIdResponse) String() string {
 func (*GetCurrentJobIdResponse) ProtoMessage() {}
 
 func (x *GetCurrentJobIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[11]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -954,7 +1019,7 @@ func (x *GetCurrentJobIdResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCurrentJobIdResponse.ProtoReflect.Descriptor instead.
 func (*GetCurrentJobIdResponse) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{11}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetCurrentJobIdResponse) GetJobId() string {
@@ -977,7 +1042,7 @@ type StopRequest struct {
 
 func (x *StopRequest) Reset() {
 	*x = StopRequest{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[12]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -989,7 +1054,7 @@ func (x *StopRequest) String() string {
 func (*StopRequest) ProtoMessage() {}
 
 func (x *StopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[12]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1002,7 +1067,7 @@ func (x *StopRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StopRequest.ProtoReflect.Descriptor instead.
 func (*StopRequest) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{12}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *StopRequest) GetName() string {
@@ -1027,7 +1092,7 @@ type StopResponse struct {
 
 func (x *StopResponse) Reset() {
 	*x = StopResponse{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[13]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1039,7 +1104,7 @@ func (x *StopResponse) String() string {
 func (*StopResponse) ProtoMessage() {}
 
 func (x *StopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[13]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1052,7 +1117,7 @@ func (x *StopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StopResponse.ProtoReflect.Descriptor instead.
 func (*StopResponse) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{13}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{14}
 }
 
 type ResetRequest struct {
@@ -1068,7 +1133,7 @@ type ResetRequest struct {
 
 func (x *ResetRequest) Reset() {
 	*x = ResetRequest{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[14]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1080,7 +1145,7 @@ func (x *ResetRequest) String() string {
 func (*ResetRequest) ProtoMessage() {}
 
 func (x *ResetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[14]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1093,7 +1158,7 @@ func (x *ResetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResetRequest.ProtoReflect.Descriptor instead.
 func (*ResetRequest) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{14}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ResetRequest) GetName() string {
@@ -1118,7 +1183,7 @@ type ResetResponse struct {
 
 func (x *ResetResponse) Reset() {
 	*x = ResetResponse{}
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[15]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1130,7 +1195,7 @@ func (x *ResetResponse) String() string {
 func (*ResetResponse) ProtoMessage() {}
 
 func (x *ResetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[15]
+	mi := &file_service_statemachine_v1_state_machine_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1143,7 +1208,7 @@ func (x *ResetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResetResponse.ProtoReflect.Descriptor instead.
 func (*ResetResponse) Descriptor() ([]byte, []int) {
-	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{15}
+	return file_service_statemachine_v1_state_machine_proto_rawDescGZIP(), []int{16}
 }
 
 var File_service_statemachine_v1_state_machine_proto protoreflect.FileDescriptor
@@ -1164,7 +1229,7 @@ var file_service_statemachine_v1_state_machine_proto_rawDesc = []byte{
 	0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
 	0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x1a, 0x1a, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x74, 0x61, 0x73, 0x6b, 0x2f, 0x76,
-	0x31, 0x2f, 0x74, 0x61, 0x73, 0x6b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xa2, 0x02, 0x0a,
+	0x31, 0x2f, 0x74, 0x61, 0x73, 0x6b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x8b, 0x02, 0x0a,
 	0x0a, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x66,
 	0x72, 0x6f, 0x6d, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x66, 0x72, 0x6f, 0x6d, 0x12,
 	0x0e, 0x0a, 0x02, 0x74, 0x6f, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x02, 0x74, 0x6f, 0x12,
@@ -1181,60 +1246,70 @@ var file_service_statemachine_v1_state_machine_proto_rawDesc = []byte{
 	0x28, 0x0e, 0x32, 0x2e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
 	0x65, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x65, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x2e, 0x76,
 	0x31, 0x2e, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x6f, 0x75, 0x72,
-	0x63, 0x65, 0x52, 0x06, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x12, 0x15, 0x0a, 0x06, 0x6a, 0x6f,
-	0x62, 0x5f, 0x69, 0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6a, 0x6f, 0x62, 0x49,
-	0x64, 0x22, 0x54, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2d, 0x0a, 0x05, 0x65, 0x78, 0x74, 0x72,
-	0x61, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74,
-	0x52, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x22, 0xae, 0x02, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x53,
-	0x74, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04,
-	0x70, 0x61, 0x74, 0x68, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68,
-	0x12, 0x3c, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e,
-	0x32, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
+	0x63, 0x65, 0x52, 0x06, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x22, 0xaa, 0x01, 0x0a, 0x0a, 0x4a,
+	0x6f, 0x62, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x12, 0x15, 0x0a, 0x06, 0x6a, 0x6f, 0x62,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6a, 0x6f, 0x62, 0x49, 0x64,
+	0x12, 0x39, 0x0a, 0x0a, 0x73, 0x74, 0x61, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
+	0x52, 0x09, 0x73, 0x74, 0x61, 0x72, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x4a, 0x0a, 0x0b, 0x74,
+	0x72, 0x61, 0x6e, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
 	0x73, 0x74, 0x61, 0x74, 0x65, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x2e,
-	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x31,
-	0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x78, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x54, 0x72, 0x61, 0x6e, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0b, 0x74, 0x72, 0x61, 0x6e,
+	0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0x54, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x53, 0x74,
+	0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2d,
+	0x0a, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x22, 0xae, 0x02,
+	0x0a, 0x10, 0x47, 0x65, 0x74, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09,
+	0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x12, 0x3c, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x24, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x65, 0x6d, 0x61, 0x63, 0x68, 0x69,
+	0x6e, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x12, 0x31, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x78, 0x74, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x07,
+	0x63, 0x6f, 0x6e, 0x74, 0x65, 0x78, 0x74, 0x12, 0x39, 0x0a, 0x0a, 0x65, 0x6e, 0x74, 0x65, 0x72,
+	0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x65, 0x6e, 0x74, 0x65, 0x72, 0x65, 0x64,
+	0x41, 0x74, 0x12, 0x43, 0x0a, 0x0d, 0x74, 0x61, 0x73, 0x6b, 0x5f, 0x70, 0x72, 0x6f, 0x67, 0x72,
+	0x65, 0x73, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x76, 0x69, 0x61, 0x6d,
+	0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x74, 0x61, 0x73, 0x6b, 0x2e, 0x76, 0x31,
+	0x2e, 0x50, 0x72, 0x6f, 0x67, 0x72, 0x65, 0x73, 0x73, 0x52, 0x0c, 0x74, 0x61, 0x73, 0x6b, 0x50,
+	0x72, 0x6f, 0x67, 0x72, 0x65, 0x73, 0x73, 0x12, 0x15, 0x0a, 0x06, 0x6a, 0x6f, 0x62, 0x5f, 0x69,
+	0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6a, 0x6f, 0x62, 0x49, 0x64, 0x22, 0x9e,
+	0x01, 0x0a, 0x10, 0x53, 0x65, 0x6e, 0x64, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x76, 0x65, 0x6e, 0x74,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x31, 0x0a,
+	0x07, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x07, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64,
+	0x12, 0x2d, 0x0a, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x78,
-	0x74, 0x12, 0x39, 0x0a, 0x0a, 0x65, 0x6e, 0x74, 0x65, 0x72, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18,
-	0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
-	0x70, 0x52, 0x09, 0x65, 0x6e, 0x74, 0x65, 0x72, 0x65, 0x64, 0x41, 0x74, 0x12, 0x43, 0x0a, 0x0d,
-	0x74, 0x61, 0x73, 0x6b, 0x5f, 0x70, 0x72, 0x6f, 0x67, 0x72, 0x65, 0x73, 0x73, 0x18, 0x05, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x2e, 0x74, 0x61, 0x73, 0x6b, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x72, 0x6f, 0x67, 0x72,
-	0x65, 0x73, 0x73, 0x52, 0x0c, 0x74, 0x61, 0x73, 0x6b, 0x50, 0x72, 0x6f, 0x67, 0x72, 0x65, 0x73,
-	0x73, 0x12, 0x15, 0x0a, 0x06, 0x6a, 0x6f, 0x62, 0x5f, 0x69, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x05, 0x6a, 0x6f, 0x62, 0x49, 0x64, 0x22, 0x9e, 0x01, 0x0a, 0x10, 0x53, 0x65, 0x6e,
-	0x64, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x05, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x31, 0x0a, 0x07, 0x70, 0x61, 0x79, 0x6c, 0x6f,
-	0x61, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x22,
+	0x41, 0x0a, 0x11, 0x53, 0x65, 0x6e, 0x64, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x64, 0x12, 0x12,
+	0x0a, 0x04, 0x70, 0x61, 0x74, 0x68, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61,
+	0x74, 0x68, 0x22, 0x83, 0x01, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72,
+	0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05,
+	0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x69, 0x6d,
+	0x69, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6a, 0x6f, 0x62, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x05, 0x6a, 0x6f, 0x62, 0x49, 0x64, 0x12, 0x2d, 0x0a, 0x05, 0x65, 0x78, 0x74,
+	0x72, 0x61, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63,
-	0x74, 0x52, 0x07, 0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x2d, 0x0a, 0x05, 0x65, 0x78,
-	0x74, 0x72, 0x61, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67,
-	0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75,
-	0x63, 0x74, 0x52, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x22, 0x41, 0x0a, 0x11, 0x53, 0x65, 0x6e,
-	0x64, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18,
-	0x0a, 0x07, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52,
-	0x07, 0x68, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68,
-	0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x22, 0x6c, 0x0a, 0x11,
-	0x47, 0x65, 0x74, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x2d, 0x0a, 0x05, 0x65,
-	0x78, 0x74, 0x72, 0x61, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f,
-	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72,
-	0x75, 0x63, 0x74, 0x52, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x22, 0x60, 0x0a, 0x12, 0x47, 0x65,
-	0x74, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x4a, 0x0a, 0x0b, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18,
-	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x76, 0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x65, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e,
-	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x0b, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0x59, 0x0a, 0x14,
+	0x74, 0x52, 0x05, 0x65, 0x78, 0x74, 0x72, 0x61, 0x22, 0x52, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x48,
+	0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c,
+	0x0a, 0x04, 0x6a, 0x6f, 0x62, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x76,
+	0x69, 0x61, 0x6d, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x73, 0x74, 0x61, 0x74,
+	0x65, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4a, 0x6f, 0x62, 0x48,
+	0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x04, 0x6a, 0x6f, 0x62, 0x73, 0x22, 0x59, 0x0a, 0x14,
 	0x47, 0x65, 0x74, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71,
 	0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2d, 0x0a, 0x05, 0x65, 0x78, 0x74, 0x72,
@@ -1433,82 +1508,85 @@ func file_service_statemachine_v1_state_machine_proto_rawDescGZIP() []byte {
 }
 
 var file_service_statemachine_v1_state_machine_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_service_statemachine_v1_state_machine_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_service_statemachine_v1_state_machine_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_service_statemachine_v1_state_machine_proto_goTypes = []any{
 	(Status)(0),                     // 0: viam.service.statemachine.v1.Status
 	(TransitionSource)(0),           // 1: viam.service.statemachine.v1.TransitionSource
 	(*Transition)(nil),              // 2: viam.service.statemachine.v1.Transition
-	(*GetStateRequest)(nil),         // 3: viam.service.statemachine.v1.GetStateRequest
-	(*GetStateResponse)(nil),        // 4: viam.service.statemachine.v1.GetStateResponse
-	(*SendEventRequest)(nil),        // 5: viam.service.statemachine.v1.SendEventRequest
-	(*SendEventResponse)(nil),       // 6: viam.service.statemachine.v1.SendEventResponse
-	(*GetHistoryRequest)(nil),       // 7: viam.service.statemachine.v1.GetHistoryRequest
-	(*GetHistoryResponse)(nil),      // 8: viam.service.statemachine.v1.GetHistoryResponse
-	(*GetDefinitionRequest)(nil),    // 9: viam.service.statemachine.v1.GetDefinitionRequest
-	(*StateDefinition)(nil),         // 10: viam.service.statemachine.v1.StateDefinition
-	(*GetDefinitionResponse)(nil),   // 11: viam.service.statemachine.v1.GetDefinitionResponse
-	(*GetCurrentJobIdRequest)(nil),  // 12: viam.service.statemachine.v1.GetCurrentJobIdRequest
-	(*GetCurrentJobIdResponse)(nil), // 13: viam.service.statemachine.v1.GetCurrentJobIdResponse
-	(*StopRequest)(nil),             // 14: viam.service.statemachine.v1.StopRequest
-	(*StopResponse)(nil),            // 15: viam.service.statemachine.v1.StopResponse
-	(*ResetRequest)(nil),            // 16: viam.service.statemachine.v1.ResetRequest
-	(*ResetResponse)(nil),           // 17: viam.service.statemachine.v1.ResetResponse
-	nil,                             // 18: viam.service.statemachine.v1.StateDefinition.OnEntry
-	nil,                             // 19: viam.service.statemachine.v1.GetDefinitionResponse.OnEntry
-	(*timestamppb.Timestamp)(nil),   // 20: google.protobuf.Timestamp
-	(*v1.Result)(nil),               // 21: viam.service.task.v1.Result
-	(*structpb.Struct)(nil),         // 22: google.protobuf.Struct
-	(*v1.Progress)(nil),             // 23: viam.service.task.v1.Progress
-	(*durationpb.Duration)(nil),     // 24: google.protobuf.Duration
-	(*v11.DoCommandRequest)(nil),    // 25: viam.common.v1.DoCommandRequest
-	(*v11.GetStatusRequest)(nil),    // 26: viam.common.v1.GetStatusRequest
-	(*v11.DoCommandResponse)(nil),   // 27: viam.common.v1.DoCommandResponse
-	(*v11.GetStatusResponse)(nil),   // 28: viam.common.v1.GetStatusResponse
+	(*JobHistory)(nil),              // 3: viam.service.statemachine.v1.JobHistory
+	(*GetStateRequest)(nil),         // 4: viam.service.statemachine.v1.GetStateRequest
+	(*GetStateResponse)(nil),        // 5: viam.service.statemachine.v1.GetStateResponse
+	(*SendEventRequest)(nil),        // 6: viam.service.statemachine.v1.SendEventRequest
+	(*SendEventResponse)(nil),       // 7: viam.service.statemachine.v1.SendEventResponse
+	(*GetHistoryRequest)(nil),       // 8: viam.service.statemachine.v1.GetHistoryRequest
+	(*GetHistoryResponse)(nil),      // 9: viam.service.statemachine.v1.GetHistoryResponse
+	(*GetDefinitionRequest)(nil),    // 10: viam.service.statemachine.v1.GetDefinitionRequest
+	(*StateDefinition)(nil),         // 11: viam.service.statemachine.v1.StateDefinition
+	(*GetDefinitionResponse)(nil),   // 12: viam.service.statemachine.v1.GetDefinitionResponse
+	(*GetCurrentJobIdRequest)(nil),  // 13: viam.service.statemachine.v1.GetCurrentJobIdRequest
+	(*GetCurrentJobIdResponse)(nil), // 14: viam.service.statemachine.v1.GetCurrentJobIdResponse
+	(*StopRequest)(nil),             // 15: viam.service.statemachine.v1.StopRequest
+	(*StopResponse)(nil),            // 16: viam.service.statemachine.v1.StopResponse
+	(*ResetRequest)(nil),            // 17: viam.service.statemachine.v1.ResetRequest
+	(*ResetResponse)(nil),           // 18: viam.service.statemachine.v1.ResetResponse
+	nil,                             // 19: viam.service.statemachine.v1.StateDefinition.OnEntry
+	nil,                             // 20: viam.service.statemachine.v1.GetDefinitionResponse.OnEntry
+	(*timestamppb.Timestamp)(nil),   // 21: google.protobuf.Timestamp
+	(*v1.Result)(nil),               // 22: viam.service.task.v1.Result
+	(*structpb.Struct)(nil),         // 23: google.protobuf.Struct
+	(*v1.Progress)(nil),             // 24: viam.service.task.v1.Progress
+	(*durationpb.Duration)(nil),     // 25: google.protobuf.Duration
+	(*v11.DoCommandRequest)(nil),    // 26: viam.common.v1.DoCommandRequest
+	(*v11.GetStatusRequest)(nil),    // 27: viam.common.v1.GetStatusRequest
+	(*v11.DoCommandResponse)(nil),   // 28: viam.common.v1.DoCommandResponse
+	(*v11.GetStatusResponse)(nil),   // 29: viam.common.v1.GetStatusResponse
 }
 var file_service_statemachine_v1_state_machine_proto_depIdxs = []int32{
-	20, // 0: viam.service.statemachine.v1.Transition.timestamp:type_name -> google.protobuf.Timestamp
-	21, // 1: viam.service.statemachine.v1.Transition.task_result:type_name -> viam.service.task.v1.Result
+	21, // 0: viam.service.statemachine.v1.Transition.timestamp:type_name -> google.protobuf.Timestamp
+	22, // 1: viam.service.statemachine.v1.Transition.task_result:type_name -> viam.service.task.v1.Result
 	1,  // 2: viam.service.statemachine.v1.Transition.source:type_name -> viam.service.statemachine.v1.TransitionSource
-	22, // 3: viam.service.statemachine.v1.GetStateRequest.extra:type_name -> google.protobuf.Struct
-	0,  // 4: viam.service.statemachine.v1.GetStateResponse.status:type_name -> viam.service.statemachine.v1.Status
-	22, // 5: viam.service.statemachine.v1.GetStateResponse.context:type_name -> google.protobuf.Struct
-	20, // 6: viam.service.statemachine.v1.GetStateResponse.entered_at:type_name -> google.protobuf.Timestamp
-	23, // 7: viam.service.statemachine.v1.GetStateResponse.task_progress:type_name -> viam.service.task.v1.Progress
-	22, // 8: viam.service.statemachine.v1.SendEventRequest.payload:type_name -> google.protobuf.Struct
-	22, // 9: viam.service.statemachine.v1.SendEventRequest.extra:type_name -> google.protobuf.Struct
-	22, // 10: viam.service.statemachine.v1.GetHistoryRequest.extra:type_name -> google.protobuf.Struct
-	2,  // 11: viam.service.statemachine.v1.GetHistoryResponse.transitions:type_name -> viam.service.statemachine.v1.Transition
-	22, // 12: viam.service.statemachine.v1.GetDefinitionRequest.extra:type_name -> google.protobuf.Struct
-	18, // 13: viam.service.statemachine.v1.StateDefinition.on:type_name -> viam.service.statemachine.v1.StateDefinition.OnEntry
-	24, // 14: viam.service.statemachine.v1.StateDefinition.timeout:type_name -> google.protobuf.Duration
-	10, // 15: viam.service.statemachine.v1.GetDefinitionResponse.states:type_name -> viam.service.statemachine.v1.StateDefinition
-	19, // 16: viam.service.statemachine.v1.GetDefinitionResponse.on:type_name -> viam.service.statemachine.v1.GetDefinitionResponse.OnEntry
-	22, // 17: viam.service.statemachine.v1.GetCurrentJobIdRequest.extra:type_name -> google.protobuf.Struct
-	22, // 18: viam.service.statemachine.v1.StopRequest.extra:type_name -> google.protobuf.Struct
-	22, // 19: viam.service.statemachine.v1.ResetRequest.extra:type_name -> google.protobuf.Struct
-	3,  // 20: viam.service.statemachine.v1.StateMachineService.GetState:input_type -> viam.service.statemachine.v1.GetStateRequest
-	5,  // 21: viam.service.statemachine.v1.StateMachineService.SendEvent:input_type -> viam.service.statemachine.v1.SendEventRequest
-	7,  // 22: viam.service.statemachine.v1.StateMachineService.GetHistory:input_type -> viam.service.statemachine.v1.GetHistoryRequest
-	9,  // 23: viam.service.statemachine.v1.StateMachineService.GetDefinition:input_type -> viam.service.statemachine.v1.GetDefinitionRequest
-	12, // 24: viam.service.statemachine.v1.StateMachineService.GetCurrentJobId:input_type -> viam.service.statemachine.v1.GetCurrentJobIdRequest
-	14, // 25: viam.service.statemachine.v1.StateMachineService.Stop:input_type -> viam.service.statemachine.v1.StopRequest
-	16, // 26: viam.service.statemachine.v1.StateMachineService.Reset:input_type -> viam.service.statemachine.v1.ResetRequest
-	25, // 27: viam.service.statemachine.v1.StateMachineService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
-	26, // 28: viam.service.statemachine.v1.StateMachineService.GetStatus:input_type -> viam.common.v1.GetStatusRequest
-	4,  // 29: viam.service.statemachine.v1.StateMachineService.GetState:output_type -> viam.service.statemachine.v1.GetStateResponse
-	6,  // 30: viam.service.statemachine.v1.StateMachineService.SendEvent:output_type -> viam.service.statemachine.v1.SendEventResponse
-	8,  // 31: viam.service.statemachine.v1.StateMachineService.GetHistory:output_type -> viam.service.statemachine.v1.GetHistoryResponse
-	11, // 32: viam.service.statemachine.v1.StateMachineService.GetDefinition:output_type -> viam.service.statemachine.v1.GetDefinitionResponse
-	13, // 33: viam.service.statemachine.v1.StateMachineService.GetCurrentJobId:output_type -> viam.service.statemachine.v1.GetCurrentJobIdResponse
-	15, // 34: viam.service.statemachine.v1.StateMachineService.Stop:output_type -> viam.service.statemachine.v1.StopResponse
-	17, // 35: viam.service.statemachine.v1.StateMachineService.Reset:output_type -> viam.service.statemachine.v1.ResetResponse
-	27, // 36: viam.service.statemachine.v1.StateMachineService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
-	28, // 37: viam.service.statemachine.v1.StateMachineService.GetStatus:output_type -> viam.common.v1.GetStatusResponse
-	29, // [29:38] is the sub-list for method output_type
-	20, // [20:29] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	21, // 3: viam.service.statemachine.v1.JobHistory.started_at:type_name -> google.protobuf.Timestamp
+	2,  // 4: viam.service.statemachine.v1.JobHistory.transitions:type_name -> viam.service.statemachine.v1.Transition
+	23, // 5: viam.service.statemachine.v1.GetStateRequest.extra:type_name -> google.protobuf.Struct
+	0,  // 6: viam.service.statemachine.v1.GetStateResponse.status:type_name -> viam.service.statemachine.v1.Status
+	23, // 7: viam.service.statemachine.v1.GetStateResponse.context:type_name -> google.protobuf.Struct
+	21, // 8: viam.service.statemachine.v1.GetStateResponse.entered_at:type_name -> google.protobuf.Timestamp
+	24, // 9: viam.service.statemachine.v1.GetStateResponse.task_progress:type_name -> viam.service.task.v1.Progress
+	23, // 10: viam.service.statemachine.v1.SendEventRequest.payload:type_name -> google.protobuf.Struct
+	23, // 11: viam.service.statemachine.v1.SendEventRequest.extra:type_name -> google.protobuf.Struct
+	23, // 12: viam.service.statemachine.v1.GetHistoryRequest.extra:type_name -> google.protobuf.Struct
+	3,  // 13: viam.service.statemachine.v1.GetHistoryResponse.jobs:type_name -> viam.service.statemachine.v1.JobHistory
+	23, // 14: viam.service.statemachine.v1.GetDefinitionRequest.extra:type_name -> google.protobuf.Struct
+	19, // 15: viam.service.statemachine.v1.StateDefinition.on:type_name -> viam.service.statemachine.v1.StateDefinition.OnEntry
+	25, // 16: viam.service.statemachine.v1.StateDefinition.timeout:type_name -> google.protobuf.Duration
+	11, // 17: viam.service.statemachine.v1.GetDefinitionResponse.states:type_name -> viam.service.statemachine.v1.StateDefinition
+	20, // 18: viam.service.statemachine.v1.GetDefinitionResponse.on:type_name -> viam.service.statemachine.v1.GetDefinitionResponse.OnEntry
+	23, // 19: viam.service.statemachine.v1.GetCurrentJobIdRequest.extra:type_name -> google.protobuf.Struct
+	23, // 20: viam.service.statemachine.v1.StopRequest.extra:type_name -> google.protobuf.Struct
+	23, // 21: viam.service.statemachine.v1.ResetRequest.extra:type_name -> google.protobuf.Struct
+	4,  // 22: viam.service.statemachine.v1.StateMachineService.GetState:input_type -> viam.service.statemachine.v1.GetStateRequest
+	6,  // 23: viam.service.statemachine.v1.StateMachineService.SendEvent:input_type -> viam.service.statemachine.v1.SendEventRequest
+	8,  // 24: viam.service.statemachine.v1.StateMachineService.GetHistory:input_type -> viam.service.statemachine.v1.GetHistoryRequest
+	10, // 25: viam.service.statemachine.v1.StateMachineService.GetDefinition:input_type -> viam.service.statemachine.v1.GetDefinitionRequest
+	13, // 26: viam.service.statemachine.v1.StateMachineService.GetCurrentJobId:input_type -> viam.service.statemachine.v1.GetCurrentJobIdRequest
+	15, // 27: viam.service.statemachine.v1.StateMachineService.Stop:input_type -> viam.service.statemachine.v1.StopRequest
+	17, // 28: viam.service.statemachine.v1.StateMachineService.Reset:input_type -> viam.service.statemachine.v1.ResetRequest
+	26, // 29: viam.service.statemachine.v1.StateMachineService.DoCommand:input_type -> viam.common.v1.DoCommandRequest
+	27, // 30: viam.service.statemachine.v1.StateMachineService.GetStatus:input_type -> viam.common.v1.GetStatusRequest
+	5,  // 31: viam.service.statemachine.v1.StateMachineService.GetState:output_type -> viam.service.statemachine.v1.GetStateResponse
+	7,  // 32: viam.service.statemachine.v1.StateMachineService.SendEvent:output_type -> viam.service.statemachine.v1.SendEventResponse
+	9,  // 33: viam.service.statemachine.v1.StateMachineService.GetHistory:output_type -> viam.service.statemachine.v1.GetHistoryResponse
+	12, // 34: viam.service.statemachine.v1.StateMachineService.GetDefinition:output_type -> viam.service.statemachine.v1.GetDefinitionResponse
+	14, // 35: viam.service.statemachine.v1.StateMachineService.GetCurrentJobId:output_type -> viam.service.statemachine.v1.GetCurrentJobIdResponse
+	16, // 36: viam.service.statemachine.v1.StateMachineService.Stop:output_type -> viam.service.statemachine.v1.StopResponse
+	18, // 37: viam.service.statemachine.v1.StateMachineService.Reset:output_type -> viam.service.statemachine.v1.ResetResponse
+	28, // 38: viam.service.statemachine.v1.StateMachineService.DoCommand:output_type -> viam.common.v1.DoCommandResponse
+	29, // 39: viam.service.statemachine.v1.StateMachineService.GetStatus:output_type -> viam.common.v1.GetStatusResponse
+	31, // [31:40] is the sub-list for method output_type
+	22, // [22:31] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_service_statemachine_v1_state_machine_proto_init() }
@@ -1522,7 +1600,7 @@ func file_service_statemachine_v1_state_machine_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_statemachine_v1_state_machine_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   18,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

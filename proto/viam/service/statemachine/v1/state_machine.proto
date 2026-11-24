@@ -31,7 +31,8 @@ service StateMachineService {
     option (google.api.http) = {post: "/viam/api/v1/service/state_machine/{name}/event"};
   }
 
-  // GetHistory returns the most recent `limit` transitions, oldest first.
+  // GetHistory returns the retained transitions grouped by job, oldest job
+  // first and oldest transition first within a job.
   rpc GetHistory(GetHistoryRequest) returns (GetHistoryResponse) {
     option (google.api.http) = {get: "/viam/api/v1/service/state_machine/{name}/history"};
   }
@@ -121,8 +122,16 @@ message Transition {
   // What kind of thing caused the transition. An outcome name sent through
   // SendEvent is recorded as an event, so history shows the override.
   TransitionSource source = 6;
-  // The job the transition belongs to.
-  string job_id = 7;
+}
+
+// JobHistory is every retained transition of one job, oldest first. A job
+// starts when the machine enters its initial state from the outside: at
+// startup and on Reset.
+message JobHistory {
+  string job_id = 1;
+  // When the job started: the timestamp of its first transition.
+  google.protobuf.Timestamp started_at = 2;
+  repeated Transition transitions = 3;
 }
 
 message GetStateRequest {
@@ -169,16 +178,18 @@ message SendEventResponse {
 message GetHistoryRequest {
   // Name of the state machine service
   string name = 1;
-  // Maximum number of transitions to return; the most recent ones are kept.
-  // 0 means all retained.
+  // Maximum number of jobs to return; the most recent ones are kept. 0 means
+  // every retained job.
   int32 limit = 2;
+  // Return only this job. Empty returns every retained job.
+  string job_id = 3;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
 
 message GetHistoryResponse {
-  // The most recent transitions, oldest first.
-  repeated Transition transitions = 1;
+  // Jobs oldest first, each with its transitions oldest first.
+  repeated JobHistory jobs = 1;
 }
 
 message GetDefinitionRequest {
