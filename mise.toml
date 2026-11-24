@@ -18,7 +18,7 @@ disable_backends = ["asdf"]
 
 [tools]
 buf = "1.55.1"
-go = "1.23"
+go = "1.25.0"
 "go:github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking" = "1.55.1"
 "go:github.com/bufbuild/buf/cmd/protoc-gen-buf-lint" = "1.55.1"
 "go:github.com/edaniels/golinters/cmd/combined" = "0.0.5"
