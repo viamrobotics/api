@@ -58,6 +58,9 @@ type MotionServiceClient interface {
 	// This method and its associated types are named as Temp because this API is
 	// under active development, and its current shape should not be depended on.
 	TempStreamArmJointPositions(ctx context.Context, opts ...grpc.CallOption) (MotionService_TempStreamArmJointPositionsClient, error)
+	// StreamServo runs one Cartesian servo session on one arm for the life of the stream.
+	// The first request must be Init; every later request is an Update. See StreamServoRequest.
+	StreamServo(ctx context.Context, opts ...grpc.CallOption) (MotionService_StreamServoClient, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -167,6 +170,37 @@ func (x *motionServiceTempStreamArmJointPositionsClient) Recv() (*TempStreamArmJ
 	return m, nil
 }
 
+func (c *motionServiceClient) StreamServo(ctx context.Context, opts ...grpc.CallOption) (MotionService_StreamServoClient, error) {
+	stream, err := c.cc.NewStream(ctx, &MotionService_ServiceDesc.Streams[1], "/viam.service.motion.v1.MotionService/StreamServo", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &motionServiceStreamServoClient{stream}
+	return x, nil
+}
+
+type MotionService_StreamServoClient interface {
+	Send(*StreamServoRequest) error
+	Recv() (*StreamServoResponse, error)
+	grpc.ClientStream
+}
+
+type motionServiceStreamServoClient struct {
+	grpc.ClientStream
+}
+
+func (x *motionServiceStreamServoClient) Send(m *StreamServoRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *motionServiceStreamServoClient) Recv() (*StreamServoResponse, error) {
+	m := new(StreamServoResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *motionServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.motion.v1.MotionService/DoCommand", in, out, opts...)
@@ -224,6 +258,9 @@ type MotionServiceServer interface {
 	// This method and its associated types are named as Temp because this API is
 	// under active development, and its current shape should not be depended on.
 	TempStreamArmJointPositions(MotionService_TempStreamArmJointPositionsServer) error
+	// StreamServo runs one Cartesian servo session on one arm for the life of the stream.
+	// The first request must be Init; every later request is an Update. See StreamServoRequest.
+	StreamServo(MotionService_StreamServoServer) error
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -258,6 +295,9 @@ func (UnimplementedMotionServiceServer) GetPlan(context.Context, *GetPlanRequest
 }
 func (UnimplementedMotionServiceServer) TempStreamArmJointPositions(MotionService_TempStreamArmJointPositionsServer) error {
 	return status.Errorf(codes.Unimplemented, "method TempStreamArmJointPositions not implemented")
+}
+func (UnimplementedMotionServiceServer) StreamServo(MotionService_StreamServoServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamServo not implemented")
 }
 func (UnimplementedMotionServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -430,6 +470,32 @@ func (x *motionServiceTempStreamArmJointPositionsServer) Recv() (*TempStreamArmJ
 	return m, nil
 }
 
+func _MotionService_StreamServo_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(MotionServiceServer).StreamServo(&motionServiceStreamServoServer{stream})
+}
+
+type MotionService_StreamServoServer interface {
+	Send(*StreamServoResponse) error
+	Recv() (*StreamServoRequest, error)
+	grpc.ServerStream
+}
+
+type motionServiceStreamServoServer struct {
+	grpc.ServerStream
+}
+
+func (x *motionServiceStreamServoServer) Send(m *StreamServoResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *motionServiceStreamServoServer) Recv() (*StreamServoRequest, error) {
+	m := new(StreamServoRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func _MotionService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -514,6 +580,12 @@ var MotionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "TempStreamArmJointPositions",
 			Handler:       _MotionService_TempStreamArmJointPositions_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "StreamServo",
+			Handler:       _MotionService_StreamServo_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},
