@@ -25,8 +25,14 @@ const _ = grpc.SupportPackageIsVersion7
 type TaskServiceClient interface {
 	// Run performs one execution of the task and returns its result when it is
 	// finished. Cancelling the call cancels the task: the task must leave the
-	// hardware in a safe state before returning. Only one execution may be in
-	// flight per task resource; a concurrent Run fails with FAILED_PRECONDITION.
+	// hardware in a safe state before returning, and returns the outcome
+	// "cancelled". Expected failures are outcomes too, e.g. "no_glass", so a
+	// state machine can route them; the reserved outcome "error" is for
+	// failures no state is expected to handle. A gRPC error from Run is treated
+	// by a state machine as the outcome "error" with the message in output
+	// under "error". Only one execution may be in flight per task resource; a
+	// concurrent Run fails with FAILED_PRECONDITION, which a state machine
+	// treats the same way, so two states must not share one task resource.
 	// Progress while it runs is read with GetTaskStatus.
 	Run(ctx context.Context, in *RunRequest, opts ...grpc.CallOption) (*RunResponse, error)
 	// GetTaskStatus reports whether the task is idle or running, its progress
@@ -89,8 +95,14 @@ func (c *taskServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandReque
 type TaskServiceServer interface {
 	// Run performs one execution of the task and returns its result when it is
 	// finished. Cancelling the call cancels the task: the task must leave the
-	// hardware in a safe state before returning. Only one execution may be in
-	// flight per task resource; a concurrent Run fails with FAILED_PRECONDITION.
+	// hardware in a safe state before returning, and returns the outcome
+	// "cancelled". Expected failures are outcomes too, e.g. "no_glass", so a
+	// state machine can route them; the reserved outcome "error" is for
+	// failures no state is expected to handle. A gRPC error from Run is treated
+	// by a state machine as the outcome "error" with the message in output
+	// under "error". Only one execution may be in flight per task resource; a
+	// concurrent Run fails with FAILED_PRECONDITION, which a state machine
+	// treats the same way, so two states must not share one task resource.
 	// Progress while it runs is read with GetTaskStatus.
 	Run(context.Context, *RunRequest) (*RunResponse, error)
 	// GetTaskStatus reports whether the task is idle or running, its progress

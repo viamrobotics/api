@@ -17,8 +17,14 @@ option java_package = "com.viam.service.task.v1";
 service TaskService {
   // Run performs one execution of the task and returns its result when it is
   // finished. Cancelling the call cancels the task: the task must leave the
-  // hardware in a safe state before returning. Only one execution may be in
-  // flight per task resource; a concurrent Run fails with FAILED_PRECONDITION.
+  // hardware in a safe state before returning, and returns the outcome
+  // "cancelled". Expected failures are outcomes too, e.g. "no_glass", so a
+  // state machine can route them; the reserved outcome "error" is for
+  // failures no state is expected to handle. A gRPC error from Run is treated
+  // by a state machine as the outcome "error" with the message in output
+  // under "error". Only one execution may be in flight per task resource; a
+  // concurrent Run fails with FAILED_PRECONDITION, which a state machine
+  // treats the same way, so two states must not share one task resource.
   // Progress while it runs is read with GetTaskStatus.
   rpc Run(RunRequest) returns (RunResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/task/{name}/run"};
@@ -60,9 +66,13 @@ message Progress {
 // Result is the terminal outcome of one execution.
 message Result {
   // The outcome name, e.g. "done", "no_glass", "error". A state machine looks
-  // this up in the current state's transition table.
+  // this up in the current state's transition table and faults if no state
+  // handles it. Reserved outcomes: "done" (the default when a task returns
+  // nothing else), "error" (failed), "cancelled" (the call was cancelled) and
+  // "timeout" (assigned by a state machine when a state's timeout elapses).
   string outcome = 1;
-  // Output data. A state machine merges it into its context.
+  // Output data. A state machine shallowly merges it into its context, output
+  // keys winning, where it persists for later tasks.
   google.protobuf.Struct output = 2;
 }
 

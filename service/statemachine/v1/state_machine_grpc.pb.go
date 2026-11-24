@@ -30,7 +30,7 @@ type StateMachineServiceClient interface {
 	// in the current state or any ancestor is dropped and logged; the response
 	// then says handled: false. Events are never queued.
 	SendEvent(ctx context.Context, in *SendEventRequest, opts ...grpc.CallOption) (*SendEventResponse, error)
-	// GetHistory returns the most recent transitions, newest last.
+	// GetHistory returns the most recent `limit` transitions, oldest first.
 	GetHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error)
 	// GetDefinition returns the machine's states and the triggers each one
 	// handles, as configured. The app renders it; an agent reads it to learn
@@ -152,7 +152,7 @@ type StateMachineServiceServer interface {
 	// in the current state or any ancestor is dropped and logged; the response
 	// then says handled: false. Events are never queued.
 	SendEvent(context.Context, *SendEventRequest) (*SendEventResponse, error)
-	// GetHistory returns the most recent transitions, newest last.
+	// GetHistory returns the most recent `limit` transitions, oldest first.
 	GetHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error)
 	// GetDefinition returns the machine's states and the triggers each one
 	// handles, as configured. The app renders it; an agent reads it to learn

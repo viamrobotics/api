@@ -137,9 +137,13 @@ type Result struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The outcome name, e.g. "done", "no_glass", "error". A state machine looks
-	// this up in the current state's transition table.
+	// this up in the current state's transition table and faults if no state
+	// handles it. Reserved outcomes: "done" (the default when a task returns
+	// nothing else), "error" (failed), "cancelled" (the call was cancelled) and
+	// "timeout" (assigned by a state machine when a state's timeout elapses).
 	Outcome string `protobuf:"bytes,1,opt,name=outcome,proto3" json:"outcome,omitempty"`
-	// Output data. A state machine merges it into its context.
+	// Output data. A state machine shallowly merges it into its context, output
+	// keys winning, where it persists for later tasks.
 	Output *structpb.Struct `protobuf:"bytes,2,opt,name=output,proto3" json:"output,omitempty"`
 }
 

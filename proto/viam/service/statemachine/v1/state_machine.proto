@@ -4,6 +4,7 @@ package viam.service.statemachine.v1;
 
 import "common/v1/common.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "service/task/v1/task.proto";
@@ -30,7 +31,7 @@ service StateMachineService {
     option (google.api.http) = {post: "/viam/api/v1/service/state_machine/{name}/event"};
   }
 
-  // GetHistory returns the most recent transitions, newest last.
+  // GetHistory returns the most recent `limit` transitions, oldest first.
   rpc GetHistory(GetHistoryRequest) returns (GetHistoryResponse) {
     option (google.api.http) = {get: "/viam/api/v1/service/state_machine/{name}/history"};
   }
@@ -80,22 +81,48 @@ enum Status {
   // Stop was called: the machine holds its state and runs nothing until Reset
   // or an event with a transition out.
   STATUS_STOPPED = 2;
-  // A task returned "error" with no handler, or would not cancel in time. The
-  // machine runs nothing until Reset or an event with a transition out.
+  // A task returned an outcome no state handles, or would not cancel in time.
+  // The machine runs nothing until Reset or an event with a transition out.
   STATUS_FAULTED = 3;
+}
+
+// TransitionSource is what kind of thing caused a transition.
+enum TransitionSource {
+  TRANSITION_SOURCE_UNSPECIFIED = 0;
+  // The machine entered its initial state at startup.
+  TRANSITION_SOURCE_INITIAL = 1;
+  // The task running in the from state returned the outcome named by trigger.
+  TRANSITION_SOURCE_OUTCOME = 2;
+  // SendEvent, or a watcher, raised the event named by trigger.
+  TRANSITION_SOURCE_EVENT = 3;
+  // The from state's timeout elapsed; trigger is "timeout".
+  TRANSITION_SOURCE_TIMEOUT = 4;
+  // Stop held the machine; from and to are equal and trigger is "stop".
+  TRANSITION_SOURCE_STOP = 5;
+  // Reset re-entered the initial state; trigger is "reset".
+  TRANSITION_SOURCE_RESET = 6;
+  // The machine faulted; from and to are equal, trigger is "fault" and
+  // task_result carries the reason.
+  TRANSITION_SOURCE_FAULT = 7;
 }
 
 // Transition is one recorded change of active state.
 message Transition {
-  // The active state path before the transition.
+  // The active state path before the transition. Empty for the initial entry.
   repeated string from = 1;
   // The active state path after the transition.
   repeated string to = 2;
-  // What caused it: the task outcome, the event name, "timeout", "stop" or "reset".
+  // The outcome or event name that caused it, or "initial", "timeout",
+  // "stop", "reset" or "fault" as source says.
   string trigger = 3;
   google.protobuf.Timestamp timestamp = 4;
   // The result of the task that was running in the from state, if it finished.
   viam.service.task.v1.Result task_result = 5;
+  // What kind of thing caused the transition. An outcome name sent through
+  // SendEvent is recorded as an event, so history shows the override.
+  TransitionSource source = 6;
+  // The job the transition belongs to.
+  string job_id = 7;
 }
 
 message GetStateRequest {
@@ -114,6 +141,9 @@ message GetStateResponse {
   google.protobuf.Timestamp entered_at = 4;
   // The running task's latest progress. Unset when no task is running.
   viam.service.task.v1.Progress task_progress = 5;
+  // The current job, read together with the state so the two cannot straddle
+  // a Reset.
+  string job_id = 6;
 }
 
 message SendEventRequest {
@@ -121,7 +151,9 @@ message SendEventRequest {
   string name = 1;
   // The event name, as written in a state's "on" map.
   string event = 2;
-  // Event payload, merged into the input of the task the target state runs.
+  // Event payload. The target state's task receives the machine's context
+  // shallowly merged with this payload, payload keys winning, as its input.
+  // The payload is not stored in the context: it reaches that one task only.
   google.protobuf.Struct payload = 3;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
@@ -137,14 +169,15 @@ message SendEventResponse {
 message GetHistoryRequest {
   // Name of the state machine service
   string name = 1;
-  // Maximum number of transitions to return, newest first. 0 means all retained.
+  // Maximum number of transitions to return; the most recent ones are kept.
+  // 0 means all retained.
   int32 limit = 2;
   // Additional arguments to the method
   google.protobuf.Struct extra = 99;
 }
 
 message GetHistoryResponse {
-  // Transitions in the order they happened, oldest first.
+  // The most recent transitions, oldest first.
   repeated Transition transitions = 1;
 }
 
@@ -165,8 +198,11 @@ message StateDefinition {
   // to the target state name as written in config ("$history" and "$done"
   // are the special targets).
   map<string, string> on = 3;
-  // Whether the state runs a task.
-  bool has_task = 4;
+  // The name of the task resource the state runs. Empty when it runs none.
+  string task = 4;
+  // How long the state's task may run before it is cancelled and the state
+  // handles "timeout". Unset when the state has no timeout.
+  google.protobuf.Duration timeout = 5;
 }
 
 message GetDefinitionResponse {
@@ -175,7 +211,9 @@ message GetDefinitionResponse {
   // Every state, compound states included, in no particular order.
   repeated StateDefinition states = 2;
   // Every trigger any state or the machine itself handles. Task outcomes and
-  // external events share this namespace; an agent may send any of them.
+  // external events share this namespace by design: sending an outcome name
+  // through SendEvent forces the transition a task would have caused, and
+  // history records it with source EVENT so the override is visible.
   repeated string events = 3;
   // Triggers the machine handles at its top level, mapped to target state names.
   map<string, string> on = 4;
