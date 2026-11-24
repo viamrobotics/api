@@ -101,6 +101,8 @@ message GetBatteryPercentRequest {
 message GetBatteryPercentResponse {
   // Remaining battery charge, from 0 to 100
   double percent = 1;
+  // Whether the battery is charging. Only meaningful when GetProperties reports is_charging_supported.
+  bool is_charging = 2;
 }
 
 message GetPropertiesRequest {
@@ -113,4 +115,6 @@ message GetPropertiesRequest {
 message GetPropertiesResponse {
   // Whether the power sensor supports GetBatteryPercent
   bool is_battery_percent_supported = 1;
+  // Whether GetBatteryPercent reports a meaningful is_charging
+  bool is_charging_supported = 2;
 }
