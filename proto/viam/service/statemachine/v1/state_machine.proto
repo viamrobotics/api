@@ -198,7 +198,9 @@ message StateDefinition {
   // to the target state name as written in config ("$history" and "$done"
   // are the special targets).
   map<string, string> on = 3;
-  // The name of the task resource the state runs. Empty when it runs none.
+  // The task the state runs: a task resource's name, on which GetTaskStatus
+  // can be called, or a built-in task type prefixed with "$" ("$wait_for").
+  // Empty when the state runs none.
   string task = 4;
   // How long the state's task may run before it is cancelled and the state
   // handles "timeout". Unset when the state has no timeout.

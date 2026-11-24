@@ -714,7 +714,9 @@ type StateDefinition struct {
 	// to the target state name as written in config ("$history" and "$done"
 	// are the special targets).
 	On map[string]string `protobuf:"bytes,3,rep,name=on,proto3" json:"on,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	// The name of the task resource the state runs. Empty when it runs none.
+	// The task the state runs: a task resource's name, on which GetTaskStatus
+	// can be called, or a built-in task type prefixed with "$" ("$wait_for").
+	// Empty when the state runs none.
 	Task string `protobuf:"bytes,4,opt,name=task,proto3" json:"task,omitempty"`
 	// How long the state's task may run before it is cancelled and the state
 	// handles "timeout". Unset when the state has no timeout.
