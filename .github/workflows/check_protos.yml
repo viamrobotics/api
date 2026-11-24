@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
   # This job doesn't use any secrets and the github workflow token is RO, so
   # doesn't need `pull_request_target` + `safe-to-test` filtering.
+  # Not filtered by base branch so stacked PRs are already checked by the time
+  # they are retargeted to main; retargeting alone doesn't trigger a new run.
   pull_request:
-    branches: [ 'main' ]
 
 permissions:
   contents: read
