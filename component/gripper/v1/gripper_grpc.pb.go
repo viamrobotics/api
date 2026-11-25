@@ -37,6 +37,23 @@ type GripperServiceClient interface {
 	GetCurrentInputs(ctx context.Context, in *GetCurrentInputsRequest, opts ...grpc.CallOption) (*GetCurrentInputsResponse, error)
 	// GoToInputs moves the gripper to the given input values.
 	GoToInputs(ctx context.Context, in *GoToInputsRequest, opts ...grpc.CallOption) (*GoToInputsResponse, error)
+	// SetPercentOpen moves the gripper to a normalized opening, where 0.0 is fully closed (where
+	// Grab moves to) and 1.0 is fully open (where Open moves to). The gripper maps the value
+	// linearly onto its range of motion and owns any inversion of its hardware scale.
+	// A percent_open that is NaN or outside 0.0-1.0 returns InvalidArgument.
+	// This call blocks until the move completes or is stopped, like Open and Grab. Stop cancels it.
+	// If the gripper does not support percent open (GetProperties reports
+	// percent_open_supported = false or is Unimplemented, or SetPercentOpen is Unimplemented),
+	// the server falls back to Grab for a percent_open below 0.5 and Open for 0.5 and above.
+	SetPercentOpen(ctx context.Context, in *SetPercentOpenRequest, opts ...grpc.CallOption) (*SetPercentOpenResponse, error)
+	// GetPercentOpen returns the measured opening of the gripper on the same 0.0 (closed) to
+	// 1.0 (open) scale as SetPercentOpen. Returns Unimplemented if the gripper does not support
+	// percent open; there is no fallback.
+	GetPercentOpen(ctx context.Context, in *GetPercentOpenRequest, opts ...grpc.CallOption) (*GetPercentOpenResponse, error)
+	// GetProperties returns the capabilities of the gripper.
+	// A gripper that returns Unimplemented for GetProperties is treated as having
+	// percent_open_supported = false.
+	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -118,6 +135,33 @@ func (c *gripperServiceClient) GoToInputs(ctx context.Context, in *GoToInputsReq
 	return out, nil
 }
 
+func (c *gripperServiceClient) SetPercentOpen(ctx context.Context, in *SetPercentOpenRequest, opts ...grpc.CallOption) (*SetPercentOpenResponse, error) {
+	out := new(SetPercentOpenResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/SetPercentOpen", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gripperServiceClient) GetPercentOpen(ctx context.Context, in *GetPercentOpenRequest, opts ...grpc.CallOption) (*GetPercentOpenResponse, error) {
+	out := new(GetPercentOpenResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/GetPercentOpen", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gripperServiceClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (*GetPropertiesResponse, error) {
+	out := new(GetPropertiesResponse)
+	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/GetProperties", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gripperServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.component.gripper.v1.GripperService/DoCommand", in, out, opts...)
@@ -172,6 +216,23 @@ type GripperServiceServer interface {
 	GetCurrentInputs(context.Context, *GetCurrentInputsRequest) (*GetCurrentInputsResponse, error)
 	// GoToInputs moves the gripper to the given input values.
 	GoToInputs(context.Context, *GoToInputsRequest) (*GoToInputsResponse, error)
+	// SetPercentOpen moves the gripper to a normalized opening, where 0.0 is fully closed (where
+	// Grab moves to) and 1.0 is fully open (where Open moves to). The gripper maps the value
+	// linearly onto its range of motion and owns any inversion of its hardware scale.
+	// A percent_open that is NaN or outside 0.0-1.0 returns InvalidArgument.
+	// This call blocks until the move completes or is stopped, like Open and Grab. Stop cancels it.
+	// If the gripper does not support percent open (GetProperties reports
+	// percent_open_supported = false or is Unimplemented, or SetPercentOpen is Unimplemented),
+	// the server falls back to Grab for a percent_open below 0.5 and Open for 0.5 and above.
+	SetPercentOpen(context.Context, *SetPercentOpenRequest) (*SetPercentOpenResponse, error)
+	// GetPercentOpen returns the measured opening of the gripper on the same 0.0 (closed) to
+	// 1.0 (open) scale as SetPercentOpen. Returns Unimplemented if the gripper does not support
+	// percent open; there is no fallback.
+	GetPercentOpen(context.Context, *GetPercentOpenRequest) (*GetPercentOpenResponse, error)
+	// GetProperties returns the capabilities of the gripper.
+	// A gripper that returns Unimplemented for GetProperties is treated as having
+	// percent_open_supported = false.
+	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -207,6 +268,15 @@ func (UnimplementedGripperServiceServer) GetCurrentInputs(context.Context, *GetC
 }
 func (UnimplementedGripperServiceServer) GoToInputs(context.Context, *GoToInputsRequest) (*GoToInputsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoToInputs not implemented")
+}
+func (UnimplementedGripperServiceServer) SetPercentOpen(context.Context, *SetPercentOpenRequest) (*SetPercentOpenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetPercentOpen not implemented")
+}
+func (UnimplementedGripperServiceServer) GetPercentOpen(context.Context, *GetPercentOpenRequest) (*GetPercentOpenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPercentOpen not implemented")
+}
+func (UnimplementedGripperServiceServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProperties not implemented")
 }
 func (UnimplementedGripperServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -359,6 +429,60 @@ func _GripperService_GoToInputs_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GripperService_SetPercentOpen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetPercentOpenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GripperServiceServer).SetPercentOpen(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gripper.v1.GripperService/SetPercentOpen",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GripperServiceServer).SetPercentOpen(ctx, req.(*SetPercentOpenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GripperService_GetPercentOpen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPercentOpenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GripperServiceServer).GetPercentOpen(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gripper.v1.GripperService/GetPercentOpen",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GripperServiceServer).GetPercentOpen(ctx, req.(*GetPercentOpenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GripperService_GetProperties_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPropertiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GripperServiceServer).GetProperties(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.component.gripper.v1.GripperService/GetProperties",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GripperServiceServer).GetProperties(ctx, req.(*GetPropertiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GripperService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DoCommandRequest)
 	if err := dec(in); err != nil {
@@ -465,6 +589,18 @@ var GripperService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GoToInputs",
 			Handler:    _GripperService_GoToInputs_Handler,
+		},
+		{
+			MethodName: "SetPercentOpen",
+			Handler:    _GripperService_SetPercentOpen_Handler,
+		},
+		{
+			MethodName: "GetPercentOpen",
+			Handler:    _GripperService_GetPercentOpen_Handler,
+		},
+		{
+			MethodName: "GetProperties",
+			Handler:    _GripperService_GetProperties_Handler,
 		},
 		{
 			MethodName: "DoCommand",
