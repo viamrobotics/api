@@ -23,6 +23,15 @@ type WorldStateStoreServiceGetTransform = {
   readonly responseType: typeof service_worldstatestore_v1_world_state_store_pb.GetTransformResponse;
 };
 
+type WorldStateStoreServiceListTransforms = {
+  readonly methodName: string;
+  readonly service: typeof WorldStateStoreService;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof service_worldstatestore_v1_world_state_store_pb.ListTransformsRequest;
+  readonly responseType: typeof service_worldstatestore_v1_world_state_store_pb.ListTransformsResponse;
+};
+
 type WorldStateStoreServiceStreamTransformChanges = {
   readonly methodName: string;
   readonly service: typeof WorldStateStoreService;
@@ -30,6 +39,15 @@ type WorldStateStoreServiceStreamTransformChanges = {
   readonly responseStream: true;
   readonly requestType: typeof service_worldstatestore_v1_world_state_store_pb.StreamTransformChangesRequest;
   readonly responseType: typeof service_worldstatestore_v1_world_state_store_pb.StreamTransformChangesResponse;
+};
+
+type WorldStateStoreServiceApplyTransformChanges = {
+  readonly methodName: string;
+  readonly service: typeof WorldStateStoreService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_worldstatestore_v1_world_state_store_pb.ApplyTransformChangesRequest;
+  readonly responseType: typeof service_worldstatestore_v1_world_state_store_pb.ApplyTransformChangesResponse;
 };
 
 type WorldStateStoreServiceDoCommand = {
@@ -54,7 +72,9 @@ export class WorldStateStoreService {
   static readonly serviceName: string;
   static readonly ListUUIDs: WorldStateStoreServiceListUUIDs;
   static readonly GetTransform: WorldStateStoreServiceGetTransform;
+  static readonly ListTransforms: WorldStateStoreServiceListTransforms;
   static readonly StreamTransformChanges: WorldStateStoreServiceStreamTransformChanges;
+  static readonly ApplyTransformChanges: WorldStateStoreServiceApplyTransformChanges;
   static readonly DoCommand: WorldStateStoreServiceDoCommand;
   static readonly GetStatus: WorldStateStoreServiceGetStatus;
 }
@@ -109,7 +129,17 @@ export class WorldStateStoreServiceClient {
     requestMessage: service_worldstatestore_v1_world_state_store_pb.GetTransformRequest,
     callback: (error: ServiceError|null, responseMessage: service_worldstatestore_v1_world_state_store_pb.GetTransformResponse|null) => void
   ): UnaryResponse;
+  listTransforms(requestMessage: service_worldstatestore_v1_world_state_store_pb.ListTransformsRequest, metadata?: grpc.Metadata): ResponseStream<service_worldstatestore_v1_world_state_store_pb.ListTransformsResponse>;
   streamTransformChanges(requestMessage: service_worldstatestore_v1_world_state_store_pb.StreamTransformChangesRequest, metadata?: grpc.Metadata): ResponseStream<service_worldstatestore_v1_world_state_store_pb.StreamTransformChangesResponse>;
+  applyTransformChanges(
+    requestMessage: service_worldstatestore_v1_world_state_store_pb.ApplyTransformChangesRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_worldstatestore_v1_world_state_store_pb.ApplyTransformChangesResponse|null) => void
+  ): UnaryResponse;
+  applyTransformChanges(
+    requestMessage: service_worldstatestore_v1_world_state_store_pb.ApplyTransformChangesRequest,
+    callback: (error: ServiceError|null, responseMessage: service_worldstatestore_v1_world_state_store_pb.ApplyTransformChangesResponse|null) => void
+  ): UnaryResponse;
   doCommand(
     requestMessage: common_v1_common_pb.DoCommandRequest,
     metadata: grpc.Metadata,

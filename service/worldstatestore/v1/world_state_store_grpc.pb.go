@@ -27,8 +27,25 @@ type WorldStateStoreServiceClient interface {
 	ListUUIDs(ctx context.Context, in *ListUUIDsRequest, opts ...grpc.CallOption) (*ListUUIDsResponse, error)
 	// GetTransform returns a world state transform by uuid
 	GetTransform(ctx context.Context, in *GetTransformRequest, opts ...grpc.CallOption) (*GetTransformResponse, error)
+	// ListTransforms returns a snapshot of every transform in the world state, as it was when the request was received.
+	//
+	// The snapshot is consistent: it includes all transforms in the world state at the time of the request, and no
+	// change made after the request was received.
+	//
+	// A world state can be large, so the snapshot is sent as a stream of batches rather than as one message, and the
+	// call can be slow. The stream ends once the whole snapshot has been sent. A stream that ends with an error is not
+	// a complete snapshot and should be discarded.
+	ListTransforms(ctx context.Context, in *ListTransformsRequest, opts ...grpc.CallOption) (WorldStateStoreService_ListTransformsClient, error)
 	// StreamTransformChanges streams changes to world state transforms
 	StreamTransformChanges(ctx context.Context, in *StreamTransformChangesRequest, opts ...grpc.CallOption) (WorldStateStoreService_StreamTransformChangesClient, error)
+	// ApplyTransformChanges applies a batch of additions, updates, and removals to the world state in a single call.
+	//
+	// Changes are applied in the order they appear in the request, and each change sees the effect of the changes
+	// before it. A transform can therefore be replaced by removing it and then adding it again under the same UUID.
+	//
+	// The call is all-or-nothing: if any change is invalid, such as adding a UUID that already exists or updating or
+	// removing one that does not, an error is returned and none of the changes in the request are applied.
+	ApplyTransformChanges(ctx context.Context, in *ApplyTransformChangesRequest, opts ...grpc.CallOption) (*ApplyTransformChangesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -61,8 +78,40 @@ func (c *worldStateStoreServiceClient) GetTransform(ctx context.Context, in *Get
 	return out, nil
 }
 
+func (c *worldStateStoreServiceClient) ListTransforms(ctx context.Context, in *ListTransformsRequest, opts ...grpc.CallOption) (WorldStateStoreService_ListTransformsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &WorldStateStoreService_ServiceDesc.Streams[0], "/viam.service.worldstatestore.v1.WorldStateStoreService/ListTransforms", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &worldStateStoreServiceListTransformsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type WorldStateStoreService_ListTransformsClient interface {
+	Recv() (*ListTransformsResponse, error)
+	grpc.ClientStream
+}
+
+type worldStateStoreServiceListTransformsClient struct {
+	grpc.ClientStream
+}
+
+func (x *worldStateStoreServiceListTransformsClient) Recv() (*ListTransformsResponse, error) {
+	m := new(ListTransformsResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *worldStateStoreServiceClient) StreamTransformChanges(ctx context.Context, in *StreamTransformChangesRequest, opts ...grpc.CallOption) (WorldStateStoreService_StreamTransformChangesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &WorldStateStoreService_ServiceDesc.Streams[0], "/viam.service.worldstatestore.v1.WorldStateStoreService/StreamTransformChanges", opts...)
+	stream, err := c.cc.NewStream(ctx, &WorldStateStoreService_ServiceDesc.Streams[1], "/viam.service.worldstatestore.v1.WorldStateStoreService/StreamTransformChanges", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,6 +142,15 @@ func (x *worldStateStoreServiceStreamTransformChangesClient) Recv() (*StreamTran
 	return m, nil
 }
 
+func (c *worldStateStoreServiceClient) ApplyTransformChanges(ctx context.Context, in *ApplyTransformChangesRequest, opts ...grpc.CallOption) (*ApplyTransformChangesResponse, error) {
+	out := new(ApplyTransformChangesResponse)
+	err := c.cc.Invoke(ctx, "/viam.service.worldstatestore.v1.WorldStateStoreService/ApplyTransformChanges", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *worldStateStoreServiceClient) DoCommand(ctx context.Context, in *v1.DoCommandRequest, opts ...grpc.CallOption) (*v1.DoCommandResponse, error) {
 	out := new(v1.DoCommandResponse)
 	err := c.cc.Invoke(ctx, "/viam.service.worldstatestore.v1.WorldStateStoreService/DoCommand", in, out, opts...)
@@ -119,8 +177,25 @@ type WorldStateStoreServiceServer interface {
 	ListUUIDs(context.Context, *ListUUIDsRequest) (*ListUUIDsResponse, error)
 	// GetTransform returns a world state transform by uuid
 	GetTransform(context.Context, *GetTransformRequest) (*GetTransformResponse, error)
+	// ListTransforms returns a snapshot of every transform in the world state, as it was when the request was received.
+	//
+	// The snapshot is consistent: it includes all transforms in the world state at the time of the request, and no
+	// change made after the request was received.
+	//
+	// A world state can be large, so the snapshot is sent as a stream of batches rather than as one message, and the
+	// call can be slow. The stream ends once the whole snapshot has been sent. A stream that ends with an error is not
+	// a complete snapshot and should be discarded.
+	ListTransforms(*ListTransformsRequest, WorldStateStoreService_ListTransformsServer) error
 	// StreamTransformChanges streams changes to world state transforms
 	StreamTransformChanges(*StreamTransformChangesRequest, WorldStateStoreService_StreamTransformChangesServer) error
+	// ApplyTransformChanges applies a batch of additions, updates, and removals to the world state in a single call.
+	//
+	// Changes are applied in the order they appear in the request, and each change sees the effect of the changes
+	// before it. A transform can therefore be replaced by removing it and then adding it again under the same UUID.
+	//
+	// The call is all-or-nothing: if any change is invalid, such as adding a UUID that already exists or updating or
+	// removing one that does not, an error is returned and none of the changes in the request are applied.
+	ApplyTransformChanges(context.Context, *ApplyTransformChangesRequest) (*ApplyTransformChangesResponse, error)
 	// DoCommand sends/receives arbitrary commands
 	DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error)
 	// GetStatus returns the status of the resource
@@ -138,8 +213,14 @@ func (UnimplementedWorldStateStoreServiceServer) ListUUIDs(context.Context, *Lis
 func (UnimplementedWorldStateStoreServiceServer) GetTransform(context.Context, *GetTransformRequest) (*GetTransformResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransform not implemented")
 }
+func (UnimplementedWorldStateStoreServiceServer) ListTransforms(*ListTransformsRequest, WorldStateStoreService_ListTransformsServer) error {
+	return status.Errorf(codes.Unimplemented, "method ListTransforms not implemented")
+}
 func (UnimplementedWorldStateStoreServiceServer) StreamTransformChanges(*StreamTransformChangesRequest, WorldStateStoreService_StreamTransformChangesServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamTransformChanges not implemented")
+}
+func (UnimplementedWorldStateStoreServiceServer) ApplyTransformChanges(context.Context, *ApplyTransformChangesRequest) (*ApplyTransformChangesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ApplyTransformChanges not implemented")
 }
 func (UnimplementedWorldStateStoreServiceServer) DoCommand(context.Context, *v1.DoCommandRequest) (*v1.DoCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoCommand not implemented")
@@ -197,6 +278,27 @@ func _WorldStateStoreService_GetTransform_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WorldStateStoreService_ListTransforms_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ListTransformsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(WorldStateStoreServiceServer).ListTransforms(m, &worldStateStoreServiceListTransformsServer{stream})
+}
+
+type WorldStateStoreService_ListTransformsServer interface {
+	Send(*ListTransformsResponse) error
+	grpc.ServerStream
+}
+
+type worldStateStoreServiceListTransformsServer struct {
+	grpc.ServerStream
+}
+
+func (x *worldStateStoreServiceListTransformsServer) Send(m *ListTransformsResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 func _WorldStateStoreService_StreamTransformChanges_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(StreamTransformChangesRequest)
 	if err := stream.RecvMsg(m); err != nil {
@@ -216,6 +318,24 @@ type worldStateStoreServiceStreamTransformChangesServer struct {
 
 func (x *worldStateStoreServiceStreamTransformChangesServer) Send(m *StreamTransformChangesResponse) error {
 	return x.ServerStream.SendMsg(m)
+}
+
+func _WorldStateStoreService_ApplyTransformChanges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ApplyTransformChangesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorldStateStoreServiceServer).ApplyTransformChanges(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/viam.service.worldstatestore.v1.WorldStateStoreService/ApplyTransformChanges",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorldStateStoreServiceServer).ApplyTransformChanges(ctx, req.(*ApplyTransformChangesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _WorldStateStoreService_DoCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -270,6 +390,10 @@ var WorldStateStoreService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _WorldStateStoreService_GetTransform_Handler,
 		},
 		{
+			MethodName: "ApplyTransformChanges",
+			Handler:    _WorldStateStoreService_ApplyTransformChanges_Handler,
+		},
+		{
 			MethodName: "DoCommand",
 			Handler:    _WorldStateStoreService_DoCommand_Handler,
 		},
@@ -279,6 +403,11 @@ var WorldStateStoreService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ListTransforms",
+			Handler:       _WorldStateStoreService_ListTransforms_Handler,
+			ServerStreams: true,
+		},
 		{
 			StreamName:    "StreamTransformChanges",
 			Handler:       _WorldStateStoreService_StreamTransformChanges_Handler,
