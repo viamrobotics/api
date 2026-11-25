@@ -1327,6 +1327,11 @@ export class AgentInfo extends jspb.Message {
   getReconfigureBlocked(): boolean;
   setReconfigureBlocked(value: boolean): void;
 
+  clearSystemUsersList(): void;
+  getSystemUsersList(): Array<string>;
+  setSystemUsersList(value: Array<string>): void;
+  addSystemUsers(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AgentInfo.AsObject;
   static toObject(includeInstance: boolean, msg: AgentInfo): AgentInfo.AsObject;
@@ -1349,6 +1354,7 @@ export namespace AgentInfo {
     moduleVersionsList: Array<ModuleVersionInfo.AsObject>,
     viamServerUptime?: google_protobuf_duration_pb.Duration.AsObject,
     reconfigureBlocked: boolean,
+    systemUsersList: Array<string>,
   }
 }
 
@@ -1617,6 +1623,14 @@ export class ModuleConfig extends jspb.Message {
   getTcpMode(): boolean;
   setTcpMode(value: boolean): void;
 
+  getRunAsUser(): string;
+  setRunAsUser(value: string): void;
+
+  hasCloudAccess(): boolean;
+  clearCloudAccess(): void;
+  getCloudAccess(): ModuleCloudAccess | undefined;
+  setCloudAccess(value?: ModuleCloudAccess): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ModuleConfig.AsObject;
   static toObject(includeInstance: boolean, msg: ModuleConfig): ModuleConfig.AsObject;
@@ -1638,6 +1652,32 @@ export namespace ModuleConfig {
     status?: AppValidationStatus.AsObject,
     firstRunTimeout?: google_protobuf_duration_pb.Duration.AsObject,
     tcpMode: boolean,
+    runAsUser: string,
+    cloudAccess?: ModuleCloudAccess.AsObject,
+  }
+}
+
+export class ModuleCloudAccess extends jspb.Message {
+  getMode(): ModuleCloudAccessModeMap[keyof ModuleCloudAccessModeMap];
+  setMode(value: ModuleCloudAccessModeMap[keyof ModuleCloudAccessModeMap]): void;
+
+  getApiKeyId(): string;
+  setApiKeyId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ModuleCloudAccess.AsObject;
+  static toObject(includeInstance: boolean, msg: ModuleCloudAccess): ModuleCloudAccess.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ModuleCloudAccess, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ModuleCloudAccess;
+  static deserializeBinaryFromReader(message: ModuleCloudAccess, reader: jspb.BinaryReader): ModuleCloudAccess;
+}
+
+export namespace ModuleCloudAccess {
+  export type AsObject = {
+    mode: ModuleCloudAccessModeMap[keyof ModuleCloudAccessModeMap],
+    apiKeyId: string,
   }
 }
 
@@ -1746,4 +1786,12 @@ export interface CredentialsTypeMap {
 }
 
 export const CredentialsType: CredentialsTypeMap;
+
+export interface ModuleCloudAccessModeMap {
+  MODULE_CLOUD_ACCESS_MODE_UNSPECIFIED: 0;
+  MODULE_CLOUD_ACCESS_MODE_MACHINE: 1;
+  MODULE_CLOUD_ACCESS_MODE_NONE: 2;
+}
+
+export const ModuleCloudAccessMode: ModuleCloudAccessModeMap;
 

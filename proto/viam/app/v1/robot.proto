@@ -389,6 +389,8 @@ message AgentInfo {
   // true while a pending reconfigure is being held back by the maintenance sensor;
   // false once that reconfigure is applied (or when nothing is pending)
   bool reconfigure_blocked = 10;
+  // System users on the machine that modules can be configured to run as.
+  repeated string system_users = 11;
 }
 
 message ModuleVersionInfo {
@@ -481,6 +483,26 @@ message ModuleConfig {
   google.protobuf.Duration first_run_timeout = 8;
   // whether we are starting a module in TCP mode
   bool tcp_mode = 9;
+  // system user the module process runs as; empty means the same user as viam-server
+  string run_as_user = 10;
+  // which cloud API key, if any, viam-server puts in the module's environment (VIAM_API_KEY, VIAM_API_KEY_ID)
+  ModuleCloudAccess cloud_access = 11;
+}
+
+// ModuleCloudAccess selects the cloud credentials a module receives.
+message ModuleCloudAccess {
+  ModuleCloudAccessMode mode = 1;
+  // reserved for choosing a specific API key; must be empty until a mode uses it
+  string api_key_id = 2;
+}
+
+enum ModuleCloudAccessMode {
+  // same as MODULE_CLOUD_ACCESS_MODE_MACHINE
+  MODULE_CLOUD_ACCESS_MODE_UNSPECIFIED = 0;
+  // the machine's own cloud API key
+  MODULE_CLOUD_ACCESS_MODE_MACHINE = 1;
+  // no cloud API key
+  MODULE_CLOUD_ACCESS_MODE_NONE = 2;
 }
 
 // PackageConfig is the configration for deployed Packages.
