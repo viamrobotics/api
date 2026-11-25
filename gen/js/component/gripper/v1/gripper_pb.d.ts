@@ -330,3 +330,141 @@ export namespace GoToInputsResponse {
   }
 }
 
+export class SetPercentOpenRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getPercentOpen(): number;
+  setPercentOpen(value: number): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetPercentOpenRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetPercentOpenRequest): SetPercentOpenRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetPercentOpenRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetPercentOpenRequest;
+  static deserializeBinaryFromReader(message: SetPercentOpenRequest, reader: jspb.BinaryReader): SetPercentOpenRequest;
+}
+
+export namespace SetPercentOpenRequest {
+  export type AsObject = {
+    name: string,
+    percentOpen: number,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class SetPercentOpenResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetPercentOpenResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SetPercentOpenResponse): SetPercentOpenResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SetPercentOpenResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetPercentOpenResponse;
+  static deserializeBinaryFromReader(message: SetPercentOpenResponse, reader: jspb.BinaryReader): SetPercentOpenResponse;
+}
+
+export namespace SetPercentOpenResponse {
+  export type AsObject = {
+  }
+}
+
+export class GetPercentOpenRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPercentOpenRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPercentOpenRequest): GetPercentOpenRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPercentOpenRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPercentOpenRequest;
+  static deserializeBinaryFromReader(message: GetPercentOpenRequest, reader: jspb.BinaryReader): GetPercentOpenRequest;
+}
+
+export namespace GetPercentOpenRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetPercentOpenResponse extends jspb.Message {
+  getPercentOpen(): number;
+  setPercentOpen(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPercentOpenResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPercentOpenResponse): GetPercentOpenResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPercentOpenResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPercentOpenResponse;
+  static deserializeBinaryFromReader(message: GetPercentOpenResponse, reader: jspb.BinaryReader): GetPercentOpenResponse;
+}
+
+export namespace GetPercentOpenResponse {
+  export type AsObject = {
+    percentOpen: number,
+  }
+}
+
+export class GetPropertiesRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasExtra(): boolean;
+  clearExtra(): void;
+  getExtra(): google_protobuf_struct_pb.Struct | undefined;
+  setExtra(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesRequest): GetPropertiesRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesRequest;
+  static deserializeBinaryFromReader(message: GetPropertiesRequest, reader: jspb.BinaryReader): GetPropertiesRequest;
+}
+
+export namespace GetPropertiesRequest {
+  export type AsObject = {
+    name: string,
+    extra?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class GetPropertiesResponse extends jspb.Message {
+  getPercentOpenSupported(): boolean;
+  setPercentOpenSupported(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPropertiesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPropertiesResponse;
+  static deserializeBinaryFromReader(message: GetPropertiesResponse, reader: jspb.BinaryReader): GetPropertiesResponse;
+}
+
+export namespace GetPropertiesResponse {
+  export type AsObject = {
+    percentOpenSupported: boolean,
+  }
+}
+
