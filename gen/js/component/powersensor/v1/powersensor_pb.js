@@ -1447,7 +1447,8 @@ proto.viam.component.powersensor.v1.GetBatteryPercentResponse.prototype.toObject
  */
 proto.viam.component.powersensor.v1.GetBatteryPercentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    percent: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0)
+    percent: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+    isCharging: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -1488,6 +1489,10 @@ proto.viam.component.powersensor.v1.GetBatteryPercentResponse.deserializeBinaryF
       var value = /** @type {number} */ (reader.readDouble());
       msg.setPercent(value);
       break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsCharging(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1524,6 +1529,13 @@ proto.viam.component.powersensor.v1.GetBatteryPercentResponse.serializeBinaryToW
       f
     );
   }
+  f = message.getIsCharging();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1542,6 +1554,24 @@ proto.viam.component.powersensor.v1.GetBatteryPercentResponse.prototype.getPerce
  */
 proto.viam.component.powersensor.v1.GetBatteryPercentResponse.prototype.setPercent = function(value) {
   return jspb.Message.setProto3FloatField(this, 1, value);
+};
+
+
+/**
+ * optional bool is_charging = 2;
+ * @return {boolean}
+ */
+proto.viam.component.powersensor.v1.GetBatteryPercentResponse.prototype.getIsCharging = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.component.powersensor.v1.GetBatteryPercentResponse} returns this
+ */
+proto.viam.component.powersensor.v1.GetBatteryPercentResponse.prototype.setIsCharging = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -1758,7 +1788,8 @@ proto.viam.component.powersensor.v1.GetPropertiesResponse.prototype.toObject = f
  */
 proto.viam.component.powersensor.v1.GetPropertiesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    isBatteryPercentSupported: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    isBatteryPercentSupported: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    isChargingSupported: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -1799,6 +1830,10 @@ proto.viam.component.powersensor.v1.GetPropertiesResponse.deserializeBinaryFromR
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsBatteryPercentSupported(value);
       break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsChargingSupported(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1835,6 +1870,13 @@ proto.viam.component.powersensor.v1.GetPropertiesResponse.serializeBinaryToWrite
       f
     );
   }
+  f = message.getIsChargingSupported();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1853,6 +1895,24 @@ proto.viam.component.powersensor.v1.GetPropertiesResponse.prototype.getIsBattery
  */
 proto.viam.component.powersensor.v1.GetPropertiesResponse.prototype.setIsBatteryPercentSupported = function(value) {
   return jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional bool is_charging_supported = 2;
+ * @return {boolean}
+ */
+proto.viam.component.powersensor.v1.GetPropertiesResponse.prototype.getIsChargingSupported = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.viam.component.powersensor.v1.GetPropertiesResponse} returns this
+ */
+proto.viam.component.powersensor.v1.GetPropertiesResponse.prototype.setIsChargingSupported = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
