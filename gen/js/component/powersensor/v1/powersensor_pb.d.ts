@@ -182,6 +182,9 @@ export class GetBatteryPercentResponse extends jspb.Message {
   getPercent(): number;
   setPercent(value: number): void;
 
+  getIsCharging(): boolean;
+  setIsCharging(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetBatteryPercentResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetBatteryPercentResponse): GetBatteryPercentResponse.AsObject;
@@ -195,6 +198,7 @@ export class GetBatteryPercentResponse extends jspb.Message {
 export namespace GetBatteryPercentResponse {
   export type AsObject = {
     percent: number,
+    isCharging: boolean,
   }
 }
 
@@ -228,6 +232,9 @@ export class GetPropertiesResponse extends jspb.Message {
   getIsBatteryPercentSupported(): boolean;
   setIsBatteryPercentSupported(value: boolean): void;
 
+  getIsChargingSupported(): boolean;
+  setIsChargingSupported(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetPropertiesResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetPropertiesResponse): GetPropertiesResponse.AsObject;
@@ -241,6 +248,7 @@ export class GetPropertiesResponse extends jspb.Message {
 export namespace GetPropertiesResponse {
   export type AsObject = {
     isBatteryPercentSupported: boolean,
+    isChargingSupported: boolean,
   }
 }
 
