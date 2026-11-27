@@ -70,6 +70,10 @@ service MotionService {
   // under active development, and its current shape should not be depended on.
   rpc TempStreamArmJointPositions(stream TempStreamArmJointPositionsRequest) returns (stream TempStreamArmJointPositionsResponse);
 
+  // StreamServo runs one Cartesian servo session on one arm for the life of the stream.
+  // The first request must be Init; every later request is an Update. See StreamServoRequest.
+  rpc StreamServo(stream StreamServoRequest) returns (stream StreamServoResponse);
+
   // DoCommand sends/receives arbitrary commands
   rpc DoCommand(common.v1.DoCommandRequest) returns (common.v1.DoCommandResponse) {
     option (google.api.http) = {post: "/viam/api/v1/service/motion/{name}/do_command"};
@@ -474,4 +478,101 @@ message TempStreamArmJointPositionsResponse {
   // motion_side_current_runway_ms is sent once per target, right after the service adds it. It is how much
   // motion, in milliseconds, the service has accepted but not yet handed to the arm at that moment.
   optional int32 motion_side_current_runway_ms = 1;
+}
+
+enum ServoMode {
+  SERVO_MODE_UNSPECIFIED = 0;
+  SERVO_MODE_POSE = 1;
+  SERVO_MODE_VELOCITY = 2;
+}
+
+// Why the session is not tracking the command at full rate. Several can hold at once.
+enum ServoLimit {
+  SERVO_LIMIT_UNSPECIFIED = 0;
+  SERVO_LIMIT_JOINT_POSITION = 1; // braking for, or holding at, a joint position limit
+  SERVO_LIMIT_JOINT_SPEED = 2; // a joint velocity or acceleration limit scaled the step
+  SERVO_LIMIT_TCP_SPEED = 3; // the linear or angular TCP speed limit capped the command
+  SERVO_LIMIT_SINGULARITY = 4; // damping near a singularity slowed the step
+  // Reserved: SERVO_LIMIT_OBSTACLE, if collision enters the loop.
+}
+
+enum ServoState {
+  SERVO_STATE_UNSPECIFIED = 0;
+  SERVO_STATE_RUNNING = 1; // tracking
+  SERVO_STATE_CONVERGED = 2; // at the target; before the first one, holding the start pose
+  SERVO_STATE_STALLED = 3; // limit-bound or singular; best effort
+  SERVO_STATE_STOPPED = 4; // the client closed the stream, or Move, Stop or StopPlan took the arm
+  SERVO_STATE_STOPPED_TIMEOUT = 5; // dead-man fired
+  SERVO_STATE_FAULTED = 6; // arm or kinematics error, or the arm ended its stream
+}
+
+message StreamServoRequest {
+  string name = 1; // the motion service
+  oneof message {
+    Init init = 2; // exactly once, first
+    Update update = 3; // any number of times after Init
+  }
+
+  message Init {
+    string component_name = 1; // the arm
+    ServoMode mode = 2;
+    // May only tighten what the arm reports; required for any limit the arm leaves unset.
+    viam.component.arm.v1.MoveOptions limits = 3;
+    optional double max_angular_vel_degs_per_sec = 4; // MoveOptions has no angular TCP limit
+    optional uint32 timeout_ms = 5; // dead-man, default 500, max 10000
+    optional double max_target_step_mm = 6; // default 100
+    optional double max_target_step_deg = 7; // default 30
+    google.protobuf.Struct extra = 99;
+  }
+
+  // One command; latest wins. It must match the session's mode.
+  message Update {
+    oneof command {
+      PoseTarget target = 1; // SERVO_MODE_POSE
+      Twist velocity = 2; // SERVO_MODE_VELOCITY
+      // Reserved for timed action chunks (scope doc open question 4).
+    }
+  }
+}
+
+message PoseTarget {
+  viam.common.v1.PoseInFrame pose = 1; // empty reference_frame is world
+  // The target's own velocity, if the client knows it (a trajectory generator, a policy's action
+  // chunk, a tracker's motion estimate). Between updates the target moves on at this velocity; it
+  // expires like a velocity command. Absent is zero.
+  optional Twist feed_forward = 2;
+}
+
+message Twist {
+  viam.common.v1.Vector3 linear_mm_per_sec = 1;
+  viam.common.v1.Vector3 angular_degs_per_sec = 2;
+  string reference_frame = 3; // empty is world, as for PoseInFrame
+}
+
+message StreamServoResponse {
+  oneof message {
+    Started started = 1; // exactly once, first
+    Status status = 2;
+  }
+
+  // The session is live and the arm's stream is open. Carries the effective limits.
+  message Started {
+    viam.component.arm.v1.MoveOptions limits = 1;
+    double max_angular_vel_degs_per_sec = 2;
+    uint32 timeout_ms = 3;
+    double rate_hz = 4; // the loop's tick rate: 50, or the arm's operating_freq_hz if lower
+  }
+
+  message Status {
+    ServoState state = 1;
+    double err_mm = 2; // measured tool pose vs the current target
+    double err_deg = 3; // tool-axis angle in the pointing task
+    // Set when this Status acknowledges an Update: its 1-based position on the stream.
+    // Absent on a Status sent for a state change.
+    optional uint64 ack = 4;
+    // Set on an acknowledgement when the Update was rejected; the session keeps its last command.
+    optional string rejected = 5;
+    // What limited the last tick; empty when nothing did.
+    repeated ServoLimit limited_by = 6;
+  }
 }
