@@ -1569,6 +1569,9 @@ export class PackageStatus extends jspb.Message {
   getTotalBytes(): number;
   setTotalBytes(value: number): void;
 
+  getConsecutiveFailures(): number;
+  setConsecutiveFailures(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PackageStatus.AsObject;
   static toObject(includeInstance: boolean, msg: PackageStatus): PackageStatus.AsObject;
@@ -1589,6 +1592,7 @@ export namespace PackageStatus {
     version: string,
     bytesDownloaded: number,
     totalBytes: number,
+    consecutiveFailures: number,
   }
 
   export interface StateMap {
